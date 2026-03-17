@@ -1,0 +1,247 @@
+[
+  {
+    "name": "Free Spins",
+    "description": "Bonus round with free spins",
+    "aliases": [
+      "Free Games"
+    ]
+  },
+  {
+    "name": "Pick Bonus",
+    "description": "Bonus round with pick-and-win mechanic",
+    "aliases": [
+      "Pick'em"
+    ]
+  },
+  {
+    "name": "Wheel Bonus",
+    "description": "Bonus round with spinning wheel",
+    "aliases": [
+      "Wheel of Fortune"
+    ]
+  },
+  {
+    "name": "Trail/Board Bonus",
+    "description": "Bonus round with trail or board game",
+    "aliases": [
+      "Board Game"
+    ]
+  },
+  {
+    "name": "Cascading Reels",
+    "description": "Winning symbols disappear, new ones fall",
+    "aliases": [
+      "Tumbling Reels"
+    ]
+  },
+  {
+    "name": "Megaways",
+    "description": "Varying number of symbols per reel",
+    "aliases": [
+      "Megaways Engine"
+    ]
+  },
+  {
+    "name": "Cluster Pays",
+    "description": "Pays for clusters of symbols",
+    "aliases": [
+      "Cluster Pays"
+    ]
+  },
+  {
+    "name": "Nudge",
+    "description": "Symbols move up or down",
+    "aliases": [
+      "Nudge"
+    ]
+  },
+  {
+    "name": "Hold",
+    "description": "Symbols held in place",
+    "aliases": [
+      "Hold"
+    ]
+  },
+  {
+    "name": "Progressive Jackpot",
+    "description": "Jackpot grows with each bet",
+    "aliases": [
+      "Progressive"
+    ]
+  },
+  {
+    "name": "Fixed Jackpot",
+    "description": "Jackpot with set tiers",
+    "aliases": [
+      "Fixed Jackpot"
+    ]
+  },
+  {
+    "name": "Must-Hit-By",
+    "description": "Jackpot must be won by",
+    "aliases": [
+      "Must-Hit-By"
+    ]
+  },
+  {
+    "name": "Win Both Ways",
+    "description": "Pays left-to-right and right-to-left",
+    "aliases": [
+      "Bi-Directional"
+    ]
+  },
+  {
+    "name": "Multipliers",
+    "description": "Wins multiplied by a value",
+    "aliases": [
+      "Multipliers"
+    ]
+  },
+  {
+    "name": "All Ways Pays",
+    "description": "Pays on any active payline",
+    "aliases": [
+      "All Ways"
+    ]
+  },
+  {
+    "name": "Hold and Win",
+    "description": "Held symbols trigger respins",
+    "aliases": [
+      "Hold and Spin"
+    ]
+  },
+  {
+    "name": "Cash on Reels",
+    "description": "Cash values on reels collected",
+    "aliases": [
+      "Cash Collection"
+    ]
+  },
+  {
+    "name": "Collector",
+    "description": "Symbols collected for bonus",
+    "aliases": [
+      "Collector"
+    ]
+  },
+  {
+    "name": "Bonus Buy",
+    "description": "Bonus round purchased",
+    "aliases": [
+      "Bonus Buy"
+    ]
+  },
+  {
+    "name": "Gamble Feature",
+    "description": "Chance to double wins",
+    "aliases": [
+      "Gamble"
+    ]
+  },
+  {
+    "name": "Double-or-Nothing",
+    "description": "Gamble all or nothing",
+    "aliases": [
+      "Double Down"
+    ]
+  },
+  {
+    "name": "Ladder",
+    "description": "Climb ladder to increase win",
+    "aliases": [
+      "Ladder"
+    ]
+  },
+  {
+    "name": "Expanding Wilds",
+    "description": "Wilds expand to cover reels",
+    "aliases": [
+      "Expanding Wilds"
+    ]
+  },
+  {
+    "name": "Sticky Wilds",
+    "description": "Wilds remain for respins",
+    "aliases": [
+      "Sticky Wilds"
+    ]
+  },
+  {
+    "name": "Walking Wilds",
+    "description": "Wilds move across reels",
+    "aliases": [
+      "Walking Wilds"
+    ]
+  },
+  {
+    "name": "Stacked Wilds",
+    "description": "Wilds cover entire reels",
+    "aliases": [
+      "Stacked Wilds"
+    ]
+  },
+  {
+    "name": "Respins",
+    "description": "Additional spins awarded",
+    "aliases": [
+      "Respins"
+    ]
+  },
+  {
+    "name": "Locked Respins",
+    "description": "Symbols locked for respins",
+    "aliases": [
+      "Locked Respins"
+    ]
+  },
+  {
+    "name": "Nudge-and-Respin",
+    "description": "Nudge symbols, then respin",
+    "aliases": [
+      "Nudge Respin"
+    ]
+  },
+  {
+    "name": "Grid Choice",
+    "description": "Choose grid size/layout",
+    "aliases": [
+      "Grid Selection"
+    ]
+  },
+  {
+    "name": "Expanding Reels",
+    "description": "Reels expand during play",
+    "aliases": [
+      "Expanding Grid"
+    ]
+  },
+  {
+    "name": "Shifting Reels",
+    "description": "Reels shift position",
+    "aliases": [
+      "Shifting Reels"
+    ]
+  },
+  {
+    "name": "Mystery Feature",
+    "description": "Randomly triggered bonus",
+    "aliases": [
+      "Mystery"
+    ]
+  },
+  {
+    "name": "Random Modifiers",
+    "description": "Random effects during play",
+    "aliases": [
+      "Modifiers"
+    ]
+  },
+  {
+    "name": "Split Symbols",
+    "description": "Symbols split into multiple",
+    "aliases": [
+      "Split Symbols"
+    ]
+  }
+]

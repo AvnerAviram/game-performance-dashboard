@@ -1,0 +1,50 @@
+<!-- Anomalies Page -->
+<div class="flex flex-col h-full min-h-0 bg-white dark:bg-gray-900">
+<!-- Sticky Header -->
+<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6 flex-shrink-0">
+    <div class="flex justify-between items-center py-5">
+        <div>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Performance Anomalies</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Games that significantly outperform or underperform expectations</p>
+        </div>
+        <div class="relative -mr-1 flex items-center">
+            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
+                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
+                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="flex gap-3 mb-4 flex-shrink-0">
+    <button 
+        onclick="showAnomalies('top')"
+        class="anomaly-tab active px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-emerald-500 dark:border-emerald-600 text-emerald-600 dark:text-emerald-400 rounded-lg font-semibold hover:shadow-md transition-all flex items-center gap-2"
+    >
+        <span>⬆️</span>
+        <span>Top 30 Performers</span>
+    </button>
+    <button 
+        onclick="showAnomalies('bottom')"
+        class="anomaly-tab px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 transition-all flex items-center gap-2"
+    >
+        <span>⬇️</span>
+        <span>Bottom 30 Performers</span>
+    </button>
+</div>
+
+<!-- Cards Grid - Scrollable Container (fills remaining space, no empty gap) -->
+<div class="overflow-y-auto flex-1 min-h-0 bg-white dark:bg-gray-900">
+    <div id="top-anomalies" class="grid grid-cols-5 gap-4">
+        <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <div id="bottom-anomalies" class="hidden grid-cols-5 gap-4">
+        <!-- Cards will be dynamically generated here -->
+    </div>
+</div>
+</div>

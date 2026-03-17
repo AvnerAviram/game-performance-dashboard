@@ -1,0 +1,290 @@
+[
+  {
+    "name": "Asian",
+    "keywords": [
+      "oriental",
+      "chinese",
+      "japanese",
+      "korean"
+    ]
+  },
+  {
+    "name": "Egyptian",
+    "keywords": [
+      "pharaoh",
+      "hieroglyphics",
+      "pyramids",
+      "scarab"
+    ]
+  },
+  {
+    "name": "Greek",
+    "keywords": [
+      "olympus",
+      "mythology",
+      "gods",
+      "ancient greece"
+    ]
+  },
+  {
+    "name": "Norse",
+    "keywords": [
+      "viking",
+      "odin",
+      "thor",
+      "yggdrasil"
+    ]
+  },
+  {
+    "name": "Aztec/Mayan",
+    "keywords": [
+      "mesoamerican",
+      "temples",
+      "jaguar",
+      "feathered serpent"
+    ]
+  },
+  {
+    "name": "Irish",
+    "keywords": [
+      "leprechaun",
+      "four-leaf clover",
+      "shamrock",
+      "pot of gold"
+    ]
+  },
+  {
+    "name": "Animal",
+    "keywords": [
+      "zoo",
+      "safari",
+      "wildlife",
+      "pets"
+    ]
+  },
+  {
+    "name": "Ocean/Underwater",
+    "keywords": [
+      "mermaid",
+      "coral reef",
+      "shipwreck",
+      "sea creatures"
+    ]
+  },
+  {
+    "name": "Jungle",
+    "keywords": [
+      "rainforest",
+      "tribal",
+      "elephant",
+      "monkey"
+    ]
+  },
+  {
+    "name": "Fruit Machine",
+    "keywords": [
+      "classic",
+      "retro",
+      "bars",
+      "sevens"
+    ]
+  },
+  {
+    "name": "Diamonds/Gems",
+    "keywords": [
+      "jewels",
+      "sparkle",
+      "luxury",
+      "riches"
+    ]
+  },
+  {
+    "name": "Wizards",
+    "keywords": [
+      "magic",
+      "spells",
+      "sorcery",
+      "enchantment"
+    ]
+  },
+  {
+    "name": "Fairies",
+    "keywords": [
+      "pixies",
+      "sprites",
+      "fantasy",
+      "whimsical"
+    ]
+  },
+  {
+    "name": "Dragons",
+    "keywords": [
+      "fantasy",
+      "fire-breathing",
+      "treasure",
+      "medieval"
+    ]
+  },
+  {
+    "name": "Pirates",
+    "keywords": [
+      "treasure",
+      "ship",
+      "skull",
+      "adventure"
+    ]
+  },
+  {
+    "name": "Explorers",
+    "keywords": [
+      "adventure",
+      "expedition",
+      "discovery",
+      "ancient"
+    ]
+  },
+  {
+    "name": "Luxury",
+    "keywords": [
+      "wealth",
+      "opulence",
+      "high-class",
+      "glamour"
+    ]
+  },
+  {
+    "name": "Music",
+    "keywords": [
+      "instruments",
+      "performance",
+      "concert",
+      "rhythm"
+    ]
+  },
+  {
+    "name": "Sports",
+    "keywords": [
+      "competition",
+      "athletic",
+      "scoreboard",
+      "trophy"
+    ]
+  },
+  {
+    "name": "Food",
+    "keywords": [
+      "cuisine",
+      "restaurant",
+      "dessert",
+      "gourmet"
+    ]
+  },
+  {
+    "name": "Horror",
+    "keywords": [
+      "spooky",
+      "supernatural",
+      "creepy",
+      "dark"
+    ]
+  },
+  {
+    "name": "Vampires",
+    "keywords": [
+      "gothic",
+      "undead",
+      "blood",
+      "immortal"
+    ]
+  },
+  {
+    "name": "Halloween",
+    "keywords": [
+      "pumpkin",
+      "witch",
+      "ghost",
+      "costume"
+    ]
+  },
+  {
+    "name": "Space",
+    "keywords": [
+      "galaxy",
+      "futuristic",
+      "alien",
+      "rocket"
+    ]
+  },
+  {
+    "name": "Aliens",
+    "keywords": [
+      "extraterrestrial",
+      "ufo",
+      "sci-fi",
+      "invasion"
+    ]
+  },
+  {
+    "name": "Futuristic",
+    "keywords": [
+      "cyberpunk",
+      "technology",
+      "neon",
+      "advanced"
+    ]
+  },
+  {
+    "name": "Western",
+    "keywords": [
+      "cowboy",
+      "saloon",
+      "sheriff",
+      "frontier"
+    ]
+  },
+  {
+    "name": "Medieval",
+    "keywords": [
+      "castle",
+      "knight",
+      "royalty",
+      "renaissance"
+    ]
+  },
+  {
+    "name": "Ancient Rome",
+    "keywords": [
+      "gladiator",
+      "colosseum",
+      "empire",
+      "toga"
+    ]
+  },
+  {
+    "name": "Holidays",
+    "keywords": [
+      "christmas",
+      "valentine's day",
+      "st. patrick's day",
+      "new year"
+    ]
+  },
+  {
+    "name": "TV/Movie Branded",
+    "keywords": [
+      "licensed",
+      "popular culture",
+      "entertainment",
+      "franchise"
+    ]
+  },
+  {
+    "name": "Generic/Abstract",
+    "keywords": [
+      "minimalist",
+      "geometric",
+      "colorful",
+      "simple"
+    ]
+  }
+]

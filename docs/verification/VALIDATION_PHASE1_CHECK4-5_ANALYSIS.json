@@ -1,0 +1,32 @@
+{
+  "distribution_analysis": {
+    "rtp_mean": 95.32848341232227,
+    "rtp_stdev": 2.6126810382369055,
+    "provider_top_10": {
+      "Light & Wonder": 50,
+      "IGT": 41,
+      "Games Global": 41,
+      "White Hat Studios": 41,
+      "Inspired": 24,
+      "Aristocrat": 23,
+      "Everi": 21,
+      "AGS": 19,
+      "Playtech": 18,
+      "Greentube": 15
+    },
+    "mechanic_top_5": {
+      "Video Slots": 144,
+      "Free Spins": 54,
+      "Megaways": 28,
+      "Classic Slots": 27,
+      "Hold & Win": 21
+    }
+  },
+  "completeness": {
+    "average": 108.4368070953437,
+    "median": 110.00000000000001,
+    "perfect_count": 30,
+    "excellent_count": 412,
+    "needs_work_count": 0
+  }
+}

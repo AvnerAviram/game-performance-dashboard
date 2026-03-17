@@ -1,0 +1,266 @@
+{
+  "version": 5,
+  "total": 2,
+  "done": 1,
+  "failed": 1,
+  "games": {
+    "game-001-cash_eruption": {
+      "status": "done",
+      "at": "2026-03-16T16:26:32.770260+00:00",
+      "dashboard": {
+        "id": "game-001-cash_eruption",
+        "name": "Cash Eruption",
+        "description": "An Aztec-themed volcanic slot featuring a Fire Goddess, expanding wilds, free spins with jumbo symbols, and a four-tier jackpot system with hold and respin mechanics",
+        "provider": "IGT",
+        "studio": "IGT",
+        "parent_company": "IGT",
+        "theme_primary": "Aztec",
+        "theme_secondary": "Cherry",
+        "themes_all": [
+          "Aztec",
+          "Cherry",
+          "Fire",
+          "Gods",
+          "Lemon",
+          "Orange",
+          "Red",
+          "Watermelon"
+        ],
+        "features": [
+          "Free Spins",
+          "Hold and Spin",
+          "Static Jackpot"
+        ],
+        "symbols": [
+          "Fire Goddess Wild",
+          "Volcano Scatter",
+          "Fireball Bonus",
+          "Red 7",
+          "Cherries",
+          "Watermelons",
+          "Lemons",
+          "Bell",
+          "Traditional fruit symbols"
+        ],
+        "mechanic_primary": "Slot",
+        "reels": 5,
+        "rows": 3,
+        "paylines_kind": "Lines",
+        "paylines_count": 20,
+        "rtp": 96.0,
+        "volatility": "High",
+        "release_year": 2025,
+        "release_month": 9,
+        "theo_win": 43.47,
+        "market_share_pct": 2.15,
+        "percentile": "100.00",
+        "anomaly": "high",
+        "demo_url": "https://slotcatalog.com/en/slots/Cash-Eruption",
+        "catalog_url": "https://slotcatalog.com/en/slots/Cash-Eruption",
+        "data_quality": "verified",
+        "source_tier": "claude_web_search+2stage"
+      },
+      "meta": {
+        "web_searches": 2,
+        "web_sources": [
+          {
+            "url": "https://www.vegasslotsonline.com/igt/cash-eruption/",
+            "title": "Cash Eruption Slots Game - Read our Online Review"
+          },
+          {
+            "url": "https://www.playusa.com/slots/igt/cash-eruption/",
+            "title": "Cash Eruption - Play This IGT Slot Game Online for Free"
+          },
+          {
+            "url": "https://choicecasino.com/games/igt/slots/cash-eruption",
+            "title": "Cash Eruption by IGT"
+          },
+          {
+            "url": "https://www.slotstemple.com/us/free-slots/cash-eruption/",
+            "title": "Cash Eruption Slot - Play Free Slots Demos"
+          },
+          {
+            "url": "https://www.onlinecasinos.com/igt/cash-eruption/",
+            "title": "Cash Eruption Slot Online | FREE Play | No Registration | RTP"
+          },
+          {
+            "url": "https://chipy.com/games/igt/cash-eruption",
+            "title": "Cash Eruption Slot by IGT | Play for Free"
+          },
+          {
+            "url": "https://www.bigwinboard.com/cash-eruption-igt-slot-review/",
+            "title": "Cash Eruption (IGT) Slot Review & Demo"
+          },
+          {
+            "url": "https://slot.day/igt/cash-eruption/",
+            "title": "Play Cash Eruption Slot Demo by IGT 🔥 RTP: 96%"
+          },
+          {
+            "url": "https://urcomped.com/game/slotmachine/details/2580/cash-eruption-slotigt",
+            "title": "Cash Eruption Slot Slot Machine by IGT"
+          },
+          {
+            "url": "https://www.gamesville.com/slots/cash-eruption",
+            "title": "Cash Eruption Slot Online | Play for Free"
+          }
+        ],
+        "extract_model": "claude-sonnet-4-20250514",
+        "norm_model": "claude-haiku-4-5",
+        "completeness": 5,
+        "verification_triggered": false,
+        "raw_themes": [
+          "Aztec temple setting with volcanic eruption atmosphere",
+          "Fire goddess mythology",
+          "Classic fruit machine symbols mixed with ancient civilization",
+          "Fireballs and lava effects",
+          "Stone temple interior with glowing volcanic reflections"
+        ],
+        "raw_features": [
+          "Expanding Wild Fire Goddess that fills entire reels when contributing to wins",
+          "Free Spins bonus triggered by 3+ volcano scatters awarding 6 spins with linked jumbo symbols on middle reels",
+          "Cash Eruption Bonus triggered by 6+ fireballs with hold and respin mechanics",
+          "Four-tier jackpot system with Mini, Minor, Major, and Grand Treasure prizes",
+          "Pattern feature offering 1000x reward for specific fireball layouts",
+          "Respins feature where fireballs lock in place and reset counter to 3 spins",
+          "Stacked symbols and expanding reels during bonus rounds",
+          "Bonus Game",
+          "Bonus symbols",
+          "Expanding Symbols",
+          "Free Spins",
+          "Hold and Win",
+          "Respins",
+          "RTP range",
+          "Scatter symbols",
+          "Wild"
+        ],
+        "raw_symbols": [
+          "Fire Goddess Wild",
+          "Volcano Scatter",
+          "Fireball Bonus",
+          "Red 7",
+          "Cherries",
+          "Watermelons",
+          "Lemons",
+          "Bell",
+          "Traditional fruit symbols"
+        ],
+        "feature_map": [
+          {
+            "raw": "Expanding Wild Fire Goddess that fills entire reels when contributing to wins",
+            "canonical": null,
+            "conf": 2
+          },
+          {
+            "raw": "Free Spins bonus triggered by 3+ volcano scatters awarding 6 spins with linked jumbo symbols on middle reels",
+            "canonical": "Free Spins",
+            "conf": 5
+          },
+          {
+            "raw": "Cash Eruption Bonus triggered by 6+ fireballs with hold and respin mechanics",
+            "canonical": "Hold and Spin",
+            "conf": 5
+          },
+          {
+            "raw": "Four-tier jackpot system with Mini, Minor, Major, and Grand Treasure prizes",
+            "canonical": "Static Jackpot",
+            "conf": 5
+          },
+          {
+            "raw": "Pattern feature offering 1000x reward for specific fireball layouts",
+            "canonical": null,
+            "conf": 2
+          },
+          {
+            "raw": "Respins feature where fireballs lock in place and reset counter to 3 spins",
+            "canonical": "Hold and Spin",
+            "conf": 5
+          },
+          {
+            "raw": "Stacked symbols and expanding reels during bonus rounds",
+            "canonical": null,
+            "conf": 2
+          },
+          {
+            "raw": "Bonus Game",
+            "canonical": null,
+            "conf": 1
+          },
+          {
+            "raw": "Bonus symbols",
+            "canonical": null,
+            "conf": 1
+          },
+          {
+            "raw": "Expanding Symbols",
+            "canonical": null,
+            "conf": 2
+          },
+          {
+            "raw": "Free Spins",
+            "canonical": "Free Spins",
+            "conf": 5
+          },
+          {
+            "raw": "Hold and Win",
+            "canonical": "Hold and Spin",
+            "conf": 5
+          },
+          {
+            "raw": "Respins",
+            "canonical": null,
+            "conf": 2
+          },
+          {
+            "raw": "RTP range",
+            "canonical": null,
+            "conf": 1
+          },
+          {
+            "raw": "Scatter symbols",
+            "canonical": null,
+            "conf": 1
+          },
+          {
+            "raw": "Wild",
+            "canonical": null,
+            "conf": 1
+          }
+        ],
+        "theme_map": [
+          {
+            "raw": "Aztec temple setting with volcanic eruption atmosphere",
+            "canonical": "Aztec",
+            "conf": 5
+          },
+          {
+            "raw": "Fire goddess mythology",
+            "canonical": "Fire",
+            "conf": 5
+          },
+          {
+            "raw": "Classic fruit machine symbols mixed with ancient civilization",
+            "canonical": "Aztec",
+            "conf": 4
+          },
+          {
+            "raw": "Fireballs and lava effects",
+            "canonical": "Fire",
+            "conf": 5
+          },
+          {
+            "raw": "Stone temple interior with glowing volcanic reflections",
+            "canonical": "Aztec",
+            "conf": 4
+          }
+        ],
+        "confidence_threshold": 4,
+        "enriched_at": "2026-03-16T16:26:32.770203+00:00"
+      }
+    },
+    "game-582-golden_wins": {
+      "status": "failed",
+      "error": "Web search extraction failed for Golden Wins",
+      "at": "2026-03-16T16:27:05.482553+00:00"
+    }
+  }
+}

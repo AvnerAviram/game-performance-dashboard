@@ -1,0 +1,12 @@
+{
+  "total_games": 451,
+  "schema_violations": 0,
+  "missing_fields_summary": {},
+  "spec_completeness": {
+    "reels": "98.0%",
+    "rows": "96.2%",
+    "paylines": "98.4%",
+    "rtp": "96.0%",
+    "volatility": "92.7%"
+  }
+}

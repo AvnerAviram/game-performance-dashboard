@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Tooltip Z-Index Test</title>
+    <link rel="stylesheet" href="../src/styles-minimal.css?v=43.0">
+    <style>
+        body {
+            padding: 2rem;
+            background: #F8FAFC;
+        }
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #6366F1;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            color: #334155;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.25rem;
+        }
+        .test-result {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .test-result.pass {
+            background: #D1FAE5;
+            color: #065F46;
+            border: 2px solid #10B981;
+        }
+        .test-result.fail {
+            background: #FEE2E2;
+            color: #991B1B;
+            border: 2px solid #EF4444;
+        }
+        table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        thead {
+            background: #F1F5F9;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #334155;
+            border-bottom: 2px solid #E2E8F0;
+        }
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .instructions {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Filter Tooltip Z-Index Test</h1>
+        
+        <div class="instructions">
+            <strong>📋 Manual Test Instructions:</strong>
+            <ol>
+                <li>Hover over each filter button below</li>
+                <li>Verify the tooltip appears <strong>ABOVE</strong> the table header (not behind it)</li>
+                <li>Check that you can read all tooltip text clearly</li>
+                <li>Move mouse between buttons to test multiple tooltips</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2>Theme Filters</h2>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active">
+                    All Themes
+                </button>
+                <button class="filter-tab">
+                    🏆 Market Leaders
+                    <span class="info-icon">
+                        ⓘ
+                        <div class="filter-tooltip">
+                            <strong>Market Leaders Filter</strong>
+                            <p>Shows the top 20% of themes by game count</p>
+                            <hr>
+                            <p>✓ Proven volume and reliability</p>
+                            <p>✓ Statistically significant samples</p>
+                            <p>✓ Best for risk-averse design</p>
+                        </div>
+                    </span>
+                </button>
+                <button class="filter-tab">
+                    💎 Opportunities
+                    <span class="info-icon">
+                        ⓘ
+                        <div class="filter-tooltip">
+                            <strong>Opportunities Filter</strong>
+                            <p>Themes with 5+ games, above-average quality, and &lt;5% market share</p>
+                            <hr>
+                            <p>✓ Proven quality (not flukes)</p>
+                            <p>✓ Low competition (not oversaturated)</p>
+                            <p>✓ Best for innovation plays</p>
+                        </div>
+                    </span>
+                </button>
+                <button class="filter-tab">
+                    ⭐ Premium Quality
+                    <span class="info-icon">
+                        ⓘ
+                        <div class="filter-tooltip">
+                            <strong>Premium Quality Filter</strong>
+                            <p>Shows the top 25% of themes by performance</p>
+                            <hr>
+                            <p>✓ Highest quality regardless of volume</p>
+                            <p>✓ Includes emerging high-performers</p>
+                            <p>✓ Best for maximum performance</p>
+                        </div>
+                    </span>
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Theme</th>
+                        <th>Games</th>
+                        <th>Performance Index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Fairy Tale</td>
+                        <td>6</td>
+                        <td><strong>12.84</strong></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Casino/Poker</td>
+                        <td>1</td>
+                        <td><strong>10.45</strong></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Mayan</td>
+                        <td>1</td>
+                        <td><strong>6.58</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="test-section">
+            <h2>Z-Index Verification</h2>
+            <div id="test-results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-check z-index values
+        window.addEventListener('DOMContentLoaded', () => {
+            const resultsDiv = document.getElementById('test-results');
+            
+            const tooltip = document.querySelector('.filter-tooltip');
+            const thead = document.querySelector('thead');
+            const filterTabs = document.querySelector('.filter-tabs');
+            
+            const tooltipZIndex = parseInt(window.getComputedStyle(tooltip).zIndex);
+            const theadZIndex = parseInt(window.getComputedStyle(thead).zIndex);
+            const tabsZIndex = parseInt(window.getComputedStyle(filterTabs).zIndex);
+            
+            const tests = [
+                {
+                    name: 'Tooltip z-index > 1000',
+                    pass: tooltipZIndex > 1000,
+                    actual: tooltipZIndex,
+                    expected: '> 1000'
+                },
+                {
+                    name: 'Tooltip z-index > thead z-index',
+                    pass: tooltipZIndex > theadZIndex,
+                    actual: `${tooltipZIndex} > ${theadZIndex}`,
+                    expected: 'tooltip higher'
+                },
+                {
+                    name: 'Filter tabs z-index set',
+                    pass: !isNaN(tabsZIndex) && tabsZIndex > 0,
+                    actual: tabsZIndex,
+                    expected: '> 0'
+                },
+                {
+                    name: 'Tooltip is positioned absolutely',
+                    pass: window.getComputedStyle(tooltip).position === 'absolute',
+                    actual: window.getComputedStyle(tooltip).position,
+                    expected: 'absolute'
+                }
+            ];
+            
+            let html = '<h3>Automated Checks:</h3>';
+            tests.forEach(test => {
+                const status = test.pass ? 'pass' : 'fail';
+                const icon = test.pass ? '✅' : '❌';
+                html += `
+                    <div class="test-result ${status}">
+                        ${icon} ${test.name}<br>
+                        <small>Expected: ${test.expected} | Actual: ${test.actual}</small>
+                    </div>
+                `;
+            });
+            
+            const allPass = tests.every(t => t.pass);
+            html += `
+                <div class="test-result ${allPass ? 'pass' : 'fail'}" style="margin-top: 2rem; font-size: 1.25rem;">
+                    ${allPass ? '✅ All automated checks passed!' : '❌ Some checks failed - tooltip may be behind table'}
+                </div>
+            `;
+            
+            resultsDiv.innerHTML = html;
+        });
+    </script>
+</body>
+</html>

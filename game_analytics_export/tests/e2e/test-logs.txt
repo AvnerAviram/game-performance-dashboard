@@ -1,0 +1,11 @@
+[2026-02-01T15:00:43.500Z] 🚀 TEST START
+[2026-02-01T15:00:43.502Z] Step 1: Navigating to page...
+[2026-02-01T15:00:43.508Z] BROWSER CONSOLE [error]: Failed to load resource: the server responded with a status of 404 (Not Found)
+[2026-02-01T15:00:44.012Z] ✅ Page loaded
+[2026-02-01T15:00:44.025Z] Page title: ""
+[2026-02-01T15:00:44.025Z] Page URL: http://localhost:8080/game_analytics_export/index.html
+[2026-02-01T15:00:44.073Z] 📸 Screenshot: 01-initial-load.png
+[2026-02-01T15:00:44.073Z] Step 4: Looking for Themes tab...
+[2026-02-01T15:00:49.080Z] ❌ Themes tab error: locator.waitFor: Timeout 5000ms exceeded.
+Call log:
+[2m  - waiting for locator('button[data-page="themes"]') to be visible[22m

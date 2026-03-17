@@ -1,0 +1,19 @@
+---
+description: CW14 no-shortcuts orchestration and audit hard gates
+alwaysApply: true
+---
+
+# CW14 Orchestration Rule (No Shortcuts)
+
+Follow `game_analytics_export/data/PHASE1_TRUTH_MASTER.md` as the single runbook for this repo.
+
+Non-negotiables:
+- Always run **strict adapters** (`--strict-adapters`) for proof/audit.
+- Proof + Audit are both required; **no skipping**.
+- Proof/audit runs must use `--no-ddg`. DDG is remediation-only to discover sources, then pin them, then rerun with `--no-ddg`.
+- Theme + mechanic.features are **hard truth** in audits:
+  - Theme: `no_2domain_AB_consensus:theme`
+  - Features: `no_AB_consensus_or_tierA:mechanic.features`
+- All audit runs must surface theme/features explicitly and fail loudly when they regress.
+- **No stopping**: on any failure, continue remediation, then **sleep and retry** (never quit the cycle).
+

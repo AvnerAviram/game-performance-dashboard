@@ -1,0 +1,375 @@
+[
+  {
+    "name": "Asian",
+    "keywords": [
+      "chinese",
+      "japanese",
+      "oriental",
+      "dragon",
+      "dynasty",
+      "jade",
+      "panda",
+      "koi",
+      "lotus",
+      "samurai",
+      "ninja",
+      "lunar",
+      "zodiac",
+      "bamboo",
+      "lantern"
+    ]
+  },
+  {
+    "name": "Egyptian",
+    "keywords": [
+      "pharaoh",
+      "pyramid",
+      "cleopatra",
+      "nile",
+      "sphinx",
+      "anubis",
+      "scarab",
+      "hieroglyph",
+      "book of dead",
+      "tutankhamun"
+    ]
+  },
+  {
+    "name": "Greek Mythology",
+    "keywords": [
+      "zeus",
+      "olympus",
+      "athena",
+      "poseidon",
+      "hercules",
+      "medusa",
+      "titan",
+      "spartan",
+      "troy",
+      "greek"
+    ]
+  },
+  {
+    "name": "Norse Mythology",
+    "keywords": [
+      "viking",
+      "odin",
+      "thor",
+      "valhalla",
+      "asgard",
+      "ragnarok",
+      "rune",
+      "norse"
+    ]
+  },
+  {
+    "name": "Aztec/Mayan",
+    "keywords": [
+      "aztec",
+      "mayan",
+      "inca",
+      "mesoamerican",
+      "temple",
+      "jaguar",
+      "el dorado",
+      "ancient temple"
+    ]
+  },
+  {
+    "name": "Irish/Luck",
+    "keywords": [
+      "irish",
+      "leprechaun",
+      "shamrock",
+      "clover",
+      "pot of gold",
+      "celtic",
+      "emerald",
+      "rainbow",
+      "lucky"
+    ]
+  },
+  {
+    "name": "Animal/Wildlife",
+    "keywords": [
+      "animal",
+      "wolf",
+      "lion",
+      "eagle",
+      "bear",
+      "buffalo",
+      "tiger",
+      "elephant",
+      "gorilla",
+      "safari",
+      "wildlife",
+      "pig",
+      "horse",
+      "dog",
+      "cat",
+      "owl",
+      "monkey"
+    ]
+  },
+  {
+    "name": "Underwater/Ocean",
+    "keywords": [
+      "underwater",
+      "ocean",
+      "sea",
+      "mermaid",
+      "coral",
+      "atlantis",
+      "pearl",
+      "marine",
+      "deep blue",
+      "shipwreck",
+      "fish"
+    ]
+  },
+  {
+    "name": "Fruit/Classic",
+    "keywords": [
+      "fruit",
+      "cherry",
+      "bar",
+      "sevens",
+      "777",
+      "classic",
+      "retro",
+      "bell",
+      "lemon",
+      "plum",
+      "watermelon",
+      "grape"
+    ]
+  },
+  {
+    "name": "Gems/Jewels",
+    "keywords": [
+      "gem",
+      "jewel",
+      "ruby",
+      "sapphire",
+      "diamond",
+      "crystal",
+      "brilliant",
+      "sparkle"
+    ]
+  },
+  {
+    "name": "Fantasy",
+    "keywords": [
+      "wizard",
+      "fairy",
+      "unicorn",
+      "magic",
+      "enchant",
+      "spell",
+      "elf",
+      "dwarf",
+      "goblin",
+      "mystical",
+      "sorcerer",
+      "pixie"
+    ]
+  },
+  {
+    "name": "Dragons",
+    "keywords": [
+      "dragon",
+      "fire-breathing",
+      "dragon quest",
+      "dragon spin"
+    ]
+  },
+  {
+    "name": "Pirates",
+    "keywords": [
+      "pirate",
+      "treasure island",
+      "buccaneer",
+      "captain",
+      "skull",
+      "crossbone",
+      "ship"
+    ]
+  },
+  {
+    "name": "Adventure",
+    "keywords": [
+      "adventure",
+      "explorer",
+      "expedition",
+      "discovery",
+      "treasure hunt",
+      "quest",
+      "journey"
+    ]
+  },
+  {
+    "name": "Luxury/Cash",
+    "keywords": [
+      "luxury",
+      "wealth",
+      "millionaire",
+      "rich",
+      "gold rush",
+      "diamond heist",
+      "bank",
+      "vault",
+      "opulence",
+      "glamour",
+      "cash",
+      "money"
+    ]
+  },
+  {
+    "name": "Music",
+    "keywords": [
+      "music",
+      "rock",
+      "band",
+      "guitar",
+      "concert",
+      "disco",
+      "jazz",
+      "dj",
+      "karaoke"
+    ]
+  },
+  {
+    "name": "Sports",
+    "keywords": [
+      "sport",
+      "football",
+      "soccer",
+      "basketball",
+      "boxing",
+      "racing",
+      "golf",
+      "tennis"
+    ]
+  },
+  {
+    "name": "Food/Drink",
+    "keywords": [
+      "food",
+      "candy",
+      "sweet",
+      "cake",
+      "pizza",
+      "burger",
+      "beer",
+      "wine",
+      "fruit blast",
+      "sugar",
+      "chocolate",
+      "restaurant"
+    ]
+  },
+  {
+    "name": "Horror/Dark",
+    "keywords": [
+      "horror",
+      "zombie",
+      "vampire",
+      "ghost",
+      "halloween",
+      "dracula",
+      "werewolf",
+      "witch",
+      "demon",
+      "devil",
+      "spooky",
+      "dark",
+      "blood"
+    ]
+  },
+  {
+    "name": "Space/Sci-Fi",
+    "keywords": [
+      "space",
+      "cosmic",
+      "galaxy",
+      "planet",
+      "alien",
+      "asteroid",
+      "moon",
+      "nebula",
+      "futuristic",
+      "cyberpunk",
+      "ufo",
+      "rocket"
+    ]
+  },
+  {
+    "name": "Western",
+    "keywords": [
+      "western",
+      "cowboy",
+      "sheriff",
+      "saloon",
+      "frontier",
+      "outlaw",
+      "ranch"
+    ]
+  },
+  {
+    "name": "Medieval",
+    "keywords": [
+      "medieval",
+      "castle",
+      "knight",
+      "royalty",
+      "king",
+      "queen",
+      "joust",
+      "renaissance"
+    ]
+  },
+  {
+    "name": "Ancient Rome",
+    "keywords": [
+      "roman",
+      "gladiator",
+      "colosseum",
+      "empire",
+      "centurion",
+      "caesar"
+    ]
+  },
+  {
+    "name": "Holidays",
+    "keywords": [
+      "christmas",
+      "valentine",
+      "st. patrick",
+      "new year",
+      "easter",
+      "thanksgiving"
+    ]
+  },
+  {
+    "name": "Branded/Licensed",
+    "keywords": [
+      "movie",
+      "tv show",
+      "film",
+      "franchise",
+      "branded",
+      "licensed"
+    ]
+  },
+  {
+    "name": "Abstract/Modern",
+    "keywords": [
+      "abstract",
+      "geometric",
+      "minimalist",
+      "neon",
+      "colorful",
+      "modern"
+    ]
+  }
+]

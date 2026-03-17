@@ -1,0 +1,106 @@
+{
+  "total_games": 451,
+  "range_violations": 14,
+  "violations_detail": [
+    {
+      "game": "Megajackpots Pixies of the Forest",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Ducky Bucks",
+      "violations": [
+        "Rows out of range: 0 (expected 1-8)"
+      ]
+    },
+    {
+      "game": "Long Bao Bao",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Money Blast Quick Strike",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Cash Express Luxury Line Buffalo",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)",
+        "Reels out of range: 0 (expected 1-7)",
+        "Rows out of range: 0 (expected 1-8)"
+      ]
+    },
+    {
+      "game": "Crystal Star Deluxe",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Scorchin Hot Spins Wicked Wheel",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Golden Money",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Megajackpots Wheel Of Fortune On Air",
+      "violations": [
+        "RTP out of range: 45.83% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Big Money Frenzy Golden Magnet",
+      "violations": [
+        "Rows out of range: 0 (expected 1-8)"
+      ]
+    },
+    {
+      "game": "My Slot Studio",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Buffalo Chief",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    },
+    {
+      "game": "Ba Fang Jin Bao Abundant Fortune",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)",
+        "Rows out of range: 0 (expected 1-8)"
+      ]
+    },
+    {
+      "game": "The Rise Of The Tycoon",
+      "violations": [
+        "RTP out of range: 0% (expected 85.0-99.0%)"
+      ]
+    }
+  ],
+  "stats": {
+    "rtp": {
+      "min": 0,
+      "max": 97.75,
+      "avg": 92.90674364896074
+    },
+    "theo_win": {
+      "min": 0.07,
+      "max": 43.47,
+      "avg": 3.4666962305986653,
+      "total": 1563.479999999998
+    }
+  }
+}

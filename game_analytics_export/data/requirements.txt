@@ -1,0 +1,3 @@
+cloudscraper>=1.2.71
+anthropic
+beautifulsoup4

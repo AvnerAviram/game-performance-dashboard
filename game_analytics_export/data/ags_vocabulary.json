@@ -1,0 +1,58 @@
+{
+  "themes": [
+    "7s",
+    "Animals",
+    "Arcade",
+    "Asian",
+    "Aztec",
+    "Casino",
+    "Dragons",
+    "Egyptian",
+    "Fantasy",
+    "Fire",
+    "Gems & Crystals",
+    "Gold",
+    "Greek",
+    "Irish",
+    "Las Vegas",
+    "Lightning",
+    "Money",
+    "Mythical",
+    "Pirates",
+    "Seasonal/Holiday",
+    "Spanish",
+    "Sports",
+    "Table",
+    "Treasure",
+    "Tropical",
+    "Western"
+  ],
+  "features": [
+    "Cash On Reels",
+    "Expanding Reels",
+    "Free Spins",
+    "Hold and Spin",
+    "Nudges",
+    "Persistence",
+    "Pick Bonus",
+    "Respin",
+    "Static Jackpot",
+    "Wheel",
+    "Wild Reels"
+  ],
+  "theme_fixes": {
+    "7's": "7s",
+    "Mythology": "Mythical",
+    "Crystals": "Gems & Crystals",
+    "Diamond": "Gems & Crystals",
+    "Christmas": "Seasonal/Holiday",
+    "Halloween": "Seasonal/Holiday"
+  },
+  "feature_fixes": {
+    "Multipler": "Multiplier",
+    "Cash on Reels": "Cash On Reels",
+    "Money Charge Bonus (Hold and Spin)": "Hold and Spin",
+    "Money Charge Bonus": "Hold and Spin"
+  },
+  "source": "ground_truth_ags.csv (153 AGS games from user)"
+}

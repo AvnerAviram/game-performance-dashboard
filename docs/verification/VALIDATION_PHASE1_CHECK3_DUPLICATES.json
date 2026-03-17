@@ -1,0 +1,165 @@
+{
+  "total_games": 451,
+  "fuzzy_duplicates": 5,
+  "specs_duplicates": 54,
+  "theo_win_suspicious": 6,
+  "fuzzy_duplicates_detail": [
+    {
+      "game1": "Bigger Piggy Bank",
+      "game2": "Big Piggy Bank",
+      "similarity": 0.9032258064516129,
+      "provider1": "Inspired",
+      "provider2": "Inspired"
+    },
+    {
+      "game1": "Cops And Robbers Bigger Big Money",
+      "game2": "Cops N Robbers Bigger Big Money",
+      "similarity": 0.96875,
+      "provider1": "Inspired",
+      "provider2": "Inspired"
+    },
+    {
+      "game1": "Bao Zhu Zhao Fu Red Festival",
+      "game2": "Bao Zhu Zhao Fu Blue Festival",
+      "similarity": 0.9122807017543859,
+      "provider1": "Aristocrat",
+      "provider2": "Aristocrat"
+    },
+    {
+      "game1": "100x Fortune",
+      "game2": "10x Fortune",
+      "similarity": 0.9565217391304348,
+      "provider1": "Design Works Gaming",
+      "provider2": "Design Works Gaming"
+    },
+    {
+      "game1": "Thunder Cash Senorita Suerte",
+      "game2": "Thunder Cash Senor Muerte",
+      "similarity": 0.9056603773584906,
+      "provider1": "Greentube",
+      "provider2": "Greentube"
+    }
+  ],
+  "specs_duplicates_detail": [
+    {
+      "game1": "Cash Eruption",
+      "game2": "Megajackpots Cash Eruption",
+      "signature": "IGT|5|3|20",
+      "name_similarity": 0.6666666666666666
+    },
+    {
+      "game1": "Cash Eruption",
+      "game2": "Cash Eruption High Stakes",
+      "signature": "IGT|5|3|20",
+      "name_similarity": 0.6842105263157895
+    },
+    {
+      "game1": "Huff N Even More Puff",
+      "game2": "Huff N More Puff",
+      "signature": "Light & Wonder|5|3|243 ways",
+      "name_similarity": 0.8648648648648649
+    },
+    {
+      "game1": "Mo Mummy Mighty Pyramid",
+      "game2": "Mo Mummy Valley Of Riches",
+      "signature": "Aristocrat|5|3|20",
+      "name_similarity": 0.5416666666666666
+    },
+    {
+      "game1": "Wolf It Up Again",
+      "game2": "Werewolf It Up",
+      "signature": "Inspired|5|3|10",
+      "name_similarity": 0.6666666666666666
+    },
+    {
+      "game1": "Wolf It Up Again",
+      "game2": "Wolf It Up",
+      "signature": "Inspired|5|3|10",
+      "name_similarity": 0.7692307692307693
+    },
+    {
+      "game1": "Pay Pig 10k Ways",
+      "game2": "10000 Wonders 10k Ways",
+      "signature": "Reel Play|6|4-5-5-5-5-4|10,000 ways",
+      "name_similarity": 0.5263157894736842
+    },
+    {
+      "game1": "Timber Wolf Triple Power",
+      "game2": "Timber Wolf Triple Power",
+      "signature": "Aristocrat|5|Variable (4-5-6-5-4)|1024",
+      "name_similarity": 1.0
+    },
+    {
+      "game1": "Kong 3 Even Bigger Bonus",
+      "game2": "King Kong Cash Even Bigger Bananas",
+      "signature": "White Hat Studios|6|4|4,096 ways",
+      "name_similarity": 0.7241379310344828
+    },
+    {
+      "game1": "Breaking Bad Collect Em And Link",
+      "game2": "Blue Wizard Collect Em And Link",
+      "signature": "Playtech|5|3|30",
+      "name_similarity": 0.7936507936507936
+    },
+    {
+      "game1": "Bao Zhu Zhao Fu Jade Celebration",
+      "game2": "Bao Zhu Zhao Fu Red Festival",
+      "signature": "Aristocrat|5|3|25",
+      "name_similarity": 0.6333333333333333
+    },
+    {
+      "game1": "7s Fire Blitz Win Boost",
+      "game2": "Lucky Fire Blitz Hotstepper",
+      "signature": "White Hat Studios|3|3|5",
+      "name_similarity": 0.6
+    },
+    {
+      "game1": "Cash Machine Jackpots",
+      "game2": "Cash Machine",
+      "signature": "Everi|3|1|1",
+      "name_similarity": 0.7272727272727273
+    },
+    {
+      "game1": "Buffalo",
+      "game2": "Buffalo (Original)",
+      "signature": "Aristocrat|5|4|1,024 ways",
+      "name_similarity": 0.6086956521739131
+    },
+    {
+      "game1": "Kong 3 Even Bigger Bonus",
+      "game2": "Big Catch Even Bigger Bass",
+      "signature": "White Hat Studios|6|4|4,096 ways",
+      "name_similarity": 0.68
+    },
+    {
+      "game1": "Pay Pig 10k Ways",
+      "game2": "Atlantis 10k Ways",
+      "signature": "Reel Play|6|4-5-5-5-5-4|10,000 ways",
+      "name_similarity": 0.6666666666666666
+    },
+    {
+      "game1": "Tiger And Dragon",
+      "game2": "Tiger And Dragon Cash On Reels",
+      "signature": "IGT|5|3|243 Ways",
+      "name_similarity": 0.6956521739130435
+    },
+    {
+      "game1": "Fortune Bao Bao Jackpot Win And Spin",
+      "game2": "Prize Piggy Win And Spin",
+      "signature": "Inspired|5|3|25",
+      "name_similarity": 0.5666666666666667
+    },
+    {
+      "game1": "Bao Zhu Zhao Fu Jade Celebration",
+      "game2": "Bao Zhu Zhao Fu Blue Festival",
+      "signature": "Aristocrat|5|3|25",
+      "name_similarity": 0.6885245901639344
+    },
+    {
+      "game1": "Cash Machine Jackpots",
+      "game2": "Gold Standard Jackpots",
+      "signature": "Everi|3|1|1",
+      "name_similarity": 0.5581395348837209
+    }
+  ]
+}

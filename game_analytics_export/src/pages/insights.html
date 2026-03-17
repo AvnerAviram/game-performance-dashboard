@@ -1,0 +1,144 @@
+<!-- Insights Page -->
+<!-- Sticky Header -->
+<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
+    <div class="flex justify-between items-center py-5">
+        <div>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Market Insights</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Data-driven opportunities and patterns</p>
+        </div>
+        <div class="relative -mr-1 flex items-center">
+            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
+                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
+                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Theme × Mechanic Heatmap (click cells to test in Prediction) -->
+<div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden mb-8 shadow-sm">
+    <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-indigo-50 to-slate-50 dark:from-indigo-900/20 dark:to-slate-700/30 border-b border-slate-200 dark:border-slate-600">
+        <span class="text-2xl">🗺️</span>
+        <div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Theme × Mechanic Matrix</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400">Avg Theo by combo – darker = higher. Click a cell to test in Prediction</p>
+        </div>
+    </div>
+    <div id="heatmap-container" class="p-4 overflow-x-auto overflow-y-auto max-h-[420px]">
+        <!-- Filled by JS -->
+    </div>
+</div>
+
+<!-- Best Theme + Mechanic Combos -->
+<div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden mb-8 shadow-sm">
+    <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-b border-slate-200 dark:border-slate-600">
+        <span class="text-2xl">🎯</span>
+        <div>
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Best Theme + Mechanic Combos</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400">What works together – ranked by performance</p>
+        </div>
+    </div>
+    <div id="combo-explorer" class="p-5">
+        <!-- Filled by JS -->
+    </div>
+</div>
+
+<!-- Cards Grid (3 per row on large screens) -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full -mr-8">
+    
+    <!-- Card 1: Market Leaders -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-b border-amber-100 dark:border-amber-800/50">
+            <span class="text-2xl">🏆</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Market Leaders</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">Top themes by Smart Index</p>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div id="hot-combinations" class="p-5 space-y-2">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+    
+    <!-- Card 2: Opportunity Finder -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border-b border-emerald-100 dark:border-emerald-800/50">
+            <span class="text-2xl">💎</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Opportunity Finder</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">High quality, low saturation</p>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div id="market-gaps" class="p-5 space-y-2">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+    
+    <!-- Card 3: High-Quality Niches -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-blue-100 dark:border-blue-800/50">
+            <span class="text-2xl">📈</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">High-Quality Niches</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">Few games, above-median performance</p>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div id="emerging-trends" class="p-5 space-y-2">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+    
+    <!-- Card 4: Proven Markets -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-b border-orange-100 dark:border-orange-800/50">
+            <span class="text-2xl">🔥</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Proven Markets</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">Top volume – validated demand</p>
+            </div>
+        </div>
+        
+        <!-- Content -->
+        <div id="saturated-markets" class="p-5 space-y-2">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+    
+    <!-- Card 5: Underperformers -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border-b border-red-100 dark:border-red-800/50">
+            <span class="text-2xl">⚠️</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Underperformers</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">5+ games, below-median performance – avoid</p>
+            </div>
+        </div>
+        <div id="avoid-combos" class="p-5 space-y-3">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+    
+    <!-- Card 6: Watch List -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
+        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-b border-amber-100 dark:border-amber-800/50">
+            <span class="text-2xl">👀</span>
+            <div class="flex-1">
+                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Watch List</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm">2–4 games, below median – monitor closely</p>
+            </div>
+        </div>
+        <div id="watch-list-combos" class="p-5 space-y-3">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+    
+</div>

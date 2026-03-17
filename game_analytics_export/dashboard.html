@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(){try{if(localStorage.getItem('darkMode')==='true')document.documentElement.classList.add('dark');}catch(e){}})();</script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Game Analytics Dashboard</title>
+    <meta name="description" content="Internal analytics dashboard for game performance, themes, mechanics, and provider insights.">
+    <link rel="icon" type="image/png" href="/src/assets/ags-logo.png">
+    <link rel="stylesheet" href="/src/output.css">
+</head>
+<body class="h-full m-0 p-0 font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg">Skip to main content</a>
+    <!-- Loading overlay (hidden when app ready) -->
+    <div id="loading-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-opacity duration-300">
+        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <p class="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+        <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Initializing DuckDB</p>
+    </div>
+    <div class="flex h-full" id="app-shell">
+        <!-- Sidebar (collapsible) -->
+        <aside id="sidebar" class="fixed left-0 top-0 bottom-0 w-60 bg-gradient-to-b from-[#f5f7fa] to-[#e9ecf1] dark:from-[#20232e] dark:to-[#1a1d29] border-r border-[#d1d5db] dark:border-[#3f4553] transition-all duration-300 flex flex-col min-h-0 z-[500] shadow-lg">
+            <!-- Sidebar Header -->
+            <div class="px-4 py-5 border-b border-gray-200 dark:border-white/20 bg-transparent dark:bg-white/10 flex items-center justify-between sidebar-header">
+                <div class="logo flex gap-3 items-center overflow-hidden">
+                    <div class="logo-icon w-9 h-9 flex-shrink-0 flex items-center justify-center [filter:drop-shadow(0_2px_8px_rgba(129,140,248,0.6))]">
+                        <img src="src/assets/ags-logo.png" alt="AGS Logo" class="max-w-full max-h-full object-contain">
+                    </div>
+                    <span class="logo-text sidebar-text text-[17px] font-bold text-black dark:text-white tracking-tight whitespace-nowrap transition-all duration-300">Game Analytics</span>
+                </div>
+                <button class="collapse-btn bg-transparent cursor-pointer text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white transition-all duration-200 flex items-center justify-center flex-shrink-0 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10" onclick="toggleSidebar()" title="Collapse sidebar" aria-label="Collapse sidebar">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="collapse-arrow transition-transform duration-300">
+                        <path d="M10 4L6 8L10 12" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Sidebar Navigation (grows to push footer down) -->
+            <nav class="sidebar-nav flex-1 overflow-y-auto overflow-x-hidden px-3 pt-0 pb-4 min-h-0" role="navigation" aria-label="Main navigation">
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="overview" onclick="showPage('overview')" aria-label="Overview">
+                    <span class="nav-icon text-lg inline-flex items-center justify-center w-6 h-6">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Overview</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="games" onclick="showPage('games')" aria-label="Games">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="15" rx="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            <circle cx="7" cy="12" r="1" fill="currentColor"/>
+                            <circle cx="17" cy="12" r="1" fill="currentColor"/>
+                            <circle cx="17" cy="17" r="1" fill="currentColor"/>
+                            <path d="M7 17h3"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Games</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="themes" onclick="showPage('themes')" aria-label="Themes">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                            <path d="M2 17L12 22L22 17"/>
+                            <path d="M2 12L12 17L22 12"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Themes</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="mechanics" onclick="showPage('mechanics')" aria-label="Mechanics">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1V3"/><path d="M12 21V23"/>
+                            <path d="M4.22 4.22L5.64 5.64"/><path d="M18.36 18.36L19.78 19.78"/>
+                            <path d="M1 12H3"/><path d="M21 12H23"/>
+                            <path d="M4.22 19.78L5.64 18.36"/><path d="M18.36 5.64L19.78 4.22"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Mechanics</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="providers" onclick="showPage('providers')" aria-label="Providers">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Providers</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="anomalies" onclick="showPage('anomalies')" aria-label="Anomalies">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Anomalies</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="insights" onclick="showPage('insights')" aria-label="Insights">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="16" x2="12" y2="12"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Insights</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="trends" onclick="showPage('trends')" aria-label="Trends">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                            <polyline points="16 7 22 7 22 13"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Trends</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="prediction" onclick="showPage('prediction')" aria-label="Prediction">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">Prediction</span>
+                </button>
+                <button class="nav-item flex items-center justify-center gap-3 w-full py-5 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="ai-assistant" onclick="showPage('ai-assistant')" aria-label="AI Assistant">
+                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
+                            <path d="M2 17L12 22L22 17"/>
+                            <path d="M2 12L12 17L22 12"/>
+                            <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                        </svg>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1">AI Assistant</span>
+                </button>
+            </nav>
+            
+            <!-- Sidebar Footer - Dark Mode Toggle (pinned to bottom) -->
+            <div class="flex-shrink-0 mt-auto px-3 pb-5 bg-[#e9ecf1] dark:bg-[#1a1d29]">
+                <button class="nav-item flex items-center justify-center gap-2 w-full py-4 px-4 border-t border-[#d1d5db] dark:border-[#3f4553] bg-transparent text-gray-700 dark:text-gray-300 cursor-pointer text-sm font-medium transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2" id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <span class="nav-icon flex items-center justify-center w-5 h-5 flex-shrink-0 text-base leading-none">
+                        <span class="light-icon">🌙</span>
+                        <span class="dark-icon hidden">☀️</span>
+                    </span>
+                    <span class="nav-text sidebar-text flex-1 text-left">Dark Mode</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content Area (z-[501] so header/cards appear above sidebar edge when -ml-8 overlaps) -->
+        <main id="main-content" role="main" tabindex="-1" class="relative flex-1 transition-all duration-300 flex flex-col min-h-0 z-[501]" style="margin-left: 240px;" aria-live="polite">
+            <!-- Page containers load here (hamburger is in each page's header) -->
+            <div id="page-container" class="flex-1 overflow-y-auto px-8 flex flex-col min-h-0"></div>
+        </main>
+    </div>
+
+    <!-- Backdrop Overlay for Side Panels -->
+    <div class="fixed bg-[rgba(0,0,0,0.5)] hidden z-[1000] inset-0" id="mechanic-backdrop" onclick="closeAnyPanel()"></div>
+    
+    <!-- Game Details Side Panel -->
+    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-white dark:bg-gray-800 shadow-[-8px_0_40px_rgba(0,0,0,0.15)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="game-panel">
+        <div class="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-5 flex justify-between items-center border-b border-indigo-700 dark:border-gray-800 z-10">
+            <h3 id="game-panel-title" class="text-lg font-semibold m-0">Game Details</h3>
+            <button class="bg-white/15 hover:bg-white/25 border-none text-white text-2xl w-8 h-8 rounded-full cursor-pointer transition-all hover:scale-110" onclick="closeGamePanel()">✕</button>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-900">
+            <div id="game-performance"></div>
+            <div id="game-specs"></div>
+            <div id="game-theme-mechanic"></div>
+            <div id="game-demo"></div>
+            <div id="game-symbols"></div>
+            <div id="game-provider"></div>
+            <div id="game-release"></div>
+            <div id="game-similar"></div>
+            <div id="game-feedback"></div>
+        </div>
+    </div>
+    
+    <!-- Provider Details Side Panel -->
+    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-white dark:bg-gray-800 shadow-[-8px_0_40px_rgba(0,0,0,0.15)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="provider-panel">
+        <div class="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-5 flex justify-between items-center border-b border-indigo-700 dark:border-gray-800 z-10">
+            <h3 id="provider-panel-title" class="text-lg font-semibold m-0">Provider Details</h3>
+            <button class="bg-white/15 hover:bg-white/25 border-none text-white text-2xl w-8 h-8 rounded-full cursor-pointer transition-all hover:scale-110" onclick="closeProviderPanel()">✕</button>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-900">
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-100 border-b border-gray-200 dark:border-gray-600">
+                    📊 Statistics
+                </h4>
+                <div class="p-5"><div id="provider-stats"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100 border-b border-gray-200 dark:border-gray-600">
+                    🎯 Performance
+                </h4>
+                <div class="p-5"><div id="provider-performance"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-green-100 dark:bg-green-900/30 text-green-900 dark:text-green-100 border-b border-gray-200 dark:border-gray-600">
+                    🎨 Themes
+                </h4>
+                <div class="p-5"><div id="provider-top-themes"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-violet-100 dark:bg-violet-900/30 text-violet-900 dark:text-violet-100 border-b border-gray-200 dark:border-gray-600">
+                    ⚙️ Mechanics
+                </h4>
+                <div class="p-5"><div id="provider-top-mechanics"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-orange-100 dark:bg-orange-900/30 text-orange-900 dark:text-orange-100 border-b border-gray-200 dark:border-gray-600">
+                    🎲 Volatility Distribution
+                </h4>
+                <div class="p-5"><div id="provider-volatility"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-cyan-100 dark:bg-cyan-900/30 text-cyan-900 dark:text-cyan-100 border-b border-gray-200 dark:border-gray-600">
+                    🎮 Top Games
+                </h4>
+                <div class="p-5"><ul id="provider-top-games"></ul></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Mechanic Details Side Panel -->
+    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-white dark:bg-gray-800 shadow-[-8px_0_40px_rgba(0,0,0,0.15)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="mechanic-panel">
+        <div class="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-5 flex justify-between items-center border-b border-indigo-700 dark:border-gray-800 z-10">
+            <h3 id="mechanic-panel-title" class="text-lg font-semibold m-0">Mechanic Details</h3>
+            <button class="bg-white/15 hover:bg-white/25 border-none text-white text-2xl w-8 h-8 rounded-full cursor-pointer transition-all hover:scale-110" onclick="closeMechanicPanel()">✕</button>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-900">
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-100 border-b border-gray-200 dark:border-gray-600">
+                    📊 Statistics
+                </h4>
+                <div class="p-5"><div id="mechanic-stats"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100 border-b border-gray-200 dark:border-gray-600">
+                    📝 Description
+                </h4>
+                <div class="p-5">
+                    <p id="mechanic-description" class="mechanic-panel-body"></p>
+                </div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-violet-100 dark:bg-violet-900/30 text-violet-900 dark:text-violet-100 border-b border-gray-200 dark:border-gray-600">
+                    ⚙️ How It Works
+                </h4>
+                <div class="p-5">
+                    <p id="mechanic-how-it-works" class="mechanic-panel-body"></p>
+                </div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-green-100 dark:bg-green-900/30 text-green-900 dark:text-green-100 border-b border-gray-200 dark:border-gray-600">
+                    📊 Frequency
+                </h4>
+                <div class="p-5"><p id="mechanic-frequency" class="mechanic-panel-body"></p></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-cyan-100 dark:bg-cyan-900/30 text-cyan-900 dark:text-cyan-100 border-b border-gray-200 dark:border-gray-600">
+                    🎮 Examples
+                </h4>
+                <div class="p-5"><ul id="mechanic-examples" class="mechanic-panel-list list-none space-y-2"></ul></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-amber-100 dark:bg-amber-900/30 text-amber-900 dark:text-amber-100 border-b border-gray-200 dark:border-gray-600">
+                    🎮 Top Games
+                </h4>
+                <div class="p-5"><ul id="mechanic-top-games" class="space-y-2"></ul></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Theme Details Side Panel -->
+    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-white dark:bg-gray-800 shadow-[-8px_0_40px_rgba(0,0,0,0.15)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="theme-panel">
+        <div class="sticky top-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-5 flex justify-between items-center border-b border-indigo-700 dark:border-gray-800 z-10">
+            <h3 id="theme-panel-title" class="text-lg font-semibold m-0">Theme Details</h3>
+            <button class="bg-white/15 hover:bg-white/25 border-none text-white text-2xl w-8 h-8 rounded-full cursor-pointer transition-all hover:scale-110" onclick="closeThemePanel()">✕</button>
+        </div>
+        <div class="p-6 bg-gray-50 dark:bg-gray-900">
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-100 border-b border-gray-200 dark:border-gray-600">
+                    📊 Statistics
+                </h4>
+                <div class="p-5"><div id="theme-stats"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100 border-b border-gray-200 dark:border-gray-600">
+                    🎨 Sub-Theme Breakdown
+                </h4>
+                <div class="p-5"><div id="theme-sub-themes"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-violet-100 dark:bg-violet-900/30 text-violet-900 dark:text-violet-100 border-b border-gray-200 dark:border-gray-600">
+                    🏢 Top Providers
+                </h4>
+                <div class="p-5"><div id="theme-top-providers"></div></div>
+            </div>
+            <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+                <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider bg-cyan-100 dark:bg-cyan-900/30 text-cyan-900 dark:text-cyan-100 border-b border-gray-200 dark:border-gray-600">
+                    🎮 Top Games
+                </h4>
+                <div class="p-5"><ul id="theme-top-games"></ul></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Chart.js only (Plotly removed - unused, saved ~3MB) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- Main application -->
+    <script type="module" src="src/app.js?v=250"></script>
+</body>
+</html>

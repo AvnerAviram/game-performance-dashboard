@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Playwright
+playwright-report/
+test-results/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+.temp/
+
+# Build artifacts
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Cache & generated
+cache/
+*.backup*
+*.bak*
+*.broken
+
+# Test screenshots (regenerated)
+tests/screenshots/
+tests/comparison/
+tests/baseline-screenshots/
+screenshots/
+verification-screenshots/
+
+# Data backups (keep games_master.json only)
+data/*.backup*
+data/*.cleaned.json
