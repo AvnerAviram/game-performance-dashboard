@@ -1,96 +1,102 @@
 /**
- * Auth module – production-ready structure
+ * Auth module -- server-backed session authentication.
  *
- * CURRENT: Demo mode – any non-empty credentials log in
- * Remember me: localStorage (persists). Not checked: sessionStorage (clears when tab closes).
- * PRODUCTION: Replace loginApi() with your backend API call – see loginApi below
+ * Login calls POST /api/login on the Express auth server.
+ * Session state is verified via GET /api/session.
+ * A local flag in sessionStorage is used as a fast-path check to
+ * avoid flashing the login page on every navigation.
  */
 
-const STORAGE_KEY = 'game-dashboard-auth';
+const SESSION_FLAG = 'game-dashboard-auth';
 
-function getStorage(rememberMe) {
-    return rememberMe ? localStorage : sessionStorage;
-}
-
-// =============================================================================
-// PRODUCTION: Replace this with your auth API
-// Example: POST /api/auth/login with { username, password }
-// =============================================================================
-async function loginApi(username, password) {
-    // Demo: accept any non-empty credentials
+export async function login(username, password, remember = false) {
     if (!username?.trim() || !password?.trim()) {
         return { success: false, error: 'Username and password are required' };
     }
-    // In production, call your backend:
-    // const res = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
-    // const data = await res.json();
-    // if (!res.ok) return { success: false, error: data.message || 'Login failed' };
-    // return { success: true, user: { username: data.user.name, ... } };
-    return { success: true, user: { username: username.trim() } };
-}
 
-export async function login(username, password, rememberMe = true) {
-    const result = await loginApi(username, password);
-    if (!result.success) return result;
-
-    const user = {
-        username: result.user.username,
-        loggedInAt: Date.now(),
-    };
     try {
-        const storage = getStorage(rememberMe);
-        storage.setItem(STORAGE_KEY, JSON.stringify(user));
-        // Clear the other storage so only one session type is active
-        const other = rememberMe ? sessionStorage : localStorage;
-        other.removeItem(STORAGE_KEY);
-        return { success: true, user };
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username.trim(), password, remember }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+            return { success: false, error: data.error || 'Login failed' };
+        }
+        sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
+        return { success: true, user: data.user };
     } catch (e) {
-        return { success: false, error: 'Failed to save session' };
+        return { success: false, error: 'Network error. Please try again.' };
     }
 }
 
-export function logout() {
+export async function logout() {
+    sessionStorage.removeItem(SESSION_FLAG);
     try {
-        localStorage.removeItem(STORAGE_KEY);
-        sessionStorage.removeItem(STORAGE_KEY);
-        return true;
-    } catch (e) {
-        return false;
-    }
+        await fetch('/api/logout', { method: 'POST' });
+    } catch { /* best-effort */ }
 }
 
+/**
+ * Fast synchronous check using the sessionStorage flag.
+ * The real session is enforced server-side; this is only used
+ * client-side to decide whether to show the loading overlay or redirect.
+ */
 export function isLoggedIn() {
     try {
-        const data = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
+        const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return false;
         const user = JSON.parse(data);
         return !!user?.username;
-    } catch (e) {
+    } catch {
         return false;
+    }
+}
+
+/**
+ * Verify the server-side session is still valid.
+ * Returns the user object or null.
+ */
+export async function verifySession() {
+    try {
+        const res = await fetch('/api/session');
+        if (!res.ok) {
+            sessionStorage.removeItem(SESSION_FLAG);
+            return null;
+        }
+        const data = await res.json();
+        sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
+        return data.user;
+    } catch {
+        return null;
     }
 }
 
 export function getCurrentUser() {
     try {
-        const data = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
+        const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return null;
-        const user = JSON.parse(data);
-        return user?.username || null;
-    } catch (e) {
+        return JSON.parse(data)?.username || null;
+    } catch {
         return null;
     }
 }
 
-/** Redirect to login page (use when protecting routes) */
-export function redirectToLogin() {
-    const base = window.location.pathname.replace(/\/[^/]*$/, '') || '/';
-    const sep = base.endsWith('/') ? '' : '/';
-    window.location.replace(`${base}${sep}login.html`);
+export function isAdmin() {
+    try {
+        const data = sessionStorage.getItem(SESSION_FLAG);
+        if (!data) return false;
+        return JSON.parse(data)?.role === 'admin';
+    } catch {
+        return false;
+    }
 }
 
-/** Redirect to dashboard (use after successful login) */
+export function redirectToLogin() {
+    window.location.replace('/login.html');
+}
+
 export function redirectToDashboard() {
-    const base = window.location.pathname.replace(/\/[^/]*$/, '') || '/';
-    const sep = base.endsWith('/') ? '' : '/';
-    window.location.replace(`${base}${sep}dashboard.html`);
+    window.location.replace('/dashboard.html');
 }

@@ -3,8 +3,8 @@
 <div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
     <div class="flex justify-between items-center py-5">
         <div>
-            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Game Idea Predictor</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Evaluate your game concept against historical data</p>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Game Concept Analyzer</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Describe your game idea in plain language — we'll analyze it against market data</p>
         </div>
         <div class="relative -mr-1 flex items-center">
             <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
@@ -13,136 +13,70 @@
             <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
                 <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
                 <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+                <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
+                <button type="button" onclick="showPage('tickets')" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>View Tickets</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Tabs: Test Idea | Opportunity Combos -->
-<div class="flex gap-2 mb-6">
-    <button id="tab-test-idea" class="prediction-tab active px-5 py-2.5 rounded-lg font-semibold text-sm transition-all bg-indigo-600 text-white" onclick="switchPredictionTab('test')">Test Idea</button>
-    <button id="tab-opportunities" class="prediction-tab px-5 py-2.5 rounded-lg font-semibold text-sm transition-all bg-slate-200 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-slate-300 dark:hover:bg-slate-600" onclick="switchPredictionTab('opportunities')">Opportunity Combos</button>
-</div>
-
-<!-- TWO COLUMN: Form LEFT (50%) + Results RIGHT (50%) -->
-<div id="prediction-test-area" class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-
-    <!-- LEFT COLUMN: Form -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden">
-        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-violet-100 dark:bg-violet-900/40 rounded-lg flex items-center justify-center text-xl">
-                    📝
+<!-- Main Input Area -->
+<div class="max-w-4xl mx-auto">
+    <!-- Big Text Input -->
+    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6">
+        <div class="p-6 pb-4">
+            <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-2xl shrink-0 shadow-lg shadow-violet-500/20">
+                    💡
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Enter Your Game Concept</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Configure theme and mechanics</p>
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Describe your game concept</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Write freely — mention theme, features, mechanics, target audience, anything about your game idea</p>
                 </div>
             </div>
         </div>
-        <div class="p-6">
-            <!-- Game Name -->
-            <div class="mb-4">
-                <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
-                    Game Name <span class="text-gray-400 font-normal">(optional)</span>
-                </label>
-                <input 
-                    type="text"
-                    id="game-name"
-                    placeholder="e.g., Fortune's Fire"
-                    class="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 text-sm"
-                >
+        <div class="px-6 pb-2">
+            <textarea 
+                id="concept-input"
+                rows="4"
+                placeholder="e.g., An Egyptian-themed slot with free spins, hold and spin mechanics, and a progressive jackpot. Medium-high volatility targeting casual players who like mystery and adventure..."
+                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 text-sm leading-relaxed resize-none"
+            ></textarea>
+        </div>
+        <div class="px-6 pb-4 flex items-center justify-between">
+            <div class="flex flex-wrap gap-1.5" id="concept-quick-ideas">
+                <span class="text-[10px] text-gray-400 dark:text-gray-500 mr-1 self-center">Try:</span>
+                <button type="button" onclick="window.setConceptExample(this)" data-text="Asian luck theme with free spins, hold and spin, and wild reels. High volatility." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Asian luck slot</button>
+                <button type="button" onclick="window.setConceptExample(this)" data-text="Adventure exploration game with expanding reels, pick bonus, and persistence mechanics. Medium volatility with an Irish mythology twist." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Adventure explorer</button>
+                <button type="button" onclick="window.setConceptExample(this)" data-text="Classic fruit machine with nudges, respin feature, and a wheel bonus. Low volatility, nostalgic feel for traditional slot players." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Classic fruit</button>
+                <button type="button" onclick="window.setConceptExample(this)" data-text="Fantasy dragon theme with cash on reels, static jackpot, free spins, and expanding reels. Very high volatility for thrill seekers." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Fantasy dragon</button>
             </div>
-
-            <!-- Theme Selection -->
-            <div class="mb-4">
-                <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-2">
-                    <span>🎨</span> Theme (select one)
-                </label>
-                <input type="text" id="theme-search" placeholder="Search themes..." class="mb-2 w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500">
-                <div class="rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 overflow-y-auto max-h-[180px] min-h-[72px]" style="scrollbar-gutter: stable;">
-                    <div id="game-themes" class="p-3 flex flex-wrap gap-2">
-                        <!-- Chips will be dynamically generated here -->
-                    </div>
-                </div>
-                <p class="text-xs text-violet-600 dark:text-violet-400 mt-1">Click to select one theme</p>
-            </div>
-
-            <!-- Mechanics Selection -->
-            <div class="mb-5">
-                <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-2">
-                    <span>⚙️</span> Mechanics (select multiple)
-                </label>
-                <input type="text" id="mechanic-search" placeholder="Search mechanics..." class="mb-2 w-full px-3 py-2 text-sm bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500">
-                <div class="rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 overflow-y-auto max-h-[180px] min-h-[72px] checkbox-group" style="scrollbar-gutter: stable;">
-                    <div id="game-mechanics" class="p-3 flex flex-wrap gap-2">
-                        <!-- Chips will be dynamically generated here -->
-                    </div>
-                </div>
-                <p class="text-xs text-violet-600 dark:text-violet-400 mt-1">Select multiple mechanics that apply</p>
-            </div>
-
-            <!-- Predict Button -->
             <button 
-                onclick="predictGameSuccess()"
-                class="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-semibold shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center gap-2"
+                onclick="window.analyzeGameConcept()"
+                class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-200 flex items-center gap-2 shrink-0"
             >
-                <span class="text-lg">🔮</span>
-                <span>Predict Success</span>
+                <span>Analyze</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </button>
         </div>
     </div>
-    
-    <!-- RIGHT COLUMN: Results -->
-    <div id="prediction-results-sidebar">
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden">
-            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-xl">
-                        🎯
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Prediction Results</h3>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Historical data comparison</p>
-                    </div>
-                </div>
-            </div>
-            <div id="prediction-output-sidebar" class="p-6">
-                <div class="flex items-center justify-center py-16">
-                    <div class="text-center">
-                        <div class="w-16 h-16 mx-auto mb-4 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center text-3xl">🎲</div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Configure theme and mechanics, then run a prediction</p>
-                    </div>
-                </div>
-            </div>
+
+    <!-- Detected Tags (populated after analysis) -->
+    <div id="concept-detected" class="hidden mb-6">
+        <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 p-4">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">Detected from your description</div>
+            <div id="concept-tags" class="flex flex-wrap gap-2"></div>
         </div>
     </div>
-    
+
+    <!-- Results Area -->
+    <div id="concept-results" class="space-y-5"></div>
 </div>
 
-<!-- Opportunity Combos Tab (hidden by default) -->
-<div id="prediction-opportunities-area" class="hidden">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden">
-        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-xl">💎</div>
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">High-Quality, Low-Competition Combos</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Theme + mechanic with above-median Theo, 2–25 games</p>
-                </div>
-            </div>
-        </div>
-        <div id="opportunity-combos-list" class="p-6 space-y-4">
-            <!-- Filled by JS -->
-        </div>
-    </div>
+<!-- Keep old elements hidden for backward compat -->
+<div id="prediction-test-area" class="hidden">
+    <div id="prediction-results-sidebar"><div id="prediction-output-sidebar"></div></div>
 </div>
-
-<!-- Old results panel - HIDDEN (fallback) -->
-<div id="prediction-results" class="prediction-results mt-6" style="display: none;">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
-        <div id="prediction-output" class="text-gray-700 dark:text-gray-300">
-            <!-- Results will be dynamically generated here -->
-        </div>
-    </div>
-</div>
+<div id="prediction-opportunities-area" class="hidden"></div>
+<div id="prediction-results" style="display:none"><div id="prediction-output"></div></div>

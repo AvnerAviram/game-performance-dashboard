@@ -250,3 +250,55 @@ th.sortable.sorted-asc::after {
 .dark #mechanic-panel .mechanic-panel-list li {
   color: #e2e8f0;
 }
+
+@keyframes blink-field {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Mobile Responsive ──────────────────────────────────── */
+@media (max-width: 767px) {
+  #sidebar {
+    width: 0 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease, width 0.3s ease;
+  }
+  #sidebar.mobile-open {
+    width: 240px !important;
+    transform: translateX(0) !important;
+  }
+  #main-content {
+    margin-left: 0 !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Sticky headers: less padding on mobile */
+  .sticky { padding-left: 1rem !important; padding-right: 1rem !important; }
+
+  /* Tables: horizontal scroll wrapper */
+  table { font-size: 0.8125rem; }
+  th, td { padding: 0.5rem 0.625rem !important; white-space: nowrap; }
+
+  /* Grid overrides: stack on mobile */
+  .grid { grid-template-columns: 1fr !important; }
+
+  /* KPI stat cards */
+  .grid.gap-4, .grid.gap-6 { gap: 0.75rem !important; }
+
+  /* Pagination footers */
+  [id$="-pagination-footer"] { left: 0 !important; }
+
+  /* Chart containers */
+  [style*="height: 420px"], [style*="height: 460px"] {
+    height: 280px !important; min-height: 280px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet: 2 cols max */
+  .xl\\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .xl\\:grid-cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .xl\\:col-span-3 { grid-column: span 1 !important; }
+  .xl\\:col-span-2 { grid-column: span 1 !important; }
+}

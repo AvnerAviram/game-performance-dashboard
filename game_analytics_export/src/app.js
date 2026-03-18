@@ -1,5 +1,5 @@
 // Main Application Entry Point
-import { isLoggedIn, redirectToLogin } from './lib/auth.js';
+import { isLoggedIn, redirectToLogin, verifySession } from './lib/auth.js';
 import { loadGameData } from './lib/data.js';
 import { log, DEBUG } from './lib/env.js';
 
@@ -46,8 +46,14 @@ import { populateThemesFilters, populateMechanicsFilters, populateProvidersFilte
 async function init() {
     log('🎮 Dashboard initializing...');
 
-    // Require login – redirect to login page if not authenticated
     if (!isLoggedIn()) {
+        redirectToLogin();
+        return;
+    }
+
+    // Verify server session is still valid
+    const sessionUser = await verifySession();
+    if (!sessionUser) {
         redirectToLogin();
         return;
     }

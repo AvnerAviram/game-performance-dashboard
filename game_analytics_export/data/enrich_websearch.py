@@ -256,6 +256,36 @@ def normalize_themes(raw_themes: List[str], verbose: bool = False) -> List[str]:
 CONFIDENCE_THRESHOLD = 4  # themes
 FEATURE_CONFIDENCE_THRESHOLD = 5  # features need higher confidence (reduces FPs)
 
+# Provider official website URLs (for dashboard provider links)
+# Next enrichment batch: the agent should populate missing entries via web search
+PROVIDER_WEBSITES: Dict[str, str] = {
+    "AGS": "https://playags.com",
+    "NetEnt": "https://www.netent.com",
+    "Pragmatic Play": "https://www.pragmaticplay.com",
+    "IGT": "https://www.igt.com",
+    "Aristocrat": "https://www.aristocrat.com",
+    "Scientific Games": "https://www.scientificgames.com",
+    "Everi": "https://www.everi.com",
+    "Konami": "https://www.konamigaming.com",
+    "Light & Wonder": "https://www.lnw.com",
+    "Play'n GO": "https://www.playngo.com",
+    "Microgaming": "https://www.microgaming.co.uk",
+    "Yggdrasil": "https://www.yggdrasilgaming.com",
+    "Red Tiger": "https://www.redtiger.com",
+    "Blueprint Gaming": "https://www.blueprintgaming.com",
+    "Big Time Gaming": "https://www.bigtimegaming.com",
+    "ELK Studios": "https://www.elkstudios.com",
+    "Hacksaw Gaming": "https://www.hacksawgaming.com",
+    "Push Gaming": "https://www.pushgaming.com",
+    "NoLimit City": "https://www.nolimitcity.com",
+    "Relax Gaming": "https://www.relaxgaming.com",
+    "Fortune Factory Studios": "https://playags.com",
+    "Incredible Technologies": "https://www.itsgames.com",
+    "Bluberi": "https://www.bluberi.com",
+    "Zitro": "https://www.zitrogames.com",
+    "Aruze Gaming": "https://www.aruzegaming.com",
+}
+
 PROVIDER_DOMAINS: Dict[str, str] = {
     "AGS": "playags.com, interactive.playags.com",
     "NetEnt": "netent.com, games.netent.com",
@@ -1792,6 +1822,21 @@ def enrich_one_game(
             if verbose:
                 print("  [POST] Stripped Cash On Reels (interactive mini-game, not COR)")
 
+    # GATE: pick-gate-strip — gate/selector evidence is NOT Pick Bonus
+    if "Pick Bonus" in final_features and "Pick Bonus" not in catalog_confirmed:
+        pb_items = [i for i in feature_map if i.get("canonical") == "Pick Bonus"]
+        gate_kw = ['gate', 'selector', 'choose between', 'choose which', 'pick a door',
+                   'select which bonus', 'pick a mode', 'select between', 'vault selection',
+                   'choose one of', 'select one of', 'pick which bonus']
+        all_gate = pb_items and all(
+            any(w in (i.get('raw', '')).lower() for w in gate_kw)
+            for i in pb_items
+        )
+        if all_gate:
+            final_features = [f for f in final_features if f != "Pick Bonus"]
+            if verbose:
+                print("  [POST] Stripped Pick Bonus (gate/selector evidence, not Pick Bonus)")
+
     # ---- Build output records ----
     master_perf = game.get("performance", {})
     master_release = game.get("release", {})
@@ -1812,6 +1857,7 @@ def enrich_one_game(
         "provider": provider,
         "studio": provider_info.get("studio", provider),
         "parent_company": provider_info.get("parent", provider),
+        "provider_website": PROVIDER_WEBSITES.get(provider_info.get("studio", provider)) or PROVIDER_WEBSITES.get(provider, ""),
         "theme_primary": final_themes[0] if final_themes else None,
         "theme_secondary": final_themes[1] if len(final_themes) > 1 else None,
         "themes_all": final_themes,
@@ -2305,6 +2351,21 @@ def main():
                     final_features = [f for f in final_features if f != "Cash On Reels"]
                     if args.verbose:
                         print("  [POST] Stripped Cash On Reels (interactive mini-game)")
+
+            # GATE: pick-gate-strip (batch path)
+            if "Pick Bonus" in final_features and "Pick Bonus" not in catalog_confirmed:
+                pb_items = [i for i in feature_map if i.get("canonical") == "Pick Bonus"]
+                gate_kw = ['gate', 'selector', 'choose between', 'choose which', 'pick a door',
+                           'select which bonus', 'pick a mode', 'select between', 'vault selection',
+                           'choose one of', 'select one of', 'pick which bonus']
+                all_gate = pb_items and all(
+                    any(w in (i.get('raw', '')).lower() for w in gate_kw)
+                    for i in pb_items
+                )
+                if all_gate:
+                    final_features = [f for f in final_features if f != "Pick Bonus"]
+                    if args.verbose:
+                        print("  [POST] Stripped Pick Bonus (gate/selector evidence)")
 
             master_perf = game.get("performance", {})
             master_release = game.get("release", {})

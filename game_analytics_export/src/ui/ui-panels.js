@@ -13,8 +13,24 @@ import {
     VolatilityBadge, 
     AnomalyBadge,
     GRADIENTS,
+    ACCENTS,
     EmptyState
 } from '../components/dashboard-components.js';
+import { SYMBOL_CATEGORIES, SYMBOL_CAT_COLORS, categorizeSymbol, parseSymbols } from '../lib/symbol-utils.js';
+
+function collapsibleList(listHtml, totalCount, initialShow, containerId) {
+    if (totalCount <= initialShow) return listHtml;
+    const uid = containerId || ('cl-' + Math.random().toString(36).slice(2, 8));
+    return `
+        <div id="${uid}-wrap">
+            <div id="${uid}-items">${listHtml}</div>
+            <button id="${uid}-btn" onclick="window._toggleCL('${uid}',${initialShow},${totalCount})" data-expanded="0"
+            class="mt-2 w-full text-center text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 cursor-pointer py-1.5 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors">
+                Show all ${totalCount} items
+            </button>
+        </div>
+    `;
+}
 
 function parseJsonArray(val) {
     if (Array.isArray(val)) return val;
@@ -47,6 +63,7 @@ export function showGameDetails(gameName) {
         title: 'Performance',
         icon: '📊',
         gradient: GRADIENTS.performance,
+        accent: ACCENTS.performance,
         content: MetricGrid(performanceMetrics)
     });
     
@@ -65,6 +82,7 @@ export function showGameDetails(gameName) {
         title: 'Game Specs',
         icon: '⚙️',
         gradient: GRADIENTS.specs,
+        accent: ACCENTS.specs,
         content: MetricGrid(specsMetrics)
     });
     
@@ -91,6 +109,7 @@ export function showGameDetails(gameName) {
         title: 'Theme & Mechanic',
         icon: '🎨',
         gradient: GRADIENTS.category,
+        accent: ACCENTS.category,
         content: themeMechContent
     });
     
@@ -108,6 +127,7 @@ export function showGameDetails(gameName) {
         title: 'Provider',
         icon: '🏢',
         gradient: GRADIENTS.provider,
+        accent: ACCENTS.provider,
         content: providerContent
     });
     
@@ -126,32 +146,34 @@ export function showGameDetails(gameName) {
             title: 'Demo',
             icon: '🎮',
             gradient: GRADIENTS.performance,
+            accent: ACCENTS.performance,
             content: demoContent
         });
     }
     
     // ===== SYMBOLS SECTION =====
-    const symbols = parseJsonArray(game.symbols);
+    const symbols = parseSymbols(game.symbols);
     let symbolsSection = '';
     if (symbols.length > 0) {
-        const symbolsId = `symbols-${Date.now()}`;
-        const symbolsContent = `
-            <div>
-                <button onclick="document.getElementById('${symbolsId}').classList.toggle('hidden')"
-                        class="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium cursor-pointer">
-                    ${symbols.length} symbols — click to expand
-                </button>
-                <div id="${symbolsId}" class="hidden mt-2">
-                    <div class="flex flex-wrap gap-1.5">
-                        ${symbols.map(s => `<span class="inline-block px-2 py-0.5 text-xs rounded bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">${String(s).replace(/</g, '&lt;')}</span>`).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
+        const grouped = {};
+        symbols.forEach(s => {
+            const cat = categorizeSymbol(String(s));
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push(String(s).replace(/</g, '&lt;'));
+        });
+        const symbolsContent = SYMBOL_CATEGORIES.filter(c => grouped[c]).map(cat => {
+            const col = SYMBOL_CAT_COLORS[cat];
+            return `
+            <div class="mb-2 last:mb-0">
+                <div class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">${cat}</div>
+                <div class="flex flex-wrap gap-1">${grouped[cat].map(s => `<span class="inline-flex items-center px-1.5 py-0.5 text-[11px] rounded-md ring-1 ${col.cls} ${col.ring}">${s}</span>`).join('')}</div>
+            </div>`;
+        }).join('');
         symbolsSection = PanelSection({
-            title: 'Symbols',
+            title: `Symbols (${symbols.length})`,
             icon: '🎰',
             gradient: GRADIENTS.specs,
+            accent: ACCENTS.specs,
             content: symbolsContent
         });
     }
@@ -166,6 +188,7 @@ export function showGameDetails(gameName) {
         title: 'Release Info',
         icon: '📅',
         gradient: GRADIENTS.release,
+        accent: ACCENTS.release,
         content: MetricGrid(releaseMetrics)
     });
     
@@ -205,7 +228,7 @@ export function showGameDetails(gameName) {
             });
         }).join('');
         
-        similarGamesContent = `<ul class="space-y-0">${gamesList}</ul>`;
+        similarGamesContent = `<div class="space-y-0">${gamesList}</div>`;
     } else {
         similarGamesContent = EmptyState('No similar games found');
     }
@@ -214,27 +237,25 @@ export function showGameDetails(gameName) {
         title: 'Similar Games',
         icon: '🎯',
         gradient: GRADIENTS.similar,
+        accent: ACCENTS.similar,
         content: similarGamesContent
     });
     
     // ===== FEEDBACK SECTION =====
     const feedbackGameName = game.name || game.game_name || 'Unknown';
-    const mailSubject = encodeURIComponent(`Data issue: ${feedbackGameName}`);
-    const mailBody = encodeURIComponent(`Game: ${feedbackGameName}\nIssue: `);
     const feedbackContent = `
-        <div>
-            <a href="mailto:analytics-feedback@example.com?subject=${mailSubject}&body=${mailBody}"
-               class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors underline">
-                Report something incorrect?
-            </a>
-            <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">Opens your email client to send a report.</p>
-        </div>
-    `;
+    <button onclick="window.openFeedbackModal('${feedbackGameName.replace(/'/g, "\\'")}')"
+        class="w-full px-4 py-2.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-xl transition-colors flex items-center justify-center gap-2 border border-indigo-200 dark:border-indigo-800">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+        Report an issue with this game
+    </button>
+`;
     
     const feedbackSection = PanelSection({
         title: 'Feedback',
         icon: '📝',
-        gradient: 'from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-700/30',
+        gradient: GRADIENTS.release,
+        accent: ACCENTS.feedback,
         content: feedbackContent
     });
     
@@ -309,8 +330,6 @@ export function showProviderDetails(providerName) {
         statsMetrics.push({ label: 'Parent Company', value: parent });
     }
     
-    document.getElementById('provider-stats').innerHTML = MetricGrid(statsMetrics);
-    
     // ===== PERFORMANCE SECTION =====
     const highPerformers = providerGames.filter(g => g.performance_anomaly === 'high').length;
     const lowPerformers = providerGames.filter(g => g.performance_anomaly === 'low').length;
@@ -323,21 +342,24 @@ export function showProviderDetails(providerName) {
         { label: 'Quality Index', value: avgTheo.toFixed(2) }
     ];
     
-    document.getElementById('provider-performance').innerHTML = MetricGrid(perfMetrics);
-    
     // ===== TOP GAMES SECTION =====
-    const topGames = [...providerGames]
-        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0))
-        .slice(0, 10);
+    const allProvGames = [...providerGames]
+        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
     
-    const topGamesHtml = topGames.map(g => GameListItem({
-        name: g.name,
-        provider: g.provider_studio,
-        theoWin: g.performance_theo_win?.toFixed(2),
-        extra: `${g.theme_consolidated}`
-    })).join('');
+    const GAMES_INIT = 5;
+    const topGamesItems = allProvGames.map((g, i) => {
+        const hidden = i >= GAMES_INIT ? ' style="display:none"' : '';
+        return `<div data-cl-item${hidden}>${GameListItem({
+            name: g.name,
+            provider: g.provider_studio,
+            theoWin: g.performance_theo_win?.toFixed(2),
+            extra: `${g.theme_consolidated}`
+        })}</div>`;
+    }).join('');
     
-    document.getElementById('provider-top-games').innerHTML = topGamesHtml;
+    const topGamesHtml = allProvGames.length > GAMES_INIT 
+        ? collapsibleList(topGamesItems, allProvGames.length, GAMES_INIT, 'prov-games')
+        : topGamesItems;
     
     // ===== TOP THEMES SECTION =====
     const themes = {};
@@ -348,24 +370,24 @@ export function showProviderDetails(providerName) {
         themes[theme].totalTheo += g.performance_theo_win || 0;
     });
     
-    const topThemes = Object.entries(themes)
+    const allThemes = Object.entries(themes)
         .map(([name, data]) => ({ name, ...data, avgTheo: data.totalTheo / data.count }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 5);
+        .sort((a, b) => b.count - a.count);
     
-    const themesContent = `
-        <div class="space-y-2">
-            ${topThemes.map(t => `
-                <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600/50 transition-colors"
-                     onclick="window.showThemeDetails('${(t.name || '').replace(/'/g, "\\'")}')">
-                    <span class="font-semibold text-gray-900 dark:text-white">${t.name}</span>
-                    <span class="text-sm text-gray-600 dark:text-gray-400">${t.count} games</span>
-                </div>
-            `).join('')}
-        </div>
-    `;
+    const THEMES_INIT = 5;
+    const maxThemeCount = allThemes.length ? allThemes[0].count : 1;
+    const themeItems = allThemes.map((t, i) => {
+        const hidden = i >= THEMES_INIT ? ' style="display:none"' : '';
+        const barW = ((t.count / maxThemeCount) * 100).toFixed(0);
+        return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     onclick="window.showThemeDetails('${(t.name || '').replace(/'/g, "\\'")}')"${hidden}>
+                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${t.name}</span>
+                    <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-violet-400 dark:bg-violet-500 rounded-full" style="width:${barW}%"></div></div>
+                    <span class="text-[11px] text-gray-400 dark:text-gray-500 w-10 text-right flex-shrink-0">${t.count}</span>
+                </div>`;
+    }).join('');
     
-    document.getElementById('provider-top-themes').innerHTML = themesContent;
+    const themesContent = `<div class="space-y-0.5">${allThemes.length > THEMES_INIT ? collapsibleList(themeItems, allThemes.length, THEMES_INIT, 'prov-themes') : themeItems}</div>`;
     
     // ===== TOP FEATURES SECTION =====
     const mechanics = {};
@@ -380,24 +402,24 @@ export function showProviderDetails(providerName) {
         });
     });
     
-    const topMechanics = Object.entries(mechanics)
+    const allMechanics = Object.entries(mechanics)
         .map(([name, data]) => ({ name, ...data, avgTheo: data.totalTheo / data.count }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 5);
+        .sort((a, b) => b.count - a.count);
     
-    const mechanicsContent = `
-        <div class="space-y-2">
-            ${topMechanics.map(m => `
-                <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600/50 transition-colors"
-                     onclick="window.showMechanicDetails('${(m.name || '').replace(/'/g, "\\'")}')">
-                    <span class="font-semibold text-gray-900 dark:text-white">${m.name}</span>
-                    <span class="text-sm text-gray-600 dark:text-gray-400">${m.count} games</span>
-                </div>
-            `).join('')}
-        </div>
-    `;
+    const MECHS_INIT = 5;
+    const maxMechCount = allMechanics.length ? allMechanics[0].count : 1;
+    const mechItems = allMechanics.map((m, i) => {
+        const hidden = i >= MECHS_INIT ? ' style="display:none"' : '';
+        const barW = ((m.count / maxMechCount) * 100).toFixed(0);
+        return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     onclick="window.showMechanicDetails('${(m.name || '').replace(/'/g, "\\'")}')"${hidden}>
+                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${m.name}</span>
+                    <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-purple-400 dark:bg-purple-500 rounded-full" style="width:${barW}%"></div></div>
+                    <span class="text-[11px] text-gray-400 dark:text-gray-500 w-10 text-right flex-shrink-0">${m.count}</span>
+                </div>`;
+    }).join('');
     
-    document.getElementById('provider-top-mechanics').innerHTML = mechanicsContent;
+    const mechanicsContent = `<div class="space-y-0.5">${allMechanics.length > MECHS_INIT ? collapsibleList(mechItems, allMechanics.length, MECHS_INIT, 'prov-mechs') : mechItems}</div>`;
     
     // ===== VOLATILITY DISTRIBUTION SECTION =====
     const volatility = {};
@@ -406,21 +428,33 @@ export function showProviderDetails(providerName) {
         volatility[vol] = (volatility[vol] || 0) + 1;
     });
     
+    const maxVolCount = Math.max(...Object.values(volatility));
     const volContent = `
-        <div class="space-y-3">
+        <div class="space-y-2">
             ${Object.entries(volatility).sort((a, b) => b[1] - a[1]).map(([vol, count]) => {
                 const percent = ((count / gameCount) * 100).toFixed(0);
+                const barW = ((count / maxVolCount) * 100).toFixed(0);
                 return `
-                    <div class="flex items-center justify-between">
-                        ${VolatilityBadge(vol)}
-                        <span class="text-sm text-gray-600 dark:text-gray-400">${count} (${percent}%)</span>
+                    <div class="flex items-center gap-2">
+                        <div class="w-20 flex-shrink-0">${VolatilityBadge(vol)}</div>
+                        <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-300 dark:bg-gray-500 rounded-full" style="width:${barW}%"></div></div>
+                        <span class="text-[11px] text-gray-400 dark:text-gray-500 w-12 text-right flex-shrink-0">${count} (${percent}%)</span>
                     </div>
                 `;
             }).join('')}
         </div>
     `;
     
-    document.getElementById('provider-volatility').innerHTML = volContent;
+    // Build panel content using PanelSection
+    const panelContent = document.getElementById('provider-panel-content');
+    let html = '';
+    html += PanelSection({ title: 'Statistics', icon: '📊', gradient: GRADIENTS.performance, accent: ACCENTS.performance, content: MetricGrid(statsMetrics) });
+    html += PanelSection({ title: 'Performance', icon: '🎯', gradient: GRADIENTS.specs, accent: ACCENTS.specs, content: MetricGrid(perfMetrics) });
+    html += PanelSection({ title: 'Themes', icon: '🎨', gradient: GRADIENTS.category, accent: ACCENTS.category, content: themesContent });
+    html += PanelSection({ title: 'Features', icon: '⚙️', gradient: GRADIENTS.similar, accent: ACCENTS.similar, content: mechanicsContent });
+    html += PanelSection({ title: 'Volatility Distribution', icon: '🎲', gradient: GRADIENTS.stats, accent: ACCENTS.stats, content: volContent });
+    html += PanelSection({ title: `Top Games (${allProvGames.length})`, icon: '🎮', gradient: GRADIENTS.provider, accent: ACCENTS.provider, content: `<div class="space-y-0">${topGamesHtml}</div>` });
+    panelContent.innerHTML = html;
     
     // Close any other open panel first, then show this one
     if (window.closeAllPanels) window.closeAllPanels();
@@ -454,4 +488,75 @@ window.closeAnyPanel = function() {
     closeProviderPanel();
     if (window.closeThemePanel) window.closeThemePanel();
     if (window.closeMechanicPanel) window.closeMechanicPanel();
+};
+
+// --- Feedback modal (used by hamburger menu and game panel) ---
+window.openFeedbackModal = function(gameName) {
+    const modal = document.getElementById('feedback-modal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (gameName) {
+        const gameInput = document.getElementById('modal-feedback-game');
+        if (gameInput) gameInput.value = gameName;
+    }
+    // Close hamburger dropdown
+    const dropdown = document.getElementById('hamburger-dropdown');
+    if (dropdown) dropdown.classList.add('hidden');
+};
+
+window.closeFeedbackModal = function() {
+    const modal = document.getElementById('feedback-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    // Reset form
+    const gameInput = document.getElementById('modal-feedback-game');
+    const descInput = document.getElementById('modal-feedback-desc');
+    const statusEl = document.getElementById('modal-feedback-status');
+    if (gameInput) gameInput.value = '';
+    if (descInput) descInput.value = '';
+    if (statusEl) statusEl.classList.add('hidden');
+};
+
+window.submitModalTicket = async function() {
+    const gameName = document.getElementById('modal-feedback-game')?.value?.trim();
+    const issueType = document.getElementById('modal-feedback-type')?.value;
+    const description = document.getElementById('modal-feedback-desc')?.value?.trim();
+    const statusEl = document.getElementById('modal-feedback-status');
+
+    if (!gameName || !description) {
+        if (statusEl) {
+            statusEl.textContent = 'Please fill in game name and description';
+            statusEl.className = 'text-sm text-red-500';
+            statusEl.classList.remove('hidden');
+        }
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/tickets', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ gameName, issueType, description }),
+        });
+
+        if (res.ok) {
+            if (statusEl) {
+                statusEl.innerHTML = '✓ Feedback submitted successfully!';
+                statusEl.className = 'text-sm text-green-600 dark:text-green-400 font-medium';
+                statusEl.classList.remove('hidden');
+            }
+            setTimeout(() => window.closeFeedbackModal(), 1500);
+        } else {
+            const data = await res.json();
+            throw new Error(data.error || 'Failed to submit');
+        }
+    } catch (err) {
+        if (statusEl) {
+            statusEl.textContent = 'Error: ' + err.message;
+            statusEl.className = 'text-sm text-red-500';
+            statusEl.classList.remove('hidden');
+        }
+    }
 };

@@ -1,0 +1,96 @@
+<!-- Game Name Generator -->
+<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
+    <div class="flex justify-between items-center py-5">
+        <div>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Game Name Generator</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">AI-powered name ideas based on 642 real slot game naming patterns</p>
+        </div>
+        <div class="relative ml-auto flex flex-1 items-center justify-end min-w-0 -mr-1">
+            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
+                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
+                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+                <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Generator Controls -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+    <!-- Input Panel -->
+    <div class="xl:col-span-1 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
+        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <span class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-base">🎯</span>
+            Configure Your Game
+        </h3>
+
+        <!-- Theme -->
+        <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Theme</label>
+        <select id="ng-theme" class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+            <option value="">Select a theme...</option>
+        </select>
+
+        <!-- Features -->
+        <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Features (select up to 3)</label>
+        <div id="ng-features" class="flex flex-wrap gap-1.5 mb-4"></div>
+
+        <!-- Name Style -->
+        <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Naming Style</label>
+        <div class="grid grid-cols-2 gap-2 mb-4">
+            <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="classic">🏛️ Classic</button>
+            <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="modern">⚡ Modern</button>
+            <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="playful">🎪 Playful</button>
+            <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="premium">💎 Premium</button>
+        </div>
+
+        <!-- Custom Keywords -->
+        <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Custom Keywords (optional)</label>
+        <input type="text" id="ng-keywords" placeholder="e.g. dragon, fortune, mega..." class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-5 focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400">
+
+        <!-- Generate + Reset Buttons -->
+        <div class="flex gap-2">
+            <button id="ng-generate" class="flex-1 py-3 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Generate Names
+            </button>
+            <button id="ng-reset" class="py-3 px-3 border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 text-sm rounded-xl transition-all flex items-center justify-center" title="Reset all fields">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            </button>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-2 text-center" id="ng-mode-label">Using pattern-based generation</p>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="xl:col-span-2">
+        <!-- Generated Names -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6 mb-6">
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg flex items-center justify-center text-base">✨</span>
+                Generated Names
+            </h3>
+            <div id="ng-results" class="min-h-[200px]">
+                <div class="flex items-center justify-center h-[200px] text-gray-400 dark:text-gray-500 text-sm">
+                    Select a theme and click "Generate Names" to get started
+                </div>
+            </div>
+        </div>
+
+        <!-- Naming Patterns from Data -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <span class="w-8 h-8 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-base">📊</span>
+                Naming Intelligence
+                <span class="text-[10px] text-gray-400 font-normal ml-auto">Based on 642 real game names</span>
+            </h3>
+            <div id="ng-patterns" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="text-center text-gray-400 dark:text-gray-500 text-sm col-span-3 py-8">
+                    Patterns will appear when you select a theme
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

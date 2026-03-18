@@ -175,7 +175,7 @@ function filterMechanics() {
     }
     
     if (themeValue) {
-        filteredGames = filteredGames.filter(g => g.mechanic_primary === themeValue);
+        filteredGames = filteredGames.filter(g => g.theme_primary === themeValue);
     }
     
     // Aggregate mechanics from filtered games
@@ -229,6 +229,10 @@ export function populateProvidersFilters() {
             option.textContent = mechanic;
             mechanicSelect.appendChild(option);
         });
+        mechanicSelect.onchange = () => {
+            if (window.providersCurrentPage) window.providersCurrentPage = 1;
+            if (window.renderProviders) window.renderProviders();
+        };
     }
     
     const themeSelect = document.getElementById('providers-filter-theme');
@@ -240,6 +244,10 @@ export function populateProvidersFilters() {
             option.textContent = theme;
             themeSelect.appendChild(option);
         });
+        themeSelect.onchange = () => {
+            if (window.providersCurrentPage) window.providersCurrentPage = 1;
+            if (window.renderProviders) window.renderProviders();
+        };
     }
     
     log(`✅ Providers filters populated: ${mechanics.length} mechanics, ${themes.length} themes`);
@@ -250,7 +258,13 @@ export function populateProvidersFilters() {
  */
 export function populateGamesFilters() {
     const providers = [...new Set(gameData.allGames.map(g => g.provider_studio))].filter(p => p).sort();
-    const mechanics = [...new Set(gameData.allGames.map(g => g.mechanic_primary))].filter(m => m).sort();
+    const featureSet = new Set();
+    gameData.allGames.forEach(g => {
+        let feats = g.features;
+        if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
+        if (Array.isArray(feats)) feats.forEach(f => featureSet.add(f));
+    });
+    const mechanics = [...featureSet].sort();
     
     const providerSelect = document.getElementById('games-filter-provider');
     if (providerSelect) {
@@ -265,7 +279,7 @@ export function populateGamesFilters() {
     
     const mechanicSelect = document.getElementById('games-filter-mechanic');
     if (mechanicSelect) {
-        mechanicSelect.innerHTML = '<option value="">All Mechanics</option>';
+        mechanicSelect.innerHTML = '<option value="">All Features</option>';
         mechanics.forEach(mechanic => {
             const option = document.createElement('option');
             option.value = mechanic;

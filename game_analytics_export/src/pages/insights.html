@@ -4,141 +4,110 @@
     <div class="flex justify-between items-center py-5">
         <div>
             <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Market Insights</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Data-driven opportunities and patterns</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Data-driven opportunities, risks, and market intelligence</p>
         </div>
         <div class="relative -mr-1 flex items-center">
-            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
+            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
             <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
                 <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
                 <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+                <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
+                <button type="button" onclick="showPage('tickets')" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>View Tickets</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Theme × Mechanic Heatmap (click cells to test in Prediction) -->
-<div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden mb-8 shadow-sm">
-    <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-indigo-50 to-slate-50 dark:from-indigo-900/20 dark:to-slate-700/30 border-b border-slate-200 dark:border-slate-600">
-        <span class="text-2xl">🗺️</span>
-        <div>
-            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Theme × Mechanic Matrix</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400">Avg Theo by combo – darker = higher. Click a cell to test in Prediction</p>
+<!-- Row 1: Strategy Cards (3 equal columns) -->
+<div class="grid grid-cols-3 gap-4 mb-4">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">🚀</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Best Opportunities</h3></div>
         </div>
+        <div id="market-gaps" class="p-4 space-y-2 flex-1"></div>
     </div>
-    <div id="heatmap-container" class="p-4 overflow-x-auto overflow-y-auto max-h-[420px]">
-        <!-- Filled by JS -->
-    </div>
-</div>
-
-<!-- Best Theme + Mechanic Combos -->
-<div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden mb-8 shadow-sm">
-    <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-b border-slate-200 dark:border-slate-600">
-        <span class="text-2xl">🎯</span>
-        <div>
-            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100">Best Theme + Mechanic Combos</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-400">What works together – ranked by performance</p>
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">🏆</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Market Leaders</h3></div>
         </div>
+        <div id="hot-combinations" class="p-4 space-y-2 flex-1"></div>
     </div>
-    <div id="combo-explorer" class="p-5">
-        <!-- Filled by JS -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">⚠️</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Underperformers</h3></div>
+        </div>
+        <div id="avoid-combos" class="p-4 space-y-2 flex-1"></div>
     </div>
 </div>
 
-<!-- Cards Grid (3 per row on large screens) -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 w-full -mr-8">
-    
-    <!-- Card 1: Market Leaders -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-b border-amber-100 dark:border-amber-800/50">
-            <span class="text-2xl">🏆</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Market Leaders</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">Top themes by Smart Index</p>
-            </div>
+<!-- Row 2: Secondary insights (3 equal columns) -->
+<div class="grid grid-cols-3 gap-4 mb-4">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">💎</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Hidden Niches</h3></div>
         </div>
-        
-        <!-- Content -->
-        <div id="hot-combinations" class="p-5 space-y-2">
-            <!-- Dynamic content will be inserted here -->
-        </div>
+        <div id="emerging-trends" class="p-4 space-y-2 flex-1"></div>
     </div>
-    
-    <!-- Card 2: Opportunity Finder -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border-b border-emerald-100 dark:border-emerald-800/50">
-            <span class="text-2xl">💎</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Opportunity Finder</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">High quality, low saturation</p>
-            </div>
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">🔥</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Proven Markets</h3></div>
         </div>
-        
-        <!-- Content -->
-        <div id="market-gaps" class="p-5 space-y-2">
-            <!-- Dynamic content will be inserted here -->
-        </div>
+        <div id="saturated-markets" class="p-4 space-y-2 flex-1"></div>
     </div>
-    
-    <!-- Card 3: High-Quality Niches -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border-b border-blue-100 dark:border-blue-800/50">
-            <span class="text-2xl">📈</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">High-Quality Niches</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">Few games, above-median performance</p>
-            </div>
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2"><span class="text-lg">👀</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Watch List</h3></div>
         </div>
-        
-        <!-- Content -->
-        <div id="emerging-trends" class="p-5 space-y-2">
-            <!-- Dynamic content will be inserted here -->
-        </div>
+        <div id="watch-list-combos" class="p-4 space-y-2 flex-1"></div>
     </div>
-    
-    <!-- Card 4: Proven Markets -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden shadow-sm">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 border-b border-orange-100 dark:border-orange-800/50">
-            <span class="text-2xl">🔥</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Proven Markets</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">Top volume – validated demand</p>
-            </div>
-        </div>
-        
-        <!-- Content -->
-        <div id="saturated-markets" class="p-5 space-y-2">
-            <!-- Dynamic content will be inserted here -->
-        </div>
+</div>
+
+<!-- Row 3: Volatility (full width) -->
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-4">
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2"><span class="text-lg">📊</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Volatility vs Performance</h3></div>
     </div>
-    
-    <!-- Card 5: Underperformers -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border-b border-red-100 dark:border-red-800/50">
-            <span class="text-2xl">⚠️</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Underperformers</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">5+ games, below-median performance – avoid</p>
-            </div>
-        </div>
-        <div id="avoid-combos" class="p-5 space-y-3">
-            <!-- Filled by JS -->
-        </div>
+    <div id="volatility-analysis" class="p-4"></div>
+</div>
+
+<!-- Row 4: Provider Intelligence (full width) -->
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-4">
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2"><span class="text-lg">🏢</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Provider Intelligence</h3></div>
     </div>
-    
-    <!-- Card 6: Watch List -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
-        <div class="p-5 flex items-center gap-3 bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 border-b border-amber-100 dark:border-amber-800/50">
-            <span class="text-2xl">👀</span>
-            <div class="flex-1">
-                <h3 class="text-slate-800 dark:text-slate-100 font-bold text-lg">Watch List</h3>
-                <p class="text-slate-600 dark:text-slate-400 text-sm">2–4 games, below median – monitor closely</p>
-            </div>
-        </div>
-        <div id="watch-list-combos" class="p-5 space-y-3">
-            <!-- Filled by JS -->
-        </div>
+    <div id="provider-theme-matrix" class="p-4"></div>
+</div>
+
+<!-- Row 8: Top & Bottom Performers (absorbed from Anomalies page) -->
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-4">
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2"><span class="text-lg">⚡</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top & Bottom Performers</h3></div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">Games that significantly outperform or underperform expectations</p>
     </div>
-    
+    <div class="p-4">
+        <div class="flex items-center gap-3 mb-4 flex-wrap">
+            <button onclick="showAnomalies('top')" class="anomaly-tab active px-4 py-2 bg-white dark:bg-gray-700 border-2 border-emerald-500 dark:border-emerald-600 text-emerald-600 dark:text-emerald-400 rounded-lg font-semibold text-xs hover:shadow-md transition-all flex items-center gap-2">
+                <span>⬆️</span><span>Top 30</span>
+            </button>
+            <button onclick="showAnomalies('bottom')" class="anomaly-tab px-4 py-2 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-xs hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 transition-all flex items-center gap-2">
+                <span>⬇️</span><span>Bottom 30</span>
+            </button>
+            <div class="flex-1"></div>
+            <div class="relative">
+                <input type="text" id="anomaly-search" placeholder="Search games..." class="pl-8 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs w-48 focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400">
+                <svg class="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <select id="anomaly-sort" class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500">
+                <option value="theo">Sort: Theo Win</option>
+                <option value="zscore">Sort: Z-Score</option>
+                <option value="name">Sort: Name A-Z</option>
+                <option value="provider">Sort: Provider</option>
+            </select>
+        </div>
+        <div id="top-anomalies" class="grid grid-cols-5 gap-4"></div>
+        <div id="bottom-anomalies" class="hidden grid-cols-5 gap-4"></div>
+    </div>
 </div>

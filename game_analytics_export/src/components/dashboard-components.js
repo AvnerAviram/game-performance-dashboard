@@ -22,16 +22,21 @@ import { log } from '../lib/env.js';
  * @param {string} options.gradient - Full gradient class name
  * @param {string} options.content - HTML content for section body
  */
-export const PanelSection = ({ title, icon, gradient, content }) => `
-  <div class="mb-6 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
-    <h4 class="px-5 py-4 font-bold text-sm uppercase tracking-wider ${gradient} border-b border-gray-200 dark:border-gray-600">
-      ${icon} ${title}
-    </h4>
-    <div class="p-5">
+export const PanelSection = ({ title, icon, gradient, content, accent }) => {
+  const accentColor = accent || 'border-indigo-400 dark:border-indigo-500';
+  return `
+  <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700/50">
+    <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-700/50">
+      <div class="w-1 h-5 rounded-full ${accentColor.replace('border-', 'bg-')}"></div>
+      <span class="text-sm">${icon}</span>
+      <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 m-0">${title}</h4>
+    </div>
+    <div class="px-4 py-3">
       ${content}
     </div>
   </div>
 `;
+};
 
 // ==========================================
 // METRIC COMPONENTS
@@ -42,11 +47,11 @@ export const PanelSection = ({ title, icon, gradient, content }) => `
  * @param {Array<{label: string, value: string}>} metrics
  */
 export const MetricGrid = (metrics) => `
-  <div class="grid grid-cols-2 gap-x-8 gap-y-3">
+  <div class="grid grid-cols-2 gap-x-6 gap-y-2">
     ${metrics.map(m => `
-      <div class="flex items-baseline gap-2">
-        <span class="text-sm font-semibold text-blue-600 dark:text-blue-400 whitespace-nowrap">${m.label}:</span>
-        <span class="text-base font-bold text-gray-900 dark:text-white">${m.value}</span>
+      <div class="flex flex-col">
+        <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500 leading-none mb-1">${m.label}</span>
+        <span class="text-sm font-bold text-gray-900 dark:text-white leading-tight">${m.value}</span>
       </div>
     `).join('')}
   </div>
@@ -88,30 +93,29 @@ export const MetricCard = ({ label, value, change, trend }) => `
  * Game list item for panels
  * @param {Object} game
  */
-export const GameListItem = (game) => {
-  // Safely extract values with fallbacks
+export const GameListItem = (game, index) => {
   const provider = game.provider_studio || game.provider?.studio || game.provider || 'Unknown';
   const theoWin = game.performance_theo_win || game.performance?.theo_win || game.theoWin || 0;
   const gameName = game.name || game.game_name || 'Unknown Game';
+  const theoVal = typeof theoWin === 'number' ? theoWin.toFixed(1) : theoWin;
+  const rankBadge = typeof index === 'number' ? `<span class="flex-shrink-0 w-5 h-5 rounded-full ${index < 3 ? 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300' : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400'} flex items-center justify-center text-[10px] font-bold">${index + 1}</span>` : '';
   
   return `
-  <li class="py-3 border-b border-gray-200 dark:border-gray-700 last:border-0">
-    <div class="flex items-start justify-between gap-3">
-      <div class="flex-1 min-w-0">
-        <strong class="block text-gray-800 dark:text-gray-100 font-semibold mb-1 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                onclick="${safeOnclick('window.showGameDetails', gameName)}">${escapeHtml(gameName)}</strong>
-        <div class="text-sm text-gray-600 dark:text-gray-400 space-x-2 mb-1">
-          <span class="text-cyan-700 dark:text-cyan-400 font-medium">
-            🎰 ${escapeHtml(provider)}
-          </span>
-          <span class="text-gray-400">•</span>
-          <span class="text-amber-600 dark:text-amber-500 font-medium">💰 Theo Win:</span>
-          <span class="text-gray-900 dark:text-white font-bold text-base">${typeof theoWin === 'number' ? theoWin.toFixed(2) : theoWin}</span>
-        </div>
-        ${game.extra ? `<div class="text-sm text-gray-500 dark:text-gray-400">${game.extra}</div>` : ''}
+  <div class="flex items-center gap-2.5 py-2 border-b border-gray-100 dark:border-gray-700/50 last:border-0 group">
+    ${rankBadge}
+    <div class="flex-1 min-w-0">
+      <div class="text-[13px] font-semibold text-gray-800 dark:text-gray-100 truncate cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+           onclick="${safeOnclick('window.showGameDetails', gameName)}">${escapeHtml(gameName)}</div>
+      <div class="flex items-center gap-1.5 mt-0.5">
+        <span class="text-[10px] text-gray-400 dark:text-gray-500 truncate">${escapeHtml(provider)}</span>
+        ${game.extra ? `<span class="text-[10px] text-gray-400">·</span><span class="text-[10px] text-gray-400 truncate">${game.extra}</span>` : ''}
       </div>
     </div>
-  </li>
+    <div class="flex-shrink-0 text-right">
+      <span class="text-sm font-bold text-gray-900 dark:text-white">${theoVal}</span>
+      <span class="text-[9px] text-gray-400 block leading-none">theo</span>
+    </div>
+  </div>
 `;
 };
 
@@ -142,23 +146,19 @@ export const NumberedListItem = (index, item) => `
  */
 export const VolatilityBadge = (volatility) => {
   const colorMap = {
-    'Low': { bg: '#dcfce7', text: '#166534' },
-    'Low-Medium': { bg: '#d9f99d', text: '#3f6212' },
-    'Medium': { bg: '#fef9c3', text: '#854d0e' },
-    'Medium-High': { bg: '#fed7aa', text: '#9a3412' },
-    'High': { bg: '#ffedd5', text: '#9a3412' },
-    'Very High': { bg: '#fecaca', text: '#991b1b' },
+    'Low': { cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300', dot: 'bg-emerald-500' },
+    'Low-Medium': { cls: 'bg-lime-100 text-lime-700 dark:bg-lime-900/30 dark:text-lime-300', dot: 'bg-lime-500' },
+    'Medium': { cls: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300', dot: 'bg-amber-500' },
+    'Medium-High': { cls: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300', dot: 'bg-orange-500' },
+    'High': { cls: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300', dot: 'bg-red-500' },
+    'Very High': { cls: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300', dot: 'bg-rose-600' },
   };
   const normalized = volatility
     ? volatility.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-')
     : 'Unknown';
   const c = colorMap[normalized] || colorMap['Medium'];
   
-  return `
-    <span style="display:inline-flex;align-items:center;padding:2px 10px;border-radius:9999px;font-size:0.75rem;font-weight:600;white-space:nowrap;background:${c.bg};color:${c.text}">
-      ${normalized}
-    </span>
-  `;
+  return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold whitespace-nowrap ${c.cls}"><span class="w-1.5 h-1.5 rounded-full ${c.dot}"></span>${normalized}</span>`;
 };
 
 /**
@@ -236,13 +236,24 @@ export const InfoBox = (text, type = 'info') => {
 // ==========================================
 
 export const GRADIENTS = {
-  performance: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-100',    // Performance - indigo
-  specs: 'bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100',                  // Specs - blue
-  category: 'bg-violet-100 dark:bg-violet-900/30 text-violet-900 dark:text-violet-100',       // Theme/Mechanic - violet
-  provider: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-900 dark:text-cyan-100',               // Provider - cyan
-  release: 'bg-slate-100 dark:bg-slate-800/30 text-slate-900 dark:text-slate-100',            // Release - slate
-  similar: 'bg-purple-100 dark:bg-purple-900/30 text-purple-900 dark:text-purple-100',        // Similar - purple
-  stats: 'bg-sky-100 dark:bg-sky-900/30 text-sky-900 dark:text-sky-100',                      // Stats - sky blue
+  performance: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-100',
+  specs: 'bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100',
+  category: 'bg-violet-100 dark:bg-violet-900/30 text-violet-900 dark:text-violet-100',
+  provider: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-900 dark:text-cyan-100',
+  release: 'bg-slate-100 dark:bg-slate-800/30 text-slate-900 dark:text-slate-100',
+  similar: 'bg-purple-100 dark:bg-purple-900/30 text-purple-900 dark:text-purple-100',
+  stats: 'bg-sky-100 dark:bg-sky-900/30 text-sky-900 dark:text-sky-100',
+};
+
+export const ACCENTS = {
+  performance: 'bg-indigo-400 dark:bg-indigo-500',
+  specs: 'bg-blue-400 dark:bg-blue-500',
+  category: 'bg-violet-400 dark:bg-violet-500',
+  provider: 'bg-cyan-400 dark:bg-cyan-500',
+  release: 'bg-slate-400 dark:bg-slate-500',
+  similar: 'bg-purple-400 dark:bg-purple-500',
+  stats: 'bg-sky-400 dark:bg-sky-500',
+  feedback: 'bg-gray-400 dark:bg-gray-500',
 };
 
 // ==========================================

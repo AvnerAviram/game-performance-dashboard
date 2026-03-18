@@ -8,15 +8,23 @@ export function createSparklines() {
     const lineColor = isDark ? '#3b82f6' : '#3b82f6';
     const pointColor = isDark ? '#60a5fa' : '#2563eb';
     
-    // Games sparkline - simulate trend data
-    createSparkline('sparkline-games', [450, 465, 480, 490, 495, 500], lineColor, pointColor);
+    // Games sparkline - games by release year
+    const yearCounts = {};
+    for (const g of (gameData.allGames || [])) {
+        const y = g.release_year;
+        if (y) yearCounts[y] = (yearCounts[y] || 0) + 1;
+    }
+    const sortedYears = Object.keys(yearCounts).sort();
+    const gamesByYear = sortedYears.slice(-6).map(y => yearCounts[y]);
+    if (gamesByYear.length > 1) createSparkline('sparkline-games', gamesByYear, lineColor, pointColor);
     
-    // Themes sparkline - use actual theme count data
+    // Themes sparkline - top theme game counts
     const themeTrend = gameData.themes.slice(0, 6).map(t => t['Game Count']);
     createSparkline('sparkline-themes', themeTrend, '#a855f7', '#c084fc');
     
-    // Mechanics sparkline - simulate trend
-    createSparkline('sparkline-mechanics', [78, 80, 82, 84, 85, 86], '#10b981', '#34d399');
+    // Mechanics sparkline - top mechanic game counts
+    const mechTrend = (gameData.mechanics || []).slice(0, 6).map(m => m['Game Count'] || 0);
+    if (mechTrend.length > 1) createSparkline('sparkline-mechanics', mechTrend, '#10b981', '#34d399');
 }
 
 function createSparkline(canvasId, data, color, pointColor) {

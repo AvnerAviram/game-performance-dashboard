@@ -1,26 +1,45 @@
 /**
  * Idea Generator - Data-driven game ideas for designers
- * Surfaces theme+mechanic combos with performance scores and competition level
+ * Surfaces theme+feature combos with performance scores and competition level
  */
 import { gameData } from '../lib/data.js';
 
-/** Get theme+mechanic combos from allGames */
+/** 11 canonical features (from PHASE1_TRUTH_MASTER) */
+const CANONICAL_FEATURES = [
+    'Cash On Reels', 'Expanding Reels', 'Free Spins', 'Hold and Spin',
+    'Nudges', 'Persistence', 'Pick Bonus', 'Respin', 'Static Jackpot',
+    'Wheel', 'Wild Reels'
+];
+
+function parseFeatures(val) {
+    if (Array.isArray(val)) return val;
+    if (!val) return [];
+    const s = String(val).trim();
+    if (!s || s === 'null' || s === 'NULL') return [];
+    try { const arr = JSON.parse(s); return Array.isArray(arr) ? arr : []; }
+    catch { return []; }
+}
+
+/** Get theme+feature combos from allGames (each game contributes per feature) */
 function getThemeMechanicCombos() {
     const games = gameData.allGames || [];
     const combos = {};
 
     games.forEach(g => {
         const theme = g.theme_consolidated || g.Theme || 'Unknown';
-        const mechanic = g.mechanic_primary || g.Mechanic || 'Unknown';
-        const key = `${theme}|${mechanic}`;
+        const features = parseFeatures(g.features);
         const theo = g.performance_theo_win ?? g['Avg Theo Win Index'] ?? g.theo_win_index ?? 0;
 
-        if (!combos[key]) {
-            combos[key] = { theme, mechanic, count: 0, totalTheo: 0, games: [] };
+        for (const feat of features) {
+            if (!feat || typeof feat !== 'string') continue;
+            const key = `${theme}|${feat}`;
+            if (!combos[key]) {
+                combos[key] = { theme, feature: feat, count: 0, totalTheo: 0, games: [] };
+            }
+            combos[key].count++;
+            combos[key].totalTheo += theo;
+            combos[key].games.push(g.name);
         }
-        combos[key].count++;
-        combos[key].totalTheo += theo;
-        combos[key].games.push(g.name);
     });
 
     return Object.values(combos)
@@ -45,7 +64,7 @@ export function getSuggestedIdeas() {
         .slice(0, 5);
 }
 
-/** Get top theme+mechanic combos by performance (for combo explorer) */
+/** Get top theme+feature combos by performance (for combo explorer) */
 export function getTopCombos(limit = 10) {
     const combos = getThemeMechanicCombos();
     return combos
@@ -80,27 +99,42 @@ function getMedian(arr) {
     return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
-/** Heatmap data: top themes × top mechanics, cell = avgTheo */
-export function getHeatmapData(topThemes = 10, topMechanics = 10) {
+/** Heatmap data: top themes × all 11 canonical features, cell = avgTheo */
+export function getHeatmapData(topThemes = 10) {
     const combos = getThemeMechanicCombos();
     const comboMap = {};
-    combos.forEach(c => { comboMap[`${c.theme}|${c.mechanic}`] = c; });
+    combos.forEach(c => { comboMap[`${c.theme}|${c.feature}`] = c; });
 
-    const themes = (gameData.themes || [])
-        .sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0))
-        .slice(0, topThemes)
-        .map(t => t.Theme || t.theme);
-    const mechanics = (gameData.mechanics || [])
-        .sort((a, b) => (b['Game Count'] || 0) - (a['Game Count'] || 0))
-        .slice(0, topMechanics)
-        .map(m => m.Mechanic || m.mechanic);
+    // Derive themes from combos directly (more robust than gameData.themes)
+    const themeStats = {};
+    combos.forEach(c => {
+        if (!themeStats[c.theme]) themeStats[c.theme] = { count: 0, totalTheo: 0 };
+        themeStats[c.theme].count += c.count;
+        themeStats[c.theme].totalTheo += c.avgTheo * c.count;
+    });
 
-    const matrix = themes.map(t => mechanics.map(m => {
-        const c = comboMap[`${t}|${m}`];
+    let themes;
+    const gdThemes = (gameData.themes || []).filter(t => (t.Theme || t.theme));
+    if (gdThemes.length > 0) {
+        themes = [...gdThemes]
+            .sort((a, b) => (b['Smart Index'] || b.game_count || 0) - (a['Smart Index'] || a.game_count || 0))
+            .slice(0, topThemes)
+            .map(t => t.Theme || t.theme);
+    } else {
+        themes = Object.entries(themeStats)
+            .sort((a, b) => b[1].count - a[1].count)
+            .slice(0, topThemes)
+            .map(([name]) => name);
+    }
+
+    const features = [...CANONICAL_FEATURES];
+
+    const matrix = themes.map(t => features.map(f => {
+        const c = comboMap[`${t}|${f}`];
         return c ? { avgTheo: c.avgTheo, count: c.count } : null;
     }));
     const allTheos = matrix.flat().filter(Boolean).map(x => x.avgTheo);
     const minTheo = allTheos.length ? Math.min(...allTheos) : 0;
     const maxTheo = allTheos.length ? Math.max(...allTheos) : 1;
-    return { themes, mechanics, matrix, minTheo, maxTheo };
+    return { themes, mechanics: features, matrix, minTheo, maxTheo };
 }

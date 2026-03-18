@@ -186,6 +186,7 @@ The file is a **flat JSON array** (not wrapped in `{ "games": [...] }`). Each el
 | `provider` | string | yes | Provider name |
 | `studio` | string | yes | Studio name |
 | `parent_company` | string | no | Parent company |
+| `provider_website` | string | no | Provider official website URL (from PROVIDER_WEBSITES dict) |
 | `mechanic_primary` | string | yes | Primary mechanic (e.g., "Slot") |
 | `reels` | number | no | Reel count |
 | `rows` | number | no | Row count |
@@ -385,6 +386,8 @@ Run AFTER LLM normalization, BEFORE writing output. Catalog-confirmed features b
 
 **Round 6 (taxonomy correction):** Rakin Bacon -ER (PXS-only evidence, not true ER).
 
+**Round 7 (audit-script FP sweep):** Capital Gains -PB, Blazin Bank Run -PB (both gate/selector, not Pick Bonus — vault triggers bonus-mode choice). Phoenix Fa -ER (PXS-only, no grid expansion). The Wild Life Extreme -WR (expanding wilds, not Wild Reels). Mega Fire Blaze Legacy Of The Tiger -WR (expanding tiger wilds, not Wild Reels). Added `pick-gate-strip` GATE rule to pipeline. Created `audit_features.py` for systematic FP detection.
+
 ---
 
 ## Taxonomy Changes
@@ -477,7 +480,7 @@ Raw themes (375 unique values) are mapped to **24 consolidated categories** via 
 
 The map is applied at DuckDB load time (`duckdb-client.js`) to populate the `theme_consolidated` column. The raw `theme_primary` is preserved.
 
-**Categories**: Classic, Fruit, Animals, Adventure, Asian, Egyptian, Greek & Roman, Casino & Vegas, Fantasy & Magic, Nature, Food & Drink, Gems & Gold, Seasonal & Holiday, Western, Fire & Elements, Ocean & Pirates, Horror & Dark, Sports & Vehicles, Cultural, Arcade, Entertainment, Space & Sci-Fi, Irish & Celtic, War & Military.
+**Categories**: Classic, Fruit, Animals, Adventure, Asian, Egyptian, Greek & Roman, Casino & Vegas, Fantasy & Magic, Nature, Food & Drink, Wealth & Gems, Seasonal & Holiday, Western, Fire & Elements, Ocean & Pirates, Horror & Dark, Sports & Vehicles, Cultural, Arcade, Entertainment, Space & Sci-Fi, Irish & Celtic, War & Military.
 
 When adding a new theme to the pipeline output, you MUST also add it to `theme_consolidation_map.json`. Unmapped themes show as-is in the dashboard.
 

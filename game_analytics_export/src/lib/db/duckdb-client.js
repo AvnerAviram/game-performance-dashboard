@@ -218,8 +218,9 @@ export async function query(sql) {
     const rows = result.toArray();
     
     return rows.map(row => {
+      const obj = typeof row.toJSON === 'function' ? row.toJSON() : row;
       const converted = {};
-      for (const [key, value] of Object.entries(row)) {
+      for (const [key, value] of Object.entries(obj)) {
         converted[key] = typeof value === 'bigint' ? Number(value) : value;
       }
       return converted;

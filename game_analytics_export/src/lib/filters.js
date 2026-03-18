@@ -183,13 +183,20 @@ function getFilteredGames(view) {
     if (games.length === 0) return [];
     
     switch(view) {
-        case 'topPerformers': {
-            const sorted = [...games].sort((a, b) => b['Theo Win'] - a['Theo Win']);
-            const topCount = Math.ceil(games.length * 0.2);
-            return sorted.slice(0, topCount);
+        case 'marketLeaders': {
+            return games.filter(g => (g['Market Share'] || 0) >= 0.1)
+                .sort((a, b) => (b['Market Share'] || 0) - (a['Market Share'] || 0));
         }
-        case 'highVolatility':
-            return games.filter(g => g.Volatility && g.Volatility.toLowerCase() === 'high');
+        case 'newReleases': {
+            const cutoffYear = new Date().getFullYear() - 1;
+            return games.filter(g => (g['Release Year'] || 0) >= cutoffYear)
+                .sort((a, b) => (b['Release Year'] || 0) - (a['Release Year'] || 0));
+        }
+        case 'hiddenGems': {
+            const avg = games.reduce((s, g) => s + (g['Theo Win'] || 0), 0) / games.length;
+            return games.filter(g => (g['Theo Win'] || 0) >= avg && (g['Market Share'] || 0) < 1)
+                .sort((a, b) => b['Theo Win'] - a['Theo Win']);
+        }
         case 'all':
         default:
             return games;

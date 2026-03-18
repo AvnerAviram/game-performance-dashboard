@@ -1,11 +1,10 @@
-<!-- Anomalies Page -->
-<div class="flex flex-col h-full min-h-0 bg-white dark:bg-gray-900">
+<!-- Tickets Page -->
 <!-- Sticky Header -->
-<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6 flex-shrink-0">
+<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
     <div class="flex justify-between items-center py-5">
         <div>
-            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Performance Anomalies</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Games that significantly outperform or underperform expectations</p>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Feedback Tickets</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">View and manage data correction reports</p>
         </div>
         <div class="relative -mr-1 flex items-center">
             <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
@@ -22,49 +21,6 @@
     </div>
 </div>
 
-<!-- Controls Row -->
-<div class="flex items-center gap-3 mb-4 flex-shrink-0 flex-wrap">
-    <!-- Tabs -->
-    <button 
-        onclick="showAnomalies('top')"
-        class="anomaly-tab active px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-emerald-500 dark:border-emerald-600 text-emerald-600 dark:text-emerald-400 rounded-lg font-semibold hover:shadow-md transition-all flex items-center gap-2"
-    >
-        <span>⬆️</span>
-        <span>Top 30 Performers</span>
-    </button>
-    <button 
-        onclick="showAnomalies('bottom')"
-        class="anomaly-tab px-5 py-2.5 bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-semibold hover:border-red-500 hover:text-red-600 dark:hover:text-red-400 transition-all flex items-center gap-2"
-    >
-        <span>⬇️</span>
-        <span>Bottom 30 Performers</span>
-    </button>
-
-    <div class="flex-1"></div>
-
-    <!-- Search -->
-    <div class="relative">
-        <input type="text" id="anomaly-search" placeholder="Search games..." class="pl-8 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs w-48 focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400">
-        <svg class="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    </div>
-
-    <!-- Sort -->
-    <select id="anomaly-sort" class="px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500">
-        <option value="theo">Sort: Theo Win</option>
-        <option value="zscore">Sort: Z-Score</option>
-        <option value="name">Sort: Name A-Z</option>
-        <option value="provider">Sort: Provider</option>
-    </select>
-</div>
-
-<!-- Cards Grid - Scrollable Container (fills remaining space, no empty gap) -->
-<div class="overflow-y-auto flex-1 min-h-0 bg-white dark:bg-gray-900">
-    <div id="top-anomalies" class="grid grid-cols-5 gap-4">
-        <!-- Cards will be dynamically generated here -->
-    </div>
-
-    <div id="bottom-anomalies" class="hidden grid-cols-5 gap-4">
-        <!-- Cards will be dynamically generated here -->
-    </div>
-</div>
+<div id="tickets-content" class="space-y-4">
+    <div class="text-center py-8 text-gray-500 dark:text-gray-400">Loading tickets...</div>
 </div>

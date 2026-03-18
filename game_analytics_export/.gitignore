@@ -36,6 +36,15 @@ build/
 .env
 .env.local
 
+# Server auth credentials (never commit)
+server/users.json
+
+# Feedback tickets (internal state)
+server/tickets.json
+
+# IIS logs
+logs/
+
 # Cache & generated
 cache/
 *.backup*
@@ -52,3 +61,6 @@ verification-screenshots/
 # Data backups (keep games_master.json only)
 data/*.backup*
 data/*.cleaned.json
+
+# CSV exports and data files (internal/proprietary)
+*.csv
