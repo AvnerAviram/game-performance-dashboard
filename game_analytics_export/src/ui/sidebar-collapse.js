@@ -188,7 +188,32 @@ document.addEventListener('DOMContentLoaded', () => {
     injectMobileMenuBtn();
 });
 
-// Export for module systems
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { toggleSidebar: window.toggleSidebar };
-}
+// Game Lab flyout for collapsed sidebar
+(function setupGameLabFlyout() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const navGameLab = document.getElementById('nav-game-lab');
+        const flyout = document.getElementById('gamelab-flyout');
+        if (!navGameLab || !flyout) return;
+
+        let hideTimer = null;
+        function showFlyout() {
+            const sidebar = document.getElementById('sidebar');
+            if (!sidebar?.classList.contains('collapsed')) return;
+            clearTimeout(hideTimer);
+            const rect = navGameLab.getBoundingClientRect();
+            flyout.style.top = rect.top + 'px';
+            flyout.classList.remove('hidden');
+        }
+        function hideFlyout() {
+            hideTimer = setTimeout(() => flyout.classList.add('hidden'), 200);
+        }
+        function cancelHide() { clearTimeout(hideTimer); }
+
+        navGameLab.addEventListener('mouseenter', showFlyout);
+        navGameLab.addEventListener('mouseleave', hideFlyout);
+        flyout.addEventListener('mouseenter', cancelHide);
+        flyout.addEventListener('mouseleave', hideFlyout);
+    });
+})();
+
+export { };

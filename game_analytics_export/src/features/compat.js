@@ -29,14 +29,3 @@ export function getPerformance(game) {
         market_share_percent: game.performance_market_share_percent ?? game.performance?.market_share_percent ?? 0
     };
 }
-
-// Get specs fields
-export function getSpecs(game) {
-    return {
-        reels: game.specs_reels || game.specs?.reels,
-        rows: game.specs_rows || game.specs?.rows,
-        paylines: game.specs_paylines || game.specs?.paylines,
-        rtp: game.specs_rtp ?? game.specs?.rtp,
-        volatility: game.specs_volatility || game.specs?.volatility
-    };
-}

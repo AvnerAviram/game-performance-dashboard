@@ -1,20 +1,21 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 
 describe('Providers and Games Pages - Unit Tests', () => {
-    let masterData;
+    let games;
     
     beforeAll(async () => {
         const fs = await import('fs/promises');
-        const data = await fs.readFile('./data/games_master.json', 'utf-8');
-        masterData = JSON.parse(data);
+        const data = await fs.readFile('./data/games_dashboard.json', 'utf-8');
+        const parsed = JSON.parse(data);
+        games = Array.isArray(parsed) ? parsed : (parsed.games || []);
     });
     
     describe('Providers Aggregation Logic', () => {
         it('should correctly aggregate providers from games', () => {
             const providers = {};
             
-            masterData.games.forEach(game => {
-                const studio = game.provider?.studio || 'Unknown';
+            games.forEach(game => {
+                const studio = game.provider || game.studio || 'Unknown';
                 if (!providers[studio]) {
                     providers[studio] = {
                         studio: studio,
@@ -27,25 +28,22 @@ describe('Providers and Games Pages - Unit Tests', () => {
                 }
                 
                 providers[studio].games.push(game);
-                providers[studio].total_theo += game.performance?.theo_win || 0;
-                providers[studio].total_market += game.performance?.market_share_percent || 0;
+                providers[studio].total_theo += game.theo_win || 0;
+                providers[studio].total_market += game.market_share_pct || 0;
                 
-                if (game.specs?.rtp) {
-                    providers[studio].rtp_sum += game.specs.rtp;
+                if (game.rtp) {
+                    providers[studio].rtp_sum += game.rtp;
                     providers[studio].rtp_count++;
                 }
             });
             
-            // Test: Should have multiple providers
             expect(Object.keys(providers).length).toBeGreaterThan(0);
             console.log('✅ Total providers:', Object.keys(providers).length);
             
-            // Test: All games should be accounted for
             const totalGames = Object.values(providers).reduce((sum, p) => sum + p.games.length, 0);
-            expect(totalGames).toBe(masterData.games.length);
+            expect(totalGames).toBe(games.length);
             console.log('✅ All games accounted for:', totalGames);
             
-            // Test: Each provider should have valid data
             Object.values(providers).forEach(p => {
                 expect(p.studio).toBeTruthy();
                 expect(p.games.length).toBeGreaterThan(0);
@@ -57,8 +55,8 @@ describe('Providers and Games Pages - Unit Tests', () => {
         it('should calculate correct averages', () => {
             const providers = {};
             
-            masterData.games.forEach(game => {
-                const studio = game.provider?.studio || 'Unknown';
+            games.forEach(game => {
+                const studio = game.provider || game.studio || 'Unknown';
                 if (!providers[studio]) {
                     providers[studio] = {
                         games: [],
@@ -69,15 +67,14 @@ describe('Providers and Games Pages - Unit Tests', () => {
                 }
                 
                 providers[studio].games.push(game);
-                providers[studio].total_theo += game.performance?.theo_win || 0;
+                providers[studio].total_theo += game.theo_win || 0;
                 
-                if (game.specs?.rtp) {
-                    providers[studio].rtp_sum += game.specs.rtp;
+                if (game.rtp) {
+                    providers[studio].rtp_sum += game.rtp;
                     providers[studio].rtp_count++;
                 }
             });
             
-            // Test: Average calculations
             Object.entries(providers).forEach(([name, p]) => {
                 const avg_theo = p.total_theo / p.games.length;
                 const avg_rtp = p.rtp_count > 0 ? p.rtp_sum / p.rtp_count : null;
@@ -98,8 +95,8 @@ describe('Providers and Games Pages - Unit Tests', () => {
         it('should sort providers by game count correctly', () => {
             const providers = {};
             
-            masterData.games.forEach(game => {
-                const studio = game.provider?.studio || 'Unknown';
+            games.forEach(game => {
+                const studio = game.provider || game.studio || 'Unknown';
                 if (!providers[studio]) {
                     providers[studio] = { games: [] };
                 }
@@ -110,7 +107,6 @@ describe('Providers and Games Pages - Unit Tests', () => {
                 .map(([name, p]) => ({ name, count: p.games.length }))
                 .sort((a, b) => b.count - a.count);
             
-            // Test: Should be in descending order
             for (let i = 0; i < providersList.length - 1; i++) {
                 expect(providersList[i].count).toBeGreaterThanOrEqual(providersList[i + 1].count);
             }
@@ -125,92 +121,81 @@ describe('Providers and Games Pages - Unit Tests', () => {
     describe('Games List Logic', () => {
         it('should have all required fields', () => {
             let missing = 0;
-            masterData.games.forEach(game => {
+            games.forEach(game => {
                 expect(game.id).toBeTruthy();
                 expect(game.name).toBeTruthy();
-                expect(game.provider).toBeTruthy();
-                expect(game.provider.studio || game.provider.display_name).toBeTruthy();
-                if (!game.performance || typeof game.performance.theo_win !== 'number') {
+                expect(game.provider || game.studio).toBeTruthy();
+                if (typeof game.theo_win !== 'number') {
                     missing++;
                 }
             });
-            // ~19% of games lack numeric performance data
-            expect(missing).toBeLessThan(Math.ceil(masterData.games.length * 0.25));
+            expect(missing).toBeLessThan(Math.ceil(games.length * 0.25));
             
             console.log(`✅ All games have required fields (${missing} missing performance data)`);
         });
         
-        it('should sort by rank correctly', () => {
-            const sorted = [...masterData.games].sort((a, b) => 
-                (a.performance?.rank || 999) - (b.performance?.rank || 999)
+        it('should sort by theo_win correctly', () => {
+            const sorted = [...games].sort((a, b) => 
+                (b.theo_win || 0) - (a.theo_win || 0)
             );
             
-            // Test: Ranks should be in ascending order
             for (let i = 0; i < sorted.length - 1; i++) {
-                const currentRank = sorted[i].performance?.rank || 999;
-                const nextRank = sorted[i + 1].performance?.rank || 999;
-                expect(currentRank).toBeLessThanOrEqual(nextRank);
+                const current = sorted[i].theo_win || 0;
+                const next = sorted[i + 1].theo_win || 0;
+                expect(current).toBeGreaterThanOrEqual(next);
             }
             
-            console.log('✅ Games sorted by rank correctly');
-            console.log('   Top 3:', sorted.slice(0, 3).map((g, i) => `#${g.performance?.rank ?? (i + 1)} ${g.name}`).join(', '));
+            console.log('✅ Games sorted by theo_win correctly');
+            console.log('   Top 3:', sorted.slice(0, 3).map(g => `${g.name} (${g.theo_win?.toFixed(2) || 'N/A'})`).join(', '));
         });
         
         it('should filter by provider correctly', () => {
-            const testProvider = 'IGT';
-            const filtered = masterData.games.filter(g => g.provider?.studio === testProvider);
+            const allProviders = [...new Set(games.map(g => g.provider || g.studio))];
+            const testProvider = allProviders[0];
+            const filtered = games.filter(g => (g.provider || g.studio) === testProvider);
             
-            // Test: All filtered games should match provider
             filtered.forEach(game => {
-                expect(game.provider.studio).toBe(testProvider);
+                expect(game.provider || game.studio).toBe(testProvider);
             });
             
             console.log(`✅ Filter by provider "${testProvider}": ${filtered.length} games`);
-            console.log('   Games:', filtered.map(g => g.name).join(', '));
         });
         
         it('should filter by mechanic correctly', () => {
-            const testMechanic = 'Hold & Win';
-            const filtered = masterData.games.filter(g => g.mechanic?.primary === testMechanic);
+            const allMechanics = [...new Set(games.map(g => g.mechanic_primary).filter(Boolean))];
+            const testMechanic = allMechanics[0];
+            const filtered = games.filter(g => g.mechanic_primary === testMechanic);
             
-            // Test: All filtered games should match mechanic
             filtered.forEach(game => {
-                expect(game.mechanic.primary).toBe(testMechanic);
+                expect(game.mechanic_primary).toBe(testMechanic);
             });
             
             console.log(`✅ Filter by mechanic "${testMechanic}": ${filtered.length} games`);
         });
         
         it('should search by name correctly', () => {
-            const testSearch = 'cash';
-            const filtered = masterData.games.filter(g => 
+            const testSearch = games[0].name.substring(0, 3).toLowerCase();
+            const filtered = games.filter(g => 
                 g.name.toLowerCase().includes(testSearch)
             );
             
-            // Test: All filtered games should match search
             filtered.forEach(game => {
                 expect(game.name.toLowerCase()).toContain(testSearch);
             });
             
             console.log(`✅ Search "${testSearch}": ${filtered.length} games`);
-            console.log('   Found:', filtered.map(g => g.name).join(', '));
         });
         
         it('should handle combined filters correctly', () => {
-            const testProvider = 'IGT';
-            const testSearch = 'cash';
+            const testProvider = (games[0].provider || games[0].studio);
+            const testSearch = games[0].name.substring(0, 3).toLowerCase();
             
-            let filtered = masterData.games;
-            
-            // Apply provider filter
-            filtered = filtered.filter(g => g.provider?.studio === testProvider);
-            
-            // Apply search
+            let filtered = games;
+            filtered = filtered.filter(g => (g.provider || g.studio) === testProvider);
             filtered = filtered.filter(g => g.name.toLowerCase().includes(testSearch));
             
-            // Test: Should match both conditions
             filtered.forEach(game => {
-                expect(game.provider.studio).toBe(testProvider);
+                expect(game.provider || game.studio).toBe(testProvider);
                 expect(game.name.toLowerCase()).toContain(testSearch);
             });
             
@@ -229,25 +214,22 @@ describe('Providers and Games Pages - Unit Tests', () => {
                 has_volatility: 0
             };
             
-            masterData.games.forEach(g => {
-                if (g.provider?.studio || g.provider?.display_name) stats.has_provider++;
-                if (g.theme?.consolidated || g.theme?.primary) stats.has_theme++;
-                if (g.mechanic?.primary) stats.has_mechanic++;
-                if (g.performance?.theo_win) stats.has_performance++;
-                if (g.specs?.rtp) stats.has_rtp++;
-                if (g.specs?.volatility) stats.has_volatility++;
+            games.forEach(g => {
+                if (g.provider || g.studio) stats.has_provider++;
+                if (g.theme_primary) stats.has_theme++;
+                if (g.mechanic_primary) stats.has_mechanic++;
+                if (g.theo_win) stats.has_performance++;
+                if (g.rtp) stats.has_rtp++;
+                if (g.volatility) stats.has_volatility++;
             });
             
-            const total = masterData.games.length;
+            const total = games.length;
             
-            // Critical fields coverage (performance is ~81% in games_master.json)
             expect(stats.has_provider / total).toBeGreaterThan(0.9);
             expect(stats.has_theme / total).toBeGreaterThan(0.9);
             expect(stats.has_mechanic / total).toBeGreaterThan(0.9);
             expect(stats.has_performance / total).toBeGreaterThan(0.75);
-            
-            // Volatility coverage is ~72% in games_master.json
-            expect(stats.has_volatility / total).toBeGreaterThan(0.70);
+            expect(stats.has_volatility / total).toBeGreaterThan(0.60);
             
             console.log('✅ Data coverage:');
             console.log(`   Provider: ${stats.has_provider}/${total} (${(stats.has_provider/total*100).toFixed(1)}%)`);

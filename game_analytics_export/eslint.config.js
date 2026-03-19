@@ -2,14 +2,30 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
+  { ignores: ['dist/', 'node_modules/', 'coverage/', '**/archive/**', 'tests/'] },
+
   js.configs.recommended,
+
   {
+    files: ['src/**/*.js', 'server/**/*.cjs'],
+    rules: {
+      'no-unused-vars': ['warn', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      }],
+      'no-console': 'off',
+    },
+  },
+
+  // Client code (ESM, browser globals)
+  {
+    files: ['src/**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
         ...globals.browser,
-        ...globals.node,
         Chart: 'readonly',
         closeMechanicPanel: 'readonly',
         closeThemePanel: 'readonly',
@@ -18,13 +34,22 @@ export default [
         showThemeDetails: 'readonly',
       },
     },
-    rules: {
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-console': 'off',
+  },
+
+  // Server code (CJS, Node globals)
+  {
+    files: ['server/**/*.cjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'commonjs',
+      globals: {
+        ...globals.node,
+        require: 'readonly',
+        module: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        process: 'readonly',
+      },
     },
-    ignores: [
-      'dist/', 'node_modules/', 'coverage/', '**/*.cjs', '**/archive/**',
-      'tests/'  // Legacy scripts + vitest; lint src/ only
-    ],
   },
 ];

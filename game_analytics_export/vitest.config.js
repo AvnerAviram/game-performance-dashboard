@@ -41,6 +41,8 @@ export default defineConfig({
         'src/lib/env.js',
         'src/lib/game-analytics-engine.js',
         'src/lib/sanitize.js',
+        'src/lib/symbol-utils.js',
+        'src/lib/features.js',
         'src/config/mechanics.js'
       ],
       exclude: [
@@ -51,14 +53,18 @@ export default defineConfig({
         '**/*.config.js'
       ],
       thresholds: {
-        lines: 0,
-        functions: 0,
-        branches: 0,
-        statements: 0
+        lines: 40,
+        functions: 70,
+        branches: 70,
+        statements: 40
       }
     },
     testTimeout: 10000,
-    hookTimeout: 10000
+    hookTimeout: 30000,
+    sequence: {
+      setupFiles: 'list'
+    },
+    fileParallelism: false
   },
   resolve: {
     alias: {

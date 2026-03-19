@@ -1,119 +1,18 @@
 // Modern Chart.js Visualizations with Gradients & Custom Tooltips
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
+import {
+    generateModernColors,
+    getChartColors,
+    getModernTooltipConfig,
+    stripParenthetical,
+    wrapLabel,
+    getModernGridConfig
+} from './chart-utils.js';
 
-let chartsInitialized = false;
+let _chartsInitialized = false;
 let chartInstances = {};
-let isRefreshing = false; // Prevent multiple simultaneous refreshes
-
-// Gaming-themed Color Palette with Gradients
-const modernColors = {
-    gold: { start: '#fbbf24', end: '#f59e0b' },
-    purple: { start: '#a855f7', end: '#e879f9' },
-    cyan: { start: '#06b6d4', end: '#3b82f6' },
-    emerald: { start: '#10b981', end: '#059669' },
-    orange: { start: '#f97316', end: '#ef4444' },
-    indigo: { start: '#6366f1', end: '#8b5cf6' },
-    rose: { start: '#f43f5e', end: '#fb7185' },
-    amber: { start: '#fbbf24', end: '#fb923c' }
-};
-
-// Create gradient for canvas
-function createGradient(ctx, color, direction = 'vertical') {
-    const gradient = direction === 'vertical' 
-        ? ctx.createLinearGradient(0, 0, 0, 400)
-        : ctx.createLinearGradient(0, 0, 400, 0);
-    
-    gradient.addColorStop(0, color.start);
-    gradient.addColorStop(1, color.end);
-    return gradient;
-}
-
-// Generate modern gradient colors for multiple bars
-function generateModernColors(ctx, count) {
-    const colorKeys = ['gold', 'purple', 'cyan', 'emerald', 'orange', 'indigo', 'rose', 'amber'];
-    const result = [];
-    
-    for (let i = 0; i < count; i++) {
-        const colorKey = colorKeys[i % colorKeys.length];
-        result.push(createGradient(ctx, modernColors[colorKey]));
-    }
-    
-    return result;
-}
-
-// Get theme based colors for charts
-function getChartColors() {
-    const isDark = document.documentElement.classList.contains('dark');
-    return {
-        textColor: isDark ? '#e2e8f0' : '#1E293B',
-        gridColor: isDark ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.3)',
-        backgroundColor: isDark ? 'transparent' : '#ffffff',
-        tooltipBg: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        tooltipBorder: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(148, 163, 184, 0.2)'
-    };
-}
-
-// Modern custom tooltip configuration
-function getModernTooltipConfig() {
-    const colors = getChartColors();
-    return {
-        enabled: true,
-        backgroundColor: colors.tooltipBg,
-        titleColor: colors.textColor,
-        bodyColor: colors.textColor,
-        borderColor: colors.tooltipBorder,
-        borderWidth: 1,
-        padding: 12,
-        titleFont: {
-            size: 13,
-            weight: 'bold'
-        },
-        bodyFont: {
-            size: 12
-        },
-        displayColors: true,
-        boxWidth: 10,
-        boxHeight: 10,
-        cornerRadius: 6,
-        caretSize: 5
-    };
-}
-
-// Strip parenthetical suffix from labels (e.g. "Hold & Win (Cash Eruption Bonus)" -> "Hold & Win")
-function stripParenthetical(label) {
-    if (typeof label !== 'string') return label;
-    return label.replace(/\s*\([^)]*\)\s*$/, '').trim() || label;
-}
-
-// Wrap long labels into multiline arrays for Chart.js (splits at word boundary)
-function wrapLabel(str, maxLen) {
-    if (!str || str.length <= maxLen) return str;
-    const words = str.split(/[\s/]+/);
-    const lines = [];
-    let cur = '';
-    for (const w of words) {
-        if (cur && (cur + ' ' + w).length > maxLen) {
-            lines.push(cur);
-            cur = w;
-        } else {
-            cur = cur ? cur + ' ' + w : w;
-        }
-    }
-    if (cur) lines.push(cur);
-    return lines.length > 4 ? [...lines.slice(0, 3), lines.slice(3).join(' ')] : lines;
-}
-
-// Modern grid and scale configuration
-function getModernGridConfig() {
-    const colors = getChartColors();
-    return {
-        color: colors.gridColor,
-        lineWidth: 1,
-        drawBorder: false,
-        drawTicks: false
-    };
-}
+let isRefreshing = false;
 
 // Top 10 Themes Bar Chart (Modern)
 export function createThemesChart() {
@@ -170,7 +69,7 @@ export function createThemesChart() {
                     callbacks: {
                         title: (tooltipItems) => `🎨 ${stripParenthetical(top10[tooltipItems[0].dataIndex].Theme)}`,
                         label: (tooltipItem) => {
-                            const theme = top10[tooltipItem.dataIndex];
+                            const _theme = top10[tooltipItem.dataIndex];
                             return `Performance Index: ${tooltipItem.parsed.y.toFixed(2)}`;
                         },
                         afterBody: (tooltipItems) => {
@@ -193,7 +92,7 @@ export function createThemesChart() {
                 x: {
                     ticks: {
                         color: chartColors.textColor,
-                        font: { size: 8 },
+                        font: { size: 9 },
                         maxRotation: 0,
                         minRotation: 0,
                         padding: 2,
@@ -295,7 +194,7 @@ export function createMechanicsChart() {
                 x: {
                     ticks: {
                         color: chartColors.textColor,
-                        font: { size: 8 },
+                        font: { size: 9 },
                         maxRotation: 0,
                         minRotation: 0,
                         padding: 2,
@@ -327,7 +226,7 @@ export function createGamesChart() {
     chartInstances.games = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: topGames.map(g => wrapLabel(g.name || 'Unknown', 6)),
+            labels: topGames.map(g => wrapLabel(g.name || 'Unknown', 10)),
             datasets: [{
                 label: 'Theo Win',
                 data: topGames.map(g => g.performance_theo_win || 0),
@@ -370,10 +269,10 @@ export function createGamesChart() {
                 x: {
                     ticks: {
                         color: chartColors.textColor,
-                        font: { size: 7 },
+                        font: { size: 8 },
                         maxRotation: 0,
                         minRotation: 0,
-                        padding: 2,
+                        padding: 1,
                         autoSkip: false
                     },
                     grid: { display: false }
@@ -390,9 +289,9 @@ export function createGamesChart() {
 
 // Theme Distribution Bubble Chart
 export function createScatterChart() {
-    console.log('[SCATTER] createScatterChart called');
+    log('[SCATTER] createScatterChart called');
     const canvas = document.getElementById('chart-scatter');
-    if (!canvas) { console.warn('[SCATTER] canvas NOT FOUND'); return; }
+    if (!canvas) { log('[SCATTER] canvas NOT FOUND'); return; }
     
     if (chartInstances.scatter) {
         chartInstances.scatter.destroy();
@@ -404,7 +303,7 @@ export function createScatterChart() {
         const chartColors = getChartColors();
         
         const allThemes = gameData.themes.filter(t => (t['Game Count'] || 0) >= 2);
-        console.log('[SCATTER] filtered themes:', allThemes.length);
+        log('[SCATTER] filtered themes:', allThemes.length);
         if (!allThemes.length) return;
         
         const xVals = allThemes.map(t => t['Game Count'] || 0);
@@ -434,7 +333,7 @@ export function createScatterChart() {
             return 'rgb(239,68,68)';
         });
         
-        console.log('[SCATTER] data sample:', JSON.stringify(bubbleData.slice(0, 3)));
+        log('[SCATTER] data sample:', JSON.stringify(bubbleData.slice(0, 3)));
         
         // Plugin: draw quadrant labels + median dashed lines
         const quadrantPlugin = {
@@ -456,8 +355,8 @@ export function createScatterChart() {
             },
             afterDatasetsDraw(chart) {
                 const { ctx: c, chartArea: { left, right, top, bottom }, scales: { x: xScale, y: yScale } } = chart;
-                const mx = xScale.getPixelForValue(medX);
-                const my = yScale.getPixelForValue(medY);
+                const _mx = xScale.getPixelForValue(medX);
+                const _my = yScale.getPixelForValue(medY);
                 const pad = 8;
                 
                 c.save();
@@ -552,9 +451,202 @@ export function createScatterChart() {
             }
         });
         
-        console.log('[SCATTER] chart created:', !!chartInstances.scatter, 'width:', chartInstances.scatter?.width, 'height:', chartInstances.scatter?.height);
+        log('[SCATTER] chart created:', !!chartInstances.scatter, 'width:', chartInstances.scatter?.width, 'height:', chartInstances.scatter?.height);
     } catch(err) {
         console.error('[SCATTER] FAILED:', err);
+    }
+}
+
+// Market Landscape bubble chart (Insights page) - X=game count, Y=avg theo, size=providers
+export function createMarketLandscapeChart() {
+    const canvas = document.getElementById('chart-market-landscape');
+    if (!canvas) return;
+
+    if (chartInstances.marketLandscape) {
+        chartInstances.marketLandscape.destroy();
+        chartInstances.marketLandscape = null;
+    }
+
+    try {
+        const ctx = canvas.getContext('2d');
+        const chartColors = getChartColors();
+        const allThemes = (gameData.themes || []).filter(t => (t['Game Count'] || 0) >= 2);
+        const allGames = gameData.allGames || [];
+
+        if (!allThemes.length) return;
+
+        // Compute provider count per theme from allGames
+        const providerCountByTheme = {};
+        allGames.forEach(g => {
+            const theme = g.theme_consolidated || g.Theme || '';
+            const prov = g.provider_studio || g.provider || '';
+            if (!theme || /^unknown$/i.test(theme)) return;
+            if (!providerCountByTheme[theme]) providerCountByTheme[theme] = new Set();
+            if (prov) providerCountByTheme[theme].add(prov);
+        });
+
+        const xVals = allThemes.map(t => t['Game Count'] || 0);
+        const yVals = allThemes.map(t => t['Avg Theo Win Index'] || 0);
+        const medX = [...xVals].sort((a, b) => a - b)[Math.floor(xVals.length / 2)] || 10;
+        const medY = [...yVals].sort((a, b) => a - b)[Math.floor(yVals.length / 2)] || 2;
+
+        const provCounts = allThemes.map(t => (providerCountByTheme[t.Theme] || new Set()).size);
+        const maxProv = Math.max(...provCounts, 1);
+        const rMin = 12;
+        const rMax = 30;
+
+        const bubbleData = allThemes.map(t => {
+            const x = t['Game Count'] || 0;
+            const y = t['Avg Theo Win Index'] || 0;
+            const provCount = (providerCountByTheme[t.Theme] || new Set()).size;
+            const r = maxProv > 0 ? rMin + (provCount / maxProv) * (rMax - rMin) : rMin;
+            return { x, y, r };
+        });
+
+        const themeLabels = allThemes.map(t => t.Theme || '');
+
+        const bgColors = bubbleData.map(d => {
+            if (d.y >= medY && d.x < medX) return 'rgba(16,185,129,0.8)';
+            if (d.y >= medY && d.x >= medX) return 'rgba(99,102,241,0.8)';
+            if (d.y < medY && d.x < medX) return 'rgba(100,116,139,0.75)';
+            return 'rgba(239,68,68,0.75)';
+        });
+        const borderColors = bubbleData.map(d => {
+            if (d.y >= medY && d.x < medX) return 'rgb(5,150,105)';
+            if (d.y >= medY && d.x >= medX) return 'rgb(79,70,229)';
+            if (d.y < medY && d.x < medX) return 'rgb(71,85,105)';
+            return 'rgb(220,38,38)';
+        });
+
+        const quadrantPlugin = {
+            id: 'marketLandscapeQuadrants',
+            beforeDatasetsDraw(chart) {
+                const { ctx: c, chartArea: { left, right, top, bottom }, scales: { x: xScale, y: yScale } } = chart;
+                const mx = xScale.getPixelForValue(medX);
+                const my = yScale.getPixelForValue(medY);
+                c.save();
+                c.setLineDash([5, 4]);
+                c.lineWidth = 1;
+                c.strokeStyle = chartColors.gridColor || 'rgba(148,163,184,0.4)';
+                c.beginPath(); c.moveTo(mx, top); c.lineTo(mx, bottom); c.stroke();
+                c.beginPath(); c.moveTo(left, my); c.lineTo(right, my); c.stroke();
+                c.setLineDash([]);
+                c.restore();
+            },
+            afterDatasetsDraw(chart) {
+                const { ctx: c, chartArea: { left, right, top, bottom } } = chart;
+                const pad = 8;
+                c.save();
+                c.font = 'bold 10px Inter, system-ui, sans-serif';
+                c.globalAlpha = 0.55;
+                c.fillStyle = 'rgb(16,185,129)';
+                c.textAlign = 'left'; c.textBaseline = 'top';
+                c.fillText('💎 Opportunity', left + pad, top + pad);
+                c.fillStyle = 'rgb(99,102,241)';
+                c.textAlign = 'right'; c.textBaseline = 'top';
+                c.fillText('🏆 Leaders', right - pad, top + pad);
+                c.fillStyle = 'rgb(156,163,175)';
+                c.textAlign = 'left'; c.textBaseline = 'bottom';
+                c.fillText('🔍 Niche', left + pad, bottom - pad);
+                c.fillStyle = 'rgb(239,68,68)';
+                c.textAlign = 'right'; c.textBaseline = 'bottom';
+                c.fillText('⚠️ Saturated', right - pad, bottom - pad);
+                c.restore();
+            }
+        };
+
+        const bubbleLabelPlugin = {
+            id: 'bubbleLabels',
+            afterDatasetsDraw(chart) {
+                const { ctx: c, chartArea } = chart;
+                const meta = chart.getDatasetMeta(0);
+                c.save();
+                c.textAlign = 'center';
+                const rendered = [];
+                const sorted = meta.data.map((pt, i) => ({ pt, i, r: bubbleData[i].r })).sort((a, b) => b.r - a.r);
+                sorted.forEach(({ pt, i, r }) => {
+                    const label = (themeLabels[i] || '').substring(0, 12);
+                    if (!label) return;
+                    const lx = pt.x, ly = pt.y - r - 4;
+                    const overlap = rendered.some(p => Math.abs(p.x - lx) < 50 && Math.abs(p.y - ly) < 12);
+                    const adjY = overlap ? ly - 12 : ly;
+                    if (adjY < chartArea.top) return;
+                    c.font = r >= 18 ? 'bold 10px Inter, system-ui, sans-serif' : '9px Inter, system-ui, sans-serif';
+                    c.fillStyle = chartColors.textColor || '#666';
+                    c.textBaseline = 'bottom';
+                    c.fillText(label, lx, adjY);
+                    rendered.push({ x: lx, y: adjY });
+                });
+                c.restore();
+            }
+        };
+
+        chartInstances.marketLandscape = new Chart(ctx, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Themes',
+                    data: bubbleData,
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
+                    borderWidth: 1.5,
+                    hoverRadius: 6
+                }]
+            },
+            plugins: [quadrantPlugin, bubbleLabelPlugin],
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 600 },
+                onClick: (e, elements) => {
+                    if (elements.length && window.showThemeDetails) {
+                        const name = themeLabels[elements[0].index];
+                        if (name) window.showThemeDetails(name);
+                    }
+                },
+                layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        ...getModernTooltipConfig(),
+                        callbacks: {
+                            title: (items) => `🎨 ${stripParenthetical(themeLabels[items[0].dataIndex])}`,
+                            label: (item) => {
+                                const idx = item.dataIndex;
+                                const provCount = (providerCountByTheme[themeLabels[idx]] || new Set()).size;
+                                const q = item.parsed.y >= medY
+                                    ? (item.parsed.x < medX ? '💎 Opportunity' : '🏆 Leader')
+                                    : (item.parsed.x < medX ? '🔍 Niche' : '⚠️ Saturated');
+                                return `Games: ${item.parsed.x}  |  Avg Theo: ${item.parsed.y.toFixed(2)}  |  Providers: ${provCount}  |  ${q}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grace: '10%',
+                        title: { display: true, text: 'Avg Theo Win Index', color: chartColors.textColor, font: { size: 10, weight: 'bold' } },
+                        ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
+                        grid: getModernGridConfig()
+                    },
+                    x: {
+                        type: 'logarithmic',
+                        min: 1,
+                        title: { display: true, text: 'Game Count (log scale)', color: chartColors.textColor, font: { size: 10, weight: 'bold' } },
+                        ticks: {
+                            color: chartColors.textColor,
+                            font: { size: 10 },
+                            padding: 6,
+                            callback: (val) => [2,5,10,20,50,100,200].includes(val) ? val : '',
+                        },
+                        grid: getModernGridConfig()
+                    }
+                }
+            }
+        });
+    } catch (err) {
+        console.error('[MARKET-LANDSCAPE] FAILED:', err);
     }
 }
 
@@ -600,7 +692,7 @@ export function createProvidersChart() {
         chartInstances.providers = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: top10.map(p => wrapLabel(p.name, 10)),
+                labels: top10.map(p => p.name),
                 datasets: [{
                     label: 'Provider Score',
                     data: top10.map(p => p.score),
@@ -611,9 +703,10 @@ export function createProvidersChart() {
                 }]
             },
             options: {
+                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: { padding: { bottom: 4 } },
+                layout: { padding: { left: 4, right: 8 } },
                 onClick: (e, elements) => {
                     if (elements.length && window.showProviderDetails) {
                         const prov = top10[elements[0].index];
@@ -636,18 +729,15 @@ export function createProvidersChart() {
                     }
                 },
                 scales: {
-                    x: {
+                    y: {
                         ticks: {
                             color: chartColors.textColor,
-                            font: { size: 8 },
-                            maxRotation: 0,
-                            minRotation: 0,
-                            padding: 2,
-                            autoSkip: false
+                            font: { size: 11 },
+                            padding: 4
                         },
                         grid: { display: false }
                     },
-                    y: {
+                    x: {
                         beginAtZero: true,
                         ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
                         grid: getModernGridConfig()
@@ -877,7 +967,7 @@ export function initializeCharts() {
     setTimeout(retryMissing, 500);
     setTimeout(retryMissing, 1500);
     
-    chartsInitialized = true;
+    _chartsInitialized = true;
     log('✅ Modern charts initialized');
 }
 

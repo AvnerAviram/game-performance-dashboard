@@ -54,8 +54,8 @@ async function addUser(username) {
     }
 
     const password = await promptPassword('Enter password: ');
-    if (!password || password.length < 6) {
-        console.error('Password must be at least 6 characters.');
+    if (!password || password.length < 8) {
+        console.error('Password must be at least 8 characters.');
         process.exit(1);
     }
 

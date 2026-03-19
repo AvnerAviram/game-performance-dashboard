@@ -104,8 +104,9 @@ describe('Games Page: Filtering', () => {
     allGames = await getAllGames();
   });
 
-  test('should have 501 total games', () => {
-    expect(allGames.length).toBe(501);
+  test('should have games from games_dashboard', () => {
+    expect(allGames.length).toBeGreaterThan(500);
+    expect(allGames.length).toBeLessThan(1000);
   });
 
   test('filtering by provider should reduce count', async () => {

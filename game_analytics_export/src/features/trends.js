@@ -1,20 +1,8 @@
 // Trends Module - Year-over-year analysis (Chart.js)
 import { gameData } from '../lib/data.js';
 import { log, warn } from '../lib/env.js';
-
-/**
- * Parse features field - may be JSON string or array
- */
-function parseFeatures(val) {
-    if (Array.isArray(val)) return val.filter(Boolean);
-    if (!val || typeof val !== 'string') return [];
-    try {
-        const arr = JSON.parse(val);
-        return Array.isArray(arr) ? arr.filter(Boolean) : [];
-    } catch {
-        return [];
-    }
-}
+import { parseFeatures } from '../lib/parse-features.js';
+import { safeOnclick } from '../lib/sanitize.js';
 
 function getTheoWin(game) {
     return game.performance_theo_win ?? game.theo_win ?? 0;
@@ -152,16 +140,12 @@ const chartState = {
     mechanic: { range: 'all', drillYear: null }
 };
 
-function parseFeaturesSafe(val) {
-    if (Array.isArray(val)) return val.filter(Boolean);
-    if (!val || typeof val !== 'string') return [];
-    try { const a = JSON.parse(val); return Array.isArray(a) ? a.filter(Boolean) : []; } catch { return []; }
-}
+const parseFeaturesSafe = parseFeatures;
 
 const ACT = 'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300';
 const INACT = 'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600';
-const DRILL_ACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-200 text-sky-800 dark:bg-sky-800 dark:text-sky-200 ring-1 ring-sky-400';
-const DRILL_INACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-50 text-sky-600 hover:bg-sky-100 dark:bg-sky-900/30 dark:text-sky-400 dark:hover:bg-sky-900/50';
+const _DRILL_ACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-200 text-sky-800 dark:bg-sky-800 dark:text-sky-200 ring-1 ring-sky-400';
+const _DRILL_INACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-50 text-sky-600 hover:bg-sky-100 dark:bg-sky-900/30 dark:text-sky-400 dark:hover:bg-sky-900/50';
 
 function buildZoomButtons(allYears, chartKey, containerId) {
     const container = document.getElementById(containerId);
@@ -175,7 +159,7 @@ function buildZoomButtons(allYears, chartKey, containerId) {
     }
 
     const rangeBtns = ranges.map(r =>
-        `<button onclick="window.setChartRange('${chartKey}','${r.key}')" class="${st.range === r.key && !st.drillYear ? ACT : INACT}">${r.label}</button>`
+        `<button onclick="${safeOnclick('window.setChartRange', chartKey, r.key)}" class="${st.range === r.key && !st.drillYear ? ACT : INACT}">${r.label}</button>`
     ).join('');
 
     const backBtn = st.drillYear
@@ -220,7 +204,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
     if (!canvas) return;
     if (trendChartInstances[canvasId]) { trendChartInstances[canvasId].destroy(); trendChartInstances[canvasId] = null; }
 
-    let labels, values, barColors, tooltipTitle;
+    let labels, values, barColors, _tooltipTitle;
     if (type === 'overall') {
         // Show top providers by avg theo in this year
         const provMap = {};
@@ -235,7 +219,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
-        tooltipTitle = `📈 ${year} — Top Providers`;
+        _tooltipTitle = `📈 ${year} — Top Providers`;
     } else if (type === 'theme') {
         const themeMap = {};
         yearGames.forEach(g => {
@@ -249,7 +233,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
-        tooltipTitle = `🎨 ${year} — Theme Performance`;
+        _tooltipTitle = `🎨 ${year} — Theme Performance`;
     } else {
         const featMap = {};
         yearGames.forEach(g => {
@@ -264,7 +248,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
-        tooltipTitle = `⚙️ ${year} — Feature Performance`;
+        _tooltipTitle = `⚙️ ${year} — Feature Performance`;
     }
 
     if (!labels.length) return;

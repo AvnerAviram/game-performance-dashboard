@@ -32,15 +32,19 @@ npm-debug.log*
 dist/
 build/
 
-# Environment
+# Environment (keep .env.example committed)
 .env
-.env.local
+.env.*
+!.env.example
 
 # Server auth credentials (never commit)
 server/users.json
 
 # Feedback tickets (internal state)
 server/tickets.json
+
+# Session files (server-side session store)
+server/.sessions/
 
 # IIS logs
 logs/
@@ -64,3 +68,7 @@ data/*.cleaned.json
 
 # CSV exports and data files (internal/proprietary)
 *.csv
+
+# E2E test screenshots and debug logs (generated during runs)
+tests/e2e/*.png
+tests/e2e/*.txt

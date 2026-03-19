@@ -6,6 +6,7 @@
  */
 
 import { log } from '../env.js';
+import { parseFeatures } from '../parse-features.js';
 
 const duckdb = await import('https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.28.0/+esm');
 
@@ -72,8 +73,8 @@ async function loadGamesData() {
     log('Loading games data into DuckDB...');
     
     const [response, themeMapResponse] = await Promise.all([
-      fetch('data/games_dashboard.json'),
-      fetch('data/theme_consolidation_map.json'),
+      fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/games_dashboard.json')),
+      fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() => fetch('data/theme_consolidation_map.json')),
     ]);
     
     if (!response.ok) {
@@ -283,9 +284,8 @@ export async function getMechanicDistribution() {
   
   const buckets = {};
   for (const row of rows) {
-    let feats;
-    try { feats = JSON.parse(row.features); } catch { continue; }
-    if (!Array.isArray(feats)) continue;
+    const feats = parseFeatures(row.features);
+    if (!feats.length) continue;
     for (const f of feats) {
       if (!buckets[f]) buckets[f] = { theo: [], mkt: 0, rtp: [], rank: Infinity };
       buckets[f].theo.push(row.performance_theo_win || 0);
@@ -509,7 +509,7 @@ export async function getUniqueMechanics() {
   const rows = await query(`SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]'`);
   const set = new Set();
   for (const r of rows) {
-    try { JSON.parse(r.features).forEach(f => set.add(f)); } catch {}
+    parseFeatures(r.features).forEach(f => set.add(f));
   }
   return [...set].sort().map(mechanic => ({ mechanic }));
 }
@@ -532,10 +532,7 @@ export async function getUniqueFeatures() {
   
   const featureSet = new Set();
   for (const row of rows) {
-    try {
-      const arr = JSON.parse(row.features);
-      if (Array.isArray(arr)) arr.forEach(f => featureSet.add(f));
-    } catch (e) { /* skip malformed */ }
+    parseFeatures(row.features).forEach(f => featureSet.add(f));
   }
   
   return [...featureSet].sort().map(f => ({ feature: f }));
@@ -552,16 +549,14 @@ export async function getFeatureDistribution() {
   
   const stats = {};
   for (const row of rows) {
-    try {
-      const arr = JSON.parse(row.features);
-      if (!Array.isArray(arr)) continue;
-      for (const f of arr) {
-        if (!stats[f]) stats[f] = { feature: f, game_count: 0, total_theo: 0, total_market_share: 0 };
-        stats[f].game_count++;
-        stats[f].total_theo += row.performance_theo_win || 0;
-        stats[f].total_market_share += row.performance_market_share_percent || 0;
-      }
-    } catch (e) { /* skip */ }
+    const arr = parseFeatures(row.features);
+    if (!arr.length) continue;
+    for (const f of arr) {
+      if (!stats[f]) stats[f] = { feature: f, game_count: 0, total_theo: 0, total_market_share: 0 };
+      stats[f].game_count++;
+      stats[f].total_theo += row.performance_theo_win || 0;
+      stats[f].total_market_share += row.performance_market_share_percent || 0;
+    }
   }
   
   return Object.values(stats)

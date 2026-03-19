@@ -2,7 +2,7 @@
  * Tests for the HTML/attribute escaping utility (XSS prevention).
  */
 import { describe, it, expect } from 'vitest';
-import { escapeHtml, escapeAttr, safeOnclick } from '../../src/lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, sanitizeUrl } from '../../src/lib/sanitize.js';
 
 describe('escapeHtml', () => {
     it('should escape & < > " and single quotes', () => {
@@ -82,6 +82,48 @@ describe('safeOnclick', () => {
     it('should escape backslashes', () => {
         const result = safeOnclick('fn', 'path\\to\\thing');
         expect(result).toContain('\\\\');
+    });
+});
+
+describe('sanitizeUrl', () => {
+    it('should allow http and https URLs', () => {
+        expect(sanitizeUrl('https://example.com')).toBe('https://example.com');
+        expect(sanitizeUrl('http://example.com/path')).toBe('http://example.com/path');
+    });
+
+    it('should allow relative paths', () => {
+        expect(sanitizeUrl('/api/data')).toBe('/api/data');
+    });
+
+    it('should block javascript: URLs', () => {
+        expect(sanitizeUrl('javascript:alert(1)')).toBe('');
+    });
+
+    it('should block data: URLs', () => {
+        expect(sanitizeUrl('data:text/html,<script>alert(1)</script>')).toBe('');
+    });
+
+    it('should block vbscript: URLs', () => {
+        expect(sanitizeUrl('vbscript:MsgBox("xss")')).toBe('');
+    });
+
+    it('should handle null/undefined', () => {
+        expect(sanitizeUrl(null)).toBe('');
+        expect(sanitizeUrl(undefined)).toBe('');
+    });
+
+    it('should trim whitespace', () => {
+        expect(sanitizeUrl('  https://example.com  ')).toBe('https://example.com');
+    });
+});
+
+describe('escapeHtml - control character stripping', () => {
+    it('should strip null bytes', () => {
+        expect(escapeHtml('hello\x00world')).toBe('helloworld');
+    });
+
+    it('should preserve tabs and newlines', () => {
+        expect(escapeHtml('line1\nline2\ttab')).toBe('line1\nline2\ttab');
     });
 });
 

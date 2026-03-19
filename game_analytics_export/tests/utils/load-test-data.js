@@ -1,5 +1,5 @@
 /**
- * Test Data Loader - Loads games_master.json and populates gameData without DuckDB.
+ * Test Data Loader - Loads games_dashboard.json and populates gameData without DuckDB.
  * Use in Vitest integration/validation tests (DuckDB is browser-only).
  */
 
@@ -22,11 +22,11 @@ export const gameData = {
 };
 
 export async function loadTestData() {
-  const module = await import('../../data/games_master.json', {
+  const module = await import('../../data/games_dashboard.json', {
     assert: { type: 'json' }
   });
   const data = module.default;
-  const games = data.games || [];
+  const games = Array.isArray(data) ? data : (data.games || []);
 
   gameData.total_games = games.length;
   gameData.allGames = games;
@@ -87,21 +87,21 @@ export async function loadTestData() {
   const anomalies = calculateAnomalies(games);
   gameData.top_anomalies = (anomalies.high || []).map(g => ({
     game: g.name,
-    themes: [g.theme?.consolidated || 'Unknown'],
-    mechanics: [g.mechanic?.primary || 'Unknown'],
-    'Theo Win': g.performance?.theo_win || 0,
-    'Market Share %': g.performance?.market_share_percent || 0,
-    rank: g.performance?.rank || 999,
-    theo_win_index: g.performance?.theo_win || 0
+    themes: [g.theme_primary ?? g.theme?.consolidated ?? 'Unknown'],
+    mechanics: [g.mechanic_primary ?? g.mechanic?.primary ?? 'Unknown'],
+    'Theo Win': g.theo_win ?? g.performance?.theo_win ?? 0,
+    'Market Share %': g.market_share_pct ?? g.performance?.market_share_percent ?? 0,
+    rank: g.performance_rank ?? g.performance?.rank ?? 999,
+    theo_win_index: g.theo_win ?? g.performance?.theo_win ?? 0
   }));
   gameData.bottom_anomalies = (anomalies.low || []).map(g => ({
     game: g.name,
-    themes: [g.theme?.consolidated || 'Unknown'],
-    mechanics: [g.mechanic?.primary || 'Unknown'],
-    'Theo Win': g.performance?.theo_win || 0,
-    'Market Share %': g.performance?.market_share_percent || 0,
-    rank: g.performance?.rank || 999,
-    theo_win_index: g.performance?.theo_win || 0
+    themes: [g.theme_primary ?? g.theme?.consolidated ?? 'Unknown'],
+    mechanics: [g.mechanic_primary ?? g.mechanic?.primary ?? 'Unknown'],
+    'Theo Win': g.theo_win ?? g.performance?.theo_win ?? 0,
+    'Market Share %': g.market_share_pct ?? g.performance?.market_share_percent ?? 0,
+    rank: g.performance_rank ?? g.performance?.rank ?? 999,
+    theo_win_index: g.theo_win ?? g.performance?.theo_win ?? 0
   }));
 
   gameData.theme_count = gameData.themes.length;

@@ -433,7 +433,6 @@ export const MECHANIC_ALIASES = {
     'Cash On Reels': 'Cash Collection',
     'Wheel': 'Wheel Bonus',
     'Pick Bonus': 'Pick and Click',
-    'Respin': 'Respins',
     'Nudges': 'Nudge',
     'Wild Reels': 'Wild Reels',
     'Static Jackpot': 'Static Jackpot',

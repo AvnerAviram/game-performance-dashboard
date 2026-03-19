@@ -108,11 +108,16 @@ A game analytics dashboard (Vanilla JS + Vite + Tailwind + DuckDB WASM) displayi
 
 | File | Purpose |
 |---|---|
-| `data/PHASE1_TRUTH_MASTER.md` | Single source of truth / runbook |
-| `data/games_dashboard.json` | Main data file (642 games, flat JSON array) |
-| `data/ags_vocabulary.json` | Canonical features/themes lists |
-| `data/theme_consolidation_map.json` | 375 themes → 24 categories |
-| `data/enrich_websearch.py` | AI enrichment pipeline |
+| `data/PHASE1_TRUTH_MASTER.md` | Single source of truth / runbook. **DO NOT DELETE.** |
+| `data/games_dashboard.json` | Main data file (642 games, flat JSON array). DuckDB loads this. **DO NOT DELETE.** |
+| `data/games_master.json` | Pipeline input — all 643 games with base metadata. **DO NOT DELETE.** |
+| `data/enrich_websearch.py` | AI enrichment pipeline + all 11 Feature Definition Cards (in `_build_normalize_system_prompt()`). **DO NOT DELETE.** |
+| `data/ground_truth_ags.json` | 173-entry ground truth for F1 accuracy measurement. Irreplaceable. **DO NOT DELETE.** |
+| `data/ags_vocabulary.json` | Canonical features/themes lists. Pipeline loads at startup. **DO NOT DELETE.** |
+| `data/synonym_mapping.json` | Post-LLM normalization aliases. **DO NOT DELETE.** |
+| `data/theme_consolidation_map.json` | 375 themes → 24 categories. DuckDB loads at startup. **DO NOT DELETE.** |
+| `data/audit_features.py` | Systematic FP detection for feature audits. **DO NOT DELETE.** |
+| `scripts/` | Data verification, enrichment, scraping scripts. **DO NOT DELETE.** |
 | `src/lib/db/duckdb-client.js` | DuckDB WASM client (data loading, queries) |
 | `src/lib/data.js` | Data layer (loads via DuckDB, calculates Smart Index) |
 | `src/lib/filters.js` | Smart filters for themes/mechanics/games/providers |
@@ -121,7 +126,20 @@ A game analytics dashboard (Vanilla JS + Vite + Tailwind + DuckDB WASM) displayi
 | `src/ui/ui-providers-games.js` | Games table + providers table rendering |
 | `src/config/mechanics.js` | Mechanic definitions, aliases, tooltips (23 mechanics) |
 | `src/pages/*.html` | Page templates |
-| `tests/` | 13 test files, 183 tests |
+| `tests/` | Test suite |
+
+### Where is the verification/classification data?
+
+| Data | Location |
+|------|----------|
+| **Feature Definition Cards** (IS/NOT/YES/NO for each of 11 features) | `data/enrich_websearch.py` → `_build_normalize_system_prompt()` (~line 1319) |
+| **Ground truth** (manually verified features per game) | `data/ground_truth_ags.json` (173 games) |
+| **Canonical feature + theme lists** | `data/ags_vocabulary.json` (11 features, 26 themes) |
+| **Synonym/alias mappings** | `data/synonym_mapping.json` |
+| **Theme grouping for dashboard** | `data/theme_consolidation_map.json` (375 → 24) |
+| **SlotCatalog feature mapping** | `data/enrich_websearch.py` → `_SLOTCATALOG_FEATURE_MAP` dict |
+| **Provider catalog extractors** (9 providers) | `data/enrich_websearch.py` → `_extract_*()` functions |
+| **Post-processing rules** (PXS strip, etc.) | `data/enrich_websearch.py` → search for `# GATE:` comments |
 
 ## ENVIRONMENT
 

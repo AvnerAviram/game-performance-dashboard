@@ -17,6 +17,39 @@
    9999 - Skip link, loading overlay
    ========================================================================== */
 
+/* Sidebar collapsed state */
+#sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+  gap: 0;
+}
+#sidebar.collapsed .nav-item .nav-icon {
+  margin: 0 auto;
+}
+#sidebar.collapsed .sidebar-nav {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+#sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#sidebar.collapsed .collapse-btn {
+  margin: 0 auto;
+}
+#sidebar.collapsed #dark-mode-toggle {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+  gap: 0;
+}
+#sidebar.collapsed .shrink-0.mt-auto {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 /* Only base styles - NO components */
 @layer base {
   body {
@@ -46,9 +79,9 @@
   }
 }
 
-/* Tooltip styles for info icons - z-400 so tooltips stay BELOW right panels (z-1100) */
+/* Tooltip styles for info icons - z-[900] so tooltips float above charts/panels but below modals (z-2000) */
 .info-icon {
-  @apply relative z-[400] inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-all duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500 hover:scale-110;
+  @apply relative z-[900] inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-all duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500 hover:scale-110;
 }
 
 th {
@@ -102,7 +135,7 @@ th.sortable.sorted-asc::after {
 
 .info-tooltip,
 .filter-tooltip {
-  @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[400] break-words whitespace-normal overflow-hidden normal-case;
+  @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[900] break-words whitespace-normal overflow-hidden normal-case;
 }
 
 .info-tooltip {

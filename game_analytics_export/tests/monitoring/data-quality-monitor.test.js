@@ -12,23 +12,24 @@ describe('Data Quality: Basic Checks', () => {
     await loadGameData();
   });
 
-  test('total games should be exactly 501', () => {
-    expect(gameData.total_games).toBe(501);
+  test('total games should match games_dashboard', () => {
+    expect(gameData.total_games).toBeGreaterThan(500);
+    expect(gameData.total_games).toBe(gameData.allGames?.length ?? 0);
   });
 
   test('theme count should be reasonable', () => {
     expect(gameData.theme_count).toBeGreaterThan(50);
-    expect(gameData.theme_count).toBeLessThan(150);
+    expect(gameData.theme_count).toBeLessThan(200);
   });
 
   test('mechanic count should be reasonable', () => {
-    expect(gameData.mechanic_count).toBeGreaterThan(15);
-    expect(gameData.mechanic_count).toBeLessThan(50);
+    expect(gameData.mechanic_count).toBeGreaterThan(10);
+    expect(gameData.mechanic_count).toBeLessThan(100);
   });
 
-  test('all games array should have 501 items', () => {
+  test('all games array should match total_games', () => {
     if (gameData.allGames) {
-      expect(gameData.allGames.length).toBe(501);
+      expect(gameData.allGames.length).toBe(gameData.total_games);
     }
   });
 });

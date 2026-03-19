@@ -1,6 +1,8 @@
 // Overview Insights - Slot Game Comparison Analytics
 // Calculates best/worst performers across themes, mechanics, providers, games
-import { getTheme, getProvider, getPerformance, getSpecs } from './compat.js';
+import { getTheme, getProvider, getPerformance } from './compat.js';
+import { parseFeatures } from '../lib/parse-features.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 
 export function getTopPerformers(allGames, themes, mechanics) {
     if (!allGames || !themes || !mechanics) {
@@ -29,9 +31,8 @@ export function getTopPerformers(allGames, themes, mechanics) {
     // Best Feature (highest avg theo_win) — uses features array, not legacy mechanic_primary
     const featureStats = {};
     allGames.forEach(game => {
-        let feats = game.features;
-        if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
-        if (!Array.isArray(feats) || feats.length === 0) return;
+        const feats = parseFeatures(game.features);
+        if (feats.length === 0) return;
         const perf = getPerformance(game);
         
         feats.forEach(feat => {
@@ -132,12 +133,12 @@ export function renderComparisonCards(performers) {
     if (performers.bestTheme) {
         cards.push(`
             <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg shadow-sm border border-amber-200 dark:border-amber-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showThemeDetails('${(performers.bestTheme.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showThemeDetails', performers.bestTheme.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🥇</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-400">Best Theme</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${performers.bestTheme.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestTheme.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-1">${performers.bestTheme.smartIndex}</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestTheme.gameCount} games · Avg ${performers.bestTheme.avgRTP}</div>
             </div>
@@ -148,12 +149,12 @@ export function renderComparisonCards(performers) {
     if (performers.bestMechanic) {
         cards.push(`
             <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg shadow-sm border border-purple-200 dark:border-purple-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showMechanicDetails('${(performers.bestMechanic.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showMechanicDetails', performers.bestMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Feature</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${performers.bestMechanic.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">${performers.bestMechanic.avgTheoWin}</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestMechanic.gameCount} games</div>
             </div>
@@ -164,12 +165,12 @@ export function renderComparisonCards(performers) {
     if (performers.bestProvider) {
         cards.push(`
             <div class="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg shadow-sm border border-emerald-200 dark:border-emerald-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showProviderDetails('${(performers.bestProvider.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showProviderDetails', performers.bestProvider.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🏢</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Best Provider</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${performers.bestProvider.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestProvider.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-1">${performers.bestProvider.avgTheoWin}</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestProvider.gameCount} games</div>
             </div>
@@ -180,12 +181,12 @@ export function renderComparisonCards(performers) {
     if (performers.worstTheme) {
         cards.push(`
             <div class="bg-gradient-to-br from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 rounded-lg shadow-sm border border-red-200 dark:border-red-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showThemeDetails('${(performers.worstTheme.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showThemeDetails', performers.worstTheme.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🔻</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-red-700 dark:text-red-400">Needs Attention</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${performers.worstTheme.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.worstTheme.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent mb-1">${performers.worstTheme.smartIndex}</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.worstTheme.gameCount} games</div>
             </div>
@@ -196,12 +197,12 @@ export function renderComparisonCards(performers) {
     if (performers.mostCommonMechanic) {
         cards.push(`
             <div class="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 rounded-lg shadow-sm border border-cyan-200 dark:border-cyan-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showMechanicDetails('${(performers.mostCommonMechanic.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showMechanicDetails', performers.mostCommonMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">📦</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-cyan-700 dark:text-cyan-400">Most Popular Feature</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${performers.mostCommonMechanic.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.mostCommonMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-1">${performers.mostCommonMechanic.gameCount}</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">Avg Theo: ${performers.mostCommonMechanic.avgTheoWin}</div>
             </div>
@@ -212,14 +213,14 @@ export function renderComparisonCards(performers) {
     if (performers.highestRTPGame) {
         cards.push(`
             <div class="bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20 rounded-lg shadow-sm border border-indigo-200 dark:border-indigo-800 p-3 hover:shadow-md transition-all cursor-pointer"
-                 onclick="window.showGameDetails('${(performers.highestRTPGame.name || '').replace(/'/g, "\\'")}')">
+                 onclick="${safeOnclick('window.showGameDetails', performers.highestRTPGame.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">💎</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-indigo-700 dark:text-indigo-400">Top Game</div>
                 </div>
-                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5 truncate" title="${performers.highestRTPGame.name}">${performers.highestRTPGame.name}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5 truncate" title="${escapeAttr(performers.highestRTPGame.name)}">${escapeHtml(performers.highestRTPGame.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent mb-1">${performers.highestRTPGame.theoWin}</div>
-                <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.highestRTPGame.theme} · ${performers.highestRTPGame.provider}</div>
+                <div class="text-[10px] text-gray-500 dark:text-gray-400">${escapeHtml(performers.highestRTPGame.theme)} · ${escapeHtml(performers.highestRTPGame.provider)}</div>
             </div>
         `);
     }

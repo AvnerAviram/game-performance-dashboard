@@ -3,18 +3,54 @@
  * 
  * Manual re-implementation of DuckDB aggregations for testing.
  * This allows us to verify DuckDB results against pure JavaScript calculations.
+ * Supports both flat schema (games_dashboard.json) and nested schema (games_master.json).
  */
 
 /**
- * Load and parse games_master.json
+ * Dual-schema field accessors: support flat (theme_consolidated, theo_win, etc.)
+ * and nested (theme.consolidated, performance.theo_win, etc.)
+ */
+function themeConsolidated(g) {
+  return g.theme_consolidated ?? g.theme_primary ?? g.theme?.consolidated;
+}
+function mechanicPrimary(g) {
+  return g.mechanic_primary ?? g.mechanic?.primary;
+}
+function providerStudio(g) {
+  return g.studio ?? g.provider ?? g.provider_studio ?? g.provider?.studio;
+}
+function providerParent(g) {
+  return g.parent_company ?? g.provider_parent ?? g.provider?.parent;
+}
+function theoWin(g) {
+  return g.theo_win ?? g.performance_theo_win ?? g.performance?.theo_win;
+}
+function marketSharePercent(g) {
+  return g.market_share_pct ?? g.performance_market_share_percent ?? g.performance?.market_share_percent;
+}
+function performanceAnomaly(g) {
+  return g.anomaly ?? g.performance_anomaly ?? g.performance?.anomaly;
+}
+function performanceRank(g) {
+  return g.performance_rank ?? g.performance?.rank;
+}
+function specsRtp(g) {
+  return g.rtp ?? g.specs_rtp ?? g.specs?.rtp;
+}
+function specsVolatility(g) {
+  return g.volatility ?? g.specs_volatility ?? g.specs?.volatility;
+}
+
+/**
+ * Load and parse games. Supports games_dashboard.json (flat array) or games_master.json (nested)
  */
 export async function loadGamesJSON() {
-  const response = await fetch('/data/games_master.json');
+  const response = await fetch('/data/games_dashboard.json');
   if (!response.ok) {
-    throw new Error(`Failed to load games_master.json: ${response.status}`);
+    throw new Error(`Failed to load games: ${response.status}`);
   }
   const data = await response.json();
-  return data.games || [];
+  return Array.isArray(data) ? data : (data.games || []);
 }
 
 /**
@@ -27,23 +63,16 @@ export function calculateOverviewStats(games) {
   let totalMarketShare = 0;
 
   games.forEach(game => {
-    // Themes
-    if (game.theme?.consolidated) {
-      uniqueThemes.add(game.theme.consolidated);
-    }
-    
-    // Mechanics
-    if (game.mechanic?.primary) {
-      uniqueMechanics.add(game.mechanic.primary);
-    }
-    
-    // Performance metrics
-    if (typeof game.performance?.theo_win === 'number') {
-      totalTheoWin += game.performance.theo_win;
-    }
-    if (typeof game.performance?.market_share_percent === 'number') {
-      totalMarketShare += game.performance.market_share_percent;
-    }
+    const theme = themeConsolidated(game);
+    if (theme) uniqueThemes.add(theme);
+
+    const mechanic = mechanicPrimary(game);
+    if (mechanic) uniqueMechanics.add(mechanic);
+
+    const tw = theoWin(game);
+    if (typeof tw === 'number') totalTheoWin += tw;
+    const ms = marketSharePercent(game);
+    if (typeof ms === 'number') totalMarketShare += ms;
   });
 
   return {
@@ -62,7 +91,7 @@ export function calculateThemeDistribution(games) {
   const themeMap = new Map();
 
   games.forEach(game => {
-    const theme = game.theme?.consolidated;
+    const theme = themeConsolidated(game);
     if (!theme) return;
 
     if (!themeMap.has(theme)) {
@@ -80,24 +109,22 @@ export function calculateThemeDistribution(games) {
 
     const themeData = themeMap.get(theme);
     themeData.game_count++;
-    
-    if (typeof game.performance?.theo_win === 'number') {
-      themeData.theo_win_sum += game.performance.theo_win;
-      themeData.theo_wins.push(game.performance.theo_win);
+
+    const tw = theoWin(game);
+    if (typeof tw === 'number') {
+      themeData.theo_win_sum += tw;
+      themeData.theo_wins.push(tw);
     }
-    
-    if (typeof game.performance?.market_share_percent === 'number') {
-      themeData.market_share_sum += game.performance.market_share_percent;
-    }
-    
-    if (typeof game.specs?.rtp === 'number') {
-      themeData.rtp_sum += game.specs.rtp;
+    const ms = marketSharePercent(game);
+    if (typeof ms === 'number') themeData.market_share_sum += ms;
+
+    const rtp = specsRtp(game);
+    if (typeof rtp === 'number') {
+      themeData.rtp_sum += rtp;
       themeData.rtp_count++;
     }
-    
-    if (typeof game.performance?.rank === 'number') {
-      themeData.ranks.push(game.performance.rank);
-    }
+    const rank = performanceRank(game);
+    if (typeof rank === 'number') themeData.ranks.push(rank);
   });
 
   // Convert to array and calculate averages
@@ -115,42 +142,46 @@ export function calculateThemeDistribution(games) {
 }
 
 /**
- * Calculate mechanic distribution manually
+ * Calculate mechanic distribution manually.
+ * For flat schema (games_dashboard): groups by features array (matches DuckDB).
+ * For nested schema (games_master): groups by mechanic.primary.
  */
 export function calculateMechanicDistribution(games) {
   const mechanicMap = new Map();
+  const hasFeaturesArray = games.some(g => Array.isArray(g.features) && g.features.length > 0);
 
   games.forEach(game => {
-    const mechanic = game.mechanic?.primary;
-    if (!mechanic) return;
+    const mechanicsToAdd = [];
+    if (hasFeaturesArray && Array.isArray(game.features) && game.features.length > 0) {
+      mechanicsToAdd.push(...game.features);
+    } else {
+      const m = mechanicPrimary(game);
+      if (m) mechanicsToAdd.push(m);
+    }
+    if (mechanicsToAdd.length === 0) return;
 
-    if (!mechanicMap.has(mechanic)) {
-      mechanicMap.set(mechanic, {
-        mechanic,
-        game_count: 0,
-        theo_win_sum: 0,
-        market_share_sum: 0,
-        volatilities: []
-      });
-    }
+    const tw = theoWin(game);
+    const ms = marketSharePercent(game);
+    const vol = specsVolatility(game);
 
-    const mechanicData = mechanicMap.get(mechanic);
-    mechanicData.game_count++;
-    
-    if (typeof game.performance?.theo_win === 'number') {
-      mechanicData.theo_win_sum += game.performance.theo_win;
-    }
-    
-    if (typeof game.performance?.market_share_percent === 'number') {
-      mechanicData.market_share_sum += game.performance.market_share_percent;
-    }
-    
-    if (game.specs?.volatility) {
-      mechanicData.volatilities.push(game.specs.volatility);
-    }
+    mechanicsToAdd.forEach(mechanic => {
+      if (!mechanicMap.has(mechanic)) {
+        mechanicMap.set(mechanic, {
+          mechanic,
+          game_count: 0,
+          theo_win_sum: 0,
+          market_share_sum: 0,
+          volatilities: []
+        });
+      }
+      const mechanicData = mechanicMap.get(mechanic);
+      mechanicData.game_count++;
+      if (typeof tw === 'number') mechanicData.theo_win_sum += tw;
+      if (typeof ms === 'number') mechanicData.market_share_sum += ms;
+      if (vol) mechanicData.volatilities.push(vol);
+    });
   });
 
-  // Convert to array and calculate averages
   const mechanics = Array.from(mechanicMap.values()).map(mech => ({
     mechanic: mech.mechanic,
     game_count: mech.game_count,
@@ -169,12 +200,12 @@ export function calculateProviderDistribution(games) {
   const providerMap = new Map();
 
   games.forEach(game => {
-    const studio = game.provider?.studio;
-    const parent = game.provider?.parent;
+    const studio = providerStudio(game);
+    const parent = providerParent(game);
     if (!studio) return;
 
     const key = `${studio}|${parent || studio}`;
-    
+
     if (!providerMap.has(key)) {
       providerMap.set(key, {
         studio,
@@ -188,18 +219,13 @@ export function calculateProviderDistribution(games) {
 
     const providerData = providerMap.get(key);
     providerData.game_count++;
-    
-    if (typeof game.performance?.theo_win === 'number') {
-      providerData.theo_win_sum += game.performance.theo_win;
-    }
-    
-    if (typeof game.performance?.market_share_percent === 'number') {
-      providerData.market_share_sum += game.performance.market_share_percent;
-    }
-    
-    if (game.specs?.volatility) {
-      providerData.volatilities.push(game.specs.volatility);
-    }
+
+    const tw = theoWin(game);
+    if (typeof tw === 'number') providerData.theo_win_sum += tw;
+    const ms = marketSharePercent(game);
+    if (typeof ms === 'number') providerData.market_share_sum += ms;
+    const vol = specsVolatility(game);
+    if (vol) providerData.volatilities.push(vol);
   });
 
   // Convert to array and calculate averages
@@ -220,13 +246,13 @@ export function calculateProviderDistribution(games) {
  */
 export function calculateAnomalies(games) {
   const highPerformers = games
-    .filter(g => g.performance?.anomaly === 'high')
-    .sort((a, b) => (b.performance?.theo_win || 0) - (a.performance?.theo_win || 0))
+    .filter(g => performanceAnomaly(g) === 'high')
+    .sort((a, b) => (theoWin(b) || 0) - (theoWin(a) || 0))
     .slice(0, 25);
 
   const lowPerformers = games
-    .filter(g => g.performance?.anomaly === 'low')
-    .sort((a, b) => (a.performance?.theo_win || 0) - (b.performance?.theo_win || 0))
+    .filter(g => performanceAnomaly(g) === 'low')
+    .sort((a, b) => (theoWin(a) || 0) - (theoWin(b) || 0))
     .slice(0, 30);
 
   return {
@@ -242,27 +268,32 @@ export function filterGames(games, filters = {}) {
   let filtered = [...games];
 
   if (filters.provider) {
-    filtered = filtered.filter(g => 
-      g.provider?.studio?.toLowerCase().includes(filters.provider.toLowerCase())
+    filtered = filtered.filter(g =>
+      (providerStudio(g) || '').toLowerCase().includes(filters.provider.toLowerCase())
     );
   }
 
   if (filters.mechanic) {
-    filtered = filtered.filter(g => 
-      g.mechanic?.primary?.toLowerCase().includes(filters.mechanic.toLowerCase())
-    );
+    const mechLower = filters.mechanic.toLowerCase();
+    filtered = filtered.filter(g => {
+      const primary = (mechanicPrimary(g) || '').toLowerCase();
+      if (primary.includes(mechLower)) return true;
+      const feats = g.features;
+      if (Array.isArray(feats) && feats.some(f => String(f).toLowerCase().includes(mechLower))) return true;
+      return false;
+    });
   }
 
   if (filters.theme) {
-    filtered = filtered.filter(g => 
-      g.theme?.consolidated?.toLowerCase().includes(filters.theme.toLowerCase())
+    filtered = filtered.filter(g =>
+      (themeConsolidated(g) || '').toLowerCase().includes(filters.theme.toLowerCase())
     );
   }
 
   if (filters.search) {
     const searchLower = filters.search.toLowerCase();
-    filtered = filtered.filter(g => 
-      g.name?.toLowerCase().includes(searchLower)
+    filtered = filtered.filter(g =>
+      (g.name || '').toLowerCase().includes(searchLower)
     );
   }
 
@@ -328,44 +359,63 @@ export function getUnique(games, field) {
   return Array.from(values);
 }
 
+/** Flat field fallbacks for common nested paths */
+const FLAT_FALLBACKS = {
+  'theme.consolidated': ['theme_consolidated', 'theme_primary'],
+  'mechanic.primary': ['mechanic_primary'],
+  'provider.studio': ['studio', 'provider', 'provider_studio'],
+  'provider.parent': ['parent_company', 'provider_parent'],
+  'performance.theo_win': ['theo_win', 'performance_theo_win'],
+  'performance.market_share_percent': ['market_share_pct', 'performance_market_share_percent'],
+  'performance.anomaly': ['anomaly', 'performance_anomaly'],
+  'performance.rank': ['performance_rank'],
+  'specs.rtp': ['rtp', 'specs_rtp'],
+  'specs.volatility': ['volatility', 'specs_volatility']
+};
+
 /**
- * Get nested value from object using dot notation
+ * Get nested value from object using dot notation.
+ * Falls back to flat schema fields when nested path returns undefined.
  */
 function getNestedValue(obj, path) {
-  return path.split('.').reduce((current, key) => current?.[key], obj);
+  let val = path.split('.').reduce((current, key) => current?.[key], obj);
+  if (val !== undefined && val !== null) return val;
+  const flatKeys = FLAT_FALLBACKS[path];
+  if (flatKeys) {
+    for (const key of flatKeys) {
+      val = obj[key];
+      if (val !== undefined && val !== null) return val;
+    }
+  }
+  return undefined;
 }
 
 /**
- * Validate data structure
+ * Validate data structure. Supports both flat and nested schemas.
  */
 export function validateGameStructure(game) {
   const errors = [];
-  
+
   if (!game.name || typeof game.name !== 'string') {
     errors.push('Missing or invalid name');
   }
-  
-  if (!game.theme || typeof game.theme !== 'object') {
-    errors.push('Missing or invalid theme');
-  } else if (!game.theme.consolidated) {
-    errors.push('Missing theme.consolidated');
+
+  if (!themeConsolidated(game)) {
+    errors.push('Missing theme (theme_consolidated/theme_primary or theme.consolidated)');
   }
-  
-  if (!game.mechanic || typeof game.mechanic !== 'object') {
-    errors.push('Missing or invalid mechanic');
+
+  if (!mechanicPrimary(game)) {
+    errors.push('Missing mechanic (mechanic_primary or mechanic.primary)');
   }
-  
-  if (!game.provider || typeof game.provider !== 'object') {
-    errors.push('Missing or invalid provider');
+
+  if (!providerStudio(game)) {
+    errors.push('Missing provider (studio/provider or provider.studio)');
   }
-  
-  if (!game.performance || typeof game.performance !== 'object') {
-    errors.push('Missing or invalid performance');
-  } else {
-    if (typeof game.performance.theo_win !== 'number') {
-      errors.push('Missing or invalid performance.theo_win');
-    }
+
+  const tw = theoWin(game);
+  if (typeof tw !== 'number') {
+    errors.push('Missing or invalid theo_win (theo_win or performance.theo_win)');
   }
-  
+
   return errors;
 }

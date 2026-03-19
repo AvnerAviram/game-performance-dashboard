@@ -78,7 +78,7 @@ export function parseSymbols(val) {
     if (Array.isArray(val)) return val;
     if (!val || typeof val !== 'string') return [];
     try { const arr = JSON.parse(val); return Array.isArray(arr) ? arr : []; }
-    catch { return []; }
+    catch { return []; /* malformed JSON — treat as empty array */ }
 }
 
 /**

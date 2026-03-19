@@ -1,0 +1,279 @@
+// SPA Router - page navigation and Game Lab sub-navigation
+import { log, warn } from '../lib/env.js';
+import { initializeCharts } from './charts-modern.js';
+import { populateThemesFilters, populateMechanicsFilters, populateProvidersFilters, populateGamesFilters } from './filter-dropdowns.js';
+import { renderOverview } from './renderers/overview-renderer.js';
+import { renderThemes, setupThemeClickHandlers } from './renderers/themes-renderer.js';
+import { renderMechanics } from './renderers/mechanics-renderer.js';
+import { renderAnomalies, generateInsights } from './renderers/insights-renderer.js';
+import { setupSearch } from './search.js';
+import { sendAIMessage } from '../features/ai-assistant.js';
+import { renderTickets } from '../features/tickets.js';
+import { setupPrediction } from '../features/prediction.js';
+import { updateAuthUI } from '../features/auth-ui.js';
+
+async function initializePage(pageName) {
+    switch(pageName) {
+        case 'overview':
+            renderOverview();
+            initializeCharts();
+            break;
+            
+        case 'themes':
+            renderThemes();
+            setupSearch('themes');
+            setupThemeClickHandlers();
+            populateThemesFilters();
+            if (window.switchThemeView) window.switchThemeView('all');
+            break;
+            
+        case 'mechanics':
+            renderMechanics();
+            setupSearch('mechanics');
+            populateMechanicsFilters();
+            if (window.switchMechanicView) window.switchMechanicView('all');
+            break;
+            
+        case 'games': {
+            const mod = await import('./ui-providers-games.js');
+            window.renderGames = mod.renderGames;
+            window.renderProviders = mod.renderProviders;
+            mod.renderGames();
+            mod.setupGamesFilters();
+            populateGamesFilters();
+            break;
+        }
+        case 'providers': {
+            const mod = await import('./ui-providers-games.js');
+            window.renderProviders = mod.renderProviders;
+            window.renderGames = mod.renderGames;
+            mod.renderProviders();
+            populateProvidersFilters();
+            break;
+        }
+            
+        case 'anomalies':
+            showPage('insights');
+            return;
+            
+        case 'insights':
+            generateInsights();
+            break;
+
+        case 'game-lab': {
+            generateInsights();
+            setupPrediction();
+            const ngMod = await import('../features/name-generator.js');
+            ngMod.setupNameGenerator();
+            break;
+        }
+            
+        case 'trends':
+            setTimeout(async () => {
+                try {
+                    const { renderTrends } = await import('../features/trends.js');
+                    renderTrends();
+                } catch (_error) {
+                    console.error('Error loading trends:', _error);
+                }
+            }, 250);
+            break;
+            
+        case 'prediction':
+            showPage('game-lab');
+            setTimeout(() => window.navigateGameLab('concept'), 600);
+            return;
+            
+        case 'name-generator':
+            showPage('game-lab');
+            setTimeout(() => window.navigateGameLab('name-gen'), 600);
+            return;
+
+        case 'ai-assistant':
+            document.getElementById('ai-input')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAIMessage();
+                }
+            });
+            break;
+
+        case 'tickets':
+            renderTickets();
+            break;
+
+        default:
+            warn(`No initializer for page: ${pageName}`);
+    }
+}
+
+const VALID_PAGES = new Set([
+    'overview', 'themes', 'mechanics', 'games', 'providers',
+    'insights', 'anomalies', 'game-lab', 'trends', 'tickets',
+    'prediction', 'name-generator', 'ai-assistant',
+]);
+
+export async function showPage(page, { pushHistory = true } = {}) {
+    if (!VALID_PAGES.has(page)) {
+        warn('⚠️ Invalid page requested:', page);
+        page = 'overview';
+    }
+
+    if (page === 'anomalies') { showPage('insights', { pushHistory }); return; }
+    if (page === 'prediction') { showPage('game-lab', { pushHistory }); setTimeout(() => window.navigateGameLab('concept'), 600); return; }
+    if (page === 'name-generator') { showPage('game-lab', { pushHistory }); setTimeout(() => window.navigateGameLab('name-gen'), 600); return; }
+
+    log('🔄 Switching to page:', page);
+    
+    if (pushHistory) {
+        history.pushState({ page }, '', `#${page}`);
+    }
+    
+    document.querySelectorAll('[data-page]').forEach(navItem => {
+        navItem.classList.remove(
+            'bg-gradient-to-r', 'from-indigo-50', 'to-blue-50', 
+            '!text-indigo-600', 'text-indigo-600', '!text-white', 
+            'font-semibold', 'font-bold'
+        );
+        navItem.classList.remove('dark:from-indigo-900/20', 'dark:to-blue-900/20', 'dark:!text-white');
+    });
+    
+    const activeNav = document.querySelector(`[data-page="${page}"]`);
+    if (activeNav) {
+        activeNav.classList.add('bg-gradient-to-r', 'from-indigo-50', 'to-blue-50', 'text-indigo-600', 'font-semibold');
+        activeNav.classList.add('dark:from-indigo-900/20', 'dark:to-blue-900/20', 'dark:!text-white');
+    } else {
+        warn('⚠️ Nav item not found for page:', page);
+    }
+    
+    const container = document.getElementById('page-container');
+    if (!container) {
+        console.error('❌ Page container not found!');
+        return;
+    }
+    
+    try {
+        const response = await fetch(`src/pages/${page}.html?v=${Date.now()}`);
+        if (!response.ok) throw new Error(`Page not found: ${page}`);
+        
+        const html = await response.text();
+        container.innerHTML = html;
+        
+        try {
+            await initializePage(page);
+        } catch (initErr) {
+            console.error(`Page "${page}" init error:`, initErr);
+            const banner = document.createElement('div');
+            banner.className = 'mx-4 mt-4 p-3 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-sm';
+            banner.textContent = 'Some content on this page failed to load. Data may be incomplete.';
+            container.prepend(banner);
+        }
+
+        updateAuthUI();
+        
+        log('✅ Page loaded:', page);
+    } catch (error) {
+        console.error('Failed to load page:', error);
+        container.innerHTML = '<div class="p-8 text-center text-red-600 dark:text-red-400">Failed to load page</div>';
+    }
+    
+    // Close any open side panels when changing pages
+    ['mechanic-panel', 'theme-panel', 'game-panel', 'provider-panel'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.right = '-650px';
+    });
+    const backdrop = document.getElementById('mechanic-backdrop');
+    if (backdrop) {
+        backdrop.classList.add('hidden');
+        backdrop.classList.remove('block');
+    }
+    
+    if (page === 'trends') {
+        setTimeout(async () => {
+            try {
+                const { renderTrends } = await import('../features/trends.js');
+                renderTrends();
+            } catch (error) {
+                console.error('Error loading trends:', error);
+            }
+        }, 250);
+    }
+    
+    if (page === 'anomalies') {
+        setTimeout(() => {
+            renderAnomalies();
+            const topBtn = document.querySelector('button[onclick="showAnomalies(\'top\')"]');
+            if (topBtn) topBtn.click();
+        }, 100);
+    }
+
+    updateGameLabSubnav(page);
+}
+
+// Game Lab sub-navigation
+function updateGameLabSubnav(page) {
+    const subnav = document.getElementById('gamelab-subnav');
+    const chevron = document.querySelector('.gamelab-chevron');
+    if (!subnav) return;
+
+    if (page === 'game-lab') {
+        subnav.style.maxHeight = subnav.scrollHeight + 'px';
+        if (chevron) chevron.style.transform = 'rotate(90deg)';
+    } else {
+        subnav.style.maxHeight = '0';
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+    }
+}
+
+function toggleGameLabSubnav() {
+    const subnav = document.getElementById('gamelab-subnav');
+    const chevron = document.querySelector('.gamelab-chevron');
+    if (!subnav) return;
+    const isExpanded = subnav.style.maxHeight && subnav.style.maxHeight !== '0px';
+    if (isExpanded) {
+        subnav.style.maxHeight = '0';
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+    } else {
+        subnav.style.maxHeight = subnav.scrollHeight + 'px';
+        if (chevron) chevron.style.transform = 'rotate(90deg)';
+    }
+}
+
+window.switchLabTool = function(toolId) {
+    if (toolId === 'symbols') toolId = 'blueprint';
+    document.querySelectorAll('.gamelab-section').forEach(s => s.classList.add('hidden'));
+    const target = document.getElementById(`lab-section-${toolId}`);
+    if (target) target.classList.remove('hidden');
+
+    document.querySelectorAll('.gamelab-sub').forEach(btn => {
+        btn.classList.remove('text-indigo-600', 'dark:text-indigo-400', 'bg-indigo-50/50', 'dark:bg-indigo-900/15', 'bg-indigo-50/60');
+    });
+    const sidebarSub = document.querySelector(`.gamelab-sub[data-section="${toolId}"]`);
+    if (sidebarSub) {
+        sidebarSub.classList.add('text-indigo-600', 'dark:text-indigo-400', 'bg-indigo-50/50', 'dark:bg-indigo-900/15');
+    }
+};
+
+window.navigateGameLab = async function(section) {
+    const currentPage = window.location.hash.replace('#', '') || 'overview';
+    if (currentPage !== 'game-lab') {
+        await showPage('game-lab');
+    }
+    window.switchLabTool(section);
+};
+
+window.handleGameLabClick = function(_e) {
+    const currentPage = window.location.hash.replace('#', '') || 'overview';
+    if (currentPage === 'game-lab') {
+        toggleGameLabSubnav();
+    } else {
+        showPage('game-lab');
+    }
+};
+
+window.showPage = showPage;
+
+window.addEventListener('popstate', (e) => {
+    const page = e.state?.page || 'overview';
+    showPage(page, { pushHistory: false });
+});

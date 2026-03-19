@@ -5,7 +5,9 @@
 
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
-import { renderThemes, renderMechanics } from './ui.js';
+import { renderThemes } from './renderers/themes-renderer.js';
+import { renderMechanics } from './renderers/mechanics-renderer.js';
+import { parseFeatures } from '../lib/parse-features.js';
 
 /**
  * Populate Themes page filters
@@ -260,9 +262,7 @@ export function populateGamesFilters() {
     const providers = [...new Set(gameData.allGames.map(g => g.provider_studio))].filter(p => p).sort();
     const featureSet = new Set();
     gameData.allGames.forEach(g => {
-        let feats = g.features;
-        if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
-        if (Array.isArray(feats)) feats.forEach(f => featureSet.add(f));
+        parseFeatures(g.features).forEach(f => featureSet.add(f));
     });
     const mechanics = [...featureSet].sort();
     

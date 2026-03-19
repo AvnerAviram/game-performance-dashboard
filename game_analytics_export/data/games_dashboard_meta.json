@@ -1367,7 +1367,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:44:32.131825+00:00"
   },
-  "game-181-gobble_gobble_gobble_megaways": {
+  "game-181-gobblers_gone_wylde": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1383,7 +1383,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:44:53.748134+00:00"
   },
-  "game-183-triple_monkey": {
+  "game-184-triple_monkey": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1391,7 +1391,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:44:58.885477+00:00"
   },
-  "game-184-3_cheeky_chimps": {
+  "game-185-3_cheeky_chimps": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1399,7 +1399,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:07.777376+00:00"
   },
-  "game-185-banana_rush": {
+  "game-186-banana_rush": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1407,7 +1407,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:14.299271+00:00"
   },
-  "game-186-big_city_5s": {
+  "game-187-big_city_5s": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1415,7 +1415,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:17.518206+00:00"
   },
-  "game-187-diamond_cash_mighty_viking": {
+  "game-188-diamond_cash_mighty_viking": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1423,7 +1423,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:33.613017+00:00"
   },
-  "game-188-porkin_cashpots_combo_frenzy_jackpot_royale": {
+  "game-189-porkin_cashpots_combo_frenzy_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1431,7 +1431,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:53.013466+00:00"
   },
-  "game-189-dancing_drums_link": {
+  "game-190-dancing_drums_link": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1439,7 +1439,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:45:59.752594+00:00"
   },
-  "game-190-blood_suckers": {
+  "game-191-blood_suckers": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1447,7 +1447,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:46:06.323297+00:00"
   },
-  "game-191-triple_jackpot_gems": {
+  "game-192-triple_jackpot_gems": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1455,7 +1455,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:46:11.367535+00:00"
   },
-  "game-192-5_star_coins_hold_and_win": {
+  "game-193-5_star_coins_hold_and_win": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1463,7 +1463,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:46:26.239361+00:00"
   },
-  "game-193-gold_standard_jackpots": {
+  "game-194-gold_standard_jackpots": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1471,7 +1471,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:46:30.267538+00:00"
   },
-  "game-194-diamond_inferno": {
+  "game-195-diamond_inferno": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1479,7 +1479,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:46:36.593969+00:00"
   },
-  "game-195-lightning_gorilla_2_maximum_boltage_xmas": {
+  "game-196-lightning_gorilla_2_maximum_boltage_xmas": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1487,7 +1487,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:01.088210+00:00"
   },
-  "game-196-double_cash_spinner": {
+  "game-197-double_cash_spinner": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1495,7 +1495,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:08.565516+00:00"
   },
-  "game-197-wild_turkey_megaways": {
+  "game-198-wild_turkey_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1503,7 +1503,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:13.972569+00:00"
   },
-  "game-198-the_walking_dead_collect_em": {
+  "game-199-the_walking_dead_collect_em": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1511,7 +1511,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:35.185619+00:00"
   },
-  "game-199-coin_strike_hold_and_win": {
+  "game-200-coin_strike_hold_and_win": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1519,7 +1519,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:39.211824+00:00"
   },
-  "game-200-prosperity_link_wan_shi_ru_yi": {
+  "game-201-prosperity_link_wan_shi_ru_yi": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1527,7 +1527,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:47:43.906363+00:00"
   },
-  "game-201-triple_coin_treasures_shamrock_fortunes": {
+  "game-202-triple_coin_treasures_shamrock_fortunes": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1535,7 +1535,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:11.351093+00:00"
   },
-  "game-202-dragon_power_super_orbs": {
+  "game-203-dragon_power_super_orbs": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1543,7 +1543,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:15.943315+00:00"
   },
-  "game-203-cash_flip_medusa": {
+  "game-204-cash_flip_medusa": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1551,7 +1551,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:23.095195+00:00"
   },
-  "game-204-rakin_bacon": {
+  "game-205-rakin_bacon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1559,7 +1559,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:27.328918+00:00"
   },
-  "game-205-double_jackpot_gems": {
+  "game-206-double_jackpot_gems": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1567,7 +1567,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:31.885887+00:00"
   },
-  "game-206-splash_of_gold": {
+  "game-207-splash_of_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1575,7 +1575,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:38.176827+00:00"
   },
-  "game-207-bass_cash_deluxe": {
+  "game-208-bass_cash_deluxe": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1583,7 +1583,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:47.351892+00:00"
   },
-  "game-208-starburst_galaxy": {
+  "game-209-starburst_galaxy": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1591,7 +1591,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:54.202367+00:00"
   },
-  "game-209-prosperity_gems_hold_and_win": {
+  "game-210-prosperity_gems_hold_and_win": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1599,7 +1599,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:48:58.677096+00:00"
   },
-  "game-210-100x_fortune": {
+  "game-211-100x_fortune": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1607,7 +1607,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:05.812302+00:00"
   },
-  "game-211-kitty_glitter_grand": {
+  "game-212-kitty_glitter_grand": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1615,7 +1615,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:11.450224+00:00"
   },
-  "game-212-divine_fortune_megaways": {
+  "game-213-divine_fortune_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1623,7 +1623,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:17.075569+00:00"
   },
-  "game-213-bloody_murder": {
+  "game-214-bloody_murder": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1631,7 +1631,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:25.266846+00:00"
   },
-  "game-214-blazin_bank_run": {
+  "game-215-blazin_bank_run": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1639,7 +1639,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:32.871074+00:00"
   },
-  "game-216-rick_and_morty_strike_back_jackpot_royale_express": {
+  "game-217-rick_and_morty_strike_back_jackpot_royale_express": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1647,7 +1647,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:45.562930+00:00"
   },
-  "game-217-mad_mad_monkey": {
+  "game-218-mad_mad_monkey": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1655,7 +1655,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:48.416829+00:00"
   },
-  "game-218-amazing_catch_power_combo": {
+  "game-219-amazing_catch_power_combo": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1663,7 +1663,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:54.161874+00:00"
   },
-  "game-219-ryze": {
+  "game-220-ryze": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1671,7 +1671,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:49:59.406922+00:00"
   },
-  "game-220-gold_blitz": {
+  "game-221-gold_blitz": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1679,7 +1679,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:05.367146+00:00"
   },
-  "game-221-blazing_bison_gold_blitz": {
+  "game-222-blazing_bison_gold_blitz": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1687,7 +1687,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:14.641114+00:00"
   },
-  "game-222-almighty_buffalo_megaways": {
+  "game-223-almighty_buffalo_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1695,7 +1695,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:20.353911+00:00"
   },
-  "game-223-money_blast_quick_strike": {
+  "game-224-money_blast_quick_strike": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1703,7 +1703,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:33.772322+00:00"
   },
-  "game-225-burn_in_hell_hold_and_win": {
+  "game-226-burn_in_hell_hold_and_win": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1711,7 +1711,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:48.884932+00:00"
   },
-  "game-226-megajackpots_fortune_coin": {
+  "game-227-megajackpots_fortune_coin": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1719,7 +1719,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:52.714075+00:00"
   },
-  "game-227-assassin_moon": {
+  "game-228-assassin_moon": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1727,7 +1727,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:50:59.672951+00:00"
   },
-  "game-228-slingo_da_vinci_diamonds": {
+  "game-229-slingo_da_vinci_diamonds": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1735,7 +1735,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:05.840068+00:00"
   },
-  "game-229-9_masks_of_fire": {
+  "game-230-9_masks_of_fire": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1743,7 +1743,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:11.251258+00:00"
   },
-  "game-230-temple_tumble": {
+  "game-231-temple_tumble": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1751,7 +1751,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:16.516225+00:00"
   },
-  "game-231-santa_surprise": {
+  "game-232-santa_surprise": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1759,7 +1759,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:31.837352+00:00"
   },
-  "game-233-slingo_rakin_bacon": {
+  "game-234-slingo_rakin_bacon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1767,7 +1767,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:44.508328+00:00"
   },
-  "game-234-magnificent_power_gold": {
+  "game-235-magnificent_power_gold": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1775,7 +1775,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:51:55.714509+00:00"
   },
-  "game-235-all_aboard_dynamite_dash": {
+  "game-236-all_aboard_dynamite_dash": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1783,7 +1783,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:03.453982+00:00"
   },
-  "game-236-triple_double_patriot": {
+  "game-237-triple_double_patriot": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1791,7 +1791,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:07.961118+00:00"
   },
-  "game-237-buffalo_gold_revolution": {
+  "game-238-buffalo_gold_revolution": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1799,7 +1799,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:19.981094+00:00"
   },
-  "game-238-almighty_buffalo_megaways_jackpot_royale": {
+  "game-239-almighty_buffalo_megaways_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1807,7 +1807,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:27.172573+00:00"
   },
-  "game-239-prosperity_link_cai_yun_heng_tong": {
+  "game-240-prosperity_link_cai_yun_heng_tong": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1815,7 +1815,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:33.168302+00:00"
   },
-  "game-240-triple_treasure": {
+  "game-241-triple_treasure": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1823,7 +1823,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:36.932450+00:00"
   },
-  "game-242-triple_jackpot_gems_deluxe": {
+  "game-243-triple_jackpot_gems_deluxe": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1831,7 +1831,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:41.431927+00:00"
   },
-  "game-243-finn_and_the_swirly_spin": {
+  "game-244-finn_and_the_swirly_spin": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1839,7 +1839,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:45.877112+00:00"
   },
-  "game-244-medusa_megaways": {
+  "game-245-medusa_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1847,7 +1847,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:49.885583+00:00"
   },
-  "game-245-12_coins_grand_gold_edition": {
+  "game-246-12_coins_grand_gold_edition": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1855,7 +1855,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:52:55.726365+00:00"
   },
-  "game-246-jumanji": {
+  "game-247-jumanji": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1863,7 +1863,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:02.346677+00:00"
   },
-  "game-247-dragon_power_triple_gold": {
+  "game-248-dragon_power_triple_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1871,7 +1871,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:07.681866+00:00"
   },
-  "game-248-thundering_shenlong": {
+  "game-249-thundering_shenlong": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1879,7 +1879,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:12.862366+00:00"
   },
-  "game-249-the_walking_dead": {
+  "game-250-the_walking_dead": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1887,7 +1887,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:17.162829+00:00"
   },
-  "game-250-cash_express_luxury_line_buffalo": {
+  "game-251-cash_express_luxury_line_buffalo": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1895,7 +1895,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:25.354366+00:00"
   },
-  "game-251-crystal_star_deluxe": {
+  "game-252-crystal_star_deluxe": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1903,7 +1903,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:29.996537+00:00"
   },
-  "game-252-black_diamond_platinum": {
+  "game-253-black_diamond_platinum": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1911,7 +1911,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:34.815388+00:00"
   },
-  "game-253-piggy_winner": {
+  "game-254-piggy_winner": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1919,7 +1919,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:40.449148+00:00"
   },
-  "game-254-big_money_frenzy": {
+  "game-255-big_money_frenzy": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1927,7 +1927,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:53:45.285722+00:00"
   },
-  "game-255-double_jackpot_gems_grand_wheel": {
+  "game-256-double_jackpot_gems_grand_wheel": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1935,7 +1935,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:05.390278+00:00"
   },
-  "game-256-azteca_collect_em": {
+  "game-257-azteca_collect_em": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1943,7 +1943,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:28.472040+00:00"
   },
-  "game-257-wheel_of_fortune_gold_spin_triple_red_hot_7s": {
+  "game-258-wheel_of_fortune_gold_spin_triple_red_hot_7s": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1951,7 +1951,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:34.186548+00:00"
   },
-  "game-258-christmas_prize_pooch": {
+  "game-259-christmas_prize_pooch": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1959,7 +1959,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:38.566382+00:00"
   },
-  "game-259-lucky_88": {
+  "game-260-lucky_88": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1967,7 +1967,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:46.600250+00:00"
   },
-  "game-260-doctor_love_on_vacation": {
+  "game-261-doctor_love_on_vacation": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1975,7 +1975,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:49.662318+00:00"
   },
-  "game-261-ultra_blazing_fire_link_india": {
+  "game-262-ultra_blazing_fire_link_india": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1983,7 +1983,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:54:54.473416+00:00"
   },
-  "game-262-thunder_cash_charming_lady": {
+  "game-263-thunder_cash_charming_lady": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1991,7 +1991,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:13.108693+00:00"
   },
-  "game-263-jackpot_carnival_the_power_of_88": {
+  "game-264-jackpot_carnival_the_power_of_88": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -1999,7 +1999,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:28.561675+00:00"
   },
-  "game-264-cash_eruption_hephaestus": {
+  "game-265-cash_eruption_hephaestus": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2007,7 +2007,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:33.697789+00:00"
   },
-  "game-265-triple_jelly": {
+  "game-266-triple_jelly": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2015,7 +2015,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:37.939270+00:00"
   },
-  "game-266-slingo_extreme": {
+  "game-267-slingo_extreme": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2023,7 +2023,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:42.229406+00:00"
   },
-  "game-267-jekyllz_wild_ultranudge": {
+  "game-268-jekyllz_wild_ultranudge": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2031,7 +2031,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:48.597210+00:00"
   },
-  "game-268-lightning_shenlong": {
+  "game-269-lightning_shenlong": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2039,7 +2039,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:53.347648+00:00"
   },
-  "game-269-zeus_gold_blitz_fortune_tower": {
+  "game-270-zeus_gold_blitz_fortune_tower": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2047,7 +2047,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:55:59.153616+00:00"
   },
-  "game-270-3_sparkling_pearls": {
+  "game-271-3_sparkling_pearls": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2055,7 +2055,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:11.419339+00:00"
   },
-  "game-271-monopoly_megaways": {
+  "game-272-monopoly_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2063,7 +2063,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:16.992998+00:00"
   },
-  "game-272-greek_lightning": {
+  "game-273-greek_lightning": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2071,7 +2071,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:29.601063+00:00"
   },
-  "game-273-gold_blitz_extreme": {
+  "game-274-gold_blitz_extreme": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2079,7 +2079,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:36.041800+00:00"
   },
-  "game-274-irish_eyes_2": {
+  "game-275-irish_eyes_2": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2087,7 +2087,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:40.360930+00:00"
   },
-  "game-275-genie_wild": {
+  "game-276-genie_wild": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2095,7 +2095,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:45.136152+00:00"
   },
-  "game-276-mighty_black_knight": {
+  "game-277-mighty_black_knight": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2103,7 +2103,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:56:48.530909+00:00"
   },
-  "game-277-10x_minimum_top_multiplier": {
+  "game-278-10x_minimum_top_multiplier": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2111,7 +2111,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:03.904271+00:00"
   },
-  "game-278-triple_wild_thanksgiving": {
+  "game-279-triple_wild_thanksgiving": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2119,7 +2119,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:08.652488+00:00"
   },
-  "game-279-12_loaded_pots_drums": {
+  "game-280-12_loaded_pots_drums": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2127,7 +2127,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:34.778173+00:00"
   },
-  "game-280-dragon_diamond": {
+  "game-281-dragon_diamond": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2135,7 +2135,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:38.910856+00:00"
   },
-  "game-281-smokin_hot_gems": {
+  "game-282-smokin_hot_gems": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2143,7 +2143,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:42.896018+00:00"
   },
-  "game-282-rich_little_piggies_world_class_halloween_edition": {
+  "game-283-rich_little_piggies_world_class_halloween_edition": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2151,7 +2151,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:46.658210+00:00"
   },
-  "game-283-big_catch_bass_fishing": {
+  "game-284-big_catch_bass_fishing": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2159,7 +2159,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:57:52.146013+00:00"
   },
-  "game-284-thundering_leopard": {
+  "game-285-thundering_leopard": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2167,7 +2167,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:12.583193+00:00"
   },
-  "game-285-fruit_shop": {
+  "game-286-fruit_shop": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2175,7 +2175,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:17.020165+00:00"
   },
-  "game-286-ashoka_eternal": {
+  "game-287-ashoka_eternal": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2183,7 +2183,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:23.939954+00:00"
   },
-  "game-287-red_hot_slingo": {
+  "game-288-red_hot_slingo": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2191,7 +2191,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:29.343030+00:00"
   },
-  "game-288-piggy_riches_begins": {
+  "game-289-piggy_riches_begins": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2199,7 +2199,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:38.030393+00:00"
   },
-  "game-289-24k_gold_spartan": {
+  "game-290-24k_gold_spartan": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2207,7 +2207,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:58:59.552038+00:00"
   },
-  "game-290-blazin_gems_deluxe": {
+  "game-291-blazin_gems_deluxe": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2215,7 +2215,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:59:22.975152+00:00"
   },
-  "game-291-triple_blitz_7s": {
+  "game-292-quick_hit_platinum_triple_blazing_7s": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2223,7 +2223,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:59:26.864014+00:00"
   },
-  "game-292-wolves_collect_em_and_link": {
+  "game-293-wolves_collect_em_and_link": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2231,7 +2231,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:59:47.960429+00:00"
   },
-  "game-293-snow_slingers": {
+  "game-294-snow_slingers": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2239,7 +2239,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:59:53.667825+00:00"
   },
-  "game-294-big_win_cat_pawsperity": {
+  "game-296-big_win_cat_pawsperity": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2247,7 +2247,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T09:59:58.468866+00:00"
   },
-  "game-295-pompeii": {
+  "game-297-pompeii": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2255,7 +2255,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:00:10.897059+00:00"
   },
-  "game-296-capital_reels": {
+  "game-298-capital_reels": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2263,7 +2263,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:00:24.440918+00:00"
   },
-  "game-297-88_fortunes_megaways": {
+  "game-299-88_fortunes_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2271,7 +2271,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:00:28.433393+00:00"
   },
-  "game-298-triple_double_gems": {
+  "game-300-triple_double_gems": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2279,7 +2279,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:00:33.289057+00:00"
   },
-  "game-300-fu_gui_hao_men_glorious_fortunes": {
+  "game-302-fu_gui_hao_men_glorious_fortunes": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2287,7 +2287,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:00:39.031504+00:00"
   },
-  "game-301-scorchin_hot_spins_wicked_wheel": {
+  "game-303-scorchin_hot_spins_wicked_wheel": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2295,7 +2295,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:03.119049+00:00"
   },
-  "game-302-big_bucks_deluxe": {
+  "game-304-big_bucks_deluxe": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2303,7 +2303,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:09.913134+00:00"
   },
-  "game-303-secrets_of_the_phoenix_elements": {
+  "game-305-secrets_of_the_phoenix_elements": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2311,7 +2311,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:13.838126+00:00"
   },
-  "game-304-megajackpots_cleopatra": {
+  "game-306-megajackpots_cleopatra": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2319,7 +2319,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:17.529775+00:00"
   },
-  "game-305-golden_catch_megaways": {
+  "game-307-golden_catch_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2327,7 +2327,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:24.363898+00:00"
   },
-  "game-306-ultimate_fire_link_olvera_street": {
+  "game-308-ultimate_fire_link_olvera_street": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2335,7 +2335,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:28.153788+00:00"
   },
-  "game-307-3_crazy_tikis": {
+  "game-309-3_crazy_tikis": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2343,7 +2343,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:41.480726+00:00"
   },
-  "game-308-pixies_of_the_forest": {
+  "game-310-pixies_of_the_forest": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2351,7 +2351,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:45.820830+00:00"
   },
-  "game-309-cops_n_robbers_big_money": {
+  "game-311-cops_n_robbers_big_money": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2359,7 +2359,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:52.359991+00:00"
   },
-  "game-310-double_ruby": {
+  "game-312-double_ruby": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2367,7 +2367,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:01:58.075427+00:00"
   },
-  "game-311-shamrock_money_pot_10k_ways": {
+  "game-313-shamrock_money_pot_10k_ways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2375,7 +2375,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:04.520447+00:00"
   },
-  "game-312-fortune_coin_charm": {
+  "game-314-fortune_coin_charm": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2383,7 +2383,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:23.196338+00:00"
   },
-  "game-313-slingo_deal_or_no_deal": {
+  "game-315-slingo_deal_or_no_deal": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2391,7 +2391,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:27.065166+00:00"
   },
-  "game-314-knight_fight": {
+  "game-316-knight_fight": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2399,7 +2399,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:34.594423+00:00"
   },
-  "game-315-golden_money": {
+  "game-317-golden_money": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2407,7 +2407,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:51.392563+00:00"
   },
-  "game-316-ultimate_slot_of_america": {
+  "game-318-ultimate_slot_of_america": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2415,7 +2415,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:02:55.706371+00:00"
   },
-  "game-317-triple_turducken": {
+  "game-319-triple_turducken": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2423,7 +2423,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:03:00.284247+00:00"
   },
-  "game-318-megajackpots_wheel_of_fortune_on_air": {
+  "game-320-megajackpots_wheel_of_fortune_on_air": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2431,7 +2431,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:03:04.261543+00:00"
   },
-  "game-319-vip": {
+  "game-321-vip": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2439,7 +2439,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:03:18.285930+00:00"
   },
-  "game-320-bull_blitz_fortunes_of_the_orient": {
+  "game-322-bull_blitz_fortunes_of_the_orient": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2447,7 +2447,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:03:25.312074+00:00"
   },
-  "game-321-witches_collect_em": {
+  "game-323-witches_collect_em": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2455,7 +2455,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:03:48.187484+00:00"
   },
-  "game-322-magic_treasures_dragon": {
+  "game-324-magic_treasures_dragon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2463,7 +2463,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:04:15.896096+00:00"
   },
-  "game-323-flaming_reels": {
+  "game-325-flaming_reels": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2471,7 +2471,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:04:19.624346+00:00"
   },
-  "game-324-mermaids_jackpot_win_and_spin": {
+  "game-326-mermaids_jackpot_win_and_spin": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2479,7 +2479,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:04:44.763293+00:00"
   },
-  "game-325-pinball_double_gold": {
+  "game-327-pinball_double_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2487,7 +2487,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:04:49.311475+00:00"
   },
-  "game-326-piggy_riches_2_megaways": {
+  "game-328-piggy_riches_2_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2495,7 +2495,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:04:53.969602+00:00"
   },
-  "game-327-blazing_777_2x3x5x_cashways": {
+  "game-329-blazing_777_2x3x5x_cashways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2503,7 +2503,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:05:17.897778+00:00"
   },
-  "game-328-bonanza_falls_megaways": {
+  "game-330-bonanza_falls_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2511,7 +2511,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:05:32.667882+00:00"
   },
-  "game-329-big_money_frenzy_golden_magnet": {
+  "game-331-big_money_frenzy_golden_magnet": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2519,7 +2519,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:05:36.272867+00:00"
   },
-  "game-330-apex_strike_lucky_cache": {
+  "game-332-apex_strike_lucky_cache": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2527,7 +2527,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:05:42.173416+00:00"
   },
-  "game-331-dragon_power_10k_ways": {
+  "game-333-dragon_power_10k_ways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2535,7 +2535,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:05:56.497707+00:00"
   },
-  "game-332-egglink_silver_pride": {
+  "game-334-egglink_silver_pride": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2543,7 +2543,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:06:02.124059+00:00"
   },
-  "game-333-mega_fire_blaze_big_circus": {
+  "game-335-mega_fire_blaze_big_circus": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2551,7 +2551,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:06:08.465782+00:00"
   },
-  "game-334-jade_dragon": {
+  "game-336-jade_dragon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2559,7 +2559,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:06:21.636043+00:00"
   },
-  "game-335-fire_blaze_blue_wizard": {
+  "game-337-fire_blaze_blue_wizard": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2567,7 +2567,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:06:45.469703+00:00"
   },
-  "game-336-wolf_legend_gold_megaways": {
+  "game-338-wolf_legend_gold_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2575,7 +2575,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:06:50.908431+00:00"
   },
-  "game-337-sahara_riches_megaways_collect_em": {
+  "game-339-sahara_riches_megaways_collect_em": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2583,7 +2583,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:07:10.494788+00:00"
   },
-  "game-338-dancing_drums_explosion": {
+  "game-340-dancing_drums_explosion": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2591,7 +2591,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:07:15.657968+00:00"
   },
-  "game-339-diamond_cash_mighty_cleopatra": {
+  "game-341-diamond_cash_mighty_cleopatra": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2599,7 +2599,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:07:30.612276+00:00"
   },
-  "game-340-piggy_prizes_coins_o_plenty": {
+  "game-342-piggy_prizes_coins_o_plenty": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2607,7 +2607,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:07:55.802502+00:00"
   },
-  "game-341-hyper_gold": {
+  "game-343-hyper_gold": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2615,7 +2615,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:00.869000+00:00"
   },
-  "game-342-cleopatra_gold": {
+  "game-344-cleopatra_gold": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2623,7 +2623,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:05.678256+00:00"
   },
-  "game-343-starmania": {
+  "game-345-starmania": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2631,7 +2631,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:08.452311+00:00"
   },
-  "game-344-10000_wolves_10k_ways": {
+  "game-346-10000_wolves_10k_ways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2639,7 +2639,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:11.871426+00:00"
   },
-  "game-345-da_vinci_diamonds_dual_play": {
+  "game-347-da_vinci_diamonds_dual_play": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2647,7 +2647,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:22.069325+00:00"
   },
-  "game-346-adorned_peacock": {
+  "game-348-adorned_peacock": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2655,7 +2655,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:26.677201+00:00"
   },
-  "game-347-cops_n_robbers_trick_or_treat": {
+  "game-349-cops_n_robbers_trick_or_treat": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2663,7 +2663,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:08:47.422002+00:00"
   },
-  "game-348-caichen_triple_blossom": {
+  "game-350-caichen_triple_blossom": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2671,7 +2671,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:03.168665+00:00"
   },
-  "game-349-centurion_bigger_big_money": {
+  "game-351-centurion_bigger_big_money": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2679,7 +2679,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:10.590889+00:00"
   },
-  "game-350-queens_of_ra_coin_collect": {
+  "game-352-queens_of_ra_coin_collect": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2687,7 +2687,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:16.033908+00:00"
   },
-  "game-351-7s_fire_blitz": {
+  "game-353-7s_fire_blitz": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2695,7 +2695,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:19.213344+00:00"
   },
-  "game-352-wheel_of_fortune_triple_gold_gold_spin": {
+  "game-354-wheel_of_fortune_triple_gold_gold_spin": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2703,7 +2703,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:22.641501+00:00"
   },
-  "game-353-ultra_blazing_fire_link": {
+  "game-355-ultra_blazing_fire_link": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2711,7 +2711,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:26.361658+00:00"
   },
-  "game-354-cash_eruption_hoggin_cash": {
+  "game-356-cash_eruption_hoggin_cash": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2719,7 +2719,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:32.353850+00:00"
   },
-  "game-355-lucky_larry_lobstermania_2": {
+  "game-357-lucky_larry_lobstermania_2": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2727,7 +2727,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:36.029740+00:00"
   },
-  "game-356-4_fantastic_fish_amazon_adventure": {
+  "game-358-4_fantastic_fish_amazon_adventure": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2735,7 +2735,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:42.878628+00:00"
   },
-  "game-357-10x_fortune": {
+  "game-359-10x_fortune": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2743,7 +2743,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:49.681867+00:00"
   },
-  "game-358-piggy_prizes_wand_of_riches_2": {
+  "game-360-piggy_prizes_wand_of_riches_2": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2751,7 +2751,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:09:54.779161+00:00"
   },
-  "game-359-crazy_chilli": {
+  "game-361-crazy_chilli": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2759,7 +2759,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:00.423004+00:00"
   },
-  "game-360-crazy_tiki_hold_and_win": {
+  "game-362-crazy_tiki_hold_and_win": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2767,7 +2767,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:19.990687+00:00"
   },
-  "game-361-dancing_drums_explosion_mega_drop": {
+  "game-363-dancing_drums_explosion_mega_drop": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2775,7 +2775,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:25.791062+00:00"
   },
-  "game-362-fire_and_roses_joker": {
+  "game-364-fire_and_roses_joker": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2783,7 +2783,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:29.906441+00:00"
   },
-  "game-363-diamond_hearts": {
+  "game-365-diamond_hearts": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2791,7 +2791,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:35.929203+00:00"
   },
-  "game-364-3_glittery_diamonds": {
+  "game-366-3_glittery_diamonds": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2799,7 +2799,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:44.429917+00:00"
   },
-  "game-365-cygnus": {
+  "game-367-cygnus_5": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2807,7 +2807,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:10:51.572327+00:00"
   },
-  "game-366-age_of_the_gods_collect_em": {
+  "game-368-age_of_the_gods_collect_em": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2815,7 +2815,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:08.184156+00:00"
   },
-  "game-367-slingo_gold_cash_freespin": {
+  "game-370-slingo_gold_cash_freespin": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2823,7 +2823,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:12.711570+00:00"
   },
-  "game-368-immortal_ways_88_charms": {
+  "game-371-immortal_ways_88_charms": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2831,7 +2831,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:18.527992+00:00"
   },
-  "game-369-demons_gold": {
+  "game-372-demons_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2839,7 +2839,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:22.890063+00:00"
   },
-  "game-370-dark_waters_power_combo": {
+  "game-373-dark_waters_power_combo": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2847,7 +2847,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:29.479025+00:00"
   },
-  "game-371-flaming_hot_chili_pot_jackpot_royale_express": {
+  "game-374-flaming_hot_chili_pot_jackpot_royale_express": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2855,7 +2855,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:50.244917+00:00"
   },
-  "game-372-penny_roulette": {
+  "game-375-penny_roulette": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2863,7 +2863,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:54.850676+00:00"
   },
-  "game-373-megajackpots_wolf_run": {
+  "game-376-megajackpots_wolf_run": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2871,7 +2871,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:11:57.939110+00:00"
   },
-  "game-374-triple_gold_bars": {
+  "game-377-triple_gold_bars": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2879,7 +2879,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:01.173982+00:00"
   },
-  "game-375-almighty_777_deluxe_jackpot_royale_express": {
+  "game-378-almighty_777_deluxe_jackpot_royale_express": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2887,7 +2887,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:04.811026+00:00"
   },
-  "game-376-triple_supreme_xtreme_grand_prosperity": {
+  "game-379-triple_supreme_xtreme_grand_prosperity": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2895,7 +2895,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:27.676446+00:00"
   },
-  "game-377-amazing_catch": {
+  "game-380-amazing_catch": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2903,7 +2903,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:33.084783+00:00"
   },
-  "game-378-wanted_dead_or_a_wild": {
+  "game-381-wanted_dead_or_a_wild": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2911,7 +2911,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:38.964730+00:00"
   },
-  "game-379-lucky_tree": {
+  "game-382-lucky_tree": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2919,7 +2919,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:12:55.614780+00:00"
   },
-  "game-380-chili_poppers": {
+  "game-383-chili_poppers": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2927,7 +2927,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:05.038554+00:00"
   },
-  "game-381-lightning_gold_2": {
+  "game-384-lightning_gold_2": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2935,7 +2935,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:26.900012+00:00"
   },
-  "game-382-white_orchid": {
+  "game-385-white_orchid": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2943,7 +2943,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:33.707433+00:00"
   },
-  "game-383-triple_diamond": {
+  "game-386-triple_diamond": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2951,7 +2951,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:37.547117+00:00"
   },
-  "game-384-mega_fire_blaze_legacy_of_the_tiger": {
+  "game-387-mega_fire_blaze_legacy_of_the_tiger": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2959,7 +2959,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:42.593853+00:00"
   },
-  "game-385-thundering_tiger": {
+  "game-388-thundering_tiger": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2967,7 +2967,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:13:49.784368+00:00"
   },
-  "game-386-lightning_gorilla_2_max_boltage": {
+  "game-389-lightning_gorilla_2_max_boltage": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2975,7 +2975,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:14:13.513704+00:00"
   },
-  "game-387-gold_inferno": {
+  "game-390-gold_inferno": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2983,7 +2983,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:14:31.960216+00:00"
   },
-  "game-388-thunder_cash_senorita_suerte": {
+  "game-391-thunder_cash_senorita_suerte": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2991,7 +2991,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:14:51.592293+00:00"
   },
-  "game-389-golden_catch": {
+  "game-392-golden_catch": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -2999,7 +2999,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:14:57.613548+00:00"
   },
-  "game-390-hercules_high_and_mighty": {
+  "game-393-hercules_high_and_mighty": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3007,7 +3007,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:15:01.172593+00:00"
   },
-  "game-391-queen_of_shadows": {
+  "game-394-queen_of_shadows": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3015,7 +3015,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:15:06.547718+00:00"
   },
-  "game-392-cash_falls_add_em_up_rome": {
+  "game-395-cash_falls_add_em_up_rome": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3023,7 +3023,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:15:27.568089+00:00"
   },
-  "game-393-get_the_coins": {
+  "game-396-get_the_coins": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3031,7 +3031,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:15:45.035092+00:00"
   },
-  "game-394-coin_trio_piggy_burst": {
+  "game-397-coin_trio_piggy_burst": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3039,7 +3039,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:15:53.770864+00:00"
   },
-  "game-395-cash_summit_jackpot_royale": {
+  "game-398-cash_summit_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3047,7 +3047,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:10.494136+00:00"
   },
-  "game-396-pinata_explosivo": {
+  "game-399-pinata_explosivo": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3055,7 +3055,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:16.623120+00:00"
   },
-  "game-397-double_black_diamond": {
+  "game-400-double_black_diamond": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3063,7 +3063,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:21.882489+00:00"
   },
-  "game-398-dragon_duo": {
+  "game-401-dragon_duo": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3071,7 +3071,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:29.657949+00:00"
   },
-  "game-399-double_diamond": {
+  "game-402-double_diamond": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3079,7 +3079,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:33.291141+00:00"
   },
-  "game-400-reactoonz_100": {
+  "game-403-reactoonz_100": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3087,7 +3087,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:38.422168+00:00"
   },
-  "game-401-777_strike": {
+  "game-404-777_strike": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3095,7 +3095,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:42.900964+00:00"
   },
-  "game-402-gritty_kitty_of_nitropolis": {
+  "game-405-gritty_kitty_of_nitropolis": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3103,7 +3103,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:48.394530+00:00"
   },
-  "game-404-the_wild_life_extreme": {
+  "game-407-the_wild_life_extreme": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3111,7 +3111,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:54.327108+00:00"
   },
-  "game-405-my_slot_studio": {
+  "game-408-my_slot_studio": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3119,7 +3119,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:16:58.700215+00:00"
   },
-  "game-407-slingo_cleopatra": {
+  "game-410-slingo_cleopatra": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3127,7 +3127,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:17:04.496814+00:00"
   },
-  "game-408-china_shores_quick_strike": {
+  "game-411-china_shores_quick_strike": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3135,7 +3135,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:17:10.989258+00:00"
   },
-  "game-409-buffalo_chief": {
+  "game-412-buffalo_chief": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3143,7 +3143,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:17:19.514562+00:00"
   },
-  "game-410-ba_fang_jin_bao_abundant_fortune": {
+  "game-413-ba_fang_jin_bao_abundant_fortune": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3151,7 +3151,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:17:35.723011+00:00"
   },
-  "game-411-deal_or_no_deal_bankers_boost_jackpot_royale": {
+  "game-414-deal_or_no_deal_bankers_boost_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3159,7 +3159,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:17:58.296648+00:00"
   },
-  "game-412-diamond_explosion_sweet_love": {
+  "game-415-diamond_explosion_sweet_love": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3167,7 +3167,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:03.329067+00:00"
   },
-  "game-413-catch_of_the_day": {
+  "game-416-catch_of_the_day": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3175,7 +3175,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:10.205846+00:00"
   },
-  "game-414-panda_pots": {
+  "game-417-panda_pots": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3183,7 +3183,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:16.003237+00:00"
   },
-  "game-415-gold_stacks_88_royal_monkey": {
+  "game-418-gold_stacks_88_royal_monkey": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3191,7 +3191,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:42.546754+00:00"
   },
-  "game-416-thundering_horseman": {
+  "game-419-thundering_horseman": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3199,7 +3199,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:47.929718+00:00"
   },
-  "game-417-quadruple_da_vinci_diamonds_jackpot": {
+  "game-420-quadruple_da_vinci_diamonds_jackpot": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3207,7 +3207,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:51.838776+00:00"
   },
-  "game-418-megajackpots_siberian_storm": {
+  "game-421-megajackpots_siberian_storm": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3215,7 +3215,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:18:55.520134+00:00"
   },
-  "game-419-fire_stampede": {
+  "game-422-fire_stampede": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3223,7 +3223,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:19:01.378929+00:00"
   },
-  "game-420-deal_or_no_deal_the_big_hit_megaways_jackpot_royale": {
+  "game-423-deal_or_no_deal_the_big_hit_megaways_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3231,7 +3231,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:19:25.013653+00:00"
   },
-  "game-421-grand_buzzer_beater_megaways": {
+  "game-424-grand_buzzer_beater_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3239,7 +3239,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:19:43.898504+00:00"
   },
-  "game-422-house_of_spins": {
+  "game-425-house_of_spins": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3247,7 +3247,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:19:50.333273+00:00"
   },
-  "game-423-ted_cash_lock_jackpot_royale": {
+  "game-426-ted_cash_lock_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3255,7 +3255,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:19:53.791687+00:00"
   },
-  "game-424-times_machine_extra": {
+  "game-427-times_machine_extra": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3263,7 +3263,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:13.846453+00:00"
   },
-  "game-426-all_aboard_go_west": {
+  "game-429-all_aboard_go_west": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3271,7 +3271,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:18.924096+00:00"
   },
-  "game-427-super_boom_boom_boom": {
+  "game-430-super_boom_boom_boom": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3279,7 +3279,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:21.762446+00:00"
   },
-  "game-428-777_super_strike": {
+  "game-431-777_super_strike": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3287,7 +3287,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:26.230593+00:00"
   },
-  "game-429-wolf_legend_megaways_jackpot_royale": {
+  "game-432-wolf_legend_megaways_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3295,7 +3295,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:32.320796+00:00"
   },
-  "game-430-truckers_vs_aliens": {
+  "game-433-truckers_vs_aliens": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3303,7 +3303,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:36.272366+00:00"
   },
-  "game-431-25_red_hot_7_clover_link": {
+  "game-434-25_red_hot_7_clover_link": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3311,7 +3311,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:40.791726+00:00"
   },
-  "game-432-triple_gold": {
+  "game-435-triple_gold": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3319,7 +3319,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:44.095072+00:00"
   },
-  "game-433-klowns": {
+  "game-436-klowns": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3327,7 +3327,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:52.690420+00:00"
   },
-  "game-434-beast_of_wealth": {
+  "game-437-beast_of_wealth": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3335,7 +3335,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:20:56.790359+00:00"
   },
-  "game-435-goons_gone_wild": {
+  "game-438-goons_gone_wild": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3343,7 +3343,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:03.062811+00:00"
   },
-  "game-436-fire_and_roses_jolly_joker": {
+  "game-439-fire_and_roses_jolly_joker": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3351,7 +3351,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:10.614007+00:00"
   },
-  "game-437-thunder_cash_golden_voodoo_magic": {
+  "game-440-thunder_cash_golden_voodoo_magic": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3359,7 +3359,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:14.940505+00:00"
   },
-  "game-438-wild_west": {
+  "game-441-wild_west": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3367,7 +3367,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:28.172383+00:00"
   },
-  "game-439-fire_blaze_green_wizard": {
+  "game-442-fire_blaze_green_wizard": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3375,7 +3375,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:34.176643+00:00"
   },
-  "game-440-jackpot_carnival_buffalo": {
+  "game-443-jackpot_carnival_buffalo": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3383,7 +3383,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:41.400343+00:00"
   },
-  "game-441-empire_of_wilds": {
+  "game-444-empire_of_wilds": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3391,7 +3391,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:21:57.382758+00:00"
   },
-  "game-442-cash_express_luxury_line_timber_wolf": {
+  "game-445-cash_express_luxury_line_timber_wolf": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3399,7 +3399,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:22:07.307366+00:00"
   },
-  "game-443-cash_flip_devils_coin": {
+  "game-446-cash_flip_devils_coin": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3407,7 +3407,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:22:27.577665+00:00"
   },
-  "game-444-wild_winner": {
+  "game-447-wild_winner": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3415,7 +3415,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:22:32.329407+00:00"
   },
-  "game-445-8x_crystal_bells": {
+  "game-448-8x_crystal_bells": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3423,7 +3423,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:22:35.562794+00:00"
   },
-  "game-446-money_raid_wapiti": {
+  "game-449-money_raid_wapiti": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3431,7 +3431,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:22:50.319830+00:00"
   },
-  "game-447-bankin_more_bacon": {
+  "game-450-bankin_more_bacon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3439,7 +3439,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:10.524778+00:00"
   },
-  "game-448-quick_hit_super_wheel_wild_red": {
+  "game-451-quick_hit_super_wheel_wild_red": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3447,7 +3447,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:15.635971+00:00"
   },
-  "game-449-olympus_raging_megaways": {
+  "game-452-olympus_raging_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3455,7 +3455,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:21.267292+00:00"
   },
-  "game-450-thor_10k_ways": {
+  "game-453-thor_10k_ways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3463,7 +3463,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:25.209607+00:00"
   },
-  "game-451-piggy_bank_fortune_pusher": {
+  "game-454-piggy_bank_fortune_pusher": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3471,7 +3471,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:29.748056+00:00"
   },
-  "game-452-black_diamond": {
+  "game-455-black_diamond": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3479,7 +3479,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:36.125756+00:00"
   },
-  "game-453-all_aboard_piggy_pennies": {
+  "game-456-all_aboard_piggy_pennies": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3487,7 +3487,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:23:41.077842+00:00"
   },
-  "game-454-stinkin_rich_skunks_gone_wild": {
+  "game-457-stinkin_rich_skunks_gone_wild": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3495,7 +3495,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:04.686823+00:00"
   },
-  "game-455-slice_of_midnight": {
+  "game-458-slice_of_midnight": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3503,7 +3503,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:18.810813+00:00"
   },
-  "game-456-mercy_of_the_gods": {
+  "game-459-mercy_of_the_gods": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3511,7 +3511,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:27.723860+00:00"
   },
-  "game-457-saint_nicked_2": {
+  "game-460-saint_nicked_2": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3519,7 +3519,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:34.443357+00:00"
   },
-  "game-458-buffalo_blitz": {
+  "game-461-buffalo_blitz": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3527,7 +3527,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:38.516730+00:00"
   },
-  "game-459-triple_cash_wheel": {
+  "game-462-triple_cash_wheel": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3535,7 +3535,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:41.841090+00:00"
   },
-  "game-460-big_money_frenzy_megaways": {
+  "game-463-big_money_frenzy_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3543,7 +3543,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:48.752343+00:00"
   },
-  "game-461-super_jackpot_wild_gems": {
+  "game-464-super_jackpot_wild_gems": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3551,7 +3551,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:53.965110+00:00"
   },
-  "game-462-wolf_riches": {
+  "game-465-wolf_riches": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3559,7 +3559,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:24:58.880410+00:00"
   },
-  "game-463-the_rise_of_the_tycoon": {
+  "game-466-the_rise_of_the_tycoon": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3567,7 +3567,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:20.933033+00:00"
   },
-  "game-464-big_fishing_fortune": {
+  "game-467-big_fishing_fortune": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3575,7 +3575,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:25.533810+00:00"
   },
-  "game-465-fruit_shop_megaways": {
+  "game-468-fruit_shop_megaways": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3583,7 +3583,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:31.999051+00:00"
   },
-  "game-466-slingo_stinkin_rich": {
+  "game-469-slingo_stinkin_rich": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3591,7 +3591,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:36.050064+00:00"
   },
-  "game-467-flames_of_fortune": {
+  "game-470-flames_of_fortune": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3599,7 +3599,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:39.398375+00:00"
   },
-  "game-468-pumpkins_ultraup": {
+  "game-471-pumpkins_ultraup": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3607,7 +3607,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:44.089324+00:00"
   },
-  "game-469-long_and_happy_life": {
+  "game-472-long_and_happy_life": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3615,7 +3615,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:25:48.754555+00:00"
   },
-  "game-470-starlight_jackpots_odds_of_the_god_2": {
+  "game-473-starlight_jackpots_odds_of_the_god_2": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3623,7 +3623,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:26:07.894256+00:00"
   },
-  "game-471-3_dancing_monkeys": {
+  "game-474-3_dancing_monkeys": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3631,7 +3631,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:26:21.191540+00:00"
   },
-  "game-472-silver_lux_big_win_spinner": {
+  "game-475-silver_lux_big_win_spinner": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3639,7 +3639,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:26:48.811449+00:00"
   },
-  "game-473-wildwood_buffalo": {
+  "game-476-wildwood_buffalo": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3647,7 +3647,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:26:52.451065+00:00"
   },
-  "game-474-monopoly_money_in_hand": {
+  "game-477-monopoly_money_in_hand": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3655,7 +3655,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:26:56.662719+00:00"
   },
-  "game-475-ze_zeus": {
+  "game-478-ze_zeus": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3663,7 +3663,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:00.569915+00:00"
   },
-  "game-476-thunder_cash_senor_muerte": {
+  "game-479-thunder_cash_senor_muerte": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3671,7 +3671,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:28.471171+00:00"
   },
-  "game-477-finns_golden_tavern": {
+  "game-480-finns_golden_tavern": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3679,7 +3679,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:33.963096+00:00"
   },
-  "game-478-wolf_run": {
+  "game-481-wolf_run": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3687,7 +3687,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:38.240412+00:00"
   },
-  "game-479-kingfisher": {
+  "game-482-kingfisher": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3695,7 +3695,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:43.647631+00:00"
   },
-  "game-480-fire_blaze_golden_macaque": {
+  "game-483-fire_blaze_golden_macaque": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3703,7 +3703,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:27:47.512649+00:00"
   },
-  "game-481-almighty_buffalo_reloaded_megaways": {
+  "game-484-almighty_buffalo_reloaded_megaways": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3711,7 +3711,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:09.577427+00:00"
   },
-  "game-482-slingo_candy_machine_bl4st": {
+  "game-485-slingo_candy_machine_bl4st": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3719,7 +3719,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:14.849632+00:00"
   },
-  "game-483-blazing_bison_gold_blitz_extreme": {
+  "game-486-blazing_bison_gold_blitz_extreme": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3727,7 +3727,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:21.422837+00:00"
   },
-  "game-484-owl_eyes": {
+  "game-487-owl_eyes": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3735,7 +3735,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:25.365835+00:00"
   },
-  "game-485-rodeo_grand": {
+  "game-488-rodeo_grand": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3743,7 +3743,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:30.535260+00:00"
   },
-  "game-486-raging_rhino": {
+  "game-489-raging_rhino": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3751,7 +3751,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:37.360204+00:00"
   },
-  "game-487-blazin_grand": {
+  "game-490-blazin_grand": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3759,7 +3759,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:53.788231+00:00"
   },
-  "game-489-wheel_of_fortune_ruby_riches": {
+  "game-492-wheel_of_fortune_ruby_riches": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3767,7 +3767,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:28:57.512115+00:00"
   },
-  "game-490-the_100_000_pyramid": {
+  "game-493-the_100_000_pyramid": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3775,7 +3775,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:01.784193+00:00"
   },
-  "game-491-gobbler_gone_wild": {
+  "game-494-gobbler_gone_wild": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3783,7 +3783,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:04.545929+00:00"
   },
-  "game-493-almighty_buffalo_lightning_gold": {
+  "game-496-almighty_buffalo_lightning_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3791,7 +3791,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:22.851483+00:00"
   },
-  "game-494-slingo_capital_gains": {
+  "game-497-slingo_capital_gains": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3799,7 +3799,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:28.379959+00:00"
   },
-  "game-495-flaming_hot_devil": {
+  "game-498-flaming_hot_devil": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3807,7 +3807,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:45.290066+00:00"
   },
-  "game-496-boom_boom_boom": {
+  "game-499-boom_boom_boom": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3815,7 +3815,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:50.356636+00:00"
   },
-  "game-497-dancing_drums": {
+  "game-500-dancing_drums": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3823,7 +3823,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:29:53.874558+00:00"
   },
-  "game-499-triple_hoot": {
+  "game-502-triple_hoot": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3831,7 +3831,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:30:53.756858+00:00"
   },
-  "game-500-ted_jackpot_royale": {
+  "game-503-ted_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3839,7 +3839,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:31:17.582984+00:00"
   },
-  "game-501-quick_hit_platinum": {
+  "game-504-quick_hit_platinum": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3847,7 +3847,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:31:20.996768+00:00"
   },
-  "game-502-cash_eruption_vegas": {
+  "game-505-cash_eruption_vegas": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3855,7 +3855,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:31:25.731357+00:00"
   },
-  "game-503-the_jetsons_jackpot_royale": {
+  "game-506-the_jetsons_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3863,7 +3863,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:31:41.688479+00:00"
   },
-  "game-504-peaky_blinders_2_the_shelby_empire": {
+  "game-507-peaky_blinders_2_the_shelby_empire": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3871,7 +3871,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:31:56.177093+00:00"
   },
-  "game-507-bigger_catch_bass_fishing_jackpot_royale_express": {
+  "game-510-bigger_catch_bass_fishing_jackpot_royale_express": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3879,7 +3879,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:32:53.267547+00:00"
   },
-  "game-508-diamond_arrow": {
+  "game-511-diamond_arrow": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3887,7 +3887,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:32:57.626836+00:00"
   },
-  "game-509-djinnis_arabian_riches": {
+  "game-512-djinnis_arabian_riches": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3895,7 +3895,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:33:20.334213+00:00"
   },
-  "game-510-luck_it_up": {
+  "game-513-luck_it_up": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3903,7 +3903,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:33:31.735647+00:00"
   },
-  "game-511-triple_dragons_strike": {
+  "game-514-triple_dragons_strike": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3911,7 +3911,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:33:35.057916+00:00"
   },
-  "game-512-underworld_kingdom_3_wonders": {
+  "game-515-underworld_kingdom_3_wonders": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3919,7 +3919,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:33:55.195470+00:00"
   },
-  "game-513-slingo_deadliest_catch": {
+  "game-516-slingo_deadliest_catch": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3927,7 +3927,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:34:01.520622+00:00"
   },
-  "game-514-vegas_no_limit_wins": {
+  "game-517-vegas_no_limit_wins": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3935,7 +3935,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:34:06.700706+00:00"
   },
-  "game-515-12_coins_grand_platinum_edition_santas_jackpot": {
+  "game-518-12_coins_grand_platinum_edition_santas_jackpot": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3943,7 +3943,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:34:27.633240+00:00"
   },
-  "game-516-slingo_big_spin_booster": {
+  "game-519-slingo_big_spin_booster": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3951,7 +3951,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:34:37.477701+00:00"
   },
-  "game-517-crown_of_egypt": {
+  "game-520-crown_of_egypt": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3959,7 +3959,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:34:43.177473+00:00"
   },
-  "game-518-almighty_beast_big_money_jackpot_royale": {
+  "game-521-almighty_beast_big_money_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3967,7 +3967,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:35:02.337080+00:00"
   },
-  "game-519-big_money_frenzy_jackpot_royale": {
+  "game-522-big_money_frenzy_jackpot_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3975,7 +3975,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:35:07.506439+00:00"
   },
-  "game-520-the_crypt": {
+  "game-523-the_crypt": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3983,7 +3983,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:35:19.405633+00:00"
   },
-  "game-521-10x_cash_super_bonus": {
+  "game-1482-10x_cash_super_bonus": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3991,7 +3991,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:35:38.271698+00:00"
   },
-  "game-522-2x_3x_horseshoe": {
+  "game-1483-2x_3x_horseshoe": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -3999,7 +3999,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:35:55.163037+00:00"
   },
-  "game-523-2x_3x_rush": {
+  "game-1484-2x_3x_rush": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4007,7 +4007,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:36:13.729341+00:00"
   },
-  "game-524-2x_spin_cycle": {
+  "game-1485-2x_spin_cycle": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4015,7 +4015,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:36:17.842107+00:00"
   },
-  "game-525-8x_oil_country": {
+  "game-1486-8x_oil_country": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4023,7 +4023,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:36:41.054345+00:00"
   },
-  "game-526-apollo_stacks": {
+  "game-1487-apollo_stacks": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4031,7 +4031,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:36:47.314167+00:00"
   },
-  "game-528-balloon_strike_ultratap": {
+  "game-1489-balloon_strike_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4039,7 +4039,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:37:02.565804+00:00"
   },
-  "game-529-bao_bao_express_jade": {
+  "game-1490-bao_bao_express_jade": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4047,7 +4047,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:37:18.946970+00:00"
   },
-  "game-530-betmgm_fortune_vault": {
+  "game-1491-betmgm_fortune_vault": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4055,7 +4055,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:37:37.575828+00:00"
   },
-  "game-531-betmgm_triple_royale": {
+  "game-1492-betmgm_triple_royale": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4063,7 +4063,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:37:52.647850+00:00"
   },
-  "game-532-betrivers_gold": {
+  "game-1493-betrivers_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4071,7 +4071,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:38:05.682308+00:00"
   },
-  "game-533-betrivers_mega": {
+  "game-1494-betrivers_mega": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4079,7 +4079,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:38:27.729987+00:00"
   },
-  "game-534-blazing_luck": {
+  "game-1495-blazing_luck": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4087,7 +4087,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:38:31.470885+00:00"
   },
-  "game-535-bonanza_blast": {
+  "game-1496-bonanza_blast": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4095,7 +4095,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:38:35.846662+00:00"
   },
-  "game-536-bonanza_blast_ultratap": {
+  "game-1497-bonanza_blast_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4103,7 +4103,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:38:53.662784+00:00"
   },
-  "game-537-c_of_wins_8x": {
+  "game-1498-c_of_wins_8x": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4111,7 +4111,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:39:17.408142+00:00"
   },
-  "game-538-caesars_cash": {
+  "game-1499-caesars_cash": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4119,7 +4119,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:39:38.518476+00:00"
   },
-  "game-539-caesars_money_vault": {
+  "game-1500-caesars_money_vault": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4127,7 +4127,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:01.474329+00:00"
   },
-  "game-540-caesars_treasure_trio": {
+  "game-1501-caesars_treasure_trio": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4135,7 +4135,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:07.074603+00:00"
   },
-  "game-541-capital_gains_ultratap": {
+  "game-1502-capital_gains_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4143,7 +4143,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:20.473849+00:00"
   },
-  "game-542-captain_riches": {
+  "game-1503-captain_riches": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4151,7 +4151,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:24.825325+00:00"
   },
-  "game-543-cash_can_ultratap": {
+  "game-1504-cash_can_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4159,7 +4159,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:51.875528+00:00"
   },
-  "game-544-cash_cow": {
+  "game-1505-cash_cow": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4167,7 +4167,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:40:55.916640+00:00"
   },
-  "game-545-cash_cow_bonus_wheel": {
+  "game-1506-cash_cow_bonus_wheel": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4175,7 +4175,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:41:11.994663+00:00"
   },
-  "game-546-cash_cow_bounty_board": {
+  "game-1507-cash_cow_bounty_board": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4183,7 +4183,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:41:23.889637+00:00"
   },
-  "game-547-cash_jolt_grand_palace": {
+  "game-1508-cash_jolt_grand_palace": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4191,7 +4191,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:41:41.045805+00:00"
   },
-  "game-548-cash_jolt_ranchero_dinero": {
+  "game-1509-cash_jolt_ranchero_dinero": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4199,7 +4199,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:04.131240+00:00"
   },
-  "game-549-cash_jolt_safari_gold": {
+  "game-1510-cash_jolt_safari_gold": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4207,7 +4207,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:19.274412+00:00"
   },
-  "game-550-cash_zap_ultratap": {
+  "game-1511-cash_zap_ultratap": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4215,7 +4215,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:23.657650+00:00"
   },
-  "game-551-cluck_cluck_cash": {
+  "game-1512-cluck_cluck_cash": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4223,7 +4223,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:29.925462+00:00"
   },
-  "game-552-colossal_diamonds": {
+  "game-1513-colossal_diamonds": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4231,7 +4231,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:33.416356+00:00"
   },
-  "game-553-count_cashula_s_castle_of_riches": {
+  "game-1514-count_cashula_s_castle_of_riches": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4239,7 +4239,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:46.318967+00:00"
   },
-  "game-554-crystal_diamond": {
+  "game-1515-crystal_diamond": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4247,7 +4247,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:42:59.451883+00:00"
   },
-  "game-555-crystal_magic": {
+  "game-1516-crystal_magic": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4255,7 +4255,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:04.557057+00:00"
   },
-  "game-556-crystal_reels": {
+  "game-1517-crystal_reels": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4263,7 +4263,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:20.009210+00:00"
   },
-  "game-557-crystal_treasure": {
+  "game-1518-crystal_treasure": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4271,7 +4271,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:34.129692+00:00"
   },
-  "game-558-desperado_s_delight": {
+  "game-1519-desperado_s_delight": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4279,7 +4279,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:47.060165+00:00"
   },
-  "game-559-diamond_boost": {
+  "game-1520-diamond_boost": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4287,7 +4287,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:50.962778+00:00"
   },
-  "game-560-diamond_rose": {
+  "game-1521-diamond_rose": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4295,7 +4295,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:43:55.967164+00:00"
   },
-  "game-561-diamond_rush": {
+  "game-1522-diamond_rush": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4303,7 +4303,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:05.371901+00:00"
   },
-  "game-562-diamond_rush_ultratap": {
+  "game-1523-diamond_rush_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4311,7 +4311,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:21.357848+00:00"
   },
-  "game-563-double_shamrock": {
+  "game-1524-double_shamrock": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4319,7 +4319,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:25.247508+00:00"
   },
-  "game-564-dragon_blast": {
+  "game-1525-dragon_blast": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4327,7 +4327,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:29.338502+00:00"
   },
-  "game-565-dragon_fa": {
+  "game-1526-dragon_fa": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4335,7 +4335,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:37.137643+00:00"
   },
-  "game-566-dragon_tao": {
+  "game-1527-dragon_tao": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4343,7 +4343,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:41.854238+00:00"
   },
-  "game-567-fanduel_cash_haul": {
+  "game-1528-fanduel_cash_haul": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4351,7 +4351,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:48.423249+00:00"
   },
-  "game-568-fanduel_vegas": {
+  "game-1529-fanduel_vegas": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4359,7 +4359,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:44:59.457204+00:00"
   },
-  "game-569-fire_wolf_ii": {
+  "game-1530-fire_wolf_ii": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4367,7 +4367,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:45:08.020569+00:00"
   },
-  "game-570-fish_fest_ultratap": {
+  "game-1531-fish_fest_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4375,7 +4375,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:45:21.065192+00:00"
   },
-  "game-571-flamenco_stacks": {
+  "game-1532-flamenco_stacks": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4383,7 +4383,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:45:24.993173+00:00"
   },
-  "game-573-fu_feng_bao_bao": {
+  "game-1534-fu_feng_bao_bao": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4391,7 +4391,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:45:46.901180+00:00"
   },
-  "game-574-fu_long_bao_bao": {
+  "game-1535-fu_long_bao_bao": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4399,7 +4399,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:45:50.676278+00:00"
   },
-  "game-575-fu_nan_fu_nu": {
+  "game-1536-fu_nan_fu_nu": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4407,7 +4407,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:00.313200+00:00"
   },
-  "game-576-goddess_treasures": {
+  "game-1537-goddess_treasures": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4415,7 +4415,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:05.455739+00:00"
   },
-  "game-577-gold_inferno_wild_stacks": {
+  "game-1538-gold_inferno_wild_stacks": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4423,7 +4423,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:09.330022+00:00"
   },
-  "game-578-gold_nudge": {
+  "game-1539-gold_nudge": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4431,7 +4431,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:12.412274+00:00"
   },
-  "game-579-golden_blessings": {
+  "game-1540-golden_blessings": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4439,7 +4439,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:21.310987+00:00"
   },
-  "game-580-golden_nile": {
+  "game-1541-golden_nile": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4447,7 +4447,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:26.456415+00:00"
   },
-  "game-581-golden_ram": {
+  "game-1542-golden_ram": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4455,7 +4455,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:30.531219+00:00"
   },
-  "game-583-golden_wins_deluxe": {
+  "game-1544-golden_wins_deluxe": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4463,7 +4463,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:34.513724+00:00"
   },
-  "game-584-grand_diamond": {
+  "game-1545-grand_diamond": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4471,7 +4471,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:40.846780+00:00"
   },
-  "game-585-grand_royale": {
+  "game-1546-grand_royale": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4479,7 +4479,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:46:44.754353+00:00"
   },
-  "game-587-hard_rockin_reels": {
+  "game-1548-hard_rockin_reels": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4487,7 +4487,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:13.525912+00:00"
   },
-  "game-588-hearts_and_horns": {
+  "game-1549-hearts_and_horns": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4495,7 +4495,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:17.295135+00:00"
   },
-  "game-589-imperial_luck": {
+  "game-1550-imperial_luck": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4503,7 +4503,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:22.433244+00:00"
   },
-  "game-590-jade_dragons": {
+  "game-1551-jade_dragons": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4511,7 +4511,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:26.924598+00:00"
   },
-  "game-591-jade_wins": {
+  "game-1552-jade_wins": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4519,7 +4519,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:34.676971+00:00"
   },
-  "game-593-kingdom_of_horus": {
+  "game-1554-kingdom_of_horus": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4527,7 +4527,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:39.076504+00:00"
   },
-  "game-594-liberty_nudge": {
+  "game-1555-liberty_nudge": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4535,7 +4535,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:47:54.929040+00:00"
   },
-  "game-595-longhorn_jackpots": {
+  "game-1556-longhorn_jackpots": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4543,7 +4543,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:00.927671+00:00"
   },
-  "game-596-luck_and_luxury": {
+  "game-1557-luck_and_luxury": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4551,7 +4551,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:06.515400+00:00"
   },
-  "game-597-lucky_sky": {
+  "game-1558-lucky_sky": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4559,7 +4559,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:11.099575+00:00"
   },
-  "game-598-mega_crown": {
+  "game-1559-mega_crown": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4567,7 +4567,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:25.272825+00:00"
   },
-  "game-599-mega_diamond_wild_stacks": {
+  "game-1560-mega_diamond_wild_stacks": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4575,7 +4575,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:29.990517+00:00"
   },
-  "game-600-meow_meow_madness": {
+  "game-1561-meow_meow_madness": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4583,7 +4583,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:36.242690+00:00"
   },
-  "game-601-mermaid_s_fortune": {
+  "game-1562-mermaid_s_fortune": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4591,7 +4591,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:46.596446+00:00"
   },
-  "game-602-mine_blast": {
+  "game-1563-mine_blast": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4599,7 +4599,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:48:51.033542+00:00"
   },
-  "game-603-money_stacks": {
+  "game-1564-money_stacks": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4607,7 +4607,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:07.605047+00:00"
   },
-  "game-604-olympus_strikes": {
+  "game-1565-olympus_strikes": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4615,7 +4615,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:15.896844+00:00"
   },
-  "game-605-olympus_strikes_ultratap": {
+  "game-1566-olympus_strikes_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4623,7 +4623,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:20.691703+00:00"
   },
-  "game-607-peacock_beauty": {
+  "game-1568-peacock_beauty": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4631,7 +4631,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:25.167611+00:00"
   },
-  "game-608-pharaoh_sun": {
+  "game-1569-pharaoh_sun": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4639,7 +4639,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:29.734173+00:00"
   },
-  "game-609-phoenix_fa": {
+  "game-1570-phoenix_fa": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4647,7 +4647,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:36.391244+00:00"
   },
-  "game-610-phoenix_xing": {
+  "game-1571-phoenix_xing": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4655,7 +4655,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:40.284400+00:00"
   },
-  "game-611-piggy_wins": {
+  "game-1572-piggy_wins": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4663,7 +4663,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:49:55.301101+00:00"
   },
-  "game-612-pirate_plunder": {
+  "game-1573-pirate_plunder": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4671,7 +4671,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:50:03.226811+00:00"
   },
-  "game-613-pontoon_21": {
+  "game-1574-pontoon_21": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4679,7 +4679,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:50:20.055794+00:00"
   },
-  "game-614-rainforest_riches": {
+  "game-1575-rainforest_riches": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4687,7 +4687,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:50:24.870768+00:00"
   },
-  "game-615-rakin_bacon_odyssey": {
+  "game-1576-rakin_bacon_odyssey": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4695,7 +4695,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:50:47.281891+00:00"
   },
-  "game-616-rakin_bacon_sahara": {
+  "game-1577-rakin_bacon_sahara": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4703,7 +4703,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:51:04.427766+00:00"
   },
-  "game-617-rakin_bacon_fu_zhu_bao_bao": {
+  "game-1578-rakin_bacon_fu_zhu_bao_bao": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4711,7 +4711,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:51:22.865405+00:00"
   },
-  "game-618-rakin_bacon_triple_oink_san_shen_zhu": {
+  "game-1579-rakin_bacon_triple_oink_san_shen_zhu": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4719,7 +4719,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:51:42.235423+00:00"
   },
-  "game-619-rakin_bacon_triple_oink_soda_fountain_fortunes": {
+  "game-1580-rakin_bacon_triple_oink_soda_fountain_fortunes": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4727,7 +4727,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:51:59.131950+00:00"
   },
-  "game-620-raoul_s_jewels": {
+  "game-1581-raoul_s_jewels": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4735,7 +4735,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:04.152062+00:00"
   },
-  "game-621-red_silk": {
+  "game-1582-red_silk": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4743,7 +4743,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:08.176626+00:00"
   },
-  "game-622-reign_of_anubis": {
+  "game-1583-reign_of_anubis": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4751,7 +4751,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:12.535842+00:00"
   },
-  "game-623-riches_of_the_nile": {
+  "game-1584-riches_of_the_nile": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4759,7 +4759,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:19.864458+00:00"
   },
-  "game-625-royal_reels": {
+  "game-1586-royal_reels": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4767,7 +4767,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:42.656951+00:00"
   },
-  "game-626-scorchin_peppers": {
+  "game-1587-scorchin_peppers": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4775,7 +4775,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:52:56.354572+00:00"
   },
-  "game-627-shamrock_fortunes": {
+  "game-1588-shamrock_fortunes": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4783,7 +4783,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:01.084248+00:00"
   },
-  "game-628-shou_hu_shen": {
+  "game-1589-shou_hu_shen": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4791,7 +4791,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:08.911126+00:00"
   },
-  "game-629-sizzlin_stacks": {
+  "game-1590-sizzlin_stacks": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4799,7 +4799,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:12.724812+00:00"
   },
-  "game-630-slingshot_blast_ultratap": {
+  "game-1591-slingshot_blast_ultratap": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4807,7 +4807,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:16.656566+00:00"
   },
-  "game-631-spin_bonanza": {
+  "game-1592-spin_bonanza": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4815,7 +4815,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:20.160592+00:00"
   },
-  "game-633-straight_fire_triple_double_spin": {
+  "game-1594-straight_fire_triple_double_spin": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4823,7 +4823,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:33.575948+00:00"
   },
-  "game-634-tiger_lord": {
+  "game-1595-tiger_lord": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4831,7 +4831,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:37.907833+00:00"
   },
-  "game-635-tiki_fortune": {
+  "game-1596-tiki_fortune": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4839,7 +4839,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:45.920464+00:00"
   },
-  "game-636-treasure_tower_ultratap": {
+  "game-1597-treasure_tower_ultratap": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4847,7 +4847,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:53:55.089118+00:00"
   },
-  "game-637-triple_gem_treasure": {
+  "game-1598-triple_gem_treasure": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4855,7 +4855,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:54:14.063370+00:00"
   },
-  "game-638-vegas_stacks": {
+  "game-1599-vegas_stacks": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4863,7 +4863,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:54:22.732543+00:00"
   },
-  "game-639-war": {
+  "game-1600-war": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4871,7 +4871,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:54:37.269541+00:00"
   },
-  "game-640-wild_money": {
+  "game-1601-wild_money": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4879,7 +4879,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:54:50.573217+00:00"
   },
-  "game-641-wolf_queen": {
+  "game-1602-wolf_queen": {
     "web_searches": 2,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4887,7 +4887,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:54:59.886480+00:00"
   },
-  "game-642-zen_wins": {
+  "game-1603-zen_wins": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -4895,7 +4895,7 @@
     "batch_id": "msgbatch_01Aofv15Vziw6HpJjMa9Uk2v",
     "enriched_at": "2026-03-16T10:55:04.583468+00:00"
   },
-  "game-643-zodiac_spins": {
+  "game-1604-zodiac_spins": {
     "web_searches": 3,
     "extract_model": "claude-sonnet-4-20250514",
     "norm_model": "claude-haiku-4-5",
@@ -6218,7 +6218,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:18:29.162922+00:00"
   },
-  "game-215-immortal_romance_vein_of_gold": {
+  "game-216-immortal_romance_vein_of_gold": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -6510,7 +6510,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:19:29.509482+00:00"
   },
-  "game-224-quick_hit_ultra_pays_sun_dragon": {
+  "game-225-quick_hit_ultra_pays_sun_dragon": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -6572,7 +6572,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:21:00.883008+00:00"
   },
-  "game-232-the_goonies": {
+  "game-233-the_goonies": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -6852,7 +6852,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:22:09.277841+00:00"
   },
-  "game-241-ultimate_fire_link_cash_falls_by_the_bay": {
+  "game-242-ultimate_fire_link_cash_falls_by_the_bay": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -7035,7 +7035,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:23:32.180717+00:00"
   },
-  "game-299-lady_of_fortune_destiny_spins": {
+  "game-301-lady_of_fortune_destiny_spins": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -7226,7 +7226,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:24:24.422180+00:00"
   },
-  "game-403-wolf_legend_megaways": {
+  "game-406-wolf_legend_megaways": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -7470,7 +7470,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:25:18.179319+00:00"
   },
-  "game-406-ice_opals": {
+  "game-409-ice_opals": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -7623,7 +7623,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:26:13.464868+00:00"
   },
-  "game-425-mad_hit_diamonds": {
+  "game-428-mad_hit_diamonds": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -7821,7 +7821,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:27:12.144081+00:00"
   },
-  "game-488-the_goonies_megaways": {
+  "game-491-the_goonies_megaways": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -8104,7 +8104,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:28:30.544577+00:00"
   },
-  "game-492-thundering_eclipse": {
+  "game-495-thundering_eclipse": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -8289,7 +8289,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:29:27.843670+00:00"
   },
-  "game-498-ace_ventura_pet_detective": {
+  "game-501-ace_ventura_pet_detective": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -8494,7 +8494,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:30:54.225160+00:00"
   },
-  "game-505-rise_of_olympus_100": {
+  "game-508-rise_of_olympus_100": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -8659,7 +8659,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:31:45.746279+00:00"
   },
-  "game-506-buildin_bucks": {
+  "game-509-buildin_bucks": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -8841,7 +8841,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:32:37.104782+00:00"
   },
-  "game-527-aztec_chief": {
+  "game-1488-aztec_chief": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -9021,7 +9021,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:33:28.881709+00:00"
   },
-  "game-572-forest_dragons": {
+  "game-1533-forest_dragons": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -9169,7 +9169,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:34:19.832843+00:00"
   },
-  "game-586-hard_rock_cash_lock": {
+  "game-1547-hard_rock_cash_lock": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -9262,7 +9262,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:36:04.206169+00:00"
   },
-  "game-606-panda_blessings": {
+  "game-1567-panda_blessings": {
     "web_searches": 2,
     "web_sources": [
       {
@@ -9428,7 +9428,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T11:38:23.890791+00:00"
   },
-  "game-632-straight_cash_triple_double_spin": {
+  "game-1593-straight_cash_triple_double_spin": {
     "web_searches": 3,
     "web_sources": [
       {
@@ -9729,7 +9729,7 @@
     "confidence_threshold": 4,
     "enriched_at": "2026-03-16T16:12:35.118651+00:00"
   },
-  "game-624-river_dragons": {
+  "game-1585-river_dragons": {
     "web_searches": 3,
     "web_sources": [
       {

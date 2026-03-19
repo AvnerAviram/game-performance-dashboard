@@ -133,7 +133,7 @@
                         </svg>
                     </span>
                     <span class="nav-text sidebar-text flex-1">Game Lab</span>
-                    <span class="nav-icon gamelab-chevron transition-transform duration-200">
+                    <span class="nav-icon gamelab-chevron sidebar-text transition-transform duration-200">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                     </span>
                 </button>
@@ -143,17 +143,21 @@
                         <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="blueprint" onclick="window.navigateGameLab('blueprint')">
                             <span class="sidebar-text">Game Blueprint</span>
                         </button>
+                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="name-gen" onclick="window.navigateGameLab('name-gen')">
+                            <span class="sidebar-text">Name Generator</span>
+                            <span class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0 ml-auto">WIP</span>
+                        </button>
                         <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="feature-impact" onclick="window.navigateGameLab('feature-impact')">
                             <span class="sidebar-text">Feature Analysis</span>
                         </button>
                         <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="concept" onclick="window.navigateGameLab('concept')">
                             <span class="sidebar-text">Concept Analyzer</span>
-                        </button>
-                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="name-gen" onclick="window.navigateGameLab('name-gen')">
-                            <span class="sidebar-text">Name Generator</span>
+                            <span class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0 ml-auto">WIP</span>
                         </button>
                     </div>
                 </div>
+
+                <!-- Game Lab flyout moved to body level to avoid sidebar transition containment -->
 
                 <!-- ASSISTANT section -->
                 <div class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none">Assistant</div>
@@ -216,11 +220,9 @@
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Issue Type</label>
                         <select id="modal-feedback-type"
                             class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm">
-                            <option value="data-issue">Incorrect data</option>
-                            <option value="missing-feature">Missing feature</option>
-                            <option value="wrong-theme">Wrong theme</option>
-                            <option value="wrong-mechanic">Wrong mechanic</option>
-                            <option value="suggestion">Suggestion</option>
+                            <option value="data-issue">Data Issue</option>
+                            <option value="ui-bug">UI Bug</option>
+                            <option value="feature-request">Feature Request</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
@@ -309,6 +311,15 @@
         </div>
     </div>
     
+    <!-- Game Lab flyout (body-level to escape sidebar transition containment) -->
+    <div id="gamelab-flyout" class="hidden fixed z-[9000] w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700" style="left:68px">
+        <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Game Lab</div>
+        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('blueprint'); document.getElementById('gamelab-flyout').classList.add('hidden');">Blueprint</button>
+        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('name-gen'); document.getElementById('gamelab-flyout').classList.add('hidden');">Name Generator</button>
+        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('feature-impact'); document.getElementById('gamelab-flyout').classList.add('hidden');">Feature Analysis</button>
+        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('concept'); document.getElementById('gamelab-flyout').classList.add('hidden');">Concept Analyzer</button>
+    </div>
+
     <!-- Chart.js only (Plotly removed - unused, saved ~3MB) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     

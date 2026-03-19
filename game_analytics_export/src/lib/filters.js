@@ -177,7 +177,7 @@ let currentGameView = 'all';
 /**
  * Filter games based on view
  */
-function getFilteredGames(view) {
+function _getFilteredGames(view) {
     const games = window.gameData?.games || [];
     
     if (games.length === 0) return [];

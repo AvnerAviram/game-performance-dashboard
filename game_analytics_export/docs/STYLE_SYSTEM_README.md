@@ -34,8 +34,7 @@ Style System
 ├── Build
 │   └── dist/output.css         # Optimized, minified output
 ├── Components
-│   ├── src/components-config.js # Component class names
-│   └── src/page-builder.js     # Page factory functions
+│   └── src/components/dashboard-components.js # Reusable UI components
 └── Tests
     ├── tests/visual-regression/ # Screenshot comparisons
     ├── tests/alignment/         # Layout consistency
@@ -113,15 +112,9 @@ For pages with filters/tabs:
      '@apply bg-white rounded-lg p-4': {}
    }
    ```
-2. **Add to** `src/components-config.js`:
-   ```javascript
-   export const COMPONENTS = {
-     myComponent: 'my-component',
-     // ...
-   };
-   ```
+2. **Add to** `src/components/dashboard-components.js` as a reusable factory function
 3. **Create test** in `tests/components/`
-4. **Document** in `COMPONENTS.md`
+4. **Document** in this guide
 
 ### Watching for Changes
 

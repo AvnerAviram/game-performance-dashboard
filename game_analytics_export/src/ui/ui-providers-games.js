@@ -1,6 +1,8 @@
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
 import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
+import { VolatilityBadge } from '../components/dashboard-components.js';
+import { parseFeatures } from '../lib/parse-features.js';
 
 // ==========================================
 // PROVIDERS PAGE - USING DUCKDB
@@ -168,21 +170,6 @@ export async function renderProviders(providersData = null) {
             const medal = globalIndex === 0 ? '<span class="mr-1">🥇</span>' : globalIndex === 1 ? '<span class="mr-1">🥈</span>' : globalIndex === 2 ? '<span class="mr-1">🥉</span>' : '';
             const rankBg = globalIndex < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
             
-            const volatilityBadge = provider.dominant_volatility ? 
-                (() => {
-                    const v = provider.dominant_volatility;
-                    const colors = {
-                        'Low': { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300' },
-                        'Low-Medium': { bg: 'bg-lime-100 dark:bg-lime-900/30', text: 'text-lime-700 dark:text-lime-300' },
-                        'Medium': { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300' },
-                        'Medium-High': { bg: 'bg-orange-100 dark:bg-orange-900/30', text: 'text-orange-700 dark:text-orange-300' },
-                        'High': { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-300' },
-                        'Very High': { bg: 'bg-rose-100 dark:bg-rose-900/30', text: 'text-rose-700 dark:text-rose-300' },
-                    };
-                    const c = colors[v] || colors['Medium'];
-                    return `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${c.bg} ${c.text}">${v}</span>`;
-                })() : '<span class="text-gray-300 dark:text-gray-600">—</span>';
-            
             html += `
                 <tr class="group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 ${rankBg}">
                     <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16">${medal}${globalIndex + 1}</td>
@@ -216,7 +203,7 @@ export async function renderProviders(providersData = null) {
                         </div>
                     </td>
                     <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400">${provider.avg_rtp ? provider.avg_rtp.toFixed(1) + '%' : '—'}</td>
-                    <td class="px-4 py-3.5">${volatilityBadge}</td>
+                    <td class="px-4 py-3.5">${provider.dominant_volatility ? VolatilityBadge(provider.dominant_volatility) : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
                 </tr>
             `;
         });
@@ -257,7 +244,7 @@ export async function renderProviders(providersData = null) {
         
     } catch (error) {
         console.error('❌ Error loading providers:', error);
-        container.innerHTML = `<div class="error-state" style="text-align: center; padding: 3rem; color: #ef4444;">Error loading providers: ${error.message}</div>`;
+        container.innerHTML = '<div class="error-state" style="text-align: center; padding: 3rem; color: #ef4444;">Failed to load providers. Please try again.</div>';
     }
 }
 
@@ -294,22 +281,7 @@ function renderProvidersTable(providers) {
     
     let html = '';
     providers.forEach((provider, index) => {
-        const parentInfo = provider.parent !== provider.studio ? `<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">${provider.parent}</div>` : '';
-        
-        const volatilityBadge = provider.dominant_volatility ? 
-            (() => {
-                const v = provider.dominant_volatility;
-                const colors = {
-                    'Low': { bg: '#dcfce7', text: '#166534' },
-                    'Low-Medium': { bg: '#d9f99d', text: '#3f6212' },
-                    'Medium': { bg: '#fef9c3', text: '#854d0e' },
-                    'Medium-High': { bg: '#fed7aa', text: '#9a3412' },
-                    'High': { bg: '#ffedd5', text: '#9a3412' },
-                    'Very High': { bg: '#fecaca', text: '#991b1b' },
-                };
-                const c = colors[v] || colors['Medium'];
-                return `<span style="display:inline-flex;align-items:center;padding:2px 10px;border-radius:9999px;font-size:0.75rem;font-weight:600;white-space:nowrap;background:${c.bg};color:${c.text}">${v}</span>`;
-            })() : 'N/A';
+        const parentInfo = provider.parent !== provider.studio ? `<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">${escapeHtml(provider.parent)}</div>` : '';
         
         html += `
             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
@@ -325,7 +297,7 @@ function renderProvidersTable(providers) {
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">${provider.total_market_share.toFixed(2)}%</td>
                 <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">${provider.avg_rtp ? provider.avg_rtp.toFixed(1) + '%' : 'N/A'}</td>
-                <td class="px-4 py-3">${volatilityBadge}</td>
+                <td class="px-4 py-3">${provider.dominant_volatility ? VolatilityBadge(provider.dominant_volatility) : 'N/A'}</td>
             </tr>
         `;
     });
@@ -368,9 +340,7 @@ export function renderGames() {
     if (mechanicFilter && mechanicFilter.options.length === 1) {
         const featureSet = new Set();
         gameData.allGames.forEach(g => {
-            let feats = g.features;
-            if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
-            if (Array.isArray(feats)) feats.forEach(f => featureSet.add(f));
+            parseFeatures(g.features).forEach(f => featureSet.add(f));
         });
         const mechanics = [...featureSet].sort();
         mechanics.forEach(m => {
@@ -400,11 +370,7 @@ export function renderGames() {
     }
     
     if (mechanicVal) {
-        filteredGames = filteredGames.filter(g => {
-            let feats = g.features;
-            if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
-            return Array.isArray(feats) && feats.includes(mechanicVal);
-        });
+        filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicVal));
     }
     
     if (currentGameViewFilter === 'marketLeaders') {
@@ -522,7 +488,6 @@ export function renderGames() {
             </tr>
         `;
     } else {
-        const maxTheo = Math.max(...filteredGames.map(g => g.performance_theo_win || 0), 1);
         const avgTheo = filteredGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / (filteredGames.length || 1);
         
         paginatedGames.forEach((game, idx) => {
@@ -532,25 +497,11 @@ export function renderGames() {
             const medal = globalIdx === 0 ? '<span class="mr-1">🥇</span>' : globalIdx === 1 ? '<span class="mr-1">🥈</span>' : globalIdx === 2 ? '<span class="mr-1">🥉</span>' : '';
             const rankBg = globalIdx < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
             
-            const volatilityBadge = game.specs_volatility ? 
-                (() => {
-                    const v = game.specs_volatility;
-                    const colors = {
-                        'Low': { bg: 'bg-emerald-100 dark:bg-emerald-900/30', text: 'text-emerald-700 dark:text-emerald-300' },
-                        'Low-Medium': { bg: 'bg-lime-100 dark:bg-lime-900/30', text: 'text-lime-700 dark:text-lime-300' },
-                        'Medium': { bg: 'bg-amber-100 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-300' },
-                        'Medium-High': { bg: 'bg-orange-100 dark:bg-orange-900/30', text: 'text-orange-700 dark:text-orange-300' },
-                        'High': { bg: 'bg-red-100 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-300' },
-                        'Very High': { bg: 'bg-rose-100 dark:bg-rose-900/30', text: 'text-rose-700 dark:text-rose-300' },
-                    };
-                    const c = colors[v] || colors['Medium'];
-                    return `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${c.bg} ${c.text}">${v}</span>`;
-                })() : '<span class="text-gray-300 dark:text-gray-600">—</span>';
+            const volatilityBadge = game.specs_volatility ? VolatilityBadge(game.specs_volatility) : '<span class="text-gray-300 dark:text-gray-600">—</span>';
             
             const featuresPills = (() => {
-                let f = game.features;
-                if (typeof f === 'string') { try { f = JSON.parse(f); } catch(e) { f = []; } }
-                if (!Array.isArray(f) || f.length === 0) return '<span class="text-gray-300 dark:text-gray-600">—</span>';
+                const f = parseFeatures(game.features);
+                if (f.length === 0) return '<span class="text-gray-300 dark:text-gray-600">—</span>';
                 return '<div class="flex flex-wrap gap-1">' + f.slice(0, 2).map(feat => 
                     `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showMechanicDetails', feat)}">${escapeHtml(feat)}</span>`
                 ).join('') + (f.length > 2 ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-medium text-gray-400">+${f.length-2}</span>` : '') + '</div>';
@@ -637,11 +588,7 @@ window.gamesGoToPage = function(page) {
         );
     }
     if (providerVal) filteredGames = filteredGames.filter(g => g.provider_studio === providerVal);
-    if (mechanicVal) filteredGames = filteredGames.filter(g => {
-        let feats = g.features;
-        if (typeof feats === 'string') { try { feats = JSON.parse(feats); } catch(e) { feats = []; } }
-        return Array.isArray(feats) && feats.includes(mechanicVal);
-    });
+    if (mechanicVal) filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicVal));
     
     const totalPages = Math.ceil(filteredGames.length / GAMES_PER_PAGE);
     

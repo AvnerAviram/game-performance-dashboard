@@ -168,7 +168,7 @@ The test suite enforces strict coverage requirements:
 - `node_modules/`
 - `tests/` (test files themselves)
 - `*.config.js` (configuration files)
-- `src/interactions.js` (event handlers tested in E2E)
+- `src/features/` (feature modules tested via integration/E2E)
 
 ## What Gets Tested
 

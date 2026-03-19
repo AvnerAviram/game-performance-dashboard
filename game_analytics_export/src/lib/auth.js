@@ -26,7 +26,7 @@ export async function login(username, password, remember = false) {
         }
         sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
         return { success: true, user: data.user };
-    } catch (e) {
+    } catch (_e) {
         return { success: false, error: 'Network error. Please try again.' };
     }
 }
@@ -49,7 +49,7 @@ export function isLoggedIn() {
         if (!data) return false;
         const user = JSON.parse(data);
         return !!user?.username;
-    } catch {
+    } catch { /* corrupt session storage — treat as logged out */
         return false;
     }
 }
@@ -68,7 +68,7 @@ export async function verifySession() {
         const data = await res.json();
         sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
         return data.user;
-    } catch {
+    } catch { /* network error — treat as no session */
         return null;
     }
 }
@@ -78,7 +78,7 @@ export function getCurrentUser() {
         const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return null;
         return JSON.parse(data)?.username || null;
-    } catch {
+    } catch { /* corrupt session storage */
         return null;
     }
 }
@@ -88,15 +88,11 @@ export function isAdmin() {
         const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return false;
         return JSON.parse(data)?.role === 'admin';
-    } catch {
+    } catch { /* corrupt session storage */
         return false;
     }
 }
 
 export function redirectToLogin() {
     window.location.replace('/login.html');
-}
-
-export function redirectToDashboard() {
-    window.location.replace('/dashboard.html');
 }

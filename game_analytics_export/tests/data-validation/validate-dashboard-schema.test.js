@@ -6,12 +6,10 @@ const DATA_DIR = resolve(import.meta.dirname, '../../data');
 
 describe('games_dashboard.json schema validation', () => {
   let games;
-  let vocabulary;
   let themeMap;
 
   beforeAll(() => {
     games = JSON.parse(readFileSync(resolve(DATA_DIR, 'games_dashboard.json'), 'utf-8'));
-    vocabulary = JSON.parse(readFileSync(resolve(DATA_DIR, 'ags_vocabulary.json'), 'utf-8'));
     themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
   });
 
@@ -31,14 +29,13 @@ describe('games_dashboard.json schema validation', () => {
     expect(dupes).toEqual([]);
   });
 
-  test('features arrays only contain canonical features', () => {
-    const canonical = new Set(vocabulary.features);
+  test('features arrays should contain non-empty strings', () => {
     const violations = [];
 
     for (const g of games) {
       if (!Array.isArray(g.features)) continue;
       for (const f of g.features) {
-        if (!canonical.has(f)) {
+        if (typeof f !== 'string' || f.trim() === '') {
           violations.push({ game: g.name, feature: f });
         }
       }

@@ -13,8 +13,10 @@ vi.mock('../src/lib/data.js', async () => {
 // Mock fetch globally
 beforeAll(() => {
   global.fetch = async (url) => {
-    if (url.includes('games_master.json') || url.includes('/data/games_master.json')) {
-      const data = await import('../data/games_master.json', { assert: { type: 'json' } });
+    const urlStr = typeof url === 'string' ? url : (url?.url || '');
+
+    if (urlStr.includes('/api/data/games') || urlStr.includes('games_dashboard.json') || urlStr.includes('/data/games_dashboard.json')) {
+      const data = await import('../data/games_dashboard.json', { assert: { type: 'json' } });
       return {
         ok: true,
         status: 200,
@@ -22,8 +24,8 @@ beforeAll(() => {
         json: async () => data.default
       };
     }
-    if (url.includes('games_complete.json')) {
-      const data = await import('../data/games_master.json', { assert: { type: 'json' } });
+    if (urlStr.includes('games_master.json') || urlStr.includes('games_complete.json')) {
+      const data = await import('../data/games_dashboard.json', { assert: { type: 'json' } });
       return {
         ok: true,
         status: 200,
@@ -35,7 +37,9 @@ beforeAll(() => {
   };
 });
 
-// Clean up DOM after each test
+// Clean up DOM after each test (skip in node environment)
 afterEach(() => {
-  document.body.innerHTML = '';
+  if (typeof document !== 'undefined') {
+    document.body.innerHTML = '';
+  }
 });

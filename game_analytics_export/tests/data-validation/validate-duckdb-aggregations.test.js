@@ -26,10 +26,10 @@ describe('DuckDB Aggregations: Overview Stats', () => {
     // Initialize DuckDB
     await initializeDatabase();
     
-    // Load games for manual calculation
-    const response = await fetch('/data/games_master.json');
+    // Load games for manual calculation (use games_dashboard - same as DuckDB)
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
     
     // Calculate both ways
     manualStats = calculateOverviewStats(games);
@@ -39,7 +39,7 @@ describe('DuckDB Aggregations: Overview Stats', () => {
 
   test('DuckDB total_games should match manual count', () => {
     expect(duckdbStats.total_games).toBe(manualStats.total_games);
-    expect(duckdbStats.total_games).toBe(501);
+    expect(duckdbStats.total_games).toBe(games.length);
   });
 
   test('DuckDB theme_count should match manual count', () => {
@@ -78,9 +78,9 @@ describe('DuckDB Aggregations: Theme Distribution', () => {
   beforeAll(async () => {
     await initializeDatabase();
     
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
     
     manualThemes = calculateThemeDistribution(games);
     duckdbThemes = await getThemeDistribution();
@@ -210,9 +210,9 @@ describe('DuckDB Aggregations: Mechanic Distribution', () => {
   beforeAll(async () => {
     await initializeDatabase();
     
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
     
     manualMechanics = calculateMechanicDistribution(games);
     duckdbMechanics = await getMechanicDistribution();
@@ -305,9 +305,9 @@ describe('DuckDB Aggregations: Provider Distribution', () => {
   beforeAll(async () => {
     await initializeDatabase();
     
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
     
     manualProviders = calculateProviderDistribution(games);
     duckdbProviders = await getProviderDistribution();
@@ -351,12 +351,12 @@ describe('DuckDB Aggregations: Provider Distribution', () => {
     expect(mismatches).toHaveLength(0);
   });
 
-  test('total game count across providers should equal 501', () => {
+  test('total game count across providers should equal games count', () => {
     const totalManual = manualProviders.reduce((sum, p) => sum + p.game_count, 0);
     const totalDuckDB = duckdbProviders.reduce((sum, p) => sum + p.game_count, 0);
     
-    expect(totalManual).toBe(501);
-    expect(totalDuckDB).toBe(501);
+    expect(totalManual).toBe(games.length);
+    expect(totalDuckDB).toBe(games.length);
   });
 });
 
@@ -368,9 +368,9 @@ describe('DuckDB Aggregations: Anomalies', () => {
   beforeAll(async () => {
     await initializeDatabase();
     
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
     
     manualAnomalies = calculateAnomalies(games);
     duckdbAnomalies = await getAnomalies();
@@ -425,14 +425,14 @@ describe('DuckDB Aggregations: Game Filtering', () => {
   beforeAll(async () => {
     await initializeDatabase();
     
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/api/data/games');
     const data = await response.json();
-    games = data.games;
+    games = Array.isArray(data) ? data : (data?.games || []);
   });
 
-  test('getAllGames should return all 501 games with no filters', () => {
+  test('getAllGames should return all games with no filters', () => {
     return getAllGames().then(allGames => {
-      expect(allGames.length).toBe(501);
+      expect(allGames.length).toBe(games.length);
     });
   });
 
@@ -484,7 +484,7 @@ describe('DuckDB Aggregations: Game Filtering', () => {
 
   test('combining multiple filters should work', async () => {
     const filters = {
-      provider: 'Pragmatic',
+      provider: 'Blueprint',
       mechanic: 'Free Spins'
     };
     
@@ -492,11 +492,13 @@ describe('DuckDB Aggregations: Game Filtering', () => {
     
     console.log(`Combined filters: ${duckdbResults.length} games`);
     
-    // Verify results match both filters
-    duckdbResults.forEach(game => {
-      expect(game.provider_studio.toLowerCase()).toContain(filters.provider.toLowerCase());
-      expect(game.mechanic_primary.toLowerCase()).toContain(filters.mechanic.toLowerCase());
-    });
+    // Verify results match both filters (when we have results)
+    for (const game of duckdbResults) {
+      expect((game.provider_studio || '').toLowerCase()).toContain(filters.provider.toLowerCase());
+      const feats = (() => { try { return JSON.parse(game.features || '[]'); } catch { return []; } })();
+      const hasMech = Array.isArray(feats) && feats.some(f => String(f).toLowerCase().includes(filters.mechanic.toLowerCase()));
+      expect(hasMech).toBe(true);
+    }
   });
 });
 

@@ -18,9 +18,8 @@ describe('Build Security', () => {
         expect(buildCmd).not.toContain('cp -r data/ dist');
     });
 
-    it('build script should only copy frontend-required data files', () => {
+    it('build script should copy game data to dist', () => {
         expect(buildCmd).toContain('games_dashboard.json');
-        expect(buildCmd).toContain('theme_consolidation_map.json');
     });
 
     it('build script should copy theme-breakdowns.json for theme panels', () => {
@@ -135,9 +134,14 @@ describe('IIS Configuration (web.config)', () => {
         expect(xml).toContain('X-Content-Type-Options');
         expect(xml).toContain('X-Frame-Options');
         expect(xml).toContain('Strict-Transport-Security');
-        expect(xml).toContain('Content-Security-Policy');
         expect(xml).toContain('Referrer-Policy');
         expect(xml).toContain('Permissions-Policy');
+    });
+
+    it('web.config should delegate CSP to Helmet (not duplicate)', () => {
+        const xml = readFileSync(join(ROOT, 'web.config'), 'utf-8');
+        expect(xml).toContain('CSP is managed by Helmet');
+        expect(xml).not.toMatch(/add name="Content-Security-Policy"/);
     });
 
     it('web.config should block sensitive segments', () => {

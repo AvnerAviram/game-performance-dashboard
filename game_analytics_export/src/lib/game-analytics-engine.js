@@ -5,6 +5,28 @@
 
 import { gameData } from './data.js';
 
+const UI_TO_FEATURE = {
+    'Free Spins': 'Free Spins',
+    'Hold & Win': 'Hold and Spin',
+    'Hold and Spin': 'Hold and Spin',
+    'Expanding Reels': 'Expanding Reels',
+    'Nudge': 'Nudges',
+    'Nudges': 'Nudges',
+    'Sticky Wilds': 'Persistence',
+    'Persistence': 'Persistence',
+    'Respins': 'Respin',
+    'Respin': 'Respin',
+    'Cash Collection': 'Cash On Reels',
+    'Cash On Reels': 'Cash On Reels',
+    'Static Jackpot': 'Static Jackpot',
+    'Wild Reels': 'Wild Reels',
+    'Wild': 'Wild Reels',
+    'Wheel Bonus': 'Wheel',
+    'Wheel': 'Wheel',
+    'Pick and Click': 'Pick Bonus',
+    'Pick Bonus': 'Pick Bonus',
+};
+
 /**
  * Analyze what makes a game successful using real data correlations
  */
@@ -192,11 +214,15 @@ export function predictFromSimilarGames(selectedTheme, selectedMechanics) {
         return t === selectedTheme || t.startsWith(selectedTheme + ' ') || t.startsWith(selectedTheme + '/');
     };
 
-    // Match mechanics: game has any of selected mechanics as primary
     const mechanicMatches = (game) => {
         if (!selectedMechanics?.length) return true;
-        const m = String(game.mechanic_primary || game.mechanic?.primary || '').trim();
-        return selectedMechanics.includes(m);
+        const gameFeatures = typeof game.features === 'string'
+            ? game.features.split(',').map(s => s.trim()).filter(Boolean)
+            : Array.isArray(game.features) ? game.features : [];
+        const canonicalSelected = selectedMechanics
+            .map(m => UI_TO_FEATURE[m] || m)
+            .filter(Boolean);
+        return canonicalSelected.some(m => gameFeatures.includes(m));
     };
 
     const similarGames = games.filter(g => themeMatches(g) && mechanicMatches(g));

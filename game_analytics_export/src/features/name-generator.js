@@ -5,6 +5,8 @@
  */
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
+import { apiPost } from '../lib/api-client.js';
+import { escapeHtml, escapeAttr } from '../lib/sanitize.js';
 
 let namePatterns = null;
 let selectedFeatures = new Set();
@@ -295,7 +297,7 @@ function blinkField(el) {
     }, 1000);
 }
 
-async function generateWithClaude(theme, features, style, keywords) {
+async function generateWithClaude(theme, features, style, keywords, code) {
     const patterns = analyzeNames();
     const themeNames = patterns.namesByTheme[theme] || [];
     const sampleNames = themeNames.slice(0, 15).join(', ');
@@ -305,33 +307,19 @@ async function generateWithClaude(theme, features, style, keywords) {
         .slice(0, 10)
         .map(([w]) => w);
     
-    try {
-        const resp = await fetch('/api/generate-names', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                theme,
-                features: [...features],
-                style,
-                keywords,
-                sampleNames: sampleNames,
-                topThemeWords: topWords,
-                totalGames: patterns.totalGames,
-                avgWordCount: Math.round(patterns.avgWordCount * 10) / 10
-            })
-        });
-        
-        if (!resp.ok) {
-            const err = await resp.json().catch(() => ({}));
-            throw new Error(err.error || 'API request failed');
-        }
-        
-        const data = await resp.json();
-        return data.names || [];
-    } catch (e) {
-        log('Claude API unavailable, falling back to pattern generation:', e.message);
-        return null;
-    }
+    const data = await apiPost('/api/generate-names', {
+        theme,
+        features: [...features],
+        style,
+        keywords,
+        code,
+        useAI: true,
+        sampleNames: sampleNames,
+        topThemeWords: topWords,
+        totalGames: patterns.totalGames,
+        avgWordCount: Math.round(patterns.avgWordCount * 10) / 10
+    });
+    return data.names || [];
 }
 
 function getThemePatternStats(theme) {
@@ -424,7 +412,7 @@ export function setupNameGenerator() {
         if (theme) renderPatternStats(theme);
     });
     
-    // Generate button
+    // Generate button — always pattern-based (free)
     generateBtn.addEventListener('click', async () => {
         const theme = themeSelect.value;
         if (!theme) {
@@ -437,17 +425,53 @@ export function setupNameGenerator() {
         
         resultsDiv.innerHTML = '<div class="flex items-center justify-center h-[200px] gap-3 text-gray-400"><div class="animate-spin w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full"></div>Generating names...</div>';
         
-        // Try Claude first, fall back to patterns
-        let names = await generateWithClaude(theme, selectedFeatures, selectedStyle, keywords);
-        let isAI = true;
-        
-        if (!names || !names.length) {
-            names = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
-            isAI = false;
-        }
-        
-        renderResults(names, theme, isAI);
+        const names = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
+        renderResults(names, theme, false);
     });
+    
+    // AI Generate button — requires secret code
+    const aiBtn = document.getElementById('ng-ai-generate');
+    if (aiBtn) {
+        aiBtn.addEventListener('click', async () => {
+            const theme = themeSelect.value;
+            if (!theme) {
+                blinkField(themeSelect);
+                return;
+            }
+            const codeInput = document.getElementById('ng-ai-code');
+            const code = codeInput?.value?.trim();
+            if (!code) {
+                blinkField(codeInput);
+                return;
+            }
+            
+            const keywords = document.getElementById('ng-keywords')?.value || '';
+            const resultsDiv = document.getElementById('ng-results');
+            const statusEl = document.getElementById('ng-ai-status');
+            
+            resultsDiv.innerHTML = '<div class="flex items-center justify-center h-[200px] gap-3 text-gray-400"><div class="animate-spin w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full"></div>AI is generating names (2-stage refinement)...</div>';
+            aiBtn.disabled = true;
+            
+            try {
+                const names = await generateWithClaude(theme, selectedFeatures, selectedStyle, keywords, code);
+                if (names && names.length > 0) {
+                    renderResults(names, theme, true);
+                    if (statusEl) { statusEl.textContent = ''; statusEl.className = ''; }
+                } else {
+                    const fallback = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
+                    renderResults(fallback, theme, false);
+                    if (statusEl) { statusEl.textContent = 'AI unavailable — showing pattern results'; statusEl.className = 'text-xs text-amber-600 mt-1'; }
+                }
+            } catch (e) {
+                const msg = e.message || 'AI generation failed';
+                if (statusEl) { statusEl.textContent = msg; statusEl.className = 'text-xs text-red-500 mt-1'; }
+                const fallback = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
+                renderResults(fallback, theme, false);
+            } finally {
+                aiBtn.disabled = false;
+            }
+        });
+    }
     
     // Reset button
     const resetBtn = document.getElementById('ng-reset');
@@ -470,18 +494,8 @@ export function setupNameGenerator() {
         });
     }
 
-    // Check if Claude API is available
-    fetch('/api/generate-names', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
-        .then(r => {
-            const label = document.getElementById('ng-mode-label');
-            if (r.status === 501) {
-                if (label) label.textContent = 'Pattern-based generation (add Claude API key for AI mode)';
-            } else if (r.status !== 401) {
-                if (label) label.textContent = 'Claude AI generation available';
-                if (label) label.classList.add('text-emerald-500');
-            }
-        })
-        .catch(() => {});
+    const label = document.getElementById('ng-mode-label');
+    if (label) label.textContent = 'Pattern-based generation (free) · Enter AI code for Claude-powered names';
 }
 
 function renderResults(names, theme, isAI) {
@@ -492,17 +506,19 @@ function renderResults(names, theme, isAI) {
         ? '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 font-semibold">AI Generated</span>'
         : '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">Pattern Based</span>';
     
-    let html = `<div class="flex items-center gap-2 mb-4">${badge}<span class="text-xs text-gray-400">${names.length} names for "${theme}" theme</span></div>`;
+    let html = `<div class="flex items-center gap-2 mb-4">${badge}<span class="text-xs text-gray-400">${names.length} names for "${escapeHtml(theme)}" theme</span></div>`;
     html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">';
     
     names.forEach((name, i) => {
         const colors = ['from-indigo-500 to-violet-500', 'from-emerald-500 to-teal-500', 'from-amber-500 to-orange-500', 'from-rose-500 to-pink-500', 'from-cyan-500 to-blue-500'];
         const color = colors[i % colors.length];
+        const safeName = escapeHtml(name);
+        const attrName = escapeAttr(name);
         html += `
-            <div class="group relative flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-sm transition-all cursor-pointer" onclick="navigator.clipboard.writeText('${name.replace(/'/g, "\\'")}').then(() => { this.querySelector('.copy-hint').textContent = 'Copied!'; setTimeout(() => this.querySelector('.copy-hint').textContent = 'Click to copy', 1500); })">
+            <div class="group relative flex items-center gap-3 p-3 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-sm transition-all cursor-pointer copy-name-card" data-copy-text="${attrName}">
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white text-xs font-bold shrink-0">${i + 1}</div>
                 <div class="flex-1 min-w-0">
-                    <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${name}</div>
+                    <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${safeName}</div>
                     <div class="copy-hint text-[10px] text-gray-400 group-hover:text-indigo-500 transition-colors">Click to copy</div>
                 </div>
             </div>`;
@@ -510,6 +526,16 @@ function renderResults(names, theme, isAI) {
     
     html += '</div>';
     div.innerHTML = html;
+
+    div.querySelectorAll('.copy-name-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const text = card.dataset.copyText;
+            navigator.clipboard.writeText(text).then(() => {
+                const hint = card.querySelector('.copy-hint');
+                if (hint) { hint.textContent = 'Copied!'; setTimeout(() => { hint.textContent = 'Click to copy'; }, 1500); }
+            });
+        });
+    });
 }
 
 function renderPatternStats(theme) {
@@ -531,7 +557,7 @@ function renderPatternStats(theme) {
     stats.topWords.forEach(([word, count], i) => {
         const size = i < 3 ? 'text-sm font-bold' : i < 6 ? 'text-xs font-semibold' : 'text-[11px]';
         const opacity = Math.max(0.4, 1 - i * 0.06);
-        html += `<span class="${size} px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300" style="opacity:${opacity}" title="${count} games">${word}</span>`;
+        html += `<span class="${size} px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300" style="opacity:${opacity}" title="${escapeAttr(String(count))} games">${escapeHtml(word)}</span>`;
     });
     html += `</div></div>`;
     
@@ -550,7 +576,7 @@ function renderPatternStats(theme) {
         <h4 class="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2">Real Game Names</h4>
         <div class="space-y-1">`;
     stats.sampleNames.forEach(name => {
-        html += `<div class="text-xs text-gray-600 dark:text-gray-400 truncate" title="${name}">• ${name}</div>`;
+        html += `<div class="text-xs text-gray-600 dark:text-gray-400 truncate" title="${escapeAttr(name)}">• ${escapeHtml(name)}</div>`;
     });
     html += `</div></div>`;
     

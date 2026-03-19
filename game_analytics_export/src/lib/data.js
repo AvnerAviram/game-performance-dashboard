@@ -149,26 +149,9 @@ async function loadViaDuckDB() {
     }
 }
 
-/**
- * Fallback: Load data via direct JSON access
- */
 async function loadViaJSON() {
-    throw new Error('❌ JSON fallback disabled. DuckDB-only mode. Check browser console for DuckDB errors.');
-}
-
-/**
- * Aggregate themes from games
- */
-function aggregateThemes() {
-    throw new Error('❌ aggregateThemes() deprecated. Use DuckDB getThemeDistribution()');
-}
-
-
-/**
- * Aggregate mechanics from games
- */
-function aggregateMechanics() {
-    throw new Error('❌ aggregateMechanics() deprecated. Use DuckDB getMechanicDistribution()');
+    console.error('DuckDB loading failed and JSON fallback is not implemented. Ensure your browser supports WASM.');
+    return false;
 }
 
 

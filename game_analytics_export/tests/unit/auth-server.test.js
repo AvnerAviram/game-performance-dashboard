@@ -23,15 +23,15 @@ describe('Auth Server - server.cjs', () => {
     });
 
     it('should have login, logout, and session endpoints', () => {
-        const code = readFileSync(serverPath, 'utf-8');
-        expect(code).toContain("'/api/login'");
-        expect(code).toContain("'/api/logout'");
-        expect(code).toContain("'/api/session'");
+        const authRoute = readFileSync(join(SERVER_DIR, 'routes', 'auth.cjs'), 'utf-8');
+        expect(authRoute).toContain("'/api/login'");
+        expect(authRoute).toContain("'/api/logout'");
+        expect(authRoute).toContain("'/api/session'");
     });
 
     it('should use bcrypt for password verification', () => {
-        const code = readFileSync(serverPath, 'utf-8');
-        expect(code).toContain('bcrypt.compare');
+        const authRoute = readFileSync(join(SERVER_DIR, 'routes', 'auth.cjs'), 'utf-8');
+        expect(authRoute).toContain('bcrypt.compare');
     });
 
     it('should use secure session cookies in production', () => {
@@ -163,7 +163,11 @@ describe('Web.config - IIS Configuration', () => {
         expect(xml).toContain('X-Content-Type-Options');
         expect(xml).toContain('X-Frame-Options');
         expect(xml).toContain('Strict-Transport-Security');
-        expect(xml).toContain('Content-Security-Policy');
+    });
+
+    it('should delegate CSP to Helmet (not duplicate in web.config)', () => {
+        const xml = readFileSync(configPath, 'utf-8');
+        expect(xml).toContain('CSP is managed by Helmet');
     });
 
     it('should block sensitive paths', () => {
@@ -193,7 +197,7 @@ describe('Login Page', () => {
 
     it('login-page.js should POST to /api/login', () => {
         const code = readFileSync(join(ROOT, 'src', 'pages', 'login-page.js'), 'utf-8');
-        expect(code).toContain('login(username, password)');
+        expect(code).toContain('login(username, password');
     });
 });
 

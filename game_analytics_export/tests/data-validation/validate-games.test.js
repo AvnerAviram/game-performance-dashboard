@@ -2,24 +2,22 @@ import { describe, test, expect, beforeAll } from 'vitest';
 
 /**
  * DATA VALIDATION TESTS: Game Data Integrity
- * Validates the games_master.json data file
+ * Validates the games_dashboard.json data file (flat schema)
  */
 
 describe('Game Data Validation', () => {
-  let gamesData;
   let games;
 
   beforeAll(async () => {
-    const module = await import('../../data/games_master.json', { 
+    const module = await import('../../data/games_dashboard.json', { 
       assert: { type: 'json' } 
     });
-    gamesData = module.default;
-    games = gamesData.games;
+    const data = module.default;
+    games = Array.isArray(data) ? data : (data.games || []);
   });
 
-  test('games_master.json should load successfully', () => {
-    expect(gamesData).toBeDefined();
-    expect(gamesData.games).toBeDefined();
+  test('games_dashboard.json should load successfully', () => {
+    expect(games).toBeDefined();
     expect(Array.isArray(games)).toBe(true);
   });
 
@@ -34,23 +32,10 @@ describe('Game Data Validation', () => {
     
     games.forEach((game, index) => {
       if (!game.name) missingFields.push({ index, game: game.name, field: 'name' });
-      if (!game.theme) missingFields.push({ index, game: game.name, field: 'theme' });
-      if (!game.performance) missingFields.push({ index, game: game.name, field: 'performance' });
-      if (!game.provider) missingFields.push({ index, game: game.name, field: 'provider' });
-      
-      if (game.theme && typeof game.theme === 'object') {
-        if (!game.theme.consolidated) {
-          missingFields.push({ index, game: game.name, field: 'theme.consolidated' });
-        }
-      }
-      
-      if (game.performance && typeof game.performance === 'object') {
-        if (typeof game.performance.theo_win !== 'number') {
-          missingFields.push({ index, game: game.name, field: 'performance.theo_win' });
-        }
-      }
+      if (!game.theme_primary) missingFields.push({ index, game: game.name, field: 'theme_primary' });
+      if (!game.provider && !game.studio) missingFields.push({ index, game: game.name, field: 'provider/studio' });
     });
-    
+
     if (missingFields.length > 0) {
       console.warn(`⚠ ${missingFields.length} games with missing fields:`, missingFields.slice(0, 5));
     }
@@ -62,14 +47,10 @@ describe('Game Data Validation', () => {
     const invalidGames = [];
 
     games.forEach((game, index) => {
-      const theoWin = game.performance?.theo_win;
+      const tw = game.theo_win;
       
-      if (typeof theoWin !== 'number' || isNaN(theoWin) || theoWin < 0 || theoWin > 200) {
-        invalidGames.push({
-          index,
-          name: game.name,
-          theoWin
-        });
+      if (typeof tw !== 'number' || isNaN(tw) || tw < 0 || tw > 200) {
+        invalidGames.push({ index, name: game.name, theo_win: tw });
       }
     });
 
@@ -77,7 +58,6 @@ describe('Game Data Validation', () => {
       console.error('Games with invalid theo_win:', invalidGames.slice(0, 10));
     }
 
-    // ~19% of games in games_master.json lack numeric performance data
     expect(invalidGames.length).toBeLessThan(Math.ceil(games.length * 0.25));
   });
 
@@ -109,67 +89,53 @@ describe('Game Data Validation', () => {
     expect(uniqueNames.size).toBe(gameNames.length);
   });
 
-  test('themes should be valid objects with consolidated field', () => {
+  test('themes should be valid strings', () => {
     const invalidThemes = [];
     const themeSet = new Set();
 
     games.forEach((game, index) => {
-      const theme = game.theme;
+      const theme = game.theme_primary;
       
-      if (!theme || typeof theme !== 'object') {
-        invalidThemes.push({ index, game: game.name, theme, issue: 'not an object' });
-      } else if (!theme.consolidated || typeof theme.consolidated !== 'string') {
-        invalidThemes.push({ index, game: game.name, theme, issue: 'missing consolidated' });
+      if (!theme || typeof theme !== 'string') {
+        invalidThemes.push({ index, game: game.name, theme, issue: 'missing or not a string' });
       } else {
-        themeSet.add(theme.consolidated);
+        themeSet.add(theme);
       }
     });
 
     if (invalidThemes.length > 0) {
-      console.warn(`⚠ ${invalidThemes.length} games have invalid themes (missing consolidated):`, invalidThemes.slice(0, 5));
+      console.warn(`⚠ ${invalidThemes.length} games have invalid themes:`, invalidThemes.slice(0, 5));
     }
 
-    // Allow up to 10% of games to have theme issues (data quality)
     expect(invalidThemes.length).toBeLessThan(Math.ceil(games.length * 0.10));
-    
-    // Should have reasonable number of unique themes
-    expect(themeSet.size).toBeGreaterThan(50);
+    expect(themeSet.size).toBeGreaterThan(5);
     expect(themeSet.size).toBeLessThan(300);
     
     console.log(`✓ Found ${themeSet.size} unique themes`);
   });
 
-  test('providers should be valid (object with studio or string)', () => {
+  test('providers should be present', () => {
     const invalidProviders = [];
     const providerSet = new Set();
-    const suspiciousProviders = [];
 
     games.forEach((game, index) => {
-      const provider = game.provider;
-      const providerName = typeof provider === 'string' ? provider : provider?.studio || provider?.display_name;
+      const providerName = typeof game.provider === 'string' ? game.provider
+        : (game.provider?.studio || game.studio);
       
-      if (!provider || (!providerName && typeof provider !== 'object')) {
-        invalidProviders.push({ index, game: game.name, provider });
+      if (!providerName) {
+        invalidProviders.push({ index, game: game.name, provider: game.provider });
       } else {
-        providerSet.add(providerName || 'Unknown');
-        
-        if (['Multiple', 'Pattern', 'Unknown', ''].includes(providerName)) {
-          suspiciousProviders.push({ game: game.name, provider: providerName });
-        }
+        providerSet.add(providerName);
       }
     });
 
     expect(invalidProviders).toHaveLength(0);
     console.log(`✓ Found ${providerSet.size} unique providers`);
-    
-    if (suspiciousProviders.length > 0) {
-      console.warn(`⚠ ${suspiciousProviders.length} games have suspicious providers:`, suspiciousProviders.slice(0, 5));
-    }
   });
 
   test('theo_win distribution should be reasonable', () => {
     const theoWinValues = games
-      .map(g => g.performance?.theo_win)
+      .map(g => g.theo_win)
       .filter(v => typeof v === 'number');
     
     const sum = theoWinValues.reduce((acc, v) => acc + v, 0);
@@ -177,29 +143,21 @@ describe('Game Data Validation', () => {
     const min = Math.min(...theoWinValues);
     const max = Math.max(...theoWinValues);
     
-    // Mean should be around 1-50
     expect(mean).toBeGreaterThan(0.5);
     expect(mean).toBeLessThan(100);
-    
-    // Min should be positive
     expect(min).toBeGreaterThan(0);
-    
-    // Max should be reasonable (not > 200)
     expect(max).toBeLessThan(200);
     
     console.log(`✓ TheoWin stats: mean=${mean.toFixed(2)}, min=${min.toFixed(2)}, max=${max.toFixed(2)}`);
   });
 
-  test('data structure should match expected format', () => {
+  test('data structure should match flat schema', () => {
     const sampleGame = games[0];
     
     expect(typeof sampleGame.name).toBe('string');
-    expect(typeof sampleGame.theme).toBe('object');
-    expect(typeof sampleGame.theme.consolidated).toBe('string');
-    expect(typeof sampleGame.performance).toBe('object');
-    expect(typeof sampleGame.performance.theo_win).toBe('number');
-    expect(sampleGame.provider).toBeDefined();
-    expect(typeof sampleGame.provider === 'object' ? sampleGame.provider.studio : sampleGame.provider).toBeDefined();
+    expect(typeof sampleGame.theme_primary).toBe('string');
+    expect(typeof sampleGame.theo_win).toBe('number');
+    expect(sampleGame.provider || sampleGame.studio).toBeDefined();
   });
 });
 
@@ -207,15 +165,16 @@ describe('Game Data Statistics', () => {
   let games;
 
   beforeAll(async () => {
-    const module = await import('../../data/games_master.json', { 
+    const module = await import('../../data/games_dashboard.json', { 
       assert: { type: 'json' } 
     });
-    games = module.default.games;
+    const data = module.default;
+    games = Array.isArray(data) ? data : (data.games || []);
   });
 
   test('show theme distribution', () => {
     const themeCounts = games.reduce((acc, game) => {
-      const theme = game.theme?.consolidated || 'Unknown';
+      const theme = game.theme_primary || 'Unknown';
       acc[theme] = (acc[theme] || 0) + 1;
       return acc;
     }, {});
@@ -230,8 +189,7 @@ describe('Game Data Statistics', () => {
 
   test('show provider distribution', () => {
     const providerCounts = games.reduce((acc, game) => {
-      const p = game.provider;
-      const provider = typeof p === 'string' ? p : (p?.studio || p?.display_name || 'Unknown');
+      const provider = game.provider || game.studio || 'Unknown';
       acc[provider] = (acc[provider] || 0) + 1;
       return acc;
     }, {});

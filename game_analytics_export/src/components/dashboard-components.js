@@ -7,7 +7,7 @@
  * 
  * Usage: Import and use functions to generate HTML
  */
-import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 import { log } from '../lib/env.js';
 
 // ==========================================
@@ -22,7 +22,7 @@ import { log } from '../lib/env.js';
  * @param {string} options.gradient - Full gradient class name
  * @param {string} options.content - HTML content for section body
  */
-export const PanelSection = ({ title, icon, gradient, content, accent }) => {
+export const PanelSection = ({ title, icon, gradient: _gradient, content, accent }) => {
   const accentColor = accent || 'border-indigo-400 dark:border-indigo-500';
   return `
   <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700/50">
@@ -108,7 +108,7 @@ export const GameListItem = (game, index) => {
            onclick="${safeOnclick('window.showGameDetails', gameName)}">${escapeHtml(gameName)}</div>
       <div class="flex items-center gap-1.5 mt-0.5">
         <span class="text-[10px] text-gray-400 dark:text-gray-500 truncate">${escapeHtml(provider)}</span>
-        ${game.extra ? `<span class="text-[10px] text-gray-400">·</span><span class="text-[10px] text-gray-400 truncate">${game.extra}</span>` : ''}
+        ${game.extra ? `<span class="text-[10px] text-gray-400">·</span><span class="text-[10px] text-gray-400 truncate">${escapeHtml(game.extra)}</span>` : ''}
       </div>
     </div>
     <div class="flex-shrink-0 text-right">
@@ -130,8 +130,8 @@ export const NumberedListItem = (index, item) => `
       ${index + 1}
     </div>
     <div class="flex-1">
-      <strong class="block text-gray-900 dark:text-white font-semibold mb-1">${item.name}</strong>
-      <small class="text-gray-600 dark:text-gray-400 text-sm">${item.details}</small>
+      <strong class="block text-gray-900 dark:text-white font-semibold mb-1">${escapeHtml(item.name)}</strong>
+      <small class="text-gray-600 dark:text-gray-400 text-sm">${escapeHtml(item.details)}</small>
     </div>
   </li>
 `;
@@ -146,19 +146,18 @@ export const NumberedListItem = (index, item) => `
  */
 export const VolatilityBadge = (volatility) => {
   const colorMap = {
-    'Low': { cls: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300', dot: 'bg-emerald-500' },
-    'Low-Medium': { cls: 'bg-lime-100 text-lime-700 dark:bg-lime-900/30 dark:text-lime-300', dot: 'bg-lime-500' },
-    'Medium': { cls: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300', dot: 'bg-amber-500' },
-    'Medium-High': { cls: 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300', dot: 'bg-orange-500' },
-    'High': { cls: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300', dot: 'bg-red-500' },
-    'Very High': { cls: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300', dot: 'bg-rose-600' },
+    'Low': 'bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/20 dark:text-emerald-300 dark:ring-emerald-800',
+    'Low-Medium': 'bg-lime-50 text-lime-700 ring-lime-200 dark:bg-lime-900/20 dark:text-lime-300 dark:ring-lime-800',
+    'Medium': 'bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:ring-amber-800',
+    'Medium-High': 'bg-orange-50 text-orange-700 ring-orange-200 dark:bg-orange-900/20 dark:text-orange-300 dark:ring-orange-800',
+    'High': 'bg-red-50 text-red-700 ring-red-200 dark:bg-red-900/20 dark:text-red-300 dark:ring-red-800',
+    'Very High': 'bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-900/20 dark:text-rose-300 dark:ring-rose-800',
   };
   const normalized = volatility
     ? volatility.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-')
     : 'Unknown';
-  const c = colorMap[normalized] || colorMap['Medium'];
-  
-  return `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold whitespace-nowrap ${c.cls}"><span class="w-1.5 h-1.5 rounded-full ${c.dot}"></span>${normalized}</span>`;
+  const cls = colorMap[normalized] || colorMap['Medium'];
+  return `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-medium ring-1 ring-inset whitespace-nowrap ${cls}">${escapeHtml(normalized)}</span>`;
 };
 
 /**
@@ -184,7 +183,7 @@ export const AnomalyBadge = (type) => {
  */
 export const Badge = (text, color = 'blue') => `
   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-${color}-100 text-${color}-800 dark:bg-${color}-900 dark:text-${color}-300">
-    ${text}
+    ${escapeHtml(text)}
   </span>
 `;
 
@@ -198,7 +197,7 @@ export const Badge = (text, color = 'blue') => `
  */
 export const EmptyState = (message) => `
   <div class="text-center py-12">
-    <p class="text-gray-500 dark:text-gray-400 text-sm">${message}</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm">${escapeHtml(message)}</p>
   </div>
 `;
 
@@ -284,9 +283,9 @@ export const PageHeader = ({ title, subtitle, count, children }) => `
 export const SearchInput = (id, placeholder = '🔍 Search...') => `
   <input 
     type="text" 
-    id="${id}" 
+    id="${escapeAttr(id)}" 
     class="px-4 py-2 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-colors w-48"
-    placeholder="${placeholder}"
+    placeholder="${escapeAttr(placeholder)}"
   />
 `;
 
@@ -301,7 +300,7 @@ export const SelectDropdown = (id, options, defaultLabel = 'All') => `
     id="${id}" 
     class="px-4 py-2 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:border-blue-500 dark:focus:border-blue-400 focus:outline-none transition-colors">
     <option value="">${defaultLabel}</option>
-    ${options.map(opt => `<option value="${opt.value}">${opt.label}</option>`).join('')}
+    ${options.map(opt => `<option value="${escapeAttr(opt.value)}">${escapeHtml(opt.label)}</option>`).join('')}
   </select>
 `;
 

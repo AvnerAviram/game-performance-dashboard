@@ -12,9 +12,9 @@ describe('Data Integrity: Duplicate Detection', () => {
   let games;
 
   beforeAll(async () => {
-    const response = await fetch('/data/games_master.json');
+    const response = await fetch('/data/games_dashboard.json');
     gamesData = await response.json();
-    games = gamesData.games;
+    games = Array.isArray(gamesData) ? gamesData : (gamesData.games || []);
   });
 
   test('should NOT have duplicate game names', () => {
@@ -66,7 +66,7 @@ describe('Data Integrity: Duplicate Detection', () => {
     const trueDuplicates = [];
 
     games.forEach((game, index) => {
-      const signature = `${game.name}|${game.provider?.studio}|${game.theme?.consolidated}|${game.mechanic?.primary}`;
+      const signature = `${game.name}|${game.provider ?? game.studio ?? game.provider?.studio}|${game.theme_primary ?? game.theme?.consolidated}|${game.mechanic_primary ?? game.mechanic?.primary}`;
       
       if (signatures.has(signature)) {
         const original = signatures.get(signature);
@@ -110,17 +110,14 @@ describe('Data Integrity: Duplicate Detection', () => {
     expect(games.length).toBe(uniqueNames.size);
   });
 
-  test('metadata should reflect actual unique game count', () => {
+  test('game count should be consistent', () => {
     const uniqueNames = new Set(games.map(g => g.name));
     const actualUniqueCount = uniqueNames.size;
-    const metadataCount = gamesData.metadata?.total_games;
 
-    console.log('Metadata says:', metadataCount, 'games');
-    console.log('Actual unique:', actualUniqueCount, 'games');
+    console.log('Total games:', games.length);
+    console.log('Unique names:', actualUniqueCount);
 
-    if (metadataCount !== actualUniqueCount) {
-      console.warn('⚠️  Metadata count does not match actual unique games!');
-    }
+    expect(games.length).toBe(actualUniqueCount);
   });
 });
 

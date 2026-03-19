@@ -9,47 +9,82 @@ game_analytics_export/
 ├── src/                    # Application source
 │   ├── app.js              # Entry point
 │   ├── lib/                # Core logic & data
-│   │   ├── data.js         # Data loading (DuckDB + JSON fallback)
+│   │   ├── auth.js         # Client-side session auth
+│   │   ├── data.js         # Data loading (DuckDB WASM)
 │   │   ├── db/             # DuckDB client
-│   │   ├── env.js          # Environment/config
+│   │   ├── debounce.js     # Debounce utility
+│   │   ├── env.js          # Environment/debug config
+│   │   ├── features.js     # Canonical feature definitions & labels
 │   │   ├── filters.js      # Theme/mechanic/provider filters
-│   │   └── game-analytics-engine.js
+│   │   ├── game-analytics-engine.js  # Success factor analysis
+│   │   ├── parse-features.js         # Feature string parsing
+│   │   ├── sanitize.js     # XSS prevention (escapeHtml, sanitizeUrl)
+│   │   └── symbol-utils.js # Symbol categorization
 │   ├── ui/                 # UI layer
-│   │   ├── ui.js           # Main UI, page rendering
-│   │   ├── ui-panels.js    # Game/provider/theme panels
-│   │   ├── ui-providers-games.js
-│   │   ├── charts-modern.js
-│   │   ├── filter-dropdowns.js
-│   │   ├── pagination.js
-│   │   └── ...
+│   │   ├── ui.js           # Re-export orchestrator
+│   │   ├── router.js       # SPA router with error boundary
+│   │   ├── ui-panels.js    # Game/provider/theme detail panels
+│   │   ├── ui-providers-games.js     # Provider & game list pages
+│   │   ├── charts-modern.js          # Chart.js visualizations
+│   │   ├── filter-dropdowns.js       # Filter population
+│   │   ├── search.js       # Search with debounce
+│   │   ├── dark-mode.js    # Theme toggle
+│   │   ├── sidebar-collapse.js       # Sidebar toggle + flyout
+│   │   ├── panel-details.js          # Theme/mechanic panel details
+│   │   ├── pagination.js / pagination-state.js
+│   │   ├── tooltip-manager.js
+│   │   ├── ui-export.js    # CSV export
+│   │   └── renderers/      # Page-specific renderers
+│   │       ├── overview-renderer.js
+│   │       ├── themes-renderer.js
+│   │       ├── mechanics-renderer.js
+│   │       ├── insights-renderer.js
+│   │       └── generate-insights-impl.js  # Game Lab + Insights logic
 │   ├── features/           # Feature modules
-│   │   ├── compat.js       # Data compat layer
-│   │   ├── overview-insights.js
-│   │   ├── page-manager.js
-│   │   ├── trends.js
-│   │   └── sparklines.js
+│   │   ├── auth-ui.js      # Auth UI (user list, admin)
+│   │   ├── compat.js       # Data access compat layer
+│   │   ├── idea-generator.js         # Build-next / avoid combos
+│   │   ├── name-generator.js         # AI name generator
+│   │   ├── overview-insights.js      # Overview performance insights
+│   │   ├── prediction.js   # Game concept analyzer
+│   │   ├── tickets.js      # Feedback ticket UI
+│   │   ├── trends.js       # Trend analysis
+│   │   └── ai-assistant.js # AI assistant chat
 │   ├── components/         # Reusable UI components
-│   ├── config/             # Static config (mechanics, themes)
+│   │   └── dashboard-components.js
+│   ├── config/             # Static config
+│   │   ├── mechanics.js    # Mechanic definitions & aliases
+│   │   └── theme-breakdowns.json
 │   ├── pages/              # HTML page templates
 │   └── assets/
-├── data/                   # Static data (games_master.json, etc.)
+├── server/                 # Express.js backend
+│   ├── server.cjs          # Server orchestrator (middleware, startup)
+│   ├── helpers.cjs         # Shared utilities (load/save, auth middleware)
+│   ├── routes/
+│   │   ├── auth.cjs        # Login, logout, session
+│   │   ├── tickets.cjs     # Ticket CRUD
+│   │   ├── admin.cjs       # User management
+│   │   ├── data.cjs        # Data file serving + health
+│   │   └── ai.cjs          # Claude API proxy
+│   ├── manage-users.cjs    # CLI user management
+│   └── users.json          # User credentials (gitignored)
+├── data/                   # Game data (JSON)
 ├── scripts/                # Build, verification, data scripts
-│   ├── build/              # write-health-json.cjs, build_master_json.cjs
-│   ├── data/               # verify-and-correct-games, merge-verified, etc.
-│   ├── test/               # test-all-3, validate-all-dashboard-pages
-│   ├── scrapers/           # slotcatalog-scraper
-│   └── recovery/           # run-full-recovery, batch_research
+│   ├── build/
+│   ├── data/
+│   ├── scrapers/
+│   └── test/
 ├── tests/
-│   ├── unit/               # Unit tests (*.test.js)
-│   ├── integration/        # Integration tests
+│   ├── unit/               # Unit tests (vitest)
+│   ├── integration/        # Server integration tests
 │   ├── e2e/                # Playwright E2E
 │   ├── data-validation/    # Data quality tests
-│   ├── archive/            # One-off scripts (CHECK-*, REPRO-*, etc.)
-│   ├── utils/              # load-test-data, test helpers
+│   ├── utils/              # Test helpers
 │   └── setup.js            # Vitest setup
 ├── docs/
-├── dashboard.html          # Main entry
-└── index.html              # Landing page
+├── dashboard.html          # Main SPA shell
+├── login.html              # Login page
+└── index.html              # Landing redirect
 ```
 
 ## Import Conventions
@@ -58,13 +93,17 @@ game_analytics_export/
 - **From lib/**: `./data.js`, `../config/`
 - **From ui/**: `../lib/`, `../components/`, `../features/`
 - **From features/**: `../lib/`, `../ui/`, `../components/`
+- **No circular deps**: `filter-dropdowns.js` imports from renderers directly, not via `ui.js`
 
-## Key Paths
+## Key Commands
 
-| Purpose      | Path                    |
-|-------------|-------------------------|
-| Data load   | `src/lib/data.js`       |
-| Main UI     | `src/ui/ui.js`          |
-| Filters     | `src/lib/filters.js`    |
-| Build       | `npm run build`         |
-| Tests       | `npm test`              |
+| Purpose       | Command                  |
+|---------------|--------------------------|
+| Dev server    | `npm run dev`            |
+| Build         | `npm run build`          |
+| Start prod    | `npm start`              |
+| Lint          | `npm run lint`           |
+| Unit tests    | `npm run test:unit`      |
+| All tests     | `npm run test:all`       |
+| E2E tests     | `npm run test:e2e`       |
+| Coverage      | `npm run test:coverage`  |

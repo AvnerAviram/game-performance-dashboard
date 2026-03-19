@@ -11,36 +11,30 @@ if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SENTRY_DSN) {
     captureError = captureException;
   });
 }
-import { 
+import {
     updateHeaderStats,
-    renderOverview, 
-    renderThemes, 
-    renderMechanics, 
-    renderAnomalies,
-    generateInsights,
-    showPage, 
-    showAnomalies, 
+    showPage,
+    showAnomalies,
     sortTable,
-    setupSearch,
-    setupThemeClickHandlers,
-    setupExportButtons,
     setupDarkMode,
-    setupSidebar,
-    setupPrediction,
     predictGameSuccess,
     sendAIMessage,
-    askAI
+    askAI,
+    renderThemes,
+    renderMechanics,
 } from './ui/ui.js';
-import { showGameDetails, closeGamePanel, showProviderDetails, closeProviderPanel } from './ui/ui-panels.js';
-import './lib/filters.js'; // Smart filters for themes/mechanics
-import './ui/tooltip-manager.js'; // Tooltip singleton manager
-import './ui/sidebar-collapse.js'; // Sidebar toggle
+
+// Side-effect imports: these register window globals (panels, filters, pagination, etc.)
+import './ui/ui-panels.js';
+import './lib/filters.js';
+import './ui/tooltip-manager.js';
+import './ui/sidebar-collapse.js';
+import './ui/pagination.js';
+import './ui/filter-dropdowns.js';
 
 import { refreshCharts } from './ui/charts-modern.js';
 window.refreshCharts = refreshCharts;
-import './ui/pagination.js'; // Pagination controls
 import { setupAuthUI } from './features/auth-ui.js';
-import { populateThemesFilters, populateMechanicsFilters, populateProvidersFilters, populateGamesFilters } from './ui/filter-dropdowns.js';
 
 // Initialize app
 async function init() {
@@ -64,7 +58,6 @@ async function init() {
         log('✅ Data loaded:', { games: data.allGames?.length || 0, themes: data.themes?.length || 0, mechanics: data.mechanics?.length || 0 });
 
         updateHeaderStats();
-        setupSidebar();
         setupDarkMode();
         setupAuthUI();
 
@@ -74,7 +67,8 @@ async function init() {
             });
         };
 
-        await showPage('overview');
+        const initialPage = window.location.hash.replace('#', '') || 'overview';
+        await showPage(initialPage);
 
         // Hide loading overlay
         const overlay = document.getElementById('loading-overlay');
@@ -90,19 +84,35 @@ async function init() {
 
 function hideLoadingShowError(error) {
     document.getElementById('loading-overlay')?.remove();
-    const isDev = DEBUG;
-    document.body.innerHTML = `
-        <div class="min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900">
-            <h1 class="text-xl font-bold text-red-600 dark:text-red-400 mb-4">Unable to load dashboard</h1>
-            <p class="text-gray-600 dark:text-gray-400 mb-4 max-w-md text-center">Failed to load data. Please check your connection and try again.</p>
-            <ul class="text-left text-sm text-gray-500 dark:text-gray-500 mb-6 list-disc pl-6">
-                <li>Use an HTTP server (not file://)</li>
-                <li>Ensure <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">data/games_master.json</code> exists</li>
-            </ul>
-            <button onclick="location.reload()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors">Retry</button>
-            ${isDev ? `<pre class="mt-6 text-left text-xs text-gray-500 overflow-auto max-h-40 p-4 bg-gray-100 dark:bg-gray-800 rounded">${error.stack || error.message}</pre>` : ''}
-        </div>
-    `;
+    console.error('Dashboard init failed:', error);
+    const container = document.createElement('div');
+    container.className = 'min-h-screen flex flex-col items-center justify-center p-6 bg-gray-50 dark:bg-gray-900';
+
+    const h1 = document.createElement('h1');
+    h1.className = 'text-xl font-bold text-red-600 dark:text-red-400 mb-4';
+    h1.textContent = 'Unable to load dashboard';
+    container.appendChild(h1);
+
+    const p = document.createElement('p');
+    p.className = 'text-gray-600 dark:text-gray-400 mb-4 max-w-md text-center';
+    p.textContent = 'Failed to load data. Please check your connection and try again.';
+    container.appendChild(p);
+
+    const btn = document.createElement('button');
+    btn.className = 'px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors';
+    btn.textContent = 'Retry';
+    btn.onclick = () => location.reload();
+    container.appendChild(btn);
+
+    if (DEBUG) {
+        const pre = document.createElement('pre');
+        pre.className = 'mt-6 text-left text-xs text-gray-500 overflow-auto max-h-40 p-4 bg-gray-100 dark:bg-gray-800 rounded';
+        pre.textContent = error.stack || error.message;
+        container.appendChild(pre);
+    }
+
+    document.body.innerHTML = '';
+    document.body.appendChild(container);
 }
 
 // Make functions available globally for HTML onclick handlers

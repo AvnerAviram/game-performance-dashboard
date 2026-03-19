@@ -13,13 +13,29 @@ const ESCAPE_MAP = {
 
 const ESCAPE_RE = /[&<>"']/g;
 
+// Strip ASCII control characters (except common whitespace) that can confuse parsers
+// eslint-disable-next-line no-control-regex
+const CONTROL_RE = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g;
+
 export function escapeHtml(str) {
   if (str == null) return '';
-  return String(str).replace(ESCAPE_RE, ch => ESCAPE_MAP[ch]);
+  return String(str).replace(CONTROL_RE, '').replace(ESCAPE_RE, ch => ESCAPE_MAP[ch]);
 }
 
 export function escapeAttr(str) {
   return escapeHtml(str);
+}
+
+/**
+ * Sanitize a URL — only allow http(s) and relative paths.
+ * Returns empty string for dangerous schemes (javascript:, data:, etc.).
+ */
+export function sanitizeUrl(url) {
+  if (url == null) return '';
+  const trimmed = String(url).trim();
+  if (/^(https?:\/\/|\/[^/])/i.test(trimmed)) return trimmed;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return '';
+  return trimmed;
 }
 
 /**
