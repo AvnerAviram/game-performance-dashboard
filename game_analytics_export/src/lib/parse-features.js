@@ -7,6 +7,10 @@ export function parseFeatures(val) {
     if (!val) return [];
     const s = String(val).trim();
     if (!s || s === 'null') return [];
-    try { const a = JSON.parse(s); return Array.isArray(a) ? a : []; }
-    catch { return []; /* malformed JSON — treat as no features */ }
+    try {
+        const a = JSON.parse(s);
+        return Array.isArray(a) ? a : [];
+    } catch {
+        return []; /* malformed JSON — treat as no features */
+    }
 }

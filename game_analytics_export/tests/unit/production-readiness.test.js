@@ -45,10 +45,15 @@ describe('Build Security', () => {
         if (existsSync(distData)) {
             const files = readdirSync(distData);
             const forbidden = [
-                '.env', 'enrich_websearch.py', 'games_master.json',
-                'ground_truth_ags.json', 'requirements.txt',
-                'PHASE1_TRUTH_MASTER.md', 'enrichment_checkpoint.json',
-                'phase0_themes_raw.json', 'phase0_features_raw.json'
+                '.env',
+                'enrich_websearch.py',
+                'games_master.json',
+                'ground_truth_ags.json',
+                'requirements.txt',
+                'PHASE1_TRUTH_MASTER.md',
+                'enrichment_checkpoint.json',
+                'phase0_themes_raw.json',
+                'phase0_features_raw.json',
             ];
             forbidden.forEach(f => {
                 expect(files).not.toContain(f);

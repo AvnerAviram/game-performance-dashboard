@@ -1,134 +1,343 @@
 <!-- Trends Page -->
-<div class="pb-8 -mr-8">
-<!-- Sticky Header -->
-<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
-    <div class="flex justify-between items-center py-5">
-        <div>
-            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Performance Trends (2021-2025)</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Year-over-year performance analysis</p>
-        </div>
-        <div class="relative -mr-1 flex items-center">
-            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu" aria-expanded="false" aria-haspopup="true">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
-                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
-                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
-                <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
-                <button type="button" onclick="showPage('tickets')" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>View Tickets</button>
+<div class="pb-8">
+    <!-- Sticky Header -->
+    <div
+        class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6"
+    >
+        <div class="flex justify-between items-center py-5">
+            <div>
+                <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">
+                    Performance Trends (2021-2025)
+                </h2>
+                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                    Year-over-year performance analysis
+                </p>
+            </div>
+            <div class="relative -mr-1 flex items-center">
+                <button
+                    id="hamburger-btn"
+                    type="button"
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    aria-label="Account menu"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </button>
+                <div
+                    id="hamburger-dropdown"
+                    class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[200]"
+                >
+                    <button
+                        id="auth-login-btn"
+                        type="button"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                            /></svg
+                        >Log in
+                    </button>
+                    <button
+                        id="auth-logout-btn"
+                        type="button"
+                        class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            /></svg
+                        >Log out
+                    </button>
+                    <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                    <button
+                        type="button"
+                        onclick="window.openFeedbackModal()"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                            /></svg
+                        >Submit Feedback
+                    </button>
+                    <button
+                        type="button"
+                        onclick="showPage('tickets')"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                            /></svg
+                        >View Tickets
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Year Detail Card (hidden by default, shown on drill-down) -->
-<div id="year-detail-card" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-indigo-200 dark:border-indigo-800 mb-6">
-    <div class="px-6 pt-5 pb-4 border-b border-indigo-100 dark:border-indigo-900/50">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-xl">🔍</div>
+    <!-- Year Detail Card (hidden by default, shown on drill-down) -->
+    <div
+        id="year-detail-card"
+        class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-indigo-200 dark:border-indigo-800 mb-6"
+    >
+        <div class="px-6 pt-5 pb-4 border-b border-indigo-100 dark:border-indigo-900/50">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-xl"
+                    >
+                        🔍
+                    </div>
+                    <div>
+                        <h3 id="year-detail-title" class="text-lg font-semibold text-gray-900 dark:text-white">
+                            2024 Breakdown
+                        </h3>
+                        <p id="year-detail-subtitle" class="text-sm text-gray-500 dark:text-gray-400">
+                            Detailed performance for selected year
+                        </p>
+                    </div>
+                </div>
+                <button
+                    onclick="document.getElementById('year-detail-card').classList.add('hidden')"
+                    class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-6">
+            <div id="year-detail-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
+            <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <h3 id="year-detail-title" class="text-lg font-semibold text-gray-900 dark:text-white">2024 Breakdown</h3>
-                    <p id="year-detail-subtitle" class="text-sm text-gray-500 dark:text-gray-400">Detailed performance for selected year</p>
+                    <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Themes This Year</h4>
+                    <div id="year-detail-themes" class="space-y-2"></div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Features This Year</h4>
+                    <div id="year-detail-features" class="space-y-2"></div>
                 </div>
             </div>
-            <button onclick="document.getElementById('year-detail-card').classList.add('hidden')" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
     </div>
-    <div class="p-6">
-        <div id="year-detail-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"></div>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div>
-                <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Themes This Year</h4>
-                <div id="year-detail-themes" class="space-y-2"></div>
-            </div>
-            <div>
-                <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Features This Year</h4>
-                <div id="year-detail-features" class="space-y-2"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Overall Trend Card -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6" style="overflow: visible;">
-    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-3 mb-2">
-            <div class="w-10 h-10 bg-sky-100 dark:bg-sky-900/40 rounded-lg flex items-center justify-center text-xl shrink-0">📈</div>
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-1.5">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Overall Performance Trend</h3>
-                    <div class="relative group">
-                        <button class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold">?</button>
-                        <div class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[400] text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                            <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                            For each year, computes the <strong>average Theo Win Index</strong> across all games released in that year.<br><br><strong>Theo Win Index</strong> = a game's theoretical win per unit bet, derived from the Eilers performance data. Higher = stronger market performance.
+    <!-- Overall Trend Card -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
+        style="overflow: visible"
+    >
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-sky-100 dark:bg-sky-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    📈
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Overall Performance Trend</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
+                                For each year, computes the <strong>average Theo Win Index</strong> across all games
+                                released in that year.<br /><br /><strong>Theo Win Index</strong> = a game's theoretical
+                                win per unit bet, derived from the Eilers performance data. Higher = stronger market
+                                performance.
+                            </div>
                         </div>
                     </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400" id="overall-trend-subtitle">
+                        Average performance index
+                    </p>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400" id="overall-trend-subtitle">Average performance index</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 mb-3" id="overall-zoom-btns"></div>
+            <div
+                id="overall-trend-finding"
+                class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg px-4 py-3"
+            >
+                <strong class="text-teal-800 dark:text-teal-200">Loading...</strong>
             </div>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5 mb-3" id="overall-zoom-btns"></div>
-        <div id="overall-trend-finding" class="bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg px-4 py-3">
-            <strong class="text-teal-800 dark:text-teal-200">Loading...</strong>
+        <div class="p-6 w-full overflow-visible" style="height: 420px; min-height: 420px">
+            <canvas
+                id="overall-trend-chart"
+                class="w-full block"
+                style="display: block; box-sizing: border-box"
+            ></canvas>
         </div>
     </div>
-    <div class="p-6 w-full overflow-visible" style="height: 420px; min-height: 420px;">
-        <canvas id="overall-trend-chart" class="w-full block" style="display: block; box-sizing: border-box;"></canvas>
-    </div>
-</div>
 
-<!-- Theme Trends Card -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6" style="overflow: visible;">
-    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-3 mb-2">
-            <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-xl shrink-0">🎨</div>
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-1.5">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Theme Performance Over Time</h3>
-                    <div class="relative group">
-                        <button class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold">?</button>
-                        <div class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[400] text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                            <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                            Shows the <strong>top 10 themes by game count</strong>. For each theme and year, computes the <strong>average Theo Win Index</strong> of all games in that theme released in that year.<br><br>Lines represent how each theme's average performance has changed over time.
+    <!-- Theme Trends Card -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
+        style="overflow: visible"
+    >
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    🎨
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Theme Performance Over Time</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
+                                Shows the <strong>top 10 themes by game count</strong>. For each theme and year,
+                                computes the <strong>average Theo Win Index</strong> of all games in that theme released
+                                in that year.<br /><br />Lines represent how each theme's average performance has
+                                changed over time.
+                            </div>
                         </div>
                     </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Top themes performance trends</p>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">Top themes performance trends</p>
             </div>
+            <div class="flex flex-wrap items-center gap-1.5" id="theme-zoom-btns"></div>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5" id="theme-zoom-btns"></div>
+        <div class="p-6 w-full overflow-visible" style="height: 460px; min-height: 460px">
+            <canvas id="theme-trend-chart" class="w-full block" style="display: block; box-sizing: border-box"></canvas>
+        </div>
     </div>
-    <div class="p-6 w-full overflow-visible" style="height: 460px; min-height: 460px;">
-        <canvas id="theme-trend-chart" class="w-full block" style="display: block; box-sizing: border-box;"></canvas>
-    </div>
-</div>
 
-<!-- Mechanic Trends Card -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6" style="overflow: visible;">
-    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-3 mb-2">
-            <div class="w-10 h-10 bg-violet-100 dark:bg-violet-900/40 rounded-lg flex items-center justify-center text-xl shrink-0">⚙️</div>
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-1.5">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Feature Performance Over Time</h3>
-                    <div class="relative group">
-                        <button class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold">?</button>
-                        <div class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[400] text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
-                            <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                            Shows the <strong>top 10 features by adoption count</strong>. For each feature and year, computes the <strong>average Theo Win Index</strong> of all games that include that feature and were released in that year.<br><br>A game can have multiple features, so it contributes to multiple lines.
+    <!-- Mechanic Trends Card -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
+        style="overflow: visible"
+    >
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-violet-100 dark:bg-violet-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    ⚙️
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Feature Performance Over Time
+                        </h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
+                                Shows the <strong>top 10 features by adoption count</strong>. For each feature and year,
+                                computes the <strong>average Theo Win Index</strong> of all games that include that
+                                feature and were released in that year.<br /><br />A game can have multiple features, so
+                                it contributes to multiple lines.
+                            </div>
                         </div>
                     </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Top features performance trends</p>
                 </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">Top features performance trends</p>
             </div>
+            <div class="flex flex-wrap items-center gap-1.5" id="mechanic-zoom-btns"></div>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5" id="mechanic-zoom-btns"></div>
+        <div class="p-6 w-full overflow-visible" style="height: 460px; min-height: 460px">
+            <canvas
+                id="mechanic-trend-chart"
+                class="w-full block"
+                style="display: block; box-sizing: border-box"
+            ></canvas>
+        </div>
     </div>
-    <div class="p-6 w-full overflow-visible" style="height: 460px; min-height: 460px;">
-        <canvas id="mechanic-trend-chart" class="w-full block" style="display: block; box-sizing: border-box;"></canvas>
+
+    <!-- Provider Trends -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
+        style="overflow: visible"
+    >
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    🏢
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Provider Performance Trends</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
+                                Shows the <strong>top providers by game count</strong>. For each provider and year,
+                                computes the <strong>average Theo Win Index</strong> of all games from that provider
+                                released in that year.<br /><br />Lines represent how each provider's average
+                                performance has changed over time.
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Top provider avg Theo Win by year</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5" id="provider-trend-zoom"></div>
+        </div>
+        <div class="p-6 w-full overflow-visible" style="height: 460px; min-height: 460px">
+            <canvas
+                id="provider-trend-chart"
+                class="w-full block"
+                style="display: block; box-sizing: border-box"
+            ></canvas>
+        </div>
+        <div id="provider-trend-finding" class="px-6 pb-4"></div>
+        <div id="provider-trend-drilldown" class="px-6 pb-4 hidden"></div>
     </div>
-</div>
 </div>

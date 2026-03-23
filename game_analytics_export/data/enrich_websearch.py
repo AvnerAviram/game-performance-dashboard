@@ -785,29 +785,73 @@ def _extract_inspired(html: str) -> Dict:
 _SLOTCATALOG_FEATURE_MAP: Dict[str, Optional[str]] = {
     "free spins": "Free Spins",
     "additional free spins": "Free Spins",
+    "free spins mode choosing": "Free Spins",
+    "freespins": "Free Spins",
     "hold and win": "Hold and Spin",
     "hold & win": "Hold and Spin",
-    "cash collector": "Hold and Spin",
-    "multiplier": None,
-    "random multiplier": None,
-    "wilds with multipliers": None,
+    "lock it link": "Hold and Spin",
+    "multiplier": "Multiplier",
+    "random multiplier": "Multiplier",
+    "wilds with multipliers": "Multiplier",
+    "free spins multiplier": "Multiplier",
     "fixed jackpots": "Static Jackpot",
     "fixed jackpot": "Static Jackpot",
-    "progressive jackpot": "Static Jackpot",
-    "megaways": "Expanding Reels",
+    "progressive jackpot": "Progressive Jackpot",
+    "megaways": "Megaways",
     "multiway (+1024)": "Expanding Reels",
     "dynamic reels": "Expanding Reels",
     "reelset changing": "Expanding Reels",
+    "cascading reels": "Cascading Reels",
+    "cascading": "Cascading Reels",
+    "avalanche": "Cascading Reels",
+    "tumble": "Cascading Reels",
+    "tumbling reels": "Cascading Reels",
+    "buy bonus": "Buy Bonus",
+    "feature buy": "Buy Bonus",
+    "bonus buy": "Buy Bonus",
+    "buy feature": "Buy Bonus",
+    "sticky wilds": "Sticky Wilds",
+    "sticky wild": "Sticky Wilds",
+    "sticky symbols": "Sticky Wilds",
+    "expanding wilds": "Expanding Wilds",
+    "expanding wild": "Expanding Wilds",
+    "expanding wild with re-spin": "Expanding Wilds",
+    "gamble": "Gamble Feature",
+    "double up": "Gamble Feature",
+    "risk game": "Gamble Feature",
+    "risk/gamble (double) game": "Gamble Feature",
+    "mystery symbol": "Mystery Symbols",
+    "mystery symbols": "Mystery Symbols",
+    "colossal symbols": "Colossal Symbols",
+    "giant symbols": "Colossal Symbols",
+    "mega symbol (3x3)": "Colossal Symbols",
+    "mega symbol (2x2)": "Colossal Symbols",
+    "stacked symbols": "Stacked Symbols",
+    "action stacked": "Stacked Symbols",
+    "stack": "Stacked Symbols",
     "wild reels": "Wild Reels",
     "pick bonus": "Pick Bonus",
-    "bonusgame: pick objects": "Pick Bonus",
+    "bonusgame: pick objects": None,
     "nudge": "Nudges",
+    "nudge feature": "Nudges",
+    "nudging": "Nudges",
     "wheel": "Wheel",
     "bonus wheel": "Wheel",
+    "spin the wheel": "Wheel",
     "cash on reels": "Cash On Reels",
-    "lock it link": "Hold and Spin",
-    "free spins multiplier": None,
-    "pot collection": "Hold and Spin",
+    "cash collector": "Cash On Reels",
+    "respins": "Respin",
+    "symbol swap": "Symbol Transformation",
+    "symbols collection (energy)": "Persistence",
+    "pot collection": "Persistence",
+    "collector meter": "Persistence",
+    "collection meter": "Persistence",
+    "persistent wild": "Persistence",
+    "persistent wilds": "Persistence",
+    "meter feature": "Persistence",
+    "pot feature": "Persistence",
+    "building feature": "Persistence",
+    "upgrade path": "Persistence",
 }
 
 
@@ -1082,11 +1126,24 @@ IMPORTANT:
 - You are researching "{game_name}" by {provider}. NOT a different game or variant.
 - Describe what you ACTUALLY find. Do not guess or infer features that aren't described.
 - If a provider product page lists specific feature names (e.g. "Cash On Reels", "Free Spins"), include them — these are authoritative.
+- Be THOROUGH: specifically check for ALL of these common slot mechanics:
+  * Free spins / bonus spins
+  * Hold and Spin / Hold & Win / Lock and Respin / Money Charge bonus
+  * Jackpot tiers (Mini/Minor/Major/Grand or similar fixed jackpots)
+  * Cash values on symbols / coin values on reels
+  * Pick bonus / pick-and-win rounds
+  * Expanding or growing reel grids
+  * Wild reels (entire reels turning wild)
+  * Multiplier wilds or win multipliers
+  * Respin features
+  * Wheel bonus
+  * Persistent meters, pots, collectors, or building mechanics
+  * Nudge features
 
 After searching, output a JSON object with your findings. Use your own natural words for themes and features — describe them as you see them, do not try to normalize or standardize:
 {{
   "themes_raw": ["describe each visual/thematic element you see"],
-  "features_raw": ["describe each gameplay mechanic/feature you find, in your own words, with brief context of how it works"],
+  "features_raw": ["describe each gameplay mechanic/feature you find, in your own words, with brief context of how it works — be exhaustive, list EVERY mechanic"],
   "symbols": ["list every symbol name found: e.g. Wild, Scatter, Diamond, Gold Bar, Ace, King, etc."],
   "reels": 5,
   "rows": 3,
@@ -1094,6 +1151,9 @@ After searching, output a JSON object with your findings. Use your own natural w
   "paylines_value": 243 or null,
   "rtp": 96.5 or null,
   "volatility": "Low" | "Medium" | "Medium-High" | "High" | "Very High" or null,
+  "max_win": "5000x" or null,
+  "min_bet": 0.20 or null,
+  "max_bet": 100.00 or null,
   "description": "Brief 1-sentence description of the game" or null,
   "demo_url": "URL to play a free demo of this game (if found)" or null,
   "completeness": 5
@@ -1335,7 +1395,6 @@ CANONICAL FEATURES: {features_list}
 CANONICAL THEMES: {themes_list}
 
 IMPORTANT EXCLUSIONS:
-- Do NOT classify "Multiplier" as a feature. Multipliers are a nuance inside other features (e.g. free spins with multiplier, hold-and-win with multiplier), not a standalone feature. Always map multiplier references to null.
 - Do NOT classify "PowerXStream" / "Power XStream" / "Power X Stream" as Expanding Reels. PowerXStream is a WAYS-based win evaluation mechanic (like 243 ways), not an expanding reel set. Always map PowerXStream references to null.
 
 ═══════════════════════════════════════
@@ -1362,18 +1421,21 @@ HOLD AND SPIN:
   NO: "Hold & Spin-style bonus" without explicit lock+respin+counter description → null
 
 STATIC JACKPOT:
-  IS: A standalone jackpot system with NAMED tiers (Mini/Minor/Major/Grand or similar). Triggered by symbol combinations in base game or bonus, NOT only through a Wheel. INCLUDES jackpots described as "linked progressive" or "progressive" if they have named tiers — in practice these are fixed-floor named-tier jackpots.
-  NOT: Max win caps ("max win 2500x"). Jackpots that are ONLY prizes/segments within a Wheel bonus (those belong to Wheel, not Static Jackpot). Truly variable community jackpots without named tiers. Vague "jackpots available" without any tier names or structure described.
-  YES: "Four-tier jackpot: Mini ($50), Minor ($100), Major ($500), Grand ($5000) triggered by 3 wild symbols" → conf:5
-  YES: "Four linked progressive jackpots" or "four progressive jackpot tiers" → conf:5 (named-tier progressive = Static Jackpot)
-  YES: "Jackpot Feature bonus triggered by landing three matching wilds with different jackpot tiers" → conf:5
-  YES: "Five different jackpot levels" → conf:5 (multiple named jackpot tiers = Static Jackpot)
-  YES: "Four fixed jackpots triggered when prize coin and collect symbol appear" → conf:5 (fixed jackpots with a trigger = Static Jackpot)
-  YES: "Progressive Jackpot" (bare label from catalog/review when no pooled/networked description) → conf:5 (catalogs label fixed-tier jackpots as "progressive" — treat as Static Jackpot unless explicitly described as pooled/community/network jackpot)
-  YES: "Bonus Win collection system with Bronze, Silver, and Gold meters that award 10x, 25x, or 500x" → conf:5 (named-tier collection = Static Jackpot, even though values look like multipliers — the tiers are fixed prizes)
-  NO: "Maximum win of 2500x" → null
-  NO: "Jackpots available through wheel bonus: Major 2000x, Grand 15000x" → null (Wheel prizes, not standalone Static Jackpot)
-  NO: "Four jackpots available" (no named tiers AND no trigger described) → null (conf:2)
+  IS: A jackpot system with fixed-value prize tiers. Includes: named tiers (Mini/Minor/Major/Grand), fixed jackpots, linked progressives, "jackpot bonus" features, and instant jackpot prizes. If a game mentions "jackpot" or "jackpots" as a feature (not just max win), classify as Static Jackpot. IMPORTANT: virtually ALL Hold and Spin / Hold & Win games include Static Jackpot tiers — if a game has Hold and Spin, it almost certainly has Static Jackpot too. Also includes "Epic Strike", "Jackpot Royale", "Lightning Link" style jackpot systems.
+  NOT: Max win caps ("max win 2500x"). Truly variable community/pooled jackpots explicitly described as shared across a network of players.
+  YES: "Four-tier jackpot: Mini ($50), Minor ($100), Major ($500), Grand ($5000)" → conf:5
+  YES: "Four linked progressive jackpots" or "progressive jackpot tiers" → conf:5
+  YES: "Jackpot Feature bonus" or "Jackpot Bonus" → conf:5
+  YES: "Five different jackpot levels" → conf:5
+  YES: "Four fixed jackpots triggered when prize coin and collect symbol appear" → conf:5
+  YES: "Progressive Jackpot" (bare label) → conf:5 (catalogs label fixed-tier jackpots as "progressive")
+  YES: "Instant jackpots" or "Epic Strike Tower instant jackpots" → conf:5
+  YES: "Multiple jackpots" or "jackpots available" → conf:4 (likely fixed-tier)
+  YES: "Hold & Win with jackpot prizes" → conf:5 (H&W always has SJ tiers)
+  YES: "Bonus Win collection with Bronze, Silver, Gold meters" → conf:5 (named-tier collection)
+  YES: "Jackpots available through wheel bonus: Major 2000x, Grand 15000x" → conf:5 (named jackpot tiers even if inside wheel)
+  NO: "Maximum win of 2500x" → null (max win cap, not a jackpot feature)
+  NO: "Community jackpot shared across all players on network" → null (truly pooled/networked)
 
 WILD REELS:
   IS: A DEDICATED FEATURE where one or more entire reels RANDOMLY turn fully wild on their own, independent of where individual wild symbols land. The key test: do reels turn wild WITHOUT a wild symbol landing and expanding? The reels must act as WILD (substituting for other symbols).
@@ -1421,6 +1483,16 @@ NUDGES:
   YES: "xNudge Wild drops to bottom position step by step" → conf:5
   YES: "Nudge feature: reels nudge up or down to complete winning combinations" → conf:5
   NO: "Second chance feature - reel 5 nudges upward 2-3 positions for another chance" → null (retry mechanic, not a named Nudge feature)
+
+MULTIPLIER:
+  IS: A feature where wins are multiplied by a factor greater than 1x. Includes wild multipliers, free spins with increasing multipliers, random multipliers, win multipliers, and multiplier trails/ladders. The game must explicitly feature multiplier values (2x, 3x, 5x, etc.) as a recognizable mechanic.
+  NOT: Standard wild substitution without multiplier. Base paytable payouts. Maximum win potential expressed as a multiplier of bet (e.g. "max win 5000x"). Jackpot values expressed as multipliers.
+  YES: "Wild symbols carry random 2x or 3x multipliers" → conf:5
+  YES: "Free spins with increasing multiplier: starts at 1x, increases by 1x each cascade" → conf:5
+  YES: "Random Multiplier: any spin can randomly apply 2x-10x multiplier" → conf:5
+  YES: "Multiplier trail in bonus: collect symbols to advance 2x→3x→5x→10x" → conf:5
+  NO: "Maximum win of 5000x total bet" → null (max win cap, not a feature)
+  NO: "Wild symbol substitutes for all symbols" → null (basic wild, no multiplier attached)
   NO: "If four of a kind with no bolt, reel 5 nudges upward for another chance at bonus" → null (retry/second chance, not a named Nudge feature)
   NO: "Reel shift mechanic for another opportunity" → null (generic shift, not named Nudge)
 
@@ -1452,13 +1524,85 @@ WHEEL:
   NO: "Jackpot wheel spun to determine which tier is won" → classify as Static Jackpot if named tiers exist, not Wheel
 
 PERSISTENCE:
-  IS: A NAMED persistent feature that carries game state across BASE GAME spins indefinitely. Must be explicitly labeled as persistent/permanent by the game (e.g., "Persistent Wild", "Collector Meter"). Accumulated symbols that STAY on the reels between base game spins.
-  NOT: Within-bonus-round persistence (sticky wilds in free spins). "Pseudo-persistence" (resets periodically or between sessions). Pots/meters that accumulate toward a bonus trigger then reset. Collection mechanics that simply count toward a bonus. Jackpot accumulation.
+  IS: A feature where game state visibly accumulates or persists across spins. Includes: persistent wilds, collector meters, pot/meter collection systems, growing/building mechanics, symbol upgrade paths, and any visible accumulator that tracks progress. If the player can SEE a meter, pot, collection counter, or building progress that changes across spins, that is Persistence.
+  NOT: Sticky wilds that only appear WITHIN a free spins bonus round (that's part of Free Spins). Standard jackpot accumulation displays. Simple win counters.
   YES: "Persistent Wild: wild symbol stays on the reel for the next 3 base game spins" → conf:5
-  YES: "Collector meter permanently tracks progress across all sessions" → conf:5
-  NO: "Pots of gold accumulate coins toward bonus trigger" → null (collection mechanic, resets after trigger)
-  NO: "Apple pile grows with each Apple symbol" → null (conf:2) unless explicitly described as permanently persistent
-  NO: "Mummy Zone grows during the bonus feature" → null (bonus-internal)
+  YES: "Collector meter tracks progress across spins" → conf:5
+  YES: "Pots of gold accumulate coins toward bonus trigger" → conf:5 (visible pot collection = Persistence)
+  YES: "Build houses from straw to brick" → conf:5 (building/upgrade progression = Persistence)
+  YES: "Chickens grow fatter with golden riches" → conf:5 (visual growth mechanic = Persistence)
+  YES: "Fill meters to unlock bonus tiers" → conf:5 (meter-based progression = Persistence)
+  YES: "Zone Multipliers that build across spins" → conf:5 (accumulating zones = Persistence)
+  YES: "Symbol upgrade path during gameplay" → conf:4 (upgrade progression = Persistence)
+  NO: "Sticky wilds during free spins only" → null (bonus-internal, not base game persistence)
+  NO: "Progressive jackpot display" → null (standard jackpot UI, not a gameplay feature)
+
+BUY BONUS:
+  IS: An option to purchase direct entry into a bonus round (usually free spins) for a fixed cost, bypassing the normal trigger. Known as: Feature Buy, Bonus Buy, Ante Bet.
+  NOT: Regular bonus triggers. Increased-bet options that just change odds.
+  YES: "Buy Feature: pay 80x bet to enter free spins directly" → conf:5
+  NO: "Ante Bet increases RTP" → conf:3 (borderline, include if labeled as buy option)
+
+CASCADING REELS:
+  IS: After a win, winning symbols are removed and new symbols fall/tumble into the gaps, potentially creating chain wins. Known as: Avalanche, Tumble, Tumbling Reels, Rolling Reels, Reactions, Gravity Reels, CashCade.
+  NOT: Regular reel spins. Expanding reels. Symbol swaps.
+  YES: "Avalanche: winning symbols explode and new ones fall from above" → conf:5
+  YES: "Cascading wins where symbols disappear and new ones drop in" → conf:5
+
+MEGAWAYS:
+  IS: The Big Time Gaming Megaways mechanic where each reel shows a variable number of symbols per spin (2-7), creating up to 117,649 ways to win. Licensed to many providers.
+  NOT: Fixed ways-to-win (e.g. "243 ways"). PowerXStream. Standard expanding reels without the variable-symbol-count mechanic.
+  YES: "Megaways mechanic with up to 117,649 ways to win" → conf:5
+  YES: "Megaways engine with variable reel sizes" → conf:5
+  NO: "1024 ways to win" → null (fixed ways, not Megaways)
+
+STICKY WILDS:
+  IS: Wild symbols that remain locked in position for multiple spins or for the duration of a bonus round.
+  NOT: Regular wilds. Expanding wilds (which grow but don't persist). Walking wilds (which move).
+  YES: "Sticky wilds remain in place for 3 consecutive spins" → conf:5
+  YES: "Wilds lock in place during free spins and stay for remaining spins" → conf:5
+
+EXPANDING WILDS:
+  IS: A wild symbol that expands to cover an entire reel (or section) when it lands. The expansion is triggered by the wild symbol itself landing.
+  NOT: Wild Reels (random full-reel wilds without a symbol landing first). Stacked wilds (pre-stacked, not expanding). Regular wilds.
+  YES: "Wild expands to cover entire reel when it appears" → conf:5
+  NO: "Stacked wilds cover 3 positions" → null (stacked, not expanding)
+
+GAMBLE FEATURE:
+  IS: An optional post-win feature where the player can risk their winnings for a chance to double (or more) them. Known as: Double Up, Risk Game, Card Gamble.
+  NOT: Regular gameplay. Bonus selection screens.
+  YES: "Gamble: guess card color to double winnings" → conf:5
+  YES: "Risk/Gamble feature available after any win" → conf:5
+
+MYSTERY SYMBOLS:
+  IS: Special symbols that land on the reels and then all transform into the same random symbol, creating potential big wins.
+  NOT: Regular scatter or wild symbols. Symbol transformations that are not "mystery reveal" style.
+  YES: "Mystery symbols all reveal the same random symbol" → conf:5
+  YES: "Mystery stacks land and transform into matching symbols" → conf:5
+
+COLOSSAL SYMBOLS:
+  IS: Oversized symbols (2x2, 3x3, or larger) that appear on the reels, covering multiple positions.
+  NOT: Expanding wilds. Regular large paytable icons. Stacked symbols (vertically stacked, not oversized).
+  YES: "Giant 3x3 symbol appears on the reels" → conf:5
+  YES: "Colossal symbols cover a 2x2 area" → conf:5
+
+PROGRESSIVE JACKPOT:
+  IS: A jackpot that grows over time as players place bets, with a portion of each bet contributing to the prize pool. The jackpot value increases until won.
+  NOT: Fixed/static jackpots with set values. Standard bonus wins.
+  YES: "Progressive jackpot that grows with every spin across the network" → conf:5
+  YES: "Rising Rewards: progressive jackpots that increase as you play" → conf:5
+
+STACKED SYMBOLS:
+  IS: Symbols that appear in stacks of 2+ on a single reel, covering multiple consecutive positions vertically.
+  NOT: Colossal/mega symbols (which cover multiple reels). Regular symbols. Expanding wilds.
+  YES: "Stacked symbols on all reels in base game and free spins" → conf:5
+  YES: "Action Stacked Symbols: full stacks of matching symbols" → conf:5
+
+SYMBOL TRANSFORMATION:
+  IS: A feature where symbols on the reels change/transform into other symbols (typically higher-value ones) to create or improve wins.
+  NOT: Mystery symbols (all reveal same symbol). Cascading/tumbling. Wild substitution.
+  YES: "Symbol swap: low-value symbols transform into high-value symbols" → conf:5
+  YES: "Transforming symbols feature converts symbols to wilds" → conf:5
 
 ═══════════════════════════════════════
 GENERAL RULES (apply to ALL features)
@@ -1467,20 +1611,15 @@ GENERAL RULES (apply to ALL features)
 • Bet configuration options → null
 • Basic wild substitution without multiplier or full-reel coverage → null
 • Board/trail games, skill games → null (not in taxonomy)
-• Bonus Buy / Feature Buy → null (purchase option, not a feature)
-• Cascading/Tumble/Avalanche reels → null (not in taxonomy)
 • Cluster Pays / Cluster Wins → null (not in taxonomy)
-• Gamble / Double Up → null (not in taxonomy)
 • Walking Wilds / Shifting Wilds → null (not in taxonomy)
-• Stacked Symbols / Action Stacked → null (not in taxonomy)
 
 CROSS-PROVIDER TERMINOLOGY (important for non-AGS games):
-• "Megaways" = Expanding Reels (variable reel sizes, up to 117K+ ways)
+• "Megaways" = Megaways (the BTG mechanic)
 • "Infinity Reels" = Expanding Reels (new reels added during gameplay)
 • "PowerXStream" = NOT Expanding Reels (AGS ways expansion system, it's a WAYS mechanic not expanding reels)
 • "Lightning Link" / "Dragon Link" / "Dollar Storm" / "Ultimate Fire Link" = Hold and Spin
 • "Power Prizes" / "Money Collect" / "Cash Collect" with zone-collection = Cash On Reels
-• "Reactions" / "Avalanche" / "Tumble" = NOT any of our 11 features (cascading is excluded)
 • "Scatter Pays" = NOT Cash On Reels (scatter wins are a payline mechanic)
 • "Linked Progressive" / "Must Hit By Jackpot" with named tiers = Static Jackpot
 • When UNSURE, classify as null — false negatives are better than false positives
@@ -1774,12 +1913,6 @@ def enrich_one_game(
     final_features = normalize_features(final_features, verbose)
     final_themes = normalize_themes(final_themes, verbose)
 
-    # GATE: multiplier-strip — Multiplier removed from taxonomy entirely
-    if "Multiplier" in final_features:
-        final_features = [f for f in final_features if f != "Multiplier"]
-        if verbose:
-            print("  [POST] Stripped Multiplier (removed from taxonomy)")
-
     raw_text = ' '.join(raw_extraction.get("features_raw") or []).lower()
     feature_map = normalized.get("feature_map", [])
 
@@ -1821,6 +1954,12 @@ def enrich_one_game(
             final_features = [f for f in final_features if f != "Cash On Reels"]
             if verbose:
                 print("  [POST] Stripped Cash On Reels (interactive mini-game, not COR)")
+
+    # GATE: hs-sj-safety — Hold and Spin virtually always has Static Jackpot tiers
+    if "Hold and Spin" in final_features and "Static Jackpot" not in final_features:
+        final_features.append("Static Jackpot")
+        if verbose:
+            print("  [POST] Added Static Jackpot (Hold and Spin → SJ safety net, 100% GT correlation)")
 
     # GATE: pick-gate-strip — gate/selector evidence is NOT Pick Bonus
     if "Pick Bonus" in final_features and "Pick Bonus" not in catalog_confirmed:
@@ -1870,6 +2009,9 @@ def enrich_one_game(
         "paylines_count": raw_extraction.get("paylines_value"),
         "rtp": raw_extraction.get("rtp"),
         "volatility": raw_extraction.get("volatility"),
+        "max_win": raw_extraction.get("max_win"),
+        "min_bet": raw_extraction.get("min_bet"),
+        "max_bet": raw_extraction.get("max_bet"),
         "release_year": master_release.get("year"),
         "release_month": master_release.get("month"),
         "theo_win": master_perf.get("theo_win"),
@@ -2166,6 +2308,8 @@ def main():
                         help="Disable DuckDuckGo fallback search (required for proof/audit runs — DDG is remediation-only)")
     parser.add_argument("--force", action="store_true",
                         help="Override config validation block (NOT recommended — use only for debugging)")
+    parser.add_argument("--symbols-only", action="store_true",
+                        help="Only fill empty symbols (runs Stage 1 only, preserves existing features/themes)")
     args = parser.parse_args()
 
     # ---- Validate config on every run (BLOCKS by default) ----
@@ -2304,12 +2448,6 @@ def main():
             final_features = normalize_features(final_features, args.verbose)
             final_themes = normalize_themes(final_themes, args.verbose)
 
-            # GATE: multiplier-strip (batch path)
-            if "Multiplier" in final_features:
-                final_features = [f for f in final_features if f != "Multiplier"]
-                if args.verbose:
-                    print("  [POST] Stripped Multiplier (removed from taxonomy)")
-
             raw_text = ' '.join(raw_extraction.get("features_raw") or []).lower()
             feature_map = normalized.get("feature_map") or []
 
@@ -2352,6 +2490,12 @@ def main():
                     if args.verbose:
                         print("  [POST] Stripped Cash On Reels (interactive mini-game)")
 
+            # GATE: hs-sj-safety (batch path)
+            if "Hold and Spin" in final_features and "Static Jackpot" not in final_features:
+                final_features.append("Static Jackpot")
+                if args.verbose:
+                    print("  [POST] Added Static Jackpot (H&S → SJ safety net)")
+
             # GATE: pick-gate-strip (batch path)
             if "Pick Bonus" in final_features and "Pick Bonus" not in catalog_confirmed:
                 pb_items = [i for i in feature_map if i.get("canonical") == "Pick Bonus"]
@@ -2391,6 +2535,9 @@ def main():
                 "paylines_count": raw_extraction.get("paylines_value"),
                 "rtp": raw_extraction.get("rtp"),
                 "volatility": raw_extraction.get("volatility"),
+                "max_win": raw_extraction.get("max_win"),
+                "min_bet": raw_extraction.get("min_bet"),
+                "max_bet": raw_extraction.get("max_bet"),
                 "release_year": master_release.get("year"),
                 "release_month": master_release.get("month"),
                 "theo_win": master_perf.get("theo_win"),
@@ -2477,6 +2624,49 @@ def main():
 
     for i, game in enumerate(games):
         gid = game["id"]
+
+        if args.symbols_only:
+            existing_rec = existing_by_id.get(gid)
+            if existing_rec and existing_rec.get("symbols"):
+                dashboard_records.append(existing_rec)
+                if gid in existing_meta_all:
+                    meta_records[gid] = existing_meta_all[gid]
+                done_count += 1
+                continue
+
+            print(f"[{i+1}/{len(games)}] Symbols-only: {game['name']} ({gid})")
+            try:
+                provider_info = game.get("provider", {})
+                provider = provider_info.get("display_name") or provider_info.get("studio") or "Unknown"
+                raw_extraction, ws_meta = call_web_search(
+                    game["name"], provider, args.verbose, model_override=args.extract_model
+                )
+                new_symbols = (raw_extraction or {}).get("symbols") or []
+                if existing_rec:
+                    rec = existing_rec.copy()
+                    rec["symbols"] = new_symbols
+                    dashboard_records.append(rec)
+                else:
+                    dashboard_rec, meta_rec = enrich_one_game(
+                        game, verbose=args.verbose, extract_model=args.extract_model,
+                    )
+                    dashboard_records.append(dashboard_rec)
+                    meta_records[gid] = meta_rec
+                done_count += 1
+                if args.verbose:
+                    print(f"  [SYMBOLS] Got {len(new_symbols)} symbols: {new_symbols[:5]}")
+            except Exception as e:
+                print(f"  [ERROR] {e}")
+                if existing_rec:
+                    dashboard_records.append(existing_rec)
+                fail_count += 1
+
+            cp["done"] = done_count
+            cp["failed"] = fail_count
+            save_checkpoint(cp)
+            if i < len(games) - 1:
+                time.sleep(args.delay)
+            continue
 
         if args.skip_enriched and gid in enriched_ids:
             print(f"[{i+1}/{len(games)}] SKIP (already enriched): {game['name']}")

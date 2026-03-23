@@ -1,6 +1,6 @@
 /**
  * Tests for sidebar collapse functionality.
- * Uses a minimal DOM with sidebar, main-content, collapse-arrow, sidebar-text, gamelab-subnav elements.
+ * Uses a minimal DOM with sidebar, main-content, collapse-arrow, sidebar-text elements.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 
@@ -16,8 +16,6 @@ describe('Sidebar Collapse', () => {
             <span class="sidebar-text">Label 2</span>
         </div>
         <main id="main-content" style="margin-left: 240px;"></main>
-        <div id="gamelab-subnav" style="max-height: 100px;"></div>
-        <div class="gamelab-chevron"></div>
     `;
 
     beforeEach(() => {
@@ -59,15 +57,6 @@ describe('Sidebar Collapse', () => {
             expect(sidebar.classList.contains('collapsed')).toBe(false);
             sidebarTexts.forEach(el => expect(el.classList.contains('hidden')).toBe(false));
             expect(mainContent.style.marginLeft).toBe('240px');
-        });
-
-        it('Game Lab subnav gets maxHeight: 0 on collapse', () => {
-            const subnav = document.getElementById('gamelab-subnav');
-            subnav.style.maxHeight = '100px';
-
-            window.toggleSidebar(); // collapse
-
-            expect(subnav.style.maxHeight).toBe('0');
         });
 
         it('arrow rotates on toggle (180deg when collapsed, 0deg when expanded)', () => {

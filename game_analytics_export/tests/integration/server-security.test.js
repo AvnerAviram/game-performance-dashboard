@@ -25,20 +25,29 @@ function httpReq(method, url, data = null, headers = {}) {
     const parsed = new URL(url);
     const payload = data ? JSON.stringify(data) : null;
     const opts = {
-        hostname: parsed.hostname, port: parsed.port, path: parsed.pathname + (parsed.search || ''),
-        method, headers: { ...headers }
+        hostname: parsed.hostname,
+        port: parsed.port,
+        path: parsed.pathname + (parsed.search || ''),
+        method,
+        headers: { ...headers },
     };
     if (payload) {
         opts.headers['Content-Type'] = 'application/json';
         opts.headers['Content-Length'] = Buffer.byteLength(payload);
     }
     return new Promise((resolve, reject) => {
-        const req = http.request(opts, (res) => {
+        const req = http.request(opts, res => {
             let body = '';
-            res.on('data', (c) => { body += c; });
+            res.on('data', c => {
+                body += c;
+            });
             res.on('end', () => {
                 let json = null;
-                try { json = JSON.parse(body); } catch { /* not json */ }
+                try {
+                    json = JSON.parse(body);
+                } catch {
+                    /* not json */
+                }
                 resolve({ status: res.statusCode, body, json, headers: res.headers });
             });
         });
@@ -51,19 +60,28 @@ function httpReq(method, url, data = null, headers = {}) {
 function httpRaw(method, url, body, headers = {}) {
     const parsed = new URL(url);
     const opts = {
-        hostname: parsed.hostname, port: parsed.port, path: parsed.pathname + (parsed.search || ''),
-        method, headers: { ...headers }
+        hostname: parsed.hostname,
+        port: parsed.port,
+        path: parsed.pathname + (parsed.search || ''),
+        method,
+        headers: { ...headers },
     };
     if (body != null) {
         opts.headers['Content-Length'] = Buffer.byteLength(body);
     }
     return new Promise((resolve, reject) => {
-        const req = http.request(opts, (res) => {
+        const req = http.request(opts, res => {
             let data = '';
-            res.on('data', (c) => { data += c; });
+            res.on('data', c => {
+                data += c;
+            });
             res.on('end', () => {
                 let json = null;
-                try { json = JSON.parse(data); } catch { /* not json */ }
+                try {
+                    json = JSON.parse(data);
+                } catch {
+                    /* not json */
+                }
                 resolve({ status: res.statusCode, body: data, json, headers: res.headers });
             });
         });
@@ -78,24 +96,20 @@ async function waitForServer(maxAttempts = 40) {
         try {
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/health`);
             if (res.status === 200) return true;
-        } catch { /* not ready */ }
-        await new Promise((r) => setTimeout(r, 250));
+        } catch {
+            /* not ready */
+        }
+        await new Promise(r => setTimeout(r, 250));
     }
     return false;
 }
 
 describe('Server Security - Integration', () => {
     beforeAll(async () => {
-        originalUsersContent = existsSync(USERS_FILE)
-            ? readFileSync(USERS_FILE, 'utf-8')
-            : null;
+        originalUsersContent = existsSync(USERS_FILE) ? readFileSync(USERS_FILE, 'utf-8') : null;
 
-        const existingUsers = existsSync(USERS_FILE)
-            ? JSON.parse(readFileSync(USERS_FILE, 'utf-8'))
-            : [];
-        const testUsers = existingUsers.filter(u =>
-            !u.username.startsWith('__sectest_')
-        );
+        const existingUsers = existsSync(USERS_FILE) ? JSON.parse(readFileSync(USERS_FILE, 'utf-8')) : [];
+        const testUsers = existingUsers.filter(u => !u.username.startsWith('__sectest_'));
         testUsers.push({
             username: '__sectest_admin__',
             passwordHash: bcrypt.hashSync('SecurePass123!', 12),
@@ -118,7 +132,8 @@ describe('Server Security - Integration', () => {
         if (!ready) throw new Error('Server did not start');
 
         const loginRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-            username: '__sectest_admin__', password: 'SecurePass123!'
+            username: '__sectest_admin__',
+            password: 'SecurePass123!',
         });
         const cookies = loginRes.headers['set-cookie'];
         sessionCookie = (Array.isArray(cookies) ? cookies[0] : cookies).split(';')[0];
@@ -171,21 +186,22 @@ describe('Server Security - Integration', () => {
     describe('Authentication & Sessions', () => {
         it('should reject invalid credentials', async () => {
             const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-                username: '__sectest_admin__', password: 'wrongpassword'
+                username: '__sectest_admin__',
+                password: 'wrongpassword',
             });
             expect(res.status).toBe(401);
         });
 
         it('should reject missing fields', async () => {
             const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-                username: '__sectest_admin__'
+                username: '__sectest_admin__',
             });
             expect(res.status).toBe(400);
         });
 
         it('should return session info for authenticated user', async () => {
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/session`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
             expect(res.status).toBe(200);
             expect(res.json.user.username).toBe('__sectest_admin__');
@@ -193,7 +209,8 @@ describe('Server Security - Integration', () => {
 
         it('session cookie should be httpOnly', async () => {
             const loginRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-                username: '__sectest_admin__', password: 'SecurePass123!'
+                username: '__sectest_admin__',
+                password: 'SecurePass123!',
             });
             const setCookie = loginRes.headers['set-cookie'];
             const cookieStr = Array.isArray(setCookie) ? setCookie[0] : setCookie;
@@ -203,112 +220,192 @@ describe('Server Security - Integration', () => {
 
     describe('Password Policy', () => {
         it('should reject passwords shorter than 8 characters', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/admin/users`, {
-                username: 'weakpw', password: 'short', role: 'user'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/admin/users`,
+                {
+                    username: 'weakpw',
+                    password: 'short',
+                    role: 'user',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
             expect(res.json.error).toContain('8 characters');
         });
 
         it('should accept passwords with 8+ characters', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/admin/users`, {
-                username: '__sectest_valid__', password: 'LongEnough1', role: 'user'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/admin/users`,
+                {
+                    username: '__sectest_valid__',
+                    password: 'LongEnough1',
+                    role: 'user',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(201);
 
             await httpReq('DELETE', `http://127.0.0.1:${TEST_PORT}/api/admin/users/__sectest_valid__`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
         });
 
         it('should reject usernames over 50 characters', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/admin/users`, {
-                username: 'a'.repeat(51), password: 'LongEnough1', role: 'user'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/admin/users`,
+                {
+                    username: 'a'.repeat(51),
+                    password: 'LongEnough1',
+                    role: 'user',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
         });
     });
 
     describe('Ticket Input Validation', () => {
         it('should reject tickets with missing fields', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'TestGame'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'TestGame',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
         });
 
         it('should reject tickets with oversized fields', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'x'.repeat(501),
-                description: 'valid description'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'x'.repeat(501),
+                    description: 'valid description',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
             expect(res.json.error).toContain('500');
         });
 
         it('should reject non-string field types', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 12345,
-                description: 'test'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 12345,
+                    description: 'test',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
         });
 
         it('should accept valid ticket and default issueType', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Test Game',
-                description: 'Test description',
-                issueType: 'invalid-type'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Test Game',
+                    description: 'Test description',
+                    issueType: 'invalid-type',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(201);
             expect(res.json.issueType).toBe('data-issue');
         });
 
         it('should accept valid issueType values', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Test Game 2',
-                description: 'Bug report',
-                issueType: 'ui-bug'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Test Game 2',
+                    description: 'Bug report',
+                    issueType: 'ui-bug',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(201);
             expect(res.json.issueType).toBe('ui-bug');
         });
 
         it('should reject PATCH with invalid status', async () => {
-            const createRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Patch Test', description: 'patch test'
-            }, { Cookie: sessionCookie });
+            const createRes = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Patch Test',
+                    description: 'patch test',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(createRes.status).toBe(201);
             const ticketId = createRes.json.id;
 
-            const res = await httpReq('PATCH', `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`, {
-                status: 'hacked-status'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'PATCH',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`,
+                {
+                    status: 'hacked-status',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
             expect(res.json.error).toContain('Invalid status');
         });
 
         it('should reject PATCH with oversized description', async () => {
-            const createRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Patch Len Test', description: 'len test'
-            }, { Cookie: sessionCookie });
+            const createRes = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Patch Len Test',
+                    description: 'len test',
+                },
+                { Cookie: sessionCookie }
+            );
             const ticketId = createRes.json.id;
 
-            const res = await httpReq('PATCH', `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`, {
-                description: 'x'.repeat(501)
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'PATCH',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`,
+                {
+                    description: 'x'.repeat(501),
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
         });
 
         it('should accept PATCH with valid status', async () => {
-            const createRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Valid Patch', description: 'will be resolved'
-            }, { Cookie: sessionCookie });
+            const createRes = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Valid Patch',
+                    description: 'will be resolved',
+                },
+                { Cookie: sessionCookie }
+            );
             const ticketId = createRes.json.id;
 
-            const res = await httpReq('PATCH', `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`, {
-                status: 'resolved', resolution: 'Fixed in v2'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'PATCH',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets/${ticketId}`,
+                {
+                    status: 'resolved',
+                    resolution: 'Fixed in v2',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(200);
             expect(res.json.status).toBe('resolved');
             expect(res.json.resolution).toBe('Fixed in v2');
@@ -318,26 +415,28 @@ describe('Server Security - Integration', () => {
     describe('Authorization', () => {
         it('should block non-admin from admin endpoints', async () => {
             const loginRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-                username: '__sectest_user__', password: 'UserPass999!'
+                username: '__sectest_user__',
+                password: 'UserPass999!',
             });
             const cookies = loginRes.headers['set-cookie'];
             const userCookie = (Array.isArray(cookies) ? cookies[0] : cookies).split(';')[0];
 
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/admin/users`, null, {
-                Cookie: userCookie
+                Cookie: userCookie,
             });
             expect(res.status).toBe(403);
         });
 
         it('should block non-admin from deleting tickets', async () => {
             const loginRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, {
-                username: '__sectest_user__', password: 'UserPass999!'
+                username: '__sectest_user__',
+                password: 'UserPass999!',
             });
             const cookies = loginRes.headers['set-cookie'];
             const userCookie = (Array.isArray(cookies) ? cookies[0] : cookies).split(';')[0];
 
             const res = await httpReq('DELETE', `http://127.0.0.1:${TEST_PORT}/api/tickets/fake-id`, null, {
-                Cookie: userCookie
+                Cookie: userCookie,
             });
             expect(res.status).toBe(403);
         });
@@ -368,14 +467,14 @@ describe('Server Security - Integration', () => {
     describe('Edge Cases: Malformed Requests', () => {
         it('should handle malformed JSON body gracefully', async () => {
             const res = await httpRaw('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, '{invalid json!!!', {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             });
             expect([400, 500]).toContain(res.status);
         });
 
         it('should handle empty body on POST endpoints', async () => {
             const res = await httpRaw('POST', `http://127.0.0.1:${TEST_PORT}/api/login`, '', {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             });
             expect(res.status).toBe(400);
         });
@@ -387,51 +486,67 @@ describe('Server Security - Integration', () => {
 
         it('should serve data when authenticated', async () => {
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/data/games`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
             expect(res.status).toBe(200);
             expect(res.json).toBeDefined();
         });
 
         it('should reject AI endpoint with missing theme', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/generate-names`, {
-                keywords: 'dragon fire'
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/generate-names`,
+                {
+                    keywords: 'dragon fire',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
             expect(res.json.error).toContain('Theme');
         });
 
         it('should reject AI endpoint with oversized theme', async () => {
-            const res = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/generate-names`, {
-                theme: 'x'.repeat(201)
-            }, { Cookie: sessionCookie });
+            const res = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/generate-names`,
+                {
+                    theme: 'x'.repeat(201),
+                },
+                { Cookie: sessionCookie }
+            );
             expect(res.status).toBe(400);
             expect(res.json.error).toContain('too long');
         });
 
         it('should return 404 for non-existent API routes', async () => {
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/nonexistent`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
             expect(res.status).toBe(404);
         });
 
         it('should delete a ticket as admin', async () => {
-            const createRes = await httpReq('POST', `http://127.0.0.1:${TEST_PORT}/api/tickets`, {
-                gameName: 'Delete Me', description: 'will be deleted'
-            }, { Cookie: sessionCookie });
+            const createRes = await httpReq(
+                'POST',
+                `http://127.0.0.1:${TEST_PORT}/api/tickets`,
+                {
+                    gameName: 'Delete Me',
+                    description: 'will be deleted',
+                },
+                { Cookie: sessionCookie }
+            );
             expect(createRes.status).toBe(201);
             const id = createRes.json.id;
 
             const res = await httpReq('DELETE', `http://127.0.0.1:${TEST_PORT}/api/tickets/${id}`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
             expect(res.status).toBe(200);
         });
 
         it('should return 404 when deleting non-existent ticket', async () => {
             const res = await httpReq('DELETE', `http://127.0.0.1:${TEST_PORT}/api/tickets/nonexistent-id-999`, null, {
-                Cookie: sessionCookie
+                Cookie: sessionCookie,
             });
             expect(res.status).toBe(404);
         });

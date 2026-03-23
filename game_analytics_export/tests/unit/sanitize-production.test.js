@@ -44,8 +44,7 @@ describe('escapeHtml - Edge Cases', () => {
     });
 
     it('should escape all 5 dangerous characters', () => {
-        expect(escapeHtml('&<>"\''))
-            .toBe('&amp;&lt;&gt;&quot;&#39;');
+        expect(escapeHtml('&<>"\'')).toBe('&amp;&lt;&gt;&quot;&#39;');
     });
 
     it('should handle empty string', () => {

@@ -43,7 +43,8 @@ async function handleLogin(e) {
         }
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = '<span>Sign in</span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
+            submitBtn.innerHTML =
+                '<span>Sign in</span><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>';
         }
     }
 }
@@ -51,7 +52,7 @@ async function handleLogin(e) {
 form?.addEventListener('submit', handleLogin);
 
 document.querySelectorAll('#login-username, #login-password').forEach(input => {
-    input.addEventListener('keydown', (e) => {
+    input.addEventListener('keydown', e => {
         if (e.key === 'Enter') {
             e.preventDefault();
             handleLogin(e);

@@ -8,49 +8,49 @@ const mockGameData = {
             name: '88 Fortunes',
             provider: 'IGT official',
             theme: { consolidated: 'Asian - Fortune/Luck', primary: 'Asian - Fortune/Luck', secondary: 'Dragons' },
-            performance: { theo_win: 5.23 }
+            performance: { theo_win: 5.23 },
         },
         {
             name: 'Buffalo Gold',
             provider: 'Aristocrat official',
             theme: { consolidated: 'Animals - Buffalo', primary: 'Animals - Buffalo' },
-            performance: { theo_win: 8.45 }
+            performance: { theo_win: 8.45 },
         },
         {
             name: 'Cleopatra',
             provider: 'IGT official',
             theme: { consolidated: 'Ancient Egypt', primary: 'Ancient Egypt' },
-            performance: { theo_win: 12.67 }
+            performance: { theo_win: 12.67 },
         },
         {
             name: 'Cash Eruption',
             provider: 'Aristocrat official',
             theme: { consolidated: 'Fire/Volcanic', primary: 'Fire/Volcanic' },
-            performance: { theo_win: 43.47 }
+            performance: { theo_win: 43.47 },
         },
         {
             name: 'Bonanza',
             provider: 'Big Time Gaming official',
             theme: { consolidated: 'Mining/Gold Rush', primary: 'Mining/Gold Rush' },
-            performance: { theo_win: 6.78 }
-        }
+            performance: { theo_win: 6.78 },
+        },
     ],
     mechanics: [
         {
-            'Mechanic': 'Free Spins',
+            Mechanic: 'Free Spins',
             'Game Count': 4092,
             'Avg Theo Win Index': 0.5401,
             'Smart Index': 2210.28,
-            'Market Share %': 97.38
+            'Market Share %': 97.38,
         },
         {
-            'Mechanic': 'Multipliers',
+            Mechanic: 'Multipliers',
             'Game Count': 205,
             'Avg Theo Win Index': 2.0205,
-            'Smart Index': 414.20,
-            'Market Share %': 4.88
-        }
-    ]
+            'Smart Index': 414.2,
+            'Market Share %': 4.88,
+        },
+    ],
 };
 
 const mockMechanicDef = {
@@ -62,10 +62,10 @@ const mockMechanicDef = {
         'Buffalo Gold (8-20 spins)',
         'Cleopatra (15 spins with 3x multiplier)',
         'Cash Eruption (6-15 spins)',
-        'Bonanza (12+ spins)'
+        'Bonanza (12+ spins)',
     ],
     frequency: '56 of 100 top games (56%)',
-    category: 'Bonus Features'
+    category: 'Bonus Features',
 };
 
 describe('UI Functions - Mechanic Panel', () => {
@@ -102,7 +102,7 @@ describe('UI Functions - Mechanic Panel', () => {
         `);
         document = dom.window.document;
         window = dom.window;
-        
+
         // Set up global objects
         global.document = document;
         global.window = window;
@@ -116,7 +116,7 @@ describe('UI Functions - Mechanic Panel', () => {
                 { input: 'Cleopatra (15 spins with 3x multiplier)', expected: 'Cleopatra' },
                 { input: 'Cash Eruption (6-15 spins)', expected: 'Cash Eruption' },
                 { input: 'Bonanza (12+ spins)', expected: 'Bonanza' },
-                { input: 'Regular Game Name', expected: 'Regular Game Name' }
+                { input: 'Regular Game Name', expected: 'Regular Game Name' },
             ];
 
             testCases.forEach(({ input, expected }) => {
@@ -130,11 +130,9 @@ describe('UI Functions - Mechanic Panel', () => {
         it('should match games by exact name after cleaning', () => {
             const exampleName = '88 Fortunes (10 spins)';
             const cleanName = exampleName.replace(/\s*\([^)]*\)/g, '').trim();
-            
-            const game = mockGameData.allGames.find(g => 
-                g.name.toLowerCase() === cleanName.toLowerCase()
-            );
-            
+
+            const game = mockGameData.allGames.find(g => g.name.toLowerCase() === cleanName.toLowerCase());
+
             expect(game).toBeDefined();
             expect(game.name).toBe('88 Fortunes');
         });
@@ -142,39 +140,38 @@ describe('UI Functions - Mechanic Panel', () => {
         it('should match games with partial name match', () => {
             const exampleName = 'Buffalo (any variation)';
             const cleanName = exampleName.replace(/\s*\([^)]*\)/g, '').trim();
-            
-            const game = mockGameData.allGames.find(g => 
-                g.name.toLowerCase().includes(cleanName.toLowerCase())
-            );
-            
+
+            const game = mockGameData.allGames.find(g => g.name.toLowerCase().includes(cleanName.toLowerCase()));
+
             expect(game).toBeDefined();
             expect(game.name).toBe('Buffalo Gold');
         });
 
         it('should match all 5 example games from Free Spins mechanic', () => {
             const matchedGames = [];
-            
+
             mockMechanicDef.examples.forEach(exampleName => {
                 const cleanName = exampleName.replace(/\s*\([^)]*\)/g, '').trim();
-                
-                const game = mockGameData.allGames.find(g => 
-                    g.name.toLowerCase() === cleanName.toLowerCase() ||
-                    g.name.toLowerCase().includes(cleanName.toLowerCase()) ||
-                    cleanName.toLowerCase().includes(g.name.toLowerCase())
+
+                const game = mockGameData.allGames.find(
+                    g =>
+                        g.name.toLowerCase() === cleanName.toLowerCase() ||
+                        g.name.toLowerCase().includes(cleanName.toLowerCase()) ||
+                        cleanName.toLowerCase().includes(g.name.toLowerCase())
                 );
-                
+
                 if (game) {
                     matchedGames.push(game);
                 }
             });
-            
+
             expect(matchedGames.length).toBe(5);
             expect(matchedGames.map(g => g.name)).toEqual([
                 '88 Fortunes',
                 'Buffalo Gold',
                 'Cleopatra',
                 'Cash Eruption',
-                'Bonanza'
+                'Bonanza',
             ]);
         });
     });
@@ -182,26 +179,26 @@ describe('UI Functions - Mechanic Panel', () => {
     describe('Top Performing Games Sorting', () => {
         it('should sort games by Theo Win in descending order', () => {
             const matchedGames = mockGameData.allGames;
-            
+
             const sorted = matchedGames
                 .filter(g => g.performance?.theo_win)
                 .sort((a, b) => (b.performance?.theo_win || 0) - (a.performance?.theo_win || 0));
-            
+
             expect(sorted[0].name).toBe('Cash Eruption');
             expect(sorted[0].performance.theo_win).toBe(43.47);
-            
+
             expect(sorted[sorted.length - 1].name).toBe('88 Fortunes');
             expect(sorted[sorted.length - 1].performance.theo_win).toBe(5.23);
         });
 
         it('should limit results to 10 games', () => {
             const matchedGames = mockGameData.allGames;
-            
+
             const topGames = matchedGames
                 .filter(g => g.performance?.theo_win)
                 .sort((a, b) => (b.performance?.theo_win || 0) - (a.performance?.theo_win || 0))
                 .slice(0, 10);
-            
+
             expect(topGames.length).toBeLessThanOrEqual(10);
         });
 
@@ -212,14 +209,14 @@ describe('UI Functions - Mechanic Panel', () => {
                     name: 'Test Game',
                     provider: 'Test Provider',
                     theme: { consolidated: 'Test Theme' },
-                    performance: {}
-                }
+                    performance: {},
+                },
             ];
-            
+
             const sorted = gamesWithNull
                 .filter(g => g.performance?.theo_win)
                 .sort((a, b) => (b.performance?.theo_win || 0) - (a.performance?.theo_win || 0));
-            
+
             expect(sorted.length).toBe(mockGameData.allGames.length);
             expect(sorted.every(g => g.performance.theo_win > 0)).toBe(true);
         });
@@ -253,34 +250,37 @@ describe('UI Functions - Mechanic Panel', () => {
     describe('Frequency Classification', () => {
         it('should classify high market share as "Industry standard"', () => {
             const marketShare = 97.38;
-            const classification = marketShare > 50 
-                ? 'Industry standard feature' 
-                : marketShare > 10 
-                    ? 'Popular feature' 
-                    : 'Specialty feature';
-            
+            const classification =
+                marketShare > 50
+                    ? 'Industry standard feature'
+                    : marketShare > 10
+                      ? 'Popular feature'
+                      : 'Specialty feature';
+
             expect(classification).toBe('Industry standard feature');
         });
 
         it('should classify medium market share as "Popular"', () => {
             const marketShare = 25.5;
-            const classification = marketShare > 50 
-                ? 'Industry standard feature' 
-                : marketShare > 10 
-                    ? 'Popular feature' 
-                    : 'Specialty feature';
-            
+            const classification =
+                marketShare > 50
+                    ? 'Industry standard feature'
+                    : marketShare > 10
+                      ? 'Popular feature'
+                      : 'Specialty feature';
+
             expect(classification).toBe('Popular feature');
         });
 
         it('should classify low market share as "Specialty"', () => {
             const marketShare = 3.2;
-            const classification = marketShare > 50 
-                ? 'Industry standard feature' 
-                : marketShare > 10 
-                    ? 'Popular feature' 
-                    : 'Specialty feature';
-            
+            const classification =
+                marketShare > 50
+                    ? 'Industry standard feature'
+                    : marketShare > 10
+                      ? 'Popular feature'
+                      : 'Specialty feature';
+
             expect(classification).toBe('Specialty feature');
         });
     });
@@ -290,7 +290,7 @@ describe('UI Functions - Mechanic Panel', () => {
             const game = mockGameData.allGames[0];
             const theme = game.theme?.consolidated || game.theme?.primary || 'Unknown';
             const themeSecondary = game.theme?.secondary ? ' / ' + game.theme.secondary : '';
-            
+
             expect(theme).toBe('Asian - Fortune/Luck');
             expect(themeSecondary).toBe(' / Dragons');
         });
@@ -299,7 +299,7 @@ describe('UI Functions - Mechanic Panel', () => {
             const game = mockGameData.allGames[1];
             const theme = game.theme?.consolidated || game.theme?.primary || 'Unknown';
             const themeSecondary = game.theme?.secondary ? ' / ' + game.theme.secondary : '';
-            
+
             expect(theme).toBe('Animals - Buffalo');
             expect(themeSecondary).toBe('');
         });
@@ -315,9 +315,9 @@ describe('UI Functions - Mechanic Panel', () => {
             const gameWithoutProvider = {
                 name: 'Test Game',
                 theme: { consolidated: 'Test' },
-                performance: { theo_win: 1.0 }
+                performance: { theo_win: 1.0 },
             };
-            
+
             const provider = gameWithoutProvider.provider || 'Unknown';
             expect(provider).toBe('Unknown');
         });
@@ -333,7 +333,7 @@ describe('UI Functions - Mechanic Panel', () => {
         it('should handle missing theo win gracefully', () => {
             const gameWithoutTheo = {
                 name: 'Test Game',
-                performance: {}
+                performance: {},
             };
             const theoWin = (gameWithoutTheo.performance?.theo_win || 0).toFixed(2);
             expect(theoWin).toBe('0.00');
@@ -349,11 +349,11 @@ describe('UI Functions - Mechanic Panel', () => {
     describe('Panel Scroll Position', () => {
         it('should scroll to top when mechanic panel opens', () => {
             const panel = document.getElementById('mechanic-panel');
-            
+
             // Simulate panel has been scrolled
             panel.scrollTop = 500;
             expect(panel.scrollTop).toBe(500);
-            
+
             // When setting scrollTop to 0 (as in showMechanicDetails)
             panel.scrollTop = 0;
             expect(panel.scrollTop).toBe(0);
@@ -364,11 +364,11 @@ describe('UI Functions - Mechanic Panel', () => {
             const themePanel = document.createElement('div');
             themePanel.id = 'theme-panel';
             document.body.appendChild(themePanel);
-            
+
             // Simulate panel has been scrolled
             themePanel.scrollTop = 500;
             expect(themePanel.scrollTop).toBe(500);
-            
+
             // When setting scrollTop to 0 (as in showThemeDetails)
             themePanel.scrollTop = 0;
             expect(themePanel.scrollTop).toBe(0);
@@ -378,18 +378,18 @@ describe('UI Functions - Mechanic Panel', () => {
     describe('Theme Clickability', () => {
         it('should properly escape theme names with special characters', () => {
             const testThemes = [
-                "Money/Luxury",
-                "Asian - Dragons",
-                "Greek/Mythology",
-                "TV/Movie/Entertainment",
-                "Animals - General"
+                'Money/Luxury',
+                'Asian - Dragons',
+                'Greek/Mythology',
+                'TV/Movie/Entertainment',
+                'Animals - General',
             ];
 
             testThemes.forEach(themeName => {
                 const escaped = themeName.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
                 expect(escaped).toBeDefined();
                 expect(escaped.length).toBeGreaterThan(0);
-                
+
                 // Should not contain unescaped quotes
                 expect(escaped.includes("'")).toBe(false);
                 expect(escaped.includes('"')).toBe(false);
@@ -397,18 +397,18 @@ describe('UI Functions - Mechanic Panel', () => {
         });
 
         it('should unescape theme names correctly when clicking', () => {
-            const original = "Money/Luxury";
+            const original = 'Money/Luxury';
             const escaped = original.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
             const unescaped = escaped.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
-            
+
             expect(unescaped).toBe(original);
         });
 
         it('should handle themes with single quotes', () => {
             const themeName = "Queen's Court";
             const escaped = themeName.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-            expect(escaped).toBe("Queen&#39;s Court");
-            
+            expect(escaped).toBe('Queen&#39;s Court');
+
             const unescaped = escaped.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
             expect(unescaped).toBe(themeName);
         });
@@ -416,18 +416,18 @@ describe('UI Functions - Mechanic Panel', () => {
         it('should handle themes with double quotes', () => {
             const themeName = 'Theme "Special"';
             const escaped = themeName.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-            expect(escaped).toBe("Theme &quot;Special&quot;");
-            
+            expect(escaped).toBe('Theme &quot;Special&quot;');
+
             const unescaped = escaped.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
             expect(unescaped).toBe(themeName);
         });
 
         it('should handle themes with slashes', () => {
-            const themeName = "Money/Luxury";
+            const themeName = 'Money/Luxury';
             const escaped = themeName.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
-            
+
             // Slashes should remain unchanged
-            expect(escaped).toBe("Money/Luxury");
+            expect(escaped).toBe('Money/Luxury');
             expect(escaped.includes('/')).toBe(true);
         });
     });

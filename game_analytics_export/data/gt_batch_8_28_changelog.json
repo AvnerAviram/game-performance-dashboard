@@ -1,0 +1,429 @@
+{
+  "timestamp": "2026-03-23T15:16:32.833952",
+  "description": "Apply user-verified GT features for games 8-28 (20 games, skipping #23)",
+  "dashboard_updated": 20,
+  "gt_before": 193,
+  "gt_added": 20,
+  "gt_updated": 0,
+  "gt_after": 213,
+  "changes": [
+    {
+      "name": "Mo Mummy Valley Of Riches",
+      "provider": "Aristocrat",
+      "old_features": [
+        "Cash On Reels",
+        "Expanding Reels",
+        "Free Spins",
+        "Pick Bonus",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Expanding Reels",
+        "Free Spins",
+        "Pick Bonus",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Cash Machine",
+      "provider": "Everi",
+      "old_features": [
+        "Respin"
+      ],
+      "new_features": [
+        "Respin"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Whitney Houston",
+      "provider": "IGT",
+      "old_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Progressive Jackpot",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Progressive Jackpot",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Bao Zhu Zhao Fu Blue Festival",
+      "provider": "Aristocrat",
+      "old_features": [
+        "Cash On Reels",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Bull Blitz Fortunes Of The Orient",
+      "provider": "Konami",
+      "old_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Sahara Riches Megaways Collect Em",
+      "provider": "Playtech",
+      "old_features": [
+        "Cascading Reels",
+        "Cash On Reels",
+        "Free Spins",
+        "Megaways",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cascading Reels",
+        "Cash On Reels",
+        "Free Spins",
+        "Megaways",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Adorned Peacock",
+      "provider": "Konami",
+      "old_features": [
+        "Free Spins",
+        "Multiplier"
+      ],
+      "new_features": [
+        "Free Spins",
+        "Multiplier"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Cash Eruption Hoggin Cash",
+      "provider": "IGT",
+      "old_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Age Of The Gods Collect Em",
+      "provider": "Playtech",
+      "old_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Multiplier",
+        "Respin",
+        "Static Jackpot",
+        "Wheel"
+      ],
+      "new_features": [
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Multiplier",
+        "Respin",
+        "Static Jackpot",
+        "Wheel"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "My Slot Studio",
+      "provider": "High 5 Games",
+      "old_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Cash On Reels",
+        "Hold and Spin",
+        "Multiplier",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Cash On Reels",
+        "Hold and Spin",
+        "Multiplier",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "88 Drums",
+      "provider": "High 5 Games",
+      "old_features": [
+        "Expanding Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Expanding Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Squealin Riches",
+      "provider": "Games Global",
+      "old_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Multiplier",
+        "Persistence",
+        "Static Jackpot",
+        "Wheel"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Free Spins",
+        "Hold and Spin",
+        "Multiplier",
+        "Persistence",
+        "Static Jackpot",
+        "Wheel"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Fu Shen Zhu Fu",
+      "provider": "Inspired",
+      "old_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Expanding Reels",
+        "Free Spins",
+        "Multiplier",
+        "Nudges",
+        "Pick Bonus",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Expanding Reels",
+        "Free Spins",
+        "Multiplier",
+        "Nudges",
+        "Pick Bonus",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Euphoria Megaways",
+      "provider": "Igt",
+      "old_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Free Spins",
+        "Megaways",
+        "Multiplier",
+        "Mystery Symbols"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Free Spins",
+        "Megaways",
+        "Multiplier",
+        "Mystery Symbols"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Immortal Romance 2",
+      "provider": "Games Global",
+      "old_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Free Spins",
+        "Multiplier",
+        "Static Jackpot",
+        "Wild Reels"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cascading Reels",
+        "Free Spins",
+        "Multiplier",
+        "Static Jackpot",
+        "Wild Reels"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Slingo Starburst",
+      "provider": "Gaming Realms",
+      "old_features": [
+        "Free Spins",
+        "Respin",
+        "Wild Reels"
+      ],
+      "new_features": [
+        "Free Spins",
+        "Respin",
+        "Wild Reels"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Anubis Wild Megaways",
+      "provider": "Inspired",
+      "old_features": [
+        "Cascading Reels",
+        "Free Spins",
+        "Gamble Feature",
+        "Megaways",
+        "Mystery Symbols"
+      ],
+      "new_features": [
+        "Cascading Reels",
+        "Free Spins",
+        "Gamble Feature",
+        "Megaways",
+        "Mystery Symbols"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Slingo Journey To Asgard",
+      "provider": "Gaming Realms",
+      "old_features": [
+        "Free Spins",
+        "Multiplier",
+        "Pick Bonus",
+        "Trail Bonus",
+        "Wheel"
+      ],
+      "new_features": [
+        "Free Spins",
+        "Multiplier",
+        "Pick Bonus",
+        "Trail Bonus",
+        "Wheel"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Centurion Big Money",
+      "provider": "Inspired",
+      "old_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Gamble Feature",
+        "Multiplier",
+        "Pick Bonus",
+        "Trail Bonus"
+      ],
+      "new_features": [
+        "Buy Bonus",
+        "Cash On Reels",
+        "Gamble Feature",
+        "Multiplier",
+        "Pick Bonus",
+        "Trail Bonus"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    },
+    {
+      "name": "Diamond Link Mighty Stampede",
+      "provider": "Greentube",
+      "old_features": [
+        "Free Spins",
+        "Gamble Feature",
+        "Hold and Spin",
+        "Multiplier",
+        "Persistence",
+        "Static Jackpot"
+      ],
+      "new_features": [
+        "Free Spins",
+        "Gamble Feature",
+        "Hold and Spin",
+        "Multiplier",
+        "Persistence",
+        "Static Jackpot"
+      ],
+      "added": [],
+      "removed": [],
+      "old_data_quality": "gt_verified"
+    }
+  ]
+}

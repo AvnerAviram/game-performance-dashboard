@@ -6,11 +6,11 @@ class TooltipManager {
     constructor() {
         log('⚠️ TooltipManager: Using CSS hover only');
     }
-    
+
     init() {
         // Do nothing - CSS handles it
     }
-    
+
     showTooltip() {}
     hideTooltip() {}
 }

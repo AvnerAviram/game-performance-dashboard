@@ -1,0 +1,2913 @@
+{
+  "matched": 139,
+  "changes": 116,
+  "unmatched": [
+    "RSI Blackjack Sidebets",
+    "RSI Blackjack Singledeck",
+    "AGS Blackjack Side Bets",
+    "AGS Blackjack Single Deck",
+    "Gold Inferno",
+    "8x Crystal Bells",
+    "AGS Blackjack Double Deck",
+    "Caesars Blackjack Multi Deck",
+    "Blazin Bank Run",
+    "10X Cash",
+    "Rakin' Bacon Jackpots Bonus Wheel",
+    "Rakin' Bacon Jackpots Bonus Board",
+    "Clem's Gems",
+    "America's Blackjack",
+    "Shamrock Fortunes Deluxe",
+    "Cash Jolt Lucky Guardian",
+    "Bao Bao Express Pearls",
+    "Grand Ox Wins",
+    "Mega Crown Candy Cane",
+    "Boo Bucks Blackjack"
+  ],
+  "details": [
+    {
+      "game": "Golden Wins",
+      "id": "game-1543-golden_wins",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Fire",
+            "Gold"
+          ],
+          "new": [
+            "Asian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Jade Wins",
+      "id": "game-1552-jade_wins",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Gems & Crystals",
+            "Gold"
+          ],
+          "new": [
+            "Asian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Fu Nan Fu Nu",
+      "id": "game-1536-fu_nan_fu_nu",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Gold"
+          ],
+          "new": [
+            "Asian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Olympus Strikes",
+      "id": "game-1565-olympus_strikes",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Rakin Bacon",
+      "id": "game-205-rakin_bacon",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Gold",
+            "Money"
+          ],
+          "new": [
+            "Animals",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "River Dragons",
+      "id": "game-1585-river_dragons",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Dragons",
+            "Fantasy",
+            "Gold",
+            "Mythical",
+            "Tropical"
+          ],
+          "new": [
+            "Asian",
+            "Dragons",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Pharaoh Sun",
+      "id": "game-1569-pharaoh_sun",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Egyptian",
+            "Fire",
+            "Gold",
+            "Treasure"
+          ],
+          "new": [
+            "Egyptian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Bonanza Blast",
+      "id": "game-1496-bonanza_blast",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Treasure",
+            "Western"
+          ],
+          "new": [
+            "Gold",
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Capital Gains",
+      "id": "game-009-capital_gains",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Money",
+            "Treasure"
+          ],
+          "new": [
+            "Gold",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Apollo Stacks",
+      "id": "game-1487-apollo_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Symbol Transformation"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Greek",
+            "Mythical"
+          ],
+          "new": [
+            "Greek",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Wolf Queen",
+      "id": "game-1602-wolf_queen",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Empress",
+            "Fantasy",
+            "Queen",
+            "Seasonal/Holiday",
+            "Wolf"
+          ],
+          "new": [
+            "Animals",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Crystal Magic",
+      "id": "game-1516-crystal_magic",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Fantasy",
+            "Gems & Crystals"
+          ],
+          "new": [
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Jade Dragons",
+      "id": "game-1551-jade_dragons",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Gold",
+            "Mythical"
+          ],
+          "new": [
+            "Asian",
+            "Dragons",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Grand Royale",
+      "id": "game-1546-grand_royale",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Casino",
+            "Las Vegas",
+            "Lasvegas"
+          ],
+          "new": [
+            "Casino",
+            "Las Vegas"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Flamenco Stacks",
+      "id": "game-1532-flamenco_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Vegas Stacks",
+      "id": "game-1599-vegas_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Casino",
+            "Las Vegas",
+            "Lasvegas"
+          ],
+          "new": [
+            "Casino",
+            "Las Vegas"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Luck and Luxury",
+      "id": "game-1557-luck_and_luxury",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Fire",
+            "Gold",
+            "Money"
+          ],
+          "new": [
+            "Fire",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Hearts and Horns",
+      "id": "game-1549-hearts_and_horns",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Fantasy",
+            "Mythical",
+            "Seasonal",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "Mythical",
+            "Seasonal/Holiday"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Golden Ram",
+      "id": "game-1542-golden_ram",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Red Silk",
+      "id": "game-1582-red_silk",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Sticky Wilds",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Aztec Chief",
+      "id": "game-1488-aztec_chief",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Aztec",
+            "Gold"
+          ],
+          "new": [
+            "Aztec",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Tiger Lord",
+      "id": "game-1595-tiger_lord",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Fire",
+            "Gold"
+          ],
+          "new": [
+            "Animals",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Peacock Beauty",
+      "id": "game-1568-peacock_beauty",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Gold"
+          ],
+          "new": [
+            "Animals",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Blazing Luck",
+      "id": "game-1495-blazing_luck",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Fire"
+          ],
+          "new": [
+            "Fire"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Imperial Luck",
+      "id": "game-1550-imperial_luck",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Goddess Treasures",
+      "id": "game-1537-goddess_treasures",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Fire",
+            "Gold",
+            "Greek"
+          ],
+          "new": [
+            "Fire",
+            "Greek"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Dragon Fa",
+      "id": "game-1526-dragon_fa",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Gold",
+            "Mythical",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "Asian",
+            "Dragons",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Phoenix Fa",
+      "id": "game-1570-phoenix_fa",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Mythical",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "Asian",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Golden Wins Deluxe",
+      "id": "game-1544-golden_wins_deluxe",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Free Spins",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Jade Wins Deluxe",
+      "id": "game-1553-jade_wins_deluxe",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Free Spins",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Gems & Crystals",
+            "Gold"
+          ],
+          "new": [
+            "Asian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mermaid's Fortune",
+      "id": "game-1562-mermaid_s_fortune",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Respin",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gems & Crystals",
+            "Mythical",
+            "Treasure",
+            "Tropical"
+          ],
+          "new": [
+            "Gems & Crystals",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Golden Nile",
+      "id": "game-1541-golden_nile",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Rush",
+      "id": "game-1522-diamond_rush",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Stacked Symbols",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Gems & Crystals",
+            "Gold",
+            "Treasure",
+            "Western"
+          ],
+          "new": [
+            "Animals",
+            "Gems & Crystals",
+            "Gold",
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Phoenix Xing",
+      "id": "game-1571-phoenix_xing",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Fantasy",
+            "Mythical"
+          ],
+          "new": [
+            "Asian",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Tiki Fortune",
+      "id": "game-1596-tiki_fortune",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Captain Riches",
+      "id": "game-1503-captain_riches",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Golden Blessings",
+      "id": "game-1540-golden_blessings",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Gold"
+          ],
+          "new": [
+            "Asian",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Pirate Plunder",
+      "id": "game-1573-pirate_plunder",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Dragon Blast",
+      "id": "game-1525-dragon_blast",
+      "changes": {
+        "features": {
+          "old": [
+            "Colossal Symbols",
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Fire",
+            "Gold",
+            "Mythical"
+          ],
+          "new": [
+            "Asian",
+            "Dragons",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Shou Hu Shen",
+      "id": "game-1589-shou_hu_shen",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Meow Meow Madness",
+      "id": "game-1561-meow_meow_madness",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Gold"
+          ],
+          "new": [
+            "Animals",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Riches of the Nile",
+      "id": "game-1584-riches_of_the_nile",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Symbol Transformation",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Egyptian",
+            "Gold",
+            "Treasure"
+          ],
+          "new": [
+            "Egyptian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Panda Blessings",
+      "id": "game-1567-panda_blessings",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Card suits",
+            "Green",
+            "Money",
+            "Panda"
+          ],
+          "new": [
+            "Animals",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mega Diamond",
+      "id": "game-098-mega_diamond",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Fire",
+            "Gems & Crystals",
+            "Gold",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Fire",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Platinum 8x8x8x",
+      "id": "game-151-platinum_8x8x8x",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gold",
+            "Lightning"
+          ],
+          "new": [
+            "7s",
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Long Bao Bao",
+      "id": "game-178-long_bao_bao",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Asian",
+            "Dragons",
+            "Gold",
+            "Money",
+            "Mythical",
+            "Treasure"
+          ],
+          "new": [
+            "Asian",
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mine Blast",
+      "id": "game-1563-mine_blast",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Symbol Transformation",
+            "Wild Reels"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Boost",
+      "id": "game-1520-diamond_boost",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Casino",
+            "Gems & Crystals"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Colossal Diamonds",
+      "id": "game-1513-colossal_diamonds",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gems & Crystals",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Zap UltraTap",
+      "id": "game-1511-cash_zap_ultratap",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Multiplier"
+          ],
+          "new": [
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Fantasy",
+            "Lightning"
+          ],
+          "new": [
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "2x 3x Rush",
+      "id": "game-1484-2x_3x_rush",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cluck Cluck Cash",
+      "id": "game-1512-cluck_cluck_cash",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Persistence",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Gold",
+            "Lightning"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "2x Spin Cycle",
+      "id": "game-1485-2x_spin_cycle",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Multiplier",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Rakin Bacon Odyssey",
+      "id": "game-1576-rakin_bacon_odyssey",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "War",
+      "id": "game-1600-war",
+      "changes": {
+        "features": {
+          "old": [],
+          "new": [
+            "Sidebets"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Sizzlin' Stacks",
+      "id": "game-1590-sizzlin_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Stacked Symbols",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Persistence",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Arcade",
+            "Fire",
+            "Gems & Crystals",
+            "Gold"
+          ],
+          "new": [
+            "7s",
+            "Fire",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Bonanza Blast UltraTap",
+      "id": "game-1497-bonanza_blast_ultratap",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus"
+          ],
+          "new": [
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Treasure",
+            "Western"
+          ],
+          "new": [
+            "Gold",
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "3x Ultra Diamond",
+      "id": "game-025-3x_ultra_diamond",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gems & Crystals",
+            "Gold"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Zen Wins",
+      "id": "game-1603-zen_wins",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Asian",
+            "Dragons"
+          ],
+          "new": [
+            "7s",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Olympus Strikes UltraTap",
+      "id": "game-1566-olympus_strikes_ultratap",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Greek",
+            "Lightning",
+            "Treasure"
+          ],
+          "new": [
+            "Greek",
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Capital Gains UltraTap",
+      "id": "game-1502-capital_gains_ultratap",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus"
+          ],
+          "new": []
+        }
+      }
+    },
+    {
+      "game": "Rakin Bacon Sahara",
+      "id": "game-1577-rakin_bacon_sahara",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Persistence",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Spin Bonanza",
+      "id": "game-1592-spin_bonanza",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Multiplier",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "7s"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Straight Cash",
+      "id": "game-092-straight_cash",
+      "changes": {
+        "features": {
+          "old": [
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Respin",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Casino",
+            "Gold",
+            "Money"
+          ],
+          "new": [
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Hard Rockin' Reels",
+      "id": "game-1548-hard_rockin_reels",
+      "changes": {
+        "features": {
+          "old": [],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Gems & Crystals"
+          ],
+          "new": [
+            "7s"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Triple Treasure",
+      "id": "game-241-triple_treasure",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gems & Crystals",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Shamrock Fortunes",
+      "id": "game-1588-shamrock_fortunes",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Persistence",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Fantasy",
+            "Gold",
+            "Irish",
+            "Treasure"
+          ],
+          "new": [
+            "Gold",
+            "Irish",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Pontoon 21",
+      "id": "game-1574-pontoon_21",
+      "changes": {
+        "features": {
+          "old": [],
+          "new": [
+            "Sidebets"
+          ]
+        }
+      }
+    },
+    {
+      "game": "BetRivers Mega",
+      "id": "game-1494-betrivers_mega",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "2x 3x Horseshoe",
+      "id": "game-1483-2x_3x_horseshoe",
+      "changes": {
+        "features": {
+          "old": [
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s"
+          ],
+          "new": [
+            "7s",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Reels",
+      "id": "game-168-diamond_reels",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Nudges",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Caesars Cash",
+      "id": "game-1499-caesars_cash",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels"
+          ],
+          "new": [
+            "Respin",
+            "Wheel"
+          ]
+        }
+      }
+    },
+    {
+      "game": "FanDuel Vegas",
+      "id": "game-1529-fanduel_vegas",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Casino",
+            "Las Vegas"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Flaming Reels",
+      "id": "game-325-flaming_reels",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Gamble Feature",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Fire",
+            "Gold"
+          ],
+          "new": [
+            "7s",
+            "Fire"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Golden Money",
+      "id": "game-317-golden_money",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Respin",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Gold",
+            "Money"
+          ],
+          "new": [
+            "Asian",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Desperado's Delight",
+      "id": "game-1519-desperado_s_delight",
+      "changes": {
+        "features": {
+          "old": [
+            "Pick Bonus"
+          ],
+          "new": [
+            "Multiplier",
+            "Pick Bonus"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Rush UltraTap",
+      "id": "game-1523-diamond_rush_ultratap",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gems & Crystals",
+            "Gold",
+            "Treasure",
+            "Western"
+          ],
+          "new": [
+            "Gems & Crystals",
+            "Gold",
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Dragon Diamond",
+      "id": "game-281-dragon_diamond",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Dragons",
+            "Fire",
+            "Gems & Crystals",
+            "Western"
+          ],
+          "new": [
+            "Gems & Crystals",
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Crystal Treasure",
+      "id": "game-1518-crystal_treasure",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cascading Reels",
+            "Free Spins",
+            "Multiplier"
+          ],
+          "new": [
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gems & Crystals",
+            "Treasure"
+          ],
+          "new": [
+            "7s",
+            "Fantasy",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Can UltraTap",
+      "id": "game-1504-cash_can_ultratap",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Money"
+          ],
+          "new": [
+            "Arcade"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Triple Jelly",
+      "id": "game-266-triple_jelly",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Animals",
+            "Arcade",
+            "Tropical"
+          ],
+          "new": [
+            "7s",
+            "Arcade"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Slingshot Blast UltraTap",
+      "id": "game-1591-slingshot_blast_ultratap",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Pick Bonus"
+          ]
+        }
+      }
+    },
+    {
+      "game": "BetMGM Triple Royale",
+      "id": "game-1492-betmgm_triple_royale",
+      "changes": {
+        "features": {
+          "old": [
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s"
+          ],
+          "new": [
+            "7s",
+            "Casino"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Fish Fest UltraTap",
+      "id": "game-1531-fish_fest_ultratap",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Arcade",
+            "Tropical"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Zodiac Spins",
+      "id": "game-1604-zodiac_spins",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Asian",
+            "Fantasy"
+          ],
+          "new": [
+            "7s",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "BetMGM Fortune Vault",
+      "id": "game-1491-betmgm_fortune_vault",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Money",
+            "Treasure"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals",
+            "Gold",
+            "Lightning",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Hard Rock Cash Lock",
+      "id": "game-1547-hard_rock_cash_lock",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Pick Bonus",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Money"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals",
+            "Lightning",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "BetRivers Gold",
+      "id": "game-1493-betrivers_gold",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals",
+            "Lightning",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Caesars Money Vault",
+      "id": "game-1500-caesars_money_vault",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gold"
+          ],
+          "new": [
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mega Diamond Wild Stacks",
+      "id": "game-1560-mega_diamond_wild_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Hold and Spin",
+            "Multiplier",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Casino",
+            "Fire",
+            "Gems & Crystals"
+          ],
+          "new": [
+            "7s",
+            "Fire",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "FanDuel Cash Haul",
+      "id": "game-1528-fanduel_cash_haul",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Money",
+            "Treasure"
+          ],
+          "new": [
+            "7s",
+            "Lightning",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Grand Diamond",
+      "id": "game-1545-grand_diamond",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Raoul's Jewels",
+      "id": "game-1581-raoul_s_jewels",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Straight Cash Triple Double Spin",
+      "id": "game-1593-straight_cash_triple_double_spin",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Progressive Jackpot",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Respin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Casino",
+            "Gold",
+            "Money"
+          ],
+          "new": [
+            "Gold",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Straight Fire Triple Double Spin",
+      "id": "game-1594-straight_fire_triple_double_spin",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Nudges",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Respin",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Cow Bonus Wheel",
+      "id": "game-1506-cash_cow_bonus_wheel",
+      "changes": {
+        "features": {
+          "old": [
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Fu Long Bao Bao",
+      "id": "game-1535-fu_long_bao_bao",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Gold",
+            "Mythical"
+          ],
+          "new": [
+            "Asian",
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Rakin' Bacon Triple Oink Soda Fountain Fortunes",
+      "id": "game-1580-rakin_bacon_triple_oink_soda_fountain_fortunes",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Arcade"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "8x Oil Country",
+      "id": "game-1486-8x_oil_country",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "777",
+            "Bars",
+            "Classic style",
+            "Money"
+          ],
+          "new": [
+            "7s",
+            "Sports"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Royal Reels",
+      "id": "game-1586-royal_reels",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Gems & Crystals",
+            "Gold"
+          ],
+          "new": [
+            "7s",
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Count Cashula's Castle of Riches",
+      "id": "game-1514-count_cashula_s_castle_of_riches",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Seasonal",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "Seasonal/Holiday"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Wild Money",
+      "id": "game-1601-wild_money",
+      "changes": {
+        "themes_all": {
+          "old": [],
+          "new": [
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "C of Wins 8x",
+      "id": "game-1498-c_of_wins_8x",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "777",
+            "Bars",
+            "Classic style",
+            "Fire",
+            "Red"
+          ],
+          "new": [
+            "7s",
+            "Sports"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Jolt Grand Palace",
+      "id": "game-1508-cash_jolt_grand_palace",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Casino",
+            "Lightning"
+          ],
+          "new": [
+            "Asian",
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Rakin' Bacon Triple Oink San Shen Zhu",
+      "id": "game-1579-rakin_bacon_triple_oink_san_shen_zhu",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Fu Feng Bao Bao",
+      "id": "game-1534-fu_feng_bao_bao",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Fire",
+            "Gold",
+            "Mythical",
+            "Treasure"
+          ],
+          "new": [
+            "Asian",
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Liberty Nudge",
+      "id": "game-1555-liberty_nudge",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Seasonal"
+          ],
+          "new": [
+            "7s",
+            "Seasonal/Holiday"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Money Stacks",
+      "id": "game-1564-money_stacks",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mega Crown",
+      "id": "game-1559-mega_crown",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Hold and Spin",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Rakin' Bacon Fu Zhu Bao Bao",
+      "id": "game-1578-rakin_bacon_fu_zhu_bao_bao",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian"
+          ],
+          "new": [
+            "Animals",
+            "Asian",
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Jolt Safari Gold",
+      "id": "game-1510-cash_jolt_safari_gold",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Lightning"
+          ],
+          "new": [
+            "Animals",
+            "Gold",
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Bao Bao Express Jade",
+      "id": "game-1490-bao_bao_express_jade",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [],
+          "new": [
+            "Animals",
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Cow",
+      "id": "game-1505-cash_cow",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Money",
+            "Western"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Jolt Ranchero Dinero",
+      "id": "game-1509-cash_jolt_ranchero_dinero",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Spanish"
+          ],
+          "new": [
+            "Lightning",
+            "Spanish"
+          ]
+        }
+      }
+    },
+    {
+      "game": "10x Cash Super Bonus",
+      "id": "game-1482-10x_cash_super_bonus",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Piggy Wins",
+      "id": "game-1572-piggy_wins",
+      "changes": {
+        "features": {
+          "old": [],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals"
+          ],
+          "new": [
+            "Asian",
+            "Gold",
+            "Treasure"
+          ]
+        }
+      }
+    }
+  ]
+}

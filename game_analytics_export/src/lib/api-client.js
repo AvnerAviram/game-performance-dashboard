@@ -37,7 +37,7 @@ export async function apiFetch(url, options = {}) {
     }
 
     if (!res.ok) {
-        const msg = typeof body === 'object' ? (body.error || body.message || res.statusText) : res.statusText;
+        const msg = typeof body === 'object' ? body.error || body.message || res.statusText : res.statusText;
         throw new ApiError(msg, res.status, body);
     }
 
@@ -73,8 +73,11 @@ export async function apiPatch(url, data) {
 /**
  * DELETE an API resource.
  * @param {string} url
+ * @param {object} [data] - optional body payload
  * @returns {Promise<any>}
  */
-export async function apiDelete(url) {
-    return apiFetch(url, { method: 'DELETE' });
+export async function apiDelete(url, data) {
+    const opts = { method: 'DELETE' };
+    if (data !== undefined) opts.body = JSON.stringify(data);
+    return apiFetch(url, opts);
 }

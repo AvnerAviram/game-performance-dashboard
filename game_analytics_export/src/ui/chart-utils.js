@@ -8,14 +8,13 @@ const modernColors = {
     orange: { start: '#f97316', end: '#ef4444' },
     indigo: { start: '#6366f1', end: '#8b5cf6' },
     rose: { start: '#f43f5e', end: '#fb7185' },
-    amber: { start: '#fbbf24', end: '#fb923c' }
+    amber: { start: '#fbbf24', end: '#fb923c' },
 };
 
 export function createGradient(ctx, color, direction = 'vertical') {
-    const gradient = direction === 'vertical' 
-        ? ctx.createLinearGradient(0, 0, 0, 400)
-        : ctx.createLinearGradient(0, 0, 400, 0);
-    
+    const gradient =
+        direction === 'vertical' ? ctx.createLinearGradient(0, 0, 0, 400) : ctx.createLinearGradient(0, 0, 400, 0);
+
     gradient.addColorStop(0, color.start);
     gradient.addColorStop(1, color.end);
     return gradient;
@@ -24,12 +23,12 @@ export function createGradient(ctx, color, direction = 'vertical') {
 export function generateModernColors(ctx, count) {
     const colorKeys = ['gold', 'purple', 'cyan', 'emerald', 'orange', 'indigo', 'rose', 'amber'];
     const result = [];
-    
+
     for (let i = 0; i < count; i++) {
         const colorKey = colorKeys[i % colorKeys.length];
         result.push(createGradient(ctx, modernColors[colorKey]));
     }
-    
+
     return result;
 }
 
@@ -40,7 +39,7 @@ export function getChartColors() {
         gridColor: isDark ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.3)',
         backgroundColor: isDark ? 'transparent' : '#ffffff',
         tooltipBg: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        tooltipBorder: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(148, 163, 184, 0.2)'
+        tooltipBorder: isDark ? 'rgba(148, 163, 184, 0.3)' : 'rgba(148, 163, 184, 0.2)',
     };
 }
 
@@ -60,7 +59,7 @@ export function getModernTooltipConfig() {
         boxWidth: 10,
         boxHeight: 10,
         cornerRadius: 6,
-        caretSize: 5
+        caretSize: 5,
     };
 }
 
@@ -92,7 +91,7 @@ export function getModernGridConfig() {
         color: colors.gridColor,
         lineWidth: 1,
         drawBorder: false,
-        drawTicks: false
+        drawTicks: false,
     };
 }
 

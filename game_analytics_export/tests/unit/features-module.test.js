@@ -2,12 +2,17 @@
  * Tests for the shared features module.
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS, buildFeatureColorMap, getFeatureColor } from '../../src/lib/features.js';
+import {
+    CANONICAL_FEATURES,
+    SHORT_FEATURE_LABELS,
+    buildFeatureColorMap,
+    getFeatureColor,
+} from '../../src/lib/features.js';
 
 describe('Features Module', () => {
     describe('CANONICAL_FEATURES', () => {
-        it('has 11 entries', () => {
-            expect(CANONICAL_FEATURES).toHaveLength(11);
+        it('has 25 entries', () => {
+            expect(CANONICAL_FEATURES).toHaveLength(25);
         });
 
         it('includes all expected features', () => {

@@ -1,0 +1,1210 @@
+{
+  "restored": 37,
+  "changes": 37,
+  "details": [
+    {
+      "game": "Gold Inferno",
+      "provider": "Oros Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Progressive Jackpot",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "8x Crystal Bells",
+      "provider": "Play'n GO",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Bell",
+            "Black",
+            "Blue",
+            "Classic style",
+            "Fire",
+            "Gems & Crystals"
+          ],
+          "new": [
+            "7s",
+            "Fire",
+            "Seasonal/Holiday"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Blazin Bank Run",
+      "provider": "Crazy Tooth Studio",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        }
+      }
+    },
+    {
+      "game": "All Aboard Dynamite Dash",
+      "provider": "Konami",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Gold",
+            "Western"
+          ],
+          "new": [
+            "Western"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Le Bandit",
+      "provider": "Hacksaw Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cascading Reels",
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Symbol Transformation"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Irish",
+            "Spanish"
+          ],
+          "new": [
+            "Animals",
+            "Irish"
+          ]
+        }
+      }
+    },
+    {
+      "game": "The Crypt",
+      "provider": "Nolimit City",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cascading Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Mystery Symbols",
+            "Nudges",
+            "Persistence",
+            "Stacked Symbols",
+            "Wild Reels"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Nudges",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Mythical"
+          ],
+          "new": [
+            "Fantasy",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Volt",
+      "provider": "Red Tiger Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Colossal Symbols",
+            "Multiplier",
+            "Progressive Jackpot",
+            "Stacked Symbols",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Casino",
+            "Las Vegas",
+            "Lightning"
+          ],
+          "new": [
+            "Lightning"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Eruption",
+      "provider": "IGT",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot",
+            "Wild Reels"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Aztec",
+            "Cherry",
+            "Fire",
+            "Gods",
+            "Lemon",
+            "Orange",
+            "Red",
+            "Watermelon"
+          ],
+          "new": [
+            "Fire"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Lion Link Wealth Of The Dragon",
+      "provider": "Light & Wonder",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Mystery Symbols",
+            "Persistence",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Dragons",
+            "Fire",
+            "Gold",
+            "Money",
+            "Treasure"
+          ],
+          "new": [
+            "Asian",
+            "Dragons",
+            "Gold"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Mo Mummy Mighty Pyramid",
+      "provider": "Aristocrat",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Colossal Symbols",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Persistence",
+            "Pick Bonus",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Egyptian",
+            "Gold"
+          ],
+          "new": [
+            "Egyptian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Wolf It Up Again",
+      "provider": "Inspired Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Fantasy"
+          ],
+          "new": [
+            "Animals",
+            "Fantasy"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Machine Jackpots",
+      "provider": "Everi",
+      "changes": {
+        "features": {
+          "old": [
+            "Multiplier",
+            "Nudges",
+            "Progressive Jackpot",
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Nudges",
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Casino",
+            "Money",
+            "Western"
+          ],
+          "new": [
+            "Casino",
+            "Las Vegas",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Majestic Fury Megaways Jackpot Royale Express",
+      "provider": "White Hat Studios",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Megaways",
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Breaking Bad Collect Em And Link",
+      "provider": "Playtech",
+      "changes": {
+        "features": {
+          "old": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Nudges",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Show"
+          ],
+          "new": [
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Divine Fortune Megaways",
+      "provider": "NetEnt",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Megaways",
+            "Multiplier",
+            "Persistence",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Expanding Wilds",
+            "Free Spins",
+            "Megaways",
+            "Multiplier",
+            "Respin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Ancient civilizations",
+            "Greece",
+            "Greek",
+            "Medusa",
+            "Minotaur",
+            "Mythical"
+          ],
+          "new": [
+            "Gold",
+            "Mythical"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Cash Mighty Elephant Win Ways",
+      "provider": "Greentube",
+      "changes": {
+        "features": {
+          "old": [
+            "Cascading Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Gamble Feature",
+            "Hold and Spin",
+            "Multiplier",
+            "Persistence",
+            "Progressive Jackpot",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "African",
+            "Animals",
+            "Card suits",
+            "Drum",
+            "Elephant",
+            "Gems & Crystals",
+            "Mask",
+            "Money",
+            "Red",
+            "Tree"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Buffalo Of Wealth",
+      "provider": "Play'n GO",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Stacked Symbols"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Bears",
+            "Brown",
+            "Buffalo",
+            "Money",
+            "Mountains",
+            "Nature",
+            "Western"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Cash Eruption Slingo",
+      "provider": "Gaming Realms",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Fire",
+            "Money",
+            "Sun"
+          ],
+          "new": [
+            "Fire",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Extra Chilli Megaways",
+      "provider": "Big Time Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Free Spins",
+            "Gamble Feature",
+            "Megaways",
+            "Multiplier",
+            "Wheel"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Brown",
+            "Chili theme",
+            "Fire",
+            "Fireworks object",
+            "Food",
+            "Jewelry",
+            "Lightness",
+            "Mexican",
+            "Money",
+            "Orange",
+            "Spanish"
+          ],
+          "new": [
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Hypernova Megaways",
+      "provider": "Reel Play",
+      "changes": {
+        "features": {
+          "old": [
+            "Cascading Reels",
+            "Cash On Reels",
+            "Expanding Reels",
+            "Hold and Spin",
+            "Megaways",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Black",
+            "Blue",
+            "Gems & Crystals",
+            "Red",
+            "Space",
+            "Star",
+            "Sun"
+          ],
+          "new": [
+            "Fantasy"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Gold Blitz Fortunes",
+      "provider": "Fortune Factory Studios",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Persistence",
+            "Respin",
+            "Static Jackpot",
+            "Sticky Wilds",
+            "Wheel"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Bell",
+            "Fire",
+            "Gold",
+            "Gold bars",
+            "Gold-color",
+            "Las Vegas",
+            "Lightning",
+            "Money"
+          ],
+          "new": [
+            "Casino",
+            "Gold",
+            "Las Vegas",
+            "Money"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Charge Hold And Win",
+      "provider": "Iron Dog Studio",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cash On Reels",
+            "Hold and Spin",
+            "Multiplier",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Gems & Crystals",
+            "Gold",
+            "Lightning",
+            "Money"
+          ],
+          "new": [
+            "Gems & Crystals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Money Link The Great Immortals",
+      "provider": "Lightning Box",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Mystery Symbols",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Gold",
+            "Money",
+            "Red",
+            "Treasure"
+          ],
+          "new": [
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Jimi Hendrix",
+      "provider": "Evolution",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Blue",
+            "Flowers",
+            "Gray",
+            "Guitar",
+            "Money",
+            "Music",
+            "Musician"
+          ],
+          "new": [
+            "Arcade",
+            "Music"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Thunderstruck Stormchaser",
+      "provider": "Games Global",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cascading Reels",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Persistence",
+            "Stacked Symbols",
+            "Symbol Transformation",
+            "Wheel",
+            "Wild Reels"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Wheel",
+            "Wild Reels"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Brown",
+            "Gods",
+            "Gray",
+            "Lightning",
+            "Mythical",
+            "Norse",
+            "Ornamental Symbols",
+            "Ornamentation",
+            "Scandinavia"
+          ],
+          "new": [
+            "Mythical",
+            "Norse"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Pop And Win",
+      "provider": "High 5 Games",
+      "changes": {
+        "features": {
+          "old": [
+            "Cascading Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Progressive Jackpot",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Pick Bonus",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Arcade",
+            "Cherry",
+            "Food",
+            "Lemon",
+            "Plum",
+            "Star",
+            "Watermelon"
+          ],
+          "new": [
+            "7s",
+            "Arcade"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Piggy Blitz",
+      "provider": "Play N Go",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Arcade",
+            "Bell",
+            "Chip",
+            "Dance",
+            "Dark blue",
+            "Lightness",
+            "Money",
+            "Neon",
+            "Pigs",
+            "Pink",
+            "Star",
+            "Violet"
+          ],
+          "new": [
+            "Animals",
+            "Arcade"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Diamond Desire Flame",
+      "provider": "Bragg Gaming Group",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "777",
+            "7s",
+            "Bars",
+            "Classic style",
+            "Dark blue",
+            "Fire",
+            "Gems & Crystals",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Fire"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Black Hawk Deluxe",
+      "provider": "Wazdan",
+      "changes": {
+        "features": {
+          "old": [
+            "Gamble Feature"
+          ],
+          "new": []
+        },
+        "themes_all": {
+          "old": [
+            "Animals",
+            "Black",
+            "Castle",
+            "Darkness",
+            "Eagles",
+            "Fantasy",
+            "Gray",
+            "Knights",
+            "Lightning",
+            "Medieval",
+            "Middle Ages",
+            "Mythical",
+            "Treasure"
+          ],
+          "new": [
+            "Fantasy"
+          ]
+        }
+      }
+    },
+    {
+      "game": "3 Plucky Hens",
+      "provider": "1x2 Network",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Hold and Spin",
+            "Multiplier",
+            "Mystery Symbols",
+            "Respin",
+            "Static Jackpot",
+            "Sticky Wilds"
+          ],
+          "new": [
+            "Free Spins",
+            "Hold and Spin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Adventure",
+            "Animals",
+            "Birds",
+            "Chicken",
+            "Corn",
+            "Egg",
+            "Farm",
+            "Gold",
+            "Green",
+            "Money",
+            "Sky blue",
+            "Sun",
+            "Tomatoes",
+            "Vegetables"
+          ],
+          "new": [
+            "Animals"
+          ]
+        }
+      }
+    },
+    {
+      "game": "J Mania Turkey Chef",
+      "provider": "Ruby Play",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cash On Reels",
+            "Expanding Wilds",
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Free Spins",
+            "Hold and Spin",
+            "Respin",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Carrot",
+            "Food",
+            "Seasonal/Holiday",
+            "Tomatoes",
+            "Turkey"
+          ],
+          "new": [
+            "Arcade",
+            "Food"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Guan Yu",
+      "provider": "Ainsworth",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "Asian",
+            "Chinese Dragons",
+            "Horse",
+            "Lanterns",
+            "Temple",
+            "Violet",
+            "Warrior",
+            "Weapons"
+          ],
+          "new": [
+            "Asian"
+          ]
+        }
+      }
+    },
+    {
+      "game": "5x A Winner",
+      "provider": "Design Works Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Multiplier"
+          ],
+          "new": [
+            "Free Spins",
+            "Multiplier",
+            "Static Jackpot"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "7s",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Casino"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Ancient Tumble",
+      "provider": "Relax Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Buy Bonus",
+            "Cascading Reels",
+            "Cash On Reels",
+            "Colossal Symbols",
+            "Expanding Reels",
+            "Free Spins",
+            "Multiplier",
+            "Sticky Wilds"
+          ],
+          "new": [
+            "Cash On Reels",
+            "Expanding Reels",
+            "Free Spins"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Adventure",
+            "Ancient civilizations",
+            "Aztec",
+            "Card suits",
+            "Gems & Crystals",
+            "Green",
+            "Mask",
+            "Money",
+            "Totem",
+            "Treasure",
+            "Tropical"
+          ],
+          "new": [
+            "Adventure"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Halloween Wins 3",
+      "provider": "Red Rake Gaming",
+      "changes": {
+        "features": {
+          "old": [
+            "Expanding Reels",
+            "Expanding Wilds",
+            "Free Spins",
+            "Multiplier",
+            "Respin",
+            "Static Jackpot",
+            "Sticky Wilds",
+            "Wheel"
+          ],
+          "new": [
+            "Expanding Reels",
+            "Free Spins",
+            "Respin",
+            "Static Jackpot",
+            "Wheel"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Card suits",
+            "Cats",
+            "Darkness",
+            "Dracula",
+            "Egyptian",
+            "Frankenstein",
+            "Ghost",
+            "Graveyard",
+            "Holidays",
+            "Horror",
+            "Mythical",
+            "Pumpkin",
+            "Seasonal/Holiday",
+            "Vampires"
+          ],
+          "new": [
+            "Horror",
+            "Seasonal/Holiday"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Skadis Hunt",
+      "provider": "Igt",
+      "changes": {
+        "features": {
+          "old": [
+            "Free Spins",
+            "Stacked Symbols"
+          ],
+          "new": [
+            "Free Spins"
+          ]
+        },
+        "themes_all": {
+          "old": [
+            "Mythical",
+            "Seasonal/Holiday"
+          ],
+          "new": [
+            "Mythical",
+            "Norse"
+          ]
+        }
+      }
+    },
+    {
+      "game": "Hot Spot 777",
+      "provider": "Everi",
+      "changes": {
+        "themes_all": {
+          "old": [
+            "7s",
+            "Casino",
+            "Classic style",
+            "Dark blue",
+            "Fire",
+            "Gray",
+            "Las Vegas"
+          ],
+          "new": [
+            "7s",
+            "Casino"
+          ]
+        }
+      }
+    }
+  ]
+}

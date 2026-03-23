@@ -4,11 +4,11 @@ import { apiFetch, apiPatch, apiDelete, apiPost } from '../lib/api-client.js';
 let showArchived = false;
 
 const STATUS_STYLES = {
-    'open': 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300',
+    open: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300',
     'in-progress': 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300',
-    'resolved': 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300',
-    'closed': 'bg-gray-100 text-gray-700 dark:bg-gray-700/50 dark:text-gray-300',
-    'archived': 'bg-gray-100 text-gray-500 dark:bg-gray-700/50 dark:text-gray-400',
+    resolved: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300',
+    closed: 'bg-gray-100 text-gray-700 dark:bg-gray-700/50 dark:text-gray-300',
+    archived: 'bg-gray-100 text-gray-500 dark:bg-gray-700/50 dark:text-gray-400',
 };
 
 export async function renderTickets() {
@@ -28,26 +28,33 @@ export async function renderTickets() {
 
         displayTickets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-        const toolbarHtml = userIsAdmin ? `
+        const toolbarHtml = userIsAdmin
+            ? `
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
-                    <button onclick="window.toggleArchivedView()" class="px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${showArchived
-                        ? 'bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-700 dark:text-indigo-300'
-                        : 'bg-white border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:border-indigo-300'
+                    <button onclick="window.toggleArchivedView()" class="px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
+                        showArchived
+                            ? 'bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-700 dark:text-indigo-300'
+                            : 'bg-white border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:border-indigo-300'
                     }">
                         ${showArchived ? `Active (${activeTickets.length})` : `Archive (${archivedTickets.length})`}
                     </button>
                     ${!showArchived && openCount > 0 ? `<button onclick="window.resolveAllOpen()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-emerald-50 border border-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:border-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 transition-colors">Resolve All Open (${openCount})</button>` : ''}
+                    <button onclick="window.deleteAllVisible()" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-red-50 border border-red-200 text-red-700 dark:bg-red-900/30 dark:border-red-700 dark:text-red-300 hover:bg-red-100 transition-colors">Delete All (${displayTickets.length})</button>
                 </div>
                 <div id="bulk-actions" class="hidden flex items-center gap-2">
                     <span id="bulk-count" class="text-xs text-gray-500"></span>
                     <button onclick="window.bulkUpdateTickets('resolved')" class="px-2.5 py-1 rounded text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 hover:bg-emerald-100 transition-colors">Resolve</button>
                     <button onclick="window.bulkUpdateTickets('archived')" class="px-2.5 py-1 rounded text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 transition-colors">Archive</button>
+                    <button onclick="window.bulkDeleteTickets()" class="px-2.5 py-1 rounded text-xs font-medium bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300 hover:bg-red-100 transition-colors">Delete</button>
                 </div>
-            </div>` : '';
+            </div>`
+            : '';
 
         if (displayTickets.length === 0) {
-            container.innerHTML = toolbarHtml + `<div class="text-center py-12 text-gray-500 dark:text-gray-400">${showArchived ? 'No archived tickets' : 'No tickets submitted yet'}</div>`;
+            container.innerHTML =
+                toolbarHtml +
+                `<div class="text-center py-12 text-gray-500 dark:text-gray-400">${showArchived ? 'No archived tickets' : 'No tickets submitted yet'}</div>`;
             return;
         }
 
@@ -68,7 +75,9 @@ export async function renderTickets() {
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                        ${displayTickets.map(t => `
+                        ${displayTickets
+                            .map(
+                                t => `
                             <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50">
                                 ${userIsAdmin ? `<td class="px-3 py-3"><input type="checkbox" class="bulk-cb rounded border-gray-300 dark:border-gray-600 text-indigo-500 focus:ring-indigo-500 w-3.5 h-3.5" data-id="${escapeAttr(t.id)}"></td>` : ''}
                                 <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap">${new Date(t.createdAt).toLocaleDateString()}</td>
@@ -77,18 +86,28 @@ export async function renderTickets() {
                                 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">${escapeHtml(t.description || '')}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">${escapeHtml(t.submittedBy || '')}</td>
                                 <td class="px-4 py-3"><span class="px-2 py-1 text-xs rounded-full ${STATUS_STYLES[t.status] || STATUS_STYLES.open}">${escapeHtml(t.status || '')}</span></td>
-                                ${userIsAdmin ? `<td class="px-4 py-3">
+                                ${
+                                    userIsAdmin
+                                        ? `<td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
-                                        ${t.status === 'open'
-                                            ? `<button onclick="${safeOnclick('window.resolveTicket', t.id)}" class="text-xs text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 font-medium">Resolve</button>`
-                                            : t.status !== 'archived' ? `<button onclick="${safeOnclick('window.reopenTicket', t.id)}" class="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 font-medium">Reopen</button>` : ''}
+                                        ${
+                                            t.status === 'open'
+                                                ? `<button onclick="${safeOnclick('window.resolveTicket', t.id)}" class="text-xs text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 font-medium">Resolve</button>`
+                                                : t.status !== 'archived'
+                                                  ? `<button onclick="${safeOnclick('window.reopenTicket', t.id)}" class="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 font-medium">Reopen</button>`
+                                                  : ''
+                                        }
                                         ${t.status !== 'archived' ? `<button onclick="${safeOnclick('window.editTicket', t.id, t.gameName || '', t.issueType || '', t.description || '')}" class="text-xs text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 font-medium">Edit</button>` : ''}
                                         ${t.status !== 'archived' ? `<button onclick="${safeOnclick('window.archiveTicket', t.id)}" class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 font-medium">Archive</button>` : `<button onclick="${safeOnclick('window.reopenTicket', t.id)}" class="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 font-medium">Restore</button>`}
                                         <button onclick="${safeOnclick('window.deleteTicket', t.id)}" class="text-xs text-red-600 hover:text-red-800 dark:text-red-400 font-medium">Delete</button>
                                     </div>
-                                </td>` : ''}
+                                </td>`
+                                        : ''
+                                }
                             </tr>
-                        `).join('')}
+                        `
+                            )
+                            .join('')}
                     </tbody>
                 </table>
             </div>
@@ -98,7 +117,9 @@ export async function renderTickets() {
             const selectAll = document.getElementById('bulk-select-all');
             if (selectAll) {
                 selectAll.addEventListener('change', () => {
-                    document.querySelectorAll('.bulk-cb').forEach(cb => { cb.checked = selectAll.checked; });
+                    document.querySelectorAll('.bulk-cb').forEach(cb => {
+                        cb.checked = selectAll.checked;
+                    });
                     updateBulkUI();
                 });
             }
@@ -126,43 +147,51 @@ function updateBulkUI() {
     }
 }
 
-window.resolveTicket = async function(id) {
+window.resolveTicket = async function (id) {
     try {
         await apiPatch(`/api/tickets/${id}`, { status: 'resolved' });
         renderTickets();
-    } catch (err) { console.error('Failed to resolve ticket:', err); }
+    } catch (err) {
+        console.error('Failed to resolve ticket:', err);
+    }
 };
 
-window.reopenTicket = async function(id) {
+window.reopenTicket = async function (id) {
     try {
         await apiPatch(`/api/tickets/${id}`, { status: 'open' });
         renderTickets();
-    } catch (err) { console.error('Failed to reopen ticket:', err); }
+    } catch (err) {
+        console.error('Failed to reopen ticket:', err);
+    }
 };
 
-window.archiveTicket = async function(id) {
+window.archiveTicket = async function (id) {
     try {
         await apiPatch(`/api/tickets/${id}`, { status: 'archived' });
         renderTickets();
-    } catch (err) { console.error('Failed to archive ticket:', err); }
+    } catch (err) {
+        console.error('Failed to archive ticket:', err);
+    }
 };
 
-window.deleteTicket = async function(id) {
+window.deleteTicket = async function (id) {
     if (!confirm('Are you sure you want to delete this ticket?')) return;
     try {
         await apiDelete(`/api/tickets/${id}`);
         renderTickets();
-    } catch (err) { console.error('Failed to delete ticket:', err); }
+    } catch (err) {
+        console.error('Failed to delete ticket:', err);
+    }
 };
 
-window.editTicket = function(id, gameName, issueType, description) {
+window.editTicket = function (id, gameName, issueType, description) {
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-black/50';
     modal.innerHTML = `
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 w-full max-w-md mx-4 space-y-4">
             <h3 class="text-lg font-bold text-gray-900 dark:text-white">Edit Ticket</h3>
             <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Game</label><input id="edit-ticket-game" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm" value="${escapeAttr(gameName)}"></div>
-            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type</label><select id="edit-ticket-type" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"><option value="data-issue" ${issueType==='data-issue'?'selected':''}>Data Issue</option><option value="ui-bug" ${issueType==='ui-bug'?'selected':''}>UI Bug</option><option value="feature-request" ${issueType==='feature-request'?'selected':''}>Feature Request</option><option value="other" ${issueType==='other'?'selected':''}>Other</option></select></div>
+            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type</label><select id="edit-ticket-type" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm"><option value="data-issue" ${issueType === 'data-issue' ? 'selected' : ''}>Data Issue</option><option value="ui-bug" ${issueType === 'ui-bug' ? 'selected' : ''}>UI Bug</option><option value="feature-request" ${issueType === 'feature-request' ? 'selected' : ''}>Feature Request</option><option value="other" ${issueType === 'other' ? 'selected' : ''}>Other</option></select></div>
             <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Description</label><textarea id="edit-ticket-desc" rows="3" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm">${escapeHtml(description)}</textarea></div>
             <div class="flex justify-end gap-2"><button id="edit-ticket-cancel" class="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Cancel</button><button id="edit-ticket-save" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg">Save</button></div>
         </div>`;
@@ -178,42 +207,69 @@ window.editTicket = function(id, gameName, issueType, description) {
             await apiPatch(`/api/tickets/${id}`, body);
             modal.remove();
             renderTickets();
-        } catch (err) { console.error('Failed to edit ticket:', err); }
+        } catch (err) {
+            console.error('Failed to edit ticket:', err);
+        }
     };
 };
 
-window.toggleArchivedView = function() {
+window.toggleArchivedView = function () {
     showArchived = !showArchived;
     renderTickets();
 };
 
-window.resolveAllOpen = async function() {
+window.resolveAllOpen = async function () {
     if (!confirm('Resolve all open tickets?')) return;
     try {
         const tickets = await apiFetch('/api/tickets');
         const openIds = tickets.filter(t => t.status === 'open').map(t => t.id);
         if (openIds.length === 0) return;
-        await apiFetch('/api/tickets/bulk', {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ids: openIds, status: 'resolved' }),
-        });
+        await apiPatch('/api/tickets/bulk', { ids: openIds, status: 'resolved' });
         renderTickets();
-    } catch (err) { console.error('Failed to resolve all:', err); }
+    } catch (err) {
+        console.error('Failed to resolve all:', err);
+    }
 };
 
-window.bulkUpdateTickets = async function(status) {
+window.bulkUpdateTickets = async function (status) {
     const checked = document.querySelectorAll('.bulk-cb:checked');
     const ids = [...checked].map(cb => cb.dataset.id);
     if (ids.length === 0) return;
     try {
-        await apiFetch('/api/tickets/bulk', {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ids, status }),
-        });
+        await apiPatch('/api/tickets/bulk', { ids, status });
         renderTickets();
-    } catch (err) { console.error('Failed to bulk update:', err); }
+    } catch (err) {
+        console.error('Failed to bulk update:', err);
+    }
+};
+
+window.deleteAllVisible = async function () {
+    const view = showArchived ? 'archived' : 'active';
+    if (!confirm(`Delete ALL ${view} tickets? This cannot be undone.`)) return;
+    try {
+        const tickets = await apiFetch('/api/tickets');
+        const ids = tickets
+            .filter(t => (showArchived ? t.status === 'archived' : t.status !== 'archived'))
+            .map(t => t.id);
+        if (ids.length === 0) return;
+        await apiDelete('/api/tickets/bulk', { ids });
+        renderTickets();
+    } catch (err) {
+        console.error('Failed to delete all:', err);
+    }
+};
+
+window.bulkDeleteTickets = async function () {
+    const checked = document.querySelectorAll('.bulk-cb:checked');
+    const ids = [...checked].map(cb => cb.dataset.id);
+    if (ids.length === 0) return;
+    if (!confirm(`Delete ${ids.length} selected ticket(s)? This cannot be undone.`)) return;
+    try {
+        await apiDelete('/api/tickets/bulk', { ids });
+        renderTickets();
+    } catch (err) {
+        console.error('Failed to bulk delete:', err);
+    }
 };
 
 window.renderTickets = renderTickets;

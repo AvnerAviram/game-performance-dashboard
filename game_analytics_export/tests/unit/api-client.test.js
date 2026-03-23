@@ -15,9 +15,12 @@ describe('api-client', () => {
             });
             const result = await apiFetch('/api/test');
             expect(result).toEqual({ data: 42 });
-            expect(global.fetch).toHaveBeenCalledWith('/api/test', expect.objectContaining({
-                headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
-            }));
+            expect(global.fetch).toHaveBeenCalledWith(
+                '/api/test',
+                expect.objectContaining({
+                    headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
+                })
+            );
         });
 
         it('throws ApiError on non-ok response', async () => {
@@ -29,7 +32,9 @@ describe('api-client', () => {
                 json: () => Promise.resolve({ error: 'Invalid credentials' }),
             });
             await expect(apiFetch('/api/login')).rejects.toThrow(ApiError);
-            try { await apiFetch('/api/login'); } catch (e) {
+            try {
+                await apiFetch('/api/login');
+            } catch (e) {
                 expect(e.status).toBe(401);
                 expect(e.message).toBe('Invalid credentials');
             }
@@ -60,10 +65,13 @@ describe('api-client', () => {
             });
             const result = await apiPost('/api/items', { name: 'test' });
             expect(result).toEqual({ id: 1 });
-            expect(global.fetch).toHaveBeenCalledWith('/api/items', expect.objectContaining({
-                method: 'POST',
-                body: '{"name":"test"}',
-            }));
+            expect(global.fetch).toHaveBeenCalledWith(
+                '/api/items',
+                expect.objectContaining({
+                    method: 'POST',
+                    body: '{"name":"test"}',
+                })
+            );
         });
     });
 
@@ -75,10 +83,13 @@ describe('api-client', () => {
                 json: () => Promise.resolve({ updated: true }),
             });
             await apiPatch('/api/items/1', { status: 'done' });
-            expect(global.fetch).toHaveBeenCalledWith('/api/items/1', expect.objectContaining({
-                method: 'PATCH',
-                body: '{"status":"done"}',
-            }));
+            expect(global.fetch).toHaveBeenCalledWith(
+                '/api/items/1',
+                expect.objectContaining({
+                    method: 'PATCH',
+                    body: '{"status":"done"}',
+                })
+            );
         });
     });
 
@@ -90,9 +101,12 @@ describe('api-client', () => {
                 json: () => Promise.resolve({ deleted: true }),
             });
             await apiDelete('/api/items/1');
-            expect(global.fetch).toHaveBeenCalledWith('/api/items/1', expect.objectContaining({
-                method: 'DELETE',
-            }));
+            expect(global.fetch).toHaveBeenCalledWith(
+                '/api/items/1',
+                expect.objectContaining({
+                    method: 'DELETE',
+                })
+            );
         });
     });
 });

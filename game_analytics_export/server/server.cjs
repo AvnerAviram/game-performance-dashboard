@@ -33,21 +33,23 @@ const DIST_DIR = path.join(__dirname, '..', 'dist');
 app.set('trust proxy', 1);
 
 // --- Security ---
-app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "https://cdn.jsdelivr.net"],
-            scriptSrcAttr: ["'unsafe-inline'"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://fonts.googleapis.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            imgSrc: ["'self'", "data:", "blob:"],
-            connectSrc: ["'self'", "https://cdn.jsdelivr.net"],
-            workerSrc: ["'self'", "blob:"],
-            upgradeInsecureRequests: IS_PROD ? [] : null,
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", 'https://cdn.jsdelivr.net'],
+                scriptSrcAttr: ["'unsafe-inline'"],
+                styleSrc: ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net', 'https://fonts.googleapis.com'],
+                fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+                imgSrc: ["'self'", 'data:', 'blob:'],
+                connectSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+                workerSrc: ["'self'", 'blob:'],
+                upgradeInsecureRequests: IS_PROD ? [] : null,
+            },
         },
-    },
-}));
+    })
+);
 
 // --- Body parsing ---
 app.use(express.json({ limit: '100kb' }));
@@ -62,24 +64,26 @@ if (!process.env.SESSION_SECRET) {
     console.warn('⚠️  SESSION_SECRET not set — sessions will not persist across restarts.');
 }
 
-app.use(session({
-    store: new FileStore({
-        path: path.join(__dirname, '.sessions'),
-        ttl: 7 * 24 * 60 * 60,
-        retries: 0,
-        logFn: () => {},
-    }),
-    secret: process.env.SESSION_SECRET || require('crypto').randomBytes(32).toString('hex'),
-    resave: false,
-    saveUninitialized: false,
-    name: 'gd.sid',
-    cookie: {
-        httpOnly: true,
-        secure: IS_PROD,
-        sameSite: 'lax',
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-    },
-}));
+app.use(
+    session({
+        store: new FileStore({
+            path: path.join(__dirname, '.sessions'),
+            ttl: 7 * 24 * 60 * 60,
+            retries: 0,
+            logFn: () => {},
+        }),
+        secret: process.env.SESSION_SECRET || require('crypto').randomBytes(32).toString('hex'),
+        resave: false,
+        saveUninitialized: false,
+        name: 'gd.sid',
+        cookie: {
+            httpOnly: true,
+            secure: IS_PROD,
+            sameSite: 'lax',
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        },
+    })
+);
 
 // --- Request logging ---
 app.use((req, res, next) => {
@@ -135,20 +139,22 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(express.static(DIST_DIR, {
-    etag: true,
-    lastModified: true,
-    setHeaders: (res, filePath) => {
-        if (filePath.endsWith('.html')) {
-            res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
-            res.set('Pragma', 'no-cache');
-            res.set('Expires', '0');
-        } else if (filePath.includes('/assets/')) {
-            // Vite content-hashed assets — safe to cache indefinitely
-            res.set('Cache-Control', 'public, max-age=31536000, immutable');
-        }
-    }
-}));
+app.use(
+    express.static(DIST_DIR, {
+        etag: true,
+        lastModified: true,
+        setHeaders: (res, filePath) => {
+            if (filePath.endsWith('.html')) {
+                res.set('Cache-Control', 'no-store, no-cache, must-revalidate');
+                res.set('Pragma', 'no-cache');
+                res.set('Expires', '0');
+            } else if (filePath.includes('/assets/')) {
+                // Vite content-hashed assets — safe to cache indefinitely
+                res.set('Cache-Control', 'public, max-age=31536000, immutable');
+            }
+        },
+    })
+);
 
 // --- SPA fallback ---
 app.get('/{*splat}', (req, res) => {
@@ -170,12 +176,16 @@ app.use((err, req, res, _next) => {
 // --- Start server ---
 const server = app.listen(PORT, () => {
     const users = loadUsers();
-    console.log(`Game Analytics Dashboard server running on port ${PORT}`);
-    console.log(`  Users loaded: ${users.length}`);
-    console.log(`  Serving: ${DIST_DIR}`);
+    console.log('');
+    console.log('  \x1b[1m\x1b[35m⚡ Game Analytics Dashboard\x1b[0m');
+    console.log('');
+    console.log(`  \x1b[2m➜\x1b[0m  Local:   \x1b[36mhttp://localhost:${PORT}/\x1b[0m`);
+    console.log(`  \x1b[2m➜\x1b[0m  Users:   ${users.length} loaded`);
+    console.log(`  \x1b[2m➜\x1b[0m  Serving: ${DIST_DIR}`);
     if (users.length === 0) {
-        console.log('  WARNING: No users configured! Run: node server/manage-users.cjs add <username>');
+        console.log('  \x1b[33m⚠  No users configured! Run: node server/manage-users.cjs add <username>\x1b[0m');
     }
+    console.log('');
 });
 
 // --- Graceful shutdown ---
@@ -192,10 +202,11 @@ function shutdown(signal) {
 }
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 process.on('SIGINT', () => shutdown('SIGINT'));
-process.on('uncaughtException', (err) => {
+process.on('uncaughtException', err => {
     console.error('[FATAL] Uncaught exception:', err);
     shutdown('uncaughtException');
 });
-process.on('unhandledRejection', (reason) => {
+process.on('unhandledRejection', reason => {
     console.error('[FATAL] Unhandled rejection:', reason);
+    shutdown('unhandledRejection');
 });

@@ -8,9 +8,9 @@
    0    - Page content (default)
    10   - Sticky table cells (heatmap), panel internal headers
    50   - Filter tabs container (MUST be below sticky header)
+   80   - Tooltips, info icons (below sticky headers)
    100  - Sticky page headers (themes, games, overview, etc.)
-   150  - Dropdowns in headers (hamburger menu)
-   400  - Tooltips, info icons (below overlay panels)
+   200  - Dropdowns in headers (hamburger menu)
    500  - Sidebar, pagination footers
    1000 - Modal/panel backdrop
    1100 - Overlay panels (right panels, modals)
@@ -19,319 +19,367 @@
 
 /* Sidebar collapsed state */
 #sidebar.collapsed .nav-item {
-  justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
-  gap: 0;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
 }
 #sidebar.collapsed .nav-item .nav-icon {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 #sidebar.collapsed .sidebar-nav {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
 }
 #sidebar.collapsed .sidebar-header {
-  justify-content: center;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 #sidebar.collapsed .collapse-btn {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 #sidebar.collapsed #dark-mode-toggle {
-  justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
-  gap: 0;
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 0;
 }
 #sidebar.collapsed .shrink-0.mt-auto {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
 }
 
 /* Only base styles - NO components */
 @layer base {
-  body {
-    @apply antialiased;
-  }
-  /* Focus visible for keyboard nav (WCAG 2.4.7) */
-  :focus-visible {
-    @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
-  }
-  
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    @apply bg-gray-100 dark:bg-gray-800;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-600 rounded;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gray-400 dark:bg-gray-500;
-  }
+    body {
+        @apply antialiased;
+    }
+    /* Focus visible for keyboard nav (WCAG 2.4.7) */
+    :focus-visible {
+        @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100 dark:bg-gray-800;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 dark:bg-gray-600 rounded;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-400 dark:bg-gray-500;
+    }
 }
 
-/* Tooltip styles for info icons - z-[900] so tooltips float above charts/panels but below modals (z-2000) */
+/* Info icon: no z-index on the icon itself so it never floats above sticky headers.
+   Only the tooltip children (.info-tooltip / .filter-tooltip) get z-[80]. */
 .info-icon {
-  @apply relative z-[900] inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-all duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500 hover:scale-110;
+    @apply relative inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-all duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500 hover:scale-110;
 }
 
 th {
-  @apply relative;
+    @apply relative;
 }
 
 /* Sortable table headers – arrows show sort direction */
 th.sortable {
-  @apply cursor-pointer select-none pr-8;
+    @apply cursor-pointer select-none pr-8;
 }
 th.sortable::after {
-  content: '▲\A▼';
-  white-space: pre;
-  position: absolute;
-  right: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.625rem;
-  line-height: 0.75;
-  opacity: 0.3;
-  color: currentColor;
+    content: '▲\A▼';
+    white-space: pre;
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.625rem;
+    line-height: 0.75;
+    opacity: 0.3;
+    color: currentColor;
 }
 th.sortable.sorted-desc::after {
-  content: '▼';
-  opacity: 1;
-  font-size: 0.75rem;
-  line-height: 1;
-  color: rgb(99 102 241);
+    content: '▼';
+    opacity: 1;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: rgb(99 102 241);
 }
 th.sortable.sorted-asc::after {
-  content: '▲';
-  opacity: 1;
-  font-size: 0.75rem;
-  line-height: 1;
-  color: rgb(99 102 241);
+    content: '▲';
+    opacity: 1;
+    font-size: 0.75rem;
+    line-height: 1;
+    color: rgb(99 102 241);
 }
 .dark th.sortable.sorted-desc::after,
 .dark th.sortable.sorted-asc::after {
-  color: rgb(129 140 248);
+    color: rgb(129 140 248);
 }
 
 /* Filter tabs container - z-50 so it stays BELOW sticky header (z-[100]) */
 .filter-tabs-container {
-  @apply relative z-[50];
+    @apply relative z-[50];
 }
 
 .info-icon:hover .info-tooltip,
 .info-icon:hover .filter-tooltip {
-  @apply block;
+    @apply block;
 }
 
 .info-tooltip,
 .filter-tooltip {
-  @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[900] break-words whitespace-normal overflow-hidden normal-case;
+    @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[80] break-words whitespace-normal overflow-hidden normal-case;
 }
 
 .info-tooltip {
-  @apply top-full mt-2;
+    @apply top-full mt-2;
 }
 
 .filter-tooltip {
-  @apply top-[calc(100%+0.5rem)] pointer-events-none;
+    @apply top-[calc(100%+0.5rem)] pointer-events-none;
 }
 
 .info-tooltip strong,
 .filter-tooltip strong {
-  @apply text-slate-800 dark:text-slate-100 block text-[0.875rem] font-semibold leading-snug tracking-tight;
+    @apply text-slate-800 dark:text-slate-100 block text-[0.875rem] font-semibold leading-snug tracking-tight;
 }
 
 .info-tooltip p,
 .filter-tooltip p {
-  @apply text-[0.8125rem] text-slate-600 dark:text-slate-400 leading-relaxed break-words;
+    @apply text-[0.8125rem] text-slate-600 dark:text-slate-400 leading-relaxed break-words;
 }
 
 .info-tooltip p:first-of-type,
 .filter-tooltip p:first-of-type {
-  @apply mt-1.5;
+    @apply mt-1.5;
 }
 
 .info-tooltip p + p,
 .filter-tooltip p + p {
-  @apply mt-1.5;
+    @apply mt-1.5;
 }
 
 .info-tooltip hr,
 .filter-tooltip hr {
-  @apply border-slate-200 dark:border-slate-600 my-3;
+    @apply border-slate-200 dark:border-slate-600 my-3;
 }
 
 .info-tooltip div,
 .filter-tooltip div {
-  @apply break-words;
+    @apply break-words;
 }
 
 .info-tooltip div p,
 .filter-tooltip div p {
-  @apply text-[0.8125rem] text-slate-600 dark:text-slate-400 leading-relaxed mt-1;
+    @apply text-[0.8125rem] text-slate-600 dark:text-slate-400 leading-relaxed mt-1;
 }
 
 /* Prediction page - dynamically injected result content */
 #prediction-output-sidebar .prediction-score {
-  @apply text-4xl font-extrabold bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent;
+    @apply text-4xl font-extrabold bg-gradient-to-r from-violet-600 to-indigo-600 dark:from-violet-400 dark:to-indigo-400 bg-clip-text text-transparent;
 }
 
 #prediction-output-sidebar .prediction-category {
-  @apply inline-block px-3 py-1 rounded-lg text-sm font-semibold;
+    @apply inline-block px-3 py-1 rounded-lg text-sm font-semibold;
 }
 
 #prediction-output-sidebar .prediction-category.category-excellent {
-  @apply bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-200;
+    @apply bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-200;
 }
 
 #prediction-output-sidebar .prediction-category.category-good {
-  @apply bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-200;
+    @apply bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-200;
 }
 
 #prediction-output-sidebar .prediction-category.category-average {
-  @apply bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200;
+    @apply bg-amber-100 dark:bg-amber-900/50 text-amber-800 dark:text-amber-200;
 }
 
 #prediction-output-sidebar .prediction-category.category-poor {
-  @apply bg-rose-100 dark:bg-rose-900/50 text-rose-800 dark:text-rose-200;
+    @apply bg-rose-100 dark:bg-rose-900/50 text-rose-800 dark:text-rose-200;
 }
 
 #prediction-output-sidebar .recommendation-card {
-  @apply bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 border border-slate-200 dark:border-slate-600 text-sm text-gray-700 dark:text-gray-300;
+    @apply bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 border border-slate-200 dark:border-slate-600 text-sm text-gray-700 dark:text-gray-300;
 }
 
 #prediction-output-sidebar .result-section {
-  @apply mb-4 pb-4 border-b border-slate-200 dark:border-slate-600 last:border-0 last:pb-0 last:mb-0;
+    @apply mb-4 pb-4 border-b border-slate-200 dark:border-slate-600 last:border-0 last:pb-0 last:mb-0;
 }
 
 #prediction-output-sidebar .result-section strong {
-  @apply block text-gray-900 dark:text-white text-sm font-semibold mb-2;
+    @apply block text-gray-900 dark:text-white text-sm font-semibold mb-2;
 }
 
 #prediction-output-sidebar .progress-bar {
-  @apply h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden mt-1;
+    @apply h-2 bg-slate-200 dark:bg-slate-600 rounded-full overflow-hidden mt-1;
 }
 
 #prediction-output-sidebar .progress-fill {
-  @apply h-full bg-violet-500 dark:bg-violet-400 rounded-full transition-all duration-300;
+    @apply h-full bg-violet-500 dark:bg-violet-400 rounded-full transition-all duration-300;
 }
 
 #prediction-output-sidebar .metric-value {
-  @apply text-lg font-bold text-gray-900 dark:text-white;
+    @apply text-lg font-bold text-gray-900 dark:text-white;
 }
 
 #prediction-output-sidebar .analysis-item {
-  @apply flex justify-between py-2 text-sm border-b border-slate-100 dark:border-slate-700 last:border-0;
+    @apply flex justify-between py-2 text-sm border-b border-slate-100 dark:border-slate-700 last:border-0;
 }
 
 #prediction-output-sidebar .analysis-label {
-  @apply text-gray-700 dark:text-gray-300;
+    @apply text-gray-700 dark:text-gray-300;
 }
 
 #prediction-output-sidebar .analysis-value {
-  @apply font-semibold text-gray-900 dark:text-white;
+    @apply font-semibold text-gray-900 dark:text-white;
 }
 
 /* Sidebar nav – inset dividers between items (not above dark mode) */
 .sidebar-nav .nav-item {
-  @apply relative;
+    @apply relative;
 }
 .sidebar-nav .nav-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 1rem;
-  right: 1rem;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(148, 163, 184, 0.4) 15%, rgba(148, 163, 184, 0.5) 50%, rgba(148, 163, 184, 0.4) 85%, transparent 100%);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(148, 163, 184, 0.4) 15%,
+        rgba(148, 163, 184, 0.5) 50%,
+        rgba(148, 163, 184, 0.4) 85%,
+        transparent 100%
+    );
 }
 .dark .sidebar-nav .nav-item:not(:last-child)::after {
-  background: linear-gradient(90deg, transparent 0%, rgba(100, 116, 139, 0.35) 15%, rgba(100, 116, 139, 0.5) 50%, rgba(100, 116, 139, 0.35) 85%, transparent 100%);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(100, 116, 139, 0.35) 15%,
+        rgba(100, 116, 139, 0.5) 50%,
+        rgba(100, 116, 139, 0.35) 85%,
+        transparent 100%
+    );
 }
 
 /* Mechanic panel – readable body text (not gray/boring) */
 #mechanic-panel .mechanic-panel-body {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #1e293b;
-  font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #1e293b;
+    font-weight: 500;
 }
 #mechanic-panel.dark .mechanic-panel-body,
 .dark #mechanic-panel .mechanic-panel-body {
-  color: #e2e8f0;
+    color: #e2e8f0;
 }
 #mechanic-panel .mechanic-panel-list,
 #mechanic-panel .mechanic-panel-list li {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #1e293b;
-  font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1e293b;
+    font-weight: 500;
 }
 #mechanic-panel.dark .mechanic-panel-list,
 #mechanic-panel.dark .mechanic-panel-list li,
 .dark #mechanic-panel .mechanic-panel-list,
 .dark #mechanic-panel .mechanic-panel-list li {
-  color: #e2e8f0;
+    color: #e2e8f0;
 }
 
 @keyframes blink-field {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
 }
 
 /* ── Mobile Responsive ──────────────────────────────────── */
 @media (max-width: 767px) {
-  #sidebar {
-    width: 0 !important;
-    transform: translateX(-100%) !important;
-    transition: transform 0.3s ease, width 0.3s ease;
-  }
-  #sidebar.mobile-open {
-    width: 240px !important;
-    transform: translateX(0) !important;
-  }
-  #main-content {
-    margin-left: 0 !important;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+    #sidebar {
+        width: 0 !important;
+        transform: translateX(-100%) !important;
+        transition:
+            transform 0.3s ease,
+            width 0.3s ease;
+    }
+    #sidebar.mobile-open {
+        width: 240px !important;
+        transform: translateX(0) !important;
+    }
+    #main-content {
+        margin-left: 0 !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 
-  /* Sticky headers: less padding on mobile */
-  .sticky { padding-left: 1rem !important; padding-right: 1rem !important; }
+    /* Sticky headers: less padding on mobile */
+    .sticky {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
 
-  /* Tables: horizontal scroll wrapper */
-  table { font-size: 0.8125rem; }
-  th, td { padding: 0.5rem 0.625rem !important; white-space: nowrap; }
+    /* Tables: horizontal scroll wrapper */
+    table {
+        font-size: 0.8125rem;
+    }
+    th,
+    td {
+        padding: 0.5rem 0.625rem !important;
+        white-space: nowrap;
+    }
 
-  /* Grid overrides: stack on mobile */
-  .grid { grid-template-columns: 1fr !important; }
+    /* Grid overrides: stack on mobile */
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
 
-  /* KPI stat cards */
-  .grid.gap-4, .grid.gap-6 { gap: 0.75rem !important; }
+    /* KPI stat cards */
+    .grid.gap-4,
+    .grid.gap-6 {
+        gap: 0.75rem !important;
+    }
 
-  /* Pagination footers */
-  [id$="-pagination-footer"] { left: 0 !important; }
+    /* Pagination footers */
+    [id$='-pagination-footer'] {
+        left: 0 !important;
+    }
 
-  /* Chart containers */
-  [style*="height: 420px"], [style*="height: 460px"] {
-    height: 280px !important; min-height: 280px !important;
-  }
+    /* Chart containers */
+    [style*='height: 420px'],
+    [style*='height: 460px'] {
+        height: 280px !important;
+        min-height: 280px !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  /* Tablet: 2 cols max */
-  .xl\\:grid-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .xl\\:grid-cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .xl\\:col-span-3 { grid-column: span 1 !important; }
-  .xl\\:col-span-2 { grid-column: span 1 !important; }
+    /* Tablet: 2 cols max */
+    .xl\\:grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .xl\\:grid-cols-5 {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .xl\\:col-span-3 {
+        grid-column: span 1 !important;
+    }
+    .xl\\:col-span-2 {
+        grid-column: span 1 !important;
+    }
 }

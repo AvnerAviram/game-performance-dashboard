@@ -13,7 +13,7 @@ function serveDataFile(filePath, res) {
     res.set('Cache-Control', 'no-store');
     res.set('Content-Type', 'application/json');
     const stream = fs.createReadStream(filePath);
-    stream.on('error', (err) => {
+    stream.on('error', err => {
         console.error('[ERROR] Stream failed:', err.message);
         if (!res.headersSent) res.status(500).json({ error: 'Internal server error' });
     });

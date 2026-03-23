@@ -1,0 +1,2450 @@
+{
+  "game-762-10000_bc_jurassic_10k_ways": {
+    "franchise": "10000 Bc",
+    "franchise_type": "game_family"
+  },
+  "game-1168-10000_bc_doublemax": {
+    "franchise": "10000 Bc",
+    "franchise_type": "game_family"
+  },
+  "game-279-10x_minimum_top_multiplier": {
+    "franchise": "10x Minimum",
+    "franchise_type": "game_family"
+  },
+  "game-735-10x_minimum": {
+    "franchise": "10x Minimum",
+    "franchise_type": "game_family"
+  },
+  "game-1160-10x_minimum_magnetic_force": {
+    "franchise": "10x Minimum",
+    "franchise_type": "game_family"
+  },
+  "game-247-12_coins_grand_gold_edition": {
+    "franchise": "12 Coins Grand",
+    "franchise_type": "game_family"
+  },
+  "game-670-12_coins_grand_platinum_edition": {
+    "franchise": "12 Coins Grand",
+    "franchise_type": "game_family"
+  },
+  "game-519-12_coins_grand_platinum_edition_santas_jackpot": {
+    "franchise": "12 Coins Grand",
+    "franchise_type": "game_family"
+  },
+  "game-435-25_red_hot_7_clover_link": {
+    "franchise": "25 Red Hot",
+    "franchise_type": "game_family"
+  },
+  "game-828-25_red_hot_burning_clover_link": {
+    "franchise": "25 Red Hot",
+    "franchise_type": "game_family"
+  },
+  "game-112-3_lucky_maneki_hold_and_spin": {
+    "franchise": "3 Lucky",
+    "franchise_type": "game_family"
+  },
+  "game-671-3_lucky_hippos": {
+    "franchise": "3 Lucky",
+    "franchise_type": "game_family"
+  },
+  "game-127-3_porky_banks_hold_and_win_extra": {
+    "franchise": "3 Porky Banks",
+    "franchise_type": "game_family"
+  },
+  "game-1240-3_porky_banks_christmas": {
+    "franchise": "3 Porky Banks",
+    "franchise_type": "game_family"
+  },
+  "game-601-3_porky_banks_hold_and_win": {
+    "franchise": "3 Porky Banks",
+    "franchise_type": "game_family"
+  },
+  "game-359-4_fantastic_fish_amazon_adventure": {
+    "franchise": "4 Fantastic",
+    "franchise_type": "game_family"
+  },
+  "game-1491-4_fantastic_lobsters": {
+    "franchise": "4 Fantastic",
+    "franchise_type": "game_family"
+  },
+  "game-1094-4_fantastic_fish": {
+    "franchise": "4 Fantastic",
+    "franchise_type": "game_family"
+  },
+  "game-564-5_dragons": {
+    "franchise": "5 Dragons",
+    "franchise_type": "game_family"
+  },
+  "game-578-5_dragons_gold": {
+    "franchise": "5 Dragons",
+    "franchise_type": "game_family"
+  },
+  "game-886-5_treasures": {
+    "franchise": "5 Treasures",
+    "franchise_type": "game_family"
+  },
+  "game-1234-5_treasures_jackpot_festival": {
+    "franchise": "5 Treasures",
+    "franchise_type": "game_family"
+  },
+  "game-021-7s_fire_blitz_hot_stepper": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-028-7s_fire_blitz_power_5_jackpot_royale_express": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-091-7s_fire_blitz_hotstepper_jackpot_royale_express": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-354-7s_fire_blitz": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-037-7s_fire_blitz_win_boost": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-039-7s_fire_blitz_hot_stepper_megaways": {
+    "franchise": "7s Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-015-88_fortunes": {
+    "franchise": "88 Fortunes",
+    "franchise_type": "game_family"
+  },
+  "game-116-88_fortunes_jackpot_festival": {
+    "franchise": "88 Fortunes",
+    "franchise_type": "game_family"
+  },
+  "game-300-88_fortunes_megaways": {
+    "franchise": "88 Fortunes",
+    "franchise_type": "game_family"
+  },
+  "game-805-9_coins_grand_gold_edition": {
+    "franchise": "9 Coins",
+    "franchise_type": "game_family"
+  },
+  "game-1435-9_coins_1000_edition": {
+    "franchise": "9 Coins",
+    "franchise_type": "game_family"
+  },
+  "game-920-a_visit_from_st_nick": {
+    "franchise": "A Visit From St Nick",
+    "franchise_type": "game_family"
+  },
+  "game-1390-a_visit_from_st_nick_power_bet": {
+    "franchise": "A Visit From St Nick",
+    "franchise_type": "game_family"
+  },
+  "game-369-age_of_the_gods_collect_em": {
+    "franchise": "Age Of The Gods",
+    "franchise_type": "game_family"
+  },
+  "game-1191-age_of_the_gods_wheels_of_olympus": {
+    "franchise": "Age Of The Gods",
+    "franchise_type": "game_family"
+  },
+  "game-237-all_aboard_dynamite_dash": {
+    "franchise": "All Aboard",
+    "franchise_type": "game_family"
+  },
+  "game-430-all_aboard_go_west": {
+    "franchise": "All Aboard",
+    "franchise_type": "game_family"
+  },
+  "game-457-all_aboard_piggy_pennies": {
+    "franchise": "All Aboard",
+    "franchise_type": "game_family"
+  },
+  "game-651-all_aboard_charms_of_the_orient": {
+    "franchise": "All Aboard",
+    "franchise_type": "game_family"
+  },
+  "game-379-almighty_777_deluxe_jackpot_royale_express": {
+    "franchise": "Almighty 777",
+    "franchise_type": "game_family"
+  },
+  "game-1308-almighty_777_glory_jackpot_royale_express": {
+    "franchise": "Almighty 777",
+    "franchise_type": "game_family"
+  },
+  "game-220-amazing_catch_power_combo": {
+    "franchise": "Amazing Catch",
+    "franchise_type": "game_family"
+  },
+  "game-381-amazing_catch": {
+    "franchise": "Amazing Catch",
+    "franchise_type": "game_family"
+  },
+  "game-1134-american_gold_3x_victory": {
+    "franchise": "American Gold 3x",
+    "franchise_type": "game_family"
+  },
+  "game-1165-american_gold_3x_2x_victory": {
+    "franchise": "American Gold 3x",
+    "franchise_type": "game_family"
+  },
+  "game-702-bankin_bacon": {
+    "franchise": "Bankin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-806-bankin_bacon_jackpot_royale": {
+    "franchise": "Bankin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-451-bankin_more_bacon": {
+    "franchise": "Bankin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-096-bankin_even_more_bacon_jackpot_royale_express": {
+    "franchise": "Bankin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-027-bao_zhu_zhao_fu_jade_celebration": {
+    "franchise": "Bao Zhu Zhao Fu",
+    "franchise_type": "game_family"
+  },
+  "game-108-bao_zhu_zhao_fu_red_festival": {
+    "franchise": "Bao Zhu Zhao Fu",
+    "franchise_type": "game_family"
+  },
+  "game-139-bao_zhu_zhao_fu_blue_festival": {
+    "franchise": "Bao Zhu Zhao Fu",
+    "franchise_type": "game_family"
+  },
+  "game-948-bass_boss_megaways": {
+    "franchise": "Bass Boss",
+    "franchise_type": "game_family"
+  },
+  "game-1066-bass_boss": {
+    "franchise": "Bass Boss",
+    "franchise_type": "game_family"
+  },
+  "game-1311-beavis_and_butt_head": {
+    "franchise": "Beavis and Butt-Head",
+    "franchise_type": "licensed_ip"
+  },
+  "game-764-big_bonus_booster": {
+    "franchise": "Big Bonus",
+    "franchise_type": "game_family"
+  },
+  "game-1082-big_bonus": {
+    "franchise": "Big Bonus",
+    "franchise_type": "game_family"
+  },
+  "game-176-big_bucks_bandits_megaways": {
+    "franchise": "Big Bucks",
+    "franchise_type": "game_family"
+  },
+  "game-305-big_bucks_deluxe": {
+    "franchise": "Big Bucks",
+    "franchise_type": "game_family"
+  },
+  "game-675-big_bucks_canyon_10k_ways": {
+    "franchise": "Big Bucks",
+    "franchise_type": "game_family"
+  },
+  "game-128-big_catch_even_bigger_bass": {
+    "franchise": "Big Catch",
+    "franchise_type": "game_family"
+  },
+  "game-285-big_catch_bass_fishing": {
+    "franchise": "Big Catch",
+    "franchise_type": "game_family"
+  },
+  "game-827-big_catch_bass_fishing_megaways_jackpot_royale": {
+    "franchise": "Big Catch",
+    "franchise_type": "game_family"
+  },
+  "game-875-big_catch_bass_fishing_christmas_jackpot_royale": {
+    "franchise": "Big Catch",
+    "franchise_type": "game_family"
+  },
+  "game-256-big_money_frenzy": {
+    "franchise": "Big Money Frenzy",
+    "franchise_type": "game_family"
+  },
+  "game-332-big_money_frenzy_golden_magnet": {
+    "franchise": "Big Money Frenzy",
+    "franchise_type": "game_family"
+  },
+  "game-464-big_money_frenzy_megaways": {
+    "franchise": "Big Money Frenzy",
+    "franchise_type": "game_family"
+  },
+  "game-523-big_money_frenzy_jackpot_royale": {
+    "franchise": "Big Money Frenzy",
+    "franchise_type": "game_family"
+  },
+  "game-032-big_money_frenzy_jackpot_royale_express": {
+    "franchise": "Big Money Frenzy",
+    "franchise_type": "game_family"
+  },
+  "game-048-big_piggy_bank": {
+    "franchise": "Big Piggy",
+    "franchise_type": "game_family"
+  },
+  "game-971-big_piggy_bonus": {
+    "franchise": "Big Piggy",
+    "franchise_type": "game_family"
+  },
+  "game-977-big_spin_bonus": {
+    "franchise": "Big Spin Bonus",
+    "franchise_type": "game_family"
+  },
+  "game-1119-big_spin_bonus_extra_spins": {
+    "franchise": "Big Spin Bonus",
+    "franchise_type": "game_family"
+  },
+  "game-1351-bison_moon_ultra_link_and_win": {
+    "franchise": "Bison Moon",
+    "franchise_type": "game_family"
+  },
+  "game-1419-bison_moon": {
+    "franchise": "Bison Moon",
+    "franchise_type": "game_family"
+  },
+  "game-122-black_diamond_deluxe": {
+    "franchise": "Black Diamond",
+    "franchise_type": "game_family"
+  },
+  "game-254-black_diamond_platinum": {
+    "franchise": "Black Diamond",
+    "franchise_type": "game_family"
+  },
+  "game-456-black_diamond": {
+    "franchise": "Black Diamond",
+    "franchise_type": "game_family"
+  },
+  "game-1318-black_mirror_jackpot_royale": {
+    "franchise": "Black Mirror",
+    "franchise_type": "licensed_ip"
+  },
+  "game-292-blazin_gems_deluxe": {
+    "franchise": "Blazin Gems",
+    "franchise_type": "game_family"
+  },
+  "game-538-blazin_gems": {
+    "franchise": "Blazin Gems",
+    "franchise_type": "game_family"
+  },
+  "game-330-blazing_777_2x3x5x_cashways": {
+    "franchise": "Blazing 777",
+    "franchise_type": "game_family"
+  },
+  "game-714-blazing_777_triple_double_jackpot_wild": {
+    "franchise": "Blazing 777",
+    "franchise_type": "game_family"
+  },
+  "game-637-blazing_777_2x3x5x": {
+    "franchise": "Blazing 777",
+    "franchise_type": "game_family"
+  },
+  "game-223-blazing_bison_gold_blitz": {
+    "franchise": "Blazing Bison Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-487-blazing_bison_gold_blitz_extreme": {
+    "franchise": "Blazing Bison Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-192-blood_suckers": {
+    "franchise": "Blood Suckers",
+    "franchise_type": "game_family"
+  },
+  "game-1000-blood_suckers_2": {
+    "franchise": "Blood Suckers",
+    "franchise_type": "game_family"
+  },
+  "game-1038-blood_suckers_megaways": {
+    "franchise": "Blood Suckers",
+    "franchise_type": "game_family"
+  },
+  "game-1533-bonanza_blast": {
+    "franchise": "Bonanza Blast",
+    "franchise_type": "game_family"
+  },
+  "game-1520-bonanza_blast_ultratap": {
+    "franchise": "Bonanza Blast",
+    "franchise_type": "game_family"
+  },
+  "game-331-bonanza_falls_megaways": {
+    "franchise": "Bonanza Falls",
+    "franchise_type": "game_family"
+  },
+  "game-720-bonanza_falls": {
+    "franchise": "Bonanza Falls",
+    "franchise_type": "game_family"
+  },
+  "game-161-bonus_island": {
+    "franchise": "Bonus Island",
+    "franchise_type": "game_family"
+  },
+  "game-1197-bonus_island_bonus_buy": {
+    "franchise": "Bonus Island",
+    "franchise_type": "game_family"
+  },
+  "game-954-book_of_dead": {
+    "franchise": "Book",
+    "franchise_type": "game_family"
+  },
+  "game-106-buffalo_and_friends": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-125-buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-135-buffalo_gold_collection": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-174-buffalo_of_wealth": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-224-almighty_buffalo_megaways": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-239-buffalo_gold_revolution": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-240-almighty_buffalo_megaways_jackpot_royale": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-252-cash_express_luxury_line_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-413-buffalo_chief": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-444-jackpot_carnival_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-462-buffalo_blitz": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-477-wildwood_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-485-almighty_buffalo_reloaded_megaways": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-497-almighty_buffalo_lightning_gold": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-642-almighty_buffalo_king_jackpot_royale": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-667-almighty_buffalo_king": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-712-buffalo_canyon": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-725-buffalo_gold_max_power": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-758-buffalo_mania_megaways": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-781-diamond_cash_mighty_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-795-buffalo_wilds": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-966-buffalo_collector": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-969-triple_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-997-big_bad_buffalo_thunderstruck": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1041-megajackpots_majestic_buffalo": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1056-buffalo_blitz_ii": {
+    "franchise": "Buffalo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-323-bull_blitz_fortunes_of_the_orient": {
+    "franchise": "Bull Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-535-bull_blitz_roses_and_riches": {
+    "franchise": "Bull Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-001-cash_eruption": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-013-cash_eruption_high_stakes": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-175-cash_eruption_red_hot_joker": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-266-cash_eruption_hephaestus": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-357-cash_eruption_hoggin_cash": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-506-cash_eruption_vegas": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-680-cash_eruption_power_surge": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-868-cash_eruption_fa_cai_shu": {
+    "franchise": "Cash Eruption",
+    "franchise_type": "game_family"
+  },
+  "game-446-cash_express_luxury_line_timber_wolf": {
+    "franchise": "Cash Express Luxury Line",
+    "franchise_type": "game_family"
+  },
+  "game-1083-cash_express_luxury_line_pelican_pete": {
+    "franchise": "Cash Express Luxury Line",
+    "franchise_type": "game_family"
+  },
+  "game-396-cash_falls_add_em_up_rome": {
+    "franchise": "Cash Falls Add Em Up",
+    "franchise_type": "game_family"
+  },
+  "game-1396-cash_falls_add_em_up_gold": {
+    "franchise": "Cash Falls Add Em Up",
+    "franchise_type": "game_family"
+  },
+  "game-205-cash_flip_medusa": {
+    "franchise": "Cash Flip",
+    "franchise_type": "game_family"
+  },
+  "game-447-cash_flip_devils_coin": {
+    "franchise": "Cash Flip",
+    "franchise_type": "game_family"
+  },
+  "game-107-cash_machine_jackpots": {
+    "franchise": "Cash Machine",
+    "franchise_type": "game_family"
+  },
+  "game-119-cash_machine": {
+    "franchise": "Cash Machine",
+    "franchise_type": "game_family"
+  },
+  "game-417-catch_of_the_day": {
+    "franchise": "Catch of the Day",
+    "franchise_type": "game_family"
+  },
+  "game-988-catch_of_the_christmas_day_respin_em_in": {
+    "franchise": "Catch of the Day",
+    "franchise_type": "game_family"
+  },
+  "game-612-catch_of_the_day_reeling_em_in": {
+    "franchise": "Catch of the Day",
+    "franchise_type": "game_family"
+  },
+  "game-547-chicken_fox_jr": {
+    "franchise": "Chicken Fox",
+    "franchise_type": "game_family"
+  },
+  "game-611-chicken_fox_5x_skillstar": {
+    "franchise": "Chicken Fox",
+    "franchise_type": "game_family"
+  },
+  "game-757-chicken_fox": {
+    "franchise": "Chicken Fox",
+    "franchise_type": "game_family"
+  },
+  "game-1014-chili_chili_fire_hot_rush_red": {
+    "franchise": "Chili Chili Fire",
+    "franchise_type": "game_family"
+  },
+  "game-1028-chili_chili_fire": {
+    "franchise": "Chili Chili Fire",
+    "franchise_type": "game_family"
+  },
+  "game-412-china_shores_quick_strike": {
+    "franchise": "China Shores",
+    "franchise_type": "game_family"
+  },
+  "game-826-china_shores": {
+    "franchise": "China Shores",
+    "franchise_type": "game_family"
+  },
+  "game-832-christmas_bonanza_megaways": {
+    "franchise": "Christmas Bonanza",
+    "franchise_type": "game_family"
+  },
+  "game-1070-christmas_bonanza": {
+    "franchise": "Christmas Bonanza",
+    "franchise_type": "game_family"
+  },
+  "game-780-cleopatra_megaways": {
+    "franchise": "Cleopatra Megaways",
+    "franchise_type": "game_family"
+  },
+  "game-872-cleopatra_megaways_hold_and_win": {
+    "franchise": "Cleopatra Megaways",
+    "franchise_type": "game_family"
+  },
+  "game-857-clue_cash_mystery": {
+    "franchise": "Clue",
+    "franchise_type": "licensed_ip"
+  },
+  "game-541-coin_combo_explosion_jackpot_festival": {
+    "franchise": "Coin Combo",
+    "franchise_type": "game_family"
+  },
+  "game-1382-coin_combo_perfect_peacock": {
+    "franchise": "Coin Combo",
+    "franchise_type": "game_family"
+  },
+  "game-138-coin_trio_fortune_trails": {
+    "franchise": "Coin Trio",
+    "franchise_type": "game_family"
+  },
+  "game-398-coin_trio_piggy_burst": {
+    "franchise": "Coin Trio",
+    "franchise_type": "game_family"
+  },
+  "game-144-cops_n_robbers_bigger_big_money": {
+    "franchise": "Cops N Robbers",
+    "franchise_type": "game_family"
+  },
+  "game-312-cops_n_robbers_big_money": {
+    "franchise": "Cops N Robbers",
+    "franchise_type": "game_family"
+  },
+  "game-350-cops_n_robbers_trick_or_treat": {
+    "franchise": "Cops N Robbers",
+    "franchise_type": "game_family"
+  },
+  "game-672-cops_n_robbers_big_money_christmas": {
+    "franchise": "Cops N Robbers",
+    "franchise_type": "game_family"
+  },
+  "game-987-cops_n_robbers_big_money_trick_or_treat": {
+    "franchise": "Cops N Robbers",
+    "franchise_type": "game_family"
+  },
+  "game-699-crabbin_for_cash_extra_big_splash_jackpot_royale": {
+    "franchise": "Crabbin For Cash Extra Big",
+    "franchise_type": "game_family"
+  },
+  "game-1003-crabbin_for_cash_extra_big_catch_jackpot_royale": {
+    "franchise": "Crabbin For Cash Extra Big",
+    "franchise_type": "game_family"
+  },
+  "game-362-crazy_chilli": {
+    "franchise": "Crazy Chilli",
+    "franchise_type": "game_family"
+  },
+  "game-957-crazy_chilli_jackpot_royale": {
+    "franchise": "Crazy Chilli",
+    "franchise_type": "game_family"
+  },
+  "game-253-crystal_star_deluxe": {
+    "franchise": "Crystal Star",
+    "franchise_type": "game_family"
+  },
+  "game-934-crystal_star": {
+    "franchise": "Crystal Star",
+    "franchise_type": "game_family"
+  },
+  "game-1298-crystal_star_platinum": {
+    "franchise": "Crystal Star",
+    "franchise_type": "game_family"
+  },
+  "game-131-da_vinci_diamonds": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-641-da_vinci_ways": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-921-da_vinci_deluxe_ways": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-1215-da_vinci_deluxe_ways_2": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-348-da_vinci_diamonds_dual_play": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-772-da_vinci_diamonds_masterworks": {
+    "franchise": "Da Vinci",
+    "franchise_type": "game_family"
+  },
+  "game-191-dancing_drums_link": {
+    "franchise": "Dancing Drums",
+    "franchise_type": "game_family"
+  },
+  "game-341-dancing_drums_explosion": {
+    "franchise": "Dancing Drums",
+    "franchise_type": "game_family"
+  },
+  "game-364-dancing_drums_explosion_mega_drop": {
+    "franchise": "Dancing Drums",
+    "franchise_type": "game_family"
+  },
+  "game-501-dancing_drums": {
+    "franchise": "Dancing Drums",
+    "franchise_type": "game_family"
+  },
+  "game-692-dancing_drums_prosperity": {
+    "franchise": "Dancing Drums",
+    "franchise_type": "game_family"
+  },
+  "game-949-dangerous_beauty": {
+    "franchise": "Dangerous Beauty",
+    "franchise_type": "game_family"
+  },
+  "game-1209-dangerous_beauty_jackpot": {
+    "franchise": "Dangerous Beauty",
+    "franchise_type": "game_family"
+  },
+  "game-1356-dangerous_beauty_power_bet": {
+    "franchise": "Dangerous Beauty",
+    "franchise_type": "game_family"
+  },
+  "game-316-slingo_deal_or_no_deal": {
+    "franchise": "Deal or No Deal",
+    "franchise_type": "licensed_ip"
+  },
+  "game-424-deal_or_no_deal_the_big_hit_megaways_jackpot_royale": {
+    "franchise": "Deal or No Deal",
+    "franchise_type": "licensed_ip"
+  },
+  "game-565-deal_or_no_deal_golden_case_megaways": {
+    "franchise": "Deal or No Deal",
+    "franchise_type": "licensed_ip"
+  },
+  "game-415-deal_or_no_deal_bankers_boost_jackpot_royale": {
+    "franchise": "Deal or No Deal",
+    "franchise_type": "licensed_ip"
+  },
+  "game-054-diamond_cash_mighty_elephant_win_ways": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-989-diamond_cash_almighty_kraken": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1407-diamond_cash_oasis_riches": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-851-diamond_cash_cops_and_robbers": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-189-diamond_cash_mighty_viking": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-342-diamond_cash_mighty_cleopatra": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-924-diamond_cash_mighty_elephant": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1008-diamond_cash_mighty_sevens": {
+    "franchise": "Diamond Cash",
+    "franchise_type": "game_family"
+  },
+  "game-416-diamond_explosion_sweet_love": {
+    "franchise": "Diamond Explosion",
+    "franchise_type": "game_family"
+  },
+  "game-788-diamond_explosion_7s": {
+    "franchise": "Diamond Explosion",
+    "franchise_type": "game_family"
+  },
+  "game-1309-diamond_link_mighty_viking": {
+    "franchise": "Diamond Link Mighty",
+    "franchise_type": "game_family"
+  },
+  "game-1460-diamond_link_mighty_stampede": {
+    "franchise": "Diamond Link Mighty",
+    "franchise_type": "game_family"
+  },
+  "game-1540-diamond_rush": {
+    "franchise": "Diamond Rush",
+    "franchise_type": "game_family"
+  },
+  "game-1331-diamond_rush_ultratap": {
+    "franchise": "Diamond Rush",
+    "franchise_type": "game_family"
+  },
+  "game-155-divine_fortune": {
+    "franchise": "Divine Fortune",
+    "franchise_type": "game_family"
+  },
+  "game-171-divine_fortune_black": {
+    "franchise": "Divine Fortune",
+    "franchise_type": "game_family"
+  },
+  "game-214-divine_fortune_megaways": {
+    "franchise": "Divine Fortune",
+    "franchise_type": "game_family"
+  },
+  "game-262-doctor_love_on_vacation": {
+    "franchise": "Doctor Love",
+    "franchise_type": "game_family"
+  },
+  "game-1288-doctor_love": {
+    "franchise": "Doctor Love",
+    "franchise_type": "game_family"
+  },
+  "game-207-double_jackpot_gems": {
+    "franchise": "Double Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-698-double_jackpot": {
+    "franchise": "Double Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-889-double_jackpot_bullseye": {
+    "franchise": "Double Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-257-double_jackpot_gems_grand_wheel": {
+    "franchise": "Double Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-834-double_play_superbet_hq": {
+    "franchise": "Double Play Superbet",
+    "franchise_type": "game_family"
+  },
+  "game-1388-double_play_superbet": {
+    "franchise": "Double Play Superbet",
+    "franchise_type": "game_family"
+  },
+  "game-087-dragon_power": {
+    "franchise": "Dragon Power",
+    "franchise_type": "game_family"
+  },
+  "game-204-dragon_power_super_orbs": {
+    "franchise": "Dragon Power",
+    "franchise_type": "game_family"
+  },
+  "game-249-dragon_power_triple_gold": {
+    "franchise": "Dragon Power",
+    "franchise_type": "game_family"
+  },
+  "game-334-dragon_power_10k_ways": {
+    "franchise": "Dragon Power",
+    "franchise_type": "game_family"
+  },
+  "game-1280-dragon_spin": {
+    "franchise": "Dragon Spin",
+    "franchise_type": "game_family"
+  },
+  "game-1137-dragon_spin_cross_link_fire": {
+    "franchise": "Dragon Spin",
+    "franchise_type": "game_family"
+  },
+  "game-245-finn_and_the_swirly_spin": {
+    "franchise": "Finn",
+    "franchise_type": "game_family"
+  },
+  "game-904-finn_and_the_dragon_tales": {
+    "franchise": "Finn",
+    "franchise_type": "game_family"
+  },
+  "game-052-fire_and_roses_joker_2_all_in": {
+    "franchise": "Fire And Roses",
+    "franchise_type": "game_family"
+  },
+  "game-440-fire_and_roses_jolly_joker": {
+    "franchise": "Fire And Roses",
+    "franchise_type": "game_family"
+  },
+  "game-365-fire_and_roses_joker": {
+    "franchise": "Fire And Roses",
+    "franchise_type": "game_family"
+  },
+  "game-338-fire_blaze_blue_wizard": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-443-fire_blaze_green_wizard": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-484-fire_blaze_golden_macaque": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-530-fire_blaze_sky_queen": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-582-fire_blaze_golden_amazing_factory": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-627-fire_blaze_golden_tundra_wolf": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-855-fire_blaze_fire_fighter": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-901-fire_blaze_red_wizard": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-992-fire_blaze_eternal_lady": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-999-fire_blaze_tundra_wolf": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-1042-fire_blaze_adventure_trail": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-1304-fire_blaze_sky_queen_megaways": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-681-fire_blaze_tsai_shens_gift": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-1290-fire_blaze_pearls_pearls_pearls": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-771-fire_blaze_blue_wizard_megaways": {
+    "franchise": "Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-556-fire_joker_blitz": {
+    "franchise": "Fire Joker",
+    "franchise_type": "game_family"
+  },
+  "game-770-fire_joker_100": {
+    "franchise": "Fire Joker",
+    "franchise_type": "game_family"
+  },
+  "game-956-fishin_loaded_pots_gold_blitz": {
+    "franchise": "Fishin Loaded Pots",
+    "franchise_type": "game_family"
+  },
+  "game-1115-fishin_loaded_pots": {
+    "franchise": "Fishin Loaded Pots",
+    "franchise_type": "game_family"
+  },
+  "game-1173-fishin_loaded_pots_gold_blitz_extreme": {
+    "franchise": "Fishin Loaded Pots",
+    "franchise_type": "game_family"
+  },
+  "game-1233-fishing_floats_of_cash": {
+    "franchise": "Fishing Floats",
+    "franchise_type": "game_family"
+  },
+  "game-1406-fishing_floats_connectify_pays": {
+    "franchise": "Fishing Floats",
+    "franchise_type": "game_family"
+  },
+  "game-375-flaming_hot_chili_pot_jackpot_royale_express": {
+    "franchise": "Flaming Hot",
+    "franchise_type": "game_family"
+  },
+  "game-499-flaming_hot_devil": {
+    "franchise": "Flaming Hot",
+    "franchise_type": "game_family"
+  },
+  "game-072-fortune_coin": {
+    "franchise": "Fortune Coin",
+    "franchise_type": "game_family"
+  },
+  "game-315-fortune_coin_charm": {
+    "franchise": "Fortune Coin",
+    "franchise_type": "game_family"
+  },
+  "game-938-fortune_coin_fever_spins": {
+    "franchise": "Fortune Coin",
+    "franchise_type": "game_family"
+  },
+  "game-287-fruit_shop": {
+    "franchise": "Fruit Shop",
+    "franchise_type": "game_family"
+  },
+  "game-469-fruit_shop_megaways": {
+    "franchise": "Fruit Shop",
+    "franchise_type": "game_family"
+  },
+  "game-821-fruit_shop_christmas_edition": {
+    "franchise": "Fruit Shop",
+    "franchise_type": "game_family"
+  },
+  "game-748-fu_dai_lian_lian_panda": {
+    "franchise": "Fu Dai Lian Lian",
+    "franchise_type": "game_family"
+  },
+  "game-756-fu_dai_lian_lian_dragon": {
+    "franchise": "Fu Dai Lian Lian",
+    "franchise_type": "game_family"
+  },
+  "game-303-fu_gui_hao_men_glorious_fortunes": {
+    "franchise": "Fu Gui Hao Men",
+    "franchise_type": "game_family"
+  },
+  "game-885-fu_gui_hao_men_splendid_fortune": {
+    "franchise": "Fu Gui Hao Men",
+    "franchise_type": "game_family"
+  },
+  "game-1178-full_moon_white_panda": {
+    "franchise": "Full Moon",
+    "franchise_type": "game_family"
+  },
+  "game-1352-full_moon_wild_track": {
+    "franchise": "Full Moon",
+    "franchise_type": "game_family"
+  },
+  "game-1276-genie_wishmaker_jackpot_royale": {
+    "franchise": "Genie Wishmaker",
+    "franchise_type": "game_family"
+  },
+  "game-1486-genie_wishmaker_even_more_wishes": {
+    "franchise": "Genie Wishmaker",
+    "franchise_type": "game_family"
+  },
+  "game-718-giga_match_phantasmal": {
+    "franchise": "Giga Match",
+    "franchise_type": "game_family"
+  },
+  "game-1163-giga_match_moolah": {
+    "franchise": "Giga Match",
+    "franchise_type": "game_family"
+  },
+  "game-045-gobble_gobble_gobble": {
+    "franchise": "Gobble Gobble Gobble",
+    "franchise_type": "game_family"
+  },
+  "game-184-gobble_gobble_gobble_megaways": {
+    "franchise": "Gobble Gobble Gobble",
+    "franchise_type": "game_family"
+  },
+  "game-003-gold_blitz_fortunes": {
+    "franchise": "Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-014-gold_blitz_ultimate": {
+    "franchise": "Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-222-gold_blitz": {
+    "franchise": "Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-275-gold_blitz_extreme": {
+    "franchise": "Gold Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-102-gold_cash_freespins": {
+    "franchise": "Gold Cash",
+    "franchise_type": "game_family"
+  },
+  "game-572-gold_cash_big_spins": {
+    "franchise": "Gold Cash",
+    "franchise_type": "game_family"
+  },
+  "game-525-gold_cash_freespins_megaways": {
+    "franchise": "Gold Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1354-gold_fish_feeding_time_deluxe_treasure": {
+    "franchise": "Gold Fish Feeding Time",
+    "franchise_type": "game_family"
+  },
+  "game-1400-gold_fish_feeding_time": {
+    "franchise": "Gold Fish Feeding Time",
+    "franchise_type": "game_family"
+  },
+  "game-419-gold_stacks_88_royal_monkey": {
+    "franchise": "Gold Stacks 88",
+    "franchise_type": "game_family"
+  },
+  "game-935-gold_stacks_88_turtle_kingdom": {
+    "franchise": "Gold Stacks 88",
+    "franchise_type": "game_family"
+  },
+  "game-1057-gold_stacks_88_lunar_festival": {
+    "franchise": "Gold Stacks 88",
+    "franchise_type": "game_family"
+  },
+  "game-308-golden_catch_megaways": {
+    "franchise": "Golden Catch",
+    "franchise_type": "game_family"
+  },
+  "game-393-golden_catch": {
+    "franchise": "Golden Catch",
+    "franchise_type": "game_family"
+  },
+  "game-620-golden_fire_link_dragon_song": {
+    "franchise": "Golden Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-1161-golden_fire_link_buchae_blossom": {
+    "franchise": "Golden Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-104-golden_winner_grand_chance": {
+    "franchise": "Golden Winner",
+    "franchise_type": "game_family"
+  },
+  "game-172-golden_winner": {
+    "franchise": "Golden Winner",
+    "franchise_type": "game_family"
+  },
+  "game-669-golden_wins": {
+    "franchise": "Golden Wins",
+    "franchise_type": "game_family"
+  },
+  "game-1239-golden_wins_deluxe": {
+    "franchise": "Golden Wins",
+    "franchise_type": "game_family"
+  },
+  "game-093-gonzo_s_quest_2_return_to_el_dorado": {
+    "franchise": "Gonzo's Quest",
+    "franchise_type": "game_family"
+  },
+  "game-751-gonzos_quest": {
+    "franchise": "Gonzo's Quest",
+    "franchise_type": "game_family"
+  },
+  "game-976-gonzos_quest_megaways": {
+    "franchise": "Gonzo's Quest",
+    "franchise_type": "game_family"
+  },
+  "game-705-green_machine_deluxe": {
+    "franchise": "Green Machine",
+    "franchise_type": "game_family"
+  },
+  "game-1019-green_machine_racking_up_riches_2": {
+    "franchise": "Green Machine",
+    "franchise_type": "game_family"
+  },
+  "game-926-green_machine_deluxe_racking_up_riches": {
+    "franchise": "Green Machine",
+    "franchise_type": "game_family"
+  },
+  "game-1032-green_machine_deluxe_vegas": {
+    "franchise": "Green Machine",
+    "franchise_type": "game_family"
+  },
+  "game-1229-green_machine_deluxe_powerbet": {
+    "franchise": "Green Machine",
+    "franchise_type": "game_family"
+  },
+  "game-406-gritty_kitty_of_nitropolis": {
+    "franchise": "Gritty Kitty",
+    "franchise_type": "game_family"
+  },
+  "game-1180-gritty_kitty": {
+    "franchise": "Gritty Kitty",
+    "franchise_type": "game_family"
+  },
+  "game-1001-gypsy_fire": {
+    "franchise": "Gypsy Fire",
+    "franchise_type": "game_family"
+  },
+  "game-1147-gypsy_fire_quick_strike": {
+    "franchise": "Gypsy Fire",
+    "franchise_type": "game_family"
+  },
+  "game-002-huff_n_even_more_puff": {
+    "franchise": "Huff N Puff",
+    "franchise_type": "game_family"
+  },
+  "game-017-huff_n_more_puff": {
+    "franchise": "Huff N Puff",
+    "franchise_type": "game_family"
+  },
+  "game-022-huff_n_lots_of_puff": {
+    "franchise": "Huff N Puff",
+    "franchise_type": "game_family"
+  },
+  "game-344-hyper_gold": {
+    "franchise": "Hyper Gold",
+    "franchise_type": "game_family"
+  },
+  "game-1277-hyper_gold_all_in": {
+    "franchise": "Hyper Gold",
+    "franchise_type": "game_family"
+  },
+  "game-217-immortal_romance_vein_of_gold": {
+    "franchise": "Immortal Romance",
+    "franchise_type": "game_family"
+  },
+  "game-1023-immortal_romance_2": {
+    "franchise": "Immortal Romance",
+    "franchise_type": "game_family"
+  },
+  "game-372-immortal_ways_88_charms": {
+    "franchise": "Immortal Ways",
+    "franchise_type": "game_family"
+  },
+  "game-650-immortal_ways_gallina_harvest": {
+    "franchise": "Immortal Ways",
+    "franchise_type": "game_family"
+  },
+  "game-822-immortal_ways_spooktacular": {
+    "franchise": "Immortal Ways",
+    "franchise_type": "game_family"
+  },
+  "game-1218-immortal_ways_diamonds": {
+    "franchise": "Immortal Ways",
+    "franchise_type": "game_family"
+  },
+  "game-070-j_mania_lucky_pyggs": {
+    "franchise": "J Mania",
+    "franchise_type": "game_family"
+  },
+  "game-537-j_mania_turkey_chef": {
+    "franchise": "J Mania",
+    "franchise_type": "game_family"
+  },
+  "game-1402-j_mania_maniac": {
+    "franchise": "J Mania",
+    "franchise_type": "game_family"
+  },
+  "game-265-jackpot_carnival_the_power_of_88": {
+    "franchise": "Jackpot Carnival",
+    "franchise_type": "game_family"
+  },
+  "game-640-jade_wins": {
+    "franchise": "Jade Wins",
+    "franchise_type": "game_family"
+  },
+  "game-1357-jade_wins_deluxe": {
+    "franchise": "Jade Wins",
+    "franchise_type": "game_family"
+  },
+  "game-035-jin_ji_bao_xi_endless_treasure": {
+    "franchise": "Jin Ji Bao Xi",
+    "franchise_type": "game_family"
+  },
+  "game-1157-jin_ji_bao_xi_megaways": {
+    "franchise": "Jin Ji Bao Xi",
+    "franchise_type": "game_family"
+  },
+  "game-248-jumanji": {
+    "franchise": "Jumanji",
+    "franchise_type": "licensed_ip"
+  },
+  "game-005-kong_3_even_bigger_bonus": {
+    "franchise": "King Kong",
+    "franchise_type": "licensed_ip"
+  },
+  "game-084-king_kong_cash_even_bigger_bananas": {
+    "franchise": "King Kong",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1030-kong_wonder_wilds": {
+    "franchise": "King Kong",
+    "franchise_type": "licensed_ip"
+  },
+  "game-213-kitty_glitter_grand": {
+    "franchise": "Kitty Glitter",
+    "franchise_type": "game_family"
+  },
+  "game-619-kitty_glitter": {
+    "franchise": "Kitty Glitter",
+    "franchise_type": "game_family"
+  },
+  "game-1413-legacy_of_dead": {
+    "franchise": "Legacy",
+    "franchise_type": "game_family"
+  },
+  "game-978-legacy_of_gods": {
+    "franchise": "Legacy",
+    "franchise_type": "game_family"
+  },
+  "game-958-leprechauns_luck_collect_em": {
+    "franchise": "Leprechauns Luck Collect Em",
+    "franchise_type": "game_family"
+  },
+  "game-996-leprechauns_luck_collect_em_megaways": {
+    "franchise": "Leprechauns Luck Collect Em",
+    "franchise_type": "game_family"
+  },
+  "game-1274-lightning_gold_jackpot_royale": {
+    "franchise": "Lightning Gold",
+    "franchise_type": "game_family"
+  },
+  "game-1421-lightning_gold": {
+    "franchise": "Lightning Gold",
+    "franchise_type": "game_family"
+  },
+  "game-385-lightning_gold_2": {
+    "franchise": "Lightning Gold",
+    "franchise_type": "game_family"
+  },
+  "game-076-lightning_gorilla": {
+    "franchise": "Lightning Gorilla",
+    "franchise_type": "game_family"
+  },
+  "game-197-lightning_gorilla_2_maximum_boltage_xmas": {
+    "franchise": "Lightning Gorilla",
+    "franchise_type": "game_family"
+  },
+  "game-390-lightning_gorilla_2_max_boltage": {
+    "franchise": "Lightning Gorilla",
+    "franchise_type": "game_family"
+  },
+  "game-993-lotus_land": {
+    "franchise": "Lotus Land",
+    "franchise_type": "game_family"
+  },
+  "game-1437-lotus_land_quick_strike": {
+    "franchise": "Lotus Land",
+    "franchise_type": "game_family"
+  },
+  "game-117-lucky_fire_blitz_hotstepper": {
+    "franchise": "Lucky Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-814-lucky_fire_blitz": {
+    "franchise": "Lucky Fire Blitz",
+    "franchise_type": "game_family"
+  },
+  "game-358-lucky_larry_lobstermania_2": {
+    "franchise": "Lucky Larry Lobstermania",
+    "franchise_type": "game_family"
+  },
+  "game-688-lucky_larry_lobstermania": {
+    "franchise": "Lucky Larry Lobstermania",
+    "franchise_type": "game_family"
+  },
+  "game-566-lucky_larrys_lobstermania_high_stakes": {
+    "franchise": "Lucky Larrys Lobstermania",
+    "franchise_type": "game_family"
+  },
+  "game-060-mad_hit_mr_coin": {
+    "franchise": "Mad Hit",
+    "franchise_type": "game_family"
+  },
+  "game-064-mad_hit_devil": {
+    "franchise": "Mad Hit",
+    "franchise_type": "game_family"
+  },
+  "game-429-mad_hit_diamonds": {
+    "franchise": "Mad Hit",
+    "franchise_type": "game_family"
+  },
+  "game-615-mad_hit_hidden_cities": {
+    "franchise": "Mad Hit",
+    "franchise_type": "game_family"
+  },
+  "game-1198-mad_hit_gorillatron": {
+    "franchise": "Mad Hit",
+    "franchise_type": "game_family"
+  },
+  "game-094-magic_treasures_tiger": {
+    "franchise": "Magic Treasures",
+    "franchise_type": "game_family"
+  },
+  "game-325-magic_treasures_dragon": {
+    "franchise": "Magic Treasures",
+    "franchise_type": "game_family"
+  },
+  "game-038-majestic_fury_megaways_jackpot_royale_express": {
+    "franchise": "Majestic Fury",
+    "franchise_type": "game_family"
+  },
+  "game-067-majestic_fury_win_stepper": {
+    "franchise": "Majestic Fury",
+    "franchise_type": "game_family"
+  },
+  "game-115-majestic_fury_megaways": {
+    "franchise": "Majestic Fury",
+    "franchise_type": "game_family"
+  },
+  "game-802-majestic_sea_2": {
+    "franchise": "Majestic Sea",
+    "franchise_type": "game_family"
+  },
+  "game-1455-majestic_sea": {
+    "franchise": "Majestic Sea",
+    "franchise_type": "game_family"
+  },
+  "game-800-masters_of_atlantis": {
+    "franchise": "Masters Of Atlantis",
+    "franchise_type": "game_family"
+  },
+  "game-1011-masters_of_atlantis_jackpot_royale": {
+    "franchise": "Masters Of Atlantis",
+    "franchise_type": "game_family"
+  },
+  "game-143-mega_fire_blaze_breaking_bad": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-336-mega_fire_blaze_big_circus": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-388-mega_fire_blaze_legacy_of_the_tiger": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-602-mega_fire_blaze_pigies_and_the_bank": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-728-mega_fire_blaze_wild_pistolero": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-848-mega_fire_blaze_dwarves_and_goblins": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-903-mega_fire_blaze_khonsu_god_of_moon": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-1213-mega_fire_blaze_emperor_of_rome": {
+    "franchise": "Mega Fire Blaze",
+    "franchise_type": "game_family"
+  },
+  "game-665-mega_money_catch_multipliers_jackpots_extra_picks": {
+    "franchise": "Mega Money Catch",
+    "franchise_type": "game_family"
+  },
+  "game-1480-mega_money_catch": {
+    "franchise": "Mega Money Catch",
+    "franchise_type": "game_family"
+  },
+  "game-1506-mega_money_catch_extended_jackpots_mystery": {
+    "franchise": "Mega Money Catch",
+    "franchise_type": "game_family"
+  },
+  "game-684-megajackpots_ocean_spirit": {
+    "franchise": "Megajackpots Ocean",
+    "franchise_type": "game_family"
+  },
+  "game-846-megajackpots_ocean_belles": {
+    "franchise": "Megajackpots Ocean",
+    "franchise_type": "game_family"
+  },
+  "game-018-mo_mummy_mighty_pyramid": {
+    "franchise": "Mo Mummy",
+    "franchise_type": "game_family"
+  },
+  "game-023-mo_mummy_valley_of_riches": {
+    "franchise": "Mo Mummy",
+    "franchise_type": "game_family"
+  },
+  "game-089-money_link_the_great_immortals": {
+    "franchise": "Money Link",
+    "franchise_type": "game_family"
+  },
+  "game-153-money_link_egyptian_riches": {
+    "franchise": "Money Link",
+    "franchise_type": "game_family"
+  },
+  "game-273-monopoly_megaways": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-478-monopoly_money_in_hand": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-559-monopoly_money_grab": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-836-monopoly_mega_movers": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1202-monopoly_lunar_new_year": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1348-monopoly_on_the_money": {
+    "franchise": "Monopoly",
+    "franchise_type": "licensed_ip"
+  },
+  "game-798-more_turkey_megaways": {
+    "franchise": "More Turkey",
+    "franchise_type": "game_family"
+  },
+  "game-870-more_turkey": {
+    "franchise": "More Turkey",
+    "franchise_type": "game_family"
+  },
+  "game-643-mustang_money_triple_shot": {
+    "franchise": "Mustang Money",
+    "franchise_type": "game_family"
+  },
+  "game-1107-mustang_money": {
+    "franchise": "Mustang Money",
+    "franchise_type": "game_family"
+  },
+  "game-012-mystery_of_the_lamp_enchanted_palace": {
+    "franchise": "Mystery Of The Lamp",
+    "franchise_type": "game_family"
+  },
+  "game-058-mystery_of_the_lamp_treasure_oasis": {
+    "franchise": "Mystery Of The Lamp",
+    "franchise_type": "game_family"
+  },
+  "game-1418-napoleon_2_fat_stacks": {
+    "franchise": "Napoleon",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1525-olympus_strikes": {
+    "franchise": "Olympus Strikes",
+    "franchise_type": "game_family"
+  },
+  "game-1508-olympus_strikes_ultratap": {
+    "franchise": "Olympus Strikes",
+    "franchise_type": "game_family"
+  },
+  "game-036-pay_pig_10k_ways": {
+    "franchise": "Pay Pig",
+    "franchise_type": "game_family"
+  },
+  "game-1184-pay_pig": {
+    "franchise": "Pay Pig",
+    "franchise_type": "game_family"
+  },
+  "game-693-peaky_blinders": {
+    "franchise": "Peaky Blinders",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1047-peaky_blinders_jackpot_royale": {
+    "franchise": "Peaky Blinders",
+    "franchise_type": "licensed_ip"
+  },
+  "game-508-peaky_blinders_2_the_shelby_empire": {
+    "franchise": "Peaky Blinders",
+    "franchise_type": "licensed_ip"
+  },
+  "game-343-piggy_prizes_coins_o_plenty": {
+    "franchise": "Piggy Prizes",
+    "franchise_type": "game_family"
+  },
+  "game-361-piggy_prizes_wand_of_riches_2": {
+    "franchise": "Piggy Prizes",
+    "franchise_type": "game_family"
+  },
+  "game-1247-piggy_prizes_wand_of_riches": {
+    "franchise": "Piggy Prizes",
+    "franchise_type": "game_family"
+  },
+  "game-180-piggy_riches_3_hog_heaven": {
+    "franchise": "Piggy Riches",
+    "franchise_type": "game_family"
+  },
+  "game-290-piggy_riches_begins": {
+    "franchise": "Piggy Riches",
+    "franchise_type": "game_family"
+  },
+  "game-329-piggy_riches_2_megaways": {
+    "franchise": "Piggy Riches",
+    "franchise_type": "game_family"
+  },
+  "game-532-piggy_riches_megaways": {
+    "franchise": "Piggy Riches",
+    "franchise_type": "game_family"
+  },
+  "game-1487-piggy_riches": {
+    "franchise": "Piggy Riches",
+    "franchise_type": "game_family"
+  },
+  "game-311-pixies_of_the_forest": {
+    "franchise": "Pixies Of The Forest",
+    "franchise_type": "game_family"
+  },
+  "game-1393-pixies_of_the_forest_2": {
+    "franchise": "Pixies Of The Forest",
+    "franchise_type": "game_family"
+  },
+  "game-575-platinum_goddess": {
+    "franchise": "Platinum Goddess",
+    "franchise_type": "game_family"
+  },
+  "game-775-platinum_goddess_power_bet": {
+    "franchise": "Platinum Goddess",
+    "franchise_type": "game_family"
+  },
+  "game-881-play_with_the_devil_megaways": {
+    "franchise": "Play With The Devil",
+    "franchise_type": "game_family"
+  },
+  "game-1477-play_with_the_devil": {
+    "franchise": "Play With The Devil",
+    "franchise_type": "game_family"
+  },
+  "game-202-prosperity_link_wan_shi_ru_yi": {
+    "franchise": "Prosperity Link",
+    "franchise_type": "game_family"
+  },
+  "game-241-prosperity_link_cai_yun_heng_tong": {
+    "franchise": "Prosperity Link",
+    "franchise_type": "game_family"
+  },
+  "game-421-quadruple_da_vinci_diamonds_jackpot": {
+    "franchise": "Quadruple Da Vinci Diamonds",
+    "franchise_type": "game_family"
+  },
+  "game-577-quadruple_da_vinci_diamonds": {
+    "franchise": "Quadruple Da Vinci Diamonds",
+    "franchise_type": "game_family"
+  },
+  "game-395-queen_of_shadows": {
+    "franchise": "Queen",
+    "franchise_type": "game_family"
+  },
+  "game-1166-queen_of_the_gods": {
+    "franchise": "Queen",
+    "franchise_type": "game_family"
+  },
+  "game-1439-queen_of_the_nile": {
+    "franchise": "Queen",
+    "franchise_type": "game_family"
+  },
+  "game-633-queen_of_the_pyramids_mega_collect_em": {
+    "franchise": "Queen",
+    "franchise_type": "game_family"
+  },
+  "game-226-quick_hit_ultra_pays_sun_dragon": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-293-quick_hit_platinum_triple_blazing_7s": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-452-quick_hit_super_wheel_wild_red": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-505-quick_hit_platinum": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-1306-quick_hit_blitz_gold": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-1086-quick_hit_black_and_white_double_jackpot": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-604-quick_hit_ultra_pays_eagles_peak": {
+    "franchise": "Quick Hit",
+    "franchise_type": "game_family"
+  },
+  "game-490-raging_rhino": {
+    "franchise": "Raging Rhino",
+    "franchise_type": "game_family"
+  },
+  "game-1118-raging_rhino_rampage_buypass": {
+    "franchise": "Raging Rhino",
+    "franchise_type": "game_family"
+  },
+  "game-1185-raging_rhino_megaways": {
+    "franchise": "Raging Rhino",
+    "franchise_type": "game_family"
+  },
+  "game-1307-raging_rhino_ultra_megadrop": {
+    "franchise": "Raging Rhino",
+    "franchise_type": "game_family"
+  },
+  "game-031-rakin_bacon_jackpots_bonus_board": {
+    "franchise": "Rakin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-206-rakin_bacon": {
+    "franchise": "Rakin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-811-rakin_bacon_odyssey": {
+    "franchise": "Rakin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-1510-rakin_bacon_sahara": {
+    "franchise": "Rakin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-033-rakin_bacon_jackpots_bonus_wheel": {
+    "franchise": "Rakin Bacon",
+    "franchise_type": "game_family"
+  },
+  "game-769-red_hot_tamales": {
+    "franchise": "Red Hot",
+    "franchise_type": "game_family"
+  },
+  "game-902-red_hot_joker_cascade_high_stakes": {
+    "franchise": "Red Hot",
+    "franchise_type": "game_family"
+  },
+  "game-1018-reel_king_big_money": {
+    "franchise": "Reel King",
+    "franchise_type": "game_family"
+  },
+  "game-1088-reel_king_megaways": {
+    "franchise": "Reel King",
+    "franchise_type": "game_family"
+  },
+  "game-284-rich_little_piggies_world_class_halloween_edition": {
+    "franchise": "Rich Little",
+    "franchise_type": "game_family"
+  },
+  "game-1251-rich_little_hens_world_class": {
+    "franchise": "Rich Little",
+    "franchise_type": "game_family"
+  },
+  "game-1015-rich_little_piggies_world_class": {
+    "franchise": "Rich Little",
+    "franchise_type": "game_family"
+  },
+  "game-767-rich_wilde_and_the_tome_of_dead": {
+    "franchise": "Rich Wilde",
+    "franchise_type": "game_family"
+  },
+  "game-1103-rich_wilde_and_the_tome_of_madness": {
+    "franchise": "Rich Wilde",
+    "franchise_type": "game_family"
+  },
+  "game-1301-rich_wilde_and_the_tome_of_insanity": {
+    "franchise": "Rich Wilde",
+    "franchise_type": "game_family"
+  },
+  "game-218-rick_and_morty_strike_back_jackpot_royale_express": {
+    "franchise": "Rick and Morty",
+    "franchise_type": "licensed_ip"
+  },
+  "game-685-rick_and_morty_wubba_lubba_dub_dub_jackpot_royale": {
+    "franchise": "Rick and Morty",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1062-rick_and_morty_wubba_lubba_dub_dub": {
+    "franchise": "Rick and Morty",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1394-rick_and_morty_megaways": {
+    "franchise": "Rick and Morty",
+    "franchise_type": "licensed_ip"
+  },
+  "game-509-rise_of_olympus_100": {
+    "franchise": "Rise",
+    "franchise_type": "game_family"
+  },
+  "game-1012-rise_of_cleopatra": {
+    "franchise": "Rise",
+    "franchise_type": "game_family"
+  },
+  "game-340-sahara_riches_megaways_collect_em": {
+    "franchise": "Sahara Riches",
+    "franchise_type": "game_family"
+  },
+  "game-766-sahara_riches_collect_em": {
+    "franchise": "Sahara Riches",
+    "franchise_type": "game_family"
+  },
+  "game-050-saint_nicked_3_present_tense": {
+    "franchise": "Saint Nicked",
+    "franchise_type": "game_family"
+  },
+  "game-461-saint_nicked_2": {
+    "franchise": "Saint Nicked",
+    "franchise_type": "game_family"
+  },
+  "game-845-saint_nicked_jackpot_royale": {
+    "franchise": "Saint Nicked",
+    "franchise_type": "game_family"
+  },
+  "game-825-san_fa_coins": {
+    "franchise": "San Fa",
+    "franchise_type": "game_family"
+  },
+  "game-1313-san_fa_pigs": {
+    "franchise": "San Fa",
+    "franchise_type": "game_family"
+  },
+  "game-156-secrets_of_the_phoenix_blaze": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-1105-secrets_of_the_forest_2": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-170-secrets_of_the_phoenix": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-306-secrets_of_the_phoenix_elements": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-730-secrets_of_the_phoenix_megaways": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-928-secrets_of_the_phoenix_hold_and_gold": {
+    "franchise": "Secrets",
+    "franchise_type": "game_family"
+  },
+  "game-683-shadow_of_the_panther_power_bet": {
+    "franchise": "Shadow Of The Panther",
+    "franchise_type": "game_family"
+  },
+  "game-717-shadow_of_the_panther": {
+    "franchise": "Shadow Of The Panther",
+    "franchise_type": "game_family"
+  },
+  "game-476-silver_lux_big_win_spinner": {
+    "franchise": "Silver Lux",
+    "franchise_type": "game_family"
+  },
+  "game-843-silver_lux_coin_stacks": {
+    "franchise": "Silver Lux",
+    "franchise_type": "game_family"
+  },
+  "game-024-cash_eruption_slingo": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-134-lucky_larrys_lobstermania_slingo": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-230-slingo_da_vinci_diamonds": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-235-slingo_rakin_bacon": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-268-slingo_extreme": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-289-red_hot_slingo": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-371-slingo_gold_cash_freespin": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-411-slingo_cleopatra": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-470-slingo_stinkin_rich": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-486-slingo_candy_machine_bl4st": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-498-slingo_capital_gains": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-517-slingo_deadliest_catch": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-520-slingo_big_spin_booster": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-543-slingo_advance": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-544-slingo_day_of_the_dab": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-558-slingo_hot_roll": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-563-slingo_gold_fish": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-605-slingo_xxxtreme": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-686-slingo_shark_week": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-816-book_of_slingo": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-841-slingo_fire_and_ice": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-847-slingo_maximus_soldier_of_rome": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-887-slingo_fowl_play": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-991-slingo_pop": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1099-slingo_starburst": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1152-slingo_river_re3ls": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1158-slingo_honey_crew": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1212-slingo_carnival_bonus": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1217-slingo_berserk": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1227-slingo_journey_to_asgard": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1270-slingo_sweet_bonanza": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1327-slingo_china_shores": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1339-slingo_showdown": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1408-slingo_stampede": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1427-slingo_fluffy_favourites": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1443-slingo_big_wheel": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1493-slingo_space_invaders": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1073-slingo_fishin_frenzy": {
+    "franchise": "Slingo",
+    "franchise_type": "licensed_ip"
+  },
+  "game-867-spirit_of_mustang": {
+    "franchise": "Spirit",
+    "franchise_type": "game_family"
+  },
+  "game-1139-spirit_of_nature": {
+    "franchise": "Spirit",
+    "franchise_type": "game_family"
+  },
+  "game-1314-starlight_jackpots_athena_goddess_of_war": {
+    "franchise": "Starlight Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-474-starlight_jackpots_odds_of_the_god_2": {
+    "franchise": "Starlight Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-1286-stellar_jackpots_silver_pride": {
+    "franchise": "Stellar Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-1395-stellar_jackpots_serengeti_lions": {
+    "franchise": "Stellar Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-1497-stellar_jackpots_dolphin_gold": {
+    "franchise": "Stellar Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-1414-stellar_jackpots_with_chili_gold_x2": {
+    "franchise": "Stellar Jackpots",
+    "franchise_type": "game_family"
+  },
+  "game-458-stinkin_rich_skunks_gone_wild": {
+    "franchise": "Stinkin Rich",
+    "franchise_type": "game_family"
+  },
+  "game-546-stinkin_rich": {
+    "franchise": "Stinkin Rich",
+    "franchise_type": "game_family"
+  },
+  "game-465-super_jackpot_wild_gems": {
+    "franchise": "Super Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-738-super_jackpot_double_lion": {
+    "franchise": "Super Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-890-super_jackpot_seven_seas": {
+    "franchise": "Super Jackpot",
+    "franchise_type": "game_family"
+  },
+  "game-504-ted_jackpot_royale": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-779-ted_afterparty": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-830-ted_megaways": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-973-ted_cash_lock": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1034-ted": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-427-ted_cash_lock_jackpot_royale": {
+    "franchise": "Ted",
+    "franchise_type": "licensed_ip"
+  },
+  "game-943-temple_of_fire": {
+    "franchise": "Temple",
+    "franchise_type": "game_family"
+  },
+  "game-1434-temple_of_wealth": {
+    "franchise": "Temple",
+    "franchise_type": "game_family"
+  },
+  "game-232-temple_tumble": {
+    "franchise": "Temple Tumble",
+    "franchise_type": "game_family"
+  },
+  "game-824-temple_tumble_2_dream_drop": {
+    "franchise": "Temple Tumble",
+    "franchise_type": "game_family"
+  },
+  "game-043-the_flintstones": {
+    "franchise": "The Flintstones",
+    "franchise_type": "licensed_ip"
+  },
+  "game-146-the_flintstones_jackpot_royale": {
+    "franchise": "The Flintstones",
+    "franchise_type": "licensed_ip"
+  },
+  "game-234-the_goonies": {
+    "franchise": "The Goonies",
+    "franchise_type": "licensed_ip"
+  },
+  "game-492-the_goonies_megaways": {
+    "franchise": "The Goonies",
+    "franchise_type": "licensed_ip"
+  },
+  "game-579-the_goonies_hey_you_guys": {
+    "franchise": "The Goonies",
+    "franchise_type": "licensed_ip"
+  },
+  "game-664-the_goonies_jackpot_royale": {
+    "franchise": "The Goonies",
+    "franchise_type": "licensed_ip"
+  },
+  "game-707-the_goonies_return_jackpot_royale": {
+    "franchise": "The Goonies",
+    "franchise_type": "licensed_ip"
+  },
+  "game-507-the_jetsons_jackpot_royale": {
+    "franchise": "The Jetsons",
+    "franchise_type": "licensed_ip"
+  },
+  "game-200-the_walking_dead_collect_em": {
+    "franchise": "The Walking Dead",
+    "franchise_type": "game_family"
+  },
+  "game-251-the_walking_dead": {
+    "franchise": "The Walking Dead",
+    "franchise_type": "game_family"
+  },
+  "game-157-thunder_cash_sizzling_hot": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-160-thunder_cash_dolphins_pearl": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-264-thunder_cash_charming_lady": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-392-thunder_cash_senorita_suerte": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-441-thunder_cash_golden_voodoo_magic": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-480-thunder_cash_senor_muerte": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-927-thunder_cash_voodoo_magic": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1017-thunder_cash_golden_book_of_ra": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1059-thunder_cash_juicy_juicy": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1294-thunder_cash_fruity_fruity": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1504-thunder_cash_candelas_senor_muerte": {
+    "franchise": "Thunder Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1129-thunder_drums_samurai_storm": {
+    "franchise": "Thunder Drums",
+    "franchise_type": "game_family"
+  },
+  "game-1472-thunder_drums_leaping_lions": {
+    "franchise": "Thunder Drums",
+    "franchise_type": "game_family"
+  },
+  "game-132-tiger_and_dragon": {
+    "franchise": "Tiger And Dragon",
+    "franchise_type": "game_family"
+  },
+  "game-181-tiger_and_dragon_cash_on_reels": {
+    "franchise": "Tiger And Dragon",
+    "franchise_type": "game_family"
+  },
+  "game-709-tiki_totems": {
+    "franchise": "Tiki Totems",
+    "franchise_type": "game_family"
+  },
+  "game-1404-tiki_totems_megaways": {
+    "franchise": "Tiki Totems",
+    "franchise_type": "game_family"
+  },
+  "game-062-timber_wolf_triple_power": {
+    "franchise": "Timber Wolf",
+    "franchise_type": "game_family"
+  },
+  "game-1100-timber_wolf_gold": {
+    "franchise": "Timber Wolf",
+    "franchise_type": "game_family"
+  },
+  "game-1101-timber_wolf": {
+    "franchise": "Timber Wolf",
+    "franchise_type": "game_family"
+  },
+  "game-739-tome_of_insanity": {
+    "franchise": "Tome",
+    "franchise_type": "game_family"
+  },
+  "game-1176-tome_of_madness": {
+    "franchise": "Tome",
+    "franchise_type": "game_family"
+  },
+  "game-168-triple_double_da_vinci_diamonds": {
+    "franchise": "Triple Double",
+    "franchise_type": "game_family"
+  },
+  "game-238-triple_double_patriot": {
+    "franchise": "Triple Double",
+    "franchise_type": "game_family"
+  },
+  "game-301-triple_double_gems": {
+    "franchise": "Triple Double",
+    "franchise_type": "game_family"
+  },
+  "game-378-triple_gold_bars": {
+    "franchise": "Triple Gold",
+    "franchise_type": "game_family"
+  },
+  "game-436-triple_gold": {
+    "franchise": "Triple Gold",
+    "franchise_type": "game_family"
+  },
+  "game-193-triple_jackpot_gems": {
+    "franchise": "Triple Jackpot Gems",
+    "franchise_type": "game_family"
+  },
+  "game-244-triple_jackpot_gems_deluxe": {
+    "franchise": "Triple Jackpot Gems",
+    "franchise_type": "game_family"
+  },
+  "game-280-triple_wild_thanksgiving": {
+    "franchise": "Triple Wild",
+    "franchise_type": "game_family"
+  },
+  "game-691-triple_wild_dragon": {
+    "franchise": "Triple Wild",
+    "franchise_type": "game_family"
+  },
+  "game-1043-tuna_overload_multiplier": {
+    "franchise": "Tuna Overload",
+    "franchise_type": "game_family"
+  },
+  "game-1283-tuna_overload": {
+    "franchise": "Tuna Overload",
+    "franchise_type": "game_family"
+  },
+  "game-540-twin_spin_megaways": {
+    "franchise": "Twin Spin",
+    "franchise_type": "game_family"
+  },
+  "game-1109-twin_spin": {
+    "franchise": "Twin Spin",
+    "franchise_type": "game_family"
+  },
+  "game-100-ultimate_fire_link_china_street": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-142-ultimate_fire_link_cash_falls_olvera_street": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-165-ultimate_fire_link_cash_falls_china_street": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-243-ultimate_fire_link_cash_falls_by_the_bay": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-309-ultimate_fire_link_olvera_street": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-569-ultimate_fire_link_river_walk": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-878-ultimate_fire_link_rue_royale": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-896-ultimate_fire_link_country_lights": {
+    "franchise": "Ultimate Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-263-ultra_blazing_fire_link_india": {
+    "franchise": "Ultra Blazing Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-356-ultra_blazing_fire_link": {
+    "franchise": "Ultra Blazing Fire Link",
+    "franchise_type": "game_family"
+  },
+  "game-731-vault_cracker": {
+    "franchise": "Vault Cracker",
+    "franchise_type": "game_family"
+  },
+  "game-765-vault_cracker_megaways": {
+    "franchise": "Vault Cracker",
+    "franchise_type": "game_family"
+  },
+  "game-042-wheel_of_fortune_diamond_spins_2x_wild": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-057-wheel_of_fortune_pink_diamond": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-166-wheel_of_fortune_triple_extreme_spin": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-259-wheel_of_fortune_gold_spin_triple_red_hot_7s": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-321-megajackpots_wheel_of_fortune_on_air": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-355-wheel_of_fortune_triple_gold_gold_spin": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-493-wheel_of_fortune_ruby_riches": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-676-wheel_of_fortune_elegant_emeralds": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-874-wheel_of_fortune_hawaiian_getaway": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1075-wheel_of_fortune_on_tour": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1341-wheel_of_fortune_megaways": {
+    "franchise": "Wheel of Fortune",
+    "franchise_type": "licensed_ip"
+  },
+  "game-1097-when_pigs_fly": {
+    "franchise": "When Pigs Fly",
+    "franchise_type": "game_family"
+  },
+  "game-1420-when_pigs_fly_2": {
+    "franchise": "When Pigs Fly",
+    "franchise_type": "game_family"
+  },
+  "game-777-wicked_wheel_panda": {
+    "franchise": "Wicked Wheel",
+    "franchise_type": "game_family"
+  },
+  "game-1501-wicked_wheel_moby_dick": {
+    "franchise": "Wicked Wheel",
+    "franchise_type": "game_family"
+  },
+  "game-786-wild_wild_west_the_great_train_heist": {
+    "franchise": "Wild Wild",
+    "franchise_type": "game_family"
+  },
+  "game-1104-wild_wild_7s": {
+    "franchise": "Wild Wild",
+    "franchise_type": "game_family"
+  },
+  "game-1374-wild_wild_gems": {
+    "franchise": "Wild Wild",
+    "franchise_type": "game_family"
+  },
+  "game-019-wolf_it_up_again": {
+    "franchise": "Wolf It Up",
+    "franchise_type": "game_family"
+  },
+  "game-040-wolf_it_up": {
+    "franchise": "Wolf It Up",
+    "franchise_type": "game_family"
+  },
+  "game-339-wolf_legend_gold_megaways": {
+    "franchise": "Wolf Legend",
+    "franchise_type": "licensed_ip"
+  },
+  "game-407-wolf_legend_megaways": {
+    "franchise": "Wolf Legend",
+    "franchise_type": "licensed_ip"
+  },
+  "game-433-wolf_legend_megaways_jackpot_royale": {
+    "franchise": "Wolf Legend",
+    "franchise_type": "licensed_ip"
+  },
+  "game-482-wolf_run": {
+    "franchise": "Wolf Run",
+    "franchise_type": "game_family"
+  },
+  "game-831-wolf_run_eclipse": {
+    "franchise": "Wolf Run",
+    "franchise_type": "game_family"
+  },
+  "game-1363-xtension_cash_snow_kingdom": {
+    "franchise": "Xtension Cash",
+    "franchise_type": "game_family"
+  },
+  "game-1490-xtension_cash_stars_up": {
+    "franchise": "Xtension Cash",
+    "franchise_type": "game_family"
+  },
+  "game-785-zillard_king_megaways": {
+    "franchise": "Zillard King",
+    "franchise_type": "game_family"
+  },
+  "game-1361-zillard_king": {
+    "franchise": "Zillard King",
+    "franchise_type": "game_family"
+  }
+}

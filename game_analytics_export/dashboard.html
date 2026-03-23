@@ -1,329 +1,686 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="h-full">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>(function(){try{if(localStorage.getItem('darkMode')==='true')document.documentElement.classList.add('dark');}catch(e){}})();</script>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Game Analytics Dashboard</title>
-    <meta name="description" content="Internal analytics dashboard for game performance, themes, mechanics, and provider insights.">
-    <link rel="icon" type="image/png" href="/src/assets/ags-logo.png">
-    <link rel="stylesheet" href="/src/output.css">
-</head>
-<body class="h-full m-0 p-0 font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg">Skip to main content</a>
-    <!-- Loading overlay (hidden when app ready) -->
-    <div id="loading-overlay" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-opacity duration-300">
-        <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p class="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
-        <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Initializing DuckDB</p>
-    </div>
-    <div class="flex h-full" id="app-shell">
-        <!-- Sidebar (collapsible) -->
-        <aside id="sidebar" class="fixed left-0 top-0 bottom-0 w-60 bg-gradient-to-b from-[#f5f7fa] to-[#e9ecf1] dark:from-[#20232e] dark:to-[#1a1d29] border-r border-[#d1d5db] dark:border-[#3f4553] transition-all duration-300 flex flex-col min-h-0 z-[500] shadow-lg">
-            <!-- Sidebar Header -->
-            <div class="px-4 py-5 border-b border-gray-200 dark:border-white/20 bg-transparent dark:bg-white/10 flex items-center justify-between sidebar-header">
-                <div class="logo flex gap-3 items-center overflow-hidden">
-                    <div class="logo-icon w-9 h-9 flex-shrink-0 flex items-center justify-center [filter:drop-shadow(0_2px_8px_rgba(129,140,248,0.6))]">
-                        <img src="src/assets/ags-logo.png" alt="AGS Logo" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <span class="logo-text sidebar-text text-[17px] font-bold text-black dark:text-white tracking-tight whitespace-nowrap transition-all duration-300">Game Analytics</span>
-                </div>
-                <button class="collapse-btn bg-transparent cursor-pointer text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white transition-all duration-200 flex items-center justify-center flex-shrink-0 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10" onclick="toggleSidebar()" title="Collapse sidebar" aria-label="Collapse sidebar">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="collapse-arrow transition-transform duration-300">
-                        <path d="M10 4L6 8L10 12" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Sidebar Navigation (grows to push footer down) -->
-            <nav class="sidebar-nav flex-1 overflow-y-auto overflow-x-hidden px-3 pt-0 pb-4 min-h-0" role="navigation" aria-label="Main navigation">
-                <!-- ANALYTICS section -->
-                <div class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-3 mb-1 select-none">Analytics</div>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="overview" onclick="showPage('overview')" aria-label="Overview">
-                    <span class="nav-icon text-lg inline-flex items-center justify-center w-6 h-6">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="7" height="7" rx="1"/>
-                            <rect x="14" y="3" width="7" height="7" rx="1"/>
-                            <rect x="14" y="14" width="7" height="7" rx="1"/>
-                            <rect x="3" y="14" width="7" height="7" rx="1"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Overview</span>
-                </button>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="games" onclick="showPage('games')" aria-label="Games">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="7" width="20" height="15" rx="2"/>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                            <circle cx="7" cy="12" r="1" fill="currentColor"/>
-                            <circle cx="17" cy="12" r="1" fill="currentColor"/>
-                            <circle cx="17" cy="17" r="1" fill="currentColor"/>
-                            <path d="M7 17h3"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Games</span>
-                </button>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="providers" onclick="showPage('providers')" aria-label="Providers">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
-                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
-                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Providers</span>
-                </button>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="themes" onclick="showPage('themes')" aria-label="Themes">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z"/>
-                            <path d="M2 17L12 22L22 17"/>
-                            <path d="M2 12L12 17L22 12"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Themes</span>
-                </button>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="mechanics" onclick="showPage('mechanics')" aria-label="Mechanics">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1V3"/><path d="M12 21V23"/>
-                            <path d="M4.22 4.22L5.64 5.64"/><path d="M18.36 18.36L19.78 19.78"/>
-                            <path d="M1 12H3"/><path d="M21 12H23"/>
-                            <path d="M4.22 19.78L5.64 18.36"/><path d="M18.36 5.64L19.78 4.22"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Mechanics</span>
-                </button>
-
-                <!-- INTELLIGENCE section -->
-                <div class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none">Intelligence</div>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="insights" onclick="showPage('insights')" aria-label="Market Insights">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="12" y1="16" x2="12" y2="12"/>
-                            <line x1="12" y1="8" x2="12.01" y2="8"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Market Insights</span>
-                </button>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="trends" onclick="showPage('trends')" aria-label="Trends">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-                            <polyline points="16 7 22 7 22 13"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Trends</span>
-                </button>
-
-                <!-- GAME LAB section -->
-                <div class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none">Game Lab</div>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="game-lab" id="nav-game-lab" onclick="window.handleGameLabClick(event)" aria-label="Game Lab">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">Game Lab</span>
-                    <span class="nav-icon gamelab-chevron sidebar-text transition-transform duration-200">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                    </span>
-                </button>
-                <!-- Game Lab sub-items (collapsible) -->
-                <div id="gamelab-subnav" class="sidebar-text overflow-hidden transition-all duration-200" style="max-height:0">
-                    <div class="py-0.5">
-                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="blueprint" onclick="window.navigateGameLab('blueprint')">
-                            <span class="sidebar-text">Game Blueprint</span>
-                        </button>
-                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="name-gen" onclick="window.navigateGameLab('name-gen')">
-                            <span class="sidebar-text">Name Generator</span>
-                            <span class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0 ml-auto">WIP</span>
-                        </button>
-                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="feature-impact" onclick="window.navigateGameLab('feature-impact')">
-                            <span class="sidebar-text">Feature Analysis</span>
-                        </button>
-                        <button class="gamelab-sub nav-item flex items-center w-full py-2 pl-10 pr-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-left cursor-pointer text-[13px] font-medium rounded-lg transition-all duration-150 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/15" data-section="concept" onclick="window.navigateGameLab('concept')">
-                            <span class="sidebar-text">Concept Analyzer</span>
-                            <span class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0 ml-auto">WIP</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Game Lab flyout moved to body level to avoid sidebar transition containment -->
-
-                <!-- ASSISTANT section -->
-                <div class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none">Assistant</div>
-                <button class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white" data-page="ai-assistant" onclick="showPage('ai-assistant')" aria-label="AI Assistant">
-                    <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-                        </svg>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1">AI Assistant</span>
-                    <span class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0">WIP</span>
-                </button>
-            </nav>
-            
-            <!-- Sidebar Footer - Dark Mode Toggle (pinned to bottom) -->
-            <div class="shrink-0 mt-auto border-t border-[#d1d5db] dark:border-[#3f4553] mx-3 mb-3 pt-2">
-                <button class="flex items-center gap-3 w-full py-2.5 px-4 rounded-lg bg-transparent text-gray-600 dark:text-gray-400 cursor-pointer text-[13px] font-medium transition-all duration-150 hover:bg-white/60 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white" id="dark-mode-toggle" aria-label="Toggle dark mode">
-                    <span class="flex items-center justify-center w-5 h-5 shrink-0 text-base leading-none">
-                        <span class="light-icon">🌙</span>
-                        <span class="dark-icon hidden">☀️</span>
-                    </span>
-                    <span class="nav-text sidebar-text flex-1 text-left">Dark Mode</span>
-                </button>
-            </div>
-        </aside>
-        
-        <!-- Main Content Area (z-[501] so header/cards appear above sidebar edge when -ml-8 overlaps) -->
-        <main id="main-content" role="main" tabindex="-1" class="relative flex-1 transition-all duration-300 flex flex-col min-h-0 z-[501]" style="margin-left: 240px;" aria-live="polite">
-            <!-- Page containers load here (hamburger is in each page's header) -->
-            <div id="page-container" class="flex-1 overflow-y-auto px-8 flex flex-col min-h-0"></div>
-        </main>
-    </div>
-
-    <!-- Feedback Ticket Modal -->
-    <div id="feedback-modal" class="fixed inset-0 z-[2000] hidden">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="window.closeFeedbackModal()"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg">
-            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- prettier-ignore -->
+        <meta name="description" content="Game Analytics Dashboard — performance data, theme and mechanic analysis, and game design tools" />
+        <script>
+            (function () {
+                try {
+                    if (localStorage.getItem('darkMode') === 'true') document.documentElement.classList.add('dark');
+                } catch (e) {}
+            })();
+        </script>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <title>Game Analytics Dashboard</title>
+        <meta
+            name="description"
+            content="Internal analytics dashboard for game performance, themes, mechanics, and provider insights."
+        />
+        <link rel="icon" type="image/png" href="/src/assets/ags-logo.png" />
+        <link rel="stylesheet" href="/src/output.css" />
+    </head>
+    <body class="h-full m-0 p-0 font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden">
+        <a
+            href="#main-content"
+            class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg"
+            >Skip to main content</a
+        >
+        <!-- Loading overlay (hidden when app ready) -->
+        <div
+            id="loading-overlay"
+            class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-opacity duration-300"
+        >
+            <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p class="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+            <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Initializing DuckDB</p>
+        </div>
+        <div class="flex h-full" id="app-shell">
+            <!-- Sidebar (collapsible) -->
+            <aside
+                id="sidebar"
+                class="fixed left-0 top-0 bottom-0 w-60 bg-gradient-to-b from-[#f5f7fa] to-[#e9ecf1] dark:from-[#20232e] dark:to-[#1a1d29] border-r border-[#d1d5db] dark:border-[#3f4553] transition-all duration-300 flex flex-col min-h-0 z-[500] shadow-lg"
+            >
+                <!-- Sidebar Header -->
+                <div
+                    class="px-4 py-5 border-b border-gray-200 dark:border-white/20 bg-transparent dark:bg-white/10 flex items-center justify-between sidebar-header"
+                >
+                    <div class="logo flex gap-3 items-center overflow-hidden">
+                        <div
+                            class="logo-icon w-9 h-9 flex-shrink-0 flex items-center justify-center [filter:drop-shadow(0_2px_8px_rgba(129,140,248,0.6))]"
+                        >
+                            <img
+                                src="src/assets/ags-logo.png"
+                                alt="AGS Logo"
+                                class="max-w-full max-h-full object-contain"
+                            />
                         </div>
-                        <div>
-                            <h3 class="text-white font-semibold text-lg">Submit Feedback</h3>
-                            <p class="text-white/70 text-xs">Report data issues or suggestions</p>
-                        </div>
+                        <span
+                            class="logo-text sidebar-text text-[17px] font-bold text-black dark:text-white tracking-tight whitespace-nowrap transition-all duration-300"
+                            >Game Analytics</span
+                        >
                     </div>
-                    <button onclick="window.closeFeedbackModal()" class="text-white/70 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <button
+                        class="collapse-btn bg-transparent cursor-pointer text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white transition-all duration-200 flex items-center justify-center flex-shrink-0 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-white/10"
+                        onclick="toggleSidebar()"
+                        title="Collapse sidebar"
+                        aria-label="Collapse sidebar"
+                    >
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            class="collapse-arrow transition-transform duration-300"
+                        >
+                            <path d="M10 4L6 8L10 12" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
                     </button>
                 </div>
-                <div class="p-6 space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Game Name</label>
-                        <input type="text" id="modal-feedback-game" placeholder="e.g. Cash Eruption, Buffalo Gold..."
-                            class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm" />
+
+                <!-- Sidebar Navigation (grows to push footer down) -->
+                <nav
+                    class="sidebar-nav flex-1 overflow-y-auto overflow-x-hidden px-3 pt-0 pb-4 min-h-0"
+                    role="navigation"
+                    aria-label="Main navigation"
+                >
+                    <!-- ANALYTICS section -->
+                    <div
+                        class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-3 mb-1 select-none"
+                    >
+                        Analytics
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Issue Type</label>
-                        <select id="modal-feedback-type"
-                            class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm">
-                            <option value="data-issue">Data Issue</option>
-                            <option value="ui-bug">UI Bug</option>
-                            <option value="feature-request">Feature Request</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="overview"
+                        onclick="showPage('overview')"
+                        aria-label="Overview"
+                    >
+                        <span class="nav-icon text-lg inline-flex items-center justify-center w-6 h-6">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <rect x="3" y="3" width="7" height="7" rx="1" />
+                                <rect x="14" y="3" width="7" height="7" rx="1" />
+                                <rect x="14" y="14" width="7" height="7" rx="1" />
+                                <rect x="3" y="14" width="7" height="7" rx="1" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Overview</span>
+                    </button>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="games"
+                        onclick="showPage('games')"
+                        aria-label="Games"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <line x1="6" y1="11" x2="10" y2="11" />
+                                <line x1="8" y1="9" x2="8" y2="13" />
+                                <circle cx="15" cy="10" r=".5" fill="currentColor" />
+                                <circle cx="17" cy="12" r=".5" fill="currentColor" />
+                                <path
+                                    d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Games</span>
+                    </button>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="providers"
+                        onclick="showPage('providers')"
+                        aria-label="Providers"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16" />
+                                <path d="M1 21h22" />
+                                <path d="M9 7h1M9 11h1M14 7h1M14 11h1" />
+                                <rect x="9" y="15" width="6" height="6" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Providers</span>
+                    </button>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="themes"
+                        onclick="showPage('themes')"
+                        aria-label="Themes"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                                <path d="M2 17L12 22L22 17" />
+                                <path d="M2 12L12 17L22 12" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Themes</span>
+                    </button>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="mechanics"
+                        onclick="showPage('mechanics')"
+                        aria-label="Mechanics"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M12 1V3" />
+                                <path d="M12 21V23" />
+                                <path d="M4.22 4.22L5.64 5.64" />
+                                <path d="M18.36 18.36L19.78 19.78" />
+                                <path d="M1 12H3" />
+                                <path d="M21 12H23" />
+                                <path d="M4.22 19.78L5.64 18.36" />
+                                <path d="M18.36 5.64L19.78 4.22" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Mechanics</span>
+                    </button>
+
+                    <!-- INTELLIGENCE section -->
+                    <div
+                        class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none"
+                    >
+                        Intelligence
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Description</label>
-                        <textarea id="modal-feedback-desc" rows="4" placeholder="Describe the issue or suggestion..."
-                            class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm resize-none"></textarea>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="insights"
+                        onclick="showPage('insights')"
+                        aria-label="Market Insights"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" y1="16" x2="12" y2="12" />
+                                <line x1="12" y1="8" x2="12.01" y2="8" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Market Insights</span>
+                    </button>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="trends"
+                        onclick="showPage('trends')"
+                        aria-label="Trends"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                                <polyline points="16 7 22 7 22 13" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Trends</span>
+                    </button>
+
+                    <!-- GAME LAB section -->
+                    <div
+                        class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none"
+                    >
+                        Game Lab
                     </div>
-                    <div id="modal-feedback-status" class="hidden text-sm"></div>
-                    <div class="flex gap-3 pt-2">
-                        <button onclick="window.closeFeedbackModal()" class="flex-1 px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">Cancel</button>
-                        <button onclick="window.submitModalTicket()" class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-sm font-medium text-white transition-colors flex items-center justify-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                            Submit
+                    <button
+                        class="gamelab-sub nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="game-lab"
+                        data-section="blueprint"
+                        id="nav-game-lab"
+                        onclick="window.navigateGameLab('blueprint')"
+                        aria-label="Game Blueprint"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Game Blueprint</span>
+                    </button>
+                    <button
+                        class="gamelab-sub nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="game-lab"
+                        data-section="feature-impact"
+                        onclick="window.navigateGameLab('feature-impact')"
+                        aria-label="Feature Analysis"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path d="M18 20V10" />
+                                <path d="M12 20V4" />
+                                <path d="M6 20v-6" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Feature Analysis</span>
+                    </button>
+                    <button
+                        class="gamelab-sub nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="game-lab"
+                        data-section="name-gen"
+                        onclick="window.navigateGameLab('name-gen')"
+                        aria-label="Name Generator"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path d="M12 3l1.912 5.813a2 2 0 001.272 1.278L21 12l-5.816 1.91a2 2 0 00-1.272 1.277L12 21l-1.912-5.813a2 2 0 00-1.272-1.278L3 12l5.816-1.91a2 2 0 001.272-1.277L12 3z" />
+                                <path d="M5 3v4" />
+                                <path d="M3 5h4" />
+                                <path d="M19 17v4" />
+                                <path d="M17 19h4" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Name Generator</span>
+                        <span
+                            class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0"
+                            >🚧 WIP</span
+                        >
+                    </button>
+                    <button
+                        class="gamelab-sub nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="game-lab"
+                        data-section="concept"
+                        onclick="window.navigateGameLab('concept')"
+                        aria-label="Concept Analyzer"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"
+                                />
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21" />
+                                <polyline points="7.5 19.79 7.5 14.6 3 12" />
+                                <polyline points="21 12 16.5 14.6 16.5 19.79" />
+                                <line x1="12" y1="22.08" x2="12" y2="12" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">Concept Analyzer</span>
+                        <span
+                            class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0"
+                            >🚧 WIP</span
+                        >
+                    </button>
+
+                    <!-- ASSISTANT section -->
+                    <div
+                        class="sidebar-text text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mt-4 mb-1 select-none"
+                    >
+                        Assistant
+                    </div>
+                    <button
+                        class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
+                        data-page="ai-assistant"
+                        onclick="showPage('ai-assistant')"
+                        aria-label="AI Assistant"
+                    >
+                        <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                            </svg>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1">AI Assistant</span>
+                        <span
+                            class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0"
+                            >🚧 WIP</span
+                        >
+                    </button>
+                </nav>
+
+                <!-- Sidebar Footer - Dark Mode Toggle (pinned to bottom) -->
+                <div class="shrink-0 mt-auto border-t border-[#d1d5db] dark:border-[#3f4553] mx-3 mb-3 pt-2">
+                    <button
+                        class="flex items-center gap-3 w-full py-2.5 px-4 rounded-lg bg-transparent text-gray-600 dark:text-gray-400 cursor-pointer text-[13px] font-medium transition-all duration-150 hover:bg-white/60 dark:hover:bg-white/5 hover:text-gray-900 dark:hover:text-white"
+                        id="dark-mode-toggle"
+                        aria-label="Toggle dark mode"
+                    >
+                        <span class="flex items-center justify-center w-5 h-5 shrink-0 text-base leading-none">
+                            <span class="light-icon">🌙</span>
+                            <span class="dark-icon hidden">☀️</span>
+                        </span>
+                        <span class="nav-text sidebar-text flex-1 text-left">Dark Mode</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Area (z-[501] so header/cards appear above sidebar edge when -ml-8 overlaps) -->
+            <main
+                id="main-content"
+                role="main"
+                tabindex="-1"
+                class="relative flex-1 transition-all duration-300 flex flex-col min-h-0 z-[501]"
+                style="margin-left: 240px"
+                aria-live="polite"
+            >
+                <!-- Page containers load here (hamburger is in each page's header) -->
+                <div id="page-container" class="flex-1 overflow-y-auto px-8 flex flex-col min-h-0"></div>
+            </main>
+        </div>
+
+        <!-- Feedback Ticket Modal -->
+        <div id="feedback-modal" class="fixed inset-0 z-[2000] hidden">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="window.closeFeedbackModal()"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+                >
+                    <div
+                        class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 flex items-center justify-between"
+                    >
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                                    />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold text-lg">Submit Feedback</h3>
+                                <p class="text-white/70 text-xs">Report data issues or suggestions</p>
+                            </div>
+                        </div>
+                        <button
+                            onclick="window.closeFeedbackModal()"
+                            class="text-white/70 hover:text-white transition-colors"
+                        >
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
                         </button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+                                >Game Name</label
+                            >
+                            <input
+                                type="text"
+                                id="modal-feedback-game"
+                                placeholder="e.g. Cash Eruption, Buffalo Gold..."
+                                class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+                                >Issue Type</label
+                            >
+                            <select
+                                id="modal-feedback-type"
+                                class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm"
+                            >
+                                <option value="data-issue">Data Issue</option>
+                                <option value="ui-bug">UI Bug</option>
+                                <option value="feature-request">Feature Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5"
+                                >Description</label
+                            >
+                            <textarea
+                                id="modal-feedback-desc"
+                                rows="4"
+                                placeholder="Describe the issue or suggestion..."
+                                class="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all text-sm resize-none"
+                            ></textarea>
+                        </div>
+                        <div id="modal-feedback-status" class="hidden text-sm"></div>
+                        <div class="flex gap-3 pt-2">
+                            <button
+                                onclick="window.closeFeedbackModal()"
+                                class="flex-1 px-4 py-2.5 border border-gray-200 dark:border-gray-600 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onclick="window.submitModalTicket()"
+                                class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-sm font-medium text-white transition-colors flex items-center justify-center gap-2"
+                            >
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                                    />
+                                </svg>
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Backdrop Overlay for Side Panels -->
-    <div class="fixed bg-[rgba(0,0,0,0.5)] hidden z-[1000] inset-0" id="mechanic-backdrop" onclick="closeAnyPanel()"></div>
-    
-    <!-- Game Details Side Panel -->
-    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="game-panel">
-        <div class="sticky top-0 z-10">
-            <div class="h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
-            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50">
-                <h3 id="game-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">Game Details</h3>
-                <button class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all" onclick="closeGamePanel()">✕</button>
-            </div>
-        </div>
-        <div class="p-4">
-            <div id="game-performance"></div>
-            <div id="game-specs"></div>
-            <div id="game-theme-mechanic"></div>
-            <div id="game-demo"></div>
-            <div id="game-symbols"></div>
-            <div id="game-provider"></div>
-            <div id="game-release"></div>
-            <div id="game-similar"></div>
-            <div id="game-feedback"></div>
-        </div>
-    </div>
-    
-    <!-- Provider Details Side Panel -->
-    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="provider-panel">
-        <div class="sticky top-0 z-10">
-            <div class="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"></div>
-            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50">
-                <h3 id="provider-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">Provider Details</h3>
-                <button class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all" onclick="closeProviderPanel()">✕</button>
-            </div>
-        </div>
-        <div class="p-4">
-            <div id="provider-panel-content"></div>
-        </div>
-    </div>
-    
-    <!-- Mechanic Details Side Panel -->
-    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="mechanic-panel">
-        <div class="sticky top-0 z-10">
-            <div class="h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500"></div>
-            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50">
-                <h3 id="mechanic-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">Mechanic Details</h3>
-                <button class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all" onclick="closeMechanicPanel()">✕</button>
-            </div>
-        </div>
-        <div class="p-4">
-            <div id="mechanic-panel-content"></div>
-        </div>
-    </div>
-    
-    <!-- Theme Details Side Panel -->
-    <div class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out" id="theme-panel">
-        <div class="sticky top-0 z-10">
-            <div class="h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
-            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50">
-                <h3 id="theme-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">Theme Details</h3>
-                <button class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all" onclick="closeThemePanel()">✕</button>
-            </div>
-        </div>
-        <div class="p-4">
-            <div id="theme-panel-content"></div>
-        </div>
-    </div>
-    
-    <!-- Game Lab flyout (body-level to escape sidebar transition containment) -->
-    <div id="gamelab-flyout" class="hidden fixed z-[9000] w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700" style="left:68px">
-        <div class="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">Game Lab</div>
-        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('blueprint'); document.getElementById('gamelab-flyout').classList.add('hidden');">Blueprint</button>
-        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('name-gen'); document.getElementById('gamelab-flyout').classList.add('hidden');">Name Generator</button>
-        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('feature-impact'); document.getElementById('gamelab-flyout').classList.add('hidden');">Feature Analysis</button>
-        <button class="w-full px-4 py-2 text-left text-[13px] font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="window.navigateGameLab('concept'); document.getElementById('gamelab-flyout').classList.add('hidden');">Concept Analyzer</button>
-    </div>
+        <!-- Backdrop Overlay for Side Panels -->
+        <div
+            class="fixed bg-[rgba(0,0,0,0.5)] hidden z-[1000] inset-0"
+            id="mechanic-backdrop"
+            onclick="closeAnyPanel()"
+        ></div>
 
-    <!-- Chart.js only (Plotly removed - unused, saved ~3MB) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    
-    <!-- Main application -->
-    <script type="module" src="src/app.js?v=250"></script>
-</body>
+        <!-- Game Details Side Panel -->
+        <div
+            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            id="game-panel"
+        >
+            <div class="sticky top-0 z-10">
+                <div class="h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50"
+                >
+                    <h3 id="game-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">
+                        Game Details
+                    </h3>
+                    <button
+                        class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all"
+                        onclick="closeGamePanel()"
+                    >
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div id="game-description"></div>
+                <div id="game-performance"></div>
+                <div id="game-provider"></div>
+                <div id="game-differentiators"></div>
+                <div id="game-specs"></div>
+                <div id="game-theme-mechanic"></div>
+                <div id="game-demo"></div>
+                <div id="game-symbols"></div>
+                <div id="game-release"></div>
+                <div id="game-data-quality"></div>
+                <div id="game-similar"></div>
+                <div id="game-feedback"></div>
+            </div>
+        </div>
+
+        <!-- Provider Details Side Panel -->
+        <div
+            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            id="provider-panel"
+        >
+            <div class="sticky top-0 z-10">
+                <div class="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500"></div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50"
+                >
+                    <h3 id="provider-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">
+                        Provider Details
+                    </h3>
+                    <button
+                        class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all"
+                        onclick="closeProviderPanel()"
+                    >
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div id="provider-panel-content"></div>
+            </div>
+        </div>
+
+        <!-- Mechanic Details Side Panel -->
+        <div
+            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            id="mechanic-panel"
+        >
+            <div class="sticky top-0 z-10">
+                <div class="h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500"></div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50"
+                >
+                    <h3 id="mechanic-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">
+                        Mechanic Details
+                    </h3>
+                    <button
+                        class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all"
+                        onclick="closeMechanicPanel()"
+                    >
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div id="mechanic-panel-content"></div>
+            </div>
+        </div>
+
+        <!-- Theme Details Side Panel -->
+        <div
+            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            id="theme-panel"
+        >
+            <div class="sticky top-0 z-10">
+                <div class="h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl px-5 py-4 flex justify-between items-center border-b border-gray-200/50 dark:border-gray-700/50"
+                >
+                    <h3 id="theme-panel-title" class="text-base font-bold text-gray-900 dark:text-white m-0">
+                        Theme Details
+                    </h3>
+                    <button
+                        class="w-7 h-7 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 border-none text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-lg flex items-center justify-center cursor-pointer transition-all"
+                        onclick="closeThemePanel()"
+                    >
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div id="theme-panel-content"></div>
+            </div>
+        </div>
+
+        <!-- Chart.js only (Plotly removed - unused, saved ~3MB) -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+        <!-- Main application -->
+        <script type="module" src="src/app.js?v=250"></script>
+    </body>
 </html>

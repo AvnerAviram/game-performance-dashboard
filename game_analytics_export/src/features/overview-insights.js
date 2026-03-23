@@ -1,8 +1,9 @@
 // Overview Insights - Slot Game Comparison Analytics
 // Calculates best/worst performers across themes, mechanics, providers, games
-import { getTheme, getProvider, getPerformance } from './compat.js';
-import { parseFeatures } from '../lib/parse-features.js';
+import { getTheme, getProvider, getPerformance } from '../lib/game-fields.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
+import { MIN_FEATURE_GAMES } from '../lib/shared-config.js';
+import { getProviderMetrics, getFeatureMetrics } from '../lib/metrics.js';
 
 export function getTopPerformers(allGames, themes, mechanics) {
     if (!allGames || !themes || !mechanics) {
@@ -12,123 +13,111 @@ export function getTopPerformers(allGames, themes, mechanics) {
             bestMechanic: null,
             mostCommonMechanic: null,
             bestProvider: null,
-            highestRTPGame: null
+            highestRTPGame: null,
         };
     }
-    
+
     // Best Theme (highest Smart Index) - exclude placeholder/unknown themes
-    const isPlaceholderTheme = (t) => {
+    const isPlaceholderTheme = t => {
         const name = (t?.Theme || '').toUpperCase();
         return !name || name === 'UNKNOWN' || name.startsWith('UNKNOWN -') || name.includes('FLAGGED FOR RESEARCH');
     };
     const realThemes = themes.filter(t => !isPlaceholderTheme(t));
-    const sortedThemes = [...realThemes].sort((a, b) => 
-        parseFloat(b['Smart Index'] || 0) - parseFloat(a['Smart Index'] || 0)
+    const sortedThemes = [...realThemes].sort(
+        (a, b) => parseFloat(b['Smart Index'] || 0) - parseFloat(a['Smart Index'] || 0)
     );
     const bestTheme = sortedThemes[0];
     const worstTheme = sortedThemes[sortedThemes.length - 1];
-    
-    // Best Feature (highest avg theo_win) — uses features array, not legacy mechanic_primary
-    const featureStats = {};
-    allGames.forEach(game => {
-        const feats = parseFeatures(game.features);
-        if (feats.length === 0) return;
-        const perf = getPerformance(game);
-        
-        feats.forEach(feat => {
-            if (!feat || /^unknown$/i.test(feat)) return;
-            if (!featureStats[feat]) {
-                featureStats[feat] = { sum: 0, count: 0 };
-            }
-            featureStats[feat].sum += perf.theo_win;
-            featureStats[feat].count++;
-        });
-    });
-    
-    const MIN_GAMES_FOR_BEST_FEATURE = 5;
-    const featureArray = Object.entries(featureStats).map(([name, stats]) => ({
-        name,
-        avgTheoWin: stats.sum / stats.count,
-        gameCount: stats.count
-    })).filter(f => f.gameCount >= MIN_GAMES_FOR_BEST_FEATURE)
-      .sort((a, b) => b.avgTheoWin - a.avgTheoWin);
-    
+
+    // Best Feature (highest avg theo_win) — uses features array via metrics layer
+    const featureArray = getFeatureMetrics(allGames)
+        .filter(f => f.count >= MIN_FEATURE_GAMES && f.feature && !/^unknown$/i.test(f.feature))
+        .map(f => ({
+            name: f.feature,
+            avgTheoWin: f.avgTheo,
+            gameCount: f.count,
+        }));
     const bestMechanic = featureArray[0] || null;
     const mostCommonMechanic = [...featureArray].sort((a, b) => b.gameCount - a.gameCount)[0] || null;
-    
-    // Best Provider (highest avg theo_win)
-    const providerStats = {};
-    allGames.forEach(game => {
-        const provider = getProvider(game);
-        const perf = getPerformance(game);
-        const prov = provider.studio || 'Unknown';
-        
-        if (!providerStats[prov]) {
-            providerStats[prov] = { sum: 0, count: 0 };
-        }
-        providerStats[prov].sum += perf.theo_win;
-        providerStats[prov].count++;
-    });
-    
-    const MIN_GAMES_FOR_BEST = 5;
-    const providerArray = Object.entries(providerStats).map(([name, stats]) => ({
-        name,
-        avgTheoWin: stats.sum / stats.count,
-        gameCount: stats.count
-    })).filter(p => p.gameCount >= MIN_GAMES_FOR_BEST)
-      .sort((a, b) => b.avgTheoWin - a.avgTheoWin);
-    
+
+    const providerArray = getProviderMetrics(allGames).map(p => ({
+        name: p.name,
+        avgTheoWin: p.avgTheo,
+        ggrShare: p.ggrShare,
+        gameCount: p.count,
+    }));
+
     const bestProvider = providerArray[0];
-    
-    // Highest theo_win Game
+
+    // Top Game (highest theo_win)
     const sortedGames = [...allGames].sort((a, b) => {
         const perfA = getPerformance(a);
         const perfB = getPerformance(b);
         return perfB.theo_win - perfA.theo_win;
     });
-    const highestRTPGame = sortedGames[0];
-    
+    const topGame = sortedGames[0];
+
     return {
-        bestTheme: bestTheme ? {
-            name: bestTheme.Theme,
-            smartIndex: parseFloat(bestTheme['Smart Index']).toFixed(2),
-            gameCount: bestTheme['Game Count'],
-            avgRTP: parseFloat(bestTheme['Avg Theo Win Index'] ?? bestTheme.avg_theo_win ?? 0).toFixed(2)
-        } : null,
-        worstTheme: worstTheme ? {
-            name: worstTheme.Theme,
-            smartIndex: parseFloat(worstTheme['Smart Index']).toFixed(2),
-            gameCount: worstTheme['Game Count']
-        } : null,
-        bestMechanic: bestMechanic ? {
-            name: bestMechanic.name,
-            avgTheoWin: bestMechanic.avgTheoWin.toFixed(2),
-            gameCount: bestMechanic.gameCount
-        } : null,
-        mostCommonMechanic: mostCommonMechanic ? {
-            name: mostCommonMechanic.name,
-            gameCount: mostCommonMechanic.gameCount,
-            avgTheoWin: mostCommonMechanic.avgTheoWin.toFixed(2)
-        } : null,
-        bestProvider: bestProvider ? {
-            name: bestProvider.name,
-            avgTheoWin: bestProvider.avgTheoWin.toFixed(2),
-            gameCount: bestProvider.gameCount
-        } : null,
-        highestRTPGame: highestRTPGame ? {
-            name: highestRTPGame.name || highestRTPGame.game_name || 'Unknown',
-            theoWin: getPerformance(highestRTPGame).theo_win.toFixed(2),
-            theme: getTheme(highestRTPGame).consolidated,
-            provider: getProvider(highestRTPGame).studio
-        } : null
+        bestTheme: bestTheme
+            ? {
+                  name: bestTheme.Theme,
+                  smartIndex: parseFloat(bestTheme['Smart Index']).toFixed(2),
+                  gameCount: bestTheme['Game Count'],
+                  avgRTP: parseFloat(bestTheme['Avg Theo Win Index'] ?? bestTheme.avg_theo_win ?? 0).toFixed(2),
+              }
+            : null,
+        worstTheme: worstTheme
+            ? {
+                  name: worstTheme.Theme,
+                  smartIndex: parseFloat(worstTheme['Smart Index']).toFixed(2),
+                  gameCount: worstTheme['Game Count'],
+              }
+            : null,
+        bestMechanic: bestMechanic
+            ? {
+                  name: bestMechanic.name,
+                  avgTheoWin: bestMechanic.avgTheoWin.toFixed(2),
+                  gameCount: bestMechanic.gameCount,
+              }
+            : null,
+        mostCommonMechanic: mostCommonMechanic
+            ? {
+                  name: mostCommonMechanic.name,
+                  gameCount: mostCommonMechanic.gameCount,
+                  avgTheoWin: mostCommonMechanic.avgTheoWin.toFixed(2),
+              }
+            : null,
+        bestProvider: bestProvider
+            ? {
+                  name: bestProvider.name,
+                  avgTheoWin: bestProvider.avgTheoWin.toFixed(2),
+                  ggrShare: bestProvider.ggrShare.toFixed(2),
+                  gameCount: bestProvider.gameCount,
+              }
+            : null,
+        highestRTPGame: topGame
+            ? {
+                  name: topGame.name || topGame.game_name || 'Unknown',
+                  theoWin: getPerformance(topGame).theo_win.toFixed(2),
+                  theme: getTheme(topGame).consolidated,
+                  provider: getProvider(topGame).studio,
+              }
+            : null,
     };
 }
 
 export function renderComparisonCards(performers) {
     if (!performers) return '';
-    
+
+    function tooltip(text) {
+        return `<div class="relative group inline-block ml-auto">
+            <button class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-600 text-[9px] font-bold text-gray-500 dark:text-gray-300 leading-none flex items-center justify-center" onclick="event.stopPropagation()">?</button>
+            <div class="hidden group-hover:block absolute z-50 bottom-full right-0 mb-1 w-48 p-2 rounded-lg bg-gray-900 text-white text-[10px] leading-snug shadow-lg pointer-events-none">${escapeHtml(text)}</div>
+        </div>`;
+    }
+
     const cards = [];
-    
+
     // Card 1: Best Theme
     if (performers.bestTheme) {
         cards.push(`
@@ -137,6 +126,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🥇</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-400">Best Theme</div>
+                    ${tooltip('Ranked by Smart Index: avg Theo Win weighted by game count. Rewards both strong performance and market presence.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestTheme.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-1">${performers.bestTheme.smartIndex}</div>
@@ -144,7 +134,7 @@ export function renderComparisonCards(performers) {
             </div>
         `);
     }
-    
+
     // Card 2: Best Feature
     if (performers.bestMechanic) {
         cards.push(`
@@ -153,6 +143,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Feature</div>
+                    ${tooltip('Feature with the highest average Theo Win across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">${performers.bestMechanic.avgTheoWin}</div>
@@ -160,7 +151,7 @@ export function renderComparisonCards(performers) {
             </div>
         `);
     }
-    
+
     // Card 3: Best Provider
     if (performers.bestProvider) {
         cards.push(`
@@ -168,15 +159,16 @@ export function renderComparisonCards(performers) {
                  onclick="${safeOnclick('window.showProviderDetails', performers.bestProvider.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🏢</span>
-                    <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Best Provider</div>
+                    <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Top Provider (GGR)</div>
+                    ${tooltip('Provider with the highest GGR (Gross Gaming Revenue) share. Measures real-world market dominance across all tracked games.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestProvider.name)}</div>
-                <div class="text-xl font-black bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-1">${performers.bestProvider.avgTheoWin}</div>
-                <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestProvider.gameCount} games</div>
+                <div class="text-xl font-black bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-1">${performers.bestProvider.ggrShare}%</div>
+                <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestProvider.gameCount} games · Avg Theo ${performers.bestProvider.avgTheoWin}</div>
             </div>
         `);
     }
-    
+
     // Card 4: Worst Theme
     if (performers.worstTheme) {
         cards.push(`
@@ -185,6 +177,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🔻</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-red-700 dark:text-red-400">Needs Attention</div>
+                    ${tooltip('Theme with the lowest Smart Index. May indicate declining player interest or poor game design choices in this category.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.worstTheme.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent mb-1">${performers.worstTheme.smartIndex}</div>
@@ -192,7 +185,7 @@ export function renderComparisonCards(performers) {
             </div>
         `);
     }
-    
+
     // Card 5: Most Common Feature
     if (performers.mostCommonMechanic) {
         cards.push(`
@@ -201,6 +194,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">📦</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-cyan-700 dark:text-cyan-400">Most Popular Feature</div>
+                    ${tooltip('Feature appearing in the most games. High adoption signals industry-wide confidence in this mechanic.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.mostCommonMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-1">${performers.mostCommonMechanic.gameCount}</div>
@@ -208,7 +202,7 @@ export function renderComparisonCards(performers) {
             </div>
         `);
     }
-    
+
     // Card 6: Highest Theo Win Game
     if (performers.highestRTPGame) {
         cards.push(`
@@ -217,6 +211,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">💎</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-indigo-700 dark:text-indigo-400">Top Game</div>
+                    ${tooltip('Game with the highest individual Theo Win (theoretical win index). Represents peak single-title performance in the dataset.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5 truncate" title="${escapeAttr(performers.highestRTPGame.name)}">${escapeHtml(performers.highestRTPGame.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent mb-1">${performers.highestRTPGame.theoWin}</div>
@@ -224,7 +219,7 @@ export function renderComparisonCards(performers) {
             </div>
         `);
     }
-    
+
     return `
         <div class="grid grid-cols-2 xl:grid-cols-3 gap-3">
             ${cards.join('')}

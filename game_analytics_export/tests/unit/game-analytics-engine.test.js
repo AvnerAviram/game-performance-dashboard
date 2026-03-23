@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { analyzeGameSuccessFactors, predictFromSimilarGames, getDatasetStats, generateRecommendations } from '../../src/lib/game-analytics-engine.js';
+import {
+    analyzeGameSuccessFactors,
+    predictFromSimilarGames,
+    getDatasetStats,
+    generateRecommendations,
+} from '../../src/lib/game-analytics-engine.js';
 import { gameData } from '../utils/load-test-data.js';
 
 describe('Game Analytics Engine', () => {
@@ -75,9 +80,7 @@ describe('Game Analytics Engine', () => {
         });
 
         it('skips provider analysis for excluded providers', () => {
-            gameData.allGames = [
-                { name: 'TestGame', provider: 'Multiple' },
-            ];
+            gameData.allGames = [{ name: 'TestGame', provider: 'Multiple' }];
             const result = analyzeGameSuccessFactors('TestGame', 5, 2, []);
             const hasProviderInsight = result.some(r => r.includes('Multiple'));
             expect(hasProviderInsight).toBe(false);
@@ -97,7 +100,12 @@ describe('Game Analytics Engine', () => {
 
         it('matches games by features field (not mechanic_primary)', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Free Spins,Hold and Spin', performance_theo_win: 4 },
+                {
+                    name: 'G1',
+                    theme_consolidated: 'Asian',
+                    features: 'Free Spins,Hold and Spin',
+                    performance_theo_win: 4,
+                },
                 { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins,Wild Reels', performance_theo_win: 6 },
                 { name: 'G3', theme_consolidated: 'Western', features: 'Free Spins', performance_theo_win: 3 },
             ];
@@ -110,7 +118,12 @@ describe('Game Analytics Engine', () => {
 
         it('maps UI mechanic names to canonical features (Hold & Win -> Hold and Spin)', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Hold and Spin,Cash On Reels', performance_theo_win: 5 },
+                {
+                    name: 'G1',
+                    theme_consolidated: 'Asian',
+                    features: 'Hold and Spin,Cash On Reels',
+                    performance_theo_win: 5,
+                },
                 { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 3 },
             ];
             const result = predictFromSimilarGames('Asian', ['Hold & Win']);
@@ -186,7 +199,10 @@ describe('Game Analytics Engine', () => {
 
         it('limits similar games returned to 5', () => {
             gameData.allGames = Array.from({ length: 10 }, (_, i) => ({
-                name: `G${i}`, theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: i + 1,
+                name: `G${i}`,
+                theme_consolidated: 'Asian',
+                features: 'Free Spins',
+                performance_theo_win: i + 1,
             }));
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
             expect(result.similarGames.length).toBe(5);
@@ -195,7 +211,12 @@ describe('Game Analytics Engine', () => {
 
         it('handles multiple selected mechanics with partial feature overlap', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Egyptian', features: 'Free Spins,Hold and Spin', performance_theo_win: 8 },
+                {
+                    name: 'G1',
+                    theme_consolidated: 'Egyptian',
+                    features: 'Free Spins,Hold and Spin',
+                    performance_theo_win: 8,
+                },
                 { name: 'G2', theme_consolidated: 'Egyptian', features: 'Free Spins', performance_theo_win: 4 },
                 { name: 'G3', theme_consolidated: 'Egyptian', features: 'Nudges', performance_theo_win: 2 },
             ];
@@ -231,10 +252,7 @@ describe('Game Analytics Engine', () => {
                 { 'Smart Index': 100, 'Game Count': 50, 'Avg Theo Win Index': 1.5 },
                 { 'Smart Index': 200, 'Game Count': 100, 'Avg Theo Win Index': 2.0 },
             ];
-            gameData.mechanics = [
-                { 'Smart Index': 50 },
-                { 'Smart Index': 80 },
-            ];
+            gameData.mechanics = [{ 'Smart Index': 50 }, { 'Smart Index': 80 }];
             const stats = getDatasetStats();
             expect(stats).toHaveProperty('maxThemeSI', 200);
             expect(stats).toHaveProperty('maxMechSI', 80);

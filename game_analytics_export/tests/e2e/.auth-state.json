@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "gd.sid",
+      "value": "s%3AxPHlPoQaJQ1xEVz9LlKQnLZ8FmeHhJTi.bkHf9jEiiMSpSH70Zxn%2BLj9PXnkBAxGUV55iNKkSvAo",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1774777088.743221,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}

@@ -13,19 +13,19 @@ window.mechanicsCurrentPage = 1;
 window.gamesCurrentPage = 1;
 window.providersCurrentPage = 1;
 
-window.changeThemesPerPage = function(value) {
+window.changeThemesPerPage = function (value) {
     window.themesPerPage = parseInt(value);
     window.themesCurrentPage = 1;
     renderThemes();
 };
 
-window.changeMechanicsPerPage = function(value) {
+window.changeMechanicsPerPage = function (value) {
     window.mechanicsPerPage = parseInt(value);
     window.mechanicsCurrentPage = 1;
     renderMechanics();
 };
 
-window.changeGamesPerPage = function(value) {
+window.changeGamesPerPage = function (value) {
     window.gamesPerPage = parseInt(value);
     window.gamesCurrentPage = 1;
     if (window._setGamesPerPage) {
@@ -35,34 +35,34 @@ window.changeGamesPerPage = function(value) {
     }
 };
 
-window.changeProvidersPerPage = function(value) {
+window.changeProvidersPerPage = function (value) {
     window.providersPerPage = parseInt(value);
     window.providersCurrentPage = 1;
     window.renderProviders?.();
 };
 
-window.goToThemesPage = function(page) {
+window.goToThemesPage = function (page) {
     const totalPages = Math.ceil((getFilteredThemes() || gameData.themes).length / window.themesPerPage);
     if (page < 1 || page > totalPages) return;
     window.themesCurrentPage = page;
     renderThemes(getFilteredThemes());
 };
 
-window.goToMechanicsPage = function(page) {
+window.goToMechanicsPage = function (page) {
     const totalPages = Math.ceil((getFilteredMechanics() || gameData.mechanics).length / window.mechanicsPerPage);
     if (page < 1 || page > totalPages) return;
     window.mechanicsCurrentPage = page;
     renderMechanics(getFilteredMechanics());
 };
 
-window.goToGamesPage = function(page) {
+window.goToGamesPage = function (page) {
     const totalPages = Math.ceil(gameData.allGames.length / window.gamesPerPage);
     if (page < 1 || page > totalPages) return;
     window.gamesCurrentPage = page;
     window.renderGames?.();
 };
 
-window.goToProvidersPage = function(page) {
+window.goToProvidersPage = function (page) {
     const totalPages = Math.ceil(gameData.providers.length / window.providersPerPage);
     if (page < 1 || page > totalPages) return;
     window.providersCurrentPage = page;

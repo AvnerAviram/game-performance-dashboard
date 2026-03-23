@@ -26,9 +26,11 @@ function httpGet(url, cookie = null) {
     const opts = { hostname: parsed.hostname, port: parsed.port, path: parsed.pathname, method: 'GET', headers: {} };
     if (cookie) opts.headers['Cookie'] = cookie;
     return new Promise((resolve, reject) => {
-        http.get(opts, (res) => {
+        http.get(opts, res => {
             let body = '';
-            res.on('data', (c) => { body += c; });
+            res.on('data', c => {
+                body += c;
+            });
             res.on('end', () => resolve({ status: res.statusCode, body, headers: res.headers }));
         }).on('error', reject);
     });
@@ -38,14 +40,28 @@ function httpPost(url, data, headers = {}) {
     const parsed = new URL(url);
     const payload = JSON.stringify(data);
     return new Promise((resolve, reject) => {
-        const req = http.request({
-            hostname: parsed.hostname, port: parsed.port, path: parsed.pathname,
-            method: 'POST', headers: { 'Content-Type': 'application/json', ...headers, 'Content-Length': Buffer.byteLength(payload) }
-        }, (res) => {
-            let body = '';
-            res.on('data', (c) => { body += c; });
-            res.on('end', () => resolve({ status: res.statusCode, body, headers: res.headers, rawHeaders: res.rawHeaders }));
-        });
+        const req = http.request(
+            {
+                hostname: parsed.hostname,
+                port: parsed.port,
+                path: parsed.pathname,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...headers,
+                    'Content-Length': Buffer.byteLength(payload),
+                },
+            },
+            res => {
+                let body = '';
+                res.on('data', c => {
+                    body += c;
+                });
+                res.on('end', () =>
+                    resolve({ status: res.statusCode, body, headers: res.headers, rawHeaders: res.rawHeaders })
+                );
+            }
+        );
         req.on('error', reject);
         req.write(payload);
         req.end();
@@ -60,16 +76,14 @@ async function waitForServer(url, maxAttempts = 20) {
         } catch {
             // Server not ready yet
         }
-        await new Promise((r) => setTimeout(r, 250));
+        await new Promise(r => setTimeout(r, 250));
     }
     return false;
 }
 
 describe('API Data Endpoints - Integration', () => {
     beforeAll(async () => {
-        originalUsersContent = existsSync(USERS_FILE)
-            ? readFileSync(USERS_FILE, 'utf-8')
-            : null;
+        originalUsersContent = existsSync(USERS_FILE) ? readFileSync(USERS_FILE, 'utf-8') : null;
 
         const testUser = {
             username: '__apitest__',
@@ -86,9 +100,11 @@ describe('API Data Endpoints - Integration', () => {
         });
 
         let stderr = '';
-        serverProcess.stderr.on('data', (chunk) => { stderr += chunk.toString(); });
+        serverProcess.stderr.on('data', chunk => {
+            stderr += chunk.toString();
+        });
 
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
         const baseUrl = `http://127.0.0.1:${TEST_PORT}`;
         const ready = await waitForServer(`${baseUrl}/api/session`, 40);

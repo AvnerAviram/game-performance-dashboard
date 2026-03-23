@@ -20,20 +20,20 @@ export function sortTable(tableId, colIdx) {
     const rows = Array.from(tbody.rows);
     const headers = table.querySelectorAll('th');
     const currentHeader = headers[colIdx];
-    
+
     const isDescending = !currentHeader.classList.contains('sorted-desc');
     headers.forEach(h => h.classList.remove('sorted-desc', 'sorted-asc'));
     currentHeader.classList.add(isDescending ? 'sorted-desc' : 'sorted-asc');
-    
+
     rows.sort((a, b) => {
         let aVal = a.cells[colIdx].textContent.replace(/[^0-9.-]/g, '');
         let bVal = b.cells[colIdx].textContent.replace(/[^0-9.-]/g, '');
         const aNum = parseFloat(aVal);
         const bNum = parseFloat(bVal);
-        const comparison = (!isNaN(aNum) && !isNaN(bNum)) ? bNum - aNum : bVal.localeCompare(aVal);
+        const comparison = !isNaN(aNum) && !isNaN(bNum) ? bNum - aNum : bVal.localeCompare(aVal);
         return isDescending ? comparison : -comparison;
     });
-    
+
     rows.forEach(row => tbody.appendChild(row));
 }
 

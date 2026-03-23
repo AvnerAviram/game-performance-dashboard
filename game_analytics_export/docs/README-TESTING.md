@@ -2,28 +2,36 @@
 
 ## Quick Start
 
-### Run Alignment Tests
+### Run All Tests
 
 ```bash
 cd game_analytics_export
-node tests/alignment/test-alignment-suite.cjs
+npm run test:all        # Vitest (853 tests) + Playwright smoke (12 areas)
+```
+
+### Run Alignment Tests Only
+
+```bash
+cd game_analytics_export
+npm run test:alignment                           # Playwright spec
+node tests/alignment/test-alignment-suite.cjs    # CJS runner (alternative)
 ```
 
 **Expected output:**
 ```
-✅ Passed: 10/10
-🎉 SUCCESS: All pages have perfect alignment at X=272px!
+Passed: 10/10
+SUCCESS: All pages have perfect alignment at X=272px!
 ```
 
-### View Results
+### View Alignment Results
 
-- **Screenshots:** `game_analytics_export/test-results/*.png`
-- **JSON Results:** `game_analytics_export/test-results/alignment-test-results.json`
+- **Screenshots:** `test-results/*.png`
+- **JSON Results:** `test-results/alignment-test-results.json`
 
-## What the Tests Verify
+## What the Alignment Tests Verify
 
 ### Horizontal Alignment
-- All 10 page headers align at X=272px (±1px tolerance)
+- All 10 page headers align at X=272px (+/-1px tolerance)
 - Consistent left spacing from sidebar edge
 
 ### Pages Tested
@@ -40,16 +48,15 @@ node tests/alignment/test-alignment-suite.cjs
 
 ## When to Run Tests
 
-✅ **Run tests BEFORE committing if you changed:**
+Run tests BEFORE committing if you changed:
 - Page padding/margins
 - Header structures
-- Component classes (in index.html `<script>` section)
-- layout-fixes.css
+- Component classes (in `dashboard.html`)
+- Tailwind utility classes affecting layout
 
-❌ **Don't need to run tests for:**
+Don't need to run for:
 - Content changes (text, data)
 - Colors (unless changing padding)
-- JavaScript logic
 - Chart updates
 
 ## Test Details
@@ -80,9 +87,11 @@ node tests/alignment/test-alignment-suite.cjs
 
 **Solution:** Start local server first:
 ```bash
-cd /Users/avner/Projects/game-performace-dashboard
-python3 -m http.server 8000
+cd game_analytics_export
+npm start    # Express server on port 3000
 ```
+
+The alignment CJS runner uses port 8000 (static file server); the Playwright spec and smoke tests use port 3000 (Express with auth).
 
 ### Tests show misalignment but browser looks correct
 
@@ -102,11 +111,11 @@ const { chromium } = require('playwright');
 async function myNewTest() {
     const browser = await chromium.launch({ headless: true });
     const page = await (await browser.newContext()).newPage();
-    
-    await page.goto('http://localhost:8000/game_analytics_export/');
-    
+
+    await page.goto('http://localhost:3000/dashboard.html');
+
     // Your test logic here
-    
+
     await browser.close();
 }
 
@@ -115,15 +124,15 @@ myNewTest().catch(console.error);
 
 ## CI/CD Integration
 
-Add to GitHub Actions, Jenkins, etc.:
-
 ```yaml
-- name: Run Alignment Tests
+- name: Run All Tests
   run: |
     cd game_analytics_export
-    python3 -m http.server 8000 &
-    sleep 2
-    node tests/alignment/test-alignment-suite.cjs
+    npm install
+    npm run build
+    npm start &
+    sleep 3
+    npm run test:all
 ```
 
 Exit code 0 = pass, 1 = fail.

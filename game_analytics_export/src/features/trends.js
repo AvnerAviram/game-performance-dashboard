@@ -3,6 +3,8 @@ import { gameData } from '../lib/data.js';
 import { log, warn } from '../lib/env.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { safeOnclick } from '../lib/sanitize.js';
+import { F } from '../lib/game-fields.js';
+import { getProviderMetrics } from '../lib/metrics.js';
 
 function getTheoWin(game) {
     return game.performance_theo_win ?? game.theo_win ?? 0;
@@ -52,9 +54,7 @@ export function computeThemesTrends() {
         .slice(0, 10)
         .map(([t]) => t);
 
-    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))]
-        .sort((a, b) => a - b)
-        .map(String);
+    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))].sort((a, b) => a - b).map(String);
 
     const result = {};
     for (const theme of top10) {
@@ -96,9 +96,7 @@ export function computeFeatureTrends() {
         .slice(0, 10)
         .map(([f]) => f);
 
-    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))]
-        .sort((a, b) => a - b)
-        .map(String);
+    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))].sort((a, b) => a - b).map(String);
 
     const result = {};
     for (const feature of top10) {
@@ -121,6 +119,39 @@ export function computeFeatureTrends() {
 }
 
 /**
+ * Compute provider trends: top 10 providers ranked by GGR Share
+ * (same ranking as Providers page and Overview), avg Theo Win per calendar year.
+ * Returns { "ProviderName": { "2021": avg, "2022": avg, ... }, ... }
+ */
+export function computeProviderTrends() {
+    const games = gameData?.allGames ?? [];
+    if (games.length === 0) return {};
+
+    const ranked = getProviderMetrics(games);
+    const top10 = ranked.slice(0, 10).map(p => p.name);
+
+    const result = {};
+    for (const prov of top10) {
+        const byYear = {};
+        for (const g of games) {
+            if (F.provider(g) !== prov) continue;
+            const y = g.release_year;
+            if (y == null) continue;
+            const yearKey = String(y);
+            if (!byYear[yearKey]) byYear[yearKey] = { sum: 0, count: 0 };
+            byYear[yearKey].sum += getTheoWin(g);
+            byYear[yearKey].count += 1;
+        }
+        const yearAvgs = {};
+        for (const [year, { sum, count }] of Object.entries(byYear)) {
+            yearAvgs[year] = count > 0 ? sum / count : 0;
+        }
+        result[prov] = yearAvgs;
+    }
+    return result;
+}
+
+/**
  * Get sorted years array from computed trends data.
  */
 export function getTrendsYears() {
@@ -135,17 +166,22 @@ const trendChartInstances = {};
 
 // Per-chart state: range filter + optional single-year drill-down
 const chartState = {
-    overall:  { range: 'all', drillYear: null },
-    theme:    { range: 'all', drillYear: null },
-    mechanic: { range: 'all', drillYear: null }
+    overall: { range: 'all', drillYear: null },
+    theme: { range: 'all', drillYear: null },
+    mechanic: { range: 'all', drillYear: null },
+    provider: { range: 'all', drillYear: null },
 };
 
 const parseFeaturesSafe = parseFeatures;
 
-const ACT = 'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300';
-const INACT = 'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600';
-const _DRILL_ACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-200 text-sky-800 dark:bg-sky-800 dark:text-sky-200 ring-1 ring-sky-400';
-const _DRILL_INACT = 'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-50 text-sky-600 hover:bg-sky-100 dark:bg-sky-900/30 dark:text-sky-400 dark:hover:bg-sky-900/50';
+const ACT =
+    'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300';
+const INACT =
+    'px-2.5 py-1 rounded-md text-xs font-medium transition-all bg-gray-100 text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600';
+const _DRILL_ACT =
+    'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-200 text-sky-800 dark:bg-sky-800 dark:text-sky-200 ring-1 ring-sky-400';
+const _DRILL_INACT =
+    'px-2 py-1 rounded-md text-xs font-medium transition-all bg-sky-50 text-sky-600 hover:bg-sky-100 dark:bg-sky-900/30 dark:text-sky-400 dark:hover:bg-sky-900/50';
 
 function buildZoomButtons(allYears, chartKey, containerId) {
     const container = document.getElementById(containerId);
@@ -158,38 +194,43 @@ function buildZoomButtons(allYears, chartKey, containerId) {
         ranges.push({ key: `${allYears[i]}-${end}`, label: `${allYears[i]}–${end}` });
     }
 
-    const rangeBtns = ranges.map(r =>
-        `<button onclick="${safeOnclick('window.setChartRange', chartKey, r.key)}" class="${st.range === r.key && !st.drillYear ? ACT : INACT}">${r.label}</button>`
-    ).join('');
+    const rangeBtns = ranges
+        .map(
+            r =>
+                `<button onclick="${safeOnclick('window.setChartRange', chartKey, r.key)}" class="${st.range === r.key && !st.drillYear ? ACT : INACT}">${r.label}</button>`
+        )
+        .join('');
 
     const backBtn = st.drillYear
         ? `<button onclick="window.drillChartYear('${chartKey}',null)" class="px-2 py-1 rounded-md text-xs font-medium bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500">← Timeline</button>`
         : '';
 
-    const yearOptions = allYears.map(y =>
-        `<option value="${y}" ${st.drillYear === y ? 'selected' : ''}>${y}</option>`
-    ).join('');
+    const yearOptions = allYears
+        .map(y => `<option value="${y}" ${st.drillYear === y ? 'selected' : ''}>${y}</option>`)
+        .join('');
 
     const dropdown = `<select onchange="window.drillChartYear('${chartKey}', this.value || null)" class="px-2 py-1 rounded-md text-xs font-medium border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 cursor-pointer focus:ring-1 focus:ring-sky-400 focus:outline-none"><option value="">Zoom into year…</option>${yearOptions}</select>`;
 
-    container.innerHTML = backBtn + rangeBtns
-        + `<span class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-0.5"></span>`
-        + dropdown;
+    container.innerHTML =
+        backBtn + rangeBtns + `<span class="w-px h-5 bg-gray-300 dark:bg-gray-600 mx-0.5"></span>` + dropdown;
 }
 
 function filterYearsByRange(allYears, range) {
     if (range === 'all') return allYears;
     const [start, end] = range.split('-').map(Number);
-    return allYears.filter(y => { const n = Number(y); return n >= start && n <= end; });
+    return allYears.filter(y => {
+        const n = Number(y);
+        return n >= start && n <= end;
+    });
 }
 
-window.setChartRange = function(chartKey, range) {
+window.setChartRange = function (chartKey, range) {
     chartState[chartKey].range = range;
     chartState[chartKey].drillYear = null;
     renderTrends();
 };
 
-window.drillChartYear = function(chartKey, year) {
+window.drillChartYear = function (chartKey, year) {
     chartState[chartKey].drillYear = year;
     renderTrends();
 };
@@ -202,20 +243,26 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
 
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
-    if (trendChartInstances[canvasId]) { trendChartInstances[canvasId].destroy(); trendChartInstances[canvasId] = null; }
+    if (trendChartInstances[canvasId]) {
+        trendChartInstances[canvasId].destroy();
+        trendChartInstances[canvasId] = null;
+    }
 
     let labels, values, barColors, _tooltipTitle;
     if (type === 'overall') {
         // Show top providers by avg theo in this year
         const provMap = {};
         yearGames.forEach(g => {
-            const p = g.provider_studio || g.provider || 'Unknown';
+            const p = F.provider(g);
             if (!provMap[p]) provMap[p] = { sum: 0, count: 0 };
             provMap[p].sum += getTheoWin(g);
             provMap[p].count++;
         });
-        const top = Object.entries(provMap).map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
-            .filter(p => p.count >= 2).sort((a, b) => b.avg - a.avg).slice(0, 10);
+        const top = Object.entries(provMap)
+            .map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
+            .filter(p => p.count >= 2)
+            .sort((a, b) => b.avg - a.avg)
+            .slice(0, 10);
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
@@ -228,13 +275,16 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
             themeMap[t].sum += getTheoWin(g);
             themeMap[t].count++;
         });
-        const top = Object.entries(themeMap).map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
-            .filter(t => t.count >= 2).sort((a, b) => b.avg - a.avg).slice(0, 10);
+        const top = Object.entries(themeMap)
+            .map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
+            .filter(t => t.count >= 2)
+            .sort((a, b) => b.avg - a.avg)
+            .slice(0, 10);
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
         _tooltipTitle = `🎨 ${year} — Theme Performance`;
-    } else {
+    } else if (type === 'feature') {
         const featMap = {};
         yearGames.forEach(g => {
             for (const f of parseFeaturesSafe(g.features)) {
@@ -243,12 +293,34 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
                 featMap[f].count++;
             }
         });
-        const top = Object.entries(featMap).map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
-            .filter(f => f.count >= 2).sort((a, b) => b.avg - a.avg).slice(0, 10);
+        const top = Object.entries(featMap)
+            .map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
+            .filter(f => f.count >= 2)
+            .sort((a, b) => b.avg - a.avg)
+            .slice(0, 10);
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
         _tooltipTitle = `⚙️ ${year} — Feature Performance`;
+    } else if (type === 'provider') {
+        const topProviderNames = Object.keys(computeProviderTrends());
+        const provMap = {};
+        yearGames.forEach(g => {
+            const p = F.provider(g);
+            if (p === 'Unknown' || !topProviderNames.includes(p)) return;
+            if (!provMap[p]) provMap[p] = { sum: 0, count: 0 };
+            provMap[p].sum += getTheoWin(g);
+            provMap[p].count++;
+        });
+        const top = Object.entries(provMap)
+            .map(([n, d]) => ({ name: n, avg: d.sum / d.count, count: d.count }))
+            .filter(p => p.count >= 2)
+            .sort((a, b) => b.avg - a.avg)
+            .slice(0, 10);
+        labels = top.map(t => t.name);
+        values = top.map(t => t.avg);
+        barColors = lineColors.slice(0, top.length);
+        _tooltipTitle = `🏢 ${year} — Provider Performance`;
     }
 
     if (!labels.length) return;
@@ -258,14 +330,16 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         type: 'bar',
         data: {
             labels,
-            datasets: [{
-                label: `Avg Theo Win (${year})`,
-                data: values,
-                backgroundColor: barColors,
-                borderRadius: 6,
-                borderSkipped: false,
-                barPercentage: 0.7
-            }]
+            datasets: [
+                {
+                    label: `Avg Theo Win (${year})`,
+                    data: values,
+                    backgroundColor: barColors,
+                    borderRadius: 6,
+                    borderSkipped: false,
+                    barPercentage: 0.7,
+                },
+            ],
         },
         options: {
             indexAxis: 'y',
@@ -273,19 +347,26 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
             maintainAspectRatio: false,
             plugins: {
                 legend: { display: false },
-                title: { display: true, text: `${year} — Avg Theo Win by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Feature' : 'Provider'}`, color: colors.text, font: { size: 13, weight: 'bold' } },
+                title: {
+                    display: true,
+                    text: `${year} — Avg Theo Win by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Feature' : 'Provider'}`,
+                    color: colors.text,
+                    font: { size: 13, weight: 'bold' },
+                },
                 tooltip: {
-                    backgroundColor: colors.bg, titleColor: colors.text, bodyColor: colors.text,
+                    backgroundColor: colors.bg,
+                    titleColor: colors.text,
+                    bodyColor: colors.text,
                     callbacks: {
-                        label: (item) => `Avg Theo Win: ${item.parsed.x.toFixed(2)}`
-                    }
-                }
+                        label: item => `Avg Theo Win: ${item.parsed.x.toFixed(2)}`,
+                    },
+                },
             },
             scales: {
                 x: { grid: { color: colors.grid }, ticks: { color: colors.text, font: { size: 10 } } },
-                y: { grid: { display: false }, ticks: { color: colors.text, font: { size: 10 }, autoSkip: false } }
-            }
-        }
+                y: { grid: { display: false }, ticks: { color: colors.text, font: { size: 10 }, autoSkip: false } },
+            },
+        },
     });
 }
 
@@ -299,9 +380,7 @@ function highlightDataset(chart, activeIdx) {
         } else {
             ds.borderWidth = 1;
             const c = ds._origColor || ds.borderColor;
-            ds.borderColor = typeof c === 'string' && c.startsWith('#')
-                ? c + '40'
-                : c.replace(/[\d.]+\)$/, '0.15)');
+            ds.borderColor = typeof c === 'string' && c.startsWith('#') ? c + '40' : c.replace(/[\d.]+\)$/, '0.15)');
         }
     });
     chart.update('none');
@@ -315,16 +394,22 @@ function highlightDataset(chart, activeIdx) {
 }
 
 function soloDataset(chart, idx) {
-    const allHidden = chart.data.datasets.every((ds, i) => i === idx ? !ds.hidden : ds.hidden);
+    const allHidden = chart.data.datasets.every((ds, i) => (i === idx ? !ds.hidden : ds.hidden));
     chart.data.datasets.forEach((ds, i) => {
         if (allHidden) {
             ds.hidden = false;
             ds.borderWidth = ds._origWidth || 2;
             if (ds._origColor) ds.borderColor = ds._origColor;
         } else {
-            if (!ds._origColor) { ds._origColor = ds.borderColor; ds._origWidth = ds.borderWidth; }
+            if (!ds._origColor) {
+                ds._origColor = ds.borderColor;
+                ds._origWidth = ds.borderWidth;
+            }
             ds.hidden = i !== idx;
-            if (i === idx) { ds.borderWidth = 3; ds.borderColor = ds._origColor || ds.borderColor; }
+            if (i === idx) {
+                ds.borderWidth = 3;
+                ds.borderColor = ds._origColor || ds.borderColor;
+            }
         }
     });
     chart.update();
@@ -344,14 +429,22 @@ function getThemeColors() {
     return {
         text: isDark ? '#e2e8f0' : '#1e293b',
         grid: isDark ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.3)',
-        bg: isDark ? 'transparent' : '#ffffff'
+        bg: isDark ? 'transparent' : '#ffffff',
     };
 }
 
 function getLineColors() {
     return [
-        '#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6',
-        '#06b6d4', '#f97316', '#ec4899', '#14b8a6', '#a855f7'
+        '#6366f1',
+        '#10b981',
+        '#f59e0b',
+        '#ef4444',
+        '#8b5cf6',
+        '#06b6d4',
+        '#f97316',
+        '#ec4899',
+        '#14b8a6',
+        '#a855f7',
     ];
 }
 
@@ -379,10 +472,12 @@ export function renderTrends() {
     buildZoomButtons(allYears, 'overall', 'overall-zoom-btns');
     buildZoomButtons(allYears, 'theme', 'theme-zoom-btns');
     buildZoomButtons(allYears, 'mechanic', 'mechanic-zoom-btns');
+    buildZoomButtons(allYears, 'provider', 'provider-trend-zoom');
 
     const overallYears = filterYearsByRange(allYears, chartState.overall.range);
     const themeYears = filterYearsByRange(allYears, chartState.theme.range);
     const mechanicYears = filterYearsByRange(allYears, chartState.mechanic.range);
+    const providerYears = filterYearsByRange(allYears, chartState.provider.range);
 
     // Hide old detail card if it exists
     const detailCard = document.getElementById('year-detail-card');
@@ -390,14 +485,15 @@ export function renderTrends() {
 
     // Update overall subtitle & finding
     const subtitle = document.getElementById('overall-trend-subtitle');
-    if (subtitle && overallYears.length > 0) subtitle.textContent = `${overallYears[0]}–${overallYears[overallYears.length - 1]} average performance index`;
+    if (subtitle && overallYears.length > 0)
+        subtitle.textContent = `${overallYears[0]}–${overallYears[overallYears.length - 1]} average performance index`;
 
     if (overallYears.length >= 2) {
         const lastY = overallYears[overallYears.length - 1];
         const prevY = overallYears[overallYears.length - 2];
         const lastAvg = trendsData[lastY]?.avg ?? 0;
         const prevAvg = trendsData[prevY]?.avg ?? 0;
-        const change = prevAvg > 0 ? ((lastAvg - prevAvg) / prevAvg * 100) : 0;
+        const change = prevAvg > 0 ? ((lastAvg - prevAvg) / prevAvg) * 100 : 0;
         const findingEl = document.getElementById('overall-trend-finding');
         if (findingEl) {
             if (change >= 0) {
@@ -410,11 +506,12 @@ export function renderTrends() {
 
     const themesTrends = computeThemesTrends();
     const mechanicsTrends = computeFeatureTrends();
+    const providerTrends = computeProviderTrends();
     const colors = getThemeColors();
     const lineColors = getLineColors();
 
     // Destroy existing charts
-    ['overall-trend-chart', 'theme-trend-chart', 'mechanic-trend-chart'].forEach(id => {
+    ['overall-trend-chart', 'theme-trend-chart', 'mechanic-trend-chart', 'provider-trend-chart'].forEach(id => {
         if (trendChartInstances[id]) {
             trendChartInstances[id].destroy();
             trendChartInstances[id] = null;
@@ -433,17 +530,19 @@ export function renderTrends() {
                 type: 'line',
                 data: {
                     labels: overallYears,
-                    datasets: [{
-                        label: 'Avg Performance Index',
-                        data: avgPerf,
-                        borderColor: '#6366f1',
-                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.2,
-                        pointRadius: 6,
-                        pointHoverRadius: 10
-                    }]
+                    datasets: [
+                        {
+                            label: 'Avg Performance Index',
+                            data: avgPerf,
+                            borderColor: '#6366f1',
+                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.2,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                        },
+                    ],
                 },
                 options: {
                     responsive: true,
@@ -456,14 +555,14 @@ export function renderTrends() {
                             titleColor: colors.text,
                             bodyColor: colors.text,
                             borderColor: colors.grid,
-                            borderWidth: 1
-                        }
+                            borderWidth: 1,
+                        },
                     },
                     scales: {
                         x: { grid: { color: colors.grid }, ticks: { color: colors.text, maxRotation: 0 } },
-                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } }
-                    }
-                }
+                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } },
+                    },
+                },
             });
         }
     }
@@ -486,7 +585,7 @@ export function renderTrends() {
                 fill: false,
                 tension: 0.2,
                 pointRadius: 4,
-                pointHoverRadius: 8
+                pointHoverRadius: 8,
             }));
 
             const ctx = themeCanvas.getContext('2d');
@@ -498,27 +597,34 @@ export function renderTrends() {
                     maintainAspectRatio: false,
                     layout: { padding: { top: 16, right: 24, bottom: 72, left: 56 } },
                     interaction: { mode: 'nearest', intersect: true },
-                    onHover: (evt, elements, chart) => highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
+                    onHover: (evt, elements, chart) =>
+                        highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
                     onClick: (evt, elements, chart) => {
-                        if (!elements.length) { resetDatasets(chart); return; }
+                        if (!elements.length) {
+                            resetDatasets(chart);
+                            return;
+                        }
                         soloDataset(chart, elements[0].datasetIndex);
                     },
                     plugins: {
                         legend: {
                             position: 'bottom',
                             labels: { color: colors.text, boxWidth: 12, padding: 16 },
-                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex)
+                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
                         },
                         tooltip: {
-                            mode: 'nearest', intersect: true,
-                            backgroundColor: colors.bg, titleColor: colors.text, bodyColor: colors.text
-                        }
+                            mode: 'nearest',
+                            intersect: true,
+                            backgroundColor: colors.bg,
+                            titleColor: colors.text,
+                            bodyColor: colors.text,
+                        },
                     },
                     scales: {
                         x: { grid: { color: colors.grid }, ticks: { color: colors.text, maxRotation: 0 } },
-                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } }
-                    }
-                }
+                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } },
+                    },
+                },
             });
         }
     }
@@ -541,7 +647,7 @@ export function renderTrends() {
                 fill: false,
                 tension: 0.2,
                 pointRadius: 4,
-                pointHoverRadius: 8
+                pointHoverRadius: 8,
             }));
 
             const ctx = mechanicCanvas.getContext('2d');
@@ -553,34 +659,102 @@ export function renderTrends() {
                     maintainAspectRatio: false,
                     layout: { padding: { top: 16, right: 24, bottom: 72, left: 56 } },
                     interaction: { mode: 'nearest', intersect: true },
-                    onHover: (evt, elements, chart) => highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
+                    onHover: (evt, elements, chart) =>
+                        highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
                     onClick: (evt, elements, chart) => {
-                        if (!elements.length) { resetDatasets(chart); return; }
+                        if (!elements.length) {
+                            resetDatasets(chart);
+                            return;
+                        }
                         soloDataset(chart, elements[0].datasetIndex);
                     },
                     plugins: {
                         legend: {
                             position: 'bottom',
                             labels: { color: colors.text, boxWidth: 12, padding: 16 },
-                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex)
+                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
                         },
                         tooltip: {
-                            mode: 'nearest', intersect: true,
-                            backgroundColor: colors.bg, titleColor: colors.text, bodyColor: colors.text
-                        }
+                            mode: 'nearest',
+                            intersect: true,
+                            backgroundColor: colors.bg,
+                            titleColor: colors.text,
+                            bodyColor: colors.text,
+                        },
                     },
                     scales: {
                         x: { grid: { color: colors.grid }, ticks: { color: colors.text, maxRotation: 0 } },
-                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } }
-                    }
-                }
+                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } },
+                    },
+                },
+            });
+        }
+    }
+
+    // 4. Provider trends (uses providerYears)
+    const providerCanvas = document.getElementById('provider-trend-chart');
+    if (providerCanvas && providerYears.length > 0) {
+        if (chartState.provider.drillYear) {
+            renderDrillDownBar('provider-trend-chart', chartState.provider.drillYear, 'provider', colors, lineColors);
+        } else if (Object.keys(providerTrends).length > 0) {
+            const providerTraces = Object.entries(providerTrends).map(([name, yearMap], i) => ({
+                label: name,
+                data: providerYears.map(y => yearMap[y] ?? 0),
+                borderColor: lineColors[i % lineColors.length],
+                _origColor: lineColors[i % lineColors.length],
+                _origWidth: 2,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                fill: false,
+                tension: 0.2,
+                pointRadius: 4,
+                pointHoverRadius: 8,
+            }));
+
+            const ctx = providerCanvas.getContext('2d');
+            trendChartInstances['provider-trend-chart'] = new Chart(ctx, {
+                type: 'line',
+                data: { labels: providerYears, datasets: providerTraces },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: { top: 16, right: 24, bottom: 72, left: 56 } },
+                    interaction: { mode: 'nearest', intersect: true },
+                    onHover: (evt, elements, chart) =>
+                        highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
+                    onClick: (evt, elements, chart) => {
+                        if (!elements.length) {
+                            resetDatasets(chart);
+                            return;
+                        }
+                        soloDataset(chart, elements[0].datasetIndex);
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: colors.text, boxWidth: 12, padding: 16 },
+                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
+                        },
+                        tooltip: {
+                            mode: 'nearest',
+                            intersect: true,
+                            backgroundColor: colors.bg,
+                            titleColor: colors.text,
+                            bodyColor: colors.text,
+                        },
+                    },
+                    scales: {
+                        x: { grid: { color: colors.grid }, ticks: { color: colors.text, maxRotation: 0 } },
+                        y: { beginAtZero: true, grid: { color: colors.grid }, ticks: { color: colors.text } },
+                    },
+                },
             });
         }
     }
 
     // Force resize after layout settles (fixes charts in SPA when container had 0 width initially)
     setTimeout(() => {
-        ['overall-trend-chart', 'theme-trend-chart', 'mechanic-trend-chart'].forEach(id => {
+        ['overall-trend-chart', 'theme-trend-chart', 'mechanic-trend-chart', 'provider-trend-chart'].forEach(id => {
             const inst = trendChartInstances[id];
             if (inst) inst.resize();
         });

@@ -1,0 +1,64 @@
+---
+description: Coding standards and conventions for the game analytics dashboard
+globs: game_analytics_export/src/**/*.{js,html,css}
+alwaysApply: true
+---
+
+# Coding Standards
+
+## Formatting (enforced by Prettier)
+
+- 4-space indentation (spaces, not tabs)
+- Single quotes for strings
+- Semicolons required
+- Print width: 120 characters
+- Trailing commas in ES5 positions (arrays, objects)
+- Arrow functions: omit parens for single param (`x => x.foo`, not `(x) => x.foo`)
+- Run `npm run format` before declaring work done
+
+## Field Access
+
+Always use `F.xxx(game)` from `src/lib/game-fields.js` for game field access:
+- `F.theoWin(game)` — never `game.performance_theo_win`
+- `F.provider(game)` — never `game.provider_studio`
+- `F.themeConsolidated(game)` — never `game.theme_consolidated`
+- `F.volatility(game)` — never `game.specs_volatility`
+
+## HTML Security
+
+All dynamic content in HTML templates must use sanitization:
+- `escapeHtml(value)` for text content
+- `escapeAttr(value)` for HTML attributes
+- `safeOnclick('functionName', value)` for onclick handlers
+- Never use raw string interpolation for user-visible content
+
+## UI Patterns
+
+### Tooltips
+Use absolute positioning relative to the trigger, not `fixed`:
+```
+<div class="relative group">
+  <button class="... cursor-help">?</button>
+  <div class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 ...">
+    Tooltip content
+  </div>
+</div>
+```
+
+### Scroll Targets
+Always scroll within `page-container`, never use `window.scrollTo` or `scrollIntoView`:
+```js
+const sc = document.getElementById('page-container');
+const el = document.getElementById('target');
+if (el && sc) { sc.scrollTop = el.offsetTop - sc.offsetTop - 8; }
+```
+
+### Panel Opening
+When opening a side panel, call `window.closeAllPanels('panel-id')` with the panel's own ID to prevent race conditions.
+
+## Testing
+
+- Run `npm test` (vitest) before declaring any task done
+- Run `npm run format:check` to verify formatting
+- Coverage thresholds: branches >= 70%, functions >= 70%
+- New UI features should have corresponding source-level validation tests

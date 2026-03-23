@@ -4,79 +4,125 @@
 
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
-import { 
-    PanelSection, 
-    MetricGrid, 
+import {
+    PanelSection,
+    MetricGrid,
     Metric,
-    GameListItem, 
-    VolatilityBadge, 
+    GameListItem,
+    VolatilityBadge,
     AnomalyBadge,
     GRADIENTS,
     ACCENTS,
-    EmptyState
+    EmptyState,
 } from '../components/dashboard-components.js';
 import { SYMBOL_CATEGORIES, SYMBOL_CAT_COLORS, categorizeSymbol, parseSymbols } from '../lib/symbol-utils.js';
 import { apiPost } from '../lib/api-client.js';
 import { escapeHtml, safeOnclick, sanitizeUrl } from '../lib/sanitize.js';
+import { PROVIDER_URLS } from '../config/provider-urls.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { collapsibleList } from './collapsible-list.js';
-
+import { F } from '../lib/game-fields.js';
 
 export function showGameDetails(gameName) {
     const game = gameData.allGames.find(g => g.name === gameName);
     if (!game) return;
-    
+
     log('🎮 Opening game panel for:', gameName);
-    
-    // Update title
-    document.getElementById('game-panel-title').textContent = game.name;
-    
+
+    const gamePanelTitle = document.getElementById('game-panel-title');
+    if (gamePanelTitle) gamePanelTitle.textContent = game.name;
+
+    // ===== DESCRIPTION SECTION =====
+    let descriptionSection = '';
+    if (game.description) {
+        const descContent = `<p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">${escapeHtml(game.description)}</p>`;
+        descriptionSection = PanelSection({
+            title: 'About',
+            icon: '📖',
+            gradient: GRADIENTS.category,
+            accent: ACCENTS.category,
+            content: descContent,
+        });
+    }
+
     // ===== PERFORMANCE SECTION =====
     const performanceMetrics = [
-        { 
-            label: 'Rank', 
-            value: `<span class="whitespace-nowrap">#${game.performance_rank || 'N/A'}${game.performance_anomaly ? AnomalyBadge(game.performance_anomaly) : ''}</span>`
+        {
+            label: 'Rank',
+            value: `<span class="whitespace-nowrap">#${game.performance_rank || 'N/A'}${game.performance_anomaly ? AnomalyBadge(game.performance_anomaly) : ''}</span>`,
         },
         { label: 'Theo Win', value: game.performance_theo_win?.toFixed(2) || 'N/A' },
-        { label: 'Market Share', value: game.performance_market_share_percent != null ? `${game.performance_market_share_percent.toFixed(2)}%` : 'N/A' },
-        { label: 'Percentile', value: game.performance_percentile || 'N/A' }
+        {
+            label: 'Market Share',
+            value:
+                game.performance_market_share_percent != null
+                    ? `${game.performance_market_share_percent.toFixed(2)}%`
+                    : 'N/A',
+        },
+        { label: 'Percentile', value: game.performance_percentile || 'N/A' },
     ];
-    
+
     // Performance insight: clear, actionable explanation
     let insightHtml = '';
     if (game.performance_theo_win != null) {
-        const themeEntry = gameData.themes?.find(t =>
-            (t.Theme || t.theme) === (game.theme_consolidated || game.theme_primary));
-        const themeAvg = themeEntry ? (themeEntry.avg_theo_win || themeEntry['Avg Theo Win Index'] || 0) : 0;
-        const themeCount = themeEntry ? (themeEntry.game_count || themeEntry['Game Count'] || 0) : 0;
+        const themeEntry = gameData.themes?.find(
+            t => (t.Theme || t.theme) === (game.theme_consolidated || game.theme_primary)
+        );
+        const themeAvg = themeEntry ? themeEntry.avg_theo_win || themeEntry['Avg Theo Win Index'] || 0 : 0;
+        const themeCount = themeEntry ? themeEntry.game_count || themeEntry['Game Count'] || 0 : 0;
         const themeName = game.theme_consolidated || game.theme_primary || 'Unknown';
         const tw = game.performance_theo_win;
-        const pct = game.performance_percentile ? parseInt(game.performance_percentile) : null;
+        const pctRaw = game.performance_percentile ? parseInt(game.performance_percentile) : null;
+        const pct = Number.isFinite(pctRaw) ? pctRaw : null;
 
         const lines = [];
         if (themeAvg > 0) {
-            const diff = ((tw - themeAvg) / themeAvg * 100);
+            const diff = ((tw - themeAvg) / themeAvg) * 100;
             const isAbove = tw >= themeAvg;
             const icon = isAbove ? '▲' : '▼';
             const color = isAbove ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400';
-            lines.push(`<span class="${color} font-semibold">${icon} ${Math.abs(diff).toFixed(0)}%</span> ${isAbove ? 'above' : 'below'} the average "${escapeHtml(themeName)}" game (avg: ${themeAvg.toFixed(1)})`);
+            lines.push(
+                `<span class="${color} font-semibold">${icon} ${Math.abs(diff).toFixed(0)}%</span> ${isAbove ? 'above' : 'below'} the average "${escapeHtml(themeName)}" game (avg: ${themeAvg.toFixed(1)})`
+            );
         }
         if (pct != null) {
-            const tier = pct >= 90 ? 'Top 10%' : pct >= 75 ? 'Top 25%' : pct >= 50 ? 'Above median' : pct >= 25 ? 'Below median' : 'Bottom 25%';
-            const tierColor = pct >= 75 ? 'text-emerald-600 dark:text-emerald-400' : pct >= 50 ? 'text-blue-600 dark:text-blue-400' : 'text-amber-600 dark:text-amber-400';
-            lines.push(`Ranked <span class="${tierColor} font-semibold">${tier}</span> across all ${themeCount} "${escapeHtml(themeName)}" games`);
+            const tier =
+                pct >= 90
+                    ? 'Top 10%'
+                    : pct >= 75
+                      ? 'Top 25%'
+                      : pct >= 50
+                        ? 'Above median'
+                        : pct >= 25
+                          ? 'Below median'
+                          : 'Bottom 25%';
+            const tierColor =
+                pct >= 75
+                    ? 'text-emerald-600 dark:text-emerald-400'
+                    : pct >= 50
+                      ? 'text-blue-600 dark:text-blue-400'
+                      : 'text-amber-600 dark:text-amber-400';
+            lines.push(
+                `Ranked <span class="${tierColor} font-semibold">${tier}</span> across all ${themeCount} "${escapeHtml(themeName)}" games`
+            );
         }
         // Provider context — how does this studio compare?
-        const providerName = game.provider_studio || '';
-        if (providerName) {
-            const provGames = (gameData.allGames || []).filter(g => g.provider_studio === providerName && g.performance_theo_win != null);
+        const providerName = F.provider(game);
+        if (providerName && providerName !== 'Unknown') {
+            const provGames = (gameData.allGames || []).filter(
+                g => F.provider(g) === providerName && g.performance_theo_win != null
+            );
             if (provGames.length >= 3) {
                 const provAvg = provGames.reduce((s, g) => s + g.performance_theo_win, 0) / provGames.length;
-                const vsProvider = ((tw - provAvg) / provAvg * 100);
+                const vsProvider = ((tw - provAvg) / provAvg) * 100;
                 if (Math.abs(vsProvider) >= 10) {
                     const isAboveProv = vsProvider > 0;
-                    const provColor = isAboveProv ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400';
-                    lines.push(`<span class="${provColor} font-semibold">${isAboveProv ? '▲' : '▼'} ${Math.abs(vsProvider).toFixed(0)}%</span> vs ${escapeHtml(providerName)}'s average (${provAvg.toFixed(2)}) across ${provGames.length} games`);
+                    const provColor = isAboveProv
+                        ? 'text-emerald-600 dark:text-emerald-400'
+                        : 'text-amber-600 dark:text-amber-400';
+                    lines.push(
+                        `<span class="${provColor} font-semibold">${isAboveProv ? '▲' : '▼'} ${Math.abs(vsProvider).toFixed(0)}%</span> vs ${escapeHtml(providerName)}'s average (${provAvg.toFixed(2)}) across ${provGames.length} games`
+                    );
                 }
             }
         }
@@ -84,17 +130,28 @@ export function showGameDetails(gameName) {
         // Volatility insight — does this vol level help or hurt in this theme?
         const vol = game.specs_volatility;
         if (vol && themeCount >= 5) {
-            const sameVolGames = (gameData.allGames || []).filter(g =>
-                g.specs_volatility === vol && (g.theme_consolidated || g.theme_primary) === themeName && g.performance_theo_win != null);
-            const diffVolGames = (gameData.allGames || []).filter(g =>
-                g.specs_volatility && g.specs_volatility !== vol && (g.theme_consolidated || g.theme_primary) === themeName && g.performance_theo_win != null);
+            const sameVolGames = (gameData.allGames || []).filter(
+                g =>
+                    g.specs_volatility === vol &&
+                    (g.theme_consolidated || g.theme_primary) === themeName &&
+                    g.performance_theo_win != null
+            );
+            const diffVolGames = (gameData.allGames || []).filter(
+                g =>
+                    g.specs_volatility &&
+                    g.specs_volatility !== vol &&
+                    (g.theme_consolidated || g.theme_primary) === themeName &&
+                    g.performance_theo_win != null
+            );
             if (sameVolGames.length >= 2 && diffVolGames.length >= 2) {
                 const sameAvg = sameVolGames.reduce((s, g) => s + g.performance_theo_win, 0) / sameVolGames.length;
                 const diffAvg = diffVolGames.reduce((s, g) => s + g.performance_theo_win, 0) / diffVolGames.length;
-                const volLift = ((sameAvg - diffAvg) / diffAvg * 100);
+                const volLift = ((sameAvg - diffAvg) / diffAvg) * 100;
                 if (Math.abs(volLift) >= 10) {
                     const volHelps = volLift > 0;
-                    lines.push(`${escapeHtml(vol)} volatility ${volHelps ? '<span class="text-emerald-600 dark:text-emerald-400 font-semibold">boosts</span>' : '<span class="text-amber-600 dark:text-amber-400 font-semibold">drags</span>'} performance in ${escapeHtml(themeName)} (${volHelps ? '+' : ''}${volLift.toFixed(0)}% vs other vol levels)`);
+                    lines.push(
+                        `${escapeHtml(vol)} volatility ${volHelps ? '<span class="text-emerald-600 dark:text-emerald-400 font-semibold">boosts</span>' : '<span class="text-amber-600 dark:text-amber-400 font-semibold">drags</span>'} performance in ${escapeHtml(themeName)} (${volHelps ? '+' : ''}${volLift.toFixed(0)}% vs other vol levels)`
+                    );
                 }
             }
         }
@@ -102,14 +159,33 @@ export function showGameDetails(gameName) {
         // Market niche vs saturation
         if (themeCount > 0) {
             const allThemes = gameData.themes || [];
-            const medianCount = allThemes.length > 0
-                ? [...allThemes].sort((a, b) => (a['Game Count'] || a.game_count || 0) - (b['Game Count'] || b.game_count || 0))[Math.floor(allThemes.length / 2)]['Game Count'] || 0
-                : 0;
+            const medianCount =
+                allThemes.length > 0
+                    ? [...allThemes].sort(
+                          (a, b) => (a['Game Count'] || a.game_count || 0) - (b['Game Count'] || b.game_count || 0)
+                      )[Math.floor(allThemes.length / 2)]['Game Count'] || 0
+                    : 0;
             if (themeCount <= 5) {
-                lines.push(`Niche market — only ${themeCount} "${escapeHtml(themeName)}" games exist, ${tw >= themeAvg ? 'standing out is easier' : 'even niche themes struggle here'}`);
+                lines.push(
+                    `Niche market — only ${themeCount} "${escapeHtml(themeName)}" games exist, ${tw >= themeAvg ? 'standing out is easier' : 'even niche themes struggle here'}`
+                );
             } else if (themeCount > medianCount * 2) {
-                lines.push(`Highly competitive theme — ${themeCount} games in "${escapeHtml(themeName)}"${tw >= themeAvg ? ', yet still outperforms' : ', hard to stand out'}`);
+                lines.push(
+                    `Highly competitive theme — ${themeCount} games in "${escapeHtml(themeName)}"${tw >= themeAvg ? ', yet still outperforms' : ', hard to stand out'}`
+                );
             }
+        }
+
+        if (lines.length === 0 && game.performance_theo_win != null) {
+            const globalAvg =
+                (gameData.allGames || []).reduce((s, g) => s + (g.performance_theo_win || 0), 0) /
+                ((gameData.allGames || []).length || 1);
+            const vsGlobal = ((game.performance_theo_win - globalAvg) / globalAvg) * 100;
+            const gColor =
+                vsGlobal >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400';
+            lines.push(
+                `<span class="${gColor} font-semibold">${vsGlobal >= 0 ? '▲' : '▼'} ${Math.abs(vsGlobal).toFixed(0)}%</span> ${vsGlobal >= 0 ? 'above' : 'below'} the global average (${globalAvg.toFixed(2)})`
+            );
         }
 
         if (lines.length > 0) {
@@ -122,38 +198,119 @@ export function showGameDetails(gameName) {
         icon: '📊',
         gradient: GRADIENTS.performance,
         accent: ACCENTS.performance,
-        content: MetricGrid(performanceMetrics) + insightHtml
+        content: MetricGrid(performanceMetrics) + insightHtml,
     });
-    
+
+    // ===== DIFFERENTIATORS SECTION =====
+    let diffSection = '';
+    const thisFeats = parseFeatures(game.features);
+    const themeName2 = game.theme_consolidated || game.theme_primary || '';
+    if (thisFeats.length > 0 && themeName2) {
+        const themeGamesAll = (gameData.allGames || []).filter(
+            g => (g.theme_consolidated || g.theme_primary) === themeName2 && g.name !== game.name
+        );
+        if (themeGamesAll.length >= 5) {
+            const n = themeGamesAll.length;
+            const featFreq = {};
+            themeGamesAll.forEach(g => {
+                parseFeatures(g.features).forEach(f => {
+                    featFreq[f] = (featFreq[f] || 0) + 1;
+                });
+            });
+            const rare = thisFeats.filter(f => (featFreq[f] || 0) / n < 0.2);
+            const common = thisFeats.filter(f => (featFreq[f] || 0) / n >= 0.5);
+            if (rare.length || common.length) {
+                let diffContent = `<div class="flex items-center gap-1.5 mb-2">
+                    <span class="text-[10px] text-gray-400 dark:text-gray-500">How this game's features compare to others in the <strong>${escapeHtml(themeName2)}</strong> theme</span>
+                    <div class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none flex-shrink-0 cursor-help">?</button><div class="hidden group-hover:block absolute right-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"><strong>Rare</strong> = less than 20% of ${escapeHtml(themeName2)} games have this feature. <strong>Common</strong> = 50%+ of theme games share it.</div></div>
+                </div>`;
+                if (rare.length) {
+                    diffContent += `<div class="flex flex-wrap gap-1 mb-1.5">${rare
+                        .map(
+                            f =>
+                                `<span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-700">${escapeHtml(f)} <span class="text-emerald-400">rare</span></span>`
+                        )
+                        .join('')}</div>`;
+                    diffContent += `<div class="text-[10px] text-gray-400 mb-2">Only &lt;20% of ${escapeHtml(themeName2)} games have ${rare.length === 1 ? 'this' : 'these'}</div>`;
+                }
+                if (common.length) {
+                    diffContent += `<div class="flex flex-wrap gap-1">${common
+                        .map(
+                            f =>
+                                `<span class="px-2 py-0.5 text-[10px] font-medium rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500">${escapeHtml(f)} <span class="text-gray-400">common</span></span>`
+                        )
+                        .join('')}</div>`;
+                }
+                diffSection = PanelSection({
+                    title: 'vs Theme Peers',
+                    icon: '💡',
+                    gradient: GRADIENTS.performance,
+                    accent: ACCENTS.performance,
+                    content: diffContent,
+                });
+            }
+        }
+    }
+
     // ===== SPECS SECTION =====
     const specsMetrics = [
         { label: 'Layout', value: `${game.specs_reels || 'N/A'}x${game.specs_rows || 'N/A'}` },
         { label: 'Paylines', value: game.specs_paylines || 'N/A' },
         { label: 'RTP', value: game.specs_rtp ? `${game.specs_rtp}%` : 'N/A' },
-        { 
-            label: 'Volatility', 
-            value: game.specs_volatility ? VolatilityBadge(game.specs_volatility) : 'N/A' 
-        }
+        { label: 'Volatility', value: game.specs_volatility ? VolatilityBadge(game.specs_volatility) : 'N/A' },
+        { label: 'Min Bet', value: game.min_bet ? `$${Number(game.min_bet).toFixed(2)}` : 'N/A' },
+        { label: 'Max Bet', value: game.max_bet ? `$${Number(game.max_bet).toFixed(0)}` : 'N/A' },
+        { label: 'Max Win', value: game.max_win ? `${Number(game.max_win).toLocaleString()}x` : 'N/A' },
     ];
-    
+
+    const engagementMetrics = [];
+    if (game.avg_bet) engagementMetrics.push({ label: 'Avg Bet', value: `$${Number(game.avg_bet).toFixed(2)}` });
+    if (game.games_played_index)
+        engagementMetrics.push({ label: 'Play Index', value: Number(game.games_played_index).toFixed(1) });
+    if (game.coin_in_index)
+        engagementMetrics.push({ label: 'Coin-In Index', value: Number(game.coin_in_index).toFixed(1) });
+    if (game.sites) engagementMetrics.push({ label: 'Casinos', value: Number(game.sites).toLocaleString() });
+
     const specsSection = PanelSection({
         title: 'Game Specs',
         icon: '⚙️',
         gradient: GRADIENTS.specs,
         accent: ACCENTS.specs,
-        content: MetricGrid(specsMetrics)
+        content:
+            MetricGrid(specsMetrics) +
+            (engagementMetrics.length > 0
+                ? `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700"><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Player Engagement</div>${MetricGrid(engagementMetrics)}</div>`
+                : ''),
     });
-    
+
     // ===== THEME & MECHANIC SECTION =====
     const features = parseFeatures(game.features);
-    const featuresHtml = features.length > 0
-        ? features.map(f => `<span class="inline-block px-2.5 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 mr-1.5 mb-1.5">${escapeHtml(f)}</span>`).join('')
-        : '<span class="text-sm text-gray-500 dark:text-gray-400">No features detected</span>';
-    
+    const featuresHtml =
+        features.length > 0
+            ? features
+                  .map(
+                      f =>
+                          `<span class="inline-block px-2.5 py-1 text-xs font-medium rounded-full bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 mr-1.5 mb-1.5">${escapeHtml(f)}</span>`
+                  )
+                  .join('')
+            : '<span class="text-sm text-gray-500 dark:text-gray-400">No features detected</span>';
+
+    const allThemes = parseFeatures(game.themes_all);
+    const allThemesHtml =
+        allThemes.length > 0
+            ? allThemes
+                  .map(
+                      t =>
+                          `<span class="inline-block px-2 py-0.5 text-[11px] font-medium rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 mr-1 mb-1 cursor-pointer hover:ring-2 hover:ring-emerald-400 transition-all" onclick="${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`
+                  )
+                  .join('')
+            : '';
+
     const themeMechContent = `
         <div class="space-y-3">
-            ${Metric('Primary Theme', game.theme_primary || 'N/A')}
-            ${game.theme_secondary ? `<div class="text-sm text-gray-600 dark:text-gray-400 ml-0">Secondary: ${escapeHtml(game.theme_secondary)}</div>` : ''}
+            ${game.theme_primary ? `<div class="flex items-center gap-2"><span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Primary Theme</span><span class="text-sm font-semibold text-emerald-700 dark:text-emerald-300 cursor-pointer hover:underline" onclick="${safeOnclick('window.showThemeDetails', game.theme_primary)}">${escapeHtml(game.theme_primary)}</span></div>` : Metric('Primary Theme', 'N/A')}
+            ${game.theme_secondary ? `<div class="text-sm text-gray-600 dark:text-gray-400 ml-0">Secondary: <span class="cursor-pointer hover:underline hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', game.theme_secondary)}">${escapeHtml(game.theme_secondary)}</span></div>` : ''}
+            ${allThemesHtml ? `<div class="pt-1"><div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">All Themes</div><div class="flex flex-wrap">${allThemesHtml}</div></div>` : ''}
             <div class="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3"></div>
             ${Metric('Game Type', game.mechanic_primary || 'Slot')}
             <div class="pt-1">
@@ -162,33 +319,36 @@ export function showGameDetails(gameName) {
             </div>
         </div>
     `;
-    
+
     const themeMechSection = PanelSection({
         title: 'Theme & Mechanic',
         icon: '🎨',
         gradient: GRADIENTS.category,
         accent: ACCENTS.category,
-        content: themeMechContent
+        content: themeMechContent,
     });
-    
+
     // ===== PROVIDER SECTION =====
     const providerContent = `
         <div class="space-y-2">
             <div class="text-base font-semibold text-gray-900 dark:text-white cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                 onclick="${safeOnclick('window.showProviderDetails', game.provider_studio || '')}">${escapeHtml(game.provider_studio || 'Unknown')}</div>
-            ${game.provider_parent && game.provider_parent !== game.provider_studio ? 
-                `<div class="text-sm text-gray-600 dark:text-gray-400">Parent: ${escapeHtml(game.provider_parent)}</div>` : ''}
+                 onclick="${safeOnclick('window.showProviderDetails', F.provider(game))}">${escapeHtml(F.provider(game))}</div>
+            ${
+                game.provider_parent && game.provider_parent !== F.provider(game)
+                    ? `<div class="text-sm text-gray-600 dark:text-gray-400">Parent: ${escapeHtml(game.provider_parent)}</div>`
+                    : ''
+            }
         </div>
     `;
-    
+
     const providerSection = PanelSection({
         title: 'Provider',
         icon: '🏢',
         gradient: GRADIENTS.provider,
         accent: ACCENTS.provider,
-        content: providerContent
+        content: providerContent,
     });
-    
+
     // ===== DEMO URL SECTION =====
     let demoSection = '';
     if (game.demo_url) {
@@ -205,10 +365,10 @@ export function showGameDetails(gameName) {
             icon: '🎮',
             gradient: GRADIENTS.performance,
             accent: ACCENTS.performance,
-            content: demoContent
+            content: demoContent,
         });
     }
-    
+
     // ===== SYMBOLS SECTION =====
     const symbols = parseSymbols(game.symbols);
     let symbolsSection = '';
@@ -231,80 +391,124 @@ export function showGameDetails(gameName) {
             return raw;
         }
 
-        const symbolsContent = SYMBOL_CATEGORIES.filter(c => grouped[c]).map(cat => {
-            const col = SYMBOL_CAT_COLORS[cat];
-            return `
+        const symbolsContent = SYMBOL_CATEGORIES.filter(c => grouped[c])
+            .map(cat => {
+                const col = SYMBOL_CAT_COLORS[cat];
+                return `
             <div class="mb-2 last:mb-0">
                 <div class="flex flex-wrap gap-1">${grouped[cat].map(s => `<span class="inline-flex items-center px-1.5 py-0.5 text-[11px] rounded-md ring-1 ${col.cls} ${col.ring}">${smartSymbolLabel(s, cat)}</span>`).join('')}</div>
             </div>`;
-        }).join('');
+            })
+            .join('');
         symbolsSection = PanelSection({
             title: `Symbols (${symbols.length})`,
-            icon: '🎰',
+            icon: '🍒',
             gradient: GRADIENTS.specs,
             accent: ACCENTS.specs,
-            content: symbolsContent
+            content: symbolsContent,
         });
     }
-    
+
     // ===== RELEASE INFO SECTION =====
     const releaseMetrics = [
         { label: 'Year', value: game.release_year || 'N/A' },
-        { label: 'Month', value: game.release_month || 'N/A' }
+        { label: 'Month', value: game.release_month || 'N/A' },
     ];
-    
+
     const releaseSection = PanelSection({
         title: 'Release Info',
         icon: '📅',
         gradient: GRADIENTS.release,
         accent: ACCENTS.release,
-        content: MetricGrid(releaseMetrics)
+        content: MetricGrid(releaseMetrics),
     });
-    
+
     // ===== SIMILAR GAMES SECTION =====
     const gameFeats = new Set(parseFeatures(game.features));
+    const gameTheme = F.themeConsolidated(game);
+    const gameVol = (game.specs_volatility || game.volatility || '').trim();
+    const gameLayout =
+        (game.specs_reels || game.reels) && (game.specs_rows || game.rows)
+            ? `${game.specs_reels || game.reels}x${game.specs_rows || game.rows}`
+            : '';
+
     const similarGames = gameData.allGames
-        .filter(g => g.name !== game.name && (
-            g.theme_consolidated === game.theme_consolidated || 
-            parseFeatures(g.features).some(f => gameFeats.has(f))
-        ))
-        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0))
-        .slice(0, 5);
-    
+        .filter(g => g.name !== game.name)
+        .map(g => {
+            const gFeats = new Set(parseFeatures(g.features));
+            const intersection = [...gameFeats].filter(f => gFeats.has(f)).length;
+            const union = new Set([...gameFeats, ...gFeats]).size;
+            const featJaccard = union > 0 ? intersection / union : 0;
+            const themeMatch = F.themeConsolidated(g) === gameTheme && gameTheme !== 'Unknown' ? 0.3 : 0;
+            const volMatch = gameVol && (g.specs_volatility || g.volatility || '').trim() === gameVol ? 0.05 : 0;
+            const gLayout =
+                (g.specs_reels || g.reels) && (g.specs_rows || g.rows)
+                    ? `${g.specs_reels || g.reels}x${g.specs_rows || g.rows}`
+                    : '';
+            const layoutMatch = gameLayout && gLayout === gameLayout ? 0.05 : 0;
+            const similarity = featJaccard * 0.6 + themeMatch + volMatch + layoutMatch;
+            return {
+                game: g,
+                similarity,
+                sharedFeats: [...gameFeats].filter(f => gFeats.has(f)),
+                themeMatch: themeMatch > 0,
+            };
+        })
+        .filter(s => s.similarity > 0.05)
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, 10);
+
     let similarGamesContent;
     if (similarGames.length > 0) {
-        const gamesList = similarGames.map(g => {
+        const INITIAL_SHOW = 5;
+        const simUid = 'sim-' + Math.random().toString(36).slice(2, 8);
+
+        const renderSimRow = s => {
+            const g = s.game;
             const reasons = [];
-            if (g.theme_consolidated === game.theme_consolidated) {
-                reasons.push(`${g.theme_consolidated} theme`);
-            }
-            const sharedFeats = parseFeatures(g.features).filter(f => gameFeats.has(f));
-            if (sharedFeats.length > 0) {
-                reasons.push(sharedFeats.slice(0, 2).join(', '));
-            }
-            const reasonText = reasons.join(' + ');
-            
-            return GameListItem({
-                name: g.name,
-                provider: g.provider_studio,
-                theoWin: g.performance_theo_win?.toFixed(2),
-                extra: reasonText
-            });
-        }).join('');
-        
-        similarGamesContent = `<div class="space-y-0">${gamesList}</div>`;
+            if (s.themeMatch) reasons.push(F.themeConsolidated(s.game));
+            if (s.sharedFeats.length) reasons.push(s.sharedFeats.slice(0, 3).join(', '));
+            const matchPct = Math.round(s.similarity * 100);
+            const reasonText = reasons.length ? reasons.join(' + ') : '';
+
+            return `<div class="flex items-center gap-2 py-2 px-3 border-b border-gray-100 dark:border-gray-700 last:border-0 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors" onclick="${safeOnclick('window.showGameDetails', g.name)}">
+                <div class="min-w-0 flex-1">
+                    <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${escapeHtml(g.name)}</div>
+                    <div class="text-[10px] text-gray-400 truncate">${escapeHtml(F.provider(g))}${reasonText ? ` · ${escapeHtml(reasonText)}` : ''}</div>
+                </div>
+                <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-300 font-bold shrink-0">${matchPct}%</span>
+                <span class="text-xs font-bold text-gray-700 dark:text-gray-300 w-10 text-right shrink-0">${(g.performance_theo_win || 0).toFixed(1)}</span>
+            </div>`;
+        };
+
+        const visibleList = similarGames.slice(0, INITIAL_SHOW).map(renderSimRow).join('');
+        const hiddenList = similarGames.slice(INITIAL_SHOW).map(renderSimRow).join('');
+        const hasMore = similarGames.length > INITIAL_SHOW;
+
+        const avgSimilarTheo =
+            similarGames.reduce((s, sg) => s + (sg.game.performance_theo_win || 0), 0) / similarGames.length;
+        const gameTheo = game.performance_theo_win || 0;
+        const vsSimilar = avgSimilarTheo > 0 ? ((gameTheo - avgSimilarTheo) / avgSimilarTheo) * 100 : 0;
+        const vsColor = vsSimilar >= 0 ? 'text-emerald-600' : 'text-red-500';
+
+        similarGamesContent = `<div class="space-y-0">${visibleList}${hasMore ? `<div id="${simUid}-more" class="hidden">${hiddenList}</div>` : ''}</div>
+            ${hasMore ? `<button id="${simUid}-btn" onclick="(function(){var m=document.getElementById('${simUid}-more'),b=document.getElementById('${simUid}-btn');if(m.classList.contains('hidden')){m.classList.remove('hidden');b.textContent='Show less';}else{m.classList.add('hidden');b.textContent='Show ${similarGames.length - INITIAL_SHOW} more…';}})()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mt-2 px-3 cursor-pointer">Show ${similarGames.length - INITIAL_SHOW} more…</button>` : ''}
+            <div class="mt-2 px-3 py-2 bg-gray-50 dark:bg-gray-700/30 rounded-lg text-[10px] text-gray-500">
+                vs similar avg: <span class="font-bold ${vsColor}">${vsSimilar >= 0 ? '+' : ''}${vsSimilar.toFixed(0)}%</span>
+                (${gameTheo.toFixed(1)} vs ${avgSimilarTheo.toFixed(1)})
+            </div>`;
     } else {
         similarGamesContent = EmptyState('No similar games found');
     }
-    
+
     const similarSection = PanelSection({
         title: 'Similar Games',
         icon: '🎯',
         gradient: GRADIENTS.similar,
         accent: ACCENTS.similar,
-        content: similarGamesContent
+        content: similarGamesContent,
     });
-    
+
     // ===== FEEDBACK SECTION =====
     const feedbackGameName = game.name || game.game_name || 'Unknown';
     const feedbackContent = `
@@ -314,49 +518,84 @@ export function showGameDetails(gameName) {
         Report an issue with this game
     </button>
 `;
-    
+
     const feedbackSection = PanelSection({
         title: 'Feedback',
         icon: '📝',
         gradient: GRADIENTS.release,
         accent: ACCENTS.feedback,
-        content: feedbackContent
+        content: feedbackContent,
     });
-    
+
+    // ===== DATA QUALITY SECTION =====
+    let dataQualitySection = '';
+    if (game.data_quality) {
+        const qualityColors = {
+            verified: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300',
+            high: 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300',
+            medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300',
+            low: 'bg-orange-100 text-orange-800 dark:bg-orange-900/50 dark:text-orange-300',
+            insufficient: 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300',
+        };
+        const qColor = qualityColors[game.data_quality] || qualityColors.medium;
+        const qContent = `<span class="inline-block px-3 py-1 text-xs font-semibold rounded-full ${qColor}">${escapeHtml(game.data_quality)}</span>`;
+        dataQualitySection = PanelSection({
+            title: 'Data Quality',
+            icon: '✅',
+            gradient: GRADIENTS.release,
+            accent: ACCENTS.release,
+            content: qContent,
+        });
+    }
+
     // ===== RENDER ALL SECTIONS =====
-    document.getElementById('game-performance').innerHTML = performanceSection;
-    document.getElementById('game-specs').innerHTML = specsSection;
-    document.getElementById('game-theme-mechanic').innerHTML = themeMechSection;
-    document.getElementById('game-demo').innerHTML = demoSection;
-    document.getElementById('game-symbols').innerHTML = symbolsSection;
-    document.getElementById('game-provider').innerHTML = providerSection;
-    document.getElementById('game-release').innerHTML = releaseSection;
-    document.getElementById('game-similar').innerHTML = similarSection;
-    document.getElementById('game-feedback').innerHTML = feedbackSection;
-    
+    const _set = (id, html) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = html;
+    };
+    _set('game-description', descriptionSection);
+    _set('game-performance', performanceSection);
+    _set('game-differentiators', diffSection);
+    _set('game-specs', specsSection);
+    _set('game-theme-mechanic', themeMechSection);
+    _set('game-demo', demoSection);
+    _set('game-symbols', symbolsSection);
+    _set('game-provider', providerSection);
+    _set('game-release', releaseSection);
+    _set('game-data-quality', dataQualitySection);
+    _set('game-similar', similarSection);
+    _set('game-feedback', feedbackSection);
+
     // Close any other open panel first, then show this one
-    if (window.closeAllPanels) window.closeAllPanels();
+    if (window.closeAllPanels) window.closeAllPanels('game-panel');
     const panel = document.getElementById('game-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
-    
-    panel.scrollTop = 0;
-    panel.style.right = '0px';
-    backdrop.classList.remove('hidden');
-    backdrop.classList.add('block');
+
+    if (panel) {
+        panel.scrollTop = 0;
+        panel.style.right = '0px';
+    }
+    if (backdrop) {
+        backdrop.classList.remove('hidden');
+        backdrop.classList.add('block');
+    }
     document.body.style.overflow = 'hidden';
 }
 
 window.showGameDetails = showGameDetails;
 
+import { restorePageScroll } from './panel-utils.js';
 
 export function closeGamePanel() {
-    // TAILWIND: Hide panel (slide out to right)
     const panel = document.getElementById('game-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
-    
-    panel.style.right = '-650px'; // Slide out
-    backdrop.classList.add('hidden');
-    backdrop.classList.remove('block');
+
+    if (panel) panel.style.right = '-650px';
+    if (backdrop) {
+        backdrop.classList.add('hidden');
+        backdrop.classList.remove('block');
+    }
+    restorePageScroll(panel);
 }
 
 window.closeGamePanel = closeGamePanel;
@@ -366,185 +605,262 @@ window.closeGamePanel = closeGamePanel;
 // ==========================================
 
 export function showProviderDetails(providerName) {
-    const providerGames = gameData.allGames.filter(g => g.provider_studio === providerName);
+    const providerGames = gameData.allGames.filter(g => F.provider(g) === providerName);
     if (providerGames.length === 0) return;
-    
+
     log('🏢 Opening provider panel for:', providerName);
-    
-    // Update title
+
     const parent = providerGames[0].provider_parent;
-    document.getElementById('provider-panel-title').textContent = providerName;
-    
-    // Calculate stats
+    const provPanelTitle = document.getElementById('provider-panel-title');
+    if (provPanelTitle) provPanelTitle.textContent = providerName;
+
     const gameCount = providerGames.length;
-    const avgTheo = providerGames.reduce((sum, g) => sum + (g.performance_theo_win || 0), 0) / gameCount;
+    const avgTheo = providerGames.reduce((sum, g) => sum + (F.theoWin(g) || 0), 0) / gameCount;
     const totalMarketShare = providerGames.reduce((sum, g) => sum + (g.performance_market_share_percent || 0), 0);
     const gamesWithRTP = providerGames.filter(g => g.specs_rtp);
-    const avgRTP = gamesWithRTP.length ? gamesWithRTP.reduce((sum, g) => sum + g.specs_rtp, 0) / gamesWithRTP.length : null;
-    
+    const avgRTP = gamesWithRTP.length
+        ? gamesWithRTP.reduce((sum, g) => sum + g.specs_rtp, 0) / gamesWithRTP.length
+        : null;
+
+    // Aggregate specs
+    const gamesWithBet = providerGames.filter(g => g.min_bet > 0);
+    const avgMinBet = gamesWithBet.length
+        ? gamesWithBet.reduce((s, g) => s + Number(g.min_bet), 0) / gamesWithBet.length
+        : null;
+    const avgMaxBet = gamesWithBet.length
+        ? gamesWithBet.reduce((s, g) => s + Number(g.max_bet || 0), 0) / gamesWithBet.length
+        : null;
+    const gamesWithMaxWin = providerGames.filter(g => g.max_win > 0);
+    const avgMaxWin = gamesWithMaxWin.length
+        ? gamesWithMaxWin.reduce((s, g) => s + Number(g.max_win), 0) / gamesWithMaxWin.length
+        : null;
+    const gamesWithSites = providerGames.filter(g => g.sites > 0);
+    const avgSites = gamesWithSites.length
+        ? Math.round(gamesWithSites.reduce((s, g) => s + Number(g.sites), 0) / gamesWithSites.length)
+        : null;
+    const gamesWithPlayIdx = providerGames.filter(g => g.games_played_index > 0);
+    const avgPlayIdx = gamesWithPlayIdx.length
+        ? gamesWithPlayIdx.reduce((s, g) => s + Number(g.games_played_index), 0) / gamesWithPlayIdx.length
+        : null;
+
     // ===== STATISTICS SECTION =====
     const statsMetrics = [
         { label: 'Total Games', value: gameCount },
         { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
         { label: 'Market Share', value: `${totalMarketShare.toFixed(2)}%` },
-        { label: 'Avg RTP', value: avgRTP ? avgRTP.toFixed(1) + '%' : 'N/A' }
+        { label: 'Avg RTP', value: avgRTP ? avgRTP.toFixed(1) + '%' : 'N/A' },
+        {
+            label: 'Bet Range',
+            value: avgMinBet ? `$${avgMinBet.toFixed(2)} – $${avgMaxBet ? avgMaxBet.toFixed(0) : '?'}` : 'N/A',
+        },
+        { label: 'Avg Max Win', value: avgMaxWin ? `${Math.round(avgMaxWin).toLocaleString()}x` : 'N/A' },
     ];
-    
+
     if (parent && parent !== providerName) {
         statsMetrics.push({ label: 'Parent Company', value: parent });
     }
-    
+    if (avgSites) statsMetrics.push({ label: 'Avg Casinos/Game', value: avgSites.toLocaleString() });
+    if (avgPlayIdx) statsMetrics.push({ label: 'Avg Play Index', value: avgPlayIdx.toFixed(1) });
+
     // ===== PERFORMANCE SECTION =====
     const highPerformers = providerGames.filter(g => g.performance_anomaly === 'high').length;
     const lowPerformers = providerGames.filter(g => g.performance_anomaly === 'low').length;
     const topRank = Math.min(...providerGames.map(g => g.performance_rank || 999));
-    
+
     const perfMetrics = [
         { label: 'Best Rank', value: `#${topRank}` },
         { label: 'High Performers', value: highPerformers },
         { label: 'Low Performers', value: lowPerformers },
-        { label: 'Quality Index', value: avgTheo.toFixed(2) }
+        { label: 'Quality Index', value: avgTheo.toFixed(2) },
     ];
-    
+
     // ===== TOP GAMES SECTION =====
-    const allProvGames = [...providerGames]
-        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
-    
+    const allProvGames = [...providerGames].sort((a, b) => (F.theoWin(b) || 0) - (F.theoWin(a) || 0));
+
     const GAMES_INIT = 5;
-    const topGamesItems = allProvGames.map((g, i) => {
-        const hidden = i >= GAMES_INIT ? ' style="display:none"' : '';
-        return `<div data-cl-item${hidden}>${GameListItem({
-            name: g.name,
-            provider: g.provider_studio,
-            theoWin: g.performance_theo_win?.toFixed(2),
-            extra: `${g.theme_consolidated}`
-        })}</div>`;
-    }).join('');
-    
-    const topGamesHtml = allProvGames.length > GAMES_INIT 
-        ? collapsibleList(topGamesItems, allProvGames.length, GAMES_INIT, 'prov-games')
-        : topGamesItems;
-    
+    const topGamesItems = allProvGames
+        .map((g, i) => {
+            const hidden = i >= GAMES_INIT ? ' style="display:none"' : '';
+            return `<div data-cl-item${hidden}>${GameListItem({ ...g, extra: F.themeConsolidated(g) })}</div>`;
+        })
+        .join('');
+
+    const topGamesHtml =
+        allProvGames.length > GAMES_INIT
+            ? collapsibleList(topGamesItems, allProvGames.length, GAMES_INIT, 'prov-games')
+            : topGamesItems;
+
     // ===== TOP THEMES SECTION =====
     const themes = {};
     providerGames.forEach(g => {
-        const theme = g.theme_consolidated || 'Unknown';
+        const theme = F.themeConsolidated(g) || 'Unknown';
         if (!themes[theme]) themes[theme] = { count: 0, totalTheo: 0 };
         themes[theme].count++;
-        themes[theme].totalTheo += g.performance_theo_win || 0;
+        themes[theme].totalTheo += F.theoWin(g) || 0;
     });
-    
+
     const allThemes = Object.entries(themes)
         .map(([name, data]) => ({ name, ...data, avgTheo: data.totalTheo / data.count }))
         .sort((a, b) => b.count - a.count);
-    
+
     const THEMES_INIT = 5;
     const maxThemeCount = allThemes.length ? allThemes[0].count : 1;
-    const themeItems = allThemes.map((t, i) => {
-        const hidden = i >= THEMES_INIT ? ' style="display:none"' : '';
-        const barW = ((t.count / maxThemeCount) * 100).toFixed(0);
-        return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
-                     onclick="${safeOnclick('window.showThemeDetails', t.name)}"${hidden}>
+    const themeItems = allThemes
+        .map((t, i) => {
+            const hidden = i >= THEMES_INIT ? ' style="display:none"' : '';
+            const barW = ((t.count / maxThemeCount) * 100).toFixed(0);
+            return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     onclick="${safeOnclick('window.showThemeForProvider', t.name, providerName)}"${hidden}>
                     <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${escapeHtml(t.name)}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-violet-400 dark:bg-violet-500 rounded-full" style="width:${barW}%"></div></div>
                     <span class="text-[11px] text-gray-400 dark:text-gray-500 w-10 text-right flex-shrink-0">${t.count}</span>
                 </div>`;
-    }).join('');
-    
+        })
+        .join('');
+
     const themesContent = `<div class="space-y-0.5">${allThemes.length > THEMES_INIT ? collapsibleList(themeItems, allThemes.length, THEMES_INIT, 'prov-themes') : themeItems}</div>`;
-    
+
     // ===== TOP FEATURES SECTION =====
     const mechanics = {};
     providerGames.forEach(g => {
         parseFeatures(g.features).forEach(feat => {
             if (!mechanics[feat]) mechanics[feat] = { count: 0, totalTheo: 0 };
             mechanics[feat].count++;
-            mechanics[feat].totalTheo += g.performance_theo_win || 0;
+            mechanics[feat].totalTheo += F.theoWin(g) || 0;
         });
     });
-    
+
     const allMechanics = Object.entries(mechanics)
         .map(([name, data]) => ({ name, ...data, avgTheo: data.totalTheo / data.count }))
         .sort((a, b) => b.count - a.count);
-    
+
     const MECHS_INIT = 5;
     const maxMechCount = allMechanics.length ? allMechanics[0].count : 1;
-    const mechItems = allMechanics.map((m, i) => {
-        const hidden = i >= MECHS_INIT ? ' style="display:none"' : '';
-        const barW = ((m.count / maxMechCount) * 100).toFixed(0);
-        return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
-                     onclick="${safeOnclick('window.showMechanicDetails', m.name)}"${hidden}>
+    const mechItems = allMechanics
+        .map((m, i) => {
+            const hidden = i >= MECHS_INIT ? ' style="display:none"' : '';
+            const barW = ((m.count / maxMechCount) * 100).toFixed(0);
+            return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     onclick="${safeOnclick('window.showMechForProvider', m.name, providerName)}"${hidden}>
                     <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${escapeHtml(m.name)}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-purple-400 dark:bg-purple-500 rounded-full" style="width:${barW}%"></div></div>
                     <span class="text-[11px] text-gray-400 dark:text-gray-500 w-10 text-right flex-shrink-0">${m.count}</span>
                 </div>`;
-    }).join('');
-    
+        })
+        .join('');
+
     const mechanicsContent = `<div class="space-y-0.5">${allMechanics.length > MECHS_INIT ? collapsibleList(mechItems, allMechanics.length, MECHS_INIT, 'prov-mechs') : mechItems}</div>`;
-    
+
     // ===== VOLATILITY DISTRIBUTION SECTION =====
     const volatility = {};
     providerGames.forEach(g => {
-        const vol = g.specs_volatility || 'Unknown';
+        const vol = F.volatility(g) || 'Unknown';
         volatility[vol] = (volatility[vol] || 0) + 1;
     });
-    
+
     const maxVolCount = Math.max(...Object.values(volatility));
     const volContent = `
         <div class="space-y-2">
-            ${Object.entries(volatility).sort((a, b) => b[1] - a[1]).map(([vol, count]) => {
-                const percent = ((count / gameCount) * 100).toFixed(0);
-                const barW = ((count / maxVolCount) * 100).toFixed(0);
-                return `
+            ${Object.entries(volatility)
+                .sort((a, b) => b[1] - a[1])
+                .map(([vol, count]) => {
+                    const percent = ((count / gameCount) * 100).toFixed(0);
+                    const barW = ((count / maxVolCount) * 100).toFixed(0);
+                    return `
                     <div class="flex items-center gap-2">
                         <div class="w-20 flex-shrink-0">${VolatilityBadge(vol)}</div>
                         <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-300 dark:bg-gray-500 rounded-full" style="width:${barW}%"></div></div>
                         <span class="text-[11px] text-gray-400 dark:text-gray-500 w-12 text-right flex-shrink-0">${count} (${percent}%)</span>
                     </div>
                 `;
-            }).join('')}
+                })
+                .join('')}
         </div>
     `;
-    
-    // Build panel content using PanelSection
+
     const panelContent = document.getElementById('provider-panel-content');
     let html = '';
-    html += PanelSection({ title: 'Statistics', icon: '📊', gradient: GRADIENTS.performance, accent: ACCENTS.performance, content: MetricGrid(statsMetrics) });
-    html += PanelSection({ title: 'Performance', icon: '🎯', gradient: GRADIENTS.specs, accent: ACCENTS.specs, content: MetricGrid(perfMetrics) });
-    html += PanelSection({ title: 'Themes', icon: '🎨', gradient: GRADIENTS.category, accent: ACCENTS.category, content: themesContent });
-    html += PanelSection({ title: 'Features', icon: '⚙️', gradient: GRADIENTS.similar, accent: ACCENTS.similar, content: mechanicsContent });
-    html += PanelSection({ title: 'Volatility Distribution', icon: '🎲', gradient: GRADIENTS.stats, accent: ACCENTS.stats, content: volContent });
-    html += PanelSection({ title: `Top Games (${allProvGames.length})`, icon: '🎮', gradient: GRADIENTS.provider, accent: ACCENTS.provider, content: `<div class="space-y-0">${topGamesHtml}</div>` });
-    panelContent.innerHTML = html;
-    
-    // Close any other open panel first, then show this one
-    if (window.closeAllPanels) window.closeAllPanels();
+    const providerUrl = sanitizeUrl(PROVIDER_URLS[providerName]);
+    if (providerUrl) {
+        html += `<div class="mb-3"><a href="${providerUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>Visit Official Site</a></div>`;
+    }
+    html += PanelSection({
+        title: 'Statistics',
+        icon: '📊',
+        gradient: GRADIENTS.performance,
+        accent: ACCENTS.performance,
+        content: MetricGrid(statsMetrics),
+    });
+    html += PanelSection({
+        title: 'Performance',
+        icon: '🎯',
+        gradient: GRADIENTS.specs,
+        accent: ACCENTS.specs,
+        content: MetricGrid(perfMetrics),
+    });
+    html += PanelSection({
+        title: 'Themes',
+        icon: '🎨',
+        gradient: GRADIENTS.category,
+        accent: ACCENTS.category,
+        content: themesContent,
+    });
+    html += PanelSection({
+        title: 'Features',
+        icon: '⚙️',
+        gradient: GRADIENTS.similar,
+        accent: ACCENTS.similar,
+        content: mechanicsContent,
+    });
+    html += PanelSection({
+        title: 'Volatility Distribution',
+        icon: '🎲',
+        gradient: GRADIENTS.stats,
+        accent: ACCENTS.stats,
+        content: volContent,
+    });
+    html += PanelSection({
+        title: `Top Games (${allProvGames.length})`,
+        icon: '🎮',
+        gradient: GRADIENTS.provider,
+        accent: ACCENTS.provider,
+        content: `<div class="space-y-0">${topGamesHtml}</div>`,
+    });
+    if (panelContent) panelContent.innerHTML = html;
+
+    if (window.closeAllPanels) window.closeAllPanels('provider-panel');
     const panel = document.getElementById('provider-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
-    
-    panel.scrollTop = 0;
-    panel.style.right = '0px';
-    backdrop.classList.remove('hidden');
-    backdrop.classList.add('block');
+
+    if (panel) {
+        panel.scrollTop = 0;
+        panel.style.right = '0px';
+    }
+    if (backdrop) {
+        backdrop.classList.remove('hidden');
+        backdrop.classList.add('block');
+    }
     document.body.style.overflow = 'hidden';
 }
 
 window.showProviderDetails = showProviderDetails;
 
 export function closeProviderPanel() {
-    // TAILWIND: Hide panel (slide out to right)
     const panel = document.getElementById('provider-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
-    
-    panel.style.right = '-650px'; // Slide out
-    backdrop.classList.add('hidden');
-    backdrop.classList.remove('block');
+
+    if (panel) panel.style.right = '-650px';
+    if (backdrop) {
+        backdrop.classList.add('hidden');
+        backdrop.classList.remove('block');
+    }
+    restorePageScroll(panel);
 }
 
 window.closeProviderPanel = closeProviderPanel;
 
 // Update closeAnyPanel to include new panels
-window.closeAnyPanel = function() {
+window.closeAnyPanel = function () {
     closeGamePanel();
     closeProviderPanel();
     if (window.closeThemePanel) window.closeThemePanel();
@@ -552,7 +868,7 @@ window.closeAnyPanel = function() {
 };
 
 // --- Feedback modal (used by hamburger menu and game panel) ---
-window.openFeedbackModal = function(gameName) {
+window.openFeedbackModal = function (gameName) {
     const modal = document.getElementById('feedback-modal');
     if (!modal) return;
     modal.classList.remove('hidden');
@@ -566,7 +882,7 @@ window.openFeedbackModal = function(gameName) {
     if (dropdown) dropdown.classList.add('hidden');
 };
 
-window.closeFeedbackModal = function() {
+window.closeFeedbackModal = function () {
     const modal = document.getElementById('feedback-modal');
     if (!modal) return;
     modal.classList.add('hidden');
@@ -580,7 +896,7 @@ window.closeFeedbackModal = function() {
     if (statusEl) statusEl.classList.add('hidden');
 };
 
-window.submitModalTicket = async function() {
+window.submitModalTicket = async function () {
     const gameName = document.getElementById('modal-feedback-game')?.value?.trim();
     const issueType = document.getElementById('modal-feedback-type')?.value;
     const description = document.getElementById('modal-feedback-desc')?.value?.trim();

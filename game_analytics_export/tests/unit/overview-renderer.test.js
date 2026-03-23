@@ -37,7 +37,11 @@ describe('Overview Renderer', () => {
         });
 
         it('handles zero values gracefully', () => {
-            const orig = { total_games: gameData.total_games, theme_count: gameData.theme_count, mechanic_count: gameData.mechanic_count };
+            const orig = {
+                total_games: gameData.total_games,
+                theme_count: gameData.theme_count,
+                mechanic_count: gameData.mechanic_count,
+            };
             gameData.total_games = 0;
             gameData.theme_count = 0;
             gameData.mechanic_count = 0;
@@ -54,7 +58,11 @@ describe('Overview Renderer', () => {
         });
 
         it('formats large numbers with locale string', () => {
-            const orig = { total_games: gameData.total_games, theme_count: gameData.theme_count, mechanic_count: gameData.mechanic_count };
+            const orig = {
+                total_games: gameData.total_games,
+                theme_count: gameData.theme_count,
+                mechanic_count: gameData.mechanic_count,
+            };
             gameData.total_games = 12345;
             gameData.theme_count = 67;
             gameData.mechanic_count = 12;

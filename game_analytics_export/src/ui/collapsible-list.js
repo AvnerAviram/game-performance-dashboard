@@ -5,7 +5,7 @@
  */
 export function collapsibleList(listHtml, totalCount, initialShow, containerId) {
     if (totalCount <= initialShow) return listHtml;
-    const uid = containerId || ('cl-' + Math.random().toString(36).slice(2, 8));
+    const uid = containerId || 'cl-' + Math.random().toString(36).slice(2, 8);
     return `
         <div id="${uid}-wrap">
             <div id="${uid}-items">${listHtml}</div>

@@ -15,7 +15,7 @@ Or with the auth server (production-like):
 ```bash
 cd game_analytics_export
 npm run build
-node server/server.cjs   # http://localhost:3000
+npm run server           # http://localhost:3000
 ```
 
 Create a user to log in:

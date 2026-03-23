@@ -4,6 +4,7 @@
  */
 import { gameData } from '../lib/data.js';
 import { parseFeatures } from '../lib/parse-features.js';
+import { F } from '../lib/game-fields.js';
 
 /** Get theme+feature combos from allGames (each game contributes per feature) */
 function getThemeMechanicCombos() {
@@ -12,30 +13,80 @@ function getThemeMechanicCombos() {
 
     games.forEach(g => {
         const theme = g.theme_consolidated || g.Theme || 'Unknown';
+        if (/^unknown$/i.test(theme)) return;
         const features = parseFeatures(g.features);
         const theo = g.performance_theo_win ?? g['Avg Theo Win Index'] ?? g.theo_win_index ?? 0;
 
         for (const feat of features) {
-            if (!feat || typeof feat !== 'string') continue;
+            if (!feat || typeof feat !== 'string' || /^unknown$/i.test(feat)) continue;
             const key = `${theme}|${feat}`;
             if (!combos[key]) {
-                combos[key] = { theme, feature: feat, count: 0, totalTheo: 0, games: [] };
+                combos[key] = { theme, feature: feat, count: 0, totalTheo: 0, games: [], gameRefs: [] };
             }
             combos[key].count++;
             combos[key].totalTheo += theo;
             combos[key].games.push(g.name);
+            combos[key].gameRefs.push(g);
         }
     });
 
     return Object.values(combos)
-        .map(c => ({
-            ...c,
-            avgTheo: c.count > 0 ? c.totalTheo / c.count : 0,
-            // Opportunity score: high quality + low competition (fewer games = more opportunity)
-            opportunityScore: c.count > 0
-                ? (c.totalTheo / c.count) / Math.sqrt(c.count + 1)
-                : 0
-        }))
+        .map(c => {
+            const layouts = {};
+            const vols = {};
+            const providerCounts = {};
+            let rtpSum = 0;
+            let rtpCount = 0;
+            let topGame = null;
+            let topTheo = -1;
+            (c.gameRefs || []).forEach(g => {
+                const r = g.specs_reels || g.reels;
+                const rows = g.specs_rows || g.rows;
+                if (r && rows) {
+                    const l = String(r) + 'x' + String(rows);
+                    layouts[l] = (layouts[l] || 0) + 1;
+                }
+                const v = g.specs_volatility || g.volatility || '';
+                if (v) vols[v] = (vols[v] || 0) + 1;
+                const prov = F.provider(g);
+                if (prov && prov !== 'Unknown') providerCounts[prov] = (providerCounts[prov] || 0) + 1;
+                const rtp = parseFloat(g.specs_rtp || g.rtp);
+                if (rtp && rtp > 80 && rtp < 100) {
+                    rtpSum += rtp;
+                    rtpCount++;
+                }
+                const t = g.performance_theo_win || 0;
+                if (t > topTheo) {
+                    topTheo = t;
+                    topGame = g.name;
+                }
+            });
+            const dominantEntry = obj => {
+                const keys = Object.keys(obj);
+                if (!keys.length) return '';
+                return keys.reduce((a, b) => (obj[a] >= obj[b] ? a : b));
+            };
+            const dominantLayout = dominantEntry(layouts);
+            const dominantVolatility = dominantEntry(vols);
+            const dominantProvider = dominantEntry(providerCounts);
+            const avgRTP = rtpCount > 0 ? rtpSum / rtpCount : null;
+            const avgTheo = c.count > 0 ? c.totalTheo / c.count : 0;
+            return {
+                theme: c.theme,
+                feature: c.feature,
+                count: c.count,
+                totalTheo: c.totalTheo,
+                games: c.games,
+                avgTheo,
+                dominantLayout: dominantLayout || undefined,
+                dominantVolatility: dominantVolatility || undefined,
+                dominantProvider: dominantProvider || undefined,
+                avgRTP: avgRTP != null ? avgRTP : undefined,
+                topGameName: topGame || undefined,
+                // Opportunity score: high quality + low competition (fewer games = more opportunity)
+                opportunityScore: c.count > 0 ? avgTheo / Math.sqrt(c.count + 1) : 0,
+            };
+        })
         .filter(c => c.count >= 2); // At least 2 games for signal
 }
 
@@ -77,4 +128,3 @@ function getPercentile(arr, pct) {
     const idx = Math.ceil((pct / 100) * sorted.length) - 1;
     return sorted[Math.max(0, idx)];
 }
-

@@ -1,21 +1,89 @@
 <!-- Insights Page -->
 <!-- Sticky Header -->
-<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6">
+<div
+    class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6"
+>
     <div class="flex justify-between items-center py-5">
         <div>
-            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Market Insights</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Data-driven opportunities, risks, and market intelligence</p>
+            <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">
+                Market Insights
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                Data-driven opportunities, risks, and market intelligence
+            </p>
         </div>
         <div class="relative -mr-1 flex items-center">
-            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <button
+                id="hamburger-btn"
+                type="button"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Account menu"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
-            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
-                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
-                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+            <div
+                id="hamburger-dropdown"
+                class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[200]"
+            >
+                <button
+                    id="auth-login-btn"
+                    type="button"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                        /></svg
+                    >Log in
+                </button>
+                <button
+                    id="auth-logout-btn"
+                    type="button"
+                    class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        /></svg
+                    >Log out
+                </button>
                 <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
-                <button type="button" onclick="showPage('tickets')" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>View Tickets</button>
+                <button
+                    type="button"
+                    onclick="window.openFeedbackModal()"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                        /></svg
+                    >Submit Feedback
+                </button>
+                <button
+                    type="button"
+                    onclick="showPage('tickets')"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                        /></svg
+                    >View Tickets
+                </button>
             </div>
         </div>
     </div>
@@ -23,59 +91,175 @@
 
 <!-- 1. Strategic Recommendations (top row, 3 cards) -->
 <div class="grid grid-cols-3 gap-4 mb-6 shrink-0">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+    >
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2"><span class="text-lg">🚀</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Build Next</h3></div>
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🚀</span>
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Build Next</h3>
+                <div class="relative group">
+                    <button
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                    >
+                        ?</button
+                    ><span
+                        class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >Theme+Feature combos with above-median performance and low saturation, ranked by opportunity
+                        score.</span
+                    >
+                </div>
+            </div>
         </div>
         <div id="insight-build-next" class="p-4 space-y-2 flex-1"></div>
     </div>
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+    >
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2"><span class="text-lg">⚠️</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Avoid</h3></div>
+            <div class="flex items-center gap-2">
+                <span class="text-lg">⚠️</span>
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Avoid</h3>
+                <div class="relative group">
+                    <button
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                    >
+                        ?</button
+                    ><span
+                        class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >Combos with 3+ games performing below 95% of median Theo Win.</span
+                    >
+                </div>
+            </div>
         </div>
         <div id="insight-avoid" class="p-4 space-y-2 flex-1"></div>
     </div>
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+    >
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-2"><span class="text-lg">👀</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Watch</h3></div>
+            <div class="flex items-center gap-2">
+                <span class="text-lg">👀</span>
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Watch</h3>
+                <div class="relative group">
+                    <button
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                    >
+                        ?</button
+                    ><span
+                        class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >Emerging themes with 2-10 games and above-median Theo Win performance.</span
+                    >
+                </div>
+            </div>
         </div>
         <div id="insight-watch" class="p-4 space-y-2 flex-1"></div>
     </div>
 </div>
 
 <!-- 2. Market Landscape (full width) -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0">
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
     <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2"><span class="text-lg">📊</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Market Landscape</h3></div>
-        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">X = game count, Y = avg theo win, bubble size = providers per theme</p>
+        <div class="flex items-center gap-2">
+            <span class="text-lg">📊</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Market Landscape</h3>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = game count, Y = avg theo win, bubble size = providers per theme
+        </p>
     </div>
-    <div id="market-landscape-chart" class="p-4" style="height: 480px;">
+    <div id="market-landscape-chart" class="p-4" style="height: 480px">
         <canvas id="chart-market-landscape"></canvas>
     </div>
 </div>
 
 <!-- 3. Provider Intelligence (full width) -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0">
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
     <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2"><span class="text-lg">🏢</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Provider Intelligence</h3></div>
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🏢</span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
+                Provider Intelligence
+            </h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                >
+                    ?</button
+                ><span
+                    class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                    >Top 10 providers by game count. Best theme determined by highest avg Theo Win within each
+                    provider's portfolio.</span
+                >
+            </div>
+        </div>
+        <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
+            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg theo</span
+            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg theo</span
+            ><span>↑↓ = year-over-year trend</span>
+        </div>
     </div>
     <div id="provider-theme-matrix" class="p-4"></div>
 </div>
 
-<!-- 4. Performance Outliers (two columns) -->
-<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0">
+<!-- 4. Brand Intelligence (full width) -->
+<div
+    id="brand-intelligence-section"
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-3 mb-1">
+            <div
+                class="w-10 h-10 bg-violet-100 dark:bg-violet-900/30 rounded-lg flex items-center justify-center text-lg"
+            >
+                🎬
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-1.5">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white leading-none tracking-tight">
+                        Brand Intelligence
+                    </h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >
+                            Game families and licensed IPs grouped by brand. Shows performance, market share, and theme
+                            coverage to help identify strong brand opportunities.
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Licensed IPs and game families ranked by market performance
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="franchise-intelligence" class="p-4"></div>
+</div>
+
+<!-- 5. Performance Outliers -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
     <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2"><span class="text-lg">⚡</span><h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Performance Outliers</h3></div>
-        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">Games that significantly outperform or underperform expectations</p>
-    </div>
-    <div class="p-4 grid grid-cols-2 gap-6">
-        <div>
-            <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 mb-3 uppercase tracking-wider">Top 10</h4>
-            <div id="top-outliers" class="grid grid-cols-1 gap-3"></div>
+        <div class="flex items-center gap-2">
+            <span class="text-lg">⚡</span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
+                Performance Outliers
+            </h3>
         </div>
-        <div>
-            <h4 class="text-xs font-bold text-red-600 dark:text-red-400 mb-3 uppercase tracking-wider">Bottom 10</h4>
-            <div id="bottom-outliers" class="grid grid-cols-1 gap-3"></div>
-        </div>
+        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+            What separates top performers from underperformers — patterns to guide your next game
+        </p>
     </div>
+    <div id="outliers-container" class="p-4"></div>
 </div>

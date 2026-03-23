@@ -1,21 +1,87 @@
 <!-- Game Lab Page -->
 <!-- Sticky Header -->
-<div class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+<div
+    class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800"
+>
     <div class="flex justify-between items-center py-5">
         <div>
             <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">Game Lab</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Interactive tools for designing, analyzing, and naming your next game</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                Interactive tools for designing, analyzing, and naming your next game
+            </p>
         </div>
         <div class="relative -mr-1 flex items-center">
-            <button id="hamburger-btn" type="button" class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors" aria-label="Account menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <button
+                id="hamburger-btn"
+                type="button"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Account menu"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
-            <div id="hamburger-dropdown" class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[150]">
-                <button id="auth-login-btn" type="button" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>Log in</button>
-                <button id="auth-logout-btn" type="button" class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>Log out</button>
+            <div
+                id="hamburger-dropdown"
+                class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[200]"
+            >
+                <button
+                    id="auth-login-btn"
+                    type="button"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                        /></svg
+                    >Log in
+                </button>
+                <button
+                    id="auth-logout-btn"
+                    type="button"
+                    class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        /></svg
+                    >Log out
+                </button>
                 <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                <button type="button" onclick="window.openFeedbackModal()" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>Submit Feedback</button>
-                <button type="button" onclick="showPage('tickets')" class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>View Tickets</button>
+                <button
+                    type="button"
+                    onclick="window.openFeedbackModal()"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                        /></svg
+                    >Submit Feedback
+                </button>
+                <button
+                    type="button"
+                    onclick="showPage('tickets')"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                        /></svg
+                    >View Tickets
+                </button>
             </div>
         </div>
     </div>
@@ -28,156 +94,413 @@
         <div id="blueprint-advisor-wrapper"></div>
     </div>
 
-        <!-- Feature Impact + Recipes + Synergy -->
-        <div id="lab-section-feature-impact" class="gamelab-section hidden">
-            <div class="space-y-4">
-                <!-- Feature Performance Leaderboard -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden">
+    <!-- Feature Impact + Recipes + Synergy -->
+    <div id="lab-section-feature-impact" class="gamelab-section hidden">
+        <div class="space-y-4">
+            <!-- Row 1: Top Feature Recipes + Winning Combinations -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+                >
                     <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                         <div class="flex items-center gap-2">
                             <span class="text-lg">🏆</span>
                             <div>
-                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top Feature Recipes</h3>
-                                <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">Multi-feature combinations ranked by real game performance</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="feature-leaderboard" class="p-4"></div>
-                </div>
-                <div class="grid grid-cols-1 xl:grid-cols-5 gap-4">
-                    <div class="xl:col-span-3 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
-                        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-                            <div class="flex items-center gap-2">
-                                <span class="text-lg">🗺️</span>
-                                <div>
-                                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Feature Impact by Theme</h3>
-                                    <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">How each feature changes a theme's avg performance (% lift)</p>
+                                <div class="flex items-center gap-1.5">
+                                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                        Top Feature Recipes
+                                    </h3>
+                                    <div class="relative group">
+                                        <button
+                                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                                        >
+                                            ?</button
+                                        ><span
+                                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                                            >Ranked by average Theo Win across games sharing the exact same feature set.
+                                            Minimum 3 games required.</span
+                                        >
+                                    </div>
                                 </div>
+                                <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                                    Multi-feature combinations ranked by real game performance
+                                </p>
                             </div>
                         </div>
-                        <div id="heatmap-container" class="p-3 overflow-x-auto flex-1"></div>
                     </div>
-                    <div class="xl:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col">
-                        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-                            <div class="flex items-center gap-2">
-                                <span class="text-lg">🎯</span>
-                                <div>
-                                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Winning Combinations</h3>
-                                    <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">Top combos of any size (2-4 features)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="combo-explorer" class="p-4 flex-1 overflow-y-auto" style="max-height:500px"></div>
-                    </div>
+                    <div id="feature-leaderboard" class="p-4 flex-1 overflow-y-auto" style="max-height: 500px"></div>
                 </div>
-                <!-- Feature Synergy Explorer (injected by JS) -->
-                <div id="synergy-explorer-wrapper"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+                >
+                    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">🎯</span>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                        Winning Combinations
+                                    </h3>
+                                    <div class="relative group">
+                                        <button
+                                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                                        >
+                                            ?</button
+                                        ><span
+                                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                                            >Feature combos within themes, ranked by avg Theo Win lift vs theme
+                                            baseline. Min 2 games per combo. Diverse themes shown via round-robin.</span
+                                        >
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                                    Top combos of any size (2-4 features)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="combo-explorer" class="p-4 flex-1 overflow-y-auto" style="max-height: 500px"></div>
+                </div>
             </div>
-        </div>
-
-        <!-- Concept Analyzer -->
-        <div id="lab-section-concept" class="gamelab-section hidden">
-            <div class="max-w-4xl">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6">
-                    <div class="p-6 pb-4">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-2xl shrink-0 shadow-lg shadow-violet-500/20">💡</div>
-                            <div class="flex-1">
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Game Concept Analyzer</h3>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Describe your game idea in plain language — we'll analyze it against market data</p>
+            <!-- Row 2: Feature Impact by Theme (full width) -->
+            <div
+                class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden"
+            >
+                <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🗺️</span>
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                Feature Impact by Theme
+                            </h3>
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                                How each feature changes a theme's avg performance (% lift)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="heatmap-container" class="p-3 overflow-x-auto"></div>
+            </div>
+            <!-- Row 3: Layout Correlation + Specs Blueprint -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+                >
+                    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">📐</span>
+                            <div>
+                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                    Layout Correlation
+                                </h3>
+                                <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                                    Reel grid configurations vs feature usage
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="px-6 pb-2">
-                        <textarea id="concept-input" rows="4" placeholder="e.g., An Egyptian-themed slot with free spins, hold and spin mechanics, and a progressive jackpot. Medium-high volatility targeting casual players who like mystery and adventure..." class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 text-sm leading-relaxed resize-none"></textarea>
-                    </div>
-                    <div class="px-6 pb-4 flex items-center justify-between">
-                        <div class="flex flex-wrap gap-1.5" id="concept-quick-ideas">
-                            <span class="text-[10px] text-gray-400 dark:text-gray-500 mr-1 self-center">Try:</span>
-                            <button type="button" onclick="window.setConceptExample(this)" data-text="Asian luck theme with free spins, hold and spin, and wild reels. High volatility." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Asian luck slot</button>
-                            <button type="button" onclick="window.setConceptExample(this)" data-text="Adventure exploration game with expanding reels, pick bonus, and persistence mechanics. Medium volatility with an Irish mythology twist." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Adventure explorer</button>
-                            <button type="button" onclick="window.setConceptExample(this)" data-text="Classic fruit machine with nudges, respin feature, and a wheel bonus. Low volatility, nostalgic feel for traditional slot players." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Classic fruit</button>
-                            <button type="button" onclick="window.setConceptExample(this)" data-text="Fantasy dragon theme with cash on reels, static jackpot, free spins, and expanding reels. Very high volatility for thrill seekers." class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer">Fantasy dragon</button>
+                    <div id="layout-correlation" class="p-4 flex-1 overflow-y-auto" style="max-height: 500px"></div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+                >
+                    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">📐</span>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                                        Specs Blueprint
+                                    </h3>
+                                    <div class="relative group">
+                                        <button
+                                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                                        >
+                                            ?</button
+                                        ><span
+                                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                                            >Which layout + volatility combos produce the best Theo Win. Ranked by
+                                            performance with lift vs market average.</span
+                                        >
+                                    </div>
+                                </div>
+                                <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                                    Best-performing layout &amp; volatility combos
+                                </p>
+                            </div>
                         </div>
-                        <button onclick="window.analyzeGameConcept()" class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-200 flex items-center gap-2 shrink-0">
-                            <span>Analyze</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    </div>
+                    <div id="feature-opportunities" class="p-4 flex-1 overflow-y-auto" style="max-height: 500px"></div>
+                </div>
+            </div>
+            <!-- Feature Synergy Explorer (injected by JS) -->
+            <div id="synergy-explorer-wrapper"></div>
+        </div>
+    </div>
+
+    <!-- Concept Analyzer -->
+    <div id="lab-section-concept" class="gamelab-section hidden">
+        <div class="max-w-5xl mx-auto">
+            <div
+                class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6"
+            >
+                <div class="p-6 pb-4">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-2xl shrink-0 shadow-lg shadow-violet-500/20"
+                        >
+                            💡
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                                Game Concept Analyzer
+                            </h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                Describe your game idea in plain language — we'll analyze it against market data
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 pb-2">
+                    <textarea
+                        id="concept-input"
+                        rows="4"
+                        placeholder="e.g., An Egyptian-themed slot with free spins, hold and spin mechanics, and a progressive jackpot. Medium-high volatility targeting casual players who like mystery and adventure..."
+                        class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 text-sm leading-relaxed resize-none"
+                    ></textarea>
+                </div>
+                <div class="px-6 pb-4 flex items-center justify-between">
+                    <div class="flex flex-wrap gap-1.5" id="concept-quick-ideas">
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500 mr-1 self-center">Try:</span>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Asian luck theme with free spins, hold and spin, and wild reels. High volatility."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Asian luck slot
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Adventure exploration game with expanding reels, pick bonus, and persistence mechanics. Medium volatility with an Irish mythology twist."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Adventure explorer
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Classic fruit machine with nudges, respin feature, and a wheel bonus. Low volatility, nostalgic feel for traditional slot players."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Classic fruit
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Fantasy dragon theme with cash on reels, static jackpot, free spins, and expanding reels. Very high volatility for thrill seekers."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Fantasy dragon
                         </button>
                     </div>
+                    <button
+                        onclick="window.analyzeGameConcept()"
+                        class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-200 flex items-center gap-2 shrink-0"
+                    >
+                        <span>Analyze</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
+                        </svg>
+                    </button>
                 </div>
-                <div id="concept-detected" class="hidden mb-6">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 p-4">
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">Detected from your description</div>
-                        <div id="concept-tags" class="flex flex-wrap gap-2"></div>
-                    </div>
-                </div>
-                <div id="concept-results" class="space-y-5"></div>
             </div>
-            <div id="prediction-test-area" class="hidden"><div id="prediction-results-sidebar"><div id="prediction-output-sidebar"></div></div></div>
-            <div id="prediction-opportunities-area" class="hidden"></div>
-            <div id="prediction-results" style="display:none"><div id="prediction-output"></div></div>
-        </div>
-
-        <!-- Name Generator -->
-        <div id="lab-section-name-gen" class="gamelab-section hidden">
-            <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
-                <div class="xl:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
-                    <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <span class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-base">🎯</span>
-                        Configure Your Game
-                    </h3>
-                    <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Theme</label>
-                    <select id="ng-theme" class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"><option value="">Select a theme...</option></select>
-                    <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Features (select up to 3)</label>
-                    <div id="ng-features" class="flex flex-wrap gap-1.5 mb-4"></div>
-                    <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Naming Style</label>
-                    <div class="grid grid-cols-2 gap-2 mb-4">
-                        <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="classic">🏛️ Classic</button>
-                        <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="modern">⚡ Modern</button>
-                        <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="playful">🎪 Playful</button>
-                        <button class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors" data-style="premium">💎 Premium</button>
+            <div id="concept-detected" class="hidden mb-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 p-4">
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">
+                        Detected from your description
                     </div>
-                    <label class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5">Custom Keywords (optional)</label>
-                    <input type="text" id="ng-keywords" placeholder="e.g. dragon, fortune, mega..." class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-5 focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400">
+                    <div id="concept-tags" class="flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+            <div id="concept-results" class="space-y-5"></div>
+        </div>
+        <div id="prediction-test-area" class="hidden">
+            <div id="prediction-results-sidebar"><div id="prediction-output-sidebar"></div></div>
+        </div>
+        <div id="prediction-opportunities-area" class="hidden"></div>
+        <div id="prediction-results" style="display: none"><div id="prediction-output"></div></div>
+    </div>
+
+    <!-- Name Generator -->
+    <div id="lab-section-name-gen" class="gamelab-section hidden">
+        <div class="grid grid-cols-1 xl:grid-cols-5 gap-6">
+            <div
+                class="xl:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6"
+            >
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                    <span
+                        class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-base"
+                        >🎯</span
+                    >
+                    Configure Your Game
+                </h3>
+                <label
+                    class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5"
+                    >Theme</label
+                >
+                <select
+                    id="ng-theme"
+                    class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                >
+                    <option value="">Select a theme...</option>
+                </select>
+                <label
+                    class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5"
+                    >Features (select up to 3)</label
+                >
+                <div id="ng-features" class="flex flex-wrap gap-1.5 mb-4"></div>
+                <label
+                    class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5"
+                    >Naming Style</label
+                >
+                <div class="grid grid-cols-2 gap-2 mb-4">
+                    <button
+                        class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors"
+                        data-style="classic"
+                    >
+                        🏛️ Classic
+                    </button>
+                    <button
+                        class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors"
+                        data-style="modern"
+                    >
+                        ⚡ Modern
+                    </button>
+                    <button
+                        class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors"
+                        data-style="playful"
+                    >
+                        🎪 Playful
+                    </button>
+                    <button
+                        class="ng-style-btn px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-700 dark:text-gray-300 hover:border-indigo-400 hover:text-indigo-600 transition-colors"
+                        data-style="premium"
+                    >
+                        💎 Premium
+                    </button>
+                </div>
+                <label
+                    class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5"
+                    >Custom Keywords (optional)</label
+                >
+                <input
+                    type="text"
+                    id="ng-keywords"
+                    placeholder="e.g. dragon, fortune, mega..."
+                    class="w-full px-3 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm mb-5 focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400"
+                />
+                <div class="flex gap-2">
+                    <button
+                        id="ng-generate"
+                        class="flex-1 py-3 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+                        </svg>
+                        Generate Names
+                    </button>
+                    <button
+                        id="ng-reset"
+                        class="py-3 px-3 border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 text-sm rounded-xl transition-all flex items-center justify-center gap-1.5"
+                        title="Reset all fields"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                            />
+                        </svg>
+                        Clear
+                    </button>
+                </div>
+                <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-2 text-center" id="ng-mode-label">
+                    Using pattern-based generation
+                </p>
+                <div
+                    class="mt-4 p-3 rounded-xl border border-dashed border-indigo-200 dark:border-indigo-800 bg-indigo-50/50 dark:bg-indigo-900/10"
+                >
+                    <label
+                        class="block text-xs font-semibold text-indigo-700 dark:text-indigo-400 uppercase tracking-wider mb-1.5"
+                        >AI Generation Code</label
+                    >
                     <div class="flex gap-2">
-                        <button id="ng-generate" class="flex-1 py-3 px-4 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                            Generate Names
-                        </button>
-                        <button id="ng-reset" class="py-3 px-3 border border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 text-sm rounded-xl transition-all flex items-center justify-center" title="Reset all fields">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        <input
+                            type="password"
+                            id="ng-ai-code"
+                            placeholder="Enter access code..."
+                            class="flex-1 px-3 py-2 rounded-lg border border-indigo-200 dark:border-indigo-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400"
+                            autocomplete="off"
+                        />
+                        <button
+                            id="ng-ai-generate"
+                            class="py-2 px-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-semibold text-xs rounded-lg transition-all shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            AI Generate
                         </button>
                     </div>
-                    <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-2 text-center" id="ng-mode-label">Using pattern-based generation</p>
-                    <div class="mt-4 p-3 rounded-xl border border-dashed border-indigo-200 dark:border-indigo-800 bg-indigo-50/50 dark:bg-indigo-900/10">
-                        <label class="block text-xs font-semibold text-indigo-700 dark:text-indigo-400 uppercase tracking-wider mb-1.5">AI Generation Code</label>
-                        <div class="flex gap-2">
-                            <input type="password" id="ng-ai-code" placeholder="Enter access code..." class="flex-1 px-3 py-2 rounded-lg border border-indigo-200 dark:border-indigo-700 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-400" autocomplete="off">
-                            <button id="ng-ai-generate" class="py-2 px-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white font-semibold text-xs rounded-lg transition-all shadow-sm hover:shadow-md whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed">AI Generate</button>
+                    <p id="ng-ai-status" class="text-[10px] text-gray-400 mt-1"></p>
+                </div>
+            </div>
+            <div class="xl:col-span-3 space-y-6">
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6"
+                >
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span
+                            class="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg flex items-center justify-center text-base"
+                            >✨</span
+                        >
+                        Generated Names
+                    </h3>
+                    <div id="ng-results" class="min-h-[300px]">
+                        <div
+                            class="flex items-center justify-center h-[300px] text-gray-400 dark:text-gray-500 text-sm"
+                        >
+                            Select a theme and click "Generate Names" to get started
                         </div>
-                        <p id="ng-ai-status" class="text-[10px] text-gray-400 mt-1"></p>
                     </div>
                 </div>
-                <div class="xl:col-span-3 space-y-6">
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/40 rounded-lg flex items-center justify-center text-base">✨</span>
-                            Generated Names
-                        </h3>
-                        <div id="ng-results" class="min-h-[300px]">
-                            <div class="flex items-center justify-center h-[300px] text-gray-400 dark:text-gray-500 text-sm">Select a theme and click "Generate Names" to get started</div>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                            <span class="w-8 h-8 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-base">📊</span>
-                            Naming Intelligence
-                        </h3>
-                        <div id="ng-patterns" class="space-y-3">
-                            <div class="text-center text-gray-400 dark:text-gray-500 text-sm py-8">Patterns will appear when you select a theme</div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-6"
+                >
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <span
+                            class="w-8 h-8 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-base"
+                            >📊</span
+                        >
+                        Naming Intelligence
+                    </h3>
+                    <div id="ng-patterns" class="space-y-3">
+                        <div class="text-center text-gray-400 dark:text-gray-500 text-sm py-8">
+                            Patterns will appear when you select a theme
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>

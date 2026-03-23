@@ -37,9 +37,6 @@
       "Hold n Spin",
       "Link Feature",
       "Hold and Link",
-      "Jackpot Re-Spin",
-      "Coin Collector",
-      "Cash Collect",
       "Dragon Link",
       "Dragon Cash",
       "Dollar Storm",
@@ -56,13 +53,7 @@
       "Fixed Jackpot",
       "Flat Top Jackpot",
       "Non-Progressive Jackpot",
-      "Fixed Prize",
-      "Jackpot",
-      "Linked Jackpot",
-      "Linked Progressive",
-      "Linked Progressives",
-      "Must Hit By Jackpot",
-      "Must Drop Jackpot"
+      "Fixed Prize"
     ],
     "Progressive Jackpot": [
       "Progressive Jackpot",
@@ -76,18 +67,19 @@
       "Wild Reel",
       "Full Reel Wild"
     ],
-    "Expanding Wild": [
-      "Expanding Wild",
+    "Expanding Wilds": [
       "Expanding Wilds",
+      "Expanding Wild",
       "Wild Expansion",
       "Expanded Wild"
     ],
-    "Sticky Wild": [
-      "Sticky Wild",
+    "Sticky Wilds": [
       "Sticky Wilds",
+      "Sticky Wild",
       "Locked Wild",
       "Locked Wilds",
-      "Frozen Wild"
+      "Frozen Wild",
+      "Frozen Wilds"
     ],
     "Wild": [
       "Wild",
@@ -126,8 +118,7 @@
       "Bonus Pick",
       "Pick Me",
       "Pick-a-Prize",
-      "Click Me",
-      "Pick Object"
+      "Click Me"
     ],
     "Wheel": [
       "Wheel",
@@ -153,10 +144,7 @@
       "Cash on Reels",
       "Cash Values",
       "Coin Values",
-      "Symbol Values",
-      "Cash Symbols",
-      "Money Symbols",
-      "Credit Values"
+      "Symbol Values"
     ],
     "Expanding Reels": [
       "Expanding Reels",
@@ -165,12 +153,15 @@
       "Growing Reels",
       "Reel Growth",
       "xWays",
-      "Megaways",
-      "MegaWays",
-      "Megaways Mechanic",
       "Infinity Reels",
       "Infinite Reels",
       "InfinityReels"
+    ],
+    "Megaways": [
+      "Megaways",
+      "MegaWays",
+      "Megaways Mechanic",
+      "Mega Ways"
     ],
     "Nudges": [
       "Nudges",
@@ -182,13 +173,38 @@
       "xNudge",
       "xNudge Wild"
     ],
+    "Multiplier": [
+      "Multiplier",
+      "Multipliers",
+      "Win Multiplier",
+      "Wild Multiplier",
+      "Multiplier Wild",
+      "Multiplier Trail",
+      "Multiplier Ladder",
+      "Random Multiplier",
+      "Cascading Multiplier",
+      "Free Spins Multiplier",
+      "Multiplier Feature",
+      "Increasing Multiplier",
+      "xMultiplier"
+    ],
     "Persistence": [
       "Persistence",
       "Persistent State",
       "Persistent Feature",
       "Carry Over",
       "Saved Progress",
-      "Persistent Wilds"
+      "Persistent Wilds",
+      "Persistent Wild",
+      "Collector Meter",
+      "Collection Meter",
+      "Pot Collection",
+      "Meter Feature",
+      "Building Feature",
+      "Upgrade Path",
+      "Symbol Upgrade",
+      "Growing Meter",
+      "Accumulator"
     ],
     "Sidebets": [
       "Sidebets",
@@ -211,13 +227,14 @@
       "Buy Feature",
       "Ante Bet"
     ],
-    "Gamble": [
-      "Gamble",
+    "Gamble Feature": [
       "Gamble Feature",
+      "Gamble",
       "Double Up",
       "Risk Game",
       "Gamble Round",
-      "Card Gamble"
+      "Card Gamble",
+      "Risk/Gamble"
     ],
     "Cluster Pays": [
       "Cluster Pays",
@@ -243,6 +260,14 @@
       "Big Symbols",
       "Super Symbols"
     ],
+    "Symbol Transformation": [
+      "Symbol Transformation",
+      "Symbol Swap",
+      "Symbol Transform",
+      "Symbol Morph",
+      "Transforming Symbols",
+      "Symbol Conversion"
+    ],
     "Split Symbols": [
       "Split Symbols",
       "Symbol Split",
@@ -255,10 +280,10 @@
       "Wild Burst",
       "Mystery Wild"
     ],
-    "Mystery Feature": [
-      "Mystery Feature",
-      "Mystery Symbol",
+    "Mystery Symbols": [
       "Mystery Symbols",
+      "Mystery Symbol",
+      "Mystery Feature",
       "Mystery",
       "Mystery Reveal",
       "Mystery Stack"
@@ -610,7 +635,7 @@
   },
   "meta": {
     "version": 2,
-    "canonical_features": 32,
+    "canonical_features": 25,
     "canonical_themes": 35,
     "source": "Industry research + AGS ground truth + cross-provider analysis",
     "notes": "Aliases are case-insensitive during lookup. The mapping is used for POST-extraction normalization (EDC pattern)."

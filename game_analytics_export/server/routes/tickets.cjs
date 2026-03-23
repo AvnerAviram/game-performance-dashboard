@@ -49,65 +49,13 @@ router.post('/api/tickets', requireAuth, (req, res) => {
 
 const VALID_STATUSES = ['open', 'in-progress', 'resolved', 'closed', 'archived'];
 
-router.patch('/api/tickets/:id', requireAdmin, (req, res) => {
-    try {
-        const tickets = loadTickets();
-        const ticket = tickets.find(t => t.id === req.params.id);
-        if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
-
-        const { status, resolution, gameName, description, issueType } = req.body;
-        if (status) {
-            if (!VALID_STATUSES.includes(status)) return res.status(400).json({ error: 'Invalid status' });
-            ticket.status = status;
-        }
-        if (resolution) {
-            if (typeof resolution !== 'string' || resolution.length > MAX_FIELD_LEN) return res.status(400).json({ error: `Resolution must be under ${MAX_FIELD_LEN} characters` });
-            ticket.resolution = resolution.trim();
-        }
-        if (gameName) {
-            if (typeof gameName !== 'string' || gameName.length > MAX_FIELD_LEN) return res.status(400).json({ error: `gameName must be under ${MAX_FIELD_LEN} characters` });
-            ticket.gameName = gameName.trim();
-        }
-        if (description) {
-            if (typeof description !== 'string' || description.length > MAX_FIELD_LEN) return res.status(400).json({ error: `description must be under ${MAX_FIELD_LEN} characters` });
-            ticket.description = description.trim();
-        }
-        if (issueType) {
-            if (!VALID_ISSUE_TYPES.includes(issueType)) return res.status(400).json({ error: 'Invalid issue type' });
-            ticket.issueType = issueType;
-        }
-
-        ticket.updatedAt = new Date().toISOString();
-        ticket.updatedBy = req.session.user.username;
-        saveTickets(tickets);
-        res.json(ticket);
-    } catch (err) {
-        console.error('[ERROR] Update ticket failed:', err.message);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
-router.delete('/api/tickets/:id', requireAdmin, (req, res) => {
-    try {
-        let tickets = loadTickets();
-        const before = tickets.length;
-        tickets = tickets.filter(t => t.id !== req.params.id);
-        if (tickets.length === before) return res.status(404).json({ error: 'Ticket not found' });
-        saveTickets(tickets);
-        console.log(`[ADMIN] Ticket deleted: ${req.params.id} (by ${req.session.user.username})`);
-        res.json({ success: true });
-    } catch (err) {
-        console.error('[ERROR] Delete ticket failed:', err.message);
-        res.status(500).json({ error: 'Internal server error' });
-    }
-});
-
 router.patch('/api/tickets/bulk', requireAdmin, (req, res) => {
     try {
         const { ids, status } = req.body;
         if (!Array.isArray(ids) || ids.length === 0) return res.status(400).json({ error: 'ids array required' });
-        if (ids.length > 100) return res.status(400).json({ error: 'Max 100 tickets per bulk operation' });
-        if (!status || !VALID_STATUSES.includes(status)) return res.status(400).json({ error: 'Valid status required' });
+        if (ids.length > 1000) return res.status(400).json({ error: 'Max 1000 tickets per bulk operation' });
+        if (!status || !VALID_STATUSES.includes(status))
+            return res.status(400).json({ error: 'Valid status required' });
 
         const tickets = loadTickets();
         let updated = 0;
@@ -125,6 +73,83 @@ router.patch('/api/tickets/bulk', requireAdmin, (req, res) => {
         res.json({ updated });
     } catch (err) {
         console.error('[ERROR] Bulk update failed:', err.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.patch('/api/tickets/:id', requireAdmin, (req, res) => {
+    try {
+        const tickets = loadTickets();
+        const ticket = tickets.find(t => t.id === req.params.id);
+        if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
+
+        const { status, resolution, gameName, description, issueType } = req.body;
+        if (status) {
+            if (!VALID_STATUSES.includes(status)) return res.status(400).json({ error: 'Invalid status' });
+            ticket.status = status;
+        }
+        if (resolution) {
+            if (typeof resolution !== 'string' || resolution.length > MAX_FIELD_LEN)
+                return res.status(400).json({ error: `Resolution must be under ${MAX_FIELD_LEN} characters` });
+            ticket.resolution = resolution.trim();
+        }
+        if (gameName) {
+            if (typeof gameName !== 'string' || gameName.length > MAX_FIELD_LEN)
+                return res.status(400).json({ error: `gameName must be under ${MAX_FIELD_LEN} characters` });
+            ticket.gameName = gameName.trim();
+        }
+        if (description) {
+            if (typeof description !== 'string' || description.length > MAX_FIELD_LEN)
+                return res.status(400).json({ error: `description must be under ${MAX_FIELD_LEN} characters` });
+            ticket.description = description.trim();
+        }
+        if (issueType) {
+            if (!VALID_ISSUE_TYPES.includes(issueType)) return res.status(400).json({ error: 'Invalid issue type' });
+            ticket.issueType = issueType;
+        }
+
+        ticket.updatedAt = new Date().toISOString();
+        ticket.updatedBy = req.session.user.username;
+        saveTickets(tickets);
+        res.json(ticket);
+    } catch (err) {
+        console.error('[ERROR] Update ticket failed:', err.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.delete('/api/tickets/bulk', requireAdmin, (req, res) => {
+    try {
+        const { ids } = req.body;
+        if (!Array.isArray(ids) || ids.length === 0) return res.status(400).json({ error: 'ids array required' });
+        if (ids.length > 1000) return res.status(400).json({ error: 'Max 1000 tickets per bulk operation' });
+
+        let tickets = loadTickets();
+        const before = tickets.length;
+        const idSet = new Set(ids);
+        tickets = tickets.filter(t => !idSet.has(t.id));
+        const deleted = before - tickets.length;
+        if (deleted === 0) return res.status(404).json({ error: 'No matching tickets found' });
+        saveTickets(tickets);
+        console.log(`[ADMIN] Bulk delete: ${deleted} tickets (by ${req.session.user.username})`);
+        res.json({ deleted });
+    } catch (err) {
+        console.error('[ERROR] Bulk delete failed:', err.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+router.delete('/api/tickets/:id', requireAdmin, (req, res) => {
+    try {
+        let tickets = loadTickets();
+        const before = tickets.length;
+        tickets = tickets.filter(t => t.id !== req.params.id);
+        if (tickets.length === before) return res.status(404).json({ error: 'Ticket not found' });
+        saveTickets(tickets);
+        console.log(`[ADMIN] Ticket deleted: ${req.params.id} (by ${req.session.user.username})`);
+        res.json({ success: true });
+    } catch (err) {
+        console.error('[ERROR] Delete ticket failed:', err.message);
         res.status(500).json({ error: 'Internal server error' });
     }
 });

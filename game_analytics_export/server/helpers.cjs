@@ -26,7 +26,9 @@ function loadTickets() {
     try {
         if (!fs.existsSync(TICKETS_FILE)) return [];
         return JSON.parse(fs.readFileSync(TICKETS_FILE, 'utf-8'));
-    } catch { return []; }
+    } catch {
+        return [];
+    }
 }
 
 function saveTickets(tickets) {

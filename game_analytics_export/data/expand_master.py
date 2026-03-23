@@ -21,7 +21,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 MASTER_PATH = SCRIPT_DIR / "games_master.json"
 DASHBOARD_PATH = SCRIPT_DIR / "games_dashboard.json"
 META_PATH = SCRIPT_DIR / "games_dashboard_meta.json"
-CSV_PATH = Path("/Users/avner/Downloads/Data Download Theme (4).csv")
+CSV_PATH = SCRIPT_DIR / "eilers_source.csv"
 TARGET_GAMES = 1500
 
 DRY_RUN = "--dry-run" in sys.argv
@@ -77,6 +77,7 @@ def main():
         rows = list(reader)
 
     csv_slots = []
+    csv_by_norm = {}
     for row in rows:
         if len(row) > 14 and row[5].strip() == "Slot":
             try:
@@ -91,20 +92,46 @@ def main():
             except ValueError:
                 ms = None
             year, month = parse_release(row[6].strip())
-            csv_slots.append({
+            slot = {
                 "name": row[3].strip(),
                 "provider": row[4].strip(),
                 "theo": tw,
                 "market_share": ms,
                 "release_year": year,
                 "release_month": month,
-            })
+            }
+            csv_slots.append(slot)
+            n = norm(slot["name"])
+            if n not in csv_by_norm or slot["theo"] > csv_by_norm[n]["theo"]:
+                csv_by_norm[n] = slot
 
     csv_slots.sort(key=lambda x: -x["theo"])
     print(f"\nCSV total slots: {len(csv_slots)}")
     print(f"Taking top {TARGET_GAMES}")
 
-    # Find new games from CSV positions 521-1500 not already in master
+    # Backfill: update existing games that have null theo but exist in CSV
+    backfilled = 0
+    remaining_ags = []
+    for g in ags_games:
+        n = norm(g["name"])
+        csv_match = csv_by_norm.get(n)
+        if csv_match:
+            g["performance"]["theo_win"] = csv_match["theo"]
+            g["performance"]["market_share_percent"] = csv_match["market_share"]
+            if not g.get("release", {}).get("year") and csv_match["release_year"]:
+                if "release" not in g:
+                    g["release"] = {}
+                g["release"]["year"] = csv_match["release_year"]
+                g["release"]["month"] = csv_match["release_month"]
+            csv_existing.append(g)
+            backfilled += 1
+        else:
+            remaining_ags.append(g)
+    ags_games = remaining_ags
+    print(f"  Backfilled {backfilled} existing games with CSV data")
+    print(f"  Remaining AGS games (no CSV match): {len(ags_games)}")
+
+    # Find new games from CSV not already in master
     # Deduplicate by normalized name (keep highest theo)
     target_slots = csv_slots[:TARGET_GAMES]
     seen_names = set(existing_norm_names)
@@ -116,8 +143,8 @@ def main():
             seen_names.add(n)
 
     print(f"New slots to add: {len(new_slots)}")
-    if not new_slots:
-        print("No new games to add. Exiting.")
+    if not new_slots and not backfilled:
+        print("No new games to add and no backfills. Exiting.")
         return
 
     # Build new game entries

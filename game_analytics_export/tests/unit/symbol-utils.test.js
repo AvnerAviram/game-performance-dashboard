@@ -124,7 +124,7 @@ describe('aggregateSymbolStats', () => {
         expect(result.topSymbols.length).toBeGreaterThan(0);
         expect(result.topSymbols.length).toBeLessThanOrEqual(20);
 
-        result.topSymbols.forEach((item) => {
+        result.topSymbols.forEach(item => {
             expect(item).toHaveProperty('name');
             expect(item).toHaveProperty('count');
             expect(item).toHaveProperty('cat');
@@ -152,7 +152,7 @@ describe('aggregateSymbolStats', () => {
         const result = aggregateSymbolStats(games);
         expect(result.catStats['Wild'].count).toBe(2);
         expect(result.catStats['Gems/Crystals'].count).toBe(2);
-        expect(result.topSymbols.some((s) => s.name === 'Wild Tiger')).toBe(true);
-        expect(result.topSymbols.some((s) => s.name === 'Diamond')).toBe(true);
+        expect(result.topSymbols.some(s => s.name === 'Wild Tiger')).toBe(true);
+        expect(result.topSymbols.some(s => s.name === 'Diamond')).toBe(true);
     });
 });

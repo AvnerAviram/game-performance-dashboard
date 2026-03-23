@@ -31,10 +31,10 @@ function saveUsers(users) {
 }
 
 function promptPassword(prompt) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
         // On Windows, hiding input isn't reliable, so just prompt normally
-        rl.question(prompt, (answer) => {
+        rl.question(prompt, answer => {
             rl.close();
             resolve(answer);
         });
@@ -110,17 +110,23 @@ function setRole(username, role) {
     console.log(`User "${username}" is now ${role}.`);
 }
 
-const [,, command, username] = process.argv;
+const [, , command, username] = process.argv;
 const roleArg = process.argv[4];
 
 switch (command) {
     case 'add':
-        if (!username) { console.error('Usage: node manage-users.cjs add <username> [--admin]'); process.exit(1); }
+        if (!username) {
+            console.error('Usage: node manage-users.cjs add <username> [--admin]');
+            process.exit(1);
+        }
         addUser(username);
         break;
     case 'remove':
     case 'delete':
-        if (!username) { console.error('Usage: node manage-users.cjs remove <username>'); process.exit(1); }
+        if (!username) {
+            console.error('Usage: node manage-users.cjs remove <username>');
+            process.exit(1);
+        }
         removeUser(username);
         break;
     case 'list':
@@ -128,7 +134,10 @@ switch (command) {
         listUsers();
         break;
     case 'set-role':
-        if (!username || !roleArg) { console.error('Usage: node manage-users.cjs set-role <username> <admin|user>'); process.exit(1); }
+        if (!username || !roleArg) {
+            console.error('Usage: node manage-users.cjs set-role <username> <admin|user>');
+            process.exit(1);
+        }
         setRole(username, roleArg);
         break;
     default:

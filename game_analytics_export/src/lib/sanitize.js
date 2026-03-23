@@ -4,11 +4,11 @@
  */
 
 const ESCAPE_MAP = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#39;',
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
 };
 
 const ESCAPE_RE = /[&<>"']/g;
@@ -18,12 +18,14 @@ const ESCAPE_RE = /[&<>"']/g;
 const CONTROL_RE = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g;
 
 export function escapeHtml(str) {
-  if (str == null) return '';
-  return String(str).replace(CONTROL_RE, '').replace(ESCAPE_RE, ch => ESCAPE_MAP[ch]);
+    if (str == null) return '';
+    return String(str)
+        .replace(CONTROL_RE, '')
+        .replace(ESCAPE_RE, ch => ESCAPE_MAP[ch]);
 }
 
 export function escapeAttr(str) {
-  return escapeHtml(str);
+    return escapeHtml(str);
 }
 
 /**
@@ -31,11 +33,11 @@ export function escapeAttr(str) {
  * Returns empty string for dangerous schemes (javascript:, data:, etc.).
  */
 export function sanitizeUrl(url) {
-  if (url == null) return '';
-  const trimmed = String(url).trim();
-  if (/^(https?:\/\/|\/[^/])/i.test(trimmed)) return trimmed;
-  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return '';
-  return trimmed;
+    if (url == null) return '';
+    const trimmed = String(url).trim();
+    if (/^(https?:\/\/|\/[^/])/i.test(trimmed)) return trimmed;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return '';
+    return trimmed;
 }
 
 /**
@@ -43,14 +45,14 @@ export function sanitizeUrl(url) {
  * Escapes the value for both JS string context and HTML attribute context.
  */
 export function safeOnclick(fn, ...args) {
-  const escapedArgs = args.map(a => {
-    const jsEscaped = String(a == null ? '' : a)
-      .replace(/\\/g, '\\\\')
-      .replace(/'/g, "\\'")
-      .replace(/"/g, '\\"')
-      .replace(/</g, '\\x3c')
-      .replace(/>/g, '\\x3e');
-    return `'${jsEscaped}'`;
-  });
-  return `${fn}(${escapedArgs.join(',')})`;
+    const escapedArgs = args.map(a => {
+        const jsEscaped = String(a == null ? '' : a)
+            .replace(/\\/g, '\\\\')
+            .replace(/'/g, "\\'")
+            .replace(/"/g, '\\"')
+            .replace(/</g, '\\x3c')
+            .replace(/>/g, '\\x3e');
+        return `'${jsEscaped}'`;
+    });
+    return `${fn}(${escapedArgs.join(',')})`;
 }

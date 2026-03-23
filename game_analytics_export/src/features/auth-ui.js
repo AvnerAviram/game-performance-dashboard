@@ -24,16 +24,20 @@ export function updateAuthUI() {
             const btn = document.createElement('button');
             btn.id = 'admin-users-btn';
             btn.type = 'button';
-            btn.className = 'w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2';
-            btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>Manage Users';
+            btn.className =
+                'w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2';
+            btn.innerHTML =
+                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>Manage Users';
             sep.before(btn);
         }
         if (sep && !document.getElementById('admin-aicode-btn')) {
             const codeBtn = document.createElement('button');
             codeBtn.id = 'admin-aicode-btn';
             codeBtn.type = 'button';
-            codeBtn.className = 'w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2';
-            codeBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>AI Name Code';
+            codeBtn.className =
+                'w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2';
+            codeBtn.innerHTML =
+                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>AI Name Code';
             const sep2 = dropdown.querySelectorAll('.border-t');
             const insertBefore = sep2.length > 0 ? sep2[0] : null;
             if (insertBefore) insertBefore.before(codeBtn);
@@ -120,7 +124,9 @@ async function loadUsersList() {
             list.innerHTML = '<div class="text-center text-gray-400 py-4">No users found</div>';
             return;
         }
-        list.innerHTML = users.map(u => `
+        list.innerHTML = users
+            .map(
+                u => `
             <div class="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600">
                 <div class="flex items-center gap-2">
                     <span class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-sm font-bold">${escapeHtml(u.username.charAt(0).toUpperCase())}</span>
@@ -134,7 +140,9 @@ async function loadUsersList() {
                     ${u.role !== 'admin' ? `<button onclick="${safeOnclick('window._adminDeleteUser', u.username)}" class="px-2.5 py-1 text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors" title="Delete user">Delete</button>` : ''}
                 </div>
             </div>
-        `).join('');
+        `
+            )
+            .join('');
     } catch (e) {
         list.innerHTML = `<div class="text-center text-red-500 py-4">${escapeHtml(e.message)}</div>`;
     }
@@ -153,8 +161,14 @@ async function addUser() {
     const username = document.getElementById('admin-new-username')?.value?.trim();
     const password = document.getElementById('admin-new-password')?.value;
     const isAdminRole = document.getElementById('admin-new-role')?.checked;
-    if (!username || !password) { showStatus('Username and password required', true); return; }
-    if (password.length < 8) { showStatus('Password must be at least 8 characters', true); return; }
+    if (!username || !password) {
+        showStatus('Username and password required', true);
+        return;
+    }
+    if (password.length < 8) {
+        showStatus('Password must be at least 8 characters', true);
+        return;
+    }
     try {
         await apiPost('/api/admin/users', { username, password, role: isAdminRole ? 'admin' : 'user' });
         showStatus(`User "${username}" created successfully`);
@@ -162,29 +176,38 @@ async function addUser() {
         document.getElementById('admin-new-password').value = '';
         document.getElementById('admin-new-role').checked = false;
         loadUsersList();
-    } catch (err) { showStatus(err.message || 'Network error', true); }
+    } catch (err) {
+        showStatus(err.message || 'Network error', true);
+    }
 }
 
-window._adminChangePw = async function(username) {
+window._adminChangePw = async function (username) {
     const newPw = prompt(`New password for "${username}":`);
     if (!newPw) return;
-    if (newPw.length < 8) { alert('Password must be at least 8 characters'); return; }
+    if (newPw.length < 8) {
+        alert('Password must be at least 8 characters');
+        return;
+    }
     try {
         await apiFetch(`/api/admin/users/${encodeURIComponent(username)}/password`, {
             method: 'PUT',
             body: JSON.stringify({ password: newPw }),
         });
         showStatus(`Password updated for "${username}"`);
-    } catch (err) { showStatus(err.message || 'Network error', true); }
+    } catch (err) {
+        showStatus(err.message || 'Network error', true);
+    }
 };
 
-window._adminDeleteUser = async function(username) {
+window._adminDeleteUser = async function (username) {
     if (!confirm(`Delete user "${username}"? This cannot be undone.`)) return;
     try {
         await apiDelete(`/api/admin/users/${encodeURIComponent(username)}`);
         showStatus(`User "${username}" deleted`);
         loadUsersList();
-    } catch (err) { showStatus(err.message || 'Network error', true); }
+    } catch (err) {
+        showStatus(err.message || 'Network error', true);
+    }
 };
 
 function openUsersModal() {
@@ -267,7 +290,10 @@ function copyAICode() {
     if (!val) return;
     navigator.clipboard.writeText(val).then(() => {
         const btn = document.getElementById('aicode-copy-btn');
-        if (btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); }
+        if (btn) {
+            btn.textContent = 'Copied!';
+            setTimeout(() => (btn.textContent = 'Copy'), 2000);
+        }
     });
 }
 
@@ -279,7 +305,10 @@ function openAICodeModal() {
     document.getElementById('aicode-result')?.classList.add('hidden');
     document.getElementById('aicode-error')?.classList.add('hidden');
     const pwInput = document.getElementById('aicode-password');
-    if (pwInput) { pwInput.value = ''; pwInput.focus(); }
+    if (pwInput) {
+        pwInput.value = '';
+        pwInput.focus();
+    }
 }
 
 // ============ Setup ============
@@ -287,7 +316,7 @@ function openAICodeModal() {
 export function setupAuthUI() {
     updateAuthUI();
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', e => {
         const hamburgerBtn = e.target.closest('#hamburger-btn');
         const loginBtn = e.target.closest('#auth-login-btn');
         const logoutBtn = e.target.closest('#auth-logout-btn');
@@ -325,7 +354,7 @@ export function setupAuthUI() {
         }
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             if (hamburgerOpen) closeHamburger();
             ['admin-users-modal', 'admin-aicode-modal'].forEach(id => {

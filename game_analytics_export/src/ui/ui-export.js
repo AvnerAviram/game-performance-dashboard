@@ -25,16 +25,10 @@ function escapeCSV(value) {
 
 export function exportOverviewCSV() {
     const headers = ['Rank', 'Theme', 'Game Count', 'Performance Index'];
-    const rows = gameData.themes.slice(0, 10).map((theme, i) => [
-        i + 1,
-        theme.Theme,
-        theme['Game Count'],
-        theme['Smart Index'].toFixed(2)
-    ]);
-    const csv = [
-        headers.map(escapeCSV).join(','),
-        ...rows.map(row => row.map(escapeCSV).join(','))
-    ].join('\n');
+    const rows = gameData.themes
+        .slice(0, 10)
+        .map((theme, i) => [i + 1, theme.Theme, theme['Game Count'], theme['Smart Index'].toFixed(2)]);
+    const csv = [headers.map(escapeCSV).join(','), ...rows.map(row => row.map(escapeCSV).join(','))].join('\n');
     const timestamp = new Date().toISOString().split('T')[0];
     downloadCSV(`game-analytics-overview-${timestamp}.csv`, csv);
 }
@@ -46,12 +40,9 @@ export function exportThemesCSV(filteredThemes = null) {
         theme.Theme,
         theme['Game Count'],
         theme['Smart Index'].toFixed(2),
-        theme['Market Share %']
+        theme['Market Share %'],
     ]);
-    const csv = [
-        headers.map(escapeCSV).join(','),
-        ...rows.map(row => row.map(escapeCSV).join(','))
-    ].join('\n');
+    const csv = [headers.map(escapeCSV).join(','), ...rows.map(row => row.map(escapeCSV).join(','))].join('\n');
     const timestamp = new Date().toISOString().split('T')[0];
     const suffix = filteredThemes ? '-filtered' : '';
     downloadCSV(`game-analytics-themes${suffix}-${timestamp}.csv`, csv);
@@ -59,15 +50,8 @@ export function exportThemesCSV(filteredThemes = null) {
 
 export function exportMechanicsCSV() {
     const headers = ['Mechanic', 'Game Count', 'Performance Index'];
-    const rows = gameData.mechanics.map(mech => [
-        mech.Mechanic,
-        mech['Game Count'],
-        mech['Smart Index'].toFixed(2)
-    ]);
-    const csv = [
-        headers.map(escapeCSV).join(','),
-        ...rows.map(row => row.map(escapeCSV).join(','))
-    ].join('\n');
+    const rows = gameData.mechanics.map(mech => [mech.Mechanic, mech['Game Count'], mech['Smart Index'].toFixed(2)]);
+    const csv = [headers.map(escapeCSV).join(','), ...rows.map(row => row.map(escapeCSV).join(','))].join('\n');
     const timestamp = new Date().toISOString().split('T')[0];
     downloadCSV(`game-analytics-mechanics-${timestamp}.csv`, csv);
 }

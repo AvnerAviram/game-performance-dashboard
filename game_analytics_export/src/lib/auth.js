@@ -24,7 +24,10 @@ export async function login(username, password, remember = false) {
         if (!res.ok) {
             return { success: false, error: data.error || 'Login failed' };
         }
-        sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
+        sessionStorage.setItem(
+            SESSION_FLAG,
+            JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() })
+        );
         return { success: true, user: data.user };
     } catch (_e) {
         return { success: false, error: 'Network error. Please try again.' };
@@ -35,7 +38,9 @@ export async function logout() {
     sessionStorage.removeItem(SESSION_FLAG);
     try {
         await fetch('/api/logout', { method: 'POST' });
-    } catch { /* best-effort */ }
+    } catch {
+        /* best-effort */
+    }
 }
 
 /**
@@ -49,7 +54,8 @@ export function isLoggedIn() {
         if (!data) return false;
         const user = JSON.parse(data);
         return !!user?.username;
-    } catch { /* corrupt session storage — treat as logged out */
+    } catch {
+        /* corrupt session storage — treat as logged out */
         return false;
     }
 }
@@ -66,9 +72,13 @@ export async function verifySession() {
             return null;
         }
         const data = await res.json();
-        sessionStorage.setItem(SESSION_FLAG, JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() }));
+        sessionStorage.setItem(
+            SESSION_FLAG,
+            JSON.stringify({ username: data.user.username, role: data.user.role || 'user', loggedInAt: Date.now() })
+        );
         return data.user;
-    } catch { /* network error — treat as no session */
+    } catch {
+        /* network error — treat as no session */
         return null;
     }
 }
@@ -78,7 +88,8 @@ export function getCurrentUser() {
         const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return null;
         return JSON.parse(data)?.username || null;
-    } catch { /* corrupt session storage */
+    } catch {
+        /* corrupt session storage */
         return null;
     }
 }
@@ -88,7 +99,8 @@ export function isAdmin() {
         const data = sessionStorage.getItem(SESSION_FLAG);
         if (!data) return false;
         return JSON.parse(data)?.role === 'admin';
-    } catch { /* corrupt session storage */
+    } catch {
+        /* corrupt session storage */
         return false;
     }
 }

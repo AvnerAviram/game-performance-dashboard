@@ -1,0 +1,76 @@
+---
+description: Metrics layer architecture rules for the game analytics dashboard
+globs: game_analytics_export/src/**/*.js
+alwaysApply: true
+---
+
+# Metrics Layer Rules
+
+## NEVER aggregate game data outside `src/lib/metrics.js`
+
+All game-array aggregation (forEach/reduce/map loops computing counts, averages, or sums over game objects) MUST go through the centralized functions in `metrics.js`:
+
+- `getProviderMetrics(games)` — provider ranking by GGR share
+- `getThemeMetrics(games)` — theme distribution
+- `getFeatureMetrics(games)` — feature distribution
+- `getVolatilityMetrics(games)` — volatility breakdown
+- `getFeatureRecipes(games)` — multi-feature combo analysis
+- `getFeatureCombos(games)` — pair/triple combos within a theme
+- `getRtpBandMetrics(games)` — RTP band bucketing
+- `calculateSmartIndex(avgTheo, count, globalAvg)` — canonical Smart Index formula
+- `addSmartIndex(rows)` — add SI to dimension rows
+- `getGlobalAvgTheo(games)` — global average theo
+- `getDominantVolatility(games)` — most common volatility
+- `getDominantLayout(games)` — most common reel×row
+- `getDominantProvider(games)` — most common provider
+- `getAvgRtp(games)` — average RTP
+
+**Banned variable names** (will fail `tests/enforcement/no-inline-aggregation.test.js`):
+`provMap`, `providerMap`, `providerStats`, `themeMap`, `themeCounts`, `themeStats`, `featureMap`, `featureCounts`, `featureStats`, `volMap`, `totalTheo`, `totalMkt`, `totalMarketShare`
+
+## ALWAYS use `F.xxx(game)` for field access
+
+Import `{ F }` from `src/lib/game-fields.js`. Never write inline fallback chains like:
+- `game.performance_theo_win ?? game.performance?.theo_win ?? 0` → use `F.theoWin(game)`
+- `game.provider_studio || game.provider?.studio || 'Unknown'` → use `F.provider(game)`
+- `game.theme_consolidated || game.theme?.consolidated` → use `F.themeConsolidated(game)`
+
+For sort keys, use `FIELD_NAMES.THEO_WIN` instead of the string `'performance_theo_win'`.
+
+**Provider access is strictly enforced**: `tests/enforcement/no-raw-provider-access.test.js` bans `.provider_studio`, `g.provider`, `game.provider`, and `gameObj?.provider` outside `game-fields.js` and `duckdb-client.js`. This prevents provider name normalization bypass and ranking inconsistencies.
+
+## ALWAYS import normalization from `src/lib/shared-config.js`
+
+Never define local copies of:
+- `PROVIDER_NORMALIZATION_MAP`
+- `MECHANIC_NORMALIZE`
+- `VOLATILITY_ORDER`, `VOL_COLORS`, `VOL_BADGE_CLASSES`
+
+Use the threshold constants: `MIN_PROVIDER_GAMES`, `MIN_FEATURE_GAMES`, `MIN_SAMPLE_SIZE`, `MARKET_LEADER_THRESHOLD`, `INITIAL_SHOW`, `DEFAULT_PAGE_SIZE`.
+
+## Stays-inline exceptions
+
+These files are allowed to have domain-specific aggregation loops:
+- `features/ai-assistant.js` — dynamic query-driven data analysis
+- `features/idea-generator.js` — theme×feature combos
+- `features/name-generator.js` — word frequency analysis
+- `features/prediction.js` — matching game scoring
+- `features/trends.js` — year-bucketed trend analysis
+- `lib/game-analytics-engine.js` — analysis engine
+- `lib/symbol-utils.js` — symbol stats
+- `ui/panel-details.js` — theme/mechanic detail panels
+- `ui/ui-panels.js` — detail panel aggregation
+- `ui/renderers/blueprint-advisor.js` — blueprint-specific analysis
+- `ui/renderers/generate-insights-impl.js` — heatmap/recipe detail
+- `ui/renderers/insights-combos.js` — combo detail aggregation
+- `ui/renderers/insights-franchises.js` — brand intelligence aggregation
+- `ui/renderers/insights-providers.js` — provider insight aggregation
+- `ui/renderers/insights-recipes.js` — recipe leaderboard aggregation
+- `ui/renderers/overview-renderer.js` — franchise detection
+- `ui/renderers/themes-renderer.js` — display config
+
+Even in these files, prefer calling metrics.js functions when possible.
+
+## Testing
+
+Run `npm test` before any PR. The enforcement tests in `tests/enforcement/` will catch violations automatically.

@@ -109,7 +109,8 @@ router.post('/api/generate-names', requireAuth, async (req, res) => {
     // --- Gate 5: Input sanitization ---
     if (!theme || typeof theme !== 'string') return res.status(400).json({ error: 'Theme is required' });
     if (theme.length > 200) return res.status(400).json({ error: 'Theme too long' });
-    if (keywords && typeof keywords === 'string' && keywords.length > 500) return res.status(400).json({ error: 'Keywords too long' });
+    if (keywords && typeof keywords === 'string' && keywords.length > 500)
+        return res.status(400).json({ error: 'Keywords too long' });
 
     const VALID_STYLES = ['modern', 'classic', 'playful', 'premium'];
     style = VALID_STYLES.includes(style) ? style : 'modern';
@@ -253,11 +254,14 @@ Guidelines:
     messages.push({ role: 'user', content: question.slice(0, 2000) });
 
     try {
-        const response = await callClaude([
-            { role: 'user', content: systemPrompt },
-            { role: 'assistant', content: 'Understood. I\'m ready to help with game analytics questions.' },
-            ...messages,
-        ], 800);
+        const response = await callClaude(
+            [
+                { role: 'user', content: systemPrompt },
+                { role: 'assistant', content: "Understood. I'm ready to help with game analytics questions." },
+                ...messages,
+            ],
+            800
+        );
 
         res.json({ response });
     } catch (e) {

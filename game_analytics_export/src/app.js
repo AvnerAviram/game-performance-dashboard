@@ -6,10 +6,13 @@ import { log, DEBUG } from './lib/env.js';
 // Optional Sentry - init if VITE_SENTRY_DSN is set in .env
 let captureError = () => {};
 if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SENTRY_DSN) {
-  import('@sentry/browser').then(({ init, captureException }) => {
-    init({ dsn: import.meta.env.VITE_SENTRY_DSN, environment: import.meta.env?.DEV ? 'development' : 'production' });
-    captureError = captureException;
-  });
+    import('@sentry/browser').then(({ init, captureException }) => {
+        init({
+            dsn: import.meta.env.VITE_SENTRY_DSN,
+            environment: import.meta.env?.DEV ? 'development' : 'production',
+        });
+        captureError = captureException;
+    });
 }
 import {
     updateHeaderStats,
@@ -55,15 +58,22 @@ async function init() {
     try {
         const data = await loadGameData();
         if (!data) throw new Error('Failed to load game data');
-        log('✅ Data loaded:', { games: data.allGames?.length || 0, themes: data.themes?.length || 0, mechanics: data.mechanics?.length || 0 });
+        log('✅ Data loaded:', {
+            games: data.allGames?.length || 0,
+            themes: data.themes?.length || 0,
+            mechanics: data.mechanics?.length || 0,
+        });
 
         updateHeaderStats();
         setupDarkMode();
         setupAuthUI();
 
         window.setupAIInput = () => {
-            document.getElementById('ai-input')?.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendAIMessage(); }
+            document.getElementById('ai-input')?.addEventListener('keypress', e => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendAIMessage();
+                }
             });
         };
 
@@ -106,7 +116,8 @@ function hideLoadingShowError(error) {
 
     if (DEBUG) {
         const pre = document.createElement('pre');
-        pre.className = 'mt-6 text-left text-xs text-gray-500 overflow-auto max-h-40 p-4 bg-gray-100 dark:bg-gray-800 rounded';
+        pre.className =
+            'mt-6 text-left text-xs text-gray-500 overflow-auto max-h-40 p-4 bg-gray-100 dark:bg-gray-800 rounded';
         pre.textContent = error.stack || error.message;
         container.appendChild(pre);
     }
