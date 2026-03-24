@@ -312,22 +312,32 @@ th.sortable.sorted-asc::after {
 /* ── Mobile Responsive ──────────────────────────────────── */
 @media (max-width: 767px) {
     #sidebar {
-        width: 0 !important;
-        transform: translateX(-100%) !important;
+        overflow: hidden;
+        border-right-width: 0;
         transition:
             transform 0.3s ease,
             width 0.3s ease;
+    }
+    #sidebar.mobile-hidden {
+        width: 0 !important;
+        transform: translateX(-100%) !important;
     }
     #main-content {
         margin-left: 0 !important;
         padding-left: 1rem;
         padding-right: 1rem;
+        z-index: 1 !important;
     }
 
-    /* Sticky headers: less padding, wrap filter controls */
+    /* Sticky headers: indent past the fixed hamburger button */
     .sticky {
-        padding-left: 1rem !important;
+        padding-left: 3.5rem !important;
         padding-right: 1rem !important;
+    }
+
+    /* Hide page-level account hamburger on mobile (accessible via sidebar) */
+    #hamburger-btn {
+        display: none !important;
     }
     .sticky .flex.justify-between {
         flex-wrap: wrap;

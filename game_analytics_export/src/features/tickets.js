@@ -71,6 +71,7 @@ export async function renderTickets() {
                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">By</th>
                             <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ver</th>
                             ${userIsAdmin ? '<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>' : ''}
                         </tr>
                     </thead>
@@ -86,6 +87,7 @@ export async function renderTickets() {
                                 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 max-w-xs truncate">${escapeHtml(t.description || '')}</td>
                                 <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">${escapeHtml(t.submittedBy || '')}</td>
                                 <td class="px-4 py-3"><span class="px-2 py-1 text-xs rounded-full ${STATUS_STYLES[t.status] || STATUS_STYLES.open}">${escapeHtml(t.status || '')}</span></td>
+                                <td class="px-4 py-3 text-xs text-gray-400 dark:text-gray-500">${escapeHtml(t.appVersion || '')}</td>
                                 ${
                                     userIsAdmin
                                         ? `<td class="px-4 py-3">

@@ -90,8 +90,8 @@ function handleMobileResize() {
 
     const isMobile = window.innerWidth < 768;
     const overlay = document.getElementById('sidebar-overlay');
-
-    if (isMobile && sidebar.style.width !== '0px') {
+    const sidebarDeliberatelyOpen = overlay && overlay.style.display === 'block';
+    if (isMobile && sidebar.style.width !== '0px' && !sidebarDeliberatelyOpen) {
         sidebar.style.width = '0px';
         sidebar.style.transform = 'translateX(-100%)';
         sidebar.classList.add('collapsed', 'mobile-hidden');
@@ -109,7 +109,13 @@ function handleMobileResize() {
         if (!overlay) {
             const ov = document.createElement('div');
             ov.id = 'sidebar-overlay';
-            ov.className = 'fixed inset-0 bg-black/50 z-[499] hidden';
+            Object.assign(ov.style, {
+                position: 'fixed',
+                inset: '0',
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                zIndex: '499',
+                display: 'none',
+            });
             ov.addEventListener('click', () => {
                 window.toggleSidebar();
             });
@@ -133,16 +139,15 @@ window.toggleSidebar = function () {
             sidebar.classList.remove('collapsed', 'mobile-hidden');
             const sidebarTexts = document.querySelectorAll('.sidebar-text');
             sidebarTexts.forEach(el => el.classList.remove('hidden'));
-            if (overlay) overlay.classList.remove('hidden');
+            if (overlay) overlay.style.display = 'block';
         } else {
             sidebar.style.width = '0px';
             sidebar.style.transform = 'translateX(-100%)';
             sidebar.classList.add('collapsed', 'mobile-hidden');
             const sidebarTexts = document.querySelectorAll('.sidebar-text');
             sidebarTexts.forEach(el => el.classList.add('hidden'));
-            if (overlay) overlay.classList.add('hidden');
+            if (overlay) overlay.style.display = 'none';
         }
-        setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
         return;
     }
     origToggle();

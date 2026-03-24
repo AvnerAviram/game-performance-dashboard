@@ -79,11 +79,15 @@ describe('Blueprint calculation integrity', () => {
 
             // New: single-pass approach
             const featGameMap = {};
-            FEATS.forEach(f => { featGameMap[f] = []; });
+            FEATS.forEach(f => {
+                featGameMap[f] = [];
+            });
             themeGames.forEach(g => {
                 const fs = gameFeatSets.get(g);
                 const theo = gameTheos.get(g);
-                FEATS.forEach(f => { if (fs.has(f)) featGameMap[f].push(theo); });
+                FEATS.forEach(f => {
+                    if (fs.has(f)) featGameMap[f].push(theo);
+                });
             });
 
             // Old: per-feature filter approach
@@ -112,7 +116,10 @@ describe('Blueprint calculation integrity', () => {
         const themeAvg = globalAvg;
 
         function scoreLegacy(selectedFeatures) {
-            let themeStrength = Math.min(100, Math.max(0, 50 + ((themeAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200));
+            let themeStrength = Math.min(
+                100,
+                Math.max(0, 50 + ((themeAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200)
+            );
 
             const selFeatsArr = [...selectedFeatures];
             let featQuality = 50;
@@ -123,15 +130,20 @@ describe('Blueprint calculation integrity', () => {
                 });
                 let perfScore = 50;
                 if (matchGames.length >= 2) {
-                    const matchAvg = matchGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / matchGames.length;
-                    perfScore = Math.min(100, Math.max(0, 50 + ((matchAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200));
+                    const matchAvg =
+                        matchGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / matchGames.length;
+                    perfScore = Math.min(
+                        100,
+                        Math.max(0, 50 + ((matchAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200)
+                    );
                 }
                 featQuality = Math.round(perfScore * 0.6 + 50 * 0.4);
             }
 
             let synergyScore = 50;
             if (selFeatsArr.length >= 2) {
-                let totalSyn = 0, pairs = 0;
+                let totalSyn = 0,
+                    pairs = 0;
                 for (let i = 0; i < selFeatsArr.length; i++) {
                     for (let j = i + 1; j < selFeatsArr.length; j++) {
                         const bothGames = themeGames.filter(g => {
@@ -139,7 +151,8 @@ describe('Blueprint calculation integrity', () => {
                             return gf.includes(selFeatsArr[i]) && gf.includes(selFeatsArr[j]);
                         });
                         if (bothGames.length >= 2) {
-                            const pairAvg = bothGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / bothGames.length;
+                            const pairAvg =
+                                bothGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / bothGames.length;
                             totalSyn += ((pairAvg - themeAvg) / Math.max(themeAvg, 0.01)) * 100;
                             pairs++;
                         }
@@ -170,12 +183,16 @@ describe('Blueprint calculation integrity', () => {
                 gameFeatSets.set(g, new Set(parseFeatures(g.features)));
                 gameTheos.set(g, g.performance_theo_win || 0);
             });
-            let themeStrength = Math.min(100, Math.max(0, 50 + ((themeAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200));
+            let themeStrength = Math.min(
+                100,
+                Math.max(0, 50 + ((themeAvg - globalAvg) / Math.max(globalAvg, 0.01)) * 200)
+            );
 
             const selFeatsArr = [...selectedFeatures];
             let featQuality = 50;
             if (selFeatsArr.length > 0) {
-                let matchSum = 0, matchCount = 0;
+                let matchSum = 0,
+                    matchCount = 0;
                 themeGames.forEach(g => {
                     const fs = gameFeatSets.get(g);
                     if (selFeatsArr.some(f => fs.has(f))) {
@@ -185,17 +202,22 @@ describe('Blueprint calculation integrity', () => {
                 });
                 let perfScore = 50;
                 if (matchCount >= 2) {
-                    perfScore = Math.min(100, Math.max(0, 50 + ((matchSum / matchCount - globalAvg) / Math.max(globalAvg, 0.01)) * 200));
+                    perfScore = Math.min(
+                        100,
+                        Math.max(0, 50 + ((matchSum / matchCount - globalAvg) / Math.max(globalAvg, 0.01)) * 200)
+                    );
                 }
                 featQuality = Math.round(perfScore * 0.6 + 50 * 0.4);
             }
 
             let synergyScore = 50;
             if (selFeatsArr.length >= 2) {
-                let totalSyn = 0, pairs = 0;
+                let totalSyn = 0,
+                    pairs = 0;
                 for (let i = 0; i < selFeatsArr.length; i++) {
                     for (let j = i + 1; j < selFeatsArr.length; j++) {
-                        let pairSum = 0, pairCount = 0;
+                        let pairSum = 0,
+                            pairCount = 0;
                         themeGames.forEach(g => {
                             const fs = gameFeatSets.get(g);
                             if (fs.has(selFeatsArr[i]) && fs.has(selFeatsArr[j])) {
@@ -264,7 +286,10 @@ describe('Blueprint calculation integrity', () => {
             const cache = new WeakMap();
             function gameFeats(g) {
                 let cached = cache.get(g);
-                if (!cached) { cached = parseFeatures(g.features); cache.set(g, cached); }
+                if (!cached) {
+                    cached = parseFeatures(g.features);
+                    cache.set(g, cached);
+                }
                 return cached;
             }
 

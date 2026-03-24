@@ -7,6 +7,36 @@ import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
 import { apiFetch, apiPost, apiDelete } from '../lib/api-client.js';
 
 let hamburgerOpen = false;
+let _appVersion = null;
+
+export function getAppVersion() {
+    return _appVersion;
+}
+
+async function fetchAppVersion() {
+    if (_appVersion) return _appVersion;
+    try {
+        const res = await fetch('/health.json', { cache: 'no-cache' });
+        if (res.ok) {
+            const data = await res.json();
+            _appVersion = data.version || null;
+        }
+    } catch {
+        /* ignore */
+    }
+    return _appVersion;
+}
+
+function injectVersionLabel(dropdown) {
+    if (!_appVersion || document.getElementById('app-version-label')) return;
+    const label = document.createElement('div');
+    label.id = 'app-version-label';
+    label.className =
+        'mx-auto mt-1 pt-1.5 pb-1 text-[10px] text-gray-400 dark:text-gray-500 text-center select-none border-t border-gray-200 dark:border-gray-700';
+    label.style.width = '60%';
+    label.textContent = `Version ${_appVersion}`;
+    dropdown.appendChild(label);
+}
 
 export function updateAuthUI() {
     const loggedIn = isLoggedIn();
@@ -49,6 +79,8 @@ export function updateAuthUI() {
         document.getElementById('admin-users-btn')?.remove();
         document.getElementById('admin-aicode-btn')?.remove();
     }
+
+    if (dropdown) injectVersionLabel(dropdown);
 }
 
 function toggleHamburger() {
@@ -314,6 +346,7 @@ function openAICodeModal() {
 // ============ Setup ============
 
 export function setupAuthUI() {
+    fetchAppVersion().then(() => updateAuthUI());
     updateAuthUI();
 
     document.addEventListener('click', e => {

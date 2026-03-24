@@ -1,7 +1,16 @@
 const { Router } = require('express');
+const path = require('path');
 const { loadTickets, saveTickets, requireAuth, requireAdmin } = require('../helpers.cjs');
 
 const router = Router();
+
+const APP_VERSION = (() => {
+    try {
+        return require(path.join(__dirname, '..', '..', 'package.json')).version;
+    } catch {
+        return 'unknown';
+    }
+})();
 
 const MAX_FIELD_LEN = 500;
 const VALID_ISSUE_TYPES = ['data-issue', 'ui-bug', 'feature-request', 'other'];
@@ -37,6 +46,7 @@ router.post('/api/tickets', requireAuth, (req, res) => {
             status: 'open',
             submittedBy: req.session.user.username,
             createdAt: new Date().toISOString(),
+            appVersion: APP_VERSION,
         };
         tickets.push(ticket);
         saveTickets(tickets);

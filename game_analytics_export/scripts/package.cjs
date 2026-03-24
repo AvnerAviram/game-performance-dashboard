@@ -96,10 +96,18 @@ copyFile(
     path.join(RELEASE, 'src', 'config', 'theme-breakdowns.json')
 );
 
+// logs/ directory (empty placeholder so Node logging works immediately)
+fs.mkdirSync(path.join(RELEASE, 'logs'), { recursive: true });
+
 // Root files
 copyFile(PKG_PATH, path.join(RELEASE, 'package.json'));
+const lockPath = path.join(ROOT, 'package-lock.json');
+if (fs.existsSync(lockPath)) {
+    copyFile(lockPath, path.join(RELEASE, 'package-lock.json'));
+}
 copyFile(path.join(ROOT, 'web.config'), path.join(RELEASE, 'web.config'));
 copyFile(path.join(ROOT, '.env.example'), path.join(RELEASE, '.env.example'));
+copyFile(path.join(ROOT, 'deploy', 'install.ps1'), path.join(RELEASE, 'install.ps1'));
 
 // ── 5. Safety checks ───────────────────────────────────────────────────
 const envLeak = path.join(RELEASE, 'data', '.env');
@@ -159,6 +167,8 @@ console.log(`
         server/            Express server
         data/              ${DATA_FILES.length} API JSON files
         src/config/        theme-breakdowns.json
+        logs/              Log output directory
+        install.ps1        Run on server after extraction
         package.json       For npm install --omit=dev
         web.config         IIS config
         .env.example       Env reference
