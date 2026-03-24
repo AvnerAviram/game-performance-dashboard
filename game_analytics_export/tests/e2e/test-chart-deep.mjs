@@ -94,7 +94,7 @@ async function main() {
 
     // Check all sections existence
     const sections = await page.evaluate(() => {
-        const ids = ['insight-build-next','insight-avoid','insight-watch','provider-theme-matrix','top-outliers','bottom-outliers'];
+        const ids = ['insight-build-next','insight-avoid','insight-watch','provider-theme-matrix'];
         const result = {};
         ids.forEach(id => {
             const el = document.getElementById(id);

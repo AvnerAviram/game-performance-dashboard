@@ -45,7 +45,7 @@ game-performace-dashboard/
 │   │   ├── server.cjs            # Express auth server (session-based)
 │   │   └── manage-users.cjs      # CLI for user management
 │   ├── data/
-│   │   ├── games_dashboard.json  # Enriched game data (642 games)
+│   │   ├── games_dashboard.json  # Enriched game data (1539 games)
 │   │   ├── theme_consolidation_map.json
 │   │   ├── enrich_websearch.py   # AI enrichment pipeline
 │   │   └── PHASE1_TRUTH_MASTER.md  # Pipeline runbook
@@ -59,15 +59,15 @@ game-performace-dashboard/
 
 ## Dashboard Pages
 
-- **Overview** -- Quick stats, top performers, insight cards
+- **Overview** -- Quick stats, top performers, brand intelligence, insight cards
 - **Games** -- Full searchable/sortable game database with detail panels
 - **Themes** -- Theme performance analysis with sub-theme breakdowns
 - **Mechanics** -- Game mechanic rankings and comparisons
 - **Providers** -- Provider and studio comparison
-- **Anomalies** -- High/low performance outliers with success factor analysis
-- **Insights** -- Market insights, top performers, opportunity finder
-- **Prediction** -- Game success prediction tool
-- **Idea Generator** -- Theme+mechanic combo heatmap and opportunity explorer
+- **Insights** -- Market insights, provider matrix, brand intelligence, opportunity finder
+- **Game Lab** -- Blueprint Advisor, feature recipes, winning combinations, specs analysis
+- **Name Generator** -- AI-assisted game name generation
+- **Trends** -- Historical trend analysis
 
 ## Tech Stack
 
@@ -79,7 +79,7 @@ game-performace-dashboard/
 | Auth | Express + express-session + bcryptjs |
 | Security | Helmet, express-rate-limit, HTML escaping (sanitize.js) |
 | Hosting | IIS (HttpPlatformHandler) on Windows Server |
-| Tests | Vitest (261 tests), Playwright (E2E) |
+| Tests | Vitest (866 tests), Playwright (E2E) |
 | Enrichment | Python + Claude API (Sonnet extraction, Haiku normalization) |
 
 ## Testing
@@ -87,13 +87,42 @@ game-performace-dashboard/
 ```bash
 cd game_analytics_export
 
-npm run test:vitest       # Unit + integration + data validation (261 tests)
-npm run test:e2e          # Playwright E2E tests
+npm run test              # Unit + integration + data validation (866 tests)
 npm run test:unit         # Unit tests only
+npm run test:integration  # Integration tests only
 npm run test:validation   # Data validation only
+npm run test:e2e          # Playwright E2E tests
 ```
 
-## Deployment (IIS on Windows Server)
+## Packaging & Deployment
+
+### Build a release package
+
+```bash
+cd game_analytics_export
+npm run release
+```
+
+This will:
+1. Auto-bump the patch version (e.g., 1.0.1 → 1.0.2)
+2. Run the full production build
+3. Assemble a clean `release/` folder with only deployment files
+4. Create `release-v1.0.2.zip` (removes any previous zip)
+
+The output zip contains everything needed for deployment:
+
+```
+release-v1.0.2.zip
+├── dist/              # Built frontend (HTML, JS, CSS, data)
+├── server/            # Express server (no credentials or sessions)
+├── data/              # 3 API JSON files
+├── src/config/        # theme-breakdowns.json
+├── package.json       # For npm install --omit=dev on server
+├── web.config         # IIS HttpPlatformHandler config
+└── .env.example       # Required environment variables reference
+```
+
+### Deploy to IIS (Windows Server)
 
 Prerequisites:
 - Windows Server 2012 R2+ with IIS and SSL
@@ -107,7 +136,7 @@ node server\manage-users.cjs add analyst1  # Add more users
 node server\manage-users.cjs list          # List all users
 ```
 
-See `deploy/deploy.ps1` for the full deployment script and `web.config` for IIS configuration.
+See `deploy/deploy.ps1` for the automated deployment script and `web.config` for IIS configuration.
 
 ## Enrichment Pipeline
 

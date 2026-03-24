@@ -766,8 +766,9 @@ function renderGameFranchises() {
                 </div>
                 <span class="px-2 py-1 text-xs font-bold rounded-full ${i < 3 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'}">#${i + 1}</span>
             </div>
-            <div class="flex items-center gap-2 mb-1">
+            <div class="flex flex-wrap items-center gap-1.5 mb-1">
                 ${fam.providers
+                    .slice(0, 3)
                     .map(
                         p => `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-800/60 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
@@ -775,6 +776,18 @@ function renderGameFranchises() {
                 </span>`
                     )
                     .join('')}
+                ${fam.providers.length > 3 ? `<span class="text-[10px] text-indigo-500 dark:text-indigo-400 cursor-pointer hover:underline font-medium" onclick="const el=this.nextElementSibling;const hidden=el.classList.toggle('hidden');this.textContent=hidden?'+${fam.providers.length - 3} more':'show less'">+${fam.providers.length - 3} more</span>` : ''}
+                ${
+                    fam.providers.length > 3
+                        ? `<div class="hidden w-full flex flex-wrap gap-1.5 mt-1">${fam.providers
+                              .slice(3)
+                              .map(
+                                  p =>
+                                      `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-800/60 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>${escapeHtml(p)}</span>`
+                              )
+                              .join('')}</div>`
+                        : ''
+                }
             </div>
             <div class="flex gap-3 text-xs">
                 <span class="text-amber-600 dark:text-amber-400 font-semibold">Avg Theo: ${fam.avgTheo.toFixed(2)}</span>

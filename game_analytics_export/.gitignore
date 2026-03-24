@@ -31,6 +31,8 @@ npm-debug.log*
 # Build artifacts
 dist/
 build/
+release/
+release-v*.zip
 
 # Environment (keep .env.example committed)
 .env

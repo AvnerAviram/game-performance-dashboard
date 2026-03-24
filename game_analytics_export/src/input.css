@@ -318,23 +318,35 @@ th.sortable.sorted-asc::after {
             transform 0.3s ease,
             width 0.3s ease;
     }
-    #sidebar.mobile-open {
-        width: 240px !important;
-        transform: translateX(0) !important;
-    }
     #main-content {
         margin-left: 0 !important;
         padding-left: 1rem;
         padding-right: 1rem;
     }
 
-    /* Sticky headers: less padding on mobile */
+    /* Sticky headers: less padding, wrap filter controls */
     .sticky {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
     }
+    .sticky .flex.justify-between {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .sticky .flex.gap-2 {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .sticky .flex.gap-2 .relative,
+    .sticky .flex.gap-2 select {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+    .sticky .flex.gap-2 input[type='text'] {
+        width: 100% !important;
+    }
 
-    /* Tables: horizontal scroll wrapper */
+    /* Tables: smaller text, horizontal scroll */
     table {
         font-size: 0.8125rem;
     }
@@ -360,12 +372,26 @@ th.sortable.sorted-asc::after {
         left: 0 !important;
     }
 
-    /* Chart containers */
+    /* Chart containers: cap tall charts at 280px */
+    [style*='height: 280px'],
+    [style*='height: 310px'],
+    [style*='height: 340px'],
     [style*='height: 420px'],
-    [style*='height: 460px'] {
+    [style*='height: 460px'],
+    [style*='height: 480px'] {
         height: 280px !important;
         min-height: 280px !important;
     }
+
+    /* Touch-friendly tooltips: tap (focus) triggers group-hover tooltips */
+    .group:focus-within > [class*='group-hover\\:block'] {
+        display: block;
+    }
+}
+
+/* Touch-active state for tap-to-toggle tooltips on touch devices */
+.group.touch-active > [class*='group-hover\\:block'] {
+    display: block;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

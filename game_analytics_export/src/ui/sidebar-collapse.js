@@ -142,9 +142,11 @@ window.toggleSidebar = function () {
             sidebarTexts.forEach(el => el.classList.add('hidden'));
             if (overlay) overlay.classList.add('hidden');
         }
+        setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
         return;
     }
     origToggle();
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 350);
 };
 
 // Mobile hamburger button in headers
@@ -202,6 +204,35 @@ document.addEventListener('DOMContentLoaded', () => {
         navGameLab.addEventListener('mouseleave', hideFlyout);
         flyout.addEventListener('mouseenter', cancelHide);
         flyout.addEventListener('mouseleave', hideFlyout);
+
+        navGameLab.addEventListener('click', e => {
+            if (window.innerWidth >= 1024) return;
+            e.preventDefault();
+            e.stopPropagation();
+            flyout.classList.contains('hidden') ? showFlyout() : hideFlyout();
+        });
+        document.addEventListener('click', e => {
+            if (!navGameLab.contains(e.target) && !flyout.contains(e.target)) {
+                flyout.classList.add('hidden');
+            }
+        });
+    });
+})();
+
+// Make hover-only tooltips accessible on touch devices via tap
+(function setupTouchTooltips() {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!('ontouchstart' in window)) return;
+        document.addEventListener('click', e => {
+            const trigger = e.target.closest('.group [class*="cursor-help"], .group .info-icon');
+            if (!trigger) return;
+            const group = trigger.closest('.group');
+            if (!group) return;
+            e.preventDefault();
+            const wasActive = group.classList.contains('touch-active');
+            document.querySelectorAll('.group.touch-active').forEach(g => g.classList.remove('touch-active'));
+            if (!wasActive) group.classList.add('touch-active');
+        });
     });
 })();
 

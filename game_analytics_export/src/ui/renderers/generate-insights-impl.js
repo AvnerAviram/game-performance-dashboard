@@ -8,7 +8,7 @@ import { createMarketLandscapeChart } from '../charts-modern.js';
 import { initBlueprint } from './blueprint-advisor.js';
 import { renderComboExplorer } from './insights-combos.js';
 import { renderStrategicCards } from './insights-cards.js';
-import { generateProviderThemeMatrix, renderPerformanceOutliers } from './insights-providers.js';
+import { generateProviderThemeMatrix } from './insights-providers.js';
 import { renderFranchiseIntelligence } from './insights-franchises.js';
 import {
     renderFeatureHeatmap,
@@ -61,8 +61,6 @@ export function generateInsights() {
         generateProviderThemeMatrix();
         log('  ✅ Provider theme matrix generated');
     }
-
-    renderPerformanceOutliers();
 
     const franchiseDiv = document.getElementById('franchise-intelligence');
     if (franchiseDiv) {
