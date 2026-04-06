@@ -2,12 +2,12 @@
  * DuckDB Client for Game Analytics Dashboard
  *
  * 100% DuckDB-ONLY data access
- * Single Source of Truth: games_dashboard.json → DuckDB table
+ * Single Source of Truth: game_data_master.json → DuckDB table
  */
 
 import { log } from '../env.js';
 import { parseFeatures } from '../parse-features.js';
-import { normalizeProvider, normalizeMechanic } from '../shared-config.js';
+import { normalizeProvider } from '../shared-config.js';
 
 const duckdb = await import('https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.28.0/+esm');
 
@@ -18,6 +18,22 @@ let initializationPromise = null;
 
 /** Raw theme_primary → consolidated theme (from theme_consolidation_map.json). Set when games load. */
 let themeConsolidationMap = {};
+
+/**
+ * SQL WHERE clause fragment: games that have reliable data.
+ * A game qualifies if it has at least one verified/extracted confidence field
+ * OR has been extracted (features present = Claude extracted features/themes/symbols).
+ */
+const RELIABLE_GAME = `(
+  rtp_confidence IN ('verified','extracted') OR
+  volatility_confidence IN ('verified','extracted') OR
+  reels_confidence IN ('verified','extracted') OR
+  paylines_confidence IN ('verified','extracted') OR
+  max_win_confidence IN ('verified','extracted') OR
+  min_bet_confidence IN ('verified','extracted') OR
+  max_bet_confidence IN ('verified','extracted') OR
+  (features IS NOT NULL AND features != '[]')
+)`;
 
 // Provider normalization via normalizeProvider() from shared-config.js
 
@@ -72,23 +88,26 @@ export async function initializeDatabase() {
 }
 
 /**
- * Load games_dashboard.json into DuckDB table
+ * Load game_data_master.json into DuckDB table
  */
 async function loadGamesData() {
     try {
         log('Loading games data into DuckDB...');
 
-        const [response, themeMapResponse, franchiseResponse] = await Promise.all([
-            fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/games_dashboard.json')),
+        const [response, themeMapResponse, franchiseResponse, confidenceResponse] = await Promise.all([
+            fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/game_data_master.json')),
             fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() =>
                 fetch('data/theme_consolidation_map.json')
             ),
             fetch('data/franchise_mapping.json').catch(() => null),
+            fetch('/api/data/confidence-map', { credentials: 'same-origin' }).catch(() =>
+                fetch('data/confidence_map.json').catch(() => null)
+            ),
         ]);
 
         if (!response.ok) {
             throw new Error(
-                `HTTP ${response.status}: ${response.statusText} - Failed to load data/games_dashboard.json`
+                `HTTP ${response.status}: ${response.statusText} - Failed to load data/game_data_master.json`
             );
         }
 
@@ -101,7 +120,13 @@ async function loadGamesData() {
         } catch (e) {
             console.warn('Failed to parse franchise_mapping.json, continuing without franchise data:', e.message);
         }
-        log(`Fetched ${games.length} games from games_dashboard.json`);
+        let confidenceMap = {};
+        try {
+            if (confidenceResponse && confidenceResponse.ok) confidenceMap = await confidenceResponse.json();
+        } catch (e) {
+            console.warn('Failed to parse confidence_map.json, continuing without confidence data:', e.message);
+        }
+        log(`Fetched ${games.length} games from game_data_master.json`);
 
         await connection.query(`
       CREATE TABLE IF NOT EXISTS games (
@@ -111,7 +136,6 @@ async function loadGamesData() {
         theme_primary VARCHAR,
         theme_secondary VARCHAR,
         theme_consolidated VARCHAR,
-        mechanic_primary VARCHAR,
         provider_studio VARCHAR,
         provider_parent VARCHAR,
         specs_reels INTEGER,
@@ -128,6 +152,7 @@ async function loadGamesData() {
         release_month INTEGER,
         features VARCHAR,
         themes_all VARCHAR,
+        themes_raw VARCHAR,
         symbols VARCHAR,
         description VARCHAR,
         demo_url VARCHAR,
@@ -141,16 +166,39 @@ async function loadGamesData() {
         min_bet DOUBLE,
         max_bet DOUBLE,
         franchise VARCHAR,
-        franchise_type VARCHAR
+        franchise_type VARCHAR,
+        game_category VARCHAR,
+        game_sub_category VARCHAR,
+        rtp_confidence VARCHAR,
+        volatility_confidence VARCHAR,
+        reels_confidence VARCHAR,
+        paylines_confidence VARCHAR,
+        max_win_confidence VARCHAR,
+        min_bet_confidence VARCHAR,
+        max_bet_confidence VARCHAR
       )
     `);
 
-        // Sort by theo_win DESC to compute rank
-        const sorted = [...games].sort((a, b) => (b.theo_win || 0) - (a.theo_win || 0));
+        // Filter out bogus summary rows (e.g. game_category "Total")
+        const validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
 
+        // Sort by theo_win DESC to compute rank
+        const sorted = [...validGames].sort((a, b) => (b.theo_win || 0) - (a.theo_win || 0));
+
+        // Pre-compute which games are reliable so rank is contiguous within the dashboard view
+        const isReliable = game => {
+            const c = confidenceMap[game.name] || {};
+            const specReliable = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'].some(
+                f => c[`${f}_confidence`] === 'verified' || c[`${f}_confidence`] === 'extracted'
+            );
+            const hasFeatures = Array.isArray(game.features) && game.features.length > 0;
+            return specReliable || hasFeatures;
+        };
+
+        let reliableRank = 0;
         for (let i = 0; i < sorted.length; i++) {
             const game = sorted[i];
-            const rank = i + 1;
+            const rank = isReliable(game) ? ++reliableRank : null;
 
             const safeStr = val => {
                 if (val === null || val === undefined || val === '') return 'NULL';
@@ -176,8 +224,6 @@ async function loadGamesData() {
                 ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
                 : '';
 
-            const mechanic = normalizeMechanic(game.mechanic_primary);
-
             const rawStudio = game.studio || game.provider || '';
             const studioOrParent =
                 !rawStudio || /^unknown$/i.test(rawStudio) ? game.parent_company || rawStudio : rawStudio;
@@ -190,6 +236,10 @@ async function loadGamesData() {
             const themesAllJson =
                 Array.isArray(game.themes_all) && game.themes_all.length > 0
                     ? JSON.stringify(game.themes_all).replace(/'/g, "''")
+                    : null;
+            const themesRawJson =
+                Array.isArray(game.themes_raw) && game.themes_raw.length > 0
+                    ? JSON.stringify(game.themes_raw).replace(/'/g, "''")
                     : null;
             const symbolsJson =
                 Array.isArray(game.symbols) && game.symbols.length > 0
@@ -204,7 +254,6 @@ async function loadGamesData() {
           '${themePrimary}',
           '${themeSecondary}',
           '${themeConsolidated}',
-          ${safeStr(mechanic)},
           ${safeStr(normalizedStudio)},
           ${safeStr(game.parent_company)},
           ${safeNum(game.reels)},
@@ -213,7 +262,7 @@ async function loadGamesData() {
           ${safeNum(game.rtp)},
           ${safeStr(game.volatility)},
           ${safeNum(game.theo_win) || 0},
-          ${rank},
+          ${rank === null ? 'NULL' : rank},
           ${safeStr(game.anomaly)},
           ${safeNum(game.market_share_pct) || 0},
           ${safeStr(game.percentile)},
@@ -221,6 +270,7 @@ async function loadGamesData() {
           ${safeNum(game.release_month)},
           ${featuresJson ? `'${featuresJson}'` : 'NULL'},
           ${themesAllJson ? `'${themesAllJson}'` : 'NULL'},
+          ${themesRawJson ? `'${themesRawJson}'` : 'NULL'},
           ${symbolsJson ? `'${symbolsJson}'` : 'NULL'},
           ${safeStr(game.description)},
           ${safeStr(game.demo_url)},
@@ -234,7 +284,16 @@ async function loadGamesData() {
           ${safeNum(game.min_bet)},
           ${safeNum(game.max_bet)},
           ${safeStr(franchiseMap[game.id]?.franchise)},
-          ${safeStr(franchiseMap[game.id]?.franchise_type)}
+          ${safeStr(franchiseMap[game.id]?.franchise_type)},
+          ${safeStr(game.game_category)},
+          ${safeStr(game.game_sub_category)},
+          ${safeStr(confidenceMap[game.name]?.rtp_confidence)},
+          ${safeStr(confidenceMap[game.name]?.volatility_confidence)},
+          ${safeStr(confidenceMap[game.name]?.reels_confidence)},
+          ${safeStr(confidenceMap[game.name]?.paylines_confidence)},
+          ${safeStr(confidenceMap[game.name]?.max_win_confidence)},
+          ${safeStr(confidenceMap[game.name]?.min_bet_confidence)},
+          ${safeStr(confidenceMap[game.name]?.max_bet_confidence)}
         )
       `);
         }
@@ -288,15 +347,26 @@ export async function query(sql) {
  * Get overview stats for header
  */
 export async function getOverviewStats() {
-    return query(`
+    const [basic] = await query(`
     SELECT 
       COUNT(*) as total_games,
       COUNT(DISTINCT theme_consolidated) as theme_count,
-      COUNT(DISTINCT mechanic_primary) as mechanic_count,
       AVG(performance_theo_win) as avg_theo_win,
       SUM(performance_market_share_percent) as total_market_share
     FROM games
+    WHERE ${RELIABLE_GAME}
   `);
+
+    const featureRows = await query(
+        `SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]' AND ${RELIABLE_GAME}`
+    );
+    const featureSet = new Set();
+    for (const r of featureRows) {
+        parseFeatures(r.features).forEach(f => featureSet.add(f));
+    }
+    basic.mechanic_count = featureSet.size;
+
+    return [basic];
 }
 
 /**
@@ -313,6 +383,7 @@ export async function getThemeDistribution() {
       MIN(performance_rank) as best_rank,
       MAX(performance_theo_win) as max_theo_win
     FROM games
+    WHERE ${RELIABLE_GAME}
     GROUP BY theme_consolidated
     ORDER BY avg_theo_win DESC
   `);
@@ -328,6 +399,7 @@ export async function getMechanicDistribution() {
            specs_rtp, performance_rank
     FROM games
     WHERE features IS NOT NULL AND features != '[]'
+      AND ${RELIABLE_GAME}
   `);
 
     const buckets = {};
@@ -375,6 +447,7 @@ export async function getProviderDistribution() {
       AVG(specs_rtp) as avg_rtp,
       MODE(specs_volatility) as dominant_volatility
     FROM games
+    WHERE ${RELIABLE_GAME}
     GROUP BY provider_studio
     ORDER BY game_count DESC
   `);
@@ -386,7 +459,7 @@ export async function getProviderDistribution() {
 export async function getAnomalies() {
     let high = await query(`
     SELECT * FROM games 
-    WHERE performance_anomaly = 'high'
+    WHERE performance_anomaly = 'high' AND ${RELIABLE_GAME}
     ORDER BY performance_theo_win DESC
     LIMIT 30
   `);
@@ -394,7 +467,7 @@ export async function getAnomalies() {
     if (high.length < 30) {
         high = await query(`
       SELECT * FROM games 
-      WHERE performance_theo_win IS NOT NULL
+      WHERE performance_theo_win IS NOT NULL AND ${RELIABLE_GAME}
       ORDER BY performance_theo_win DESC
       LIMIT 30
     `);
@@ -402,7 +475,7 @@ export async function getAnomalies() {
 
     let low = await query(`
     SELECT * FROM games 
-    WHERE performance_anomaly = 'low'
+    WHERE performance_anomaly = 'low' AND ${RELIABLE_GAME}
     ORDER BY performance_theo_win ASC
     LIMIT 30
   `);
@@ -410,7 +483,7 @@ export async function getAnomalies() {
     if (low.length === 0) {
         low = await query(`
       SELECT * FROM games 
-      WHERE performance_theo_win IS NOT NULL
+      WHERE performance_theo_win IS NOT NULL AND ${RELIABLE_GAME}
       ORDER BY performance_theo_win ASC
       LIMIT 30
     `);
@@ -423,14 +496,14 @@ export async function getAnomalies() {
  * Get all games with optional filters (including feature filter)
  */
 export async function getAllGames(filters = {}) {
-    let sql = 'SELECT * FROM games WHERE 1=1';
+    let sql = `SELECT * FROM games WHERE ${RELIABLE_GAME}`;
 
     if (filters.provider) {
         sql += ` AND provider_studio = '${filters.provider.replace(/'/g, "''")}'`;
     }
 
     if (filters.mechanic) {
-        sql += ` AND features LIKE '%${filters.mechanic.replace(/'/g, "''")}%'`;
+        sql += ` AND features LIKE '%"${filters.mechanic.replace(/'/g, "''")}"%'`;
     }
 
     if (filters.theme) {
@@ -438,11 +511,15 @@ export async function getAllGames(filters = {}) {
     }
 
     if (filters.feature) {
-        sql += ` AND features LIKE '%${filters.feature.replace(/'/g, "''")}%'`;
+        sql += ` AND features LIKE '%"${filters.feature.replace(/'/g, "''")}"%'`;
     }
 
     if (filters.search) {
         sql += ` AND name ILIKE '%${filters.search.replace(/'/g, "''")}%'`;
+    }
+
+    if (filters.gameCategory) {
+        sql += ` AND game_category = '${filters.gameCategory.replace(/'/g, "''")}'`;
     }
 
     sql += ' ORDER BY performance_rank ASC';
@@ -454,9 +531,11 @@ export async function getAllGames(filters = {}) {
  * Get games by mechanic
  */
 export async function getGamesByMechanic(mechanic) {
+    const safe = mechanic.replace(/'/g, "''");
     return query(`
     SELECT * FROM games 
-    WHERE features IS NOT NULL AND features LIKE '%${mechanic.replace(/'/g, "''")}%'
+    WHERE features IS NOT NULL AND features LIKE '%"${safe}"%'
+      AND ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
   `);
 }
@@ -468,6 +547,7 @@ export async function getGamesByTheme(theme) {
     return query(`
     SELECT * FROM games 
     WHERE theme_consolidated = '${theme.replace(/'/g, "''")}'
+      AND ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
   `);
 }
@@ -479,6 +559,7 @@ export async function getGamesByProvider(provider) {
     return query(`
     SELECT * FROM games 
     WHERE provider_studio = '${provider.replace(/'/g, "''")}'
+      AND ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
   `);
 }
@@ -490,6 +571,7 @@ export async function searchGames(searchTerm) {
     return query(`
     SELECT * FROM games 
     WHERE name ILIKE '%${searchTerm.replace(/'/g, "''")}%'
+      AND ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
   `);
 }
@@ -506,6 +588,7 @@ export async function getVolatilityDistribution() {
       AVG(specs_rtp) as avg_rtp
     FROM games
     WHERE specs_volatility IS NOT NULL
+      AND ${RELIABLE_GAME}
     GROUP BY specs_volatility
     ORDER BY 
       CASE specs_volatility
@@ -529,6 +612,7 @@ export async function getReleaseYearDistribution() {
       AVG(performance_theo_win) as avg_theo_win
     FROM games
     WHERE release_year IS NOT NULL
+      AND ${RELIABLE_GAME}
     GROUP BY release_year
     ORDER BY release_year ASC
   `);
@@ -539,7 +623,8 @@ export async function getReleaseYearDistribution() {
  */
 export async function getTopGames(limit = 10) {
     return query(`
-    SELECT * FROM games 
+    SELECT * FROM games
+    WHERE ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
     LIMIT ${limit}
   `);
@@ -573,6 +658,16 @@ export async function getUniqueThemes() {
   `);
 }
 
+export async function getGameCategories() {
+    return query(`
+    SELECT game_category as category, COUNT(*) as game_count
+    FROM games
+    WHERE game_category IS NOT NULL
+    GROUP BY game_category
+    ORDER BY game_count DESC
+  `);
+}
+
 /**
  * Get unique features from the features JSON arrays
  */
@@ -596,6 +691,7 @@ export async function getFeatureDistribution() {
     const rows = await query(`
     SELECT features, performance_theo_win, performance_market_share_percent 
     FROM games WHERE features IS NOT NULL
+      AND ${RELIABLE_GAME}
   `);
 
     const stats = {};
