@@ -336,7 +336,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
             labels,
             datasets: [
                 {
-                    label: `Avg Theo Win (${year})`,
+                    label: `Avg Performance Index (${year})`,
                     data: values,
                     backgroundColor: barColors,
                     borderRadius: 6,
@@ -353,7 +353,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: `${year} — Avg Theo Win by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Mechanic' : 'Provider'}`,
+                    text: `${year} — Avg Performance Index by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Mechanic' : 'Provider'}`,
                     color: colors.text,
                     font: { size: 13, weight: 'bold' },
                 },
@@ -362,7 +362,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
                     titleColor: colors.text,
                     bodyColor: colors.text,
                     callbacks: {
-                        label: item => `Avg Theo Win: ${item.parsed.x.toFixed(2)}`,
+                        label: item => `Avg Performance Index: ${item.parsed.x.toFixed(2)}`,
                     },
                 },
             },

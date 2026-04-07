@@ -143,7 +143,7 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Mechanic</div>
-                    ${tooltip('Mechanic with the highest average Theo Win across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
+                    ${tooltip('Mechanic with the highest average Performance Index across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">${performers.bestMechanic.avgTheoWin}</div>
@@ -164,7 +164,7 @@ export function renderComparisonCards(performers) {
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestProvider.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent mb-1">${performers.bestProvider.ggrShare}%</div>
-                <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestProvider.gameCount} games · Avg Theo ${performers.bestProvider.avgTheoWin}</div>
+                <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestProvider.gameCount} games · Avg PI ${performers.bestProvider.avgTheoWin}</div>
             </div>
         `);
     }
@@ -198,7 +198,7 @@ export function renderComparisonCards(performers) {
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.mostCommonMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-1">${performers.mostCommonMechanic.gameCount}</div>
-                <div class="text-[10px] text-gray-500 dark:text-gray-400">Avg Theo: ${performers.mostCommonMechanic.avgTheoWin}</div>
+                <div class="text-[10px] text-gray-500 dark:text-gray-400">Avg PI: ${performers.mostCommonMechanic.avgTheoWin}</div>
             </div>
         `);
     }

@@ -125,11 +125,11 @@ export async function renderProviders(providersData = null) {
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 1)">Provider</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 2)">Games</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 3)">
-                                    Avg Theo Win
+                                    Avg Performance Index
                                     <span class="info-icon">ⓘ
                                         <div class="filter-tooltip">
-                                            <strong>Avg Theoretical Win</strong>
-                                            <p>Average Theo Win Index across all games from this provider</p>
+                                            <strong>Avg Performance Index</strong>
+                                            <p>Average Performance Index across all games from this provider</p>
                                             <hr>
                                             <p>✓ Higher = stronger average game quality</p>
                                             <p>✓ Independent of portfolio size</p>

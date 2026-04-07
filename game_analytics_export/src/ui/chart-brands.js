@@ -381,7 +381,7 @@ export function createBrandLandscapeChart() {
                         },
                     },
                 },
-                scales: bubbleScaleOptionsWarped(chartColors, xWarp, 'Title Count', 'Avg Theo Win', yWarp),
+                scales: bubbleScaleOptionsWarped(chartColors, xWarp, 'Title Count', 'Avg Performance Index', yWarp),
                 onHover: (e, elements, chart) => {
                     const native = e.native;
                     if (!native) return;

@@ -32,7 +32,7 @@ export function setupPrediction() {
             'theme-chip inline-block px-4 py-2.5 rounded-lg text-base font-medium cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors';
         chip.dataset.theme = theme.Theme;
         chip.textContent = `${theme.Theme} (${theme['Game Count']} games)`;
-        chip.title = `Smart Index: ${theme['Smart Index'].toFixed(1)}`;
+        chip.title = `Performance Index: ${theme['Smart Index'].toFixed(1)}`;
 
         chip.addEventListener('click', function () {
             document.querySelectorAll('#game-themes > div').forEach(c => {
@@ -64,7 +64,7 @@ export function setupPrediction() {
         chip.dataset.mechanic = mechName;
 
         const dataM = gameData.mechanics.find(m => m.Mechanic === mechName);
-        const siText = dataM ? `SI: ${dataM['Smart Index'].toFixed(1)}` : 'New';
+        const siText = dataM ? `PI: ${dataM['Smart Index'].toFixed(1)}` : 'New';
         chip.textContent = `${mechName} (${siText})`;
 
         const mechDef = getMechanicDefinition(mechName);
@@ -260,7 +260,7 @@ export function predictGameSuccess() {
     } else {
         mainRecText = similarResult
             ? `Only ${similarResult.similarCount} similar games found (avg Theo: ${predictedTheo.toFixed(2)}). Consider themes/mechanics with stronger historical performance.`
-            : 'This combination shows weak historical performance. Consider choosing themes or mechanics with higher Smart Index scores.';
+            : 'This combination shows weak historical performance. Consider choosing themes or mechanics with higher Performance Index scores.';
     }
 
     const recommendationItems = [mainRecText];

@@ -90,7 +90,7 @@ export function createRtpChart() {
                                 const diff = b.avgTheo - globalAvg;
                                 const arrow = diff >= 0 ? '▲' : '▼';
                                 return [
-                                    `Games: ${b.count}  |  Avg Theo: ${b.avgTheo.toFixed(2)}`,
+                                    `Games: ${b.count}  |  Avg PI: ${b.avgTheo.toFixed(2)}`,
                                     `${arrow} ${diff >= 0 ? '+' : ''}${diff.toFixed(2)} vs market avg (${globalAvg.toFixed(2)})`,
                                     `Based on ${rtpTotal} games with RTP data (${rtpPct}%)`,
                                 ];
@@ -181,7 +181,7 @@ export function createRtpLandscapeChart() {
                                 const b = bandData[item.dataIndex];
                                 const pct = ((b.count / allGames.length) * 100).toFixed(1);
                                 return [
-                                    `Games: ${b.count} (${pct}%)  |  Avg Theo: ${b.avgTheo.toFixed(2)}`,
+                                    `Games: ${b.count} (${pct}%)  |  Avg PI: ${b.avgTheo.toFixed(2)}`,
                                     `Based on ${rtpTotal} games with RTP data (${rtpPct}%)`,
                                 ];
                             },

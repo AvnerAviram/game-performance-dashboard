@@ -89,7 +89,7 @@ export function createArtSettingChart() {
                             label: item => {
                                 const s = settings[item.dataIndex];
                                 const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
-                                return `Games: ${s.count}  |  Avg Theo: ${s.avgTheo.toFixed(2)}  |  ${q}`;
+                                return `Games: ${s.count}  |  Avg PI: ${s.avgTheo.toFixed(2)}  |  ${q}`;
                             },
                         },
                     },
@@ -100,7 +100,7 @@ export function createArtSettingChart() {
                         grace: '10%',
                         title: {
                             display: true,
-                            text: 'Avg Theo Win',
+                            text: 'Avg Performance Index',
                             color: chartColors.textColor,
                             font: { size: 10, weight: 'bold' },
                         },

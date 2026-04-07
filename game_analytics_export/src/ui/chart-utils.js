@@ -605,7 +605,11 @@ export function injectCoveragePill(canvasId, covered, total, label) {
     }
 }
 
-export function bubbleScaleOptionsLog(chartColors, xLabel = 'Game Count (log scale)', yLabel = 'Avg Theo Win') {
+export function bubbleScaleOptionsLog(
+    chartColors,
+    xLabel = 'Game Count (log scale)',
+    yLabel = 'Avg Performance Index'
+) {
     return {
         y: {
             beginAtZero: true,

@@ -217,7 +217,7 @@ function showArtFilteredGames(title, filterFn, opts) {
     const statsMetrics = [
         { label: 'Games', value: String(games.length) },
         { label: 'Providers', value: String(providers.size) },
-        { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+        { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
         {
             label: 'vs Market',
             value:
@@ -814,7 +814,7 @@ function renderSettingLandscape(settings, globalAvg) {
                     min: 0,
                     title: {
                         display: true,
-                        text: 'Avg Theo Win Index',
+                        text: 'Avg Performance Index',
                         color: chartColors.textColor,
                         font: { size: 10, weight: 'bold' },
                     },

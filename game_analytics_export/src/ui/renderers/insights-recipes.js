@@ -543,7 +543,7 @@ export function renderLayoutCorrelation() {
         container.innerHTML = `
             <div class="flex items-center gap-4 mb-3 text-[9px] text-gray-400 dark:text-gray-500">
                 <span><strong class="text-gray-600 dark:text-gray-300">Grid</strong> = Reels × Rows</span>
-                <span><strong class="text-gray-600 dark:text-gray-300">Theo</strong> = Avg Theo Win Index</span>
+                <span><strong class="text-gray-600 dark:text-gray-300">Theo</strong> = Avg Performance Index</span>
                 <span><strong class="text-indigo-500">Tags</strong> = Most common mechanics for this layout</span>
             </div>
             <div class="space-y-3">
@@ -566,7 +566,7 @@ export function renderLayoutCorrelation() {
                         </div>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center gap-2 mb-1">
-                                <span class="text-[10px] text-gray-500 w-12 shrink-0" title="Average Theo Win Index for games with this layout">Theo</span>
+                                <span class="text-[10px] text-gray-500 w-12 shrink-0" title="Average Performance Index for games with this layout">Theo</span>
                                 <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                     <div class="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-500" style="width:${theoW}%"></div>
                                 </div>

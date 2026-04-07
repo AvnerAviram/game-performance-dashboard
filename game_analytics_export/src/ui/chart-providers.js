@@ -94,7 +94,7 @@ export function createProvidersChart() {
                             label: item => {
                                 const p = providers[item.dataIndex];
                                 const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
-                                return `Games: ${p.count}  |  Avg Theo: ${p.avgTheo.toFixed(2)}  |  GGR: ${p.ggrShare.toFixed(1)}%  |  ${q}`;
+                                return `Games: ${p.count}  |  Avg PI: ${p.avgTheo.toFixed(2)}  |  GGR: ${p.ggrShare.toFixed(1)}%  |  ${q}`;
                             },
                         },
                     },
@@ -180,7 +180,7 @@ export function createProviderLandscapeChart() {
                             label: item => {
                                 const p = providers[item.dataIndex];
                                 const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
-                                return `Games: ${p.count}  |  Avg Theo: ${p.avgTheo.toFixed(2)}  |  GGR: ${p.ggrShare.toFixed(1)}%  |  ${q}`;
+                                return `Games: ${p.count}  |  Avg PI: ${p.avgTheo.toFixed(2)}  |  GGR: ${p.ggrShare.toFixed(1)}%  |  ${q}`;
                             },
                         },
                     },

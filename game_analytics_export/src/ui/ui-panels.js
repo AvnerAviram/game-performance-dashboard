@@ -877,7 +877,7 @@ export function showProviderDetails(providerName) {
     // ===== STATISTICS SECTION =====
     const statsMetrics = [
         { label: 'Total Games', value: gameCount },
-        { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+        { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
         { label: 'Market Share %', value: `${totalMarketShare.toFixed(2)}%` },
         { label: 'Avg RTP', value: avgRTP ? avgRTP.toFixed(1) + '%' : 'N/A' },
         {

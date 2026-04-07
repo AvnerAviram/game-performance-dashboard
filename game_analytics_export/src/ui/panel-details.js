@@ -159,15 +159,15 @@ window.showMechanicDetails = function (mechanicName, opts) {
         ? [
               { label: 'Games', value: allMechGames.length },
               { label: 'Provider', value: scopeProvider },
-              { label: 'Avg Theo Win', value: scopedAvgTheo.toFixed(3) },
+              { label: 'Avg Performance Index', value: scopedAvgTheo.toFixed(3) },
               { label: 'Global Avg', value: mechData['Avg Theo Win Index'].toFixed(3) },
           ]
         : [
               { label: 'Games', value: mechData['Game Count'] },
               { label: 'Market Share %', value: `${mechData['Market Share %'].toFixed(1)}%` },
-              { label: 'Avg Theo Win', value: mechData['Avg Theo Win Index'].toFixed(3) },
+              { label: 'Avg Performance Index', value: mechData['Avg Theo Win Index'].toFixed(3) },
               {
-                  label: 'Smart Index',
+                  label: 'Performance Index',
                   value: `<span class="text-green-600 dark:text-green-400">${mechData['Smart Index'].toFixed(2)}</span>`,
               },
           ];
@@ -408,7 +408,7 @@ window.showThemeDetails = function (themeName, opts) {
             label: scopeProvider ? 'Provider' : 'Market Share %',
             value: scopeProvider ? scopeProvider : `${marketShare}%`,
         },
-        { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+        { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
         { label: 'Range', value: `${minTheo.toFixed(1)} – ${maxTheo.toFixed(1)}` },
     ];
 
@@ -640,7 +640,7 @@ window.showRtpBandDetails = function (bandLabel) {
         accent: ACCENTS.specs,
         content: MetricGrid([
             { label: 'Games', value: filteredGames.length },
-            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+            { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
         ]),
     });
 
@@ -689,7 +689,7 @@ window.showVolatilityDetails = function (volLevel) {
         accent: ACCENTS.specs,
         content: MetricGrid([
             { label: 'Games', value: volGames.length },
-            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+            { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
         ]),
     });
 

@@ -94,7 +94,7 @@ export function createVolatilityChart() {
                                 const diff = v.avgTheo - globalAvg;
                                 const arrow = diff >= 0 ? '▲' : '▼';
                                 return [
-                                    `Games: ${v.count}  |  Avg Theo: ${v.avgTheo.toFixed(2)}`,
+                                    `Games: ${v.count}  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
                                     `${arrow} ${diff >= 0 ? '+' : ''}${diff.toFixed(2)} vs market avg (${globalAvg.toFixed(2)})`,
                                     `Based on ${reliableTotal} verified games`,
                                 ];
@@ -222,7 +222,7 @@ export function createVolatilityLandscapeChart() {
                                 const v = sorted[item.dataIndex];
                                 const pct = ((v.count / reliableTotal) * 100).toFixed(1);
                                 return [
-                                    `Games: ${v.count} (${pct}%)  |  Avg Theo: ${v.avgTheo.toFixed(2)}`,
+                                    `Games: ${v.count} (${pct}%)  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
                                     `Based on ${reliableTotal} verified games`,
                                 ];
                             },

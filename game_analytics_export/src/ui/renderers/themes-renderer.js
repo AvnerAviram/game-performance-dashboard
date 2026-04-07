@@ -53,7 +53,7 @@ function updateFormulaTooltip(formulaType) {
             `,
         },
         avgTheo: {
-            title: 'Avg Theo Win',
+            title: 'Avg Performance Index',
             formula: 'Average Theoretical Win Per Game',
             content: `
                 <p><strong>Quality Metric</strong><br>Average expected profit per game</p>

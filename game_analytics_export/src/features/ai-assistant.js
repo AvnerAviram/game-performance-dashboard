@@ -164,13 +164,13 @@ function handleThemeQuery(themeName) {
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${escapeHtml(themeName)} Theme Analysis</p>`;
     html += `<div class="flex flex-wrap gap-2 mb-3">`;
     html += statCard('Games', tGames.length);
-    html += statCard('Avg Theo', avgTheo.toFixed(2));
+    html += statCard('Avg PI', avgTheo.toFixed(2));
     html += statCard(
         'vs Market',
         `${vsMarket >= 0 ? '+' : ''}${vsMarket.toFixed(0)}%`,
         vsMarket >= 0 ? 'above avg' : 'below avg'
     );
-    if (themeObj) html += statCard('Smart Index', (themeObj['Smart Index'] || 0).toFixed(1));
+    if (themeObj) html += statCard('Performance Index', (themeObj['Smart Index'] || 0).toFixed(1));
     html += `</div>`;
 
     if (topFeats.length) {
@@ -249,7 +249,7 @@ function handleProviderQuery(provName) {
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${escapeHtml(provName)} Provider Analysis</p>`;
     html += `<div class="flex flex-wrap gap-2 mb-3">`;
     html += statCard('Portfolio', pGames.length, 'games');
-    html += statCard('Avg Theo', avgTheo.toFixed(2));
+    html += statCard('Avg PI', avgTheo.toFixed(2));
     html += statCard('vs Market', `${(((avgTheo - globalAvg) / globalAvg) * 100).toFixed(0)}%`);
     html += statCard('Themes', Object.keys(themeMap).length);
     html += `</div>`;
@@ -321,7 +321,7 @@ function handleFeatureQuery(featName) {
     html += `<div class="flex flex-wrap gap-2 mb-3">`;
     html += statCard('Games', fGames.length);
     html += statCard('Adoption', `${adoption}%`);
-    html += statCard('Avg Theo', avgTheo.toFixed(2));
+    html += statCard('Avg PI', avgTheo.toFixed(2));
     html += statCard('vs Market', `${(((avgTheo - globalAvg) / globalAvg) * 100).toFixed(0)}%`);
     html += `</div>`;
 
@@ -369,17 +369,21 @@ function handleCompare(q) {
         ['Metric', escapeHtml(a.Theme), escapeHtml(b.Theme)],
         [
             ['Games', `<strong>${aGames.length}</strong>`, `<strong>${bGames.length}</strong>`],
-            ['Avg Theo', `<strong>${aAvg.toFixed(2)}</strong>`, `<strong>${bAvg.toFixed(2)}</strong>`],
+            ['Avg PI', `<strong>${aAvg.toFixed(2)}</strong>`, `<strong>${bAvg.toFixed(2)}</strong>`],
             [
-                'Smart Index',
+                'Performance Index',
                 `<strong>${(a['Smart Index'] || 0).toFixed(1)}</strong>`,
                 `<strong>${(b['Smart Index'] || 0).toFixed(1)}</strong>`,
             ],
-            ['Market Share %', `${(a['Market Share %'] || 0).toFixed(1)}%`, `${(b['Market Share %'] || 0).toFixed(1)}%`],
+            [
+                'Market Share %',
+                `${(a['Market Share %'] || 0).toFixed(1)}%`,
+                `${(b['Market Share %'] || 0).toFixed(1)}%`,
+            ],
         ]
     );
     const winner = (a['Smart Index'] || 0) > (b['Smart Index'] || 0) ? a : b;
-    html += `<p class="text-xs mt-2 text-indigo-600 dark:text-indigo-400 font-medium">Based on Smart Index, <strong>${escapeHtml(winner.Theme)}</strong> is the stronger performer overall.</p>`;
+    html += `<p class="text-xs mt-2 text-indigo-600 dark:text-indigo-400 font-medium">Based on Performance Index, <strong>${escapeHtml(winner.Theme)}</strong> is the stronger performer overall.</p>`;
     return html;
 }
 
@@ -408,7 +412,7 @@ function handleConceptEval(q) {
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Concept Evaluation${themeName ? `: ${escapeHtml(themeName)}` : ''}${feature ? ` + ${escapeHtml(feature)}` : ''}</p>`;
     html += `<div class="flex flex-wrap gap-2 mb-3">`;
     html += statCard('Similar Games', matchedGames.length);
-    html += statCard('Avg Theo', matchAvg.toFixed(2));
+    html += statCard('Avg PI', matchAvg.toFixed(2));
     html += statCard('vs Market', `${vsMarket >= 0 ? '+' : ''}${vsMarket.toFixed(0)}%`);
     html += `</div>`;
 
@@ -456,7 +460,7 @@ function handleMarketGaps() {
     if (gapThemes.length) {
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">High-Potential, Low-Competition Themes</p>`;
         html += miniTable(
-            ['Theme', 'Games', 'Smart Index', 'Avg Theo'],
+            ['Theme', 'Games', 'Performance Index', 'Avg PI'],
             gapThemes.map(t => [
                 `<span class="font-semibold">${escapeHtml(t.Theme)}</span>`,
                 t['Game Count'] || 0,
