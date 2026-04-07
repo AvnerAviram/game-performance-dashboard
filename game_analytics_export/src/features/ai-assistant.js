@@ -607,7 +607,7 @@ function handleMarketOverview() {
     html += statCard('Total Games', games.length);
     html += statCard('Providers', provCount);
     html += statCard('Themes', themeCount);
-    html += statCard('Avg Theo', globalAvg.toFixed(2));
+    html += statCard('Avg PI', globalAvg.toFixed(2));
     html += `</div>`;
 
     const topThemes = [...themes()].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0)).slice(0, 5);
@@ -617,7 +617,7 @@ function handleMarketOverview() {
     html += `<div>`;
     html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Top Themes</p>`;
     html += miniTable(
-        ['Theme', 'SI'],
+        ['Theme', 'PI'],
         topThemes.map(t => [
             `<span class="font-medium">${escapeHtml(t.Theme)}</span>`,
             `<span class="font-bold text-indigo-600">${(t['Smart Index'] || 0).toFixed(1)}</span>`,
@@ -626,7 +626,7 @@ function handleMarketOverview() {
     html += `</div><div>`;
     html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Top Mechanics</p>`;
     html += miniTable(
-        ['Mechanic', 'SI'],
+        ['Mechanic', 'PI'],
         topMechs.map(m => [
             `<span class="font-medium">${escapeHtml(m.Mechanic)}</span>`,
             `<span class="font-bold text-indigo-600">${(m['Smart Index'] || 0).toFixed(1)}</span>`,
