@@ -17,11 +17,11 @@ import {
 } from '../components/dashboard-components.js';
 import { SYMBOL_CATEGORIES, SYMBOL_CAT_COLORS, categorizeSymbol, parseSymbols } from '../lib/symbol-utils.js';
 import { apiPost } from '../lib/api-client.js';
-import { escapeHtml, safeOnclick, sanitizeUrl } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, sanitizeUrl } from '../lib/sanitize.js';
 import { PROVIDER_URLS } from '../config/provider-urls.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { collapsibleList } from './collapsible-list.js';
-import { F } from '../lib/game-fields.js';
+import { F, isReliableConfidence } from '../lib/game-fields.js';
 
 export function showGameDetails(gameName) {
     const game = gameData.allGames.find(g => g.name === gameName);
@@ -45,6 +45,17 @@ export function showGameDetails(gameName) {
         });
     }
 
+    // ===== PLAY NOW =====
+    const searchQuery = encodeURIComponent(`${game.name} play online slot casino`);
+    const playNowUrl = `https://www.google.com/search?q=${searchQuery}`;
+    const playNowHtml = `<div class="my-2">
+        <a href="${sanitizeUrl(playNowUrl)}" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-xl transition-colors border border-indigo-200 dark:border-indigo-800">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            🎰 Play Now
+        </a>
+    </div>`;
+
     // ===== PERFORMANCE SECTION =====
     const performanceMetrics = [
         {
@@ -53,7 +64,7 @@ export function showGameDetails(gameName) {
         },
         { label: 'Theo Win', value: game.performance_theo_win?.toFixed(2) || 'N/A' },
         {
-            label: 'Market Share',
+            label: 'Market Share %',
             value:
                 game.performance_market_share_percent != null
                     ? `${game.performance_market_share_percent.toFixed(2)}%`
@@ -253,14 +264,56 @@ export function showGameDetails(gameName) {
     }
 
     // ===== SPECS SECTION =====
+    const specVal = (raw, formatted, confidence) => {
+        if (!raw) return 'N/A';
+        if (isReliableConfidence(confidence)) {
+            const dotColor = confidence === 'verified' ? 'bg-emerald-500' : 'bg-blue-500';
+            const dotTip = confidence === 'verified' ? 'Provider verified' : 'Extracted from game rules';
+            return (
+                formatted +
+                `<span class="relative group inline-flex ml-1">` +
+                `<span class="w-1.5 h-1.5 rounded-full ${dotColor} inline-block"></span>` +
+                `<span class="hidden group-hover:block absolute left-full top-0 ml-1 w-36 p-1.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-500 dark:text-gray-400 font-normal">${dotTip}</span>` +
+                `</span>`
+            );
+        }
+        const tip = escapeAttr(`Estimated: ${raw} (unverified source, may be inaccurate)`);
+        return (
+            `<span class="text-gray-400 dark:text-gray-500">N/A</span>` +
+            `<span class="relative group inline-flex ml-1">` +
+            `<button class="w-3.5 h-3.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-500 flex items-center justify-center text-[8px] font-bold leading-none cursor-help">?</button>` +
+            `<span class="hidden group-hover:block absolute left-full top-0 ml-1 w-48 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-normal">${tip}</span>` +
+            `</span>`
+        );
+    };
+
     const specsMetrics = [
-        { label: 'Layout', value: `${game.specs_reels || 'N/A'}x${game.specs_rows || 'N/A'}` },
-        { label: 'Paylines', value: game.specs_paylines || 'N/A' },
-        { label: 'RTP', value: game.specs_rtp ? `${game.specs_rtp}%` : 'N/A' },
-        { label: 'Volatility', value: game.specs_volatility ? VolatilityBadge(game.specs_volatility) : 'N/A' },
-        { label: 'Min Bet', value: game.min_bet ? `$${Number(game.min_bet).toFixed(2)}` : 'N/A' },
-        { label: 'Max Bet', value: game.max_bet ? `$${Number(game.max_bet).toFixed(0)}` : 'N/A' },
-        { label: 'Max Win', value: game.max_win ? `${Number(game.max_win).toLocaleString()}x` : 'N/A' },
+        {
+            label: 'Layout',
+            value: specVal(
+                game.specs_reels,
+                `${game.specs_reels || 'N/A'}x${game.specs_rows || 'N/A'}`,
+                F.reelsConfidence(game)
+            ),
+        },
+        { label: 'Paylines', value: specVal(game.specs_paylines, game.specs_paylines, F.paylinesConfidence(game)) },
+        { label: 'RTP', value: specVal(game.specs_rtp, `${game.specs_rtp}%`, F.rtpConfidence(game)) },
+        {
+            label: 'Volatility',
+            value: specVal(game.specs_volatility, VolatilityBadge(game.specs_volatility), F.volatilityConfidence(game)),
+        },
+        {
+            label: 'Min Bet',
+            value: specVal(game.min_bet, `$${Number(game.min_bet).toFixed(2)}`, F.minBetConfidence(game)),
+        },
+        {
+            label: 'Max Bet',
+            value: specVal(game.max_bet, `$${Number(game.max_bet).toFixed(0)}`, F.maxBetConfidence(game)),
+        },
+        {
+            label: 'Max Win',
+            value: specVal(game.max_win, `${Number(game.max_win).toLocaleString()}x`, F.maxWinConfidence(game)),
+        },
     ];
 
     const engagementMetrics = [];
@@ -271,13 +324,68 @@ export function showGameDetails(gameName) {
         engagementMetrics.push({ label: 'Coin-In Index', value: Number(game.coin_in_index).toFixed(1) });
     if (game.sites) engagementMetrics.push({ label: 'Casinos', value: Number(game.sites).toLocaleString() });
 
+    // Data Quality summary bar
+    const confFields = [
+        F.reelsConfidence(game),
+        F.paylinesConfidence(game),
+        F.rtpConfidence(game),
+        F.volatilityConfidence(game),
+        F.minBetConfidence(game),
+        F.maxBetConfidence(game),
+        F.maxWinConfidence(game),
+    ];
+    const confTotal = confFields.length;
+    const confVerified = confFields.filter(c => c === 'verified').length;
+    const confExtracted = confFields.filter(c => c === 'extracted').length;
+    const confEstimated = confFields.filter(c => c && c !== 'verified' && c !== 'extracted').length;
+    const confMissing = confTotal - confVerified - confExtracted - confEstimated;
+    const confReliable = confVerified + confExtracted;
+    const confLabel =
+        confReliable === confTotal
+            ? 'Fully verified'
+            : confReliable >= 4
+              ? `${confReliable}/${confTotal} verified`
+              : confReliable > 0
+                ? `${confReliable}/${confTotal} verified`
+                : 'Unverified';
+    const confBadgeColor =
+        confReliable >= 5
+            ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400'
+            : confReliable >= 2
+              ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400'
+              : 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400';
+    const barW = c => `${((c / confTotal) * 100).toFixed(0)}%`;
+
+    const confidenceSummary = `<div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-100 dark:border-gray-700/50">
+        <div class="flex items-center gap-2">
+            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Data Quality</span>
+            <span class="text-[9px] font-semibold px-1.5 py-0.5 rounded-full ${confBadgeColor}">${confLabel}</span>
+        </div>
+    </div>
+    <div class="flex h-1.5 rounded-full overflow-hidden mb-3 bg-gray-100 dark:bg-gray-700/50">
+        <div class="bg-emerald-500" style="width:${barW(confVerified)}"></div>
+        <div class="bg-blue-500" style="width:${barW(confExtracted)}"></div>
+        <div class="bg-amber-400" style="width:${barW(confEstimated)}"></div>
+        <div class="bg-gray-300 dark:bg-gray-600" style="width:${barW(confMissing)}"></div>
+    </div>`;
+
+    const confidenceLegend = `<div class="mt-2 pt-2 border-t border-gray-100 dark:border-gray-700/50 flex items-center gap-3 text-[9px] text-gray-400 dark:text-gray-500">
+        <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> Verified</span>
+        <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block"></span> Extracted</span>
+        <span class="flex items-center gap-1"><span class="w-3.5 h-3.5 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-500 inline-flex items-center justify-center text-[7px] font-bold">?</span> Estimated</span>
+    </div>`;
+
+    const naCount = specsMetrics.filter(m => String(m.value).includes('N/A')).length;
     const specsSection = PanelSection({
-        title: 'Game Specs',
+        title: naCount >= 5 ? `Game Specs (${naCount} N/A)` : 'Game Specs',
         icon: '⚙️',
         gradient: GRADIENTS.specs,
         accent: ACCENTS.specs,
+        collapsed: naCount >= 5,
         content:
+            confidenceSummary +
             MetricGrid(specsMetrics) +
+            confidenceLegend +
             (engagementMetrics.length > 0
                 ? `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700"><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Player Engagement</div>${MetricGrid(engagementMetrics)}</div>`
                 : ''),
@@ -312,9 +420,8 @@ export function showGameDetails(gameName) {
             ${game.theme_secondary ? `<div class="text-sm text-gray-600 dark:text-gray-400 ml-0">Secondary: <span class="cursor-pointer hover:underline hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', game.theme_secondary)}">${escapeHtml(game.theme_secondary)}</span></div>` : ''}
             ${allThemesHtml ? `<div class="pt-1"><div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">All Themes</div><div class="flex flex-wrap">${allThemesHtml}</div></div>` : ''}
             <div class="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3"></div>
-            ${Metric('Game Type', game.mechanic_primary || 'Slot')}
             <div class="pt-1">
-                <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Features (${features.length})</div>
+                <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Mechanics (${features.length})</div>
                 <div class="flex flex-wrap">${featuresHtml}</div>
             </div>
         </div>
@@ -370,56 +477,128 @@ export function showGameDetails(gameName) {
     }
 
     // ===== SYMBOLS SECTION =====
-    const symbols = parseSymbols(game.symbols);
-    let symbolsSection = '';
-    if (symbols.length > 0) {
-        const grouped = {};
-        symbols.forEach(s => {
-            const cat = categorizeSymbol(String(s));
-            if (!grouped[cat]) grouped[cat] = [];
-            grouped[cat].push(escapeHtml(String(s)));
-        });
-
-        function smartSymbolLabel(raw, category) {
-            const catLower = category.toLowerCase();
-            const baseMatch = raw.match(/^([^(]+)\s*\((.+)\)\s*$/);
-            if (!baseMatch) return raw;
-            const base = baseMatch[1].trim();
-            const variant = baseMatch[2].trim();
-            if (base.toLowerCase() === catLower || base.toLowerCase() === catLower.split('/')[0]) return variant;
-            if (variant.toLowerCase() === catLower || variant.toLowerCase() === catLower.split('/')[0]) return base;
-            return raw;
+    let rawSymbols = game.symbols;
+    if (typeof rawSymbols === 'string') {
+        try {
+            rawSymbols = JSON.parse(rawSymbols);
+        } catch {
+            rawSymbols = [];
         }
+    }
+    if (!Array.isArray(rawSymbols)) rawSymbols = [];
+    const symbolObjects = rawSymbols
+        .map(s => {
+            if (typeof s === 'object' && s !== null) return s;
+            if (typeof s === 'string') return { name: s, type: '', description: '' };
+            return null;
+        })
+        .filter(Boolean);
+    let symbolsSection = '';
+    if (symbolObjects.length > 0) {
+        const TYPE_COLORS = {
+            wild: SYMBOL_CAT_COLORS['Wild'],
+            scatter: SYMBOL_CAT_COLORS['Scatter/Bonus'],
+            bonus: SYMBOL_CAT_COLORS['Scatter/Bonus'],
+            special: SYMBOL_CAT_COLORS['Cash/Collect'],
+            themed: SYMBOL_CAT_COLORS['Themed'],
+            card: SYMBOL_CAT_COLORS['Card'],
+        };
 
-        const symbolsContent = SYMBOL_CATEGORIES.filter(c => grouped[c])
-            .map(cat => {
-                const col = SYMBOL_CAT_COLORS[cat];
-                return `
-            <div class="mb-2 last:mb-0">
-                <div class="flex flex-wrap gap-1">${grouped[cat].map(s => `<span class="inline-flex items-center px-1.5 py-0.5 text-[11px] rounded-md ring-1 ${col.cls} ${col.ring}">${smartSymbolLabel(s, cat)}</span>`).join('')}</div>
-            </div>`;
+        const pillsHtml = symbolObjects
+            .map(s => {
+                const name = escapeHtml(s.name || '');
+                const type = (s.type || '').toLowerCase();
+                const col = TYPE_COLORS[type] || SYMBOL_CAT_COLORS['Themed'];
+                return `<span class="inline-flex items-center px-1.5 py-0.5 text-[11px] rounded-md ring-1 ${col.cls} ${col.ring}">${name}</span>`;
             })
             .join('');
+
+        const hasDetails = symbolObjects.some(s => s.description || s.type);
+        const detailId = `sym-detail-${Date.now()}`;
+
+        let detailsHtml = '';
+        if (hasDetails) {
+            const TYPE_ORDER = ['wild', 'scatter', 'bonus', 'special', 'themed', 'card'];
+            const TYPE_LABELS = {
+                wild: 'Wild',
+                scatter: 'Scatter',
+                bonus: 'Bonus',
+                special: 'Special',
+                themed: 'Themed',
+                card: 'Card',
+            };
+            const grouped = {};
+            symbolObjects.forEach(s => {
+                const type = (s.type || '').toLowerCase();
+                const bucket = TYPE_ORDER.includes(type)
+                    ? type
+                    : categorizeSymbol(s.name || '') === 'Card'
+                      ? 'card'
+                      : 'themed';
+                if (!grouped[bucket]) grouped[bucket] = [];
+                grouped[bucket].push(s);
+            });
+            const detailRows = TYPE_ORDER.filter(t => grouped[t])
+                .map(t => {
+                    const col = TYPE_COLORS[t] || SYMBOL_CAT_COLORS['Themed'];
+                    const label = TYPE_LABELS[t] || t;
+                    const items = grouped[t]
+                        .map(s => {
+                            const nm = escapeHtml(s.name || '');
+                            const desc = escapeHtml(s.description || '');
+                            return `<div class="flex items-start gap-2 py-1 px-1.5 rounded hover:bg-gray-50 dark:hover:bg-gray-700/30">
+                            <div class="w-0.5 self-stretch rounded-full ${col.bar} shrink-0"></div>
+                            <div class="min-w-0 flex-1">
+                                <span class="text-xs font-medium text-gray-900 dark:text-white">${nm}</span>
+                                ${desc ? `<p class="text-[10px] text-gray-500 dark:text-gray-400 leading-snug">${desc}</p>` : ''}
+                            </div>
+                        </div>`;
+                        })
+                        .join('');
+                    return `<div class="mb-2 last:mb-0">
+                        <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase rounded ${col.cls}">${escapeHtml(label)}</span>
+                        ${items}
+                    </div>`;
+                })
+                .join('');
+            detailsHtml = `
+                <div id="${escapeAttr(detailId)}" class="hidden mt-2 pt-2 border-t border-gray-100 dark:border-gray-700/50">
+                    ${detailRows}
+                </div>
+                <button onclick="(function(){ var el=document.getElementById('${escapeAttr(detailId)}'); var btn=event.currentTarget; if(el.classList.contains('hidden')){el.classList.remove('hidden');btn.textContent='Hide details';}else{el.classList.add('hidden');btn.textContent='Show details';} })()"
+                    class="mt-2 text-[10px] font-medium text-indigo-500 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 cursor-pointer transition-colors">Show details</button>`;
+        }
+
         symbolsSection = PanelSection({
-            title: `Symbols (${symbols.length})`,
+            title: `Symbols (${symbolObjects.length})`,
             icon: '🍒',
             gradient: GRADIENTS.specs,
             accent: ACCENTS.specs,
-            content: symbolsContent,
+            content: `<div class="flex flex-wrap gap-1">${pillsHtml}</div>${detailsHtml}`,
         });
     }
 
     // ===== RELEASE INFO SECTION =====
-    const releaseMetrics = [
-        { label: 'Year', value: game.release_year || 'N/A' },
-        { label: 'Month', value: game.release_month || 'N/A' },
-    ];
+    const hasOriginal = game.original_release_year && game.original_release_year !== game.release_year;
+    const releaseMetrics = [];
+    if (hasOriginal) {
+        releaseMetrics.push({ label: 'Global Release', value: game.original_release_year });
+        if (game.original_release_month) {
+            releaseMetrics.push({ label: 'Global Month', value: game.original_release_month });
+        }
+        releaseMetrics.push({ label: 'NJ Launch', value: game.release_year || 'N/A' });
+    } else {
+        releaseMetrics.push({ label: 'Year', value: game.original_release_year || game.release_year || 'N/A' });
+        releaseMetrics.push({ label: 'Month', value: game.original_release_month || game.release_month || 'N/A' });
+    }
 
+    const releaseAllNa = releaseMetrics.every(m => String(m.value) === 'N/A');
     const releaseSection = PanelSection({
-        title: 'Release Info',
+        title: releaseAllNa ? 'Release Info (N/A)' : 'Release Info',
         icon: '📅',
         gradient: GRADIENTS.release,
         accent: ACCENTS.release,
+        collapsed: releaseAllNa,
         content: MetricGrid(releaseMetrics),
     });
 
@@ -513,7 +692,7 @@ export function showGameDetails(gameName) {
     const feedbackGameName = game.name || game.game_name || 'Unknown';
     const feedbackContent = `
     <button onclick="${safeOnclick('window.openFeedbackModal', feedbackGameName)}"
-        class="w-full px-4 py-2.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-xl transition-colors flex items-center justify-center gap-2 border border-indigo-200 dark:border-indigo-800">
+        class="w-full px-4 py-2.5 text-sm font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 rounded-xl transition-colors flex items-center justify-center gap-2 border border-indigo-200 dark:border-indigo-800 cursor-pointer">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>
         Report an issue with this game
     </button>
@@ -548,6 +727,56 @@ export function showGameDetails(gameName) {
         });
     }
 
+    // ===== ART DESIGN SECTION =====
+    let artSection = '';
+    const artSetting = F.artSetting(game);
+    if (artSetting) {
+        const artChars = F.artCharacters(game);
+        const artElems = F.artElements(game);
+        const artMood = F.artMood(game);
+        const artNarr = F.artNarrative(game);
+
+        const artPills = (items, bgClass) =>
+            items
+                .map(
+                    t =>
+                        `<span class="inline-block px-2.5 py-1 text-xs font-medium rounded-full ${bgClass} mr-1.5 mb-1.5">${escapeHtml(t)}</span>`
+                )
+                .join('');
+
+        const artMetrics = [
+            {
+                label: 'Setting',
+                value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artSetting)}</span>`,
+            },
+        ];
+        if (artMood) artMetrics.push({ label: 'Mood', value: escapeHtml(artMood) });
+        if (artNarr) artMetrics.push({ label: 'Narrative', value: escapeHtml(artNarr) });
+
+        const artContent =
+            MetricGrid(artMetrics) +
+            (artChars.length
+                ? `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                       <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Characters (${artChars.length})</div>
+                       <div class="flex flex-wrap">${artPills(artChars, 'bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300')}</div>
+                   </div>`
+                : '') +
+            (artElems.length
+                ? `<div class="${artChars.length ? 'mt-2' : 'mt-3 pt-3 border-t border-gray-200 dark:border-gray-700'}">
+                       <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Visual Elements (${artElems.length})</div>
+                       <div class="flex flex-wrap">${artPills(artElems, 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300')}</div>
+                   </div>`
+                : '');
+
+        artSection = PanelSection({
+            title: 'Art Design',
+            icon: '🎨',
+            gradient: GRADIENTS.category,
+            accent: ACCENTS.category,
+            content: artContent,
+        });
+    }
+
     // ===== RENDER ALL SECTIONS =====
     const _set = (id, html) => {
         const el = document.getElementById(id);
@@ -558,6 +787,7 @@ export function showGameDetails(gameName) {
     _set('game-differentiators', diffSection);
     _set('game-specs', specsSection);
     _set('game-theme-mechanic', themeMechSection);
+    _set('game-art', artSection);
     _set('game-demo', demoSection);
     _set('game-symbols', symbolsSection);
     _set('game-provider', providerSection);
@@ -565,6 +795,7 @@ export function showGameDetails(gameName) {
     _set('game-data-quality', dataQualitySection);
     _set('game-similar', similarSection);
     _set('game-feedback', feedbackSection);
+    _set('game-play-now', playNowHtml);
 
     // Close any other open panel first, then show this one
     if (window.closeAllPanels) window.closeAllPanels('game-panel');
@@ -647,7 +878,7 @@ export function showProviderDetails(providerName) {
     const statsMetrics = [
         { label: 'Total Games', value: gameCount },
         { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
-        { label: 'Market Share', value: `${totalMarketShare.toFixed(2)}%` },
+        { label: 'Market Share %', value: `${totalMarketShare.toFixed(2)}%` },
         { label: 'Avg RTP', value: avgRTP ? avgRTP.toFixed(1) + '%' : 'N/A' },
         {
             label: 'Bet Range',
@@ -806,7 +1037,7 @@ export function showProviderDetails(providerName) {
         content: themesContent,
     });
     html += PanelSection({
-        title: 'Features',
+        title: 'Mechanics',
         icon: '⚙️',
         gradient: GRADIENTS.similar,
         accent: ACCENTS.similar,

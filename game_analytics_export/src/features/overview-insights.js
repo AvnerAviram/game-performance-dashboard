@@ -142,8 +142,8 @@ export function renderComparisonCards(performers) {
                  onclick="${safeOnclick('window.showMechanicDetails', performers.bestMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
-                    <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Feature</div>
-                    ${tooltip('Feature with the highest average Theo Win across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
+                    <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Mechanic</div>
+                    ${tooltip('Mechanic with the highest average Theo Win across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-1">${performers.bestMechanic.avgTheoWin}</div>
@@ -159,7 +159,7 @@ export function renderComparisonCards(performers) {
                  onclick="${safeOnclick('window.showProviderDetails', performers.bestProvider.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🏢</span>
-                    <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Top Provider (GGR)</div>
+                    <div class="text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">Top Provider (Market Share %)</div>
                     ${tooltip('Provider with the highest GGR (Gross Gaming Revenue) share. Measures real-world market dominance across all tracked games.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestProvider.name)}</div>
@@ -193,8 +193,8 @@ export function renderComparisonCards(performers) {
                  onclick="${safeOnclick('window.showMechanicDetails', performers.mostCommonMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">📦</span>
-                    <div class="text-[10px] font-bold uppercase tracking-wide text-cyan-700 dark:text-cyan-400">Most Popular Feature</div>
-                    ${tooltip('Feature appearing in the most games. High adoption signals industry-wide confidence in this mechanic.')}
+                    <div class="text-[10px] font-bold uppercase tracking-wide text-cyan-700 dark:text-cyan-400">Most Popular Mechanic</div>
+                    ${tooltip('Mechanic appearing in the most games. High adoption signals industry-wide confidence in this mechanic.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.mostCommonMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent mb-1">${performers.mostCommonMechanic.gameCount}</div>

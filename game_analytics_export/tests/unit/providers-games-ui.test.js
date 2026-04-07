@@ -41,7 +41,7 @@ describe('Providers & Games Pages - Unit Tests', () => {
                 provider_studio: 'Test Studio',
                 provider_parent: 'Test Parent',
                 theme_consolidated: 'Test Theme',
-                mechanic_primary: 'Test Mechanic',
+                features: ['Free Spins', 'Hold and Spin'],
                 performance_rank: 1,
                 performance_theo_win: 10.5,
                 performance_market_share_percent: 2.5,
@@ -52,7 +52,7 @@ describe('Providers & Games Pages - Unit Tests', () => {
 
             expect(sampleGame.provider_studio).toBeDefined();
             expect(sampleGame.theme_consolidated).toBeDefined();
-            expect(sampleGame.mechanic_primary).toBeDefined();
+            expect(sampleGame.features).toBeDefined();
             expect(typeof sampleGame.performance_theo_win).toBe('number');
         });
 
@@ -183,14 +183,14 @@ describe('Providers & Games Pages - Unit Tests', () => {
             expect(filtered.length).toBe(2);
         });
 
-        it('should filter games by mechanic', () => {
+        it('should filter games by feature', () => {
             const games = [
-                { name: 'Game 1', mechanic_primary: 'Cascading' },
-                { name: 'Game 2', mechanic_primary: 'Megaways' },
-                { name: 'Game 3', mechanic_primary: 'Cascading' },
+                { name: 'Game 1', features: ['Cascading Reels', 'Free Spins'] },
+                { name: 'Game 2', features: ['Megaways'] },
+                { name: 'Game 3', features: ['Cascading Reels'] },
             ];
 
-            const filtered = games.filter(g => g.mechanic_primary === 'Cascading');
+            const filtered = games.filter(g => g.features && g.features.includes('Cascading Reels'));
 
             expect(filtered.length).toBe(2);
         });

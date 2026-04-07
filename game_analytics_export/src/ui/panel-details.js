@@ -1,7 +1,7 @@
 // Mechanic and Theme detail slide-out panels
 import { gameData } from '../lib/data.js';
 import { getMechanicDefinition } from '../config/mechanics.js';
-import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import {
     PanelSection,
@@ -14,6 +14,21 @@ import {
 import { log } from '../lib/env.js';
 import { collapsibleList } from './collapsible-list.js';
 import { F } from '../lib/game-fields.js';
+
+function openDetailPanel() {
+    if (window.closeAllPanels) window.closeAllPanels('theme-panel');
+    const panel = document.getElementById('theme-panel');
+    const bg = document.getElementById('mechanic-backdrop');
+    if (panel) {
+        panel.scrollTop = 0;
+        panel.style.right = '0px';
+    }
+    if (bg) {
+        bg.classList.remove('hidden');
+        bg.classList.add('block');
+    }
+    document.body.style.overflow = 'hidden';
+}
 
 let themeBreakdowns = null;
 (async function loadThemeBreakdowns() {
@@ -33,136 +48,63 @@ let themeBreakdowns = null;
     }
 })();
 
-/**
- * Sub-themes derived from themes_all tags across all games in this consolidated theme.
- * Filters out generic cross-theme tags (colors, valuables, etc.) and other consolidated theme names.
- * Falls back to theme_primary if themes_all unavailable.
- */
-function buildRuntimeSubThemeRows(themeGames, consolidatedThemeName) {
-    if (!themeGames.length) return [];
-
-    const allGames = gameData.allGames || [];
-    const consolidatedLower = (consolidatedThemeName || '').toLowerCase();
-
-    // Build comprehensive set of known theme names to exclude
-    const consolidatedNames = new Set();
-    if (gameData.themes) {
-        gameData.themes.forEach(t => consolidatedNames.add((t.Theme || '').toLowerCase()));
-    }
-    allGames.forEach(g => {
-        const ct = F.themeConsolidated(g).trim().toLowerCase();
-        if (ct && ct !== 'unknown') consolidatedNames.add(ct);
-    });
-    // Also add consolidation map keys and values
-    if (gameData.themeConsolidationMap) {
-        for (const [key, val] of Object.entries(gameData.themeConsolidationMap)) {
-            if (typeof key === 'string') consolidatedNames.add(key.toLowerCase());
-            if (typeof val === 'string') consolidatedNames.add(val.toLowerCase());
-        }
-    }
-
-    // Count how many different consolidated themes each tag appears in
-    const tagThemeSpread = {};
-    allGames.forEach(g => {
-        const ct = F.themeConsolidated(g).toLowerCase();
-        if (!ct || ct === 'unknown') return;
-        let tags;
-        try {
-            tags = typeof g.themes_all === 'string' ? JSON.parse(g.themes_all) : g.themes_all;
-        } catch {
-            tags = null;
-        }
-        if (!Array.isArray(tags)) return;
-        tags.forEach(t => {
-            if (!tagThemeSpread[t]) tagThemeSpread[t] = new Set();
-            tagThemeSpread[t].add(ct);
-        });
-    });
-    // Tags appearing across 5+ different consolidated themes are generic/cross-cutting
-    const genericTags = new Set();
-    for (const [tag, themes] of Object.entries(tagThemeSpread)) {
-        if (themes.size >= 5) genericTags.add(tag);
-    }
-
-    const tagCounts = {};
-    let hasThemesAll = false;
-    themeGames.forEach(g => {
-        let tags;
-        try {
-            tags = typeof g.themes_all === 'string' ? JSON.parse(g.themes_all) : g.themes_all;
-        } catch {
-            tags = null;
-        }
-        if (!Array.isArray(tags) || !tags.length) return;
-        hasThemesAll = true;
-        tags.forEach(t => {
-            if (t.toLowerCase() === consolidatedLower) return;
-            if (genericTags.has(t)) return;
-            if (consolidatedNames.has(t.toLowerCase())) return;
-            tagCounts[t] = (tagCounts[t] || 0) + 1;
-        });
-    });
-
-    const total = themeGames.length;
-
-    if (hasThemesAll && Object.keys(tagCounts).length > 0) {
-        return Object.entries(tagCounts)
-            .filter(([, n]) => n >= 2)
-            .map(([label, count]) => ({ label, count, pct: (count / total) * 100 }))
-            .sort((a, b) => b.count - a.count);
-    }
-
-    // Fallback: use theme_primary when themes_all is empty
-    const primaryCounts = {};
-    themeGames.forEach(g => {
-        const p = String(g.theme_primary || '').trim() || 'Unknown';
-        if (p.toLowerCase() !== consolidatedLower) {
-            primaryCounts[p] = (primaryCounts[p] || 0) + 1;
-        }
-    });
-    return Object.entries(primaryCounts)
-        .filter(([, n]) => n >= 2)
-        .map(([label, count]) => ({ label, count, pct: (count / total) * 100 }))
-        .sort((a, b) => b.count - a.count);
-}
-
-function renderRuntimeSubThemeBreakdownSection(rows) {
-    if (!rows.length) return '';
-
-    const INITIAL_SHOW = 5;
-    const uid = 'stb-' + Math.random().toString(36).slice(2, 8);
-
-    const makeRow = ({ label, count, pct }) => {
-        const w = Math.min(100, Math.max(0, Math.round(pct)));
-        const pctStr = pct >= 10 || pct === Math.round(pct) ? `${Math.round(pct)}` : pct.toFixed(1);
-        return `<div class="flex items-center gap-2">
-      <span class="text-[11px] font-medium text-gray-800 dark:text-gray-200 w-24 truncate" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
-      <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+function _artBarRow(label, count, total) {
+    const pct = total > 0 ? (count / total) * 100 : 0;
+    const pctStr = pct >= 10 || pct === Math.round(pct) ? `${Math.round(pct)}` : pct.toFixed(1);
+    const w = Math.min(100, Math.max(2, Math.round(pct)));
+    return `<div class="py-1">
+      <div class="flex items-baseline justify-between mb-0.5">
+        <span class="text-[11px] font-medium text-gray-800 dark:text-gray-200">${escapeHtml(label)}</span>
+        <span class="text-[10px] text-gray-500 dark:text-gray-400 ml-2 shrink-0">${count} (${pctStr}%)</span>
+      </div>
+      <div class="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
         <div class="h-full bg-indigo-400 dark:bg-indigo-500 rounded-full" style="width:${w}%"></div>
       </div>
-      <span class="text-[10px] text-gray-500 dark:text-gray-400 w-20 text-right">${count} (${pctStr}%)</span>
     </div>`;
-    };
+}
 
-    const visibleRows = rows.slice(0, INITIAL_SHOW).map(makeRow).join('');
-    const hiddenRows = rows.slice(INITIAL_SHOW).map(makeRow).join('');
-    const hasMore = rows.length > INITIAL_SHOW;
+function _renderArtSubSection(title, icon, rows, total, initialShow) {
+    if (!rows.length) return '';
+    const uid = 'art-' + Math.random().toString(36).slice(2, 8);
+    const visible = rows
+        .slice(0, initialShow)
+        .map(([l, c]) => _artBarRow(l, c, total))
+        .join('');
+    const hidden = rows
+        .slice(initialShow)
+        .map(([l, c]) => _artBarRow(l, c, total))
+        .join('');
+    const hasMore = rows.length > initialShow;
 
-    return `<div class="mb-4">
-  <h4 class="text-xs font-bold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
-    <span>📂</span> Theme Crossovers <span class="text-[10px] font-normal text-gray-400">(${rows.length})</span>
-    <div class="relative group ml-1 inline-flex"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-48 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Other theme tags that co-occur with games in this theme.</span></div>
-  </h4>
-  <div class="space-y-1.5">
-    ${visibleRows}
+    const header =
+        title != null
+            ? `<h4 class="text-[11px] font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
+    <span class="text-xs">${icon}</span> ${escapeHtml(title)} <span class="font-normal">(${rows.length})</span>
+  </h4>`
+            : '';
+
+    return `<div class="mb-3">
+  ${header}
+  <div class="space-y-0.5">
+    ${visible}
     ${
         hasMore
-            ? `<div id="${uid}-more" class="hidden space-y-1.5">${hiddenRows}</div>
-    <button id="${uid}-btn" onclick="(function(){var m=document.getElementById('${uid}-more'),b=document.getElementById('${uid}-btn');if(m.classList.contains('hidden')){m.classList.remove('hidden');b.textContent='Show less';}else{m.classList.add('hidden');b.textContent='Show ${rows.length - INITIAL_SHOW} more…';}})()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mt-1 cursor-pointer">Show ${rows.length - INITIAL_SHOW} more…</button>`
+            ? `<div id="${uid}-more" class="hidden space-y-0.5">${hidden}</div>
+    <button id="${uid}-btn" onclick="(function(){var m=document.getElementById('${uid}-more'),b=document.getElementById('${uid}-btn');if(m.classList.contains('hidden')){m.classList.remove('hidden');b.textContent='Show less';}else{m.classList.add('hidden');b.textContent='Show ${rows.length - initialShow} more…';}})()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mt-1 cursor-pointer">Show ${rows.length - initialShow} more…</button>`
             : ''
     }
   </div>
 </div>`;
+}
+
+function _renderArtProfileContent(settings, moods, characters, total) {
+    let html = '';
+    html += _renderArtSubSection('Settings', '🏛️', settings, total, 5);
+    html += _renderArtSubSection('Moods', '🎭', moods, total, 5);
+    if (characters.length) {
+        html += _renderArtSubSection('Characters', '👤', characters, total, 5);
+    }
+    return html || EmptyState('No art data');
 }
 
 window._toggleCL = function (uid, initialShow, totalCount) {
@@ -222,7 +164,7 @@ window.showMechanicDetails = function (mechanicName, opts) {
           ]
         : [
               { label: 'Games', value: mechData['Game Count'] },
-              { label: 'Market Share', value: `${mechData['Market Share %'].toFixed(1)}%` },
+              { label: 'Market Share %', value: `${mechData['Market Share %'].toFixed(1)}%` },
               { label: 'Avg Theo Win', value: mechData['Avg Theo Win Index'].toFixed(3) },
               {
                   label: 'Smart Index',
@@ -246,7 +188,12 @@ window.showMechanicDetails = function (mechanicName, opts) {
 
     let examplesHtml;
     const allGamesLookup = gameData.allGames || [];
-    const exampleGamesRaw = scopeProvider ? allMechGames.slice(0, 10) : (mechDef?.examples || []).slice(0, 10);
+    const configExamples = mechDef?.examples || [];
+    const exampleGamesRaw = scopeProvider
+        ? allMechGames.slice(0, 10)
+        : configExamples.length > 0
+          ? configExamples.slice(0, 10)
+          : allMechGames.slice(0, 10);
     if (exampleGamesRaw.length > 0) {
         examplesHtml = exampleGamesRaw
             .map(ex => {
@@ -301,7 +248,7 @@ window.showMechanicDetails = function (mechanicName, opts) {
     if (scopeProvider) {
         mechHtml += `<div class="mx-4 mb-3 px-3 py-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between">
             <span class="text-xs text-indigo-700 dark:text-indigo-300">Filtered to <strong>${escapeHtml(scopeProvider)}</strong></span>
-            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
+            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 Back to ${escapeHtml(scopeProvider)}
             </button>
@@ -458,7 +405,7 @@ window.showThemeDetails = function (themeName, opts) {
     const statsMetrics = [
         { label: 'Games', value: themeGames.length },
         {
-            label: scopeProvider ? 'Provider' : 'Market Share',
+            label: scopeProvider ? 'Provider' : 'Market Share %',
             value: scopeProvider ? scopeProvider : `${marketShare}%`,
         },
         { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
@@ -466,38 +413,16 @@ window.showThemeDetails = function (themeName, opts) {
     ];
 
     const breakdown = themeBreakdowns?.[themeName];
-    const runtimeSubRows = buildRuntimeSubThemeRows(themeGames, themeName);
-    const runtimeSubHtml = renderRuntimeSubThemeBreakdownSection(runtimeSubRows);
 
     let descContent;
-    if (breakdown) {
-        const desc = breakdown.description || `Games themed around ${themeName.toLowerCase()}.`;
-        const subThemes = breakdown.sub_themes || [];
-        descContent = `
-            <div class="space-y-3">
-                <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">${escapeHtml(desc)}</p>
-                ${
-                    subThemes.length > 0
-                        ? `
-                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-3 border border-indigo-100 dark:border-indigo-800">
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-indigo-500 dark:text-indigo-400 mb-1">Sub-themes</div>
-                        <div class="flex flex-wrap gap-1.5 mt-1">${subThemes.map(s => `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 ring-1 ring-inset ring-gray-200 dark:ring-gray-600">${escapeHtml(s)}</span>`).join('')}</div>
-                    </div>
-                `
-                        : ''
-                }
-                ${runtimeSubHtml}
-            </div>
-        `;
-    } else {
-        const gameCountLabel = themeData ? themeData['Game Count'] : themeGames.length;
-        descContent = `
-            <div class="space-y-3">
-                <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">Games themed around ${escapeHtml(themeName.toLowerCase())}. ${scopeProvider ? `${escapeHtml(scopeProvider)} has ${themeGames.length} games in this theme.` : `This theme has ${gameCountLabel} games across ${providers.size} providers.`}</p>
-                ${runtimeSubHtml}
-            </div>
-        `;
-    }
+    const desc = breakdown
+        ? breakdown.description || `Games themed around ${themeName.toLowerCase()}.`
+        : `Games themed around ${escapeHtml(themeName.toLowerCase())}. ${scopeProvider ? `${escapeHtml(scopeProvider)} has ${themeGames.length} games in this theme.` : `This theme has ${themeData ? themeData['Game Count'] : themeGames.length} games across ${providers.size} providers.`}`;
+    descContent = `
+        <div class="space-y-3">
+            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">${desc}</p>
+        </div>
+    `;
 
     const PROV_INITIAL = 8;
     const sortedProviders = Array.from(providers).sort();
@@ -567,13 +492,43 @@ window.showThemeDetails = function (themeName, opts) {
     if (scopeProvider) {
         html += `<div class="mx-4 mb-3 px-3 py-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between">
             <span class="text-xs text-indigo-700 dark:text-indigo-300">Filtered to <strong>${escapeHtml(scopeProvider)}</strong></span>
-            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
+            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 Back to ${escapeHtml(scopeProvider)}
             </button>
         </div>`;
     }
 
+    // --- Build Art Profile from art characterization data ---
+    const artGames = themeGames.filter(g => F.artSetting(g));
+    let artProfileHtml = '';
+    if (artGames.length > 0) {
+        const settingCounts = {};
+        const moodCounts = {};
+        const characterCounts = {};
+        for (const g of artGames) {
+            const s = F.artSetting(g);
+            if (s) settingCounts[s] = (settingCounts[s] || 0) + 1;
+            const m = F.artMood(g);
+            if (m) moodCounts[m] = (moodCounts[m] || 0) + 1;
+            const chars = F.artCharacters(g);
+            if (Array.isArray(chars)) {
+                chars.forEach(c => {
+                    if (c && c !== 'No Characters (symbol-only game)')
+                        characterCounts[c] = (characterCounts[c] || 0) + 1;
+                });
+            }
+        }
+        const sortedSettings = Object.entries(settingCounts).sort((a, b) => b[1] - a[1]);
+        const sortedMoods = Object.entries(moodCounts).sort((a, b) => b[1] - a[1]);
+        const sortedCharacters = Object.entries(characterCounts)
+            .filter(([, n]) => n >= 2)
+            .sort((a, b) => b[1] - a[1]);
+
+        artProfileHtml = _renderArtProfileContent(sortedSettings, sortedMoods, sortedCharacters, artGames.length);
+    }
+
+    // --- Assemble panel in order of importance ---
     html += PanelSection({
         title: 'Statistics',
         icon: '📊',
@@ -588,6 +543,29 @@ window.showThemeDetails = function (themeName, opts) {
         accent: ACCENTS.themes,
         content: descContent,
     });
+    html += PanelSection({
+        title: `Top Games (${sortedGames.length})`,
+        icon: '🏆',
+        gradient: GRADIENTS.similar,
+        accent: ACCENTS.similar,
+        content: `<div class="space-y-0">${topGamesHtml}</div>`,
+    });
+    if (artProfileHtml) {
+        html += PanelSection({
+            title: `Art Profile (${artGames.length})`,
+            icon: '🎨',
+            gradient: GRADIENTS.category,
+            accent: ACCENTS.category,
+            content: artProfileHtml,
+        });
+    }
+    html += PanelSection({
+        title: `Mechanics (${topFeatures.length})`,
+        icon: '⚙️',
+        gradient: GRADIENTS.games,
+        accent: ACCENTS.games,
+        content: featuresHtml,
+    });
     if (!scopeProvider) {
         html += PanelSection({
             title: `Providers (${providers.size})`,
@@ -597,20 +575,7 @@ window.showThemeDetails = function (themeName, opts) {
             content: providerContent || EmptyState('No provider data'),
         });
     }
-    html += PanelSection({
-        title: `Top Games (${sortedGames.length})`,
-        icon: '🏆',
-        gradient: GRADIENTS.similar,
-        accent: ACCENTS.similar,
-        content: `<div class="space-y-0">${topGamesHtml}</div>`,
-    });
-    html += PanelSection({
-        title: `Features (${topFeatures.length})`,
-        icon: '⚙️',
-        gradient: GRADIENTS.games,
-        accent: ACCENTS.games,
-        content: featuresHtml,
-    });
+
     if (themePanelContent) themePanelContent.innerHTML = html;
 
     window.closeAllPanels('theme-panel');
@@ -636,4 +601,188 @@ window.closeThemePanel = function () {
         bg.classList.remove('block');
     }
     restorePageScroll(panel);
+};
+
+// ===== RTP Band Details ============================================
+window.showRtpBandDetails = function (bandLabel) {
+    const allGames = gameData.allGames || [];
+    const bandGames = allGames.filter(g => {
+        const rtp = g.specs_rtp || g.rtp;
+        if (!rtp) return false;
+        return bandLabel.includes(String(rtp).slice(0, 4)) || bandLabel.includes(String(Math.floor(rtp)));
+    });
+
+    const rtpParseRange = bandLabel.match(/([\d.]+)\s*-\s*([\d.]+)/);
+    let filteredGames = allGames;
+    if (rtpParseRange) {
+        const lo = parseFloat(rtpParseRange[1]);
+        const hi = parseFloat(rtpParseRange[2]);
+        filteredGames = allGames.filter(g => {
+            const rtp = g.specs_rtp || g.rtp;
+            return rtp && rtp >= lo && rtp <= hi;
+        });
+    }
+    filteredGames.sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
+
+    const titleEl = document.getElementById('theme-panel-title');
+    if (titleEl) titleEl.textContent = `RTP: ${bandLabel}`;
+    const contentEl = document.getElementById('theme-panel-content');
+    if (!contentEl) return;
+
+    const avgTheo = filteredGames.length
+        ? filteredGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / filteredGames.length
+        : 0;
+
+    const statsSection = PanelSection({
+        title: 'RTP Band Stats',
+        icon: '📐',
+        gradient: GRADIENTS.specs,
+        accent: ACCENTS.specs,
+        content: MetricGrid([
+            { label: 'Games', value: filteredGames.length },
+            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+        ]),
+    });
+
+    const INITIAL = 10;
+    const gamesList = filteredGames
+        .slice(0, INITIAL)
+        .map(g => GameListItem(g))
+        .join('');
+
+    const gamesSection = PanelSection({
+        title: `Top Games (${filteredGames.length})`,
+        icon: '🎰',
+        gradient: GRADIENTS.performance,
+        accent: ACCENTS.performance,
+        content: `<div class="space-y-0">${gamesList}</div>`,
+    });
+
+    contentEl.innerHTML = statsSection + gamesSection;
+
+    openDetailPanel();
+};
+
+// ===== Volatility Level Details ====================================
+window.showVolatilityDetails = function (volLevel) {
+    const allGames = gameData.allGames || [];
+    const volGames = allGames
+        .filter(g => {
+            const v = (g.specs_volatility || g.volatility || '').trim();
+            return v.toLowerCase() === volLevel.toLowerCase();
+        })
+        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
+
+    const titleEl = document.getElementById('theme-panel-title');
+    if (titleEl) titleEl.textContent = `${volLevel} Volatility`;
+    const contentEl = document.getElementById('theme-panel-content');
+    if (!contentEl) return;
+
+    const avgTheo = volGames.length
+        ? volGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / volGames.length
+        : 0;
+
+    const statsSection = PanelSection({
+        title: 'Volatility Stats',
+        icon: '📊',
+        gradient: GRADIENTS.specs,
+        accent: ACCENTS.specs,
+        content: MetricGrid([
+            { label: 'Games', value: volGames.length },
+            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+        ]),
+    });
+
+    const INITIAL = 10;
+    const gamesList = volGames
+        .slice(0, INITIAL)
+        .map(g => GameListItem(g))
+        .join('');
+
+    const gamesSection = PanelSection({
+        title: `Top Games (${volGames.length})`,
+        icon: '🎰',
+        gradient: GRADIENTS.performance,
+        accent: ACCENTS.performance,
+        content: `<div class="space-y-0">${gamesList}</div>`,
+    });
+
+    contentEl.innerHTML = statsSection + gamesSection;
+
+    openDetailPanel();
+};
+
+// ===== Franchise / Brand Details ====================================
+window.showFranchiseDetails = function (franchiseName) {
+    const allGames = gameData.allGames || [];
+    const fGames = allGames
+        .filter(g => F.franchise(g) === franchiseName)
+        .sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
+
+    const titleEl = document.getElementById('theme-panel-title');
+    if (titleEl) titleEl.textContent = `Brand: ${franchiseName}`;
+    const contentEl = document.getElementById('theme-panel-content');
+    if (!contentEl) return;
+
+    const totalTheo = fGames.reduce((s, g) => s + F.theoWin(g), 0);
+    const avgTheo = fGames.length ? totalTheo / fGames.length : 0;
+    const totalShare = fGames.reduce((s, g) => s + F.marketShare(g), 0);
+    const providers = [...new Set(fGames.map(g => F.provider(g)).filter(p => p && p !== 'Unknown'))];
+    const themes = [...new Set(fGames.map(g => F.themeConsolidated(g)).filter(Boolean))];
+    const years = fGames.map(g => F.originalReleaseYear(g)).filter(y => y > 0);
+    const minYear = years.length ? Math.min(...years) : null;
+    const maxYear = years.length ? Math.max(...years) : null;
+    const yearRange = minYear && maxYear ? (minYear === maxYear ? `${minYear}` : `${minYear}–${maxYear}`) : 'N/A';
+
+    const statsSection = PanelSection({
+        title: 'Brand Stats',
+        icon: '🏷️',
+        gradient: GRADIENTS.performance,
+        accent: ACCENTS.performance,
+        content: MetricGrid([
+            { label: 'Titles', value: fGames.length },
+            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+            { label: 'Market Share %', value: `${totalShare.toFixed(1)}%` },
+            { label: 'Providers', value: providers.length },
+            { label: 'Year Range', value: yearRange },
+        ]),
+    });
+
+    const provSection = providers.length
+        ? PanelSection({
+              title: 'Providers',
+              icon: '🏢',
+              gradient: GRADIENTS.provider,
+              accent: ACCENTS.provider,
+              content: `<div class="flex flex-wrap gap-1.5">${providers.map(p => `<span class="px-2 py-0.5 text-xs rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300">${escapeHtml(p)}</span>`).join('')}</div>`,
+          })
+        : '';
+
+    const themeSection = themes.length
+        ? PanelSection({
+              title: 'Themes',
+              icon: '🎨',
+              gradient: GRADIENTS.specs,
+              accent: ACCENTS.specs,
+              content: `<div class="flex flex-wrap gap-1.5">${themes.map(t => `<span class="px-2 py-0.5 text-xs rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300">${escapeHtml(t)}</span>`).join('')}</div>`,
+          })
+        : '';
+
+    const INITIAL = 10;
+    const gamesList = fGames
+        .slice(0, INITIAL)
+        .map(g => GameListItem(g))
+        .join('');
+
+    const gamesSection = PanelSection({
+        title: `Titles (${fGames.length})`,
+        icon: '🎰',
+        gradient: GRADIENTS.release,
+        accent: ACCENTS.release,
+        content: `<div class="space-y-0">${gamesList}</div>`,
+    });
+
+    contentEl.innerHTML = statsSection + provSection + themeSection + gamesSection;
+
+    openDetailPanel();
 };

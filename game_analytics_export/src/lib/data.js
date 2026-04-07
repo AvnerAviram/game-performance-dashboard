@@ -8,6 +8,7 @@
 import { createTooltipsObject } from '../config/mechanics.js';
 import { log, warn } from './env.js';
 import { calculateSmartIndex as computeSI } from './metrics.js';
+import { parseFeatures } from './parse-features.js';
 
 // Global data store
 export let gameData = {
@@ -20,10 +21,36 @@ export let gameData = {
     top_anomalies: [],
     bottom_anomalies: [],
     allGames: [],
+    /** Filtered view of allGames; set by per-page category filter */
+    viewGames: null,
+    /** Filtered view of themes; recomputed when category filter changes */
+    viewThemes: null,
+    /** Filtered view of mechanics; recomputed when category filter changes */
+    viewMechanics: null,
+    /** Currently active category filter label (null = "All Types") */
+    activeCategory: null,
     /** theme_primary → consolidated; filled after DuckDB load */
     themeConsolidationMap: {},
     _dataSource: 'unknown', // Track where data came from
 };
+
+// ── Centralized getters ──────────────────────────────────────────────────
+// UI code should use these instead of accessing gameData.allGames / .themes / .mechanics directly.
+
+/** Returns the category-filtered game array, or all games when no filter is active. */
+export function getActiveGames() {
+    return gameData.viewGames ?? gameData.allGames ?? [];
+}
+
+/** Returns themes recomputed for the active category filter, or all themes. */
+export function getActiveThemes() {
+    return gameData.viewThemes ?? gameData.themes ?? [];
+}
+
+/** Returns mechanics recomputed for the active category filter, or all mechanics. */
+export function getActiveMechanics() {
+    return gameData.viewMechanics ?? gameData.mechanics ?? [];
+}
 
 // Make gameData globally available
 if (typeof window !== 'undefined') {
@@ -120,7 +147,7 @@ async function loadViaDuckDB() {
         gameData.top_anomalies = (anomalies.high || []).map(g => ({
             game: g.name,
             themes: [g.theme_consolidated || 'Unknown'],
-            mechanics: [g.mechanic_primary || 'Unknown'],
+            mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
             rank: g.performance_rank || 999,
@@ -131,7 +158,7 @@ async function loadViaDuckDB() {
         gameData.bottom_anomalies = (anomalies.low || []).map(g => ({
             game: g.name,
             themes: [g.theme_consolidated || 'Unknown'],
-            mechanics: [g.mechanic_primary || 'Unknown'],
+            mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
             rank: g.performance_rank || 999,

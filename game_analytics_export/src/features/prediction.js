@@ -678,7 +678,7 @@ function analyzeGameConcept() {
             html += `
             <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
                 <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
-                    <h3 class="text-sm font-bold text-gray-900 dark:text-white">📊 Feature Impact for ${escapeHtml(primaryTheme)}</h3>
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white">📊 Mechanic Impact for ${escapeHtml(primaryTheme)}</h3>
                     <p class="text-[10px] text-gray-400 mt-0.5">How each feature affects performance in this theme (baseline: ${themeAvg.toFixed(2)} avg theo)</p>
                 </div>
                 <div class="p-4 space-y-1.5">

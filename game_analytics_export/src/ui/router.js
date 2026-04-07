@@ -88,14 +88,25 @@ async function initializePage(pageName) {
             }, 250);
             break;
 
+        case 'art':
+            setTimeout(async () => {
+                try {
+                    const { renderArt } = await import('./renderers/art-renderer.js');
+                    renderArt();
+                } catch (_error) {
+                    console.error('Error loading art page:', _error);
+                }
+            }, 250);
+            break;
+
         case 'prediction':
-            showPage('game-lab');
-            setTimeout(() => window.navigateGameLab('concept'), 600);
+            await showPage('game-lab');
+            window.switchLabTool('concept');
             return;
 
         case 'name-generator':
-            showPage('game-lab');
-            setTimeout(() => window.navigateGameLab('name-gen'), 600);
+            await showPage('game-lab');
+            window.switchLabTool('name-gen');
             return;
 
         case 'ai-assistant':
@@ -126,6 +137,7 @@ const VALID_PAGES = new Set([
     'anomalies',
     'game-lab',
     'trends',
+    'art',
     'tickets',
     'prediction',
     'name-generator',
@@ -143,13 +155,15 @@ export async function showPage(page, { pushHistory = true } = {}) {
         return;
     }
     if (page === 'prediction') {
-        showPage('game-lab', { pushHistory });
-        setTimeout(() => window.navigateGameLab('concept'), 600);
+        await showPage('game-lab', { pushHistory: false });
+        if (pushHistory) history.pushState({ page: 'prediction' }, '', '#prediction');
+        window.switchLabTool('concept');
         return;
     }
     if (page === 'name-generator') {
-        showPage('game-lab', { pushHistory });
-        setTimeout(() => window.navigateGameLab('name-gen'), 600);
+        await showPage('game-lab', { pushHistory: false });
+        if (pushHistory) history.pushState({ page: 'name-generator' }, '', '#name-generator');
+        window.switchLabTool('name-gen');
         return;
     }
 
@@ -252,20 +266,6 @@ function updateGameLabSubnav(_page) {
     // no-op: Game Lab items are always visible in sidebar
 }
 
-function toggleGameLabSubnav() {
-    const subnav = document.getElementById('gamelab-subnav');
-    const chevron = document.querySelector('.gamelab-chevron');
-    if (!subnav) return;
-    const isExpanded = subnav.style.maxHeight && subnav.style.maxHeight !== '0px';
-    if (isExpanded) {
-        subnav.style.maxHeight = '0';
-        if (chevron) chevron.style.transform = 'rotate(0deg)';
-    } else {
-        subnav.style.maxHeight = subnav.scrollHeight + 'px';
-        if (chevron) chevron.style.transform = 'rotate(90deg)';
-    }
-}
-
 window.switchLabTool = function (toolId) {
     if (toolId === 'symbols') toolId = 'blueprint';
     document.querySelectorAll('.gamelab-section').forEach(s => s.classList.add('hidden'));
@@ -292,8 +292,8 @@ window.switchLabTool = function (toolId) {
 };
 
 window.navigateGameLab = async function (section) {
-    const currentPage = window.location.hash.replace('#', '') || 'overview';
-    if (currentPage !== 'game-lab') {
+    const gameLabLoaded = document.getElementById('lab-section-blueprint');
+    if (!gameLabLoaded) {
         await showPage('game-lab');
     }
     window.switchLabTool(section);

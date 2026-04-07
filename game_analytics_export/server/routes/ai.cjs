@@ -270,6 +270,139 @@ Guidelines:
     }
 });
 
+// =====================================================================
+// GET /api/trademark-check — USPTO trademark lookup via tmsearchapi.com
+// =====================================================================
+const TM_DAILY_CAP = 45;
+let dailyTMChecks = 0;
+let dailyTMResetDate = new Date().toDateString();
+
+const GAMING_CLASSES = new Set(['009', '028', '041']);
+const LIVE_CODES = new Set(['600', '601', '607', '608', '620', '622', '648', '700', '800']);
+
+function classifyTMStatus(code) {
+    if (LIVE_CODES.has(code)) return 'Live';
+    const n = parseInt(code, 10);
+    if ((n >= 630 && n <= 662) || code === '900') return 'Pending';
+    return 'Dead';
+}
+
+const tmRateLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 15,
+    message: { error: 'Too many trademark checks. Try again later.' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+async function fetchTMSearch(query, signal) {
+    const resp = await fetch(`https://tmsearchapi.com/search/mark?q=${encodeURIComponent(query)}&limit=10`, { signal });
+    if (!resp.ok) throw new Error('upstream ' + resp.status);
+    return resp.json();
+}
+
+function classifyResult(r, matchedQuery) {
+    return {
+        mark: r.mark || '',
+        owner: r.owner_name || '',
+        country: r.owner_country || '',
+        status: r.status_code || '',
+        statusLabel: classifyTMStatus(r.status_code || ''),
+        classes: r.classes || '',
+        descriptions: r.descriptions || '',
+        isGamingClass: (r.classes || '').split(',').some(c => GAMING_CLASSES.has(c.trim())),
+        registrationNumber: r.registration_number || '',
+        matchedQuery: matchedQuery || '',
+    };
+}
+
+router.get('/api/trademark-check', requireAuth, tmRateLimiter, async (req, res) => {
+    const name = req.query.name;
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
+        return res.status(400).json({ error: 'Name query parameter is required' });
+    }
+    if (name.length > 100) {
+        return res.status(400).json({ error: 'Name too long (max 100 characters)' });
+    }
+
+    const today = new Date().toDateString();
+    if (today !== dailyTMResetDate) {
+        dailyTMChecks = 0;
+        dailyTMResetDate = today;
+    }
+
+    const trimmed = name.trim();
+    const words = trimmed.split(/\s+/).filter(w => w.length > 0);
+
+    const queries = [trimmed];
+    if (words.length >= 3) {
+        for (let i = 0; i <= words.length - 2; i++) {
+            const bigram = words[i] + ' ' + words[i + 1];
+            if (bigram.toLowerCase() !== trimmed.toLowerCase()) {
+                queries.push(bigram);
+            }
+        }
+    }
+
+    const apiCallsNeeded = queries.length;
+    if (dailyTMChecks + apiCallsNeeded > TM_DAILY_CAP) {
+        return res.status(429).json({
+            error: `Daily trademark check limit reached (need ${apiCallsNeeded} calls, ${TM_DAILY_CAP - dailyTMChecks} remaining). Try again tomorrow.`,
+        });
+    }
+    dailyTMChecks += apiCallsNeeded;
+
+    const user = req.session.user?.username || 'unknown';
+
+    try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+
+        const fetchResults = await Promise.all(
+            queries.map(q =>
+                fetchTMSearch(q, controller.signal)
+                    .then(data => ({ query: q, results: data.results || [], totalCount: data.total_count || 0 }))
+                    .catch(() => ({ query: q, results: [], totalCount: 0 }))
+            )
+        );
+        clearTimeout(timeout);
+
+        const seen = new Set();
+        const allResults = [];
+        let totalCount = 0;
+        for (const batch of fetchResults) {
+            totalCount += batch.totalCount;
+            for (const r of batch.results) {
+                const key = r.serial_number || r.mark + r.owner_name;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    allResults.push(classifyResult(r, batch.query));
+                }
+            }
+        }
+
+        const liveCount = allResults.filter(r => r.statusLabel === 'Live').length;
+        console.log(
+            `[TM-AUDIT] check | user=${user} | name="${trimmed}" | queries=${queries.length} | hits=${allResults.length} | live=${liveCount} | daily=${dailyTMChecks}/${TM_DAILY_CAP}`
+        );
+
+        res.json({
+            name: trimmed,
+            queries,
+            results: allResults,
+            totalCount,
+            dailyRemaining: TM_DAILY_CAP - dailyTMChecks,
+        });
+    } catch (e) {
+        if (e.name === 'AbortError') {
+            console.error('[TM-AUDIT] timeout | name="' + trimmed + '"');
+            return res.status(504).json({ error: 'Trademark search timed out. Try again.' });
+        }
+        console.error('[TM-AUDIT] error:', e.message);
+        res.status(502).json({ error: 'Trademark search service unavailable' });
+    }
+});
+
 // --- Admin: reveal AI name code (requires password re-verification) ---
 router.post('/api/admin/ai-code', requireAdmin, async (req, res) => {
     const { password } = req.body;

@@ -67,7 +67,7 @@
                     <button
                         type="button"
                         onclick="window.openFeedbackModal()"
-                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                     >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path
@@ -81,7 +81,7 @@
                     <button
                         type="button"
                         onclick="showPage('tickets')"
-                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                     >
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path
@@ -121,7 +121,7 @@
                 </div>
                 <button
                     onclick="document.getElementById('year-detail-card').classList.add('hidden')"
-                    class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                    class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                 >
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -142,7 +142,7 @@
                     <div id="year-detail-themes" class="space-y-2"></div>
                 </div>
                 <div>
-                    <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Features This Year</h4>
+                    <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Top Mechanics This Year</h4>
                     <div id="year-detail-features" class="space-y-2"></div>
                 </div>
             </div>
@@ -174,8 +174,8 @@
                                 class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                                For each year, computes the <strong>average Theo Win Index</strong> across all games
-                                released in that year.<br /><br /><strong>Theo Win Index</strong> = a game's theoretical
+                                For each year, computes the <strong>average Performance Index</strong> across all games
+                                released in that year.<br /><br /><strong>Performance Index</strong> = a game's theoretical
                                 win per unit bet, derived from the Eilers performance data. Higher = stronger market
                                 performance.
                             </div>
@@ -229,7 +229,7 @@
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
                                 Shows the <strong>top 10 themes by game count</strong>. For each theme and year,
-                                computes the <strong>average Theo Win Index</strong> of all games in that theme released
+                                computes the <strong>average Performance Index</strong> of all games in that theme released
                                 in that year.<br /><br />Lines represent how each theme's average performance has
                                 changed over time.
                             </div>
@@ -260,7 +260,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-1.5">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Feature Performance Over Time
+                            Mechanic Performance Over Time
                         </h3>
                         <div class="relative group">
                             <button
@@ -272,14 +272,14 @@
                                 class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                                Shows the <strong>top 10 features by adoption count</strong>. For each feature and year,
-                                computes the <strong>average Theo Win Index</strong> of all games that include that
-                                feature and were released in that year.<br /><br />A game can have multiple features, so
-                                it contributes to multiple lines.
+                                Shows the <strong>top 10 mechanics by adoption count</strong>. For each mechanic and
+                                year, computes the <strong>average Performance Index</strong> of all games that include
+                                that mechanic and were released in that year.<br /><br />A game can have multiple
+                                mechanics, so it contributes to multiple lines.
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Top features performance trends</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Top mechanics performance trends</p>
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-1.5" id="mechanic-zoom-btns"></div>
@@ -319,13 +319,13 @@
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
                                 Shows the <strong>top providers by game count</strong>. For each provider and year,
-                                computes the <strong>average Theo Win Index</strong> of all games from that provider
+                                computes the <strong>average Performance Index</strong> of all games from that provider
                                 released in that year.<br /><br />Lines represent how each provider's average
                                 performance has changed over time.
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Top provider avg Theo Win by year</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Top provider avg Performance Index by year</p>
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-1.5" id="provider-trend-zoom"></div>

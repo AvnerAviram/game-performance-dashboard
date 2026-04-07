@@ -157,7 +157,7 @@ describe('Theme Clickability – source-level enforcement', () => {
                 src.indexOf('themeConsolidationMap'),
                 src.indexOf('themeConsolidationMap') + 300
             );
-            expect(mapSection).toMatch(/typeof\s+(key|val)\s*===\s*['"]string['"]/);
+            expect(mapSection).toMatch(/typeof\s+(key|val|k|mapped\[1\])\s*===\s*['"]string['"]/);
         });
     });
 

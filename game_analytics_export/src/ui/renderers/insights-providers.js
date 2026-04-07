@@ -1,7 +1,7 @@
 /**
  * Provider × theme matrix.
  */
-import { gameData } from '../../lib/data.js';
+import { getActiveGames } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { parseFeatsLocal } from './overview-renderer.js';
@@ -12,7 +12,7 @@ export function generateProviderThemeMatrix() {
     const container = document.getElementById('provider-theme-matrix');
     if (!container) return;
 
-    const allGames = gameData.allGames || [];
+    const allGames = getActiveGames();
     if (!allGames.length) {
         container.innerHTML = '<p class="text-sm text-gray-500">No data</p>';
         return;
@@ -59,7 +59,7 @@ export function generateProviderThemeMatrix() {
         let recentCount = 0;
         let olderTheo = 0;
         let olderCount = 0;
-        const years = provGames.map(g => g.release_year).filter(y => y != null && y > 1900);
+        const years = provGames.map(g => F.originalReleaseYear(g)).filter(y => y != null && y > 1900);
         const maxY = years.length ? Math.max(...years) : new Date().getFullYear();
         const recentThresh = maxY - 2;
         const olderThresh = maxY - 5;
@@ -83,7 +83,7 @@ export function generateProviderThemeMatrix() {
                 const l = `${r}x${rw}`;
                 layoutCounts[l] = (layoutCounts[l] || 0) + 1;
             }
-            const y = g.release_year;
+            const y = F.originalReleaseYear(g);
             if (y != null && y >= recentThresh) {
                 recentTheo += theo;
                 recentCount++;

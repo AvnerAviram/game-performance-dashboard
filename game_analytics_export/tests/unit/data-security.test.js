@@ -63,13 +63,13 @@ describe('Security - server routes (session auth on data endpoints)', () => {
     });
 });
 
-describe('Security - build script (no games_dashboard.json copy to dist)', () => {
+describe('Security - build script (no game_data_master.json copy to dist)', () => {
     const packagePath = join(ROOT, 'package.json');
 
     it('build script should copy only dashboard data to dist (not master/raw)', () => {
         const pkg = JSON.parse(readFileSync(packagePath, 'utf-8'));
         const buildScript = pkg.scripts?.build || '';
-        expect(buildScript).toContain('games_dashboard.json');
+        expect(buildScript).toContain('game_data_master.json');
         expect(buildScript).not.toContain('games_master.json');
     });
 });

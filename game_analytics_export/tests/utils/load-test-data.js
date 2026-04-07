@@ -1,5 +1,5 @@
 /**
- * Test Data Loader - Loads games_dashboard.json and populates gameData without DuckDB.
+ * Test Data Loader - Loads game_data_master.json and populates gameData without DuckDB.
  * Use in Vitest integration/validation tests (DuckDB is browser-only).
  */
 
@@ -19,10 +19,26 @@ export const gameData = {
     top_anomalies: [],
     bottom_anomalies: [],
     allGames: [],
+    viewGames: null,
+    viewThemes: null,
+    viewMechanics: null,
+    activeCategory: null,
 };
 
+export function getActiveGames() {
+    return gameData.viewGames ?? gameData.allGames ?? [];
+}
+
+export function getActiveThemes() {
+    return gameData.viewThemes ?? gameData.themes ?? [];
+}
+
+export function getActiveMechanics() {
+    return gameData.viewMechanics ?? gameData.mechanics ?? [];
+}
+
 export async function loadTestData() {
-    const module = await import('../../data/games_dashboard.json', {
+    const module = await import('../../data/game_data_master.json', {
         assert: { type: 'json' },
     });
     const data = module.default;
@@ -86,7 +102,7 @@ export async function loadTestData() {
     gameData.top_anomalies = (anomalies.high || []).map(g => ({
         game: g.name,
         themes: [g.theme_primary ?? g.theme?.consolidated ?? 'Unknown'],
-        mechanics: [g.mechanic_primary ?? g.mechanic?.primary ?? 'Unknown'],
+        mechanics: Array.isArray(g.features) && g.features.length > 0 ? g.features : ['Unknown'],
         'Theo Win': g.theo_win ?? g.performance?.theo_win ?? 0,
         'Market Share %': g.market_share_pct ?? g.performance?.market_share_percent ?? 0,
         rank: g.performance_rank ?? g.performance?.rank ?? 999,
@@ -95,7 +111,7 @@ export async function loadTestData() {
     gameData.bottom_anomalies = (anomalies.low || []).map(g => ({
         game: g.name,
         themes: [g.theme_primary ?? g.theme?.consolidated ?? 'Unknown'],
-        mechanics: [g.mechanic_primary ?? g.mechanic?.primary ?? 'Unknown'],
+        mechanics: Array.isArray(g.features) && g.features.length > 0 ? g.features : ['Unknown'],
         'Theo Win': g.theo_win ?? g.performance?.theo_win ?? 0,
         'Market Share %': g.market_share_pct ?? g.performance?.market_share_percent ?? 0,
         rank: g.performance_rank ?? g.performance?.rank ?? 999,

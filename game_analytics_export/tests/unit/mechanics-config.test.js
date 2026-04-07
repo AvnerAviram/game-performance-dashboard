@@ -21,12 +21,11 @@ describe('mechanics.js exports', () => {
         expect(Object.keys(MechanicCategory)).toHaveLength(4);
     });
 
-    it('should export VALID_MECHANICS with all 23 + extras', () => {
-        expect(Object.keys(VALID_MECHANICS).length).toBeGreaterThanOrEqual(23);
+    it('should export VALID_MECHANICS with all 22 + extras', () => {
+        expect(Object.keys(VALID_MECHANICS).length).toBeGreaterThanOrEqual(22);
         expect(VALID_MECHANICS['Free Spins']).toBeDefined();
         expect(VALID_MECHANICS['Hold & Win']).toBeDefined();
         expect(VALID_MECHANICS['Megaways']).toBeDefined();
-        expect(VALID_MECHANICS['Multipliers']).toBeDefined();
     });
 
     it('every valid mechanic should have required fields', () => {
@@ -115,7 +114,7 @@ describe('getValidMechanicNames', () => {
     it('returns array of mechanic names', () => {
         const names = getValidMechanicNames();
         expect(names).toBeInstanceOf(Array);
-        expect(names.length).toBeGreaterThanOrEqual(23);
+        expect(names.length).toBeGreaterThanOrEqual(22);
         expect(names).toContain('Free Spins');
         expect(names).toContain('Megaways');
     });

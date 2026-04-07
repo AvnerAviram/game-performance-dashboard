@@ -1,5 +1,5 @@
 // Insights & Anomalies page renderer
-import { gameData } from '../../lib/data.js';
+import { gameData, getActiveGames } from '../../lib/data.js';
 import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { analyzeGameSuccessFactors, generateRecommendations } from '../../lib/game-analytics-engine.js';
@@ -45,7 +45,7 @@ export function renderAnomalies() {
             const smartInsights = analyzeGameSuccessFactors(a.game, a.theo_win_index, a.z_score, a.themes);
             const recommendations = generateRecommendations(smartInsights, a.themes, a.z_score);
 
-            const gameObj = (gameData.allGames || []).find(g => g.name === a.game);
+            const gameObj = getActiveGames().find(g => g.name === a.game);
             const provider = gameObj ? F.provider(gameObj) : '';
             const features = gameObj?.features || [];
             const featList = parseFeatures(features);
@@ -153,7 +153,7 @@ export function renderAnomalies() {
         const bottomInsights = analyzeGameSuccessFactors(a.game, a.theo_win_index, a.z_score, a.themes);
         const bottomRecs = generateRecommendations(bottomInsights, a.themes, a.z_score);
 
-        const gameObj = (gameData.allGames || []).find(g => g.name === a.game);
+        const gameObj = getActiveGames().find(g => g.name === a.game);
         const provider = gameObj ? F.provider(gameObj) : '';
         const features = gameObj?.features || [];
         const featList = parseFeatures(features);

@@ -24,16 +24,26 @@ import { F } from '../lib/game-fields.js';
  * @param {string} options.gradient - Full gradient class name
  * @param {string} options.content - HTML content for section body
  */
-export const PanelSection = ({ title, icon, gradient: _gradient, content, accent }) => {
+export const PanelSection = ({ title, icon, gradient: _gradient, content, accent, collapsed = false }) => {
     const accentColor = accent || 'border-indigo-400 dark:border-indigo-500';
+    const uid = `ps-${Math.random().toString(36).slice(2, 8)}`;
+    const chevron = collapsed
+        ? `<svg class="w-4 h-4 text-gray-400 transition-transform" id="${uid}-chev" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>`
+        : '';
+    const cursor = collapsed ? 'cursor-pointer' : '';
+    const bodyDisplay = collapsed ? 'display:none' : '';
+    const toggle = collapsed
+        ? `onclick="const b=document.getElementById('${uid}');const c=document.getElementById('${uid}-chev');if(b.style.display==='none'){b.style.display='';c.style.transform='rotate(180deg)'}else{b.style.display='none';c.style.transform=''}"`
+        : '';
     return `
   <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700/50">
-    <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-700/50">
+    <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 ${cursor}" ${toggle}>
       <div class="w-1 h-5 rounded-full ${accentColor.replace('border-', 'bg-')}"></div>
       <span class="text-sm">${icon}</span>
-      <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 m-0">${title}</h4>
+      <h4 class="text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-200 m-0 flex-1">${title}</h4>
+      ${chevron}
     </div>
-    <div class="px-4 py-3">
+    <div class="px-4 py-3" id="${uid}" style="${bodyDisplay}">
       ${content}
     </div>
   </div>

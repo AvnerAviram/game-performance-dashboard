@@ -1,0 +1,468 @@
+<!-- Art Design Page -->
+<div class="pb-8">
+    <!-- Sticky Header -->
+    <div
+        class="sticky top-0 -ml-8 -mr-8 pl-8 pr-4 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 mb-6"
+    >
+        <div class="flex justify-between items-center py-5">
+            <div>
+                <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">
+                    Art Design Intelligence
+                </h2>
+                <p id="art-subtitle" class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                    Visual design analysis across environments, mood & tone, characters and elements
+                </p>
+            </div>
+            <div class="relative -mr-1 flex items-center">
+                <button
+                    id="hamburger-btn"
+                    type="button"
+                    class="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors"
+                    aria-label="Account menu"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </button>
+                <div
+                    id="hamburger-dropdown"
+                    class="hidden absolute right-0 top-full mt-1 w-48 py-1 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 z-[200]"
+                >
+                    <button
+                        id="auth-login-btn"
+                        type="button"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                            /></svg
+                        >Log in
+                    </button>
+                    <button
+                        id="auth-logout-btn"
+                        type="button"
+                        class="hidden w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors flex items-center gap-2"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                            /></svg
+                        >Log out
+                    </button>
+                    <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+                    <button
+                        type="button"
+                        onclick="window.openFeedbackModal()"
+                        class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                            /></svg
+                        >Submit Feedback
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coverage Stats Bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Art Coverage
+            </div>
+            <div id="art-stat-coverage" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Environments
+            </div>
+            <div id="art-stat-settings" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Moods</div>
+            <div id="art-stat-moods" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Avg Performance Index
+            </div>
+            <div id="art-stat-avg-theo" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+    </div>
+
+    <!-- Opportunity Matrix (Bubble Chart) -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
+        style="overflow: visible"
+    >
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-2">
+                <div
+                    class="w-10 h-10 bg-pink-100 dark:bg-pink-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    💎
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Art Landscape</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
+                                Each bubble is one art <strong>environment</strong> (e.g. Ancient Temple, Enchanted
+                                Forest). <strong>X-axis</strong> = number of games with this environment.
+                                <strong>Y-axis</strong> = average Performance Index (performance).
+                                <strong>Bubble size</strong> = game count. <br /><br />
+                                <strong>💎 Top-left</strong> = high performance, few games — best opportunities.
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        All 38 art environments — find high-performing niches with low competition
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 w-full overflow-visible relative" style="height: 680px; min-height: 680px">
+            <canvas
+                id="art-opportunity-chart"
+                class="w-full block"
+                style="display: block; box-sizing: border-box"
+            ></canvas>
+            <div
+                id="art-label-tooltip"
+                class="hidden absolute z-40 pointer-events-none p-3 rounded-md shadow-lg bg-white/95 dark:bg-[rgba(30,41,59,0.95)] border border-[rgba(148,163,184,0.2)] dark:border-[rgba(148,163,184,0.3)] whitespace-nowrap"
+            >
+                <div
+                    id="art-label-tooltip-title"
+                    class="font-bold text-[13px] mb-1 text-slate-800 dark:text-slate-200"
+                ></div>
+                <div class="flex items-center gap-2">
+                    <span
+                        id="art-label-tooltip-swatch"
+                        class="inline-block w-[10px] h-[10px] rounded-sm flex-shrink-0"
+                    ></span>
+                    <span id="art-label-tooltip-body" class="text-[12px] text-slate-700 dark:text-slate-200"></span>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+            <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
+                <span class="flex items-center gap-1"
+                    ><span class="w-2.5 h-2.5 rounded-full bg-emerald-500/50 border border-emerald-500/70"></span>
+                    Opportunity</span
+                >
+                <span class="flex items-center gap-1"
+                    ><span class="w-2.5 h-2.5 rounded-full bg-indigo-500/50 border border-indigo-500/70"></span>
+                    Leaders</span
+                >
+                <span class="flex items-center gap-1"
+                    ><span class="w-2.5 h-2.5 rounded-full bg-slate-400/50 border border-slate-400/70"></span>
+                    Niche</span
+                >
+                <span class="flex items-center gap-1"
+                    ><span class="w-2.5 h-2.5 rounded-full bg-red-500/50 border border-red-500/70"></span>
+                    Saturated</span
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- Art Environments & Moods (side-by-side) -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <!-- Art Environments -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            style="overflow: visible"
+        >
+            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
+                    >
+                        🌍
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Art Environments</h3>
+                </div>
+            </div>
+            <div class="p-6" style="height: 380px; min-height: 380px">
+                <canvas
+                    id="art-settings-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+
+        <!-- Mood & Tone -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            style="overflow: visible"
+        >
+            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 bg-purple-100 dark:bg-purple-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
+                    >
+                        🎭
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Mood & Tone</h3>
+                </div>
+            </div>
+            <div class="p-6" style="height: 380px; min-height: 380px">
+                <canvas
+                    id="art-mood-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Characters, Elements & Narrative -->
+    <div class="grid md:grid-cols-3 gap-6 mb-6">
+        <!-- Top Characters -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            style="overflow: visible"
+        >
+            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
+                    >
+                        🧙
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Top Characters</h3>
+                </div>
+            </div>
+            <div class="p-6" style="height: 380px; min-height: 380px">
+                <canvas
+                    id="art-characters-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+
+        <!-- Top Visual Elements -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            style="overflow: visible"
+        >
+            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
+                    >
+                        💎
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Top Visual Elements</h3>
+                </div>
+            </div>
+            <div class="p-6" style="height: 380px; min-height: 380px">
+                <canvas
+                    id="art-elements-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+
+        <!-- Narratives -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            style="overflow: visible"
+        >
+            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-9 h-9 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
+                    >
+                        📜
+                    </div>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Narratives</h3>
+                </div>
+            </div>
+            <div class="p-6" style="height: 380px; min-height: 380px">
+                <canvas
+                    id="art-narrative-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Best Combos Table -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    🧬
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Art Recipes</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
+                                Complete art recipes ranked by opportunity score. Each recipe shows the
+                                <strong>Environment + Mood</strong> combo with the most common
+                                <strong>characters, elements, and narrative</strong> found in those games. <br /><br />
+                                💎 marks high-performing recipes with ≤15 games — prime opportunities.
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Complete art direction recipes — environment, mood, characters, elements, narrative
+                    </p>
+                </div>
+                <div
+                    id="art-recipe-sort"
+                    class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700/50 rounded-lg p-0.5 shrink-0"
+                >
+                    <button
+                        data-sort="opportunity"
+                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap bg-white dark:bg-gray-600 text-indigo-700 dark:text-indigo-300 shadow-sm"
+                    >
+                        💎 Opportunity
+                    </button>
+                    <button
+                        data-sort="theo-desc"
+                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                        📊 Performance Index ↓
+                    </button>
+                    <button
+                        data-sort="count-asc"
+                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                        🔢 Games ↑
+                    </button>
+                    <button
+                        data-sort="count-desc"
+                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                        🔢 Games ↓
+                    </button>
+                    <button
+                        data-sort="name-az"
+                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    >
+                        🔤 A–Z
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="p-6" id="art-combos-table"></div>
+    </div>
+
+    <!-- Strategic Art Recommendations (Build Next / Avoid / Watch) -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+        >
+            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-2">
+                    <span class="text-lg">🚀</span>
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Build Next</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >
+                            Environment+Mood combos with above-average Performance Index and low game count, ranked by opportunity
+                            score.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="art-build-next" class="p-4 space-y-2 flex-1"></div>
+        </div>
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+        >
+            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-2">
+                    <span class="text-lg">⚠️</span>
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Avoid</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >
+                            Oversaturated art combos — many games but below-average Performance Index.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="art-avoid" class="p-4 space-y-2 flex-1"></div>
+        </div>
+        <div
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
+        >
+            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-2">
+                    <span class="text-lg">👀</span>
+                    <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Watch</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >
+                            Emerging art choices — few games but strong performance and rising trends.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="art-watch" class="p-4 space-y-2 flex-1"></div>
+        </div>
+    </div>
+</div>

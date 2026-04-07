@@ -12,7 +12,7 @@ describe('Data Integrity: Duplicate Detection', () => {
     let games;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         gamesData = await response.json();
         games = Array.isArray(gamesData) ? gamesData : gamesData.games || [];
     });
@@ -65,7 +65,7 @@ describe('Data Integrity: Duplicate Detection', () => {
         const trueDuplicates = [];
 
         games.forEach((game, index) => {
-            const signature = `${game.name}|${game.provider ?? game.studio ?? game.provider?.studio}|${game.theme_primary ?? game.theme?.consolidated}|${game.mechanic_primary ?? game.mechanic?.primary}`;
+            const signature = `${game.name}|${game.provider ?? game.studio ?? game.provider?.studio}|${game.theme_primary ?? game.theme?.consolidated}`;
 
             if (signatures.has(signature)) {
                 const original = signatures.get(signature);

@@ -27,7 +27,7 @@ const mockGames = [
         theme_consolidated: 'Egypt',
         performance_theo_win: 40,
         performance_market_share_percent: 2,
-        features: ['Free Spins', 'Multiplier'],
+        features: ['Free Spins', 'Buy Bonus'],
         specs_volatility: 'High',
         specs_rtp: 96.5,
         specs_reels: 5,
@@ -51,7 +51,7 @@ const mockGames = [
         theme_consolidated: 'Fantasy',
         performance_theo_win: 30,
         performance_market_share_percent: 1,
-        features: ['Multiplier'],
+        features: ['Buy Bonus'],
         specs_volatility: 'Medium',
         specs_rtp: 94.0,
         specs_reels: 3,
@@ -63,7 +63,7 @@ const mockGames = [
         theme_consolidated: 'Fantasy',
         performance_theo_win: 60,
         performance_market_share_percent: 4,
-        features: ['Free Spins', 'Multiplier', 'Hold and Spin'],
+        features: ['Free Spins', 'Buy Bonus', 'Hold and Spin'],
         specs_volatility: 'Very High',
         specs_rtp: 96.0,
         specs_reels: 5,
@@ -87,7 +87,7 @@ const mockGames = [
         theme_consolidated: 'Egypt',
         performance_theo_win: 35,
         performance_market_share_percent: 1.5,
-        features: ['Multiplier', 'Wild Reels'],
+        features: ['Buy Bonus', 'Wild Reels'],
         specs_volatility: 'Medium',
         specs_rtp: 95.5,
         specs_reels: 3,
@@ -159,8 +159,8 @@ describe('getFeatureMetrics', () => {
         const result = getFeatureMetrics(mockGames);
         const fs = result.find(f => f.feature === 'Free Spins');
         expect(fs.count).toBe(4);
-        const mult = result.find(f => f.feature === 'Multiplier');
-        expect(mult.count).toBe(4);
+        const buy = result.find(f => f.feature === 'Buy Bonus');
+        expect(buy.count).toBe(4);
     });
 
     it('calculates avgTheo per feature', () => {

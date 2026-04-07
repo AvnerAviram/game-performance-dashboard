@@ -179,7 +179,7 @@ export function renderInsightsTab(container, ctx) {
                 <div class="flex items-center justify-between mb-2">
                     <div class="text-xs font-medium text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">Top ${Math.min(3, topImprovements.length)} Improvements</div>
                     <div class="flex items-center gap-2">
-                        <span class="text-[10px] text-gray-400">${selectedFeatures.size > 0 ? 'Best features to add' : 'Top features for this theme'}</span>
+                        <span class="text-[10px] text-gray-400">${selectedFeatures.size > 0 ? 'Best mechanics to add' : 'Top mechanics for this theme'}</span>
                         <button class="bp-apply-all px-3 py-1 rounded-md text-[10px] font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors">Apply All</button>
                     </div>
                 </div>
@@ -270,7 +270,7 @@ export function renderInsightsTab(container, ctx) {
         const topCombos = combos.slice(0, 5);
         if (topCombos.length > 0) {
             recipeSection = `<div class="mb-5">
-                <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">Best Feature Recipes <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 flex items-center justify-center text-[8px] font-bold leading-none">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Top 2-4 feature combos by avg Theo Win within this theme. Min 3 games per combo. Lift % is vs theme average.</span></span></div>
+                <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">Best Mechanic Recipes <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 flex items-center justify-center text-[8px] font-bold leading-none">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Top 2-4 mechanic combos by avg Theo Win within this theme. Min 3 games per combo. Lift % is vs theme average.</span></span></div>
                 ${topCombos
                     .map((c, i) => {
                         const hasSelected = selectedFeatures.size > 0 && c.feats.some(f => selectedFeatures.has(f));
@@ -319,12 +319,12 @@ export function renderInsightsTab(container, ctx) {
 
     const mechMap = {};
     themeGames.forEach(g => {
-        const m = g.mechanic_primary || g.mechanic || '';
-        if (m) {
+        const feats = parseFeatsLocal(g.features);
+        feats.forEach(m => {
             if (!mechMap[m]) mechMap[m] = { count: 0, sum: 0 };
             mechMap[m].count++;
             mechMap[m].sum += g.performance_theo_win || 0;
-        }
+        });
     });
     const topMechanics = Object.entries(mechMap)
         .map(([n, d]) => ({ name: n, count: d.count, avg: d.sum / d.count }))

@@ -52,7 +52,7 @@ describe('Providers Page: Data Accuracy', () => {
         expect(rows.length).toBe(providers.length);
     });
 
-    test('total game count should match games_dashboard', () => {
+    test('total game count should match game_data_master', () => {
         const totalGames = providers.reduce((sum, p) => sum + p.game_count, 0);
         expect(totalGames).toBeGreaterThan(500);
         expect(totalGames).toBeLessThan(2000);

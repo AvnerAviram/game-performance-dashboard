@@ -18,8 +18,10 @@ export function populateThemesFilters() {
     // Get unique providers from all games
     const providers = [...new Set(gameData.allGames.map(g => F.provider(g)))].filter(p => p && p !== 'Unknown').sort();
 
-    // Get unique mechanics from all games
-    const mechanics = [...new Set(gameData.allGames.map(g => g.mechanic_primary))].filter(m => m).sort();
+    // Get unique features from all games
+    const featureSet = new Set();
+    gameData.allGames.forEach(g => parseFeatures(g.features).forEach(f => featureSet.add(f)));
+    const mechanics = [...featureSet].sort();
 
     // Populate provider dropdown
     const providerSelect = document.getElementById('themes-filter-provider');
@@ -118,7 +120,7 @@ function filterThemes() {
     }
 
     if (mechanicValue) {
-        filteredGames = filteredGames.filter(g => g.mechanic_primary === mechanicValue);
+        filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicValue));
     }
 
     const themeMetrics = getThemeMetrics(filteredGames);
@@ -169,20 +171,23 @@ function filterMechanics() {
         filteredGames = filteredGames.filter(g => g.theme_primary === themeValue);
     }
 
-    // Aggregate mechanics from filtered games
+    // Aggregate features from filtered games
     const mechanicStats = {};
     filteredGames.forEach(game => {
-        const mechanicName = game.mechanic_primary || 'Unknown';
-        if (!mechanicStats[mechanicName]) {
-            mechanicStats[mechanicName] = {
-                Mechanic: mechanicName,
-                'Game Count': 0,
-                'Smart Index': 0,
-                totalTheoWin: 0,
-            };
-        }
-        mechanicStats[mechanicName]['Game Count']++;
-        mechanicStats[mechanicName].totalTheoWin += F.theoWin(game);
+        const feats = parseFeatures(game.features);
+        if (!feats.length) feats.push('Unknown');
+        feats.forEach(mechanicName => {
+            if (!mechanicStats[mechanicName]) {
+                mechanicStats[mechanicName] = {
+                    Mechanic: mechanicName,
+                    'Game Count': 0,
+                    'Smart Index': 0,
+                    totalTheoWin: 0,
+                };
+            }
+            mechanicStats[mechanicName]['Game Count']++;
+            mechanicStats[mechanicName].totalTheoWin += F.theoWin(game);
+        });
     });
 
     // Calculate Smart Index (canonical formula)
@@ -217,7 +222,9 @@ function filterMechanics() {
  * Populate Providers page filters
  */
 export function populateProvidersFilters() {
-    const mechanics = [...new Set(gameData.allGames.map(g => g.mechanic_primary))].filter(m => m).sort();
+    const featureSet = new Set();
+    gameData.allGames.forEach(g => parseFeatures(g.features).forEach(f => featureSet.add(f)));
+    const mechanics = [...featureSet].sort();
     const themes = [...new Set(gameData.allGames.map(g => g.theme_primary))].filter(t => t).sort();
 
     const mechanicSelect = document.getElementById('providers-filter-mechanic');
@@ -277,7 +284,7 @@ export function populateGamesFilters() {
 
     const mechanicSelect = document.getElementById('games-filter-mechanic');
     if (mechanicSelect) {
-        mechanicSelect.innerHTML = '<option value="">All Features</option>';
+        mechanicSelect.innerHTML = '<option value="">All Mechanics</option>';
         mechanics.forEach(mechanic => {
             const option = document.createElement('option');
             option.value = mechanic;

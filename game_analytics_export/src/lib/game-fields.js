@@ -14,8 +14,9 @@ export const F = {
     id: g => g.id || '',
     name: g => g.name || '',
 
-    theoWin: g => g.performance_theo_win ?? g.performance?.theo_win ?? 0,
-    marketShare: g => g.performance_market_share_percent ?? g.performance?.market_share_percent ?? 0,
+    theoWin: g => g.performance_theo_win ?? g.theo_win ?? g.performance?.theo_win ?? 0,
+    marketShare: g =>
+        g.performance_market_share_percent ?? g.market_share_pct ?? g.performance?.market_share_percent ?? 0,
     rank: g => g.performance_rank ?? g.performance?.rank ?? 999,
     anomaly: g => g.performance_anomaly || g.performance?.anomaly || null,
 
@@ -26,9 +27,31 @@ export const F = {
     themeConsolidated: g =>
         g.theme_consolidated || g.theme?.consolidated || g.theme_primary || g.theme?.primary || 'Unknown',
     themeSecondary: g => g.theme_secondary || g.theme?.secondary || '',
-    themesAll: g => g.themes_all || [],
+    themesAll: g => {
+        const v = g.themes_all;
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.startsWith('[')) {
+            try {
+                return JSON.parse(v);
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    },
+    themesRaw: g => {
+        const v = g.themes_raw;
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.startsWith('[')) {
+            try {
+                return JSON.parse(v);
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    },
 
-    mechanicPrimary: g => g.mechanic_primary || '',
     features: g => g.features || [],
 
     rtp: g => parseFloat(g.specs_rtp || g.rtp || 0) || 0,
@@ -86,10 +109,57 @@ export const F = {
 
     releaseYear: g => g.release_year || g.release?.year || 0,
     releaseMonth: g => g.release_month || g.release?.month || 0,
+    originalReleaseYear: g => g.original_release_year || g.release_year || g.release?.year || 0,
+    originalReleaseMonth: g => g.original_release_month || g.release_month || g.release?.month || 0,
 
     franchise: g => g.franchise || null,
     franchiseType: g => g.franchise_type || null,
+    gameCategory: g => g.game_category || 'Slot',
+    gameSubCategory: g => g.game_sub_category || null,
+
+    rtpConfidence: g => g.rtp_confidence || null,
+    volatilityConfidence: g => g.volatility_confidence || null,
+    reelsConfidence: g => g.reels_confidence || null,
+    paylinesConfidence: g => g.paylines_confidence || null,
+    maxWinConfidence: g => g.max_win_confidence || null,
+    minBetConfidence: g => g.min_bet_confidence || null,
+    maxBetConfidence: g => g.max_bet_confidence || null,
+
+    artSetting: g => g.art_setting || null,
+    artCharacters: g => {
+        const v = g.art_characters;
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.startsWith('[')) {
+            try {
+                return JSON.parse(v);
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    },
+    artElements: g => {
+        const v = g.art_elements;
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.startsWith('[')) {
+            try {
+                return JSON.parse(v);
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    },
+    artMood: g => g.art_mood || null,
+    artNarrative: g => g.art_narrative || null,
 };
+
+/**
+ * Returns true if the confidence level represents a >=90% accurate source.
+ * 'verified' = provider official (100%), 'extracted' = HTML rules (~93-98%).
+ * 'estimated' = SlotCatalog/SlotReport (70-85% depending on field) — NOT reliable.
+ */
+export const isReliableConfidence = c => c === 'verified' || c === 'extracted';
 
 // ── DuckDB column name constants (for dynamic sort keys) ───────────────
 
@@ -108,6 +178,7 @@ export const FIELD_NAMES = {
     MIN_BET: 'min_bet',
     MAX_BET: 'max_bet',
     SITES: 'sites',
+    GAME_CATEGORY: 'game_category',
 };
 
 // ── Backward-compatible object builders (replacing compat.js) ──────────

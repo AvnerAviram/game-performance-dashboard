@@ -27,7 +27,7 @@ test('Data Integrity: source JSON vs dashboard (all checks)', async ({ page, bas
   test.setTimeout(300000);
 
   // ─── Load raw data ───
-  const rawGames = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'games_dashboard.json'), 'utf-8'));
+  const rawGames = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'game_data_master.json'), 'utf-8'));
   const themeMap = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
 
   function getConsolidatedTheme(g) { return themeMap[g.theme_primary] || g.theme_primary || 'Unknown'; }

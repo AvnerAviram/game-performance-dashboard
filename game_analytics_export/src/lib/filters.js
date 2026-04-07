@@ -2,6 +2,7 @@
 // Addresses sample size issues: filters out too small/too large datasets
 
 import { log } from './env.js';
+import { MARKET_LEADER_THRESHOLD } from './shared-config.js';
 
 /**
  * Get filtered themes based on view
@@ -187,7 +188,7 @@ function _getFilteredGames(view) {
     switch (view) {
         case 'marketLeaders': {
             return games
-                .filter(g => (g['Market Share'] || 0) >= 0.1)
+                .filter(g => (g['Market Share'] || 0) >= MARKET_LEADER_THRESHOLD)
                 .sort((a, b) => (b['Market Share'] || 0) - (a['Market Share'] || 0));
         }
         case 'newReleases': {

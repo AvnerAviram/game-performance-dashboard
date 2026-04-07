@@ -98,16 +98,26 @@ describe('Game Analytics Engine', () => {
             expect(predictFromSimilarGames('Asian', [])).toBeNull();
         });
 
-        it('matches games by features field (not mechanic_primary)', () => {
+        it('matches games by features array', () => {
             gameData.allGames = [
                 {
                     name: 'G1',
                     theme_consolidated: 'Asian',
-                    features: 'Free Spins,Hold and Spin',
+                    features: '["Free Spins","Hold and Spin"]',
                     performance_theo_win: 4,
                 },
-                { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins,Wild Reels', performance_theo_win: 6 },
-                { name: 'G3', theme_consolidated: 'Western', features: 'Free Spins', performance_theo_win: 3 },
+                {
+                    name: 'G2',
+                    theme_consolidated: 'Asian',
+                    features: '["Free Spins","Wild Reels"]',
+                    performance_theo_win: 6,
+                },
+                {
+                    name: 'G3',
+                    theme_consolidated: 'Western',
+                    features: '["Free Spins"]',
+                    performance_theo_win: 3,
+                },
             ];
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
             expect(result).not.toBeNull();
@@ -121,10 +131,15 @@ describe('Game Analytics Engine', () => {
                 {
                     name: 'G1',
                     theme_consolidated: 'Asian',
-                    features: 'Hold and Spin,Cash On Reels',
+                    features: '["Hold and Spin","Cash On Reels"]',
                     performance_theo_win: 5,
                 },
-                { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 3 },
+                {
+                    name: 'G2',
+                    theme_consolidated: 'Asian',
+                    features: '["Free Spins"]',
+                    performance_theo_win: 3,
+                },
             ];
             const result = predictFromSimilarGames('Asian', ['Hold & Win']);
             expect(result).not.toBeNull();
@@ -134,7 +149,7 @@ describe('Game Analytics Engine', () => {
 
         it('maps Cash Collection to Cash On Reels', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Cash On Reels', performance_theo_win: 7 },
+                { name: 'G1', theme_consolidated: 'Asian', features: '["Cash On Reels"]', performance_theo_win: 7 },
             ];
             const result = predictFromSimilarGames('Asian', ['Cash Collection']);
             expect(result).not.toBeNull();
@@ -143,7 +158,7 @@ describe('Game Analytics Engine', () => {
 
         it('falls back to theme-only when no feature match', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Wild Reels', performance_theo_win: 4 },
+                { name: 'G1', theme_consolidated: 'Asian', features: '["Wild Reels"]', performance_theo_win: 4 },
             ];
             const result = predictFromSimilarGames('Asian', ['Nudges']);
             expect(result).not.toBeNull();
@@ -152,8 +167,8 @@ describe('Game Analytics Engine', () => {
 
         it('returns all theme games when no mechanics selected', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 4 },
-                { name: 'G2', theme_consolidated: 'Asian', features: 'Hold and Spin', performance_theo_win: 6 },
+                { name: 'G1', theme_consolidated: 'Asian', features: '["Free Spins"]', performance_theo_win: 4 },
+                { name: 'G2', theme_consolidated: 'Asian', features: '["Hold and Spin"]', performance_theo_win: 6 },
             ];
             const result = predictFromSimilarGames('Asian', []);
             expect(result).not.toBeNull();
@@ -163,16 +178,16 @@ describe('Game Analytics Engine', () => {
 
         it('returns null when no theme match at all', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Western', features: 'Free Spins', performance_theo_win: 4 },
+                { name: 'G1', theme_consolidated: 'Western', features: '["Free Spins"]', performance_theo_win: 4 },
             ];
             expect(predictFromSimilarGames('Asian', ['Free Spins'])).toBeNull();
         });
 
         it('includes percentile in result', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 2 },
-                { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 8 },
-                { name: 'G3', theme_consolidated: 'Western', features: 'Hold and Spin', performance_theo_win: 1 },
+                { name: 'G1', theme_consolidated: 'Asian', features: '["Free Spins"]', performance_theo_win: 2 },
+                { name: 'G2', theme_consolidated: 'Asian', features: '["Free Spins"]', performance_theo_win: 8 },
+                { name: 'G3', theme_consolidated: 'Western', features: '["Hold and Spin"]', performance_theo_win: 1 },
             ];
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
             expect(result.percentile).toBeGreaterThanOrEqual(0);
@@ -181,7 +196,12 @@ describe('Game Analytics Engine', () => {
 
         it('matches theme variants (prefix match)', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian - Dragons', features: 'Free Spins', performance_theo_win: 5 },
+                {
+                    name: 'G1',
+                    theme_consolidated: 'Asian - Dragons',
+                    features: '["Free Spins"]',
+                    performance_theo_win: 5,
+                },
             ];
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
             expect(result).not.toBeNull();
@@ -190,8 +210,8 @@ describe('Game Analytics Engine', () => {
 
         it('ignores games with zero theo win', () => {
             gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 0 },
-                { name: 'G2', theme_consolidated: 'Asian', features: 'Free Spins', performance_theo_win: 4 },
+                { name: 'G1', theme_consolidated: 'Asian', features: '["Free Spins"]', performance_theo_win: 0 },
+                { name: 'G2', theme_consolidated: 'Asian', features: '["Free Spins"]', performance_theo_win: 4 },
             ];
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
             expect(result.predictedTheo).toBe(4);
@@ -201,7 +221,7 @@ describe('Game Analytics Engine', () => {
             gameData.allGames = Array.from({ length: 10 }, (_, i) => ({
                 name: `G${i}`,
                 theme_consolidated: 'Asian',
-                features: 'Free Spins',
+                features: '["Free Spins"]',
                 performance_theo_win: i + 1,
             }));
             const result = predictFromSimilarGames('Asian', ['Free Spins']);
@@ -214,21 +234,19 @@ describe('Game Analytics Engine', () => {
                 {
                     name: 'G1',
                     theme_consolidated: 'Egyptian',
-                    features: 'Free Spins,Hold and Spin',
+                    features: '["Free Spins","Hold and Spin"]',
                     performance_theo_win: 8,
                 },
-                { name: 'G2', theme_consolidated: 'Egyptian', features: 'Free Spins', performance_theo_win: 4 },
-                { name: 'G3', theme_consolidated: 'Egyptian', features: 'Nudges', performance_theo_win: 2 },
+                { name: 'G2', theme_consolidated: 'Egyptian', features: '["Free Spins"]', performance_theo_win: 4 },
+                { name: 'G3', theme_consolidated: 'Egyptian', features: '["Nudges"]', performance_theo_win: 2 },
             ];
             const result = predictFromSimilarGames('Egyptian', ['Free Spins', 'Hold & Win']);
             expect(result).not.toBeNull();
             expect(result.similarCount).toBe(2);
         });
 
-        it('does not match on mechanic_primary field alone', () => {
-            gameData.allGames = [
-                { name: 'G1', theme_consolidated: 'Asian', mechanic_primary: 'Slot', performance_theo_win: 5 },
-            ];
+        it('does not match games without features in features array', () => {
+            gameData.allGames = [{ name: 'G1', theme_consolidated: 'Asian', features: [], performance_theo_win: 5 }];
             const result = predictFromSimilarGames('Asian', ['Slot']);
             expect(result.fallback).toBe('theme-only');
         });

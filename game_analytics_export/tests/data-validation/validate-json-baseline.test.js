@@ -10,7 +10,7 @@ import {
 /**
  * Layer 1: JSON Baseline Validation Tests
  *
- * Validates games_dashboard.json contains valid, complete, and accurate data.
+ * Validates game_data_master.json contains valid, complete, and accurate data.
  * This establishes the "source of truth" for all subsequent tests.
  */
 
@@ -18,12 +18,12 @@ describe('JSON Baseline: Schema Validation', () => {
     let games;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
     });
 
-    test('games_dashboard.json should load successfully', () => {
+    test('game_data_master.json should load successfully', () => {
         expect(games).toBeDefined();
         expect(Array.isArray(games)).toBe(true);
     });
@@ -80,7 +80,7 @@ describe('JSON Baseline: Data Types', () => {
     let games;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
     });
@@ -108,17 +108,18 @@ describe('JSON Baseline: Data Types', () => {
         expect(invalidThemes).toHaveLength(0);
     });
 
-    test('all mechanics should have a primary field', () => {
-        const invalidMechanics = games.filter(g => {
-            const mech = g.mechanic_primary ?? g.mechanic?.primary;
-            return !mech || typeof mech !== 'string';
-        });
+    test('games with features should have a valid features array', () => {
+        const withFeatures = games.filter(g => g.features);
+        const invalid = withFeatures.filter(g => !Array.isArray(g.features));
 
-        if (invalidMechanics.length > 0) {
-            console.error('Games with invalid mechanics:', invalidMechanics.slice(0, 5));
+        if (invalid.length > 0) {
+            console.error(
+                'Games with invalid features:',
+                invalid.slice(0, 5).map(g => g.name)
+            );
         }
 
-        expect(invalidMechanics).toHaveLength(0);
+        expect(invalid).toHaveLength(0);
     });
 
     test('all providers should be valid', () => {
@@ -165,7 +166,7 @@ describe('JSON Baseline: Value Ranges', () => {
     let games;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
     });
@@ -254,7 +255,7 @@ describe('JSON Baseline: Data Quality', () => {
     let games;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
     });
@@ -320,7 +321,7 @@ describe('JSON Baseline: Statistics', () => {
     let stats;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
         stats = calculateOverviewStats(games);
@@ -341,9 +342,12 @@ describe('JSON Baseline: Statistics', () => {
         expect(stats.theme_count).toBe(uniqueThemes.size);
     });
 
-    test('unique mechanics count should match manual count', () => {
-        const uniqueMechanics = new Set(games.map(g => g.mechanic_primary ?? g.mechanic?.primary).filter(Boolean));
-        expect(stats.mechanic_count).toBe(uniqueMechanics.size);
+    test('unique features count should match manual count', () => {
+        const featureSet = new Set();
+        games.forEach(g => {
+            if (Array.isArray(g.features)) g.features.forEach(f => featureSet.add(f));
+        });
+        expect(stats.mechanic_count).toBe(featureSet.size);
     });
 
     test('average theo_win should be reasonable', () => {
@@ -368,7 +372,7 @@ describe('JSON Baseline: Distributions', () => {
     let providers;
 
     beforeAll(async () => {
-        const response = await fetch('/data/games_dashboard.json');
+        const response = await fetch('/data/game_data_master.json');
         const data = await response.json();
         games = Array.isArray(data) ? data : data.games || [];
         themes = calculateThemeDistribution(games);

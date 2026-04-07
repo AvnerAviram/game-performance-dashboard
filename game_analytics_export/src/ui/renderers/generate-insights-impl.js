@@ -4,7 +4,14 @@
  */
 import { gameData } from '../../lib/data.js';
 import { log, warn } from '../../lib/env.js';
-import { createMarketLandscapeChart } from '../charts-modern.js';
+import {
+    createMarketLandscapeChart,
+    createVolatilityLandscapeChart,
+    createRtpLandscapeChart,
+    createProviderLandscapeChart,
+    createBrandLandscapeChart,
+} from '../charts-modern.js';
+import { initCategoryFilter } from '../chart-config.js';
 import { initBlueprint } from './blueprint-advisor.js';
 import { renderComboExplorer } from './insights-combos.js';
 import { renderStrategicCards } from './insights-cards.js';
@@ -57,6 +64,23 @@ export function generateInsights() {
             warn('Market Landscape chart:', e);
         }
     }
+
+    const landscapeCharts = [
+        ['volatility-landscape-chart', createVolatilityLandscapeChart, 'Volatility Landscape'],
+        ['rtp-landscape-chart', createRtpLandscapeChart, 'RTP Landscape'],
+        ['provider-landscape-chart', createProviderLandscapeChart, 'Provider Landscape'],
+        ['brand-landscape-chart', createBrandLandscapeChart, 'Brand Landscape'],
+    ];
+    for (const [elId, createFn, label] of landscapeCharts) {
+        if (document.getElementById(elId)) {
+            try {
+                createFn();
+                log(`  ✅ ${label} chart created`);
+            } catch (e) {
+                warn(`${label} chart:`, e);
+            }
+        }
+    }
     if (document.getElementById('provider-theme-matrix')) {
         generateProviderThemeMatrix();
         log('  ✅ Provider theme matrix generated');
@@ -72,5 +96,6 @@ export function generateInsights() {
         }
     }
 
+    initCategoryFilter();
     log('💡 All insights generated successfully');
 }

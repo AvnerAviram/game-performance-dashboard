@@ -57,7 +57,7 @@
                 <button
                     type="button"
                     onclick="window.openFeedbackModal()"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -71,7 +71,7 @@
                 <button
                     type="button"
                     onclick="showPage('tickets')"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -97,7 +97,7 @@
     <!-- Feature Impact + Recipes + Synergy -->
     <div id="lab-section-feature-impact" class="gamelab-section hidden">
         <div class="space-y-4">
-            <!-- Row 1: Top Feature Recipes + Winning Combinations -->
+            <!-- Row 1: Top Mechanic Recipes + Winning Combinations -->
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <div
                     class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
@@ -108,7 +108,7 @@
                             <div>
                                 <div class="flex items-center gap-1.5">
                                     <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
-                                        Top Feature Recipes
+                                        Top Mechanic Recipes
                                     </h3>
                                     <div class="relative group">
                                         <button
@@ -117,13 +117,13 @@
                                             ?</button
                                         ><span
                                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                                            >Ranked by average Theo Win across games sharing the exact same feature set.
-                                            Minimum 3 games required.</span
+                                            >Ranked by average Theo Win across games sharing the exact same mechanic
+                                            set. Minimum 3 games required.</span
                                         >
                                     </div>
                                 </div>
                                 <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-                                    Multi-feature combinations ranked by real game performance
+                                    Multi-mechanic combinations ranked by real game performance
                                 </p>
                             </div>
                         </div>
@@ -148,13 +148,13 @@
                                             ?</button
                                         ><span
                                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                                            >Feature combos within themes, ranked by avg Theo Win lift vs theme
+                                            >Mechanic combos within themes, ranked by avg Theo Win lift vs theme
                                             baseline. Min 2 games per combo. Diverse themes shown via round-robin.</span
                                         >
                                     </div>
                                 </div>
                                 <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-                                    Top combos of any size (2-4 features)
+                                    Top combos of any size (2-4 mechanics)
                                 </p>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                     <div id="combo-explorer" class="p-4 flex-1 overflow-y-auto" style="max-height: 500px"></div>
                 </div>
             </div>
-            <!-- Row 2: Feature Impact by Theme (full width) -->
+            <!-- Row 2: Mechanic Impact by Theme (full width) -->
             <div
                 class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden"
             >
@@ -171,10 +171,10 @@
                         <span class="text-lg">🗺️</span>
                         <div>
                             <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
-                                Feature Impact by Theme
+                                Mechanic Impact by Theme
                             </h3>
                             <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-                                How each feature changes a theme's avg performance (% lift)
+                                How each mechanic changes a theme's avg performance (% lift)
                             </p>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
                                     Layout Correlation
                                 </h3>
                                 <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
-                                    Reel grid configurations vs feature usage
+                                    Reel grid configurations vs mechanic usage
                                 </p>
                             </div>
                         </div>
@@ -291,7 +291,7 @@
                         <button
                             type="button"
                             onclick="window.setConceptExample(this)"
-                            data-text="Classic fruit machine with nudges, respin feature, and a wheel bonus. Low volatility, nostalgic feel for traditional slot players."
+                            data-text="Classic fruit machine with nudges, respin mechanic, and a wheel bonus. Low volatility, nostalgic feel for traditional slot players."
                             class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
                         >
                             Classic fruit
@@ -307,7 +307,7 @@
                     </div>
                     <button
                         onclick="window.analyzeGameConcept()"
-                        class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-200 flex items-center gap-2 shrink-0"
+                        class="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white rounded-xl font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-200 flex items-center gap-2 shrink-0 cursor-pointer"
                     >
                         <span>Analyze</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -363,7 +363,7 @@
                 </select>
                 <label
                     class="block text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-1.5"
-                    >Features (select up to 3)</label
+                    >Mechanics (select up to 3)</label
                 >
                 <div id="ng-features" class="flex flex-wrap gap-1.5 mb-4"></div>
                 <label

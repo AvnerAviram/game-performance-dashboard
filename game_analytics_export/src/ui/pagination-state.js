@@ -1,5 +1,5 @@
 // Pagination state and per-page/navigation handlers
-import { gameData } from '../lib/data.js';
+import { gameData, getActiveGames, getActiveMechanics, getActiveThemes } from '../lib/data.js';
 import { renderThemes, getFilteredThemes } from './renderers/themes-renderer.js';
 import { renderMechanics, getFilteredMechanics } from './renderers/mechanics-renderer.js';
 
@@ -42,21 +42,21 @@ window.changeProvidersPerPage = function (value) {
 };
 
 window.goToThemesPage = function (page) {
-    const totalPages = Math.ceil((getFilteredThemes() || gameData.themes).length / window.themesPerPage);
+    const totalPages = Math.ceil((getFilteredThemes() || getActiveThemes()).length / window.themesPerPage);
     if (page < 1 || page > totalPages) return;
     window.themesCurrentPage = page;
     renderThemes(getFilteredThemes());
 };
 
 window.goToMechanicsPage = function (page) {
-    const totalPages = Math.ceil((getFilteredMechanics() || gameData.mechanics).length / window.mechanicsPerPage);
+    const totalPages = Math.ceil((getFilteredMechanics() || getActiveMechanics()).length / window.mechanicsPerPage);
     if (page < 1 || page > totalPages) return;
     window.mechanicsCurrentPage = page;
     renderMechanics(getFilteredMechanics());
 };
 
 window.goToGamesPage = function (page) {
-    const totalPages = Math.ceil(gameData.allGames.length / window.gamesPerPage);
+    const totalPages = Math.ceil(getActiveGames().length / window.gamesPerPage);
     if (page < 1 || page > totalPages) return;
     window.gamesCurrentPage = page;
     window.renderGames?.();

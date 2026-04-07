@@ -11,8 +11,8 @@ import {
 
 describe('Features Module', () => {
     describe('CANONICAL_FEATURES', () => {
-        it('has 25 entries', () => {
-            expect(CANONICAL_FEATURES).toHaveLength(25);
+        it('has 30 entries', () => {
+            expect(CANONICAL_FEATURES).toHaveLength(30);
         });
 
         it('includes all expected features', () => {

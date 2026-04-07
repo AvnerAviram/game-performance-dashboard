@@ -20,8 +20,8 @@ export function computeTrendsData() {
 
     const byYear = {};
     for (const g of games) {
-        const y = g.release_year;
-        if (y == null) continue;
+        const y = F.originalReleaseYear(g);
+        if (!y) continue;
         const yearKey = String(y);
         if (!byYear[yearKey]) byYear[yearKey] = { sum: 0, count: 0 };
         byYear[yearKey].sum += getTheoWin(g);
@@ -54,14 +54,16 @@ export function computeThemesTrends() {
         .slice(0, 10)
         .map(([t]) => t);
 
-    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))].sort((a, b) => a - b).map(String);
+    const years = [...new Set(games.map(g => F.originalReleaseYear(g)).filter(y => y))]
+        .sort((a, b) => a - b)
+        .map(String);
 
     const result = {};
     for (const theme of top10) {
         const byYear = {};
         for (const g of games) {
             if ((g.theme_consolidated || 'Unknown') !== theme) continue;
-            const y = String(g.release_year ?? '');
+            const y = String(F.originalReleaseYear(g) || '');
             if (!years.includes(y)) continue;
             if (!byYear[y]) byYear[y] = { sum: 0, count: 0 };
             byYear[y].sum += getTheoWin(g);
@@ -96,7 +98,9 @@ export function computeFeatureTrends() {
         .slice(0, 10)
         .map(([f]) => f);
 
-    const years = [...new Set(games.map(g => g.release_year).filter(y => y != null))].sort((a, b) => a - b).map(String);
+    const years = [...new Set(games.map(g => F.originalReleaseYear(g)).filter(y => y))]
+        .sort((a, b) => a - b)
+        .map(String);
 
     const result = {};
     for (const feature of top10) {
@@ -104,7 +108,7 @@ export function computeFeatureTrends() {
         for (const g of games) {
             const feats = parseFeatures(g.features);
             if (!feats.includes(feature)) continue;
-            const y = String(g.release_year ?? '');
+            const y = String(F.originalReleaseYear(g) || '');
             if (!years.includes(y)) continue;
             if (!byYear[y]) byYear[y] = { sum: 0, count: 0 };
             byYear[y].sum += getTheoWin(g);
@@ -135,8 +139,8 @@ export function computeProviderTrends() {
         const byYear = {};
         for (const g of games) {
             if (F.provider(g) !== prov) continue;
-            const y = g.release_year;
-            if (y == null) continue;
+            const y = F.originalReleaseYear(g);
+            if (!y) continue;
             const yearKey = String(y);
             if (!byYear[yearKey]) byYear[yearKey] = { sum: 0, count: 0 };
             byYear[yearKey].sum += getTheoWin(g);
@@ -238,7 +242,7 @@ window.drillChartYear = function (chartKey, year) {
 // Build a bar chart for a single-year drill-down on a specific canvas
 function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
     const games = gameData?.allGames ?? [];
-    const yearGames = games.filter(g => String(g.release_year) === String(year));
+    const yearGames = games.filter(g => String(F.originalReleaseYear(g)) === String(year));
     if (!yearGames.length) return;
 
     const canvas = document.getElementById(canvasId);
@@ -301,7 +305,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         labels = top.map(t => t.name);
         values = top.map(t => t.avg);
         barColors = lineColors.slice(0, top.length);
-        _tooltipTitle = `⚙️ ${year} — Feature Performance`;
+        _tooltipTitle = `⚙️ ${year} — Mechanic Performance`;
     } else if (type === 'provider') {
         const topProviderNames = Object.keys(computeProviderTrends());
         const provMap = {};
@@ -349,7 +353,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: `${year} — Avg Theo Win by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Feature' : 'Provider'}`,
+                    text: `${year} — Avg Theo Win by ${type === 'theme' ? 'Theme' : type === 'mechanic' ? 'Mechanic' : 'Provider'}`,
                     color: colors.text,
                     font: { size: 13, weight: 'bold' },
                 },
@@ -368,6 +372,22 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
             },
         },
     });
+}
+
+function trendLegendConfig(colors) {
+    return {
+        position: 'bottom',
+        labels: { color: colors.text, boxWidth: 12, padding: 16 },
+        onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
+        onHover: (evt, legendItem, legend) => {
+            evt.native.target.style.cursor = 'pointer';
+            highlightDataset(legend.chart, legendItem.datasetIndex);
+        },
+        onLeave: (evt, legendItem, legend) => {
+            evt.native.target.style.cursor = 'default';
+            highlightDataset(legend.chart, -1);
+        },
+    };
 }
 
 function highlightDataset(chart, activeIdx) {
@@ -607,11 +627,7 @@ export function renderTrends() {
                         soloDataset(chart, elements[0].datasetIndex);
                     },
                     plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: colors.text, boxWidth: 12, padding: 16 },
-                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
-                        },
+                        legend: trendLegendConfig(colors),
                         tooltip: {
                             mode: 'nearest',
                             intersect: true,
@@ -669,11 +685,7 @@ export function renderTrends() {
                         soloDataset(chart, elements[0].datasetIndex);
                     },
                     plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: colors.text, boxWidth: 12, padding: 16 },
-                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
-                        },
+                        legend: trendLegendConfig(colors),
                         tooltip: {
                             mode: 'nearest',
                             intersect: true,
@@ -730,11 +742,7 @@ export function renderTrends() {
                         soloDataset(chart, elements[0].datasetIndex);
                     },
                     plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: { color: colors.text, boxWidth: 12, padding: 16 },
-                            onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
-                        },
+                        legend: trendLegendConfig(colors),
                         tooltip: {
                             mode: 'nearest',
                             intersect: true,

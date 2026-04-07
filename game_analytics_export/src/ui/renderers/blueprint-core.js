@@ -2,7 +2,7 @@
  * Game Blueprint Advisor — interactive theme + feature selection tool
  * with live scoring, recipe analysis, competition, and symbol suggestions.
  */
-import { gameData } from '../../lib/data.js';
+import { getActiveGames } from '../../lib/data.js';
 import { F } from '../../lib/game-fields.js';
 import { escapeHtml, escapeAttr } from '../../lib/sanitize.js';
 import { parseFeatures as parseFeatsLocal } from '../../lib/parse-features.js';
@@ -27,7 +27,7 @@ export function initBlueprint() {
 
     blueprintWrapper.innerHTML = buildBlueprintHTML();
 
-    const allG = gameData.allGames || [];
+    const allG = getActiveGames();
     const els = getBlueprintElements();
     let activeTab = 'insights';
 
@@ -1298,12 +1298,12 @@ function buildBlueprintHTML() {
         <div id="bp-left-panel" class="w-[600px] shrink-0 relative">
             <div class="sticky top-28 flex flex-col gap-3 max-h-[calc(100vh-8rem)]">
                 <div id="bp-score-panel" class="rounded-xl shadow-lg p-5 text-center transition-all duration-500" style="background:linear-gradient(135deg,#94a3b8,#64748b)">
-                    <div class="text-base font-semibold text-white/70 uppercase tracking-wider mb-1 flex items-center justify-center gap-1.5">Blueprint Score <span class="relative group"><button class="w-4 h-4 rounded-full bg-white/20 text-white/60 flex items-center justify-center text-[9px] font-bold leading-none hover:bg-white/30">?</button><span class="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Composite score (0-100) based on Theme strength, Feature quality, Synergy between features, and Market opportunity.</span></span></div>
+                    <div class="text-base font-semibold text-white/70 uppercase tracking-wider mb-1 flex items-center justify-center gap-1.5">Blueprint Score <span class="relative group"><button class="w-4 h-4 rounded-full bg-white/20 text-white/60 flex items-center justify-center text-[9px] font-bold leading-none hover:bg-white/30">?</button><span class="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Composite score (0-100) based on Theme strength, Mechanic quality, Synergy between mechanics, and Market opportunity.</span></span></div>
                     <div id="bp-score-value" class="text-6xl font-black text-white leading-none mb-2">—</div>
                     <div class="w-full h-2.5 bg-white/20 rounded-full overflow-hidden mb-3"><div id="bp-score-bar" class="h-full rounded-full transition-all duration-500 bg-white/80" style="width:0%"></div></div>
                     <div class="grid grid-cols-4 gap-1.5 text-center">
                         <div><div id="bp-bd-theme" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Theme</div><div id="bp-concept-hint" class="hidden text-[9px] text-emerald-200 font-medium"></div></div>
-                        <div><div id="bp-bd-feat" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Features</div></div>
+                        <div><div id="bp-bd-feat" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Mechanics</div></div>
                         <div><div id="bp-bd-syn" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Synergy</div></div>
                         <div><div id="bp-bd-opp" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Opportunity</div></div>
                     </div>
@@ -1340,7 +1340,7 @@ function buildBlueprintHTML() {
                     </div>
                     <div id="bp-features-panel" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-4">
                         <div class="flex items-center justify-between mb-2">
-                            <div class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Features <span class="normal-case font-normal">— click to add</span></div>
+                            <div class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Mechanics <span class="normal-case font-normal">— click to add</span></div>
                             <span id="bp-feat-count" class="hidden text-xs font-bold px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300"></span>
                         </div>
                         <div id="bp-feat-container" class="flex flex-wrap gap-1.5"></div>

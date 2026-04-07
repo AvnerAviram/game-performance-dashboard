@@ -1,5 +1,5 @@
 // Mechanics page renderer
-import { gameData } from '../../lib/data.js';
+import { getActiveMechanics } from '../../lib/data.js';
 import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
 import { DEFAULT_PAGE_SIZE } from '../../lib/shared-config.js';
 
@@ -35,7 +35,7 @@ export function renderMechanics(mechanicsToRender = null) {
     if (!tbody) return;
     tbody.innerHTML = '';
 
-    const allMechanics = mechanicsToRender || gameData.mechanics;
+    const allMechanics = mechanicsToRender || getActiveMechanics();
     const mechanicsPerPage = window.mechanicsPerPage ?? DEFAULT_PAGE_SIZE;
     let mechanicsCurrentPage = window.mechanicsCurrentPage ?? 1;
 
@@ -107,7 +107,7 @@ function searchMechanics(query) {
         return;
     }
 
-    filteredMechanics = gameData.mechanics.filter(mech => mech.Mechanic.toLowerCase().includes(trimmedQuery));
+    filteredMechanics = getActiveMechanics().filter(mech => mech.Mechanic.toLowerCase().includes(trimmedQuery));
 
     renderMechanics(filteredMechanics);
 }

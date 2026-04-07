@@ -1,7 +1,7 @@
 /**
  * Recipe leaderboard, feature heatmap, stacking, and layout correlation blocks.
  */
-import { gameData } from '../../lib/data.js';
+import { getActiveGames, getActiveThemes } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { parseFeatsLocal } from './overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
@@ -11,7 +11,7 @@ import { F } from '../../lib/game-fields.js';
 const shortF = SHORT_FEATURE_LABELS;
 
 function buildThemeOptions() {
-    const allG = gameData.allGames || [];
+    const allG = getActiveGames();
     const themeCounts = {};
     allG.forEach(g => {
         const t = g.theme_consolidated || g.theme_primary || '';
@@ -28,7 +28,7 @@ export function renderRecipeLeaderboard() {
     const leaderboardEl = document.getElementById('feature-leaderboard');
     if (!leaderboardEl) return;
 
-    const allGames = gameData.allGames || [];
+    const allGames = getActiveGames();
     const globalAvg = allGames.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / (allGames.length || 1);
 
     const recipeMap = {};
@@ -163,13 +163,13 @@ export function renderRecipeLeaderboard() {
     <div class="mt-2 pt-2 border-t border-gray-100 dark:border-gray-700 text-[9px] text-gray-400 dark:text-gray-500">
         ${recipes.length} combos · avg: ${globalAvg.toFixed(1)} · ${recipes.filter(r => r.vsMarket >= 0).length} beat market
     </div>`
-            : '<p class="text-xs text-gray-400 p-2">Not enough games with multi-feature data</p>';
+            : '<p class="text-xs text-gray-400 p-2">Not enough games with multi-mechanic data</p>';
 }
 
 export function renderFeatureHeatmap(heatmapDiv) {
     if (!heatmapDiv) return;
     try {
-        const allG = gameData.allGames || [];
+        const allG = getActiveGames();
         const FEATS = CANONICAL_FEATURES;
 
         const themeMap = {};
@@ -183,7 +183,7 @@ export function renderFeatureHeatmap(heatmapDiv) {
             themeMap[theme].totalTheo += theo;
         });
 
-        const topThemeNames = (gameData.themes || [])
+        const topThemeNames = getActiveThemes()
             .filter(t => t.Theme && (t['Game Count'] || 0) >= 5)
             .sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0))
             .slice(0, 12)
@@ -311,7 +311,7 @@ export function wireHeatmapTooltip(heatmapDiv) {
                     <span class="text-[10px] text-gray-400">lift vs theme avg</span>
                 </div>
                 <div class="flex items-center justify-between text-[11px] mb-1">
-                    <span class="text-gray-400">With feature: <span class="text-white font-medium">${theo.toFixed(2)}</span> avg theo</span>
+                    <span class="text-gray-400">With mechanic: <span class="text-white font-medium">${theo.toFixed(2)}</span> avg theo</span>
                 </div>
                 <div class="flex items-center justify-between text-[11px] mb-1.5">
                     <span class="text-gray-400">Theme baseline: <span class="text-gray-300">${themeAvg.toFixed(2)}</span></span>
@@ -368,9 +368,9 @@ export function renderFeatureStacking() {
                         <span class="text-lg">🧬</span>
                         <div>
                             <div class="flex items-center gap-1.5">
-                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Feature Stacking — How many features should you use?</h3>
+                                <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Mechanic Stacking — How many mechanics should you use?</h3>
                             </div>
-                            <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">Performance by feature count and which features add the most value when stacked</p>
+                            <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">Performance by mechanic count and which mechanics add the most value when stacked</p>
                         </div>
                     </div>
                     <select id="stacking-theme-filter" class="text-xs border border-gray-200 dark:border-gray-600 rounded-lg px-2 py-1.5 bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent max-w-[180px]">
@@ -386,7 +386,7 @@ export function renderFeatureStacking() {
     if (!synergyDiv) return;
 
     function renderStackingContent(themeFilter) {
-        const allGames = gameData.allGames || [];
+        const allGames = getActiveGames();
         const filteredG = themeFilter
             ? allGames.filter(g => (g.theme_consolidated || g.theme_primary || '') === themeFilter)
             : allGames;
@@ -437,7 +437,7 @@ export function renderFeatureStacking() {
         synergyDiv.innerHTML = `
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
-                    <h4 class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide flex items-center gap-1.5">Performance by Feature Count <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none cursor-help">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal normal-case">Average Theo Win for games grouped by how many features they have. Green = above avg.</span></span></h4>
+                    <h4 class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide flex items-center gap-1.5">Performance by Mechanic Count <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none cursor-help">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal normal-case">Average Theo Win for games grouped by how many mechanics they have. Green = above avg.</span></span></h4>
                     <div class="space-y-2">
                         ${countStats
                             .map(c => {
@@ -464,7 +464,7 @@ export function renderFeatureStacking() {
                     <div class="mt-2 text-[10px] text-gray-400 dark:text-gray-500">${avgLabel} · ${filteredG.length} games ${scopeLabel}</div>
                 </div>
                 <div>
-                    <h4 class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide flex items-center gap-1.5">Feature Lift — impact when added <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none cursor-help">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal normal-case">The % change in avg Theo Win when a feature is present vs absent ${scopeLabel}. Positive = adding this feature correlates with better performance.</span></span></h4>
+                    <h4 class="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-3 uppercase tracking-wide flex items-center gap-1.5">Mechanic Lift — impact when added <span class="relative group"><button class="w-3.5 h-3.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[8px] font-bold leading-none cursor-help">?</button><span class="hidden group-hover:block absolute left-0 top-full mt-1 w-56 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal normal-case">The % change in avg Theo Win when a mechanic is present vs absent ${scopeLabel}. Positive = adding this mechanic correlates with better performance.</span></span></h4>
                     <div class="space-y-1.5">
                         ${
                             sortedFeatures.length > 0
@@ -517,7 +517,7 @@ export function renderFeatureStacking() {
             });
         }
     } catch {
-        synergyDiv.innerHTML = '<p class="text-sm text-gray-500">Feature synergy data unavailable</p>';
+        synergyDiv.innerHTML = '<p class="text-sm text-gray-500">Mechanic synergy data unavailable</p>';
     }
 }
 
@@ -544,7 +544,7 @@ export function renderLayoutCorrelation() {
             <div class="flex items-center gap-4 mb-3 text-[9px] text-gray-400 dark:text-gray-500">
                 <span><strong class="text-gray-600 dark:text-gray-300">Grid</strong> = Reels × Rows</span>
                 <span><strong class="text-gray-600 dark:text-gray-300">Theo</strong> = Avg Theo Win Index</span>
-                <span><strong class="text-indigo-500">Tags</strong> = Most common features for this layout</span>
+                <span><strong class="text-indigo-500">Tags</strong> = Most common mechanics for this layout</span>
             </div>
             <div class="space-y-3">
                 ${top
@@ -590,7 +590,7 @@ export function renderRecipeDNA() {
     const container = document.getElementById('feature-opportunities');
     if (!container) return;
 
-    const allGames = gameData.allGames || [];
+    const allGames = getActiveGames();
     if (allGames.length < 10) {
         container.innerHTML = '<p class="text-xs text-gray-400">Not enough data</p>';
         return;

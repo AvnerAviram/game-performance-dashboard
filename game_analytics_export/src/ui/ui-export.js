@@ -1,5 +1,5 @@
 // CSV Export utilities - extracted from ui.js
-import { gameData } from '../lib/data.js';
+import { getActiveMechanics, getActiveThemes } from '../lib/data.js';
 
 function downloadCSV(filename, csvContent) {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -25,7 +25,7 @@ function escapeCSV(value) {
 
 export function exportOverviewCSV() {
     const headers = ['Rank', 'Theme', 'Game Count', 'Performance Index'];
-    const rows = gameData.themes
+    const rows = getActiveThemes()
         .slice(0, 10)
         .map((theme, i) => [i + 1, theme.Theme, theme['Game Count'], theme['Smart Index'].toFixed(2)]);
     const csv = [headers.map(escapeCSV).join(','), ...rows.map(row => row.map(escapeCSV).join(','))].join('\n');
@@ -35,7 +35,7 @@ export function exportOverviewCSV() {
 
 export function exportThemesCSV(filteredThemes = null) {
     const headers = ['Theme', 'Game Count', 'Performance Index', 'Market Share %'];
-    const themes = filteredThemes || gameData.themes;
+    const themes = filteredThemes || getActiveThemes();
     const rows = themes.map(theme => [
         theme.Theme,
         theme['Game Count'],
@@ -50,7 +50,7 @@ export function exportThemesCSV(filteredThemes = null) {
 
 export function exportMechanicsCSV() {
     const headers = ['Mechanic', 'Game Count', 'Performance Index'];
-    const rows = gameData.mechanics.map(mech => [mech.Mechanic, mech['Game Count'], mech['Smart Index'].toFixed(2)]);
+    const rows = getActiveMechanics().map(mech => [mech.Mechanic, mech['Game Count'], mech['Smart Index'].toFixed(2)]);
     const csv = [headers.map(escapeCSV).join(','), ...rows.map(row => row.map(escapeCSV).join(','))].join('\n');
     const timestamp = new Date().toISOString().split('T')[0];
     downloadCSV(`game-analytics-mechanics-${timestamp}.csv`, csv);

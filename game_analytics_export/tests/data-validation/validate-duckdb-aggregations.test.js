@@ -34,7 +34,7 @@ describe('DuckDB Aggregations: Overview Stats', () => {
         // Initialize DuckDB
         await initializeDatabase();
 
-        // Load games for manual calculation (use games_dashboard - same as DuckDB)
+        // Load games for manual calculation (use game_data_master - same as DuckDB)
         const response = await fetch('/api/data/games');
         const data = await response.json();
         games = Array.isArray(data) ? data : data?.games || [];

@@ -518,6 +518,45 @@ describe('Server Security - Integration', () => {
             expect(res.json.error).toContain('too long');
         });
 
+        it('should reject trademark check without auth', async () => {
+            const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/trademark-check?name=test`);
+            expect(res.status).toBe(401);
+        });
+
+        it('should reject trademark check without name param', async () => {
+            const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/trademark-check`, null, {
+                Cookie: sessionCookie,
+            });
+            expect(res.status).toBe(400);
+            expect(res.json.error).toContain('Name');
+        });
+
+        it('should reject trademark check with oversized name', async () => {
+            const res = await httpReq(
+                'GET',
+                `http://127.0.0.1:${TEST_PORT}/api/trademark-check?name=${'x'.repeat(101)}`,
+                null,
+                { Cookie: sessionCookie }
+            );
+            expect(res.status).toBe(400);
+            expect(res.json.error).toContain('too long');
+        });
+
+        it('should return valid trademark check response', async () => {
+            const res = await httpReq(
+                'GET',
+                `http://127.0.0.1:${TEST_PORT}/api/trademark-check?name=TestUnlikelyName99999`,
+                null,
+                { Cookie: sessionCookie }
+            );
+            expect(res.status).toBe(200);
+            expect(res.json).toHaveProperty('name');
+            expect(res.json).toHaveProperty('results');
+            expect(res.json).toHaveProperty('totalCount');
+            expect(res.json).toHaveProperty('dailyRemaining');
+            expect(Array.isArray(res.json.results)).toBe(true);
+        });
+
         it('should return 404 for non-existent API routes', async () => {
             const res = await httpReq('GET', `http://127.0.0.1:${TEST_PORT}/api/nonexistent`, null, {
                 Cookie: sessionCookie,

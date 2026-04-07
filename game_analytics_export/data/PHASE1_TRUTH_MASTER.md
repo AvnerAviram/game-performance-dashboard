@@ -1,581 +1,225 @@
-# Game Enrichment — Single Source of Truth
+# Game Data Pipeline — Single Source of Truth
 
-**If you are a new AI agent: start here.** This is the only file you need to understand the enrichment pipeline. Everything runs from `game_analytics_export/data/`.
+**If you are a new AI agent: start here.** This is the only file you need to understand the data pipeline.
+
+**Updated**: Apr 7, 2026
+
+---
+
+## Current State
+
+4,551 games in master. 4,238 with global release dates (93% slot coverage). 3,453 with symbols (1,368 full paytable from legacy merge). 1,731 franchise-mapped. AGS ground truth fully backfilled. Features use HIDDEN_FEATURES blocklist (Multiplier removed). Server gzip compression enabled (13.2→1.0 MB). Trend legend hover highlighting. Brand sorting. Bubble chart click-to-panel. **Art characterization pipeline built** — taxonomy validated against industry standards, 27-game GT, few-shot examples, F1 eval loop (`--test-art`), 83.8% aggregate accuracy on held-out set.
+
+### Trusted Data Sources
+
+| Source | File | What it provides | Count |
+|--------|------|------------------|-------|
+| **Eilers CSV** | `data/eilers_source.csv` | Performance metrics, provider, game category, NJ release date, sites | 4,600 rows |
+| **HTML Rules** | `data/rules_text/*.txt` + `data/rules_html/*.html` | Official game rules — features, symbols, RTP, volatility, reels, rows, paylines | 3,409 matched games |
+| **AGS Ground Truth** | `data/ground_truth_ags.json` | Verified features/themes for F1 benchmarking (87 entries, 100% backfilled) | 87 games |
+| **SlotReport** | `data/_slot_report_data.json` | Global release dates, RTP, volatility, features | 5,592 entries (4,703 with dates) |
+| **SlotCatalog Cache** | `data/_legacy/sc_cache/*.html` | Cached game pages with release dates, specs | 2,760 pages |
+| **Staged External** | `data/staged_best_of_sources.json` | Best-of-sources specs from Evolution scrapes | 802 games |
+| **Legacy Symbols** | `data/_legacy/games_dashboard_backup_pre95.json` | Full paytable symbols (themed + card + functional) | 1,425 games (1,386 merged) |
+| **Art Ground Truth** | `data/ground_truth_art.json` | Verified art characterization for F1 benchmarking | 27 games |
 
 ---
 
 ## Prerequisites
 
 ```bash
-# 1. Python 3.10+ with these packages
-pip install anthropic requests beautifulsoup4 lxml
+# Python 3.10+
+pip install anthropic requests beautifulsoup4 lxml openpyxl
 
-# 2. API key — create .env in game_analytics_export/data/
+# API key
 echo "ANTHROPIC_API_KEY=sk-ant-..." > game_analytics_export/data/.env
 
-# 3. Node v20 (for dashboard tests, NOT needed for pipeline)
-fnm use 20  # or nvm use 20
+# Node v20
+fnm use 20
 
-# 4. Dashboard test suite (run after ANY change)
+# Tests (1095 JS + 53 Python — all must pass)
 cd game_analytics_export && npx vitest run
-# Currently: 640 tests, 37 files, all passing
+cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py -q
 ```
-
----
-
-## BEFORE ANY CHANGE (mandatory pre-flight)
-
-**Every agent MUST run these before AND after modifying any pipeline code, vocabulary, synonym mapping, definition cards, or post-processing rules:**
-
-```bash
-cd game_analytics_export/data/
-
-# 1. Record baseline metrics BEFORE your change
-python3 -c "
-import json, re
-with open('ground_truth_ags.json') as f: gt = json.load(f)
-with open('games_dashboard.json') as f: dash = json.load(f)
-def norm(n): return re.sub(r'[^a-z0-9]', '', (n or '').lower())
-d = {norm(g.get('name','')): g for g in dash}
-tp=fp=fn=0
-for gn, gd in gt.items():
-    if gd.get('data_status') in ('insufficient','table_game'): continue
-    gf = set(gd.get('features',[]));
-    if not gf: continue
-    p = set(d.get(norm(gn),{}).get('features',[]))
-    tp+=len(gf&p); fp+=len(p-gf); fn+=len(gf-p)
-pr=tp/(tp+fp) if tp+fp else 0; re_=tp/(tp+fn) if tp+fn else 0; f1=2*pr*re_/(pr+re_) if pr+re_ else 0
-print(f'BASELINE: TP={tp} FP={fp} FN={fn} | P={pr*100:.1f}% R={re_*100:.1f}% F1={f1*100:.1f}%')
-"
-
-# 2. Validate config consistency
-python3 enrich_websearch.py --validate
-
-# 3. Test on ONE game with --verbose (look for unexpected behavior)
-PYTHONUNBUFFERED=1 python3 enrich_websearch.py --ids "game-001-cash_eruption" --verbose --fresh --strict-adapters --no-ddg --delay 5
-
-# 4. Re-run metrics AFTER your change — F1 MUST NOT drop below 95%
-# If F1 drops: REVERT your change immediately.
-
-# 5. Run dashboard tests (from game_analytics_export/, NOT data/)
-cd .. && npx vitest run && cd data/
-# All 183 tests must pass. If any fail, your change broke something.
-```
-
-**After editing `ground_truth_ags.json`:** ALWAYS re-run the metrics script immediately. Verify F1 did not regress. If it did, your GT edit introduced an error — investigate before proceeding.
-
----
-
-## Quick Start
-
-```bash
-cd game_analytics_export/data/
-
-# Check current accuracy (should be >=95% F1)
-python3 -c "
-import json, re
-with open('ground_truth_ags.json') as f: gt = json.load(f)
-with open('games_dashboard.json') as f: dash = json.load(f)
-def norm(n): return re.sub(r'[^a-z0-9]', '', (n or '').lower())
-dash_by_norm = {norm(g.get('name','')): g for g in dash}
-tp = fp = fn = 0
-for gname, gdata in gt.items():
-    if gdata.get('data_status') in ('insufficient', 'table_game'): continue
-    gt_feats = set(gdata.get('features', []))
-    if not gt_feats: continue
-    dg = dash_by_norm.get(norm(gname), {})
-    pred = set(dg.get('features', []))
-    tp += len(gt_feats & pred)
-    fp += len(pred - gt_feats)
-    fn += len(gt_feats - pred)
-prec = tp/(tp+fp) if tp+fp else 0
-rec = tp/(tp+fn) if tp+fn else 0
-f1 = 2*prec*rec/(prec+rec) if prec+rec else 0
-print(f'TP={tp} FP={fp} FN={fn}')
-print(f'Precision={prec*100:.1f}% Recall={rec*100:.1f}% F1={f1*100:.1f}%')
-"
-
-# Validate pipeline config consistency
-python3 enrich_websearch.py --validate
-
-# Enrich specific games (MUST include --strict-adapters --no-ddg for proof/audit)
-PYTHONUNBUFFERED=1 python3 enrich_websearch.py --ids "game-001-cash_eruption" --verbose --fresh --strict-adapters --no-ddg --delay 15
-
-# Batch mode (50% cheaper, async)
-python3 enrich_websearch.py --batch-submit --ids "game-001-cash_eruption,game-002-huff_n_even_more_puff" --strict-adapters --no-ddg --fresh
-python3 enrich_websearch.py --batch-poll <batch_id> --verbose --strict-adapters --no-ddg
-```
-
----
-
-## Current State (2026-03-22)
-
-- **Games in master**: 1601
-- **Games in dashboard**: 1601 (1545 with features, 56 without)
-- **F1: 97.19%** (matched games) | Precision: 96.9% | Recall: 97.5%
-- **TP=1037, FP=33, FN=27**
-- **14-field completeness: 93.8%** (measured on core fields; bet fields excluded — not available online)
-- **Canonical features (23)**: Buy Bonus, Cascading Reels, Cash On Reels, Colossal Symbols, Expanding Reels, Expanding Wilds, Free Spins, Gamble Feature, Hold and Spin, Megaways, Multiplier, Mystery Symbols, Nudges, Persistence, Pick Bonus, Progressive Jackpot, Respin, Stacked Symbols, Static Jackpot, Sticky Wilds, Symbol Transformation, Wheel, Wild Reels
-
-### 14-Field Completeness Breakdown
-| Field | Filled | Coverage |
-|-------|--------|----------|
-| id, name | 1601 | 100% |
-| provider | 1593 | 99.5% |
-| studio | 1593 | 99.5% |
-| features | 1545 | 96.5% |
-| theme_primary | 1521 | 95.0% |
-| themes_all | 1521 | 95.0% |
-| theo_win | 1478 | 92.3% |
-| release_year | 1478 | 92.3% |
-| reels | 1476 | 92.2% |
-| symbols | 1442 | 90.1% |
-| rows | 1427 | 89.1% |
-| rtp | 1413 | 88.3% |
-| volatility | 1335 | 83.4% |
-
-**Data ceiling**: The remaining ~6.2% gap comes from games with zero online presence (mostly White Hat Studios "Jackpot Royale" variants, obscure rebrands). The enrichment pipeline confirmed these cannot be found — web search returns empty for them.
-
----
-
-## DO NOT (hard rules for any agent)
-
-1. **DO NOT weaken confidence thresholds.** Features require conf >= 5, themes >= 4. These are enforced in code (see `# GATE:` comments in `enrich_websearch.py`).
-2. **DO NOT re-add Sidebets.** Sidebets was deliberately removed from the taxonomy (table game, not slot). Multiplier was re-added as canonical feature in Mar 2026.
-3. **DO NOT skip post-processing rules.** They catch systematic LLM misclassifications (PXS, expanding wilds, interactive mini-games). Catalog-confirmed features bypass these strips.
-4. **DO NOT overwrite dashboard data.** Batch-poll MERGES new results with existing `games_dashboard.json` entries. Never truncate.
-5. **DO NOT use `claude-sonnet-4-6` alias** — it returns 529 errors with `web_search` tool. Use `claude-sonnet-4-20250514`.
-6. **DO NOT use `web_search_20260209`** — reliability issues. Use `web_search_20250305`.
-7. **DO NOT reduce web search `max_uses` below 3** without validating accuracy on the full GT set.
-8. **DO NOT make game-specific hacks.** All fixes must be generalizable (card updates, post-processing rules, synonym mappings).
-9. **DO NOT add features to `ags_vocabulary.json`** without also adding a Feature Definition Card in `_build_normalize_system_prompt()`, a post-processing rule if needed, and SlotCatalog map entries. The vocabulary file, cards, synonym map, and SlotCatalog map must stay in sync. `--validate` checks this.
-10. **DO NOT add entries to `_SLOTCATALOG_FEATURE_MAP`** that map to a canonical feature without verifying the mapping is correct. Bad mappings here inject false positives with no LLM review. Each new mapping must be validated against 3+ real games.
-11. **DO NOT edit post-processing rules in only ONE code path.** The sync path (~line 1720) and batch-poll path (~line 2220) have DUPLICATED post-processing logic. If you change one, you MUST change the other identically. Search for `# GATE:` comments to find both.
-12. **DO NOT run proof/audit enrichment without `--strict-adapters --no-ddg`.** Strict-adapters ensures zero config issues (hard abort). No-DDG ensures deterministic results (DDG web search is for remediation/discovery only — pin sources, then re-run without it).
-13. **DO NOT skip proof or audit steps.** Both are required. Proof validates pipeline output; audit validates data quality (theme + features are hard truth).
-
----
-
-## Proof & Audit Runs (mandatory for any production enrichment)
-
-All proof and audit runs must follow these rules:
-
-1. **Always use `--strict-adapters`** — causes hard `sys.exit(1)` on any config issue.
-2. **Always use `--no-ddg`** — DDG is remediation-only (discover sources, pin them, then rerun without DDG).
-3. **Proof + Audit are both required** — never skip either.
-4. **Theme + features are hard truth in audits:**
-   - Theme audit criteria: `no_2domain_AB_consensus:theme`
-   - Features audit criteria: `no_AB_consensus_or_tierA:mechanic.features`
-5. **All audit runs must surface theme/features explicitly** and fail loudly when they regress.
-6. **On failure: continue remediation, sleep, retry** — never quit the cycle.
 
 ---
 
 ## Key Files
 
+### Production Data (DO NOT DELETE)
+
 | File | Purpose |
 |------|---------|
-| `enrich_websearch.py` | **The pipeline.** Everything in one file: extraction, normalization, post-processing, batch support. **Also contains all 23 Feature Definition Cards** (IS/NOT/YES/NO examples) inside `_build_normalize_system_prompt()` (~line 1319). These cards are the core classification logic. |
-| `games_master.json` | Source of truth for game list (~1600 games). **Structure: `{"metadata":{}, "games":[...]}`** — NOT a flat array. Access games via `data["games"]`. Fields: id, name, provider, studio, mechanic, rtp, volatility, theo_win, etc. |
-| `games_dashboard.json` | **Enrichment output.** Features, themes, symbols, descriptions, demo URLs for 1600 games. Loaded by DuckDB in the dashboard. |
-| `games_dashboard_meta.json` | Per-game enrichment metadata (completeness, model used, batch ID, timestamp). |
-| `ground_truth_ags.json` | Ground truth for accuracy measurement (254 entries). Used by `compare_with_ground_truth()` and the metrics scripts. |
-| `ags_vocabulary.json` | Canonical vocabulary: 26 themes, 23 features. Loaded at pipeline startup as `KNOWN_FEATURES` / `KNOWN_THEMES`. |
-| `synonym_mapping.json` | Post-LLM normalization aliases (maps variant names → canonical names). |
-| `theme_consolidation_map.json` | Maps 375 raw themes → 24 dashboard categories. Applied at DuckDB load time. |
-| `enrichment_checkpoint.json` | Resume support for sync runs. |
-| `.env` | `ANTHROPIC_API_KEY` (gitignored). |
+| `data/game_data_master.json` | Main data file (4,551 games). DuckDB loads this directly. |
+| `data/ground_truth_ags.json` | 87-entry ground truth. Irreplaceable. |
+| `data/theme_consolidation_map.json` | Theme grouping map (7s, Mythology→Mythical, etc). |
+| `data/franchise_mapping.json` | Franchise grouping (1,731 games, 520 franchises). |
+| `data/confidence_map.json` | Per-game per-field confidence levels. |
+| `data/_release_date_matches.json` | Release date matches (2,327 entries from SR + SC + staged). |
+| `data/ground_truth_art.json` | 27-entry art characterization GT. Manually verified. |
 
-### Critical Files — DO NOT DELETE
+### Pipeline Scripts
 
-These files are essential to the pipeline and/or dashboard. **Never remove them.**
-
-| File | Why it's critical |
-|------|-------------------|
-| `enrich_websearch.py` | The entire enrichment pipeline + all Feature Definition Cards |
-| `games_master.json` | Pipeline input — list of all ~1600 games with base metadata. Without it, enrichment cannot run. |
-| `games_dashboard.json` | Pipeline output + DuckDB data source. The dashboard renders this. |
-| `ground_truth_ags.json` | 254-entry ground truth. Required for F1 accuracy measurement. Irreplaceable — built through manual verification. |
-| `ags_vocabulary.json` | Canonical feature/theme lists. Pipeline refuses to start without it. |
-| `synonym_mapping.json` | Normalization aliases. Pipeline loads at startup. |
-| `theme_consolidation_map.json` | Theme grouping for dashboard. DuckDB loads it at startup. |
-| `audit_features.py` | Systematic FP detection script for feature audits. |
-| `sc_audit.py` | SlotCatalog audit tool — fetches & compares features/specs for 1076 games. Output: `sc_audit_report.json` |
-| `PHASE1_TRUTH_MASTER.md` | This file — the single runbook. |
-
-Files that are **safe to regenerate** (not critical to preserve):
-
-| File | Why it's safe |
-|------|---------------|
-| `enrichment_checkpoint.json` | Auto-generated during sync runs. Can be deleted to force fresh re-enrichment. |
-| `games_dashboard_meta.json` | Regenerated by pipeline alongside `games_dashboard.json`. |
-| `__pycache__/` | Python bytecode cache. Auto-generated. |
+| File | Purpose |
+|------|---------|
+| `data/extract_game_profile.py` | Main extraction — Claude API, post-processing. |
+| `data/match_release_dates.py` | Match SlotReport dates to master games. |
+| `data/extract_sc_release_dates.py` | Extract dates from cached SlotCatalog HTML. |
+| `data/smart_match.py` | Strict title-based matching with verification gate. |
 
 ---
 
-## `games_dashboard.json` Schema
+## game_data_master.json Schema
 
-The file is a **flat JSON array** (not wrapped in `{ "games": [...] }`). Each element has these fields:
+### CSV fields (XLSX protected — extraction NEVER overwrites)
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `id` | string | yes | Game ID from `games_master.json` |
-| `name` | string | yes | Display name |
-| `features` | string[] | no | Canonical feature names (from the 23) |
-| `themes_all` | string[] | no | All detected themes |
-| `theme_primary` | string | no | Primary theme |
-| `theme_secondary` | string | no | Secondary theme |
-| `symbols` | string[] | no | Detected game symbols |
-| `description` | string | no | Game description from web |
-| `demo_url` | string | no | Link to playable demo |
-| `provider` | string | yes | Provider name |
-| `studio` | string | yes | Studio name |
-| `parent_company` | string | no | Parent company |
-| `provider_website` | string | no | Provider official website URL (from PROVIDER_WEBSITES dict) |
-| `mechanic_primary` | string | yes | Primary mechanic (e.g., "Slot") |
-| `reels` | number | no | Reel count |
-| `rows` | number | no | Row count |
-| `paylines_count` | number | no | Payline/ways count |
-| `paylines_kind` | string | no | "Lines" or "Ways" |
-| `rtp` | number | no | Return to player % |
-| `volatility` | string | no | "Low"/"Medium"/"High"/"Very High" |
-| `theo_win` | number | no | Theoretical win index |
-| `market_share_pct` | number | no | Market share percentage |
-| `percentile` | string | no | Performance percentile |
-| `anomaly` | string | no | "high" or "low" |
-| `release_year` | number | no | Release year |
-| `release_month` | number | no | Release month |
-| `data_quality` | string | no | "verified" or "partial" |
-| `source_tier` | string | no | Pipeline source info |
-| `max_win` | string/null | no | "5000x" multiplier from SlotCatalog |
-| `min_bet` | number/null | no | Minimum bet in base currency |
-| `max_bet` | number/null | no | Maximum bet in base currency |
+| Field | Type |
+|-------|------|
+| `id` | string |
+| `name` | string |
+| `provider` | string |
+| `game_category` | string |
+| `release_year` | number (NJ launch date) |
+| `release_month` | number (NJ launch date) |
+| `sites` | number |
+| `avg_bet` | number |
+| `median_bet` | number |
+| `games_played_index` | number |
+| `coin_in_index` | number |
+| `theo_win` | number |
+| `market_share_pct` | number |
 
-**Critical:** `features` arrays must ONLY contain names from the 23 canonical features. Any other value is a bug.
+### Global Release Date fields (also protected)
 
----
+| Field | Coverage | Source |
+|-------|----------|-------|
+| `original_release_date` | 2,327/4,551 (51%) | SlotReport, SlotCatalog, staged |
+| `original_release_year` | 2,327/4,551 (51%) | Derived from date |
+| `original_release_month` | 2,327/4,551 (51%) | Derived from date |
+| `original_release_date_source` | 2,327/4,551 (51%) | "slotreport", "slotcatalog", "staged" |
 
-## Pipeline Architecture
+### Extracted fields (from Claude API + HTML rules)
 
-The pipeline has 3 layers, run in sequence for each game:
+| Field | Coverage | Notes |
+|-------|----------|-------|
+| `features` | 99% | Array of strings. "Multiplier" filtered by HIDDEN_FEATURES. |
+| `theme_primary` | 100% | Consolidated via theme_consolidation_map. |
+| `themes_all` | 100% | Array of all theme tags. |
+| `symbols` | 68% (3,112/4,551) | String or object arrays. 1,439 still missing. |
+| `reels` | 89% | |
+| `rows` | 57% | |
+| `rtp` | 69% | |
+| `volatility` | 7% | Rarely in HTML rules |
+| `max_win` | 23% | |
 
-### Layer 0: Provider Catalog (free, deterministic)
+### Art characterization fields (from Claude API + post-processing rules)
 
-Direct HTTP fetch from provider websites + SlotCatalog.com fallback. Returns structured features, themes, RTP, specs.
+| Field | Coverage | Notes |
+|-------|----------|-------|
+| `art_setting` | 0% (pipeline ready) | Single value from 33-item taxonomy. Norse/Viking, Irish/Celtic, Festive, etc. |
+| `art_characters` | 0% (pipeline ready) | Array. 29-item taxonomy. Pharaoh, Viking, Leprechaun, Dinosaur, etc. |
+| `art_elements` | 0% (pipeline ready) | Array. 25-item taxonomy. Gems, Gold, Fruits, Fishing, etc. |
+| `art_mood` | 0% (pipeline ready) | Single value from 13-item taxonomy. Dark, Bright, Epic, Festive, etc. |
+| `art_narrative` | 0% (pipeline ready) | Single value from 19-item taxonomy. Treasure Hunt, Fishing, Music, etc. |
+| `art_style` | 0% (pipeline ready) | Single value. Low reliability from text inference. |
+| `art_color_tone` | 0% (pipeline ready) | Single value. Low reliability from text inference. |
+| `art_confidence` | 0% (pipeline ready) | Always `text_inferred` (no visual analysis). |
 
-**9 provider-specific extractors** (~149/1600 games = 9% coverage):
-
-| Provider | Extractor | Games |
-|----------|-----------|-------|
-| AGS (+Crazy Tooth, Oros) | `ags` | 23+ |
-| Light & Wonder | `lnw` | 36 |
-| Inspired Gaming | `inspired` | 29 |
-| Aristocrat | `aristocrat` | 20 |
-| Everi | `everi` | 18 |
-| Red Tiger | `redtiger` | 11 |
-| Konami | `konami` | 8 |
-| Hacksaw Gaming | `hacksaw` | 6 |
-| Nolimit City | `nolimitcity` | 1 |
-
-**SlotCatalog.com universal fallback** covers ALL other providers. Deterministic mapping (`_SLOTCATALOG_FEATURE_MAP`) converts high-confidence labels directly to canonical features.
-
-**Cannot add** (JS-rendered or blocked): IGT, White Hat, Blueprint, Playtech, NetEnt, Greentube, BTG, Lightning Box, Gaming Realms, Reel Play. These use SlotCatalog fallback.
-
-### Layer 1: Web Search Extraction (Claude Sonnet + web_search tool)
-
-Free-form extraction using Claude Sonnet with the `web_search` tool. Finds features, themes, symbols, specs, description from web sources. ~2.5 searches per game.
-
-- Model: `claude-sonnet-4-20250514`
-- Tool: `web_search_20250305`
-- Completeness score: 1-5/5. If <= 3, triggers verification search.
-
-### Layer 2: Normalization (Claude Haiku + Feature Definition Cards)
-
-Maps raw extraction output to canonical taxonomy using definition cards.
-
-- Model: `claude-haiku-4-5`
-- Prompt caching: ~90% savings after first call
-- Confidence gating: features >= 5, themes >= 4 (enforced in code, not just prompt)
+**Art taxonomy validated against**: SlotCatalog, KeyToCasino, slot.report industry databases.
+**Art GT eval**: 83.8% aggregate on 18 held-out games (Setting 100%, Mood 94%, Characters 86%, Narrative 72%, Elements 66%).
+**Few-shot**: 8 training examples in prompt. Deterministic post-processing rules for name/HTML-based overrides.
 
 ---
 
-## Code Gates in `enrich_websearch.py`
+## DuckDB Integration
 
-Every gate is marked with `# GATE:` comments in the code. These are the programmatic enforcement points:
+The dashboard loads `game_data_master.json` into an in-browser DuckDB instance.
 
-1. **Confidence gating** — Features below conf 5 and themes below conf 4 are stripped from the output, regardless of what the LLM returns.
-2. **Multiplier strip** — Unconditional removal. Multiplier is not in the taxonomy.
-3. **PowerXStream ER strip** — If all Expanding Reels evidence is PXS-only, strip ER. Skipped if catalog confirms ER.
-4. **Expanding-wilds WR strip** — If all Wild Reels evidence is expanding-wilds-only, strip WR. Skipped if catalog confirms WR.
-5. **Interactive COR strip** — If all Cash On Reels evidence is interactive mini-game, strip COR. Skipped if catalog confirms COR.
-6. **Catalog data merge** — After LLM normalization, catalog-confirmed features are merged in.
-7. **Synonym normalization** — Post-LLM normalization via `synonym_mapping.json`.
-8. **Batch-poll merge** — New batch results are merged with existing dashboard data, never overwritten.
-9. **Vocabulary lock** — `KNOWN_FEATURES` and `KNOWN_THEMES` are loaded from `ags_vocabulary.json` at startup. Any feature returned by the LLM that is not in `KNOWN_FEATURES` is rejected.
-10. **Unknown-feature rejection** — After normalization, features not in the canonical 23 are silently dropped. This prevents LLM hallucination from leaking into output.
-11. **SlotCatalog map validation** — `--validate` checks that every value in `_SLOTCATALOG_FEATURE_MAP` is either `None` or a member of `KNOWN_FEATURES`.
-12. **Final-output-validation** — Immediately before writing `games_dashboard.json`, ALL records are scanned. Any feature not in `KNOWN_FEATURES` is stripped with a log message. Exists in BOTH sync and batch-poll paths (~line 2330 and ~line 2449).
-13. **Definition card validation** — `--validate` (and every startup) checks that every feature in `ags_vocabulary.json` has a matching definition card (`FEATURE_NAME:`) in the normalize prompt. Also catches stale cards for removed features. Prevents adding a feature without teaching the LLM about it.
-14. **Config-block by default** — Pipeline **refuses to run** if any config validation issue is detected. No `--strict-adapters` needed — blocking is the default. Use `--force` to override (not recommended). This prevents any agent from accidentally running with broken config.
-15. **Preserve-on-failure** — If a game fails enrichment in the sync path, its **existing** dashboard record is preserved (not dropped). Prevents data loss from API flakes or transient errors.
+Key schema additions (beyond CSV fields):
+- `original_release_year INTEGER` / `original_release_month INTEGER` — global release dates
+- `theme_consolidated VARCHAR` — consolidated theme from map
+- `franchise VARCHAR` / `franchise_type VARCHAR` — from `franchise_mapping.json`
+- `*_confidence VARCHAR` — per-field confidence from `confidence_map.json`
 
-**DUAL-PATH WARNING:** Gates 2-5 and 12 exist in TWO places: the sync path (`enrich_one_game()`, ~line 1710) and the batch-poll path (`main()` under `--batch-poll`, ~line 2210). If you modify post-processing in one path, you MUST apply the same change to the other. Always search for `# GATE:` to find both.
+The Trends page uses `COALESCE(original_release_year, release_year)` to prefer global dates.
 
----
+### Centralized Data Access
 
-## Feature Definition Cards
+- **`getActiveGames()`** / **`getActiveThemes()`** / **`getActiveMechanics()`** — filtered data getters in `data.js`
+- **`F.originalReleaseYear(g)`** — falls back to `release_year` when original is absent
+- **`F.themesAll(g)`** — auto-parses JSON strings from DuckDB
+- **`parseFeatures(val)`** — auto-filters `HIDDEN_FEATURES` (e.g., Multiplier)
+- Category filter: `applyCategory()` in `chart-config.js` recomputes all view data
 
-Each of the 23 canonical features has a definition card in `_build_normalize_system_prompt()`:
+### Charts & Panels
 
-```
-FEATURE_NAME:
-  IS: What this feature is (1-2 sentences)
-  NOT: Common confusions / what to exclude
-  YES: "raw text example" → conf:5
-  NO: "raw text example" → null (why)
-```
-
-Key classification rules (learned from calibration):
-
-- **Cash On Reels + H&S coexistence**: Cash-value symbols in BASE GAME that also trigger H&S → classify BOTH. Cash values ONLY within H&S round → only H&S.
-- **"Win What You See" / Concatenation games**: Number-only steppers where amounts ARE the mechanic → NOT Cash On Reels.
-- **Static Jackpot includes "linked progressive"**: Named-tier jackpots (Mini/Minor/Major/Grand) described as "progressive" → Static Jackpot.
-- **Jackpots within Wheel**: Jackpots ONLY as wheel segments → Wheel, NOT Static Jackpot.
-- **Hold and Spin**: Must have BOTH lock + respin. Vague "hold-style" language → null.
-- **Respin**: Must be named, standalone mechanic. Minor side-effects → NOT Respin.
-- **Persistence**: Must be truly permanent. Collection meters that reset → NOT Persistence.
-- **Expanding Reels**: PowerXStream is NOT Expanding Reels.
-- **Wild Reels**: Expanding wilds that cover a reel are NOT Wild Reels (they expand, they don't make the reel wild for all spins).
-- xNudge Wild covering entire reel = BOTH Nudges AND Wild Reels.
-- Stacked Wilds ≠ Wild Reels. Cascading ≠ Respin. Super Symbols ≠ Expanding Reels.
-- Catalog "Progressive Jackpot" → Static Jackpot (deterministic mapping).
+- All brand/franchise charts show ALL brands (no caps)
+- RTP/Volatility bubble clicks open detail panels
+- Market leader filter uses `MARKET_LEADER_THRESHOLD` constant (0.005 = 0.5%)
+- N/A-heavy side panel sections auto-collapse with chevron toggle
 
 ---
 
-## Post-Processing Rules
+## Living Plan
 
-Run AFTER LLM normalization, BEFORE writing output. Catalog-confirmed features bypass rules 2-4.
+### Remaining Work
 
-1. **Multiplier strip** (unconditional): Remove Multiplier from features.
-2. **PXS → NOT ER**: All ER evidence is PowerXStream-only → strip ER. **Skipped if catalog confirms ER.**
-3. **Expanding wilds → NOT WR**: All WR evidence is expanding-wilds-only → strip WR. **Skipped if catalog confirms WR.**
-4. **Interactive → NOT COR**: All COR evidence is interactive mini-game → strip COR. **Skipped if catalog confirms COR.**
+1. **Symbol gaps** — 1,439 games without symbols (needs Claude API, cost approval required)
+2. **Release date gaps** — 2,224 games without global dates (mostly NJ-only titles)
+3. **Spec enrichment** — RTP, volatility from external sources
+4. **Art characterization extraction** — pipeline ready, phased rollout:
+   - Phase A: **Small batch** (50 games) → manual review → fix any issues ← **CURRENT**
+   - Phase B: Medium batch (200 games) → spot-check → refine post-processing
+   - Phase C: Full extraction (~4,000 slots) → apply to master
+   - Phase D: DuckDB schema + `game-fields.js` + `metrics.js` + dashboard UI
+5. **Mobile UX** — responsive improvements
 
----
-
-## Model Configuration
-
-- **Extraction**: `claude-sonnet-4-20250514` (do NOT use `claude-sonnet-4-6` alias)
-- **Normalization**: `claude-haiku-4-5`
-- **Web search tool**: `web_search_20250305` (NOT `20260209`)
-- **Batch API**: 50% discount on model tokens via `--batch-submit` / `--batch-poll`
-- If changing models, test with a single game first, then full GT set.
-
----
-
-## Cost
-
-**Full run (~1600 games, Batch Sonnet)**: ~$100-120
-
-- Web search: ~$16 (35%)
-- Stage 1 Sonnet tokens (batch 50% off): ~$23 (50%)
-- Stage 2 Haiku tokens (cached): ~$3 (7%)
-- Re-runs for failed games: ~$3 (8%)
-
----
-
-## Ground Truth & Accuracy
-
-### GT structure
-- **Total GT entries**: 254
-- **Evaluable**: 137 (after excluding 23 `insufficient` + 8 `table_game` + 5 no-features)
-- **Confidence thresholds**: Features >= 5 (strict), Themes >= 4 (lenient)
-- **Programmatic gating**: enforced in code, not just prompt
-
-### GT exclusion flags
-- `insufficient` (23 games): No usable web data, not in master, or variant mismatch
-- `table_game` (8 games): Blackjack/card games, not slots
-
-### Non-AGS canary games (1 per blind-spot provider)
-
-| Provider | Game | Source |
-|----------|------|--------|
-| White Hat Studios | Majestic Fury Megaways JRE | whitehatstudios.com |
-| Playtech | Breaking Bad Collect Em And Link | goldennuggetcasino.com |
-| NetEnt | Divine Fortune Megaways | game rules |
-| Greentube | Diamond Cash Mighty Elephant | slotcatalog.com |
-| Play'n GO | Buffalo Of Wealth | slot review site |
-| Gaming Realms | Cash Eruption Slingo | game rules |
-| Big Time Gaming | Extra Chilli Megaways | evolution.com |
-| Reel Play | Hypernova Megaways | relax-gaming.com |
-| Fortune Factory | Gold Blitz Fortunes | web search + SlotCatalog |
-| Iron Dog Studio | Diamond Charge Hold And Win | game rules |
-| Lightning Box | Money Link Great Immortals | slotcatalog.com |
-
-### Current accuracy (F1=97.14%)
-
-**Remaining 12 FPs** (10 games): Mostly borderline COR cases (6), Slingo+ER (2), plus 4 isolated edge cases.
-
-**Remaining 26 FNs** (15 games): All data gaps — branded/exclusive games (BetMGM, FanDuel, Hard Rock) or features not listed in any source. 11 of 15 games have completeness ≤ 3.
-
----
-
-## GT Corrections Log
-
-**Round 1 (early calibration):** Blazin Bank Run +H&S, Dragon Diamond +SJ, Rakin Bacon +ER, Gold Blitz Fortunes expanded to 6 features.
-
-**Round 2 (FP review with user, 23 items):** Majestic Fury MW JRE +Wheel/H&S, Meow Meow Madness +COR, Panda Blessings +COR, Cash Eruption Slingo +FS, 2x Spin Cycle +FS/SJ, Spin Bonanza +FS, Vegas Stacks +WR, Wolf Queen +ER, FanDuel Cash Haul +COR, Cluck Cluck Cash +Persistence.
-
-**Round 3 (regression fix):** Cash Machine Jackpots +SJ, Shou Hu Shen +WR, Goddess Treasures +PB, Gold Blitz Fortunes +H&S.
-
-**Round 4 (post-batch FP review):** Capital Gains/Cash Cow/Grand Royale/Mo Mummy/Royal Reels/Rakin' Bacon JBB/JBW +PB, Golden Money +SJ, Cash Eruption Slingo +COR, Rakin' Bacon Triple Oink +H&S.
-
-**Round 5 (COR investigation):** River Dragons/Riches of the Nile/Blazin Bank Run/Hypernova MW/Luck and Luxury +COR (all confirmed via web search evidence).
-
-**Round 6 (taxonomy correction):** Rakin Bacon -ER (PXS-only evidence, not true ER).
-
-**Round 7 (audit-script FP sweep):** Capital Gains -PB, Blazin Bank Run -PB (both gate/selector, not Pick Bonus — vault triggers bonus-mode choice). Phoenix Fa -ER (PXS-only, no grid expansion). The Wild Life Extreme -WR (expanding wilds, not Wild Reels). Mega Fire Blaze Legacy Of The Tiger -WR (expanding tiger wilds, not Wild Reels). Added `pick-gate-strip` GATE rule to pipeline. Created `audit_features.py` for systematic FP detection.
-
----
-
-## Taxonomy Changes
-
-### Multiplier history
-Multiplier was removed from canonical features in 2025-03-15 (rationale: modifier not standalone), then **re-added in Mar 2026** after expanding to 23 features. It is now canonical again with a definition card and GT coverage.
-
-Applied to: vocabulary files, synonym mapping, definition cards, SlotCatalog map, post-processing strip, GT entries (102), dashboard entries (95), normalization prompt.
-
-### Sidebets REMOVED (2026-02-25)
-
-Sidebets was removed from the canonical feature list. Rationale: Sidebets is a table-game concept, not a slot feature.
-
-Applied to: `ags_vocabulary.json` (removed from features list), `games_dashboard.json` (stripped from all game records). Canonical features reduced from 12 → 11.
-
----
-
-## Card Fixes Log
-
-**Round 1:** H&S +Jackpot Respins/Money Link aliases. Respin -Jackpot Respins. SJ +named tier variants.
-
-**Round 2:** WR strengthened NOT (expanding wilds, collection-triggered). COR tightened (exclude coin collection, H&S-only). H&S clarified lock+respin+counter. PB excluded bonus selectors. Nudges required "nudge" name. ER excluded PXS.
-
-**Round 3:** WR +NO for decorative gold backgrounds. COR rebalanced (cash symbols with values on reels = YES, even if feeding into bonuses). PB +jackpot-pick games. Nudges +more NO examples for "second chance" shifts.
-
----
-
-## Batch Processing (COMPLETED)
-
-All ~1600 games processed (2026-03-16).
-
-**Bugs fixed during batch:**
-1. **Dashboard overwrite**: batch-poll now merges, not overwrites.
-2. **Missing catalog injection**: batch-poll now runs Stage 0 catalog fetch.
-3. **Catalog bypass**: post-processing skips strip if catalog confirms the feature.
-
----
-
-## Resilience Features
-
-1. **API retry**: 3 retries on 429/529/500/502/503 with exponential backoff (30s, 60s, 90s)
-2. **Catalog fallback**: If web search fails, catalog-only mode
-3. **Quality retry**: If completeness < 3/5, re-runs web search
-4. **Loop resilience**: Individual game failures don't crash the batch
-5. **Checkpoint**: Progress saved per game, resume without `--fresh`
-
----
-
-## How to Add a New Provider Catalog
-
-1. Test if provider website serves static HTML:
-   ```bash
-   python3 -c "
-   from enrich_websearch import _fetch_html, _html_to_text
-   html = _fetch_html('https://www.PROVIDER.com/games/GAME-SLUG/')
-   if html:
-       text = _html_to_text(html)
-       print(f'OK: {len(text)} chars')
-       print(text[:300])
-   else:
-       print('FAILED — JS-rendered or blocked')
-   "
-   ```
-2. If it works: add entry to `PROVIDER_CATALOG_CONFIG`, write `_extract_<key>(html)` function, register in `_EXTRACTORS`.
-3. If blocked: SlotCatalog fallback handles it automatically.
-
----
-
-## How to Add GT for a New Provider
-
-1. Find the game on the provider's website or demo site
-2. Record: themes, features (from our 23 canonical only)
-3. Add to `ground_truth_ags.json`:
-   ```json
-   "Game Name": {
-     "themes": ["Theme1", "Theme2"],
-     "features": ["Feature1", "Feature2"],
-     "provider": "Provider Name",
-     "source": "where you verified"
-   }
-   ```
-4. Run enrichment on the game and compare with `--verbose`
-
----
-
-## Theme Consolidation
-
-Raw themes (375 unique values) are mapped to **24 consolidated categories** via `theme_consolidation_map.json`.
-
-The map is applied at DuckDB load time (`duckdb-client.js`) to populate the `theme_consolidated` column. The raw `theme_primary` is preserved.
-
-**Categories**: Classic, Fruit, Animals, Adventure, Asian, Egyptian, Greek & Roman, Casino & Vegas, Fantasy & Magic, Nature, Food & Drink, Wealth & Gems, Seasonal & Holiday, Western, Fire & Elements, Ocean & Pirates, Horror & Dark, Sports & Vehicles, Cultural, Arcade, Entertainment, Space & Sci-Fi, Irish & Celtic, War & Military.
-
-When adding a new theme to the pipeline output, you MUST also add it to `theme_consolidation_map.json`. Unmapped themes show as-is in the dashboard.
-
----
-
-## Running Commands
+### Art Characterization Pipeline (full plan: `data/ART_CHARACTERIZATION_PLAN.md`)
 
 ```bash
-# All commands from: game_analytics_export/data/
+# Test against GT (held-out games, F1 scoring)
+python3 data/extract_game_profile.py --test-art
 
-# Validate config
-python3 enrich_websearch.py --validate
+# Test specific games
+python3 data/extract_game_profile.py --test-art-games "Game1,Game2"
 
-# Enrich specific games (sync) — ALWAYS use --strict-adapters --no-ddg
-PYTHONUNBUFFERED=1 python3 enrich_websearch.py --ids "game-001-cash_eruption" --verbose --fresh --strict-adapters --no-ddg --delay 15
+# Extract art (stages to staged_art_characterization.json)
+python3 data/extract_game_profile.py --extract-art --limit 50
 
-# Batch mode (50% cheaper) — ALWAYS use --strict-adapters --no-ddg
-python3 enrich_websearch.py --batch-submit --ids "<comma-separated-ids>" --strict-adapters --no-ddg --fresh
-python3 enrich_websearch.py --batch-poll <batch_id> --verbose --strict-adapters --no-ddg
-
-# Full run
-python3 enrich_websearch.py --all --batch-submit --strict-adapters --no-ddg
-
-# Re-run only games missing features (zero cost for already-enriched games)
-python3 enrich_websearch.py --all --skip-enriched --verbose --strict-adapters --no-ddg
-
-# Run metrics
-python3 -c "
-import json, re
-with open('ground_truth_ags.json') as f: gt = json.load(f)
-with open('games_dashboard.json') as f: dash = json.load(f)
-def norm(n): return re.sub(r'[^a-z0-9]', '', (n or '').lower())
-dash_by_norm = {norm(g.get('name','')): g for g in dash}
-tp = fp = fn = 0
-for gname, gdata in gt.items():
-    if gdata.get('data_status') in ('insufficient', 'table_game'): continue
-    gt_feats = set(gdata.get('features', []))
-    if not gt_feats: continue
-    dg = dash_by_norm.get(norm(gname), {})
-    pred = set(dg.get('features', []))
-    tp += len(gt_feats & pred)
-    fp += len(pred - gt_feats)
-    fn += len(gt_feats - pred)
-prec = tp/(tp+fp) if tp+fp else 0
-rec = tp/(tp+fn) if tp+fn else 0
-f1 = 2*prec*rec/(prec+rec) if prec+rec else 0
-print(f'TP={tp} FP={fp} FN={fn}')
-print(f'Precision={prec*100:.1f}% Recall={rec*100:.1f}% F1={f1*100:.1f}%')
-print(f'F1 target: >=95%. Current: {f1*100:.1f}%')
-"
+# Apply staged art to master (after manual review)
+python3 data/extract_game_profile.py --extract-art --apply-art
 ```
+
+**Key files**:
+- `data/ground_truth_art.json` — 27-game GT (8 training + 19 test)
+- `data/staged_art_characterization.json` — staging area (review before applying)
+- `data/art_test_results.jsonl` — eval run results cache
+
+**Taxonomy** (7 dimensions, industry-validated):
+- Settings (33), Characters (29), Elements (25), Moods (13), Narratives (19), Styles (8), Color Tones (7)
+- Post-processing: 60+ name-based rules, 20+ HTML-based rules
+- Few-shot: 8 training examples in prompt
+
+---
+
+## DO NOT Rules
+
+1. **DO NOT use files from `data/_legacy/`** for new work. They are reference only.
+2. **DO NOT add classification data without validating against GT.** Always measure F1.
+3. **DO NOT overwrite `ground_truth_ags.json` or `ground_truth_art.json`** without explicit user approval.
+4. **DO NOT skip tests.** All 1095 JS + 53 Python tests must pass after any change.
+5. **DO NOT overwrite XLSX fields** (runtime gate + test enforce this).
+6. **DO NOT use `g.release_year` for trends/analysis** — use `F.originalReleaseYear(g)`.
+7. **DO NOT hardcode threshold values** — use constants from `shared-config.js`.
+
+---
+
+## Environment
+
+- Node v20 (`fnm use 20`)
+- Dev server: `cd game_analytics_export && npx vite`
+- Tests: `cd game_analytics_export && npx vitest run` (1095 tests)
+- Python tests: `python3 -m pytest data/test_extract_game_profile.py -q`
+- Format: `npm run format` (Prettier, 4-space indent, single quotes)
+- Python 3.10+ with `anthropic requests beautifulsoup4 lxml openpyxl`
+- API key in `data/.env` as `ANTHROPIC_API_KEY=sk-ant-...`

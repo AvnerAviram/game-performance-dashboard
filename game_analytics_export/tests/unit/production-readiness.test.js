@@ -19,7 +19,7 @@ describe('Build Security', () => {
     });
 
     it('build script should copy game data to dist', () => {
-        expect(buildCmd).toContain('games_dashboard.json');
+        expect(buildCmd).toContain('game_data_master.json');
     });
 
     it('build script should copy theme-breakdowns.json for theme panels', () => {
@@ -63,8 +63,8 @@ describe('Build Security', () => {
 });
 
 describe('Data Files', () => {
-    it('games_dashboard.json should exist and be valid JSON', () => {
-        const path = join(ROOT, 'data', 'games_dashboard.json');
+    it('game_data_master.json should exist and be valid JSON', () => {
+        const path = join(ROOT, 'data', 'game_data_master.json');
         expect(existsSync(path)).toBe(true);
         const data = JSON.parse(readFileSync(path, 'utf-8'));
         expect(Array.isArray(data)).toBe(true);
@@ -85,8 +85,8 @@ describe('Data Files', () => {
         expect(typeof data).toBe('object');
     });
 
-    it('games_dashboard.json should not contain API keys or secrets', () => {
-        const raw = readFileSync(join(ROOT, 'data', 'games_dashboard.json'), 'utf-8');
+    it('game_data_master.json should not contain API keys or secrets', () => {
+        const raw = readFileSync(join(ROOT, 'data', 'game_data_master.json'), 'utf-8');
         expect(raw.toLowerCase()).not.toContain('api_key');
         expect(raw.toLowerCase()).not.toContain('apikey');
         expect(raw.toLowerCase()).not.toContain('anthropic');

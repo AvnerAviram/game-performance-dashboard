@@ -229,7 +229,7 @@ describe('Overview Page: Data Accuracy', () => {
 
         // Check that data matches gameData, not hard-coded values
         expect(text).toContain(gameData.total_games.toString());
-        expect(gameData.total_games).toBeGreaterThan(0); // Verify it's the real value from games_dashboard
+        expect(gameData.total_games).toBeGreaterThan(0); // Verify it's the real value from game_data_master
     });
 
     test('displayed data should match source data', () => {

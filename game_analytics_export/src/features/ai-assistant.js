@@ -174,7 +174,7 @@ function handleThemeQuery(themeName) {
     html += `</div>`;
 
     if (topFeats.length) {
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Most Used Features</p>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Most Used Mechanics</p>`;
         html += `<div class="flex flex-wrap gap-1 mb-3">${topFeats.map(([f, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium">${escapeHtml(f)} (${c})</span>`).join('')}</div>`;
     }
     if (topProvs.length) {
@@ -200,13 +200,13 @@ function handleThemeQuery(themeName) {
         vsMarket > 15
             ? `<p class="mt-2 text-emerald-700 dark:text-emerald-400 text-xs font-medium">This theme outperforms the market by ${vsMarket.toFixed(0)}% — strong choice for new games.</p>`
             : vsMarket < -15
-              ? `<p class="mt-2 text-red-600 dark:text-red-400 text-xs font-medium">This theme underperforms the market by ${Math.abs(vsMarket).toFixed(0)}% — consider pairing with high-performance features like ${
+              ? `<p class="mt-2 text-red-600 dark:text-red-400 text-xs font-medium">This theme underperforms the market by ${Math.abs(vsMarket).toFixed(0)}% — consider pairing with high-performance mechanics like ${
                     topFeats
                         .slice(0, 2)
                         .map(([f]) => f)
                         .join(', ') || 'Free Spins'
                 } to compensate.</p>`
-              : `<p class="mt-2 text-gray-600 dark:text-gray-400 text-xs">This theme performs near market average. Differentiation through unique feature combinations will be key.</p>`;
+              : `<p class="mt-2 text-gray-600 dark:text-gray-400 text-xs">This theme performs near market average. Differentiation through unique mechanic combinations will be key.</p>`;
     html += suggestion;
     return html;
 }
@@ -266,7 +266,7 @@ function handleProviderQuery(provName) {
         );
     }
     if (topFeats.length) {
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Feature DNA</p>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Mechanic DNA</p>`;
         html += `<div class="flex flex-wrap gap-1 mb-3">${topFeats.map(([f, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium">${escapeHtml(f)} (${pct(c, pGames.length)}%)</span>`).join('')}</div>`;
     }
     if (topGames.length) {
@@ -317,7 +317,7 @@ function handleFeatureQuery(featName) {
         .sort((a, b) => b[1].totalTheo / b[1].count - a[1].totalTheo / a[1].count)
         .slice(0, 5);
 
-    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${escapeHtml(featName)} Feature Deep Dive</p>`;
+    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${escapeHtml(featName)} Mechanic Deep Dive</p>`;
     html += `<div class="flex flex-wrap gap-2 mb-3">`;
     html += statCard('Games', fGames.length);
     html += statCard('Adoption', `${adoption}%`);
@@ -326,7 +326,7 @@ function handleFeatureQuery(featName) {
     html += `</div>`;
 
     if (bestPairs.length) {
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Best Feature Pairings</p>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Best Mechanic Pairings</p>`;
         html += `<div class="flex flex-wrap gap-1 mb-3">${bestPairs
             .map(([f, c]) => {
                 const paired = fGames.filter(g => parseFeatures(g.features).includes(f));
@@ -375,7 +375,7 @@ function handleCompare(q) {
                 `<strong>${(a['Smart Index'] || 0).toFixed(1)}</strong>`,
                 `<strong>${(b['Smart Index'] || 0).toFixed(1)}</strong>`,
             ],
-            ['Market Share', `${(a['Market Share %'] || 0).toFixed(1)}%`, `${(b['Market Share %'] || 0).toFixed(1)}%`],
+            ['Market Share %', `${(a['Market Share %'] || 0).toFixed(1)}%`, `${(b['Market Share %'] || 0).toFixed(1)}%`],
         ]
     );
     const winner = (a['Smart Index'] || 0) > (b['Smart Index'] || 0) ? a : b;
@@ -466,7 +466,7 @@ function handleMarketGaps() {
         );
     }
     if (underusedFeats.length) {
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1 mt-3">Underused High-Performing Features</p>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1 mt-3">Underused High-Performing Mechanics</p>`;
         html += `<div class="flex flex-wrap gap-1 mb-2">${underusedFeats.map(f => `<span class="px-2 py-1 text-[10px] rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 font-medium">${escapeHtml(f.feature)} <span class="text-[9px]">${f.count}g · ${f.avgTheo.toFixed(1)} avg</span></span>`).join('')}</div>`;
     }
     html += `<p class="text-xs text-gray-500 mt-2">These represent combinations where market supply is low but performance is high — potential blue ocean zones for new games.</p>`;
@@ -578,8 +578,8 @@ function handleComboRecipe() {
         .sort((a, b) => b.avg - a.avg)
         .slice(0, 10);
 
-    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Winning Feature Combinations</p>`;
-    html += `<p class="text-xs text-gray-500 mb-2">Feature pairs ranked by average Theo Win (min 3 games)</p>`;
+    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Winning Mechanic Combinations</p>`;
+    html += `<p class="text-xs text-gray-500 mb-2">Mechanic pairs ranked by average Theo Win (min 3 games)</p>`;
     html += miniTable(
         ['#', 'Combo', 'Games', 'Avg Theo'],
         top.map((c, i) => [
@@ -752,14 +752,14 @@ function handleFallback(question) {
     html += `<div class="grid grid-cols-2 gap-2 text-[11px]">`;
     const examples = [
         ['🎨 Theme Analysis', '"Tell me about Egyptian"'],
-        ['🔧 Feature Deep Dive', '"How does Free Spins perform?"'],
+        ['🔧 Mechanic Deep Dive', '"How does Free Spins perform?"'],
         ['🏢 Provider Intel', '"Analyze IGT portfolio"'],
         ['⚖️ Comparison', '"Compare Animals vs Egyptian"'],
         ['🎯 Concept Check', '"Would an Egyptian Hold & Win work?"'],
         ['🗺️ Market Gaps', '"What opportunities exist?"'],
         ['🎰 Volatility', '"High vs low volatility?"'],
         ['📐 Layouts', '"Best reel layout?"'],
-        ['🔗 Combos', '"Best feature combinations?"'],
+        ['🔗 Combos', '"Best mechanic combinations?"'],
         ['📊 Overview', '"Market summary"'],
     ];
     examples.forEach(([label, ex]) => {

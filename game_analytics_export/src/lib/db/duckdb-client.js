@@ -66,13 +66,16 @@ export async function initializeDatabase() {
             const logger = new duckdb.ConsoleLogger(duckdb.LogLevel.WARNING);
 
             db = new duckdb.AsyncDuckDB(logger, worker);
+
+            // Start data fetch in parallel with DuckDB WASM instantiation
+            const dataPromise = prefetchData();
             await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
 
             connection = await db.connect();
 
             log('DuckDB initialized');
 
-            await loadGamesData();
+            await loadGamesData(dataPromise);
 
             initialized = true;
             initializationPromise = null;
@@ -88,22 +91,33 @@ export async function initializeDatabase() {
 }
 
 /**
+ * Start fetching data files early (before DuckDB WASM is ready).
+ */
+function prefetchData() {
+    return Promise.all([
+        fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/game_data_master.json')),
+        fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() =>
+            fetch('data/theme_consolidation_map.json')
+        ),
+        fetch('data/franchise_mapping.json').catch(() => null),
+        fetch('/api/data/confidence-map', { credentials: 'same-origin' }).catch(() =>
+            fetch('data/confidence_map.json').catch(() => null)
+        ),
+        fetch('/api/data/art', { credentials: 'same-origin' })
+            .then(r => (r.ok ? r : fetch('data/staged_art_characterization.json')))
+            .catch(() => null),
+    ]);
+}
+
+/**
  * Load game_data_master.json into DuckDB table
  */
-async function loadGamesData() {
+async function loadGamesData(dataPromise) {
     try {
         log('Loading games data into DuckDB...');
 
-        const [response, themeMapResponse, franchiseResponse, confidenceResponse] = await Promise.all([
-            fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/game_data_master.json')),
-            fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() =>
-                fetch('data/theme_consolidation_map.json')
-            ),
-            fetch('data/franchise_mapping.json').catch(() => null),
-            fetch('/api/data/confidence-map', { credentials: 'same-origin' }).catch(() =>
-                fetch('data/confidence_map.json').catch(() => null)
-            ),
-        ]);
+        const [response, themeMapResponse, franchiseResponse, confidenceResponse, artResponse] = await (dataPromise ||
+            prefetchData());
 
         if (!response.ok) {
             throw new Error(
@@ -125,6 +139,12 @@ async function loadGamesData() {
             if (confidenceResponse && confidenceResponse.ok) confidenceMap = await confidenceResponse.json();
         } catch (e) {
             console.warn('Failed to parse confidence_map.json, continuing without confidence data:', e.message);
+        }
+        let artMap = {};
+        try {
+            if (artResponse && artResponse.ok) artMap = await artResponse.json();
+        } catch (e) {
+            console.warn('Failed to parse staged_art_characterization.json, continuing without art data:', e.message);
         }
         log(`Fetched ${games.length} games from game_data_master.json`);
 
@@ -150,6 +170,8 @@ async function loadGamesData() {
         performance_percentile VARCHAR,
         release_year INTEGER,
         release_month INTEGER,
+        original_release_year INTEGER,
+        original_release_month INTEGER,
         features VARCHAR,
         themes_all VARCHAR,
         themes_raw VARCHAR,
@@ -175,7 +197,12 @@ async function loadGamesData() {
         paylines_confidence VARCHAR,
         max_win_confidence VARCHAR,
         min_bet_confidence VARCHAR,
-        max_bet_confidence VARCHAR
+        max_bet_confidence VARCHAR,
+        art_setting VARCHAR,
+        art_characters VARCHAR,
+        art_elements VARCHAR,
+        art_mood VARCHAR,
+        art_narrative VARCHAR
       )
     `);
 
@@ -264,10 +291,12 @@ async function loadGamesData() {
           ${safeNum(game.theo_win) || 0},
           ${rank === null ? 'NULL' : rank},
           ${safeStr(game.anomaly)},
-          ${safeNum(game.market_share_pct) || 0},
+          ${typeof safeNum(game.market_share_pct) === 'number' ? safeNum(game.market_share_pct) * 100 : 0},
           ${safeStr(game.percentile)},
           ${safeNum(game.release_year)},
           ${safeNum(game.release_month)},
+          ${safeNum(game.original_release_year)},
+          ${safeNum(game.original_release_month)},
           ${featuresJson ? `'${featuresJson}'` : 'NULL'},
           ${themesAllJson ? `'${themesAllJson}'` : 'NULL'},
           ${themesRawJson ? `'${themesRawJson}'` : 'NULL'},
@@ -293,7 +322,12 @@ async function loadGamesData() {
           ${safeStr(confidenceMap[game.name]?.paylines_confidence)},
           ${safeStr(confidenceMap[game.name]?.max_win_confidence)},
           ${safeStr(confidenceMap[game.name]?.min_bet_confidence)},
-          ${safeStr(confidenceMap[game.name]?.max_bet_confidence)}
+          ${safeStr(confidenceMap[game.name]?.max_bet_confidence)},
+          ${safeStr(artMap[game.name]?.art_setting)},
+          ${safeStr(artMap[game.name]?.art_characters ? JSON.stringify(artMap[game.name].art_characters) : null)},
+          ${safeStr(artMap[game.name]?.art_elements ? JSON.stringify(artMap[game.name].art_elements) : null)},
+          ${safeStr(artMap[game.name]?.art_mood)},
+          ${safeStr(artMap[game.name]?.art_narrative)}
         )
       `);
         }
@@ -304,7 +338,10 @@ async function loadGamesData() {
         const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
         const fc = Number(featCount.toArray()[0].c);
 
-        log(`Loaded ${count} games into DuckDB (${fc} with features)`);
+        const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
+        const ac = Number(artCount.toArray()[0].c);
+
+        log(`Loaded ${count} games into DuckDB (${fc} with features, ${ac} with art)`);
 
         return count;
     } catch (error) {
@@ -607,14 +644,14 @@ export async function getVolatilityDistribution() {
 export async function getReleaseYearDistribution() {
     return query(`
     SELECT 
-      release_year as year,
+      COALESCE(original_release_year, release_year) as year,
       COUNT(*) as game_count,
       AVG(performance_theo_win) as avg_theo_win
     FROM games
-    WHERE release_year IS NOT NULL
+    WHERE COALESCE(original_release_year, release_year) IS NOT NULL
       AND ${RELIABLE_GAME}
-    GROUP BY release_year
-    ORDER BY release_year ASC
+    GROUP BY COALESCE(original_release_year, release_year)
+    ORDER BY COALESCE(original_release_year, release_year) ASC
   `);
 }
 

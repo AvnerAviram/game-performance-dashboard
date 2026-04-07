@@ -8,26 +8,26 @@ const routerPath = resolve(__dirname, '../../src/ui/router.js');
 describe('Scroll Behavior – View more buttons', () => {
     const overview = readFileSync(overviewPath, 'utf8');
 
-    test('View more buttons exist (exactly 2)', () => {
+    test('View more buttons exist (exactly 5)', () => {
         const matches = overview.match(/View more/g) || [];
-        expect(matches.length).toBe(2);
+        expect(matches.length).toBe(6);
     });
 
     test('all View more scrolls use getBoundingClientRect, not offsetTop', () => {
         const scrollCalls = overview.match(/getBoundingClientRect/g) || [];
-        expect(scrollCalls.length).toBe(4);
+        expect(scrollCalls.length).toBe(10);
 
         expect(overview).not.toMatch(/sc\.scrollTop\s*=\s*\w+\.offsetTop/);
     });
 
     test('all scrolls use behavior: smooth', () => {
         const smoothCalls = overview.match(/behavior:\s*'smooth'/g) || [];
-        expect(smoothCalls.length).toBe(2);
+        expect(smoothCalls.length).toBe(5);
     });
 
     test('scrollTo is used instead of direct scrollTop assignment for View more', () => {
         const scrollToCalls = overview.match(/sc\.scrollTo\(\{/g) || [];
-        expect(scrollToCalls.length).toBe(2);
+        expect(scrollToCalls.length).toBe(5);
     });
 
     test('no window.scrollTo calls in overview', () => {
@@ -42,8 +42,8 @@ describe('Scroll Behavior – View more buttons', () => {
         expect(overview).toContain("getElementById('market-landscape-chart')");
     });
 
-    test('Top Game Brands View more targets brand-intelligence-section', () => {
-        expect(overview).toContain("getElementById('brand-intelligence-section')");
+    test('Top Game Brands View more targets brand-landscape-chart', () => {
+        expect(overview).toContain("getElementById('brand-landscape-chart')");
     });
 
     test('setTimeout delay is at least 600ms for layout settling', () => {

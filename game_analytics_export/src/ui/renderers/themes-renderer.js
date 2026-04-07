@@ -1,5 +1,5 @@
 // Themes page renderer
-import { gameData } from '../../lib/data.js';
+import { gameData, getActiveThemes } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { renderOverview } from './overview-renderer.js';
@@ -83,7 +83,7 @@ export function renderThemes(themesToRender = null) {
     if (!tbody) return;
     tbody.innerHTML = '';
 
-    const allThemes = themesToRender || gameData.themes;
+    const allThemes = themesToRender || getActiveThemes();
     const themesPerPage = window.themesPerPage ?? DEFAULT_PAGE_SIZE;
     let themesCurrentPage = window.themesCurrentPage ?? 1;
 
@@ -277,7 +277,7 @@ export function searchThemes(query) {
     }
 
     const searchTerm = query.toLowerCase().trim();
-    filteredThemes = gameData.themes.filter(theme => theme.Theme.toLowerCase().includes(searchTerm));
+    filteredThemes = getActiveThemes().filter(theme => theme.Theme.toLowerCase().includes(searchTerm));
 
     renderThemes(filteredThemes);
 }

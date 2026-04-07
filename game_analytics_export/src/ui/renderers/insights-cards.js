@@ -1,7 +1,7 @@
 /**
  * Strategic insight cards: Build next, Avoid, Watch.
  */
-import { gameData } from '../../lib/data.js';
+import { getActiveGames, getActiveThemes } from '../../lib/data.js';
 import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { getBuildNextCombos, getAvoidCombos } from '../../features/idea-generator.js';
@@ -67,8 +67,8 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
         log('  ✅ Avoid generated');
     }
     if (watchDiv) {
-        const allGWatch = gameData.allGames || [];
-        const allThemes = (gameData.themes || []).filter(
+        const allGWatch = getActiveGames();
+        const allThemes = getActiveThemes().filter(
             t => !/^unknown$/i.test(t.Theme || '') && (t['Game Count'] || 0) >= 2
         );
         const globalAvgTheo =
@@ -84,8 +84,10 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
                 const reasons = [];
                 let score = 0;
 
-                const recent = themeGames.filter(g => (g.release_year || 0) >= 2022);
-                const older = themeGames.filter(g => (g.release_year || 0) > 0 && (g.release_year || 0) < 2022);
+                const recent = themeGames.filter(g => (F.originalReleaseYear(g) || 0) >= 2022);
+                const older = themeGames.filter(
+                    g => (F.originalReleaseYear(g) || 0) > 0 && (F.originalReleaseYear(g) || 0) < 2022
+                );
                 if (recent.length >= 2 && older.length >= 1) {
                     const recentAvg = recent.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / recent.length;
                     const olderAvg = older.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / older.length;

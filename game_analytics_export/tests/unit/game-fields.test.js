@@ -14,7 +14,6 @@ const flatGame = {
     theme_consolidated: 'Ancient',
     theme_secondary: 'Adventure',
     themes_all: ['Egypt', 'Adventure', 'Ancient'],
-    mechanic_primary: 'Hold and Win',
     features: ['Free Spins', 'Multiplier'],
     specs_rtp: 96.5,
     specs_volatility: 'High',
@@ -62,7 +61,6 @@ describe('F accessor functions — flat DuckDB row', () => {
     it('F.themeConsolidated', () => expect(F.themeConsolidated(flatGame)).toBe('Ancient'));
     it('F.themeSecondary', () => expect(F.themeSecondary(flatGame)).toBe('Adventure'));
     it('F.themesAll', () => expect(F.themesAll(flatGame)).toEqual(['Egypt', 'Adventure', 'Ancient']));
-    it('F.mechanicPrimary', () => expect(F.mechanicPrimary(flatGame)).toBe('Hold and Win'));
     it('F.features', () => expect(F.features(flatGame)).toEqual(['Free Spins', 'Multiplier']));
     it('F.rtp', () => expect(F.rtp(flatGame)).toBe(96.5));
     it('F.volatility', () => expect(F.volatility(flatGame)).toBe('High'));
@@ -112,7 +110,6 @@ describe('F accessor functions — missing fields (defaults)', () => {
     it('F.themeConsolidated', () => expect(F.themeConsolidated(emptyGame)).toBe('Unknown'));
     it('F.themeSecondary', () => expect(F.themeSecondary(emptyGame)).toBe(''));
     it('F.themesAll', () => expect(F.themesAll(emptyGame)).toEqual([]));
-    it('F.mechanicPrimary', () => expect(F.mechanicPrimary(emptyGame)).toBe(''));
     it('F.features', () => expect(F.features(emptyGame)).toEqual([]));
     it('F.rtp', () => expect(F.rtp(emptyGame)).toBe(0));
     it('F.volatility', () => expect(F.volatility(emptyGame)).toBe(''));
@@ -176,6 +173,27 @@ describe('F.franchise and F.franchiseType accessors', () => {
     it('returns null when franchise is not set', () => {
         expect(F.franchise({})).toBeNull();
         expect(F.franchiseType({})).toBeNull();
+    });
+});
+
+describe('F.gameCategory and F.gameSubCategory accessors', () => {
+    it('returns category from flat field', () => {
+        expect(F.gameCategory({ game_category: 'Live Casino' })).toBe('Live Casino');
+    });
+    it('defaults to Slot when missing', () => {
+        expect(F.gameCategory({})).toBe('Slot');
+    });
+    it('returns sub-category when present', () => {
+        expect(F.gameSubCategory({ game_sub_category: 'Slingo' })).toBe('Slingo');
+    });
+    it('returns null for missing sub-category', () => {
+        expect(F.gameSubCategory({})).toBeNull();
+    });
+});
+
+describe('FIELD_NAMES includes GAME_CATEGORY', () => {
+    it('maps to correct column name', () => {
+        expect(FIELD_NAMES.GAME_CATEGORY).toBe('game_category');
     });
 });
 

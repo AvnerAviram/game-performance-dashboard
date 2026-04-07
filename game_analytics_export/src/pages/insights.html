@@ -12,7 +12,13 @@
                 Data-driven opportunities, risks, and market intelligence
             </p>
         </div>
-        <div class="relative -mr-1 flex items-center">
+        <div class="relative -mr-1 flex items-center gap-2.5">
+            <select
+                id="page-category-filter"
+                class="pl-3 pr-10 py-2 border border-gray-200 dark:border-gray-700 rounded-md text-sm bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 focus:border-gray-400 dark:focus:border-gray-500 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3e%3cpath fill=%27%236b7280%27 d=%27M6 9L1 4h10z%27/%3e%3c/svg%3e')] bg-no-repeat bg-[length:12px] bg-[right_0.75rem_center]"
+            >
+                <option value="">All Types (—)</option>
+            </select>
             <button
                 id="hamburger-btn"
                 type="button"
@@ -59,7 +65,7 @@
                 <button
                     type="button"
                     onclick="window.openFeedbackModal()"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -73,7 +79,7 @@
                 <button
                     type="button"
                     onclick="showPage('tickets')"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -89,7 +95,233 @@
     </div>
 </div>
 
-<!-- 1. Strategic Recommendations (top row, 3 cards) -->
+<!-- 2. Theme Landscape (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">📊</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Theme Landscape</h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    Each bubble is a theme. X-axis = game count, Y-axis = avg theo win index. Bubble size reflects game
+                    count. Only games with theme data are included.
+                </div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = game count, Y = avg theo win, bubble size = game count
+        </p>
+    </div>
+    <div id="market-landscape-chart" class="p-4 relative" style="height: 780px">
+        <canvas id="chart-market-landscape"></canvas>
+        <!-- Label hover tooltip (matches Chart.js tooltip style) -->
+        <div
+            id="label-tooltip"
+            class="hidden absolute z-40 pointer-events-none p-3 rounded-md shadow-lg bg-white/95 dark:bg-[rgba(30,41,59,0.95)] border border-[rgba(148,163,184,0.2)] dark:border-[rgba(148,163,184,0.3)] whitespace-nowrap"
+        >
+            <div id="label-tooltip-title" class="font-bold text-[13px] mb-1 text-slate-800 dark:text-slate-200"></div>
+            <div class="flex items-center gap-2">
+                <span id="label-tooltip-swatch" class="inline-block w-[10px] h-[10px] rounded-sm flex-shrink-0"></span>
+                <span id="label-tooltip-body" class="text-[12px] text-slate-700 dark:text-slate-200"></span>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+        <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
+                Opportunity
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(99, 102, 241, 0.5)"></span>
+                Leaders
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(100, 116, 139, 0.5)"></span>
+                Niche
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(239, 68, 68, 0.5)"></span>
+                Saturated
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- 2b. Provider Landscape (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🏢</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Provider Landscape</h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    Each bubble is a provider. X-axis = game count, Y-axis = avg theo win. Bubble size reflects game
+                    count. Only games with Theo Win data are included.
+                </div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = game count, Y = avg theo win, bubble size = game count
+        </p>
+    </div>
+    <div id="provider-landscape-chart" class="p-4" style="height: 680px">
+        <canvas id="chart-provider-landscape"></canvas>
+    </div>
+    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+        <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
+                Opportunity
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(99, 102, 241, 0.5)"></span>
+                Leaders
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(100, 116, 139, 0.5)"></span>
+                Niche
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(239, 68, 68, 0.5)"></span>
+                Saturated
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- 2c. Volatility Landscape (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🎲</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Volatility Landscape</h3>
+            <div class="relative group ml-1">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    <strong>Data quality:</strong> Only games with provider-verified or high-confidence volatility data
+                    are shown. Games with estimated volatility (e.g. SlotCatalog) are excluded to ensure accuracy.
+                </div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = game count, Y = avg theo win, bubble size = game count per volatility level
+        </p>
+    </div>
+    <div id="volatility-landscape-chart" class="p-4" style="height: 480px">
+        <canvas id="chart-volatility-landscape"></canvas>
+    </div>
+</div>
+
+<!-- 2d. RTP Landscape (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">📐</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">RTP Landscape</h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    Each bubble is an RTP band. Only games with known RTP values are included — see the coverage pill
+                    for the exact percentage.
+                </div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = game count, Y = avg theo win, bubble size = game count per RTP band
+        </p>
+    </div>
+    <div id="rtp-landscape-chart" class="p-4" style="height: 480px">
+        <canvas id="chart-rtp-landscape"></canvas>
+    </div>
+</div>
+
+<!-- 2e. Brand Landscape (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🎮</span>
+            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Brand Landscape</h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    Each bubble is a franchise/brand. Only games matched to a known franchise are shown — see the
+                    coverage pill for the exact percentage.
+                </div>
+            </div>
+        </div>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+            X = title count, Y = avg theo win, bubble size = title count
+        </p>
+    </div>
+    <div id="brand-landscape-chart" class="p-4" style="height: 780px">
+        <canvas id="chart-brand-landscape"></canvas>
+    </div>
+    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+        <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
+                Opportunity
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(99, 102, 241, 0.5)"></span>
+                Leaders
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(100, 116, 139, 0.5)"></span>
+                Niche
+            </span>
+            <span class="flex items-center gap-1.5">
+                <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(239, 68, 68, 0.5)"></span>
+                Saturated
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Strategic Recommendations (Build Next / Avoid / Watch) -->
 <div class="grid grid-cols-3 gap-4 mb-6 shrink-0">
     <div
         class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden flex flex-col"
@@ -100,14 +332,16 @@
                 <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Build Next</h3>
                 <div class="relative group">
                     <button
-                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
                     >
-                        ?</button
-                    ><span
+                        ?
+                    </button>
+                    <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                        >Theme+Feature combos with above-median performance and low saturation, ranked by opportunity
-                        score.</span
                     >
+                        Theme+Mechanic combos with above-median performance and low saturation, ranked by opportunity
+                        score.
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,13 +356,15 @@
                 <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Avoid</h3>
                 <div class="relative group">
                     <button
-                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
                     >
-                        ?</button
-                    ><span
+                        ?
+                    </button>
+                    <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                        >Combos with 3+ games performing below 95% of median Theo Win.</span
                     >
+                        Combos with 3+ games performing below 95% of median Theo Win.
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,13 +379,15 @@
                 <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Watch</h3>
                 <div class="relative group">
                     <button
-                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                        class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
                     >
-                        ?</button
-                    ><span
+                        ?
+                    </button>
+                    <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                        >Emerging themes with 2-10 games and above-median Theo Win performance.</span
                     >
+                        Emerging themes with 2-10 games and above-median Theo Win performance.
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,56 +395,7 @@
     </div>
 </div>
 
-<!-- 2. Market Landscape (full width) -->
-<div
-    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
->
-    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2">
-            <span class="text-lg">📊</span>
-            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Market Landscape</h3>
-        </div>
-        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg theo win, bubble size = providers per theme
-        </p>
-    </div>
-    <div id="market-landscape-chart" class="p-4" style="height: 480px">
-        <canvas id="chart-market-landscape"></canvas>
-    </div>
-</div>
-
-<!-- 3. Provider Intelligence (full width) -->
-<div
-    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
->
-    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2">
-            <span class="text-lg">🏢</span>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
-                Provider Intelligence
-            </h3>
-            <div class="relative group">
-                <button
-                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
-                >
-                    ?</button
-                ><span
-                    class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                    >Top 10 providers by game count. Best theme determined by highest avg Theo Win within each
-                    provider's portfolio.</span
-                >
-            </div>
-        </div>
-        <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
-            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg theo</span
-            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg theo</span
-            ><span>↑↓ = year-over-year trend</span>
-        </div>
-    </div>
-    <div id="provider-theme-matrix" class="p-4"></div>
-</div>
-
-<!-- 4. Brand Intelligence (full width) -->
+<!-- 3. Brand Intelligence (full width) -->
 <div
     id="brand-intelligence-section"
     class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
@@ -244,4 +433,35 @@
         </div>
     </div>
     <div id="franchise-intelligence" class="p-4"></div>
+</div>
+
+<!-- 4. Provider Intelligence (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🏢</span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
+                Provider Intelligence
+            </h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                >
+                    ?</button
+                ><span
+                    class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                    >Top 10 providers by game count. Best theme determined by highest avg Theo Win within each
+                    provider's portfolio.</span
+                >
+            </div>
+        </div>
+        <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
+            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg theo</span
+            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg theo</span
+            ><span>↑↓ = year-over-year trend</span>
+        </div>
+    </div>
+    <div id="provider-theme-matrix" class="p-4"></div>
 </div>

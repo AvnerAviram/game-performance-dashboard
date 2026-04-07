@@ -170,14 +170,26 @@ export function categorizeSymbol(s) {
 }
 
 export function parseSymbols(val) {
-    if (Array.isArray(val)) return val;
-    if (!val || typeof val !== 'string') return [];
-    try {
-        const arr = JSON.parse(val);
-        return Array.isArray(arr) ? arr : [];
-    } catch {
-        return []; /* malformed JSON — treat as empty array */
+    let arr;
+    if (Array.isArray(val)) {
+        arr = val;
+    } else if (!val || typeof val !== 'string') {
+        return [];
+    } else {
+        try {
+            arr = JSON.parse(val);
+            if (!Array.isArray(arr)) return [];
+        } catch {
+            return [];
+        }
     }
+    return arr
+        .map(s => {
+            if (typeof s === 'string') return s;
+            if (s && typeof s === 'object' && s.name) return s.name;
+            return null;
+        })
+        .filter(Boolean);
 }
 
 /**

@@ -10,7 +10,13 @@
                 Comprehensive slot game analytics and performance comparisons
             </p>
         </div>
-        <div class="relative ml-auto flex flex-1 items-center justify-end min-w-0 -mr-1">
+        <div class="relative ml-auto flex items-center gap-2.5 min-w-0 -mr-1">
+            <select
+                id="page-category-filter"
+                class="pl-3 pr-10 py-2 border border-gray-200 dark:border-gray-700 rounded-md text-sm bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 focus:border-gray-400 dark:focus:border-gray-500 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3e%3cpath fill=%27%236b7280%27 d=%27M6 9L1 4h10z%27/%3e%3c/svg%3e')] bg-no-repeat bg-[length:12px] bg-[right_0.75rem_center]"
+            >
+                <option value="">All Types (—)</option>
+            </select>
             <button
                 id="hamburger-btn"
                 type="button"
@@ -61,7 +67,7 @@
                 <button
                     type="button"
                     onclick="window.openFeedbackModal()"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -75,7 +81,7 @@
                 <button
                     type="button"
                     onclick="showPage('tickets')"
-                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2"
+                    class="w-full px-4 py-2.5 text-left text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-2 cursor-pointer"
                 >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
@@ -92,7 +98,7 @@
 </div>
 
 <!-- Quick Action Hub -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
     <button
         onclick="showPage('game-lab')"
         class="group flex items-center gap-4 p-4 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-xl border border-purple-200/60 dark:border-purple-700/40 hover:shadow-md hover:border-purple-300 dark:hover:border-purple-600 transition-all text-left cursor-pointer"
@@ -112,7 +118,7 @@
             >
                 Game Lab
             </div>
-            <div class="text-[11px] text-gray-500 dark:text-gray-400">Blueprint, symbols, features & naming tools</div>
+            <div class="text-[11px] text-gray-500 dark:text-gray-400">Blueprint, symbols, mechanics & naming tools</div>
         </div>
         <svg
             class="w-4 h-4 text-gray-400 group-hover:text-purple-500 transition-colors ml-auto shrink-0"
@@ -185,6 +191,38 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
     </button>
+    <button
+        onclick="showPage('art')"
+        class="group flex items-center gap-4 p-4 bg-gradient-to-br from-fuchsia-50/60 to-purple-50/60 dark:from-fuchsia-900/15 dark:to-purple-900/15 rounded-xl border border-fuchsia-200/50 dark:border-fuchsia-700/30 hover:shadow-md hover:border-fuchsia-300 dark:hover:border-fuchsia-600 transition-all text-left cursor-pointer"
+    >
+        <div
+            class="w-10 h-10 rounded-lg bg-gradient-to-br from-fuchsia-400 to-purple-500 flex items-center justify-center shadow-sm shrink-0"
+        >
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+            </svg>
+        </div>
+        <div class="min-w-0">
+            <div
+                class="text-sm font-bold text-gray-900 dark:text-white group-hover:text-fuchsia-700 dark:group-hover:text-fuchsia-300 transition-colors"
+            >
+                Art Design
+            </div>
+            <div class="text-[11px] text-gray-500 dark:text-gray-400">Settings, moods & visual opportunities</div>
+        </div>
+        <svg
+            class="w-4 h-4 text-gray-400 group-hover:text-fuchsia-500 transition-colors ml-auto shrink-0"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+        >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
 </div>
 
 <!-- Quick Stats - KPI Cards -->
@@ -211,6 +249,7 @@
             <div class="text-2xl font-bold text-slate-900 dark:text-white tabular-nums" id="overview-total-games">
                 —
             </div>
+            <div class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">with verified data</div>
         </div>
     </div>
     <div
@@ -306,7 +345,7 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Ranked by <strong>Smart Index</strong> = Avg Theo Win × √Game Count, normalized.
+                                Ranked by <strong>Performance Index</strong> = Avg Performance Index × √Game Count, normalized.
                                 Balances performance quality with market presence.
                             </div>
                         </div>
@@ -315,7 +354,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-4" style="height: 280px">
+        <div class="p-4" style="height: 320px">
             <canvas id="chart-themes"></canvas>
         </div>
     </div>
@@ -346,7 +385,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-4" style="height: 280px">
+        <div class="p-4" style="height: 320px">
             <canvas id="chart-mechanics"></canvas>
         </div>
     </div>
@@ -368,23 +407,25 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Top 10 games ranked by <strong>Theo Win Index</strong> — theoretical win per unit bet
+                                Top 10 games ranked by <strong>Performance Index</strong> — theoretical win per unit bet
                                 from the Eilers performance data. Higher = stronger market performance.
+                                <strong class="block mt-1">Data scope:</strong> Only games with verified or extracted
+                                data are shown. Rankings reflect position among these verified games.
                             </div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">By Theo Win Index</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">By Performance Index</p>
                 </div>
             </div>
         </div>
-        <div class="p-4" style="height: 310px">
+        <div class="p-4" style="height: 320px">
             <canvas id="chart-games"></canvas>
         </div>
     </div>
 </div>
 
-<!-- Distribution + Volatility + RTP + Providers: 4 columns -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-6">
+<!-- Bubble charts: 3 columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-6">
     <!-- Distribution Scatter -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
@@ -392,7 +433,7 @@
                 <span class="text-lg">📊</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Market Landscape</h3>
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Theme Landscape</h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -402,13 +443,14 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a theme. X = number of games, Y = average Theo Win. Dot size = game count.
+                                Each dot is a theme. X = number of games, Y = average Performance Index. Dot size = game count.
                                 Dashed lines show the median, creating 4 quadrants: <strong>Leaders</strong> (high perf,
                                 many games), <strong>Opportunity</strong> (high perf, few games),
-                                <strong>Niche</strong>, <strong>Crowded</strong>.
+                                <strong>Niche</strong>, <strong>Saturated</strong>.
                             </div>
                         </div>
                         <button
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
                             onclick="
                                 showPage('insights');
                                 setTimeout(() => {
@@ -425,7 +467,6 @@
                                     }
                                 }, 600);
                             "
-                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors ml-1"
                         >
                             View more &rarr;
                         </button>
@@ -439,7 +480,7 @@
         </div>
     </div>
 
-    <!-- Volatility Performance -->
+    <!-- Volatility Landscape -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2">
@@ -447,7 +488,7 @@
                 <div>
                     <div class="flex items-center gap-1.5">
                         <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
-                            Volatility Performance
+                            Volatility Landscape
                         </h3>
                         <div class="relative group">
                             <button
@@ -458,12 +499,36 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Average Theo Win by volatility level. Longer bars = better performance. Dashed line =
-                                market average. Shows which volatility levels produce the best-performing games.
+                                Each dot is a volatility level. X = game count, Y = avg Performance Index. Dot size = game count.
+                                Dashed lines show medians creating 4 quadrants.
+                                <strong class="block mt-1">Data quality:</strong> Only games with provider-verified or
+                                high-confidence volatility data are included. Games with estimated volatility (e.g.
+                                SlotCatalog) are excluded to avoid misleading patterns.
                             </div>
                         </div>
+                        <button
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('volatility-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white, .dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        const top =
+                                            card.getBoundingClientRect().top -
+                                            sc.getBoundingClientRect().top +
+                                            sc.scrollTop -
+                                            120;
+                                        sc.scrollTo({ top, behavior: 'smooth' });
+                                    }
+                                }, 600);
+                            "
+                        >
+                            View more &rarr;
+                        </button>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Which volatility wins?</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Performance vs Game Count</p>
                 </div>
             </div>
         </div>
@@ -472,14 +537,14 @@
         </div>
     </div>
 
-    <!-- RTP Performance -->
+    <!-- RTP Landscape -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2">
                 <span class="text-lg">📐</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">RTP Performance</h3>
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">RTP Landscape</h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -489,12 +554,35 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Average Theo Win by RTP band. Shows which Return to Player ranges produce the
-                                best-performing games. Dashed line = market average.
+                                Each dot is an RTP band. X = game count, Y = avg Performance Index. Dot size = game count. Dashed
+                                lines show medians creating 4 quadrants.
+                                <strong class="block mt-1">Data coverage:</strong> RTP data is available for ~66% of
+                                dashboard games. Games without RTP are excluded from this chart.
                             </div>
                         </div>
+                        <button
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('rtp-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white, .dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        const top =
+                                            card.getBoundingClientRect().top -
+                                            sc.getBoundingClientRect().top +
+                                            sc.scrollTop -
+                                            120;
+                                        sc.scrollTo({ top, behavior: 'smooth' });
+                                    }
+                                }, 600);
+                            "
+                        >
+                            View more &rarr;
+                        </button>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Which RTP range wins?</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Performance vs Game Count</p>
                 </div>
             </div>
         </div>
@@ -502,15 +590,18 @@
             <canvas id="chart-rtp"></canvas>
         </div>
     </div>
+</div>
 
-    <!-- Top Providers -->
+<!-- Provider + Brand + Art: 3 columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-6">
+    <!-- Provider Landscape -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2">
                 <span class="text-lg">🏢</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top Providers</h3>
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Provider Landscape</h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -520,17 +611,131 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Ranked by <strong>GGR Share</strong> — each provider's total share of Gross Gaming
-                                Revenue. Follows Eilers &amp; Krejcik methodology for supplier ranking.
+                                Each dot is a provider. X = game count, Y = avg Performance Index. Dot size = Market Share %. Dashed
+                                lines show medians creating 4 quadrants. Click a provider for details.
                             </div>
                         </div>
+                        <button
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('provider-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white, .dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        const top =
+                                            card.getBoundingClientRect().top -
+                                            sc.getBoundingClientRect().top +
+                                            sc.scrollTop -
+                                            120;
+                                        sc.scrollTo({ top, behavior: 'smooth' });
+                                    }
+                                }, 600);
+                            "
+                        >
+                            View more &rarr;
+                        </button>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">By GGR Share</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Performance vs Game Count</p>
                 </div>
             </div>
         </div>
         <div class="p-4" style="height: 340px">
             <canvas id="chart-providers"></canvas>
+        </div>
+    </div>
+
+    <!-- Brand Landscape -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🎮</span>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Brand Landscape</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                            >
+                                Each dot is a game brand/franchise. X = number of titles, Y = average Performance Index. Dot size
+                                = total market share. Dashed lines show medians creating 4 quadrants.
+                            </div>
+                        </div>
+                        <button
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('brand-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white, .dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        const top =
+                                            card.getBoundingClientRect().top -
+                                            sc.getBoundingClientRect().top +
+                                            sc.scrollTop -
+                                            120;
+                                        sc.scrollTo({ top, behavior: 'smooth' });
+                                    }
+                                }, 600);
+                            "
+                        >
+                            View more &rarr;
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                        Multi-title game families · Performance vs Title Count
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4" style="height: 340px">
+            <canvas id="chart-brands"></canvas>
+        </div>
+    </div>
+
+    <!-- Art Environment Landscape -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
+        <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <span class="text-lg">🎨</span>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
+                            Art Environment Landscape
+                        </h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                            >
+                                Each dot is an art setting (e.g. Ancient Temple, Enchanted Forest). X = game count, Y =
+                                avg Performance Index. Dot size = game count. Dashed lines show medians creating 4 quadrants.
+                            </div>
+                        </div>
+                        <button
+                            onclick="showPage('art')"
+                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
+                        >
+                            View more &rarr;
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Performance vs Game Count</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4" style="height: 340px">
+            <canvas id="chart-art-settings"></canvas>
         </div>
     </div>
 </div>
@@ -552,7 +757,8 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Best/Worst by Smart Index. Best feature/provider require min 3 games. Top game = highest Theo Win.
+                    Best/Worst by Performance Index. Best mechanic/provider require min 3 games. Top game = highest
+                    Performance Index.
                 </div>
             </div>
         </div>
@@ -574,45 +780,11 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Top-performing and emerging themes ranked by <strong>Smart Index</strong>. Includes rising themes
-                    and recipe explorer for feature combinations.
+                    Top-performing and emerging themes ranked by <strong>Performance Index</strong>. Includes rising
+                    themes and recipe explorer for mechanic combinations.
                 </div>
             </div>
         </div>
         <div id="overview-themes-cards"></div>
     </div>
-</div>
-<!-- Divider between sections -->
-<div class="my-6">
-    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent"></div>
-</div>
-
-<!-- Row 3: Game Brands (compact) -->
-<div class="mb-6">
-    <div class="mb-3">
-        <div class="flex items-center gap-2">
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">🎮 Top Game Brands</h3>
-            <button
-                onclick="
-                    showPage('insights');
-                    setTimeout(() => {
-                        const el = document.getElementById('brand-intelligence-section');
-                        const sc = document.getElementById('page-container');
-                        if (el && sc) {
-                            const top =
-                                el.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop - 120;
-                            sc.scrollTo({ top, behavior: 'smooth' });
-                        }
-                    }, 600);
-                "
-                class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
-            >
-                View more &rarr;
-            </button>
-        </div>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-            Multi-title game families ranked by combined market performance
-        </p>
-    </div>
-    <div id="game-franchises"></div>
 </div>

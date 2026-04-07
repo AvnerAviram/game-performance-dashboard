@@ -8,6 +8,7 @@ import { parseFeatures } from './parse-features.js';
 import { F } from './game-fields.js';
 
 const UI_TO_FEATURE = {
+    '3 Pot': '3 Pot',
     'Free Spins': 'Free Spins',
     'Hold & Win': 'Hold and Spin',
     'Hold and Spin': 'Hold and Spin',
@@ -19,6 +20,7 @@ const UI_TO_FEATURE = {
     Respin: 'Respin',
     'Cash Collection': 'Cash On Reels',
     'Cash On Reels': 'Cash On Reels',
+    'Collect Feature': 'Collect Feature',
     'Static Jackpot': 'Static Jackpot',
     'Wild Reels': 'Wild Reels',
     Wild: 'Wild Reels',
@@ -27,6 +29,7 @@ const UI_TO_FEATURE = {
     'Pick and Click': 'Pick Bonus',
     'Pick Bonus': 'Pick Bonus',
     Multiplier: 'Multiplier',
+    'Multiplier Wild': 'Multiplier Wild',
     Megaways: 'Megaways',
     'Buy Bonus': 'Buy Bonus',
     'Bonus Buy': 'Buy Bonus',
@@ -42,7 +45,12 @@ const UI_TO_FEATURE = {
     'Progressive Jackpot': 'Progressive Jackpot',
     'Colossal Symbols': 'Colossal Symbols',
     'Stacked Symbols': 'Stacked Symbols',
+    'Symbol Removal': 'Symbol Removal',
     'Symbol Transformation': 'Symbol Transformation',
+    'Symbol Upgrade': 'Symbol Upgrade',
+    Sidebets: 'Sidebets',
+    'Trail Bonus': 'Trail Bonus',
+    'Win Both Ways': 'Win Both Ways',
 };
 
 /**
@@ -240,17 +248,7 @@ export function predictFromSimilarGames(selectedTheme, selectedMechanics) {
 
     const mechanicMatches = game => {
         if (!selectedMechanics?.length) return true;
-        let gameFeatures;
-        if (typeof game.features === 'string') {
-            try {
-                gameFeatures = JSON.parse(game.features);
-            } catch {
-                gameFeatures = game.features.split(',').map(s => s.trim());
-            }
-            gameFeatures = gameFeatures.filter(Boolean);
-        } else {
-            gameFeatures = Array.isArray(game.features) ? game.features : [];
-        }
+        const gameFeatures = parseFeatures(game.features);
         const canonicalSelected = selectedMechanics.map(m => UI_TO_FEATURE[m] || m).filter(Boolean);
         return canonicalSelected.some(m => gameFeatures.includes(m));
     };
@@ -378,7 +376,7 @@ export function generateRecommendations(insights, themes, zScore) {
     if (zScore > 7) {
         recommendations.push('Benchmark this title - analyze mechanics, visual design, and player journey');
     } else {
-        recommendations.push('Study game design and feature set for replication opportunities');
+        recommendations.push('Study game design and mechanic set for replication opportunities');
     }
 
     // Theme-specific recommendations

@@ -1,0 +1,85 @@
+---
+description: Canonical data schema contract — JSON field names, DuckDB column mapping, and multi-agent coordination rules. READ THIS BEFORE touching any data, field access, or schema code.
+alwaysApply: true
+---
+
+# Data Schema Contract (DO NOT CHANGE WITHOUT UPDATING ALL LAYERS)
+
+The dashboard has a **three-layer data architecture**. All layers MUST stay in sync. If you change one layer, you MUST update the others.
+
+## Layer 1: JSON Source — `game_data_master.json`
+
+This is the single source of truth. **4,550 games**, flat objects. Canonical field names:
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `id` | string | `game-NNNN-slug` |
+| `name` | string | Display name |
+| `provider` | string | Studio name (NOT `provider_studio`) |
+| `parent_company` | string | |
+| `game_category` | string | Slot, Table Game, Live Casino, etc. |
+| `game_sub_category` | string | |
+| `theo_win` | number | Theo win index (NOT `performance_theo_win`) |
+| `market_share_pct` | number | Fractional (0.021 = 2.1%) — DuckDB multiplies by 100 |
+| `release_year` | number | NJ launch year |
+| `release_month` | number | NJ launch month |
+| `original_release_year` | number | Global release year (preferred for trends) |
+| `original_release_month` | number | |
+| `theme_primary` | string | |
+| `themes_all` | array | |
+| `themes_raw` | array | |
+| `features` | array | Mechanic features list |
+| `symbols` | array | Symbol objects `{name, type, description}` |
+| `rtp` | number | (NOT `specs_rtp`) |
+| `volatility` | string | (NOT `specs_volatility`) |
+| `reels` | number | (NOT `specs_reels`) |
+| `rows` | number | (NOT `specs_rows`) |
+| `paylines` | varies | (NOT `specs_paylines`) |
+| `sites`, `avg_bet`, `median_bet`, `games_played_index`, `coin_in_index` | number | |
+| `min_bet`, `max_bet`, `max_win` | number | |
+| `description` | string | |
+| `franchise`, `franchise_type` | string | |
+
+## Layer 2: DuckDB Columns — `duckdb-client.js`
+
+DuckDB uses **legacy prefixed names** for backward compatibility. The INSERT in `duckdb-client.js` maps JSON→DuckDB:
+
+| JSON field | DuckDB column | Transform |
+|------------|---------------|-----------|
+| `provider` | `provider_studio` | `normalizeProvider()` applied |
+| `theo_win` | `performance_theo_win` | direct |
+| `market_share_pct` | `performance_market_share_percent` | **×100** (fraction→percent) |
+| `rtp` | `specs_rtp` | direct |
+| `volatility` | `specs_volatility` | direct |
+| `reels` | `specs_reels` | direct |
+| `rows` | `specs_rows` | direct |
+| `theme_primary` | `theme_primary` | consolidated via theme map |
+
+**DO NOT rename DuckDB columns** — every SQL query in the codebase uses these names.
+
+## Layer 3: Accessors — `game-fields.js`
+
+All game field access MUST go through `F.xxx(game)`. These handle both JSON and DuckDB formats:
+
+```js
+F.theoWin(g)       // g.performance_theo_win ?? g.theo_win ?? ...
+F.provider(g)      // normalizeProvider(g.provider_studio || g.provider)
+F.marketShare(g)   // g.performance_market_share_percent ?? g.market_share_pct ?? ...
+F.rtp(g)           // parseFloat(g.specs_rtp || g.rtp || 0)
+F.volatility(g)    // g.specs_volatility || g.volatility
+```
+
+**NEVER access game fields directly** — always use `F.xxx(game)`.
+
+## Multi-Agent Coordination Rules
+
+1. **DO NOT rename JSON fields** in `game_data_master.json`. The current names are final.
+2. **DO NOT rename DuckDB columns** in `duckdb-client.js`. SQL queries depend on them.
+3. **DO NOT rewrite `game-fields.js` accessors** — only ADD new ones if new fields are introduced.
+4. **Adding a new field** requires updating ALL THREE layers:
+   - Add to `game_data_master.json` (via extraction script)
+   - Add column to DuckDB CREATE TABLE + INSERT in `duckdb-client.js`
+   - Add accessor to `F` in `game-fields.js`
+5. **Run `npm test` (1,151+ tests)** before declaring any change done.
+6. The `FIELD_NAMES` object in `game-fields.js` uses DuckDB column names (for SQL sort keys).
+7. **`market_share_pct`** is fractional in JSON (0.021) but percentage in DuckDB (2.1). The ×100 conversion happens in `duckdb-client.js`. Do not "fix" this — it is intentional.

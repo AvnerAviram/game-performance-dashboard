@@ -146,7 +146,7 @@ describe('API Data Endpoints - Integration', () => {
         expect(ct).toContain('application/json');
     });
 
-    it('should return Cache-Control: no-store on successful data response', async () => {
+    it('should return Cache-Control: public with max-age on successful data response', async () => {
         const baseUrl = `http://127.0.0.1:${TEST_PORT}`;
 
         const loginRes = await httpPost(`${baseUrl}/api/login`, {
@@ -164,8 +164,10 @@ describe('API Data Endpoints - Integration', () => {
         const dataRes = await httpGet(`http://127.0.0.1:${TEST_PORT}/api/data/games`, cookie);
         expect(dataRes.status).toBe(200);
 
-        const cacheControl = dataRes.headers['cache-control'] || '';
-        expect(cacheControl.toLowerCase()).toContain('no-store');
+        const cacheControl = (dataRes.headers['cache-control'] || '').toLowerCase();
+        expect(cacheControl).toContain('public');
+        expect(cacheControl).toContain('max-age=300');
+        expect(cacheControl).toContain('stale-while-revalidate=86400');
     });
 
     it('should return JSON content-type on successful data response', async () => {

@@ -33,11 +33,6 @@ export const PROVIDER_NORMALIZATION_MAP = {
     Dsg: 'Design Works Gaming',
 };
 
-// ── Mechanic normalization ─────────────────────────────────────────────
-export const MECHANIC_NORMALIZE = {
-    'Hold & Win': 'Hold and Win',
-};
-
 // ── Volatility ordering & colors ───────────────────────────────────────
 
 /** Display order from highest to lowest (used by charts and sorting). */
@@ -84,8 +79,11 @@ export const MIN_FEATURE_GAMES = 5;
 /** Minimum sample size for sub-theme tags, combo signals, etc. */
 export const MIN_SAMPLE_SIZE = 2;
 
-/** Market share threshold for "market leaders" filter. */
-export const MARKET_LEADER_THRESHOLD = 0.1;
+/** Market share threshold for "market leaders" filter (0.5% = 0.005). */
+export const MARKET_LEADER_THRESHOLD = 0.005;
+
+/** Features completely hidden from the dashboard (too ambiguous for users). */
+export const HIDDEN_FEATURES = new Set(['Multiplier', 'Multipliers']);
 
 /** Max items to show before "show more" collapse. */
 export const INITIAL_SHOW = 5;
@@ -99,12 +97,6 @@ export const DEFAULT_PAGE_SIZE = 50;
 export function normalizeProvider(raw) {
     if (!raw) return 'Unknown';
     return PROVIDER_NORMALIZATION_MAP[raw] || raw;
-}
-
-/** Normalize a mechanic name. */
-export function normalizeMechanic(raw) {
-    if (!raw) return 'Slot';
-    return MECHANIC_NORMALIZE[raw] || raw;
 }
 
 /**

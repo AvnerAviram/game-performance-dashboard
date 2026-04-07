@@ -50,8 +50,15 @@ game_analytics_export/
 ├── login.html              # Login page
 ├── index.html              # Redirect → login
 ├── data/
-│   ├── games_dashboard.json         # Primary game dataset (flat schema)
-│   └── theme_consolidation_map.json # Theme mapping
+│   ├── games_dashboard.json         # Primary game dataset (4,567 games, flat schema)
+│   ├── ground_truth_ags.json        # AGS ground truth (213 games, F1 benchmarking)
+│   ├── eilers_source.csv            # Trusted CSV performance data
+│   ├── rules_game_matches.json      # Game → rules page matching (3,411 matches)
+│   ├── rules_html/                  # Raw HTML rules archive (8,597 files)
+│   ├── rules_text/                  # Clean text from rules (8,585 files)
+│   ├── theme_consolidation_map.json # Theme mapping (rebuilt after extraction)
+│   ├── _legacy/                     # Old pipeline scripts and derived data
+│   └── _backup_*/                   # Pre-change backups
 ├── src/
 │   ├── app.js              # Application entry point
 │   ├── lib/                # Core utilities
@@ -121,10 +128,11 @@ game_analytics_export/
 
 ## Data
 
-- **999 slot games** analyzed
-- **138 themes** (including sub-themes)
-- **22 game mechanics**
-- Data updated: January 2026
+- **4,567 games** (slots, table games, live casino, instant win, and more)
+- **3,411 games** matched to verified official HTML rules pages
+- Performance metrics from Eilers CSV (theo_win, market_share, etc.)
+- Data updated: March 2026
+- See `HANDOFF.md` for full data pipeline details
 
 ## Environment Variables
 

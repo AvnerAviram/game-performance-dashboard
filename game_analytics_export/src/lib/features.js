@@ -1,7 +1,9 @@
 export const CANONICAL_FEATURES = [
+    '3 Pot',
     'Buy Bonus',
     'Cascading Reels',
     'Cash On Reels',
+    'Collect Feature',
     'Colossal Symbols',
     'Expanding Reels',
     'Expanding Wilds',
@@ -9,7 +11,7 @@ export const CANONICAL_FEATURES = [
     'Gamble Feature',
     'Hold and Spin',
     'Megaways',
-    'Multiplier',
+    'Multiplier Wild',
     'Mystery Symbols',
     'Nudges',
     'Persistence',
@@ -20,16 +22,21 @@ export const CANONICAL_FEATURES = [
     'Stacked Symbols',
     'Static Jackpot',
     'Sticky Wilds',
+    'Symbol Removal',
     'Symbol Transformation',
+    'Symbol Upgrade',
     'Trail Bonus',
     'Wheel',
     'Wild Reels',
+    'Win Both Ways',
 ];
 
 export const SHORT_FEATURE_LABELS = {
+    '3 Pot': '3 Pot',
     'Buy Bonus': 'Buy Bonus',
     'Cascading Reels': 'Cascading Reels',
     'Cash On Reels': 'Cash On Reels',
+    'Collect Feature': 'Collect',
     'Colossal Symbols': 'Colossal Sym.',
     'Expanding Reels': 'Expanding Reels',
     'Expanding Wilds': 'Expanding Wilds',
@@ -37,7 +44,7 @@ export const SHORT_FEATURE_LABELS = {
     'Gamble Feature': 'Gamble',
     'Hold and Spin': 'Hold & Spin',
     Megaways: 'Megaways',
-    Multiplier: 'Multiplier',
+    'Multiplier Wild': 'Mult. Wild',
     'Mystery Symbols': 'Mystery Sym.',
     Nudges: 'Nudges',
     Persistence: 'Persistence',
@@ -48,10 +55,13 @@ export const SHORT_FEATURE_LABELS = {
     'Stacked Symbols': 'Stacked Sym.',
     'Static Jackpot': 'Jackpot',
     'Sticky Wilds': 'Sticky Wilds',
+    'Symbol Removal': 'Sym. Removal',
     'Symbol Transformation': 'Sym. Transform',
+    'Symbol Upgrade': 'Sym. Upgrade',
     'Trail Bonus': 'Trail Bonus',
     Wheel: 'Wheel',
     'Wild Reels': 'Wild Reels',
+    'Win Both Ways': 'Both Ways',
 };
 
 const PALETTE = [
@@ -80,6 +90,12 @@ const PALETTE = [
     'rgba(253,186,116,.85)',
     'rgba(34,197,94,.85)',
     'rgba(217,70,239,.85)',
+    'rgba(96,165,250,.85)',
+    'rgba(244,114,182,.85)',
+    'rgba(110,231,183,.85)',
+    'rgba(252,165,165,.85)',
+    'rgba(147,197,253,.85)',
+    'rgba(167,243,208,.85)',
 ];
 
 export function getFeatureColor(feature) {

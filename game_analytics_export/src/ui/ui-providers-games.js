@@ -3,7 +3,7 @@ import { log } from '../lib/env.js';
 import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
 import { VolatilityBadge } from '../components/dashboard-components.js';
 import { parseFeatures } from '../lib/parse-features.js';
-import { MIN_PROVIDER_GAMES, DEFAULT_PAGE_SIZE } from '../lib/shared-config.js';
+import { MIN_PROVIDER_GAMES, DEFAULT_PAGE_SIZE, MARKET_LEADER_THRESHOLD } from '../lib/shared-config.js';
 import { F } from '../lib/game-fields.js';
 
 // ==========================================
@@ -74,7 +74,7 @@ export async function renderProviders(providersData = null) {
         if (mechanicFilter && mechanicFilter.value) {
             const mechVal = mechanicFilter.value;
             const providerNames = new Set(
-                gameData.allGames.filter(g => g.mechanic_primary === mechVal).map(g => F.provider(g))
+                gameData.allGames.filter(g => parseFeatures(g.features).includes(mechVal)).map(g => F.provider(g))
             );
             providers = providers.filter(p => providerNames.has(p.studio));
         }
@@ -121,7 +121,7 @@ export async function renderProviders(providersData = null) {
                 <table id="providers-table" class="w-full min-w-[800px]">
                     <thead class="bg-gray-50 dark:bg-gray-900">
                             <tr class="border-b border-gray-200 dark:border-gray-700">
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable" onclick="sortTable('providers-table', 0)">Rank</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 0)">Rank</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 1)">Provider</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 2)">Games</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 3)">
@@ -136,12 +136,12 @@ export async function renderProviders(providersData = null) {
                                         </div>
                                     </span>
                                 </th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share %</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable sorted-desc cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 5)">
-                                    GGR Share
+                                    GGR Share %
                                     <span class="info-icon">ⓘ
                                         <div class="filter-tooltip">
-                                            <strong>GGR Share</strong>
+                                            <strong>GGR Share %</strong>
                                             <p>Sum of market share % across all provider games</p>
                                             <hr>
                                             <p>Follows Eilers &amp; Krejcik methodology — providers ranked by their share of total Gross Gaming Revenue.</p>
@@ -350,6 +350,7 @@ export function renderGames() {
     // Populate filters (only once)
     const providerFilter = document.getElementById('games-filter-provider');
     const mechanicFilter = document.getElementById('games-filter-mechanic');
+    const categoryFilter = document.getElementById('games-filter-category');
 
     if (providerFilter && providerFilter.options.length === 1) {
         const providers = [...new Set(gameData.allGames.map(g => F.provider(g)))]
@@ -377,12 +378,32 @@ export function renderGames() {
         });
     }
 
+    if (categoryFilter && categoryFilter.options.length === 1) {
+        categoryFilter.options[0].textContent = `All Types (${gameData.allGames.length})`;
+
+        const catCounts = {};
+        gameData.allGames.forEach(g => {
+            const c = F.gameCategory(g);
+            if (c) catCounts[c] = (catCounts[c] || 0) + 1;
+        });
+        Object.entries(catCounts)
+            .sort((a, b) => b[1] - a[1])
+            .forEach(([c, count]) => {
+                const option = document.createElement('option');
+                option.value = c;
+                option.textContent = `${c} (${count})`;
+                if (c === 'Slot') option.selected = true;
+                categoryFilter.appendChild(option);
+            });
+    }
+
     // Apply filters
     let filteredGames = gameData.allGames;
 
     const searchTerm = document.getElementById('games-search')?.value?.toLowerCase() || '';
     const providerVal = providerFilter?.value || '';
     const mechanicVal = mechanicFilter?.value || '';
+    const categoryVal = categoryFilter?.value || '';
 
     if (searchTerm) {
         filteredGames = filteredGames.filter(
@@ -398,16 +419,20 @@ export function renderGames() {
         filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicVal));
     }
 
+    if (categoryVal) {
+        filteredGames = filteredGames.filter(g => F.gameCategory(g) === categoryVal);
+    }
+
     if (currentGameViewFilter === 'marketLeaders') {
-        filteredGames = filteredGames.filter(g => (g.performance_market_share_percent || 0) >= 0.1);
+        filteredGames = filteredGames.filter(g => (g.performance_market_share_percent || 0) >= MARKET_LEADER_THRESHOLD);
         filteredGames.sort(
             (a, b) => (b.performance_market_share_percent || 0) - (a.performance_market_share_percent || 0)
         );
     } else if (currentGameViewFilter === 'newReleases') {
         const cutoffYear = new Date().getFullYear() - 1;
-        filteredGames = filteredGames.filter(g => (g.release_year || 0) >= cutoffYear);
+        filteredGames = filteredGames.filter(g => (F.originalReleaseYear(g) || 0) >= cutoffYear);
         filteredGames.sort((a, b) => {
-            const yDiff = (b.release_year || 0) - (a.release_year || 0);
+            const yDiff = (F.originalReleaseYear(b) || 0) - (F.originalReleaseYear(a) || 0);
             if (yDiff !== 0) return yDiff;
             return (b.release_month || 0) - (a.release_month || 0);
         });
@@ -427,8 +452,8 @@ export function renderGames() {
 
     // Apply sorting
     filteredGames.sort((a, b) => {
-        let valA = a[currentGamesSortField];
-        let valB = b[currentGamesSortField];
+        let valA = currentGamesSortField === 'release_year' ? F.originalReleaseYear(a) : a[currentGamesSortField];
+        let valB = currentGamesSortField === 'release_year' ? F.originalReleaseYear(b) : b[currentGamesSortField];
 
         // Handle nulls
         if (valA == null) valA = 0;
@@ -473,7 +498,7 @@ export function renderGames() {
                             Theme
                         </th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider whitespace-nowrap">
-                            Features
+                            Mechanics
                         </th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable whitespace-nowrap ${sortClass('performance_theo_win')}" onclick="window.sortGamesBy('performance_theo_win')">
                             Theo Win
@@ -590,7 +615,7 @@ export function renderGames() {
                     <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.performance_market_share_percent ? game.performance_market_share_percent.toFixed(2) + '%' : '—'}</td>
                     <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.specs_rtp ? game.specs_rtp + '%' : '—'}</td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${volatilityBadge}</td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.release_year || '—'}</td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.original_release_year || game.release_year || '—'}</td>
                 </tr>
             `;
         });
@@ -633,6 +658,7 @@ window.gamesGoToPage = function (page) {
     const searchTerm = document.getElementById('games-search')?.value?.toLowerCase() || '';
     const providerVal = document.getElementById('games-filter-provider')?.value || '';
     const mechanicVal = document.getElementById('games-filter-mechanic')?.value || '';
+    const categoryVal = document.getElementById('games-filter-category')?.value || '';
 
     let filteredGames = gameData.allGames;
 
@@ -643,6 +669,7 @@ window.gamesGoToPage = function (page) {
     }
     if (providerVal) filteredGames = filteredGames.filter(g => F.provider(g) === providerVal);
     if (mechanicVal) filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicVal));
+    if (categoryVal) filteredGames = filteredGames.filter(g => F.gameCategory(g) === categoryVal);
 
     const totalPages = Math.ceil(filteredGames.length / GAMES_PER_PAGE);
 
@@ -684,24 +711,32 @@ export function setupGamesFilters() {
     const searchInput = document.getElementById('games-search');
     const providerFilter = document.getElementById('games-filter-provider');
     const mechanicFilter = document.getElementById('games-filter-mechanic');
+    const categoryFilter = document.getElementById('games-filter-category');
 
     if (searchInput) {
         searchInput.addEventListener('input', () => {
-            currentGamesPage = 0; // Reset to first page on filter change
+            currentGamesPage = 0;
             renderGames();
         });
     }
 
     if (providerFilter) {
         providerFilter.addEventListener('change', () => {
-            currentGamesPage = 0; // Reset to first page on filter change
+            currentGamesPage = 0;
             renderGames();
         });
     }
 
     if (mechanicFilter) {
         mechanicFilter.addEventListener('change', () => {
-            currentGamesPage = 0; // Reset to first page on filter change
+            currentGamesPage = 0;
+            renderGames();
+        });
+    }
+
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', () => {
+            currentGamesPage = 0;
             renderGames();
         });
     }

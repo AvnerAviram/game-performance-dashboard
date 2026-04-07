@@ -1,7 +1,7 @@
 /**
  * Theme × feature combo explorer (pair/triple/quadruple within themes).
  */
-import { gameData } from '../../lib/data.js';
+import { getActiveGames } from '../../lib/data.js';
 import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
 import { parseFeatsLocal } from './overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
@@ -11,7 +11,7 @@ const shortF = SHORT_FEATURE_LABELS;
 export function renderComboExplorer(comboDiv) {
     if (!comboDiv) return;
     try {
-        const allG = gameData.allGames || [];
+        const allG = getActiveGames();
         const FEATS = CANONICAL_FEATURES;
         const featureColors = {
             'Buy Bonus': 'bg-lime-100 text-lime-800 dark:bg-lime-900/40 dark:text-lime-300',

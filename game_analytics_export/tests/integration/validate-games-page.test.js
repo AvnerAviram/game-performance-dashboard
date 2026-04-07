@@ -103,7 +103,7 @@ describe('Games Page: Filtering', () => {
         allGames = await getAllGames();
     });
 
-    test('should have games from games_dashboard', () => {
+    test('should have games from game_data_master', () => {
         expect(allGames.length).toBeGreaterThan(500);
         expect(allGames.length).toBeLessThan(2000);
     });

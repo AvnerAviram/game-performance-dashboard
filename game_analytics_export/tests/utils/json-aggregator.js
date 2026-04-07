@@ -3,7 +3,7 @@
  *
  * Manual re-implementation of DuckDB aggregations for testing.
  * This allows us to verify DuckDB results against pure JavaScript calculations.
- * Supports both flat schema (games_dashboard.json) and nested schema (games_master.json).
+ * Supports both flat schema (game_data_master.json) and nested schema (games_master.json).
  */
 
 /**
@@ -12,9 +12,6 @@
  */
 function themeConsolidated(g) {
     return g.theme_consolidated ?? g.theme_primary ?? g.theme?.consolidated;
-}
-function mechanicPrimary(g) {
-    return g.mechanic_primary ?? g.mechanic?.primary;
 }
 function providerStudio(g) {
     return g.studio ?? g.provider ?? g.provider_studio ?? g.provider?.studio;
@@ -42,10 +39,10 @@ function specsVolatility(g) {
 }
 
 /**
- * Load and parse games. Supports games_dashboard.json (flat array) or games_master.json (nested)
+ * Load and parse games. Supports game_data_master.json (flat array) or games_master.json (nested)
  */
 export async function loadGamesJSON() {
-    const response = await fetch('/data/games_dashboard.json');
+    const response = await fetch('/data/game_data_master.json');
     if (!response.ok) {
         throw new Error(`Failed to load games: ${response.status}`);
     }
@@ -66,8 +63,8 @@ export function calculateOverviewStats(games) {
         const theme = themeConsolidated(game);
         if (theme) uniqueThemes.add(theme);
 
-        const mechanic = mechanicPrimary(game);
-        if (mechanic) uniqueMechanics.add(mechanic);
+        const feats = Array.isArray(game.features) ? game.features : [];
+        feats.forEach(f => uniqueMechanics.add(f));
 
         const tw = theoWin(game);
         if (typeof tw === 'number') totalTheoWin += tw;
@@ -143,7 +140,7 @@ export function calculateThemeDistribution(games) {
 
 /**
  * Calculate mechanic distribution manually.
- * For flat schema (games_dashboard): groups by features array (matches DuckDB).
+ * For flat schema (game_data_master): groups by features array (matches DuckDB).
  * For nested schema (games_master): groups by mechanic.primary.
  */
 export function calculateMechanicDistribution(games) {
@@ -152,11 +149,8 @@ export function calculateMechanicDistribution(games) {
 
     games.forEach(game => {
         const mechanicsToAdd = [];
-        if (hasFeaturesArray && Array.isArray(game.features) && game.features.length > 0) {
+        if (Array.isArray(game.features) && game.features.length > 0) {
             mechanicsToAdd.push(...game.features);
-        } else {
-            const m = mechanicPrimary(game);
-            if (m) mechanicsToAdd.push(m);
         }
         if (mechanicsToAdd.length === 0) return;
 
@@ -276,8 +270,6 @@ export function filterGames(games, filters = {}) {
     if (filters.mechanic) {
         const mechLower = filters.mechanic.toLowerCase();
         filtered = filtered.filter(g => {
-            const primary = (mechanicPrimary(g) || '').toLowerCase();
-            if (primary.includes(mechLower)) return true;
             const feats = g.features;
             if (Array.isArray(feats) && feats.some(f => String(f).toLowerCase().includes(mechLower))) return true;
             return false;
@@ -362,7 +354,6 @@ export function getUnique(games, field) {
 /** Flat field fallbacks for common nested paths */
 const FLAT_FALLBACKS = {
     'theme.consolidated': ['theme_consolidated', 'theme_primary'],
-    'mechanic.primary': ['mechanic_primary'],
     'provider.studio': ['studio', 'provider', 'provider_studio'],
     'provider.parent': ['parent_company', 'provider_parent'],
     'performance.theo_win': ['theo_win', 'performance_theo_win'],
@@ -402,10 +393,6 @@ export function validateGameStructure(game) {
 
     if (!themeConsolidated(game)) {
         errors.push('Missing theme (theme_consolidated/theme_primary or theme.consolidated)');
-    }
-
-    if (!mechanicPrimary(game)) {
-        errors.push('Missing mechanic (mechanic_primary or mechanic.primary)');
     }
 
     if (!providerStudio(game)) {

@@ -282,10 +282,10 @@ function getCombinations(arr, size) {
 /** Standard RTP band definitions. */
 export const RTP_BANDS = [
     { label: '> 97%', min: 97, max: 200 },
-    { label: '96-97%', min: 96, max: 97 },
-    { label: '95-96%', min: 95, max: 96 },
-    { label: '94-95%', min: 94, max: 95 },
-    { label: '93-94%', min: 93, max: 94 },
+    { label: '96%-97%', min: 96, max: 97 },
+    { label: '95%-96%', min: 95, max: 96 },
+    { label: '94%-95%', min: 94, max: 95 },
+    { label: '93%-94%', min: 93, max: 94 },
     { label: '< 93%', min: 0, max: 93 },
 ];
 
@@ -346,6 +346,204 @@ export function addSmartIndex(rows) {
 }
 
 // ── Convenience: Global Averages ───────────────────────────────────────
+
+// ── Art Design Metrics ─────────────────────────────────────────────────
+
+/**
+ * Aggregate games by art setting.
+ * @param {Object[]} games
+ * @returns {{ setting, count, totalTheo, avgTheo, totalMkt }[]}
+ */
+export function getArtSettingMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const setting = F.artSetting(g);
+        if (!setting) continue;
+        if (!map[setting]) map[setting] = { setting, count: 0, totalTheo: 0, totalMkt: 0 };
+        map[setting].count++;
+        map[setting].totalTheo += F.theoWin(g);
+        map[setting].totalMkt += F.marketShare(g);
+    }
+    return Object.values(map)
+        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
+        .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Aggregate games by art mood.
+ * @param {Object[]} games
+ * @returns {{ mood, count, totalTheo, avgTheo }[]}
+ */
+export function getArtMoodMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const mood = F.artMood(g);
+        if (!mood) continue;
+        if (!map[mood]) map[mood] = { mood, count: 0, totalTheo: 0 };
+        map[mood].count++;
+        map[mood].totalTheo += F.theoWin(g);
+    }
+    return Object.values(map)
+        .map(m => ({ ...m, avgTheo: m.count > 0 ? m.totalTheo / m.count : 0 }))
+        .sort((a, b) => b.avgTheo - a.avgTheo);
+}
+
+/**
+ * Aggregate games by art narrative.
+ * @param {Object[]} games
+ * @returns {{ narrative, count, totalTheo, avgTheo }[]}
+ */
+export function getArtNarrativeMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const narr = F.artNarrative(g);
+        if (!narr) continue;
+        if (!map[narr]) map[narr] = { narrative: narr, count: 0, totalTheo: 0 };
+        map[narr].count++;
+        map[narr].totalTheo += F.theoWin(g);
+    }
+    return Object.values(map)
+        .map(n => ({ ...n, avgTheo: n.count > 0 ? n.totalTheo / n.count : 0 }))
+        .sort((a, b) => b.avgTheo - a.avgTheo);
+}
+
+/**
+ * Aggregate games by individual art character type (multi-value field).
+ * @param {Object[]} games
+ * @returns {{ character, count, totalTheo, avgTheo }[]}
+ */
+export function getArtCharacterMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const chars = F.artCharacters(g);
+        const theo = F.theoWin(g);
+        for (const ch of chars) {
+            if (!ch) continue;
+            if (!map[ch]) map[ch] = { character: ch, count: 0, totalTheo: 0 };
+            map[ch].count++;
+            map[ch].totalTheo += theo;
+        }
+    }
+    return Object.values(map)
+        .map(c => ({ ...c, avgTheo: c.count > 0 ? c.totalTheo / c.count : 0 }))
+        .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Aggregate games by individual art element (multi-value field).
+ * @param {Object[]} games
+ * @returns {{ element, count, totalTheo, avgTheo }[]}
+ */
+export function getArtElementMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const elems = F.artElements(g);
+        const theo = F.theoWin(g);
+        for (const el of elems) {
+            if (!el) continue;
+            if (!map[el]) map[el] = { element: el, count: 0, totalTheo: 0 };
+            map[el].count++;
+            map[el].totalTheo += theo;
+        }
+    }
+    return Object.values(map)
+        .map(e => ({ ...e, avgTheo: e.count > 0 ? e.totalTheo / e.count : 0 }))
+        .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Cross-dimensional art combo analysis: setting × mood.
+ * Returns combos with count >= minGames, sorted by avgTheo descending.
+ * @param {Object[]} games
+ * @param {Object} [opts]
+ * @param {number} [opts.minGames] — minimum games per combo (default 3)
+ * @returns {{ setting, mood, count, avgTheo, totalTheo, mktShare }[]}
+ */
+export function getArtComboMetrics(games, opts = {}) {
+    const minGames = opts.minGames ?? 3;
+    const map = {};
+    for (const g of games) {
+        const setting = F.artSetting(g);
+        const mood = F.artMood(g);
+        if (!setting || !mood) continue;
+        const key = `${setting}|||${mood}`;
+        if (!map[key]) map[key] = { setting, mood, count: 0, totalTheo: 0, mktShare: 0 };
+        map[key].count++;
+        map[key].totalTheo += F.theoWin(g);
+        map[key].mktShare += F.marketShare(g);
+    }
+    return Object.values(map)
+        .filter(c => c.count >= minGames)
+        .map(c => ({ ...c, avgTheo: c.totalTheo / c.count }))
+        .sort((a, b) => b.avgTheo - a.avgTheo);
+}
+
+/**
+ * Enriched art recipes: setting × mood combos with top characters, elements, and dominant narrative.
+ * @param {Object[]} games
+ * @param {Object} [opts]
+ * @param {number} [opts.minGames] — minimum games per combo (default 3)
+ * @param {number} [opts.topN] — max items per sub-dimension (default 5)
+ * @returns {{ setting, mood, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], narrative: string }[]}
+ */
+export function getArtRecipeMetrics(games, opts = {}) {
+    const minGames = opts.minGames ?? 3;
+    const topN = opts.topN ?? 5;
+    const map = {};
+    for (const g of games) {
+        const setting = F.artSetting(g);
+        const mood = F.artMood(g);
+        if (!setting || !mood) continue;
+        const key = `${setting}|||${mood}`;
+        if (!map[key]) {
+            map[key] = { setting, mood, count: 0, totalTheo: 0, mktShare: 0, charFreq: {}, elemFreq: {}, narrFreq: {} };
+        }
+        const entry = map[key];
+        entry.count++;
+        entry.totalTheo += F.theoWin(g);
+        entry.mktShare += F.marketShare(g);
+        for (const ch of F.artCharacters(g)) {
+            if (ch) entry.charFreq[ch] = (entry.charFreq[ch] || 0) + 1;
+        }
+        for (const el of F.artElements(g)) {
+            if (el) entry.elemFreq[el] = (entry.elemFreq[el] || 0) + 1;
+        }
+        const narr = F.artNarrative(g);
+        if (narr) entry.narrFreq[narr] = (entry.narrFreq[narr] || 0) + 1;
+    }
+
+    const topByFreq = (freq, n) =>
+        Object.entries(freq)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, n)
+            .map(([k]) => k);
+    const dominantKey = freq => {
+        let best = null;
+        let bestN = 0;
+        for (const [k, v] of Object.entries(freq)) {
+            if (v > bestN) {
+                best = k;
+                bestN = v;
+            }
+        }
+        return best || '';
+    };
+
+    return Object.values(map)
+        .filter(c => c.count >= minGames)
+        .map(c => ({
+            setting: c.setting,
+            mood: c.mood,
+            count: c.count,
+            avgTheo: c.totalTheo / c.count,
+            totalTheo: c.totalTheo,
+            mktShare: c.mktShare,
+            topCharacters: topByFreq(c.charFreq, topN),
+            topElements: topByFreq(c.elemFreq, topN),
+            narrative: dominantKey(c.narrFreq),
+        }))
+        .sort((a, b) => b.avgTheo - a.avgTheo);
+}
 
 /**
  * Compute global average theo win across all games.

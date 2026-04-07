@@ -1,9 +1,10 @@
 // Overview page renderer
-import { gameData } from '../../lib/data.js';
+import { gameData, getActiveGames, getActiveMechanics, getActiveThemes } from '../../lib/data.js';
 import { getTopPerformers, renderComparisonCards } from '../../features/overview-insights.js';
 import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
+import { getProviderMetrics } from '../../lib/metrics.js';
 
 import { parseFeatures as parseFeatsLocal } from '../../lib/parse-features.js';
 import { F } from '../../lib/game-fields.js';
@@ -26,12 +27,12 @@ export function updateHeaderStats() {
         statTotalMechanics.textContent = gameData.mechanic_count;
     }
     if (statClassified) {
-        const allGames = gameData.allGames || [];
+        const allGames = getActiveGames();
         const classified = allGames.filter(g => {
             const hasTheme =
                 (g.theme_consolidated || g.theme_primary || '').trim() &&
                 (g.theme_consolidated || g.theme_primary) !== 'Unknown';
-            const hasFeatures = g.features && (Array.isArray(g.features) ? g.features.length > 0 : g.features.trim());
+            const hasFeatures = parseFeatsLocal(g.features).length > 0;
             return hasTheme && hasFeatures;
         }).length;
         const pct = allGames.length > 0 ? ((classified / allGames.length) * 100).toFixed(1) : '0';
@@ -45,7 +46,7 @@ export function updateHeaderStats() {
 export function renderOverview() {
     log('📊 renderOverview() called');
     log('  - gameData exists:', !!gameData);
-    log('  - gameData.allGames length:', gameData?.allGames?.length || 0);
+    log('  - active games length:', getActiveGames().length || 0);
 
     const gamesEl = document.getElementById('overview-total-games');
     const themesEl = document.getElementById('overview-total-themes');
@@ -67,23 +68,23 @@ export function renderOverview() {
         throw new Error('Missing element: overview-total-games - HTML and JavaScript are out of sync!');
     }
 
-    gamesEl.textContent = gameData.allGames.length;
-    themesEl.textContent = gameData.themes.length;
-    mechanicsEl.textContent = gameData.mechanics.length;
+    gamesEl.textContent = getActiveGames().length;
+    themesEl.textContent = getActiveThemes().length;
+    mechanicsEl.textContent = getActiveMechanics().length;
 
     const providersEl = document.getElementById('overview-total-providers');
     if (providersEl) {
-        const uniqueProviders = new Set(gameData.allGames.map(g => F.provider(g)).filter(p => p && p !== 'Unknown'));
-        providersEl.textContent = uniqueProviders.size;
+        const rankedProviders = getProviderMetrics(getActiveGames());
+        providersEl.textContent = rankedProviders.length;
     }
 
     log('  ✅ Stats updated:', {
-        games: gameData.allGames.length,
-        themes: gameData.themes.length,
-        mechanics: gameData.mechanics.length,
+        games: getActiveGames().length,
+        themes: getActiveThemes().length,
+        mechanics: getActiveMechanics().length,
     });
 
-    const performers = getTopPerformers(gameData.allGames, gameData.themes, gameData.mechanics);
+    const performers = getTopPerformers(getActiveGames(), getActiveThemes(), getActiveMechanics());
     const comparisonEl = document.getElementById('comparison-cards');
     if (comparisonEl) {
         comparisonEl.innerHTML = renderComparisonCards(performers);
@@ -104,25 +105,19 @@ export function renderOverview() {
         const heatEl = document.getElementById('theme-feature-heatmap');
         if (heatEl) heatEl.innerHTML = '<p class="text-red-500">Heatmap rendering failed</p>';
     }
-
-    try {
-        renderGameFranchises();
-    } catch (e) {
-        console.error('Franchises rendering failed:', e);
-    }
 }
 
 function renderTopThemesCards() {
     const container = document.getElementById('overview-themes-cards');
     if (!container) return;
 
-    const themes = [...(gameData.themes || [])];
+    const themes = [...getActiveThemes()];
     if (!themes.length) {
         container.innerHTML = '<p class="text-gray-400 text-sm">No theme data</p>';
         return;
     }
 
-    const allGames = gameData.allGames || [];
+    const allGames = getActiveGames();
     const currentYear = new Date().getFullYear();
 
     const yearData = {};
@@ -131,8 +126,8 @@ function renderTopThemesCards() {
         if (!t) return;
         if (!yearData[t]) yearData[t] = { recent: 0, old: 0, total: 0 };
         yearData[t].total++;
-        if (g.release_year >= currentYear - 2) yearData[t].recent++;
-        if (g.release_year && g.release_year <= currentYear - 5) yearData[t].old++;
+        if (F.originalReleaseYear(g) >= currentYear - 2) yearData[t].recent++;
+        if (F.originalReleaseYear(g) && F.originalReleaseYear(g) <= currentYear - 5) yearData[t].old++;
     });
 
     themes.forEach(t => {
@@ -276,7 +271,7 @@ function renderThemeFeatureHeatmap() {
     const container = document.getElementById('theme-feature-heatmap');
     if (!container) return;
 
-    const allGames = gameData.allGames || [];
+    const allGames = getActiveGames();
     if (!allGames.length) {
         container.innerHTML = '<p class="text-gray-400 text-sm">No game data</p>';
         return;
@@ -394,14 +389,14 @@ function renderThemeFeatureHeatmap() {
         <div class="flex items-center gap-2 mb-3">
             <span class="text-lg">🧪</span>
             <span class="text-sm font-bold text-indigo-700 dark:text-indigo-300">Recipe Explorer</span>
-            <button type="button" onclick="window.clearRecipeFeatures()" class="ml-auto text-[9px] px-2 py-0.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 transition-colors font-medium">Clear</button>
+            <button type="button" onclick="window.clearRecipeFeatures()" class="ml-auto text-[9px] px-2 py-0.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 transition-colors font-medium cursor-pointer">Clear</button>
         </div>
         <div class="flex-1 flex flex-col">
             <label class="text-[10px] font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400 mb-1 block">Theme</label>
             <select id="recipe-explorer-theme" onchange="window.updateRecipeExplorer()" class="w-full px-3 py-2 text-sm rounded-lg border border-indigo-200 dark:border-indigo-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-400 outline-none mb-3">
                 ${allThemeNames.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('')}
             </select>
-            <label class="text-[10px] font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400 mb-1.5 block">Features</label>
+            <label class="text-[10px] font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400 mb-1.5 block">Mechanics</label>
             <div class="flex flex-wrap gap-1.5 min-h-[60px]" id="recipe-explorer-features">
                 ${CANONICAL.map(f => `<button type="button" data-feat="${escapeHtml(f)}" onclick="window.toggleRecipeFeature(this)" class="recipe-feat-btn shrink-0 px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 transition-all cursor-pointer border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:border-indigo-300"><span class="feat-arrow"></span>${escapeHtml(SHORT_FEATURE_LABELS[f] || f)}</button>`).join('')}
             </div>
@@ -410,7 +405,7 @@ function renderThemeFeatureHeatmap() {
                 <span class="inline-flex items-center gap-0.5"><span class="text-red-400">▼</span> worsens</span>
             </div>
             <div id="recipe-explorer-result" class="bg-white/70 dark:bg-gray-800/70 rounded-xl p-3 border border-indigo-100 dark:border-indigo-800 flex items-center justify-center mt-3 flex-1 min-h-[100px]">
-                <span class="text-xs text-indigo-400 dark:text-indigo-500">Click features to explore</span>
+                <span class="text-xs text-indigo-400 dark:text-indigo-500">Click mechanics to explore</span>
             </div>
         </div>
     </div>`;
@@ -555,7 +550,7 @@ function renderThemeFeatureHeatmap() {
         const resultEl = document.getElementById('recipe-explorer-result');
         if (resultEl)
             resultEl.innerHTML =
-                '<span class="text-xs text-indigo-400 dark:text-indigo-500">Click features to explore</span>';
+                '<span class="text-xs text-indigo-400 dark:text-indigo-500">Click mechanics to explore</span>';
     };
 
     window.toggleRecipeFeature = function (btn) {
@@ -619,7 +614,7 @@ function renderThemeFeatureHeatmap() {
                 btn.className =
                     'recipe-feat-btn px-2.5 py-1 text-[11px] font-semibold rounded-full border-2 transition-all cursor-pointer border-gray-100 dark:border-gray-700 text-gray-300 dark:text-gray-600 bg-gray-50 dark:bg-gray-900';
                 btn.style.background = '';
-                btn.title = hasFeat.length === 0 ? 'No games with this feature' : 'All games have this feature';
+                btn.title = hasFeat.length === 0 ? 'No games with this mechanic' : 'All games have this mechanic';
                 if (arrow) arrow.textContent = '';
                 return;
             }
@@ -652,17 +647,17 @@ function renderThemeFeatureHeatmap() {
 
         if (selected.length === 0) {
             resultDiv.innerHTML =
-                '<span class="text-xs text-indigo-400 dark:text-indigo-500">Click features to start exploring</span>';
+                '<span class="text-xs text-indigo-400 dark:text-indigo-500">Click mechanics to start exploring</span>';
             return;
         }
 
         if (selected.length === 1) {
             const singleMatching = tg.filter(g => g.feats.includes(selected[0]));
             if (singleMatching.length === 0) {
-                resultDiv.innerHTML = `<div class="text-center"><div class="text-[10px] text-gray-400">No ${escapeHtml(theme)} games with ${escapeHtml(selected[0])}</div><div class="text-[10px] text-indigo-400 mt-1">Add more features — green = improves, red = worsens</div></div>`;
+                resultDiv.innerHTML = `<div class="text-center"><div class="text-[10px] text-gray-400">No ${escapeHtml(theme)} games with ${escapeHtml(selected[0])}</div><div class="text-[10px] text-indigo-400 mt-1">Add more mechanics — green = improves, red = worsens</div></div>`;
             } else {
                 const avg = singleMatching.reduce((s, g) => s + g.theo, 0) / singleMatching.length;
-                resultDiv.innerHTML = `<div class="text-center"><div class="text-lg font-black text-gray-800 dark:text-gray-200">${avg.toFixed(2)}</div><div class="text-[10px] text-gray-400">${singleMatching.length} games · Pick more features</div><div class="text-[10px] text-indigo-400 mt-1">Green buttons = improves · Red = worsens</div></div>`;
+                resultDiv.innerHTML = `<div class="text-center"><div class="text-lg font-black text-gray-800 dark:text-gray-200">${avg.toFixed(2)}</div><div class="text-[10px] text-gray-400">${singleMatching.length} games · Pick more mechanics</div><div class="text-[10px] text-indigo-400 mt-1">Green buttons = improves · Red = worsens</div></div>`;
             }
             return;
         }
@@ -717,88 +712,4 @@ function renderThemeFeatureHeatmap() {
     };
 }
 
-function renderGameFranchises() {
-    const container = document.getElementById('game-franchises');
-    if (!container) return;
-
-    const games = gameData.allGames || [];
-
-    const buckets = {};
-    for (const g of games) {
-        const fname = F.franchise(g);
-        if (!fname) continue;
-        if (!buckets[fname]) buckets[fname] = [];
-        buckets[fname].push(g);
-    }
-
-    const multis = Object.entries(buckets)
-        .filter(([, gs]) => gs.length >= 2)
-        .map(([fname, gs]) => {
-            const totalTheo = gs.reduce((s, g) => s + (g.performance_theo_win || g.theo_win || 0), 0);
-            const avgTheo = totalTheo / gs.length;
-            const totalShare = gs.reduce(
-                (s, g) => s + (g.performance_market_share_percent || g.market_share_pct || 0),
-                0
-            );
-            const providers = [...new Set(gs.map(g => F.provider(g)).filter(p => p && p !== 'Unknown'))];
-            return { base: fname, games: gs, count: gs.length, avgTheo, totalShare, providers };
-        })
-        .sort((a, b) => b.totalShare - a.totalShare)
-        .slice(0, 10);
-
-    if (!multis.length) {
-        container.innerHTML = '<p class="text-gray-400 dark:text-gray-500">No game brands detected</p>';
-        return;
-    }
-
-    let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
-    multis.forEach((fam, i) => {
-        const topGame = fam.games.sort(
-            (a, b) => (b.performance_theo_win || b.theo_win || 0) - (a.performance_theo_win || a.theo_win || 0)
-        )[0];
-        const providerLabel = fam.providers.join(', ');
-        html += `
-        <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 p-4 hover:shadow-md transition-shadow">
-            <div class="flex items-start justify-between mb-2">
-                <div>
-                    <h4 class="font-bold text-gray-900 dark:text-white text-sm">${escapeHtml(fam.base)}</h4>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">${fam.count} titles • ${fam.totalShare.toFixed(2)}% market share</p>
-                </div>
-                <span class="px-2 py-1 text-xs font-bold rounded-full ${i < 3 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-300'}">#${i + 1}</span>
-            </div>
-            <div class="flex flex-wrap items-center gap-1.5 mb-1">
-                ${fam.providers
-                    .slice(0, 3)
-                    .map(
-                        p => `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-800/60 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                    ${escapeHtml(p)}
-                </span>`
-                    )
-                    .join('')}
-                ${fam.providers.length > 3 ? `<span class="text-[10px] text-indigo-500 dark:text-indigo-400 cursor-pointer hover:underline font-medium" onclick="const el=this.nextElementSibling;const hidden=el.classList.toggle('hidden');this.textContent=hidden?'+${fam.providers.length - 3} more':'show less'">+${fam.providers.length - 3} more</span>` : ''}
-                ${
-                    fam.providers.length > 3
-                        ? `<div class="hidden w-full flex flex-wrap gap-1.5 mt-1">${fam.providers
-                              .slice(3)
-                              .map(
-                                  p =>
-                                      `<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-800/60 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>${escapeHtml(p)}</span>`
-                              )
-                              .join('')}</div>`
-                        : ''
-                }
-            </div>
-            <div class="flex gap-3 text-xs">
-                <span class="text-amber-600 dark:text-amber-400 font-semibold">Avg Theo: ${fam.avgTheo.toFixed(2)}</span>
-                <span class="text-gray-400">|</span>
-                <span class="text-gray-600 dark:text-gray-400">Best: ${escapeHtml(topGame.name)}</span>
-            </div>
-            <div class="mt-2 flex flex-wrap gap-1 max-h-28 overflow-y-auto">
-                ${fam.games.map(g => `<span class="px-2 py-0.5 text-[10px] rounded bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors" onclick="${safeOnclick('window.showGameDetails', g.name)}">${escapeHtml(g.name)}</span>`).join('')}
-            </div>
-        </div>`;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-}
+// renderGameFranchises removed — brand bubble chart now handled by chart-brands.js

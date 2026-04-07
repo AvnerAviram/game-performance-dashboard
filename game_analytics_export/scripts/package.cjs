@@ -82,7 +82,7 @@ copyServerDir(path.join(ROOT, 'server'), path.join(RELEASE, 'server'));
 
 // data/ (only the 3 API JSON files)
 const DATA_FILES = [
-    'games_dashboard.json',
+    'game_data_master.json',
     'theme_consolidation_map.json',
     'franchise_mapping.json',
 ];

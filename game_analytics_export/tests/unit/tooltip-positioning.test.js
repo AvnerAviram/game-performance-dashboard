@@ -37,7 +37,7 @@ describe('Tooltip Positioning – no fixed tooltips', () => {
     test('overview.html tooltips all use absolute positioning', () => {
         const html = readFileSync(overviewPath, 'utf8');
         const tooltips = html.match(/group-hover:block\s+absolute/g) || [];
-        expect(tooltips.length).toBe(9);
+        expect(tooltips.length).toBe(11);
     });
 
     test('ui-panels.js tooltip uses absolute positioning with cursor-help', () => {

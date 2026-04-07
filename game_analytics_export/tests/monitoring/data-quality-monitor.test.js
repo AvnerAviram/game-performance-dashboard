@@ -12,7 +12,7 @@ describe('Data Quality: Basic Checks', () => {
         await loadGameData();
     });
 
-    test('total games should match games_dashboard', () => {
+    test('total games should match game_data_master', () => {
         expect(gameData.total_games).toBeGreaterThan(500);
         expect(gameData.total_games).toBe(gameData.allGames?.length ?? 0);
     });

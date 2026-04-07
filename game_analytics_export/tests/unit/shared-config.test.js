@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
     PROVIDER_NORMALIZATION_MAP,
-    MECHANIC_NORMALIZE,
     VOLATILITY_ORDER,
     VOLATILITY_SQL_RANK,
     VOL_COLORS,
@@ -13,7 +12,6 @@ import {
     INITIAL_SHOW,
     DEFAULT_PAGE_SIZE,
     normalizeProvider,
-    normalizeMechanic,
     normalizeVolatility,
 } from '../../src/lib/shared-config.js';
 
@@ -33,10 +31,6 @@ describe('shared-config exports', () => {
         expect(PROVIDER_NORMALIZATION_MAP['Blueprint']).toBe('Blueprint Gaming');
         expect(PROVIDER_NORMALIZATION_MAP['Play N Go']).toBe("Play'n GO");
         expect(PROVIDER_NORMALIZATION_MAP['Dsg']).toBe('Design Works Gaming');
-    });
-
-    it('MECHANIC_NORMALIZE maps Hold & Win', () => {
-        expect(MECHANIC_NORMALIZE['Hold & Win']).toBe('Hold and Win');
     });
 });
 
@@ -83,8 +77,8 @@ describe('threshold constants', () => {
         expect(MIN_SAMPLE_SIZE).toBe(2);
     });
 
-    it('MARKET_LEADER_THRESHOLD is 0.1', () => {
-        expect(MARKET_LEADER_THRESHOLD).toBe(0.1);
+    it('MARKET_LEADER_THRESHOLD is 0.005', () => {
+        expect(MARKET_LEADER_THRESHOLD).toBe(0.005);
     });
 
     it('INITIAL_SHOW is 5', () => {
@@ -118,19 +112,6 @@ describe('helper functions', () => {
         expect(normalizeProvider('')).toBe('Unknown');
         expect(normalizeProvider(null)).toBe('Unknown');
         expect(normalizeProvider(undefined)).toBe('Unknown');
-    });
-
-    it('normalizeMechanic maps Hold & Win', () => {
-        expect(normalizeMechanic('Hold & Win')).toBe('Hold and Win');
-    });
-
-    it('normalizeMechanic returns Slot for falsy input', () => {
-        expect(normalizeMechanic('')).toBe('Slot');
-        expect(normalizeMechanic(null)).toBe('Slot');
-    });
-
-    it('normalizeMechanic passes through unknown mechanics', () => {
-        expect(normalizeMechanic('Free Spins')).toBe('Free Spins');
     });
 
     it('normalizeVolatility title-cases strings preserving separator', () => {

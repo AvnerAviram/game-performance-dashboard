@@ -374,26 +374,6 @@ export const VALID_MECHANICS = {
 
     // ========== WIN MECHANICS (5) - Change how wins calculated/enhanced ==========
 
-    Multipliers: {
-        id: 'multipliers',
-        name: 'Multipliers',
-        frequency: '31 of 100 top games (31%)',
-        description:
-            'Feature that multiplies win values by set amounts (×2, ×3, ×5, ×10, etc.). Can be static, progressive (increases with cascades), or random.',
-        whatItDoes:
-            'Land a multiplier symbol → your win gets multiplied. Progressive multipliers start at ×2 and increase with each cascade (×2, ×4, ×8, ×16...). Can reach ×100+.',
-        examples: [
-            'Buffalo Gold (up to ×27 wilds)',
-            "Gonzo's Quest (progressive to ×15)",
-            'Cleopatra (×3 in free spins)',
-            'Huff N Puff (Wolf multipliers)',
-            'Diamond Nudge (×30 stacking)',
-        ],
-        category: MechanicCategory.WIN_MECHANICS,
-        isValid: true,
-        source: 'Universal feature - found in 31% of top 100 games',
-    },
-
     Respins: {
         id: 'respins',
         name: 'Respins',
@@ -571,7 +551,6 @@ export const MECHANIC_ALIASES = {
     Tumbling: 'Cascading Reels',
     Rolling: 'Cascading Reels',
     'Win Reactions': 'Cascading Reels',
-    Multiplier: 'Multipliers',
     Respin: 'Respins',
     'Money Collect': 'Cash Collection',
     'Cash Collect': 'Cash Collection',

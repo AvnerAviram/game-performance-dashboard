@@ -7,6 +7,9 @@ vi.mock('../src/lib/data.js', async () => {
     return {
         loadGameData: loadTestData,
         gameData,
+        getActiveGames: () => gameData.viewGames ?? gameData.allGames ?? [],
+        getActiveThemes: () => gameData.viewThemes ?? gameData.themes ?? [],
+        getActiveMechanics: () => gameData.viewMechanics ?? gameData.mechanics ?? [],
     };
 });
 
@@ -17,10 +20,10 @@ beforeAll(() => {
 
         if (
             urlStr.includes('/api/data/games') ||
-            urlStr.includes('games_dashboard.json') ||
-            urlStr.includes('/data/games_dashboard.json')
+            urlStr.includes('game_data_master.json') ||
+            urlStr.includes('/data/game_data_master.json')
         ) {
-            const data = await import('../data/games_dashboard.json', { assert: { type: 'json' } });
+            const data = await import('../data/game_data_master.json', { assert: { type: 'json' } });
             return {
                 ok: true,
                 status: 200,
@@ -29,7 +32,7 @@ beforeAll(() => {
             };
         }
         if (urlStr.includes('games_master.json') || urlStr.includes('games_complete.json')) {
-            const data = await import('../data/games_dashboard.json', { assert: { type: 'json' } });
+            const data = await import('../data/game_data_master.json', { assert: { type: 'json' } });
             return {
                 ok: true,
                 status: 200,

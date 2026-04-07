@@ -5,9 +5,10 @@
  */
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
-import { apiPost } from '../lib/api-client.js';
+import { apiPost, apiFetch } from '../lib/api-client.js';
 import { escapeHtml, escapeAttr } from '../lib/sanitize.js';
 import { CANONICAL_FEATURES } from '../lib/features.js';
+import { parseFeatures } from '../lib/parse-features.js';
 
 let namePatterns = null;
 let selectedFeatures = new Set();
@@ -280,13 +281,7 @@ function analyzeNames() {
         if (!patterns.themeWordTheo[theme]) patterns.themeWordTheo[theme] = {};
         if (!patterns.themeBigrams[theme]) patterns.themeBigrams[theme] = {};
 
-        const feats = (
-            Array.isArray(g.features)
-                ? g.features
-                : typeof g.features === 'string'
-                  ? g.features.split(',').map(s => s.trim())
-                  : []
-        ).filter(Boolean);
+        const feats = parseFeatures(g.features);
         feats.forEach(f => {
             if (!patterns.featureNames[f]) patterns.featureNames[f] = [];
             patterns.featureNames[f].push(name);
@@ -701,7 +696,8 @@ export function setupNameGenerator() {
     CANONICAL_FEATURES.forEach(feat => {
         const btn = document.createElement('button');
         btn.className =
-            'px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-600 dark:text-gray-400 hover:border-indigo-400 hover:text-indigo-600 transition-colors';
+            'ng-feature-btn px-2.5 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 text-xs font-medium text-gray-600 dark:text-gray-400 hover:border-indigo-400 hover:text-indigo-600 transition-colors';
+        btn.dataset.feature = feat;
         btn.textContent = feat;
         btn.addEventListener('click', () => {
             if (selectedFeatures.has(feat)) {
@@ -755,10 +751,18 @@ export function setupNameGenerator() {
     // Select "modern" by default
     document.querySelector('.ng-style-btn[data-style="modern"]')?.click();
 
-    // Theme change -> show patterns
+    // Theme change -> show patterns + auto-generate
     themeSelect.addEventListener('change', () => {
         const theme = themeSelect.value;
-        if (theme) renderPatternStats(theme);
+        if (theme) {
+            renderPatternStats(theme);
+            const keywords = document.getElementById('ng-keywords')?.value || '';
+            const resultsDiv = document.getElementById('ng-results');
+            if (resultsDiv) {
+                const names = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
+                renderResults(names, theme, false);
+            }
+        }
     });
 
     // Generate button — always pattern-based (free)
@@ -908,6 +912,91 @@ function findSimilarGame(name) {
     return best;
 }
 
+async function checkTrademark(name) {
+    return apiFetch('/api/trademark-check?name=' + encodeURIComponent(name));
+}
+
+function renderTMResults(container, data) {
+    const liveResults = data.results.filter(r => r.statusLabel === 'Live');
+    const pendingResults = data.results.filter(r => r.statusLabel === 'Pending');
+    const deadResults = data.results.filter(r => r.statusLabel === 'Dead');
+
+    const queriesChecked = (data.queries || [data.name]).map(q => `"${escapeHtml(q)}"`).join(', ');
+
+    if (data.results.length === 0) {
+        container.innerHTML = `
+            <div class="mt-2 p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
+                <div class="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    No active US trademarks found
+                </div>
+                <p class="text-[10px] text-gray-400 mt-1">Checked: ${queriesChecked}</p>
+                <p class="text-[10px] text-gray-400 mt-0.5">USPTO (US) only &middot; Not legal advice &middot; ${escapeHtml(String(data.dailyRemaining))} checks remaining today</p>
+            </div>`;
+        return;
+    }
+
+    const statusBadge = label => {
+        if (label === 'Live')
+            return '<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400">LIVE</span>';
+        if (label === 'Pending')
+            return '<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">PENDING</span>';
+        return '<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-gray-100 text-gray-500 dark:bg-gray-700 dark:text-gray-400">DEAD</span>';
+    };
+
+    const borderClass =
+        liveResults.length > 0
+            ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/10'
+            : pendingResults.length > 0
+              ? 'border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/10'
+              : 'border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50';
+
+    const headerIcon =
+        liveResults.length > 0
+            ? '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>'
+            : '<svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+
+    const summary =
+        liveResults.length > 0
+            ? `${liveResults.length} active trademark${liveResults.length > 1 ? 's' : ''} found`
+            : `${pendingResults.length} pending, ${deadResults.length} dead`;
+
+    let html = `<div class="mt-2 p-3 rounded-lg border ${borderClass}">
+        <div class="flex items-center gap-2 text-xs font-semibold text-gray-800 dark:text-gray-200 mb-2">
+            ${headerIcon}
+            <span>${escapeHtml(summary)}</span>
+            <span class="text-[10px] text-gray-400 font-normal ml-auto">${escapeHtml(String(data.totalCount))} total match${data.totalCount !== 1 ? 'es' : ''}</span>
+        </div>
+        <div class="space-y-1.5">`;
+
+    const sorted = [...liveResults, ...pendingResults, ...deadResults];
+    sorted.forEach(r => {
+        const gamingFlag = r.isGamingClass
+            ? '<span class="text-[9px] px-1 py-0.5 rounded bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300 font-semibold">GAMING</span>'
+            : '';
+        const matchedVia =
+            r.matchedQuery && r.matchedQuery.toLowerCase() !== data.name.toLowerCase()
+                ? `<span class="text-[9px] px-1 py-0.5 rounded bg-blue-100 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300 font-medium">via "${escapeHtml(r.matchedQuery)}"</span>`
+                : '';
+        html += `
+            <div class="flex flex-wrap items-start gap-x-2 gap-y-0.5 text-[11px] leading-relaxed">
+                ${statusBadge(r.statusLabel)}
+                ${gamingFlag}
+                ${matchedVia}
+                <span class="font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(r.mark)}</span>
+                <span class="text-gray-400">&mdash;</span>
+                <span class="text-gray-600 dark:text-gray-400">${escapeHtml(r.owner)}${r.country ? ' (' + escapeHtml(r.country) + ')' : ''}</span>
+            </div>
+            <div class="text-[10px] text-gray-400 dark:text-gray-500 ml-6 truncate" title="${escapeAttr(r.descriptions)}">${escapeHtml(r.descriptions.length > 80 ? r.descriptions.slice(0, 80) + '...' : r.descriptions)}</div>`;
+    });
+
+    html += `</div>
+        <p class="text-[10px] text-gray-400 mt-2 pt-1.5 border-t border-gray-200 dark:border-gray-700">USPTO (US) only &middot; Not legal advice &middot; ${escapeHtml(String(data.dailyRemaining))} checks remaining today</p>
+    </div>`;
+
+    container.innerHTML = html;
+}
+
 function renderResults(names, theme, isAI) {
     const div = document.getElementById('ng-results');
     if (!div) return;
@@ -927,7 +1016,7 @@ function renderResults(names, theme, isAI) {
         : '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">Pattern Based</span>';
 
     let html = `<div class="flex items-center gap-2 mb-4">${badge}<span class="text-xs text-gray-400">${normalized.length} names for "${escapeHtml(theme)}" theme</span><button id="ng-refresh" class="ml-auto text-[10px] font-medium px-2.5 py-1 rounded-full border border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors flex items-center gap-1" title="Generate new names with the same setup"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>Refresh</button></div>`;
-    html += '<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">';
+    html += '<div class="space-y-2">';
 
     normalized.forEach((entry, i) => {
         const colors = [
@@ -945,12 +1034,19 @@ function renderResults(names, theme, isAI) {
             ? `<span class="text-amber-500">Similar to: <strong class="text-amber-600 dark:text-amber-400">${escapeHtml(entry.similarTo)}</strong></span> · `
             : '';
         html += `
-            <div class="group relative flex items-center gap-3 p-3 rounded-xl border ${hasSimilar ? 'border-amber-300 dark:border-amber-700' : 'border-gray-200 dark:border-gray-700'} hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-sm transition-all cursor-pointer copy-name-card" data-copy-text="${attrName}">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white text-xs font-bold shrink-0">${i + 1}</div>
-                <div class="flex-1 min-w-0">
-                    <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${safeName}</div>
-                    <div class="copy-hint text-[10px] text-gray-400 group-hover:text-indigo-500 transition-colors">${similarHint}Click to copy</div>
+            <div class="name-card-wrapper" data-name="${attrName}">
+                <div class="group relative flex items-center gap-3 p-3 rounded-xl border ${hasSimilar ? 'border-amber-300 dark:border-amber-700' : 'border-gray-200 dark:border-gray-700'} hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-sm transition-all">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white text-xs font-bold shrink-0">${i + 1}</div>
+                    <div class="flex-1 min-w-0 cursor-pointer copy-name-card" data-copy-text="${attrName}">
+                        <div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${safeName}</div>
+                        <div class="copy-hint text-[10px] text-gray-400 group-hover:text-indigo-500 transition-colors">${similarHint}Click to copy</div>
+                    </div>
+                    <button class="tm-check-btn shrink-0 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 flex flex-col items-center justify-center px-2 py-1.5 gap-0.5 transition-colors" data-name="${attrName}" title="Check USPTO trademark">
+                        <span class="tm-label text-[8px] font-bold tracking-wider text-gray-400 leading-none">USPTO</span>
+                        <svg class="tm-icon w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </button>
                 </div>
+                <div class="tm-result-area"></div>
             </div>`;
     });
 
@@ -958,17 +1054,74 @@ function renderResults(names, theme, isAI) {
     div.innerHTML = html;
 
     div.querySelectorAll('.copy-name-card').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', e => {
+            e.stopPropagation();
             const text = card.dataset.copyText;
             navigator.clipboard.writeText(text).then(() => {
                 const hint = card.querySelector('.copy-hint');
                 if (hint) {
+                    const original = hint.innerHTML;
                     hint.textContent = 'Copied!';
                     setTimeout(() => {
-                        hint.textContent = 'Click to copy';
+                        hint.innerHTML = original;
                     }, 1500);
                 }
             });
+        });
+    });
+
+    div.querySelectorAll('.tm-check-btn').forEach(btn => {
+        btn.addEventListener('click', async e => {
+            e.stopPropagation();
+            const name = btn.dataset.name;
+            const wrapper = btn.closest('.name-card-wrapper');
+            const resultArea = wrapper?.querySelector('.tm-result-area');
+            if (!resultArea) return;
+
+            btn.disabled = true;
+            const iconEl = btn.querySelector('.tm-icon');
+            const labelEl = btn.querySelector('.tm-label');
+            if (iconEl)
+                iconEl.outerHTML =
+                    '<div class="tm-icon w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>';
+
+            try {
+                const data = await checkTrademark(name);
+                const liveCount = data.results.filter(r => r.statusLabel === 'Live').length;
+                const newIcon = btn.querySelector('.tm-icon');
+                if (liveCount > 0) {
+                    if (newIcon)
+                        newIcon.outerHTML =
+                            '<svg class="tm-icon w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>';
+                    if (labelEl)
+                        labelEl.className = 'tm-label text-[8px] font-bold tracking-wider text-red-500 leading-none';
+                    btn.title = liveCount + ' active trademark(s) found';
+                } else if (data.results.length > 0) {
+                    if (newIcon)
+                        newIcon.outerHTML =
+                            '<svg class="tm-icon w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+                    if (labelEl)
+                        labelEl.className = 'tm-label text-[8px] font-bold tracking-wider text-amber-500 leading-none';
+                    btn.title = data.results.length + ' trademark(s) found (none active)';
+                } else {
+                    if (newIcon)
+                        newIcon.outerHTML =
+                            '<svg class="tm-icon w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>';
+                    if (labelEl)
+                        labelEl.className =
+                            'tm-label text-[8px] font-bold tracking-wider text-emerald-500 leading-none';
+                    btn.title = 'No active trademarks found';
+                }
+                renderTMResults(resultArea, data);
+            } catch (err) {
+                const errIcon = btn.querySelector('.tm-icon');
+                if (errIcon)
+                    errIcon.outerHTML =
+                        '<svg class="tm-icon w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
+                btn.title = 'Check failed';
+                resultArea.innerHTML = `<div class="mt-2 p-2 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-[11px] text-red-600 dark:text-red-400">${escapeHtml(err.message || 'Trademark check failed')}</div>`;
+                btn.disabled = false;
+            }
         });
     });
 

@@ -44,7 +44,7 @@ describe('AI Assistant Page: Data Access', () => {
     });
 
     test('AI should use non-hardcoded responses', () => {
-        // Verify data is available for AI to use (games_dashboard.json)
+        // Verify data is available for AI to use (game_data_master.json)
         expect(gameData.allGames.length).toBe(gameData.total_games);
         expect(gameData.themes[0].Theme).toBeDefined();
     });

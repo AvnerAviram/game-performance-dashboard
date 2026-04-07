@@ -103,7 +103,7 @@ export function renderSymbolsTab(container, ctx) {
     container.innerHTML = `
         <div class="flex items-center gap-2 mb-5"><span class="text-2xl">🍒</span><div>
             <div class="text-lg font-bold text-gray-900 dark:text-white">Symbol Package Suggestions</div>
-            <div class="text-xs text-gray-500">${symGames.length} games analyzed${selectedFeatures.size > 0 ? ', filtered by your features' : ''}</div>
+            <div class="text-xs text-gray-500">${symGames.length} games analyzed${selectedFeatures.size > 0 ? ', filtered by your mechanics' : ''}</div>
         </div></div>
         <div class="space-y-4">
             ${renderPkgCard(highPerf, 'High Performance', '🏆', 'border-emerald-200 dark:border-emerald-800')}

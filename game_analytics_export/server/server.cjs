@@ -10,6 +10,7 @@
 
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const helmet = require('helmet');
@@ -31,6 +32,9 @@ const DIST_DIR = path.join(__dirname, '..', 'dist');
 
 // Behind IIS / reverse proxy — required for correct client IP in rate limiting and secure cookies
 app.set('trust proxy', 1);
+
+// --- Compression (gzip/brotli) ---
+app.use(compression({ level: 6, threshold: 1024 }));
 
 // --- Security ---
 app.use(
@@ -108,6 +112,7 @@ const writeLimiter = rateLimit({
 app.use('/api/tickets', writeLimiter);
 app.use('/api/admin', writeLimiter);
 app.use('/api/generate-names', writeLimiter);
+app.use('/api/trademark-check', writeLimiter);
 
 // --- API routes ---
 app.use(authRoutes);
@@ -125,6 +130,7 @@ const PUBLIC_PATHS = [
     '/src/assets/',
     '/robots.txt',
     '/health.json',
+    '/sw.js',
 ];
 
 function isPublicPath(url) {

@@ -1,2467 +1,1549 @@
 {
   "Golden Wins": {
+    "ags_name": "Golden Wins",
+    "rtp": 96.05,
+    "hit_frequency": 28.8,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 19778.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Jade Wins": {
+    "ags_name": "Jade Wins",
+    "rtp": 96.05,
+    "hit_frequency": 28.8,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 19778.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Longhorn Jackpots": {
+    "ags_name": "Longhorn Jackpots",
+    "rtp": 96.05,
+    "hit_frequency": 28.8,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 19778.0,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Western"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Fu Nan Fu Nu": {
+    "ags_name": "Fu Nan Fu Nu",
+    "rtp": 95.89,
+    "hit_frequency": 28.21,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "243 Ways; Up to 3125 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 44054.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Olympus Strikes": {
+    "ags_name": "Olympus Strikes",
+    "rtp": 95.89,
+    "hit_frequency": 28.21,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "243 Ways; Up to 3125 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 44054.0,
+    "volatility": "High",
     "themes": [
       "Greek",
-      "Lightning",
-      "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
+      "Mythical",
+      "Lightning"
     ]
   },
   "Rakin Bacon": {
+    "ags_name": "Rakin Bacon",
+    "rtp": 95.89,
+    "hit_frequency": 28.21,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "243 Ways; Up to 3125 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 44054.0,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "River Dragons": {
+    "ags_name": "River Dragons",
+    "rtp": 95.92,
+    "hit_frequency": 35.99,
+    "grid_config": "3x4x4x4x3",
+    "paylines_raw": "576 Ways; Up to 4608 in FG",
+    "paylines": 576,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 35598.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Dragons",
       "Mythical"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
     ]
   },
   "Forest Dragons": {
+    "ags_name": "Forest Dragons",
+    "rtp": 95.92,
+    "hit_frequency": 35.99,
+    "grid_config": "3x4x4x4x3",
+    "paylines_raw": "576 Ways; Up to 4608 in FG",
+    "paylines": 576,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 35598.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Dragons",
       "Mythical"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
-    ]
-  },
-  "Fire Wolf II": {
-    "themes": [
-      "Animals",
-      "Asian",
-      "Fire"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
     ]
   },
   "Pharaoh Sun": {
+    "ags_name": "Pharaoh Sun",
+    "rtp": 95.89,
+    "hit_frequency": 28.21,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "243 Ways; Up to 3125 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 44054.0,
+    "volatility": "High",
     "themes": [
       "Egyptian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Bonanza Blast": {
+    "ags_name": "Bonanza Blast",
+    "rtp": 95.98,
+    "hit_frequency": 30.06,
+    "grid_config": "3x5; Up to 7x5 in FG",
+    "paylines_raw": "243 Ways; Up to 16,807 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 20853.6,
+    "volatility": "High",
     "themes": [
-      "Gold",
-      "Western"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
+      "Western",
+      "Gold"
     ]
   },
   "Capital Gains": {
+    "ags_name": "Capital Gains",
+    "rtp": 95.96,
+    "hit_frequency": 31.59,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 11415.0,
+    "volatility": "High",
     "themes": [
-      "Gold",
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
+      "Money",
+      "Gold"
     ]
   },
   "Apollo Stacks": {
+    "ags_name": "Apollo Stacks",
+    "rtp": 95.99,
+    "hit_frequency": 34.22,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.6,
+    "max_bet": 6.0,
+    "max_exposure": 13926.0,
+    "volatility": "Medium-High",
     "themes": [
       "Greek",
       "Mythical"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
-    ]
-  },
-  "Wolf Queen": {
-    "themes": [
-      "Animals",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Crystal Magic": {
+    "ags_name": "Crystal Magic",
+    "rtp": 95.34,
+    "hit_frequency": 27.57,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 6895.0,
+    "volatility": "High",
     "themes": [
       "Gems & Crystals"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
-  },
-  "Jade Dragons": {
-    "themes": [
-      "Asian",
-      "Dragons",
-      "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
     ]
   },
   "Grand Royale": {
+    "ags_name": "Grand Royale",
+    "rtp": 95.96,
+    "hit_frequency": 31.59,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 11415.0,
+    "volatility": "High",
     "themes": [
-      "Casino",
-      "Las Vegas"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
+      "Las Vegas",
+      "Casino"
     ]
   },
   "Flamenco Stacks": {
+    "ags_name": "Flamenco Stacks",
+    "rtp": 95.99,
+    "hit_frequency": 34.22,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.6,
+    "max_bet": 6.0,
+    "max_exposure": 13926.0,
+    "volatility": "Medium-High",
     "themes": [
       "Spanish"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
     ]
   },
   "Vegas Stacks": {
+    "ags_name": "Vegas Stacks",
+    "rtp": 95.99,
+    "hit_frequency": 34.22,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.6,
+    "max_bet": 6.0,
+    "max_exposure": 13926.0,
+    "volatility": "Medium-High",
     "themes": [
-      "Casino",
-      "Las Vegas"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Static Jackpot"
+      "Las Vegas",
+      "Casino"
     ]
   },
-  "Luck and Luxury": {
+  "Luck And Luxury": {
+    "ags_name": "Luck and Luxury",
+    "rtp": 95.98,
+    "hit_frequency": 29.96,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 11420.0,
+    "volatility": "High",
     "themes": [
-      "Fire",
-      "Money"
+      "Money",
+      "Fire"
     ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "Luck And Luxury"
   },
-  "Hearts and Horns": {
+  "Hearts And Horns": {
+    "ags_name": "Hearts and Horns",
+    "rtp": 95.34,
+    "hit_frequency": 27.57,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 6895.0,
+    "volatility": "High",
     "themes": [
-      "Mythical",
+      "Mythology",
       "Seasonal/Holiday"
     ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "Hearts And Horns"
   },
   "Golden Ram": {
+    "ags_name": "Golden Ram",
+    "rtp": 95.96,
+    "hit_frequency": 31.59,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 11415.0,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Gold",
       "Greek"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
-  },
-  "RSI Blackjack Sidebets": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
     ]
   },
   "Red Silk": {
+    "ags_name": "Red Silk",
+    "hit_frequency": 28.2,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "75 Lines",
+    "paylines": 75,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 49430.5,
+    "volatility": "Medium",
     "themes": [
       "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
     ]
   },
   "Aztec Chief": {
+    "ags_name": "Aztec Chief",
+    "hit_frequency": 28.2,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "75 Lines",
+    "paylines": 75,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 49430.5,
+    "volatility": "Medium",
     "themes": [
       "Aztec",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
     ]
   },
   "Tiger Lord": {
+    "ags_name": "Tiger Lord",
+    "hit_frequency": 30.11,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "1024 Ways",
+    "paylines": 1024,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 36356.64,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Peacock Beauty": {
+    "ags_name": "Peacock Beauty",
+    "hit_frequency": 30.11,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "1024 Ways",
+    "paylines": 1024,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 36356.64,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
-  "RSI Blackjack Singledeck": {
-    "themes": [
-      "Table"
-    ],
-    "features": []
-  },
   "Blazing Luck": {
+    "ags_name": "Blazing Luck",
+    "hit_frequency": 28.7,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 22900.0,
+    "volatility": "High",
     "themes": [
       "Fire"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
     ]
   },
   "Imperial Luck": {
+    "ags_name": "Imperial Luck",
+    "hit_frequency": 28.7,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 22900.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Fire"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
     ]
   },
   "Goddess Treasures": {
+    "ags_name": "Goddess Treasures",
+    "rtp": 95.98,
+    "hit_frequency": 29.96,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 11420.0,
+    "volatility": "High",
     "themes": [
-      "Fire",
-      "Greek"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
+      "Greek",
+      "Fire"
     ]
   },
   "Dragon Fa": {
+    "ags_name": "Dragon Fa",
+    "rtp": 96.05,
+    "hit_frequency": 28.8,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 19778.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Dragons",
       "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Phoenix Fa": {
+    "ags_name": "Phoenix Fa",
+    "rtp": 96.05,
+    "hit_frequency": 28.8,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 19778.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Golden Wins Deluxe": {
+    "ags_name": "Golden Wins Deluxe",
+    "hit_frequency": 34.2,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways; Up to 7776 Ways in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 48600.0,
+    "volatility": "Medium-High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Static Jackpot",
-      "Wheel"
     ]
   },
   "Jade Wins Deluxe": {
+    "ags_name": "Jade Wins Deluxe",
+    "hit_frequency": 34.2,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways; Up to 7776 Ways in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 48600.0,
+    "volatility": "Medium-High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Static Jackpot",
-      "Wheel"
     ]
   },
-  "AGS Blackjack Side Bets": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "Mermaid's Fortune": {
+  "Mermaids Fortune": {
+    "ags_name": "Mermaid's Fortune",
+    "hit_frequency": 29.31,
+    "grid_config": "3x3x4x3x3",
+    "paylines_raw": "324 Ways",
+    "paylines": 324,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 54117.0,
+    "volatility": "High",
     "themes": [
       "Gems & Crystals",
       "Mythical"
     ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Static Jackpot",
-      "Wild Reels"
-    ]
+    "matched_master_name": "Mermaids Fortune"
   },
   "Golden Nile": {
+    "ags_name": "Golden Nile",
+    "hit_frequency": 29.31,
+    "grid_config": "3x3x4x3x3",
+    "paylines_raw": "324 Ways",
+    "paylines": 324,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 72001.0,
+    "volatility": "Medium",
     "themes": [
       "Egyptian",
       "Gems & Crystals",
       "Gold"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Static Jackpot"
     ]
   },
   "Diamond Rush": {
+    "ags_name": "Diamond Rush",
+    "hit_frequency": 29.31,
+    "grid_config": "3x3x4x3x3",
+    "paylines_raw": "324 Ways",
+    "paylines": 324,
+    "win_evaluation": "ways",
+    "min_bet": 0.5,
+    "max_bet": 5.0,
+    "max_exposure": 54117.0,
+    "volatility": "High",
     "themes": [
-      "Animals",
-      "Gems & Crystals",
+      "Western",
       "Gold",
-      "Western"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Static Jackpot",
-      "Wild Reels"
+      "Animals",
+      "Gems & Crystals"
     ]
   },
   "Dragon Tao": {
+    "ags_name": "Dragon Tao",
+    "hit_frequency": 30.09,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "1024 Ways",
+    "paylines": 1024,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 39596.88,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Dragons",
       "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Phoenix Xing": {
+    "ags_name": "Phoenix Xing",
+    "hit_frequency": 30.09,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "1024 Ways",
+    "paylines": 1024,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 39596.88,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Tiki Fortune": {
+    "ags_name": "Tiki Fortune",
+    "hit_frequency": 28.2,
+    "grid_config": "3x4x4x4x3",
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 67657.5,
+    "volatility": "Medium-High",
     "themes": [
-      "Gold",
-      "Tropical"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
+      "Tropical",
+      "Gold"
     ]
   },
   "Captain Riches": {
+    "ags_name": "Captain Riches",
+    "hit_frequency": 28.2,
+    "grid_config": "3x4x4x4x3",
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 67657.5,
+    "volatility": "Medium-High",
     "themes": [
       "Animals",
       "Gold",
       "Pirates",
       "Treasure"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
     ]
   },
   "Golden Blessings": {
+    "ags_name": "Golden Blessings",
+    "hit_frequency": 28.91,
+    "grid_config": "3x5; Up to 7x5 in FG",
+    "paylines_raw": "243 Ways; Up to 16,807 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 43210.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Pirate Plunder": {
+    "ags_name": "Pirate Plunder",
+    "hit_frequency": 28.91,
+    "grid_config": "3x5; Up to 7x5 in FG",
+    "paylines_raw": "243 Ways; Up to 16,807 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 40005.0,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Gold",
       "Pirates",
       "Treasure"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Dragon Blast": {
+    "ags_name": "Dragon Blast",
+    "rtp": 95.98,
+    "hit_frequency": 30.06,
+    "grid_config": "3x5; Up to 7x5 in FG",
+    "paylines_raw": "243 Ways; Up to 16,807 Ways in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 20853.6,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Dragons",
       "Mythical"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "Shou Hu Shen": {
+    "ags_name": "Shou Hu Shen",
+    "rtp": 95.89,
+    "hit_frequency": 28.21,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "243 Ways; Up to 3125 in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 44054.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
-  "Meow Meow Madness": {
-    "themes": [
-      "Animals",
-      "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "AGS Blackjack Single Deck": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "Riches of the Nile": {
+  "Riches Of The Nile": {
+    "ags_name": "Riches of the Nile",
+    "hit_frequency": 28.2,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "75 Lines",
+    "paylines": 75,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 49430.5,
+    "volatility": "Medium",
     "themes": [
       "Egyptian"
     ],
-    "features": [
-      "Free Spins",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
-    ]
+    "matched_master_name": "Riches Of The Nile"
   },
   "Panda Blessings": {
+    "ags_name": "Panda Blessings",
+    "hit_frequency": 30.11,
+    "grid_config": "4x5",
+    "rows": 4,
+    "reels": 5,
+    "paylines_raw": "1024 Ways",
+    "paylines": 1024,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 8.8,
+    "max_exposure": 36356.64,
+    "volatility": "High",
     "themes": [
-      "Animals",
-      "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Pick Bonus",
-      "Static Jackpot"
+      "Asian",
+      "Animals"
     ]
   },
   "Mega Diamond": {
+    "ags_name": "Mega Diamond",
+    "hit_frequency": 31.2,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 419400.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Fire",
       "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Gold Inferno": {
+    "ags_name": "Gold Inferno",
+    "hit_frequency": 30.2,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 422800.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Fire",
       "Gold"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "8x Crystal Bells": {
+    "ags_name": "8x Crystal Bells",
+    "hit_frequency": 29.98,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 403600.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
-      "Seasonal/Holiday",
+      "7's",
+      "Christmas",
       "Fire"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Platinum 8x8x8x": {
+    "ags_name": "Platinum 8x8x8x",
+    "hit_frequency": 29.98,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 403600.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Lightning"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Long Bao Bao": {
+    "ags_name": "Long Bao Bao",
+    "hit_frequency": 29.69,
+    "grid_config": "3x5; Up to 5x5 in FG",
+    "paylines_raw": "30 Lines; Up to 50 in FG",
+    "paylines": 30,
+    "win_evaluation": "lines",
+    "min_bet": 0.8,
+    "max_bet": 80.0,
+    "max_exposure": 458500.0,
+    "volatility": "High",
     "themes": [
       "Asian",
       "Gold",
       "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Mine Blast": {
+    "ags_name": "Mine Blast",
+    "hit_frequency": 28.2,
+    "grid_config": "3x4x4x4x3",
+    "paylines_raw": "50 Lines",
+    "paylines": 50,
+    "win_evaluation": "lines",
+    "min_bet": 0.75,
+    "max_bet": 7.5,
+    "max_exposure": 67657.5,
+    "volatility": "Medium-High",
     "themes": [
-      "Gold",
-      "Western"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Persistence",
-      "Pick Bonus",
-      "Static Jackpot",
-      "Wild Reels"
+      "Western",
+      "Gold"
     ]
   },
   "Diamond Boost": {
+    "ags_name": "Diamond Boost",
+    "hit_frequency": 32.89,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 402400.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Double Shamrock": {
+    "ags_name": "Double Shamrock",
+    "hit_frequency": 31.17,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "5 Lines",
+    "paylines": 5,
+    "win_evaluation": "lines",
+    "min_bet": 0.25,
+    "max_bet": 1000.0,
+    "max_exposure": 400800.0,
+    "volatility": "Medium",
     "themes": [
-      "7s",
+      "7's",
       "Irish"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Colossal Diamonds": {
+    "ags_name": "Colossal Diamonds",
+    "hit_frequency": 24.99,
+    "grid_config": "1x3",
+    "rows": 1,
+    "reels": 3,
+    "paylines_raw": "1 Line",
+    "paylines": 1,
+    "win_evaluation": "lines",
+    "min_bet": 0.25,
+    "max_bet": 1000.0,
+    "max_exposure": 400000.0,
+    "volatility": "Low",
     "themes": [
-      "7s",
+      "7's",
       "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier"
     ]
   },
-  "Cash Zap UltraTap": {
+  "Cash Zap Ultratap": {
+    "ags_name": "Cash Zap UltraTap",
+    "hit_frequency": 16.56,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 393500.0,
+    "volatility": "Medium",
     "themes": [
       "Lightning"
     ],
-    "features": [
-      "Multiplier"
-    ]
+    "matched_master_name": "Cash Zap Ultratap"
   },
-  "2x 3x Rush": {
+  "2x3x Rush": {
+    "ags_name": "2x 3x Rush",
+    "hit_frequency": 28.31,
+    "grid_config": "3x4",
+    "rows": 3,
+    "reels": 4,
+    "paylines_raw": "5 Lines",
+    "paylines": 5,
+    "win_evaluation": "lines",
+    "min_bet": 0.25,
+    "max_bet": 200.0,
+    "max_exposure": 342040.0,
+    "volatility": "Medium-High",
     "themes": [
-      "7s"
+      "7's"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
-  },
-  "Cluck Cluck Cash": {
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "2x3x Rush"
   },
   "2x Spin Cycle": {
+    "ags_name": "2x Spin Cycle",
+    "hit_frequency": 28.4,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "5 Lines",
+    "paylines": 5,
+    "win_evaluation": "lines",
+    "min_bet": 0.25,
+    "max_bet": 200.0,
+    "max_exposure": 471600.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s"
-    ],
-    "features": [
-      "Multiplier",
-      "Wheel"
+      "7's"
     ]
   },
   "Rakin Bacon Odyssey": {
+    "ags_name": "Rakin Bacon Odyssey",
+    "hit_frequency": 28.87,
+    "grid_config": "3x5; Up to 6x5 in FG",
+    "paylines_raw": "243 Ways; Up to 7776 Ways in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 132.0,
+    "max_exposure": 491911.5,
+    "volatility": "High",
     "themes": [
       "Animals",
       "Gold",
       "Greek"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
     ]
   },
   "War": {
+    "ags_name": "War",
+    "hit_frequency": 50.27,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_exposure": 510000.0,
+    "volatility": "Low",
     "themes": [
       "Table"
-    ],
-    "features": [
-      "Sidebets"
     ]
   },
-  "Sizzlin' Stacks": {
+  "Sizzlin Stacks": {
+    "ags_name": "Sizzlin' Stacks",
+    "hit_frequency": 29.91,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.45,
+    "max_bet": 900.0,
+    "max_exposure": 390000.0,
+    "volatility": "Medium",
     "themes": [
-      "7s",
+      "7's",
       "Fire",
       "Gems & Crystals"
     ],
-    "features": [
-      "Persistence",
-      "Static Jackpot",
-      "Wild Reels"
-    ]
+    "matched_master_name": "Sizzlin Stacks"
   },
-  "Bonanza Blast UltraTap": {
+  "Bonanza Blast Ultratap": {
+    "ags_name": "Bonanza Blast UltraTap",
+    "hit_frequency": 16.56,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 393500.0,
+    "volatility": "Medium",
     "themes": [
-      "Gold",
-      "Western"
+      "Western",
+      "Gold"
     ],
-    "features": [
-      "Multiplier"
-    ]
+    "matched_master_name": "Bonanza Blast Ultratap"
   },
   "3x Ultra Diamond": {
+    "ags_name": "3x Ultra Diamond",
+    "hit_frequency": 30.74,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 720.0,
+    "max_exposure": 403600.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Zen Wins": {
+    "ags_name": "Zen Wins",
+    "hit_frequency": 30.27,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 720.0,
+    "max_exposure": 402400.8,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Asian"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot",
-      "Wild Reels"
     ]
   },
-  "Olympus Strikes UltraTap": {
+  "Olympus Strikes Ultratap": {
+    "ags_name": "Olympus Strikes UltraTap",
+    "hit_frequency": 18.68,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 479900.0,
+    "volatility": "Medium",
     "themes": [
-      "Greek",
-      "Lightning"
+      "Lightning",
+      "Greek"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
+    "matched_master_name": "Olympus Strikes Ultratap"
   },
   "Lucky Sky": {
+    "ags_name": "Lucky Sky",
+    "hit_frequency": 31.2,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 419400.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Asian"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
-  "Capital Gains UltraTap": {
-    "themes": [],
-    "features": []
-  },
   "Rakin Bacon Sahara": {
+    "ags_name": "Rakin Bacon Sahara",
+    "hit_frequency": 28.87,
+    "grid_config": "3x5; Up to 6x5 in FG",
+    "paylines_raw": "243 Ways; Up to 7776 Ways in FG",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.88,
+    "max_bet": 132.0,
+    "max_exposure": 491911.5,
+    "volatility": "High",
     "themes": [
       "Animals",
-      "Egyptian",
-      "Gold"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
+      "Gold",
+      "Egyptian"
     ]
   },
   "Spin Bonanza": {
+    "ags_name": "Spin Bonanza",
+    "hit_frequency": 27.05,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.25,
+    "max_bet": 400.0,
+    "max_exposure": 485200.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s"
-    ],
-    "features": [
-      "Multiplier",
-      "Wheel"
+      "7's"
     ]
   },
   "Straight Cash": {
+    "ags_name": "Straight Cash",
+    "hit_frequency": 32.84,
+    "grid_config": "1x3",
+    "rows": 1,
+    "reels": 3,
+    "paylines_raw": "1 Line",
+    "paylines": 1,
+    "win_evaluation": "lines",
+    "min_bet": 0.1,
+    "max_bet": 0.1,
+    "max_exposure": 150.0,
+    "volatility": "Medium-Low",
     "themes": [
       "Money"
-    ],
-    "features": [
-      "Respin",
-      "Wheel"
-    ]
-  },
-  "Hard Rockin' Reels": {
-    "themes": [
-      "7s"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Liberty Diamond": {
+    "ags_name": "Liberty Diamond",
+    "hit_frequency": 30.27,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 720.0,
+    "max_exposure": 402400.8,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot",
-      "Wild Reels"
+      "Gems & Crystals",
+      "7's"
     ]
   },
   "Triple Treasure": {
+    "ags_name": "Triple Treasure",
+    "hit_frequency": 30.74,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 720.0,
+    "max_exposure": 403600.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "AGS Blackjack Double Deck": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "Shamrock Fortunes": {
-    "themes": [
-      "Gold",
-      "Irish",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Pontoon 21": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "BetRivers Mega": {
-    "themes": [
-      "7s"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "2x 3x Horseshoe": {
-    "themes": [
-      "7s",
-      "Gold"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
+      "Gems & Crystals",
+      "7's"
     ]
   },
   "Diamond Reels": {
+    "ags_name": "Diamond Reels",
+    "hit_frequency": 31.59,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 225.0,
+    "max_exposure": 452000.25,
+    "volatility": "Medium",
     "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Caesars Cash": {
-    "themes": [
-      "Money"
-    ],
-    "features": [
-      "Respin",
-      "Wheel"
-    ]
-  },
-  "FanDuel Vegas": {
-    "themes": [
-      "7s",
-      "Casino",
-      "Las Vegas"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
+      "Gems & Crystals",
+      "7's"
     ]
   },
   "Flaming Reels": {
+    "ags_name": "Flaming Reels",
+    "hit_frequency": 31.59,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 225.0,
+    "max_exposure": 452000.25,
+    "volatility": "Medium",
     "themes": [
-      "7s",
-      "Fire"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
+      "Fire",
+      "7's"
     ]
   },
   "Diamond Rose": {
+    "ags_name": "Diamond Rose",
+    "hit_frequency": 30.2,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 360.0,
+    "max_exposure": 422800.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
   "Golden Money": {
+    "ags_name": "Golden Money",
+    "hit_frequency": 31.93,
+    "grid_config": "1x3",
+    "rows": 1,
+    "reels": 3,
+    "paylines_raw": "1 Line",
+    "paylines": 1,
+    "win_evaluation": "lines",
+    "min_bet": 0.1,
+    "max_bet": 0.1,
+    "max_exposure": 150.0,
+    "volatility": "Medium-Low",
     "themes": [
       "Asian",
       "Money"
-    ],
-    "features": [
-      "Respin",
-      "Wheel"
     ]
   },
-  "Desperado's Delight": {
+  "Diamond Rush Ultratap": {
+    "ags_name": "Diamond Rush UltraTap",
+    "hit_frequency": 18.68,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 479900.0,
+    "volatility": "Medium",
     "themes": [
-      "Western"
-    ],
-    "features": [
-      "Multiplier",
-      "Pick Bonus"
-    ]
-  },
-  "Diamond Rush UltraTap": {
-    "themes": [
-      "Gems & Crystals",
+      "Western",
       "Gold",
-      "Western"
+      "Gems & Crystals"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
+    "matched_master_name": "Diamond Rush Ultratap"
   },
   "Dragon Diamond": {
+    "ags_name": "Dragon Diamond",
+    "hit_frequency": 29.17,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 126.0,
+    "max_exposure": 48440.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "Gems & Crystals",
-      "Western"
-    ],
-    "features": [
-      "Multiplier"
+      "Western",
+      "Gems & Crystals"
     ]
   },
   "Crystal Treasure": {
+    "ags_name": "Crystal Treasure",
+    "hit_frequency": 29.17,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 126.0,
+    "max_exposure": 48440.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
+      "7's",
       "Fantasy",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier"
+      "Crystals"
     ]
   },
-  "Cash Can UltraTap": {
+  "Cash Can Ultratap": {
+    "ags_name": "Cash Can UltraTap",
+    "hit_frequency": 18.49,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 80.0,
+    "max_exposure": 427600.0,
+    "volatility": "Medium-Low",
     "themes": [
       "Arcade"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
+    "matched_master_name": "Cash Can Ultratap"
   },
-  "Balloon Strike UltraTap": {
+  "Balloon Strike Ultratap": {
+    "ags_name": "Balloon Strike UltraTap",
+    "hit_frequency": 18.49,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 80.0,
+    "max_exposure": 427600.0,
+    "volatility": "Medium-Low",
     "themes": [
       "Arcade"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
+    "matched_master_name": "Balloon Strike Ultratap"
   },
   "Triple Jelly": {
+    "ags_name": "Triple Jelly",
+    "hit_frequency": 30.14,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.1,
+    "max_bet": 400.0,
+    "max_exposure": 408400.0,
+    "volatility": "Medium-Low",
     "themes": [
-      "7s",
-      "Arcade"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
+      "Arcade",
+      "7's"
     ]
   },
-  "Slingshot Blast UltraTap": {
+  "Slingshot Blast Ultratap": {
+    "ags_name": "Slingshot Blast UltraTap",
+    "hit_frequency": 18.5,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 150.0,
+    "max_exposure": 378750.0,
+    "volatility": "Medium",
     "themes": [
       "Western"
     ],
-    "features": [
-      "Multiplier",
-      "Pick Bonus"
-    ]
-  },
-  "Caesars Blackjack Multi Deck": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "BetMGM Triple Royale": {
-    "themes": [
-      "7s",
-      "Casino"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "Slingshot Blast Ultratap"
   },
   "Blazin Bank Run": {
+    "ags_name": "Blazin Bank Run",
+    "hit_frequency": 31.59,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "243 Ways",
+    "paylines": 243,
+    "win_evaluation": "ways",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 432000.0,
+    "volatility": "Medium-High",
     "themes": [
       "7s",
       "Fire",
       "Gems & Crystals",
       "Lightning",
       "Money"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
     ]
   },
-  "10X Cash": {
+  "10x Cash": {
+    "ags_name": "10X Cash",
+    "hit_frequency": 32.54,
+    "grid_config": "1x4",
+    "rows": 1,
+    "reels": 4,
+    "paylines_raw": "1 Line",
+    "paylines": 1,
+    "win_evaluation": "lines",
+    "min_bet": 0.1,
+    "max_bet": 100.0,
+    "max_exposure": 322160.0,
+    "volatility": "Medium",
     "themes": [
       "Money"
     ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
+    "matched_master_name": "10x Cash"
   },
-  "Fish Fest UltraTap": {
+  "Fish Fest Ultratap": {
+    "ags_name": "Fish Fest UltraTap",
+    "hit_frequency": 18.5,
+    "grid_config": "N/A",
+    "paylines_raw": "N/A",
+    "min_bet": 0.1,
+    "max_bet": 150.0,
+    "max_exposure": 378750.0,
+    "volatility": "Medium",
     "themes": [
       "Animals"
     ],
-    "features": [
-      "Multiplier",
-      "Pick Bonus"
-    ]
+    "matched_master_name": "Fish Fest Ultratap"
   },
-  "Zodiac Spins": {
-    "themes": [
-      "7s",
-      "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
-  },
-  "Rakin' Bacon Jackpots Bonus Wheel": {
+  "Rakin Bacon Jackpots Bonus Wheel": {
+    "ags_name": "Rakin' Bacon Jackpots Bonus Wheel",
+    "hit_frequency": 31.72,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 225.0,
+    "max_exposure": 446500.0,
+    "volatility": "Medium",
     "themes": [
       "7s",
       "Animals",
       "Gold",
       "Money"
     ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot",
-      "Wheel"
-    ]
-  },
-  "Caesars Treasure Trio": {
-    "themes": [
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "Rakin Bacon Jackpots Bonus Wheel"
   },
   "Diamond Nudge": {
+    "ags_name": "Diamond Nudge",
+    "hit_frequency": 31.46,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 90.0,
+    "max_exposure": 350939.7,
+    "volatility": "Medium-High",
     "themes": [
       "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Nudges",
-      "Static Jackpot"
+      "Diamond"
     ]
   },
   "Capital Reels": {
+    "ags_name": "Capital Reels",
+    "hit_frequency": 31.59,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 225.0,
+    "max_exposure": 452000.25,
+    "volatility": "Medium",
     "themes": [
       "7s",
       "Lightning",
       "Money"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
     ]
   },
-  "BetMGM Fortune Vault": {
-    "themes": [
-      "7s",
-      "Gems & Crystals",
-      "Gold",
-      "Lightning",
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Hard Rock Cash Lock": {
-    "themes": [
-      "7s",
-      "Gems & Crystals",
-      "Lightning",
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "BetRivers Gold": {
-    "themes": [
-      "7s",
-      "Gems & Crystals",
-      "Lightning",
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Caesars Money Vault": {
-    "themes": [
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Rakin' Bacon Jackpots Bonus Board": {
+  "Rakin Bacon Jackpots Bonus Board": {
+    "ags_name": "Rakin' Bacon Jackpots Bonus Board",
+    "hit_frequency": 31.35,
+    "grid_config": "3x3",
+    "rows": 3,
+    "reels": 3,
+    "paylines_raw": "9 Lines",
+    "paylines": 9,
+    "win_evaluation": "lines",
+    "min_bet": 0.05,
+    "max_bet": 225.0,
+    "max_exposure": 453249.0,
+    "volatility": "Medium",
     "themes": [
       "7s",
       "Animals",
       "Gold",
       "Money"
     ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
+    "matched_master_name": "Rakin Bacon Jackpots Bonus Board"
   },
-  "Mega Diamond Wild Stacks": {
-    "themes": [
-      "7s",
-      "Fire",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Reign of Anubis": {
-    "themes": [
-      "Animals",
-      "Egyptian",
-      "Gold",
-      "Mythical"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "FanDuel Cash Haul": {
-    "themes": [
-      "7s",
-      "Lightning",
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Gold Nudge": {
-    "themes": [
-      "7s",
-      "Gold"
-    ],
-    "features": [
-      "Multiplier",
-      "Nudges",
-      "Static Jackpot"
-    ]
-  },
-  "Kingdom of Horus": {
-    "themes": [
-      "Animals",
-      "Egyptian",
-      "Gold",
-      "Mythical"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Gold Inferno Wild Stacks": {
-    "themes": [
-      "7s",
-      "Fire",
-      "Gold"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Clem's Gems": {
+  "Clems Gems": {
+    "ags_name": "Clem's Gems",
+    "hit_frequency": 32.02,
+    "grid_config": "3x5",
+    "rows": 3,
+    "reels": 5,
+    "paylines_raw": "40 Lines",
+    "paylines": 40,
+    "win_evaluation": "lines",
+    "min_bet": 0.8,
+    "max_bet": 80.0,
+    "max_exposure": 337440.0,
+    "volatility": "High",
     "themes": [
       "Gems & Crystals",
-      "Treasure",
-      "Western"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Grand Diamond": {
-    "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Treasure Tower UltraTap": {
-    "themes": [
-      "Arcade"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Raoul's Jewels": {
-    "themes": [
-      "Gems & Crystals",
-      "Mythical",
+      "Western",
       "Treasure"
     ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Crystal Diamond": {
-    "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Straight Cash Triple Double Spin": {
-    "themes": [
-      "Gold",
-      "Money"
-    ],
-    "features": [
-      "Multiplier",
-      "Respin",
-      "Static Jackpot"
-    ]
-  },
-  "Straight Fire Triple Double Spin": {
-    "themes": [
-      "Fire",
-      "Money"
-    ],
-    "features": [
-      "Multiplier",
-      "Respin",
-      "Static Jackpot"
-    ]
-  },
-  "Scorchin' Peppers": {
-    "themes": [
-      "7s",
-      "Fire"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Triple Gem Treasure": {
-    "themes": [
-      "Aztec",
-      "Gems & Crystals",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Cash Cow Bonus Wheel": {
-    "themes": [
-      "7s",
-      "Animals",
-      "Money"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot",
-      "Wheel"
-    ]
-  },
-  "Crystal Reels": {
-    "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Fu Long Bao Bao": {
-    "themes": [
-      "Asian",
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Rakin' Bacon Triple Oink Soda Fountain Fortunes": {
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "8x Oil Country": {
-    "themes": [
-      "7s",
-      "Sports"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Royal Reels": {
-    "themes": [
-      "7s",
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Count Cashula's Castle of Riches": {
-    "themes": [
-      "Seasonal/Holiday"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Wild Money": {
-    "themes": [
-      "Money"
-    ],
-    "features": [
-      "Respin"
-    ]
-  },
-  "Cash Cow Bounty Board": {
-    "themes": [
-      "7s",
-      "Animals",
-      "Money",
-      "Western"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "C of Wins 8x": {
-    "themes": [
-      "7s",
-      "Sports"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Cash Jolt Grand Palace": {
-    "themes": [
-      "Asian",
-      "Lightning"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Rakin' Bacon Triple Oink San Shen Zhu": {
-    "themes": [
-      "Animals",
-      "Asian"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Fu Feng Bao Bao": {
-    "themes": [
-      "Asian",
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Rainforest Riches": {
-    "themes": [
-      "Animals",
-      "Aztec",
-      "Gems & Crystals",
-      "Tropical"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Liberty Nudge": {
-    "themes": [
-      "7s",
-      "Seasonal/Holiday"
-    ],
-    "features": [
-      "Multiplier",
-      "Nudges",
-      "Static Jackpot"
-    ]
-  },
-  "Money Stacks": {
-    "themes": [
-      "7s",
-      "Money"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Mega Crown": {
-    "themes": [
-      "7s",
-      "Arcade"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
-  },
-  "America's Blackjack": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "Rakin' Bacon Fu Zhu Bao Bao": {
-    "themes": [
-      "Animals",
-      "Asian",
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Cash Jolt Safari Gold": {
-    "themes": [
-      "Animals",
-      "Gold",
-      "Lightning"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Bao Bao Express Jade": {
-    "themes": [
-      "Animals",
-      "Asian"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Cash Cow": {
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Cash Jolt Ranchero Dinero": {
-    "themes": [
-      "Lightning",
-      "Spanish"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "10x Cash Super Bonus": {
-    "themes": [],
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ]
-  },
-  "Piggy Wins": {
-    "themes": [
-      "Asian",
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Shamrock Fortunes Deluxe": {
-    "themes": [],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot",
-      "Wheel"
-    ]
-  },
-  "Cash Jolt Lucky Guardian": {
-    "themes": [
-      "Animals",
-      "Asian",
-      "Lightning"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Bao Bao Express Pearls": {
-    "themes": [],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Grand Ox Wins": {
-    "themes": [
-      "Asian",
-      "Gold",
-      "Treasure"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Mega Crown Candy Cane": {
-    "themes": [
-      "7s",
-      "Seasonal/Holiday"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
-  },
-  "Boo Bucks Blackjack": {
-    "themes": [
-      "Table"
-    ],
-    "features": [
-      "Sidebets"
-    ]
-  },
-  "All Aboard Dynamite Dash": {
-    "themes": [
-      "Western"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "provider": "Konami",
-    "specs": {
-      "lines": 50,
-      "reels": "5x3"
-    },
-    "source": "user_manual_verification"
-  },
-  "Le Bandit": {
-    "themes": [
-      "Animals",
-      "Irish"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Multiplier",
-      "Persistence"
-    ],
-    "provider": "Hacksaw Gaming",
-    "specs": {
-      "reels": "6x5",
-      "wintype": "Cluster Pays",
-      "max_win": "10000x"
-    },
-    "source": "hacksawgaming.com"
-  },
-  "The Crypt": {
-    "themes": [
-      "Fantasy",
-      "Mythical"
-    ],
-    "features": [
-      "Free Spins",
-      "Nudges",
-      "Expanding Reels",
-      "Wild Reels"
-    ],
-    "provider": "Nolimit City",
-    "specs": {
-      "reels": "6x6",
-      "ways": 4096,
-      "max_ways": 46656,
-      "max_win": "27000x"
-    },
-    "source": "nolimitcity.com game HTML"
-  },
-  "Cash Volt": {
-    "themes": [
-      "Lightning"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Static Jackpot"
-    ],
-    "provider": "Red Tiger Gaming",
-    "specs": {
-      "max_win": "2500x"
-    },
-    "source": "redtiger.com game rules"
-  },
-  "Cash Eruption": {
-    "themes": [
-      "Fire"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Respin",
-      "Static Jackpot",
-      "Wild Reels"
-    ],
-    "provider": "IGT",
-    "specs": {
-      "lines": 20,
-      "reels": "5x3"
-    },
-    "source": "draftkings.com demo rules"
-  },
-  "Lion Link Wealth Of The Dragon": {
-    "themes": [
-      "Asian",
-      "Dragons",
-      "Gold"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "provider": "Light & Wonder",
-    "specs": {
-      "lines": 40,
-      "reels": "5x3",
-      "max_win": "10200x"
-    },
-    "source": "igaming.lnw.com"
-  },
-  "Mo Mummy Mighty Pyramid": {
-    "themes": [
-      "Egyptian"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ],
-    "provider": "Aristocrat",
-    "specs": {},
-    "source": "aristocratgaming.com"
-  },
-  "Wolf It Up Again": {
-    "themes": [
-      "Animals",
-      "Fantasy"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Static Jackpot",
-      "Wheel"
-    ],
-    "provider": "Inspired Gaming",
-    "source": "inseinc.com"
-  },
-  "Cash Machine Jackpots": {
-    "themes": [
-      "Money",
-      "Las Vegas",
-      "Casino"
-    ],
-    "features": [
-      "Respin",
-      "Wheel",
-      "Nudges",
-      "Static Jackpot"
-    ],
-    "provider": "Everi",
-    "specs": {
-      "reels": 3,
-      "lines": 1,
-      "volatility": "2/5"
-    },
-    "source": "everi.com"
-  },
-  "Majestic Fury Megaways Jackpot Royale Express": {
-    "provider": "White Hat Studios",
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Static Jackpot",
-      "Wheel"
-    ]
-  },
-  "Breaking Bad Collect Em And Link": {
-    "provider": "Playtech",
-    "themes": [
-      "Money"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Cash On Reels",
-      "Static Jackpot"
-    ]
-  },
-  "Divine Fortune Megaways": {
-    "provider": "NetEnt",
-    "themes": [
-      "Gold",
-      "Mythical"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Expanding Wilds",
-      "Free Spins",
-      "Megaways",
-      "Multiplier",
-      "Respin",
-      "Static Jackpot"
-    ]
-  },
-  "Diamond Cash Mighty Elephant Win Ways": {
-    "provider": "Greentube",
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Buffalo Of Wealth": {
-    "provider": "Play'n GO",
-    "themes": [
-      "Animals"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier"
-    ]
-  },
-  "Cash Eruption Slingo": {
-    "provider": "Gaming Realms",
-    "themes": [
-      "Fire",
-      "Money"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ]
-  },
-  "Extra Chilli Megaways": {
-    "provider": "Big Time Gaming",
-    "themes": [
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Wheel"
-    ]
-  },
-  "Hypernova Megaways": {
-    "provider": "Reel Play",
-    "themes": [
-      "Fantasy"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Hold and Spin",
-      "Respin",
-      "Static Jackpot"
-    ]
-  },
-  "Gold Blitz Fortunes": {
-    "provider": "Fortune Factory Studios",
-    "themes": [
-      "Casino",
-      "Gold",
-      "Las Vegas",
-      "Money"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Respin",
-      "Static Jackpot",
-      "Wheel",
-      "Hold and Spin"
-    ]
-  },
-  "Diamond Charge Hold And Win": {
-    "provider": "Iron Dog Studio",
-    "themes": [
-      "Gems & Crystals"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Static Jackpot"
-    ]
-  },
-  "Money Link The Great Immortals": {
-    "provider": "Lightning Box",
-    "themes": [
-      "Asian"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ]
-  },
-  "Jimi Hendrix": {
-    "themes": [
-      "Music",
-      "Arcade"
-    ],
-    "features": [
-      "Free Spins",
-      "Pick Bonus",
-      "Respin"
-    ],
-    "provider": "Evolution",
-    "source": "canary_2026-03-19_provider_docs+slotcatalog+gemini_review"
-  },
-  "Thunderstruck Stormchaser": {
-    "themes": [
-      "Mythical",
-      "Norse"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Wheel",
-      "Wild Reels"
-    ],
-    "provider": "Games Global",
-    "source": "canary_2026-03-19_provider_docs+slotcatalog+gemini_review"
-  },
-  "Pop And Win": {
-    "themes": [
-      "Arcade",
-      "Classic"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Pick Bonus",
-      "Static Jackpot"
-    ],
-    "provider": "High 5 Games",
-    "source": "canary_2026-03-19_provider_docs+slotcatalog+gemini_review"
-  },
-  "Piggy Blitz": {
-    "themes": [
-      "Animals",
-      "Arcade"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "provider": "Play N Go",
-    "source": "canary_2026-03-19_provider_docs+slotcatalog+gemini_review"
-  },
-  "Diamond Desire Flame": {
-    "themes": [
-      "Classic",
-      "Fire"
-    ],
-    "features": [
-      "Multiplier",
-      "Static Jackpot"
-    ],
-    "provider": "Bragg Gaming Group",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Black Hawk Deluxe": {
-    "themes": [
-      "Fantasy",
-      "Medieval"
-    ],
-    "features": [],
-    "provider": "Wazdan",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "3 Plucky Hens": {
-    "themes": [
-      "Animals",
-      "Farm"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "provider": "1x2 Network",
-    "source": "canary_2026-03-19_slotcatalog+gemini_review"
-  },
-  "J Mania Turkey Chef": {
-    "themes": [
-      "Food",
-      "Arcade"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Respin",
-      "Static Jackpot"
-    ],
-    "provider": "Ruby Play",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Guan Yu": {
-    "themes": [
-      "Asian",
-      "Chinese"
-    ],
-    "features": [
-      "Free Spins",
-      "Hold and Spin",
-      "Respin",
-      "Static Jackpot"
-    ],
-    "provider": "Ainsworth",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "5x A Winner": {
-    "themes": [
-      "Classic",
-      "Casino"
-    ],
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot"
-    ],
-    "provider": "Design Works Gaming",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Ancient Tumble": {
-    "themes": [
-      "Adventure",
-      "Ancient"
-    ],
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins"
-    ],
-    "provider": "Relax Gaming",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Halloween Wins 3": {
-    "themes": [
-      "Horror",
-      "Halloween"
-    ],
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Respin",
-      "Static Jackpot",
-      "Wheel"
-    ],
-    "provider": "Red Rake Gaming",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Skadis Hunt": {
-    "themes": [
-      "Mythical",
-      "Norse"
-    ],
-    "features": [
-      "Free Spins"
-    ],
-    "provider": "IGT",
-    "source": "canary_2026-03-19_web_search+gemini_review"
-  },
-  "Hot Spot 777": {
-    "themes": [
-      "Classic",
-      "Casino"
-    ],
-    "features": [
-      "Hold and Spin",
-      "Multiplier",
-      "Respin",
-      "Static Jackpot"
-    ],
-    "provider": "Everi",
-    "source": "canary_2026-03-19_provider_docs+gemini_review"
-  },
-  "Euphoria Megaways": {
-    "features": [
-      "Buy Bonus",
-      "Cascading Reels",
-      "Free Spins",
-      "Megaways",
-      "Multiplier",
-      "Mystery Symbols"
-    ],
-    "themes": []
-  },
-  "Sahara Riches Megaways Collect Em": {
-    "features": [
-      "Cascading Reels",
-      "Cash On Reels",
-      "Free Spins",
-      "Megaways",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Age Of The Gods Collect Em": {
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Respin",
-      "Static Jackpot",
-      "Wheel"
-    ],
-    "themes": []
-  },
-  "Immortal Romance 2": {
-    "features": [
-      "Buy Bonus",
-      "Cascading Reels",
-      "Free Spins",
-      "Multiplier",
-      "Static Jackpot",
-      "Wild Reels"
-    ],
-    "themes": []
-  },
-  "Squealin Riches": {
-    "features": [
-      "Buy Bonus",
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Multiplier",
-      "Persistence",
-      "Static Jackpot",
-      "Wheel"
-    ],
-    "themes": []
-  },
-  "Cash Machine": {
-    "features": [
-      "Respin"
-    ],
-    "themes": []
-  },
-  "Anubis Wild Megaways": {
-    "features": [
-      "Cascading Reels",
-      "Free Spins",
-      "Gamble Feature",
-      "Megaways",
-      "Mystery Symbols"
-    ],
-    "themes": []
-  },
-  "Centurion Big Money": {
-    "features": [
-      "Buy Bonus",
-      "Cash On Reels",
-      "Gamble Feature",
-      "Multiplier",
-      "Pick Bonus",
-      "Trail Bonus"
-    ],
-    "themes": []
-  },
-  "Fu Shen Zhu Fu": {
-    "features": [
-      "Buy Bonus",
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Multiplier",
-      "Nudges",
-      "Pick Bonus",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Mo Mummy Valley Of Riches": {
-    "features": [
-      "Cash On Reels",
-      "Expanding Reels",
-      "Free Spins",
-      "Pick Bonus",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Bao Zhu Zhao Fu Blue Festival": {
-    "features": [
-      "Cash On Reels",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "My Slot Studio": {
-    "features": [
-      "Buy Bonus",
-      "Cascading Reels",
-      "Cash On Reels",
-      "Hold and Spin",
-      "Multiplier",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "88 Drums": {
-    "features": [
-      "Expanding Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Whitney Houston": {
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Progressive Jackpot",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Cash Eruption Hoggin Cash": {
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Diamond Link Mighty Stampede": {
-    "features": [
-      "Free Spins",
-      "Gamble Feature",
-      "Hold and Spin",
-      "Multiplier",
-      "Persistence",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Adorned Peacock": {
-    "features": [
-      "Free Spins",
-      "Multiplier"
-    ],
-    "themes": []
-  },
-  "Bull Blitz Fortunes Of The Orient": {
-    "features": [
-      "Cash On Reels",
-      "Free Spins",
-      "Hold and Spin",
-      "Static Jackpot"
-    ],
-    "themes": []
-  },
-  "Slingo Starburst": {
-    "features": [
-      "Free Spins",
-      "Respin",
-      "Wild Reels"
-    ],
-    "themes": []
-  },
-  "Slingo Journey To Asgard": {
-    "features": [
-      "Free Spins",
-      "Multiplier",
-      "Pick Bonus",
-      "Trail Bonus",
-      "Wheel"
-    ],
-    "themes": []
+    "matched_master_name": "Clems Gems"
   }
 }
