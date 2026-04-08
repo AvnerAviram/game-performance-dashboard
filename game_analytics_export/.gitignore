@@ -112,11 +112,5 @@ data/*.xlsx
 # Husky (replaced by .hooks/)
 .husky/
 
-# Scraped game rules (too large for git, regenerable)
-data/rules_html/
-data/rules_text/
-data/rules_index.json
-data/rules_match_rejections.json
-
 # Python test scripts (not part of app)
 data/test_extract_game_profile.py

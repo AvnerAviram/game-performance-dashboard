@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" class="no-js no-svg">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+			<script>
+			window.FontAwesomeConfig = {
+				observeMutations: false,
+			};
+		</script>
+	
+			<!-- OneTrust Cookies Consent Notice start for greentube.com -->
+		<script type="text/javascript"
+		        src="https://cdn.cookielaw.org/consent/06fd460c-35bc-4bfd-829e-dbb76f067fdf/OtAutoBlock.js"></script>
+		<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" type="text/javascript" charset="UTF-8"
+		        data-domain-script="06fd460c-35bc-4bfd-829e-dbb76f067fdf"></script>
+		<script type="text/javascript">
+			function OptanonWrapper() {
+			}
+		</script>
+		<!-- OneTrust Cookies Consent Notice end for greentube.com -->
+	
+	<meta name="google-site-verification" content="yw3aYlxnBv2Rl-jV6YmAGaN_NYYPn0fmb_s0LF5CSEw">
+
+			<script>
+			var uri = window.location.toString();
+			if ( uri.indexOf( "?" ) > 0 ) {
+				var clean_uri = removeURLParameter( uri, 'email' );
+				clean_uri = removeURLParameter( clean_uri, 'validation_code' );
+				window.history.replaceState( {}, document.title, clean_uri );
+			}
+
+			function removeURLParameter( url, parameter ) {
+				var urlparts = url.split( '?' );
+				if ( urlparts.length >= 2 ) {
+
+					var prefix = encodeURIComponent( parameter ) + '=';
+					var pars = urlparts[ 1 ].split( /[&;]/g );
+
+					//reverse iteration as may be destructive
+					for ( var i = pars.length; i-- > 0; ) {
+						//idiom for string.startsWith
+						if ( pars[ i ].lastIndexOf( prefix, 0 ) !== -1 ) {
+							pars.splice( i, 1 );
+						}
+					}
+
+					url = urlparts[ 0 ] + (pars.length > 0 ? '?' + pars.join( '&' ) : "");
+					return url;
+				} else {
+					return url;
+				}
+			}
+		</script>
+
+		<!-- Google Tag Manager -->
+		<script>(function( w, d, s, l, i ) {
+				w[ l ] = w[ l ] || [];
+				w[ l ].push( {
+					'gtm.start': new Date().getTime(), event: 'gtm.js'
+				} );
+				var f = d.getElementsByTagName( s )[ 0 ],
+
+					j = d.createElement( s ), dl = l != 'dataLayer' ? '&l=' + l : '';
+				j.async = true;
+				j.src =
+
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+				f.parentNode.insertBefore( j, f );
+
+			})( window, document, 'script', 'dataLayer', 'GTM-TPPS7XG' );</script>
+		<!-- End Google Tag Manager -->
+	
+	<script>
+	var isDebug = '';
+	var wpUrl = 'https://www.greentube.com';
+	var currentUrl = 'https://www.greentube.com/';
+	var templateUrl = 'https://b2b-assets.greentube.com/wp-content/themes/greentube';
+	var wpAjaxUrl = 'https://www.greentube.com/wp-admin/admin-ajax.php';
+	var clientSpaceUrl = 'https://www.greentube.com/login/?redirect_to=https://www.greentube.com/client-space/';
+	var rollingRoadmapUrl = 'https://www.greentube.com/login/?redirect_to=https://www.greentube.com/rolling-roadmap/';
+	var salesSpaceUrl = 'https://www.greentube.com/wp-login.php?redirect_to=https%3A%2F%2Fwww.greentube.com%2Fsales-space%2F';
+	var errorUrl = 'https://www.greentube.com/oops/';
+
+	var isFrontPage = '1';
+
+	var isSpecialGt20 = '';
+	var isSpecialHog = '';
+
+	var isB2bPage = false;
+	var isSalesPage = false;
+
+	var R = {
+		settings: {
+			animationSpeed: 200,
+			scrollSpeed: 500,
+			scrollOffset: 50,
+			desktopBreakPoint: 992,
+		},
+		id: {
+			success: 42,
+			logged_in: 42,
+			not_logged_in: -1,
+			access_denied: -2,
+			invalid_name: -1,
+			valid_email: 42,
+			invalid_email: -2,
+			invalid_company: -3,
+			valid_login: 42,
+			invalid_login: -1,
+			invalid_access_level: -2,
+			valid_logout: 42,
+			invalid_captcha: -4,
+			request_success: 42,
+			wrong_email: -1,
+			server_communication: 1,
+			invalid_password: -1,
+			empty_password: -2,
+			signup_success: 42,
+			valid_form: 42,
+			invalid_form: -1,
+			slot: 10,
+			rootCategory: 0,
+			typeCategory: 1,
+			companyCategory: 2,
+			volatilityCategory: 3,
+			technologyCategory: 4,
+		},
+		game: {
+			tiltLarge: {
+				glare: true,
+				maxGlare: .4,
+				scale: 1.1,
+				perspective: 99999999,
+			},
+			tiltSmall: {
+				glare: true,
+				maxGlare: .4,
+				scale: 1.3,
+				perspective: 99999999,
+			},
+		},
+		demo: {
+			technology: {
+				html5: 'html5',
+				flash: 'Flash',
+			},
+			types: {
+				desktop: 'desktop',
+				mobile: 'mobile-device',
+			},
+		},
+		string: {
+			all: 'All',
+			showAll: 'All Games',
+			showAllTechnologies: 'All Technologies',
+			results: 'Results',
+			allGames: '{{number_of_games}} Games',
+			category: {
+				type: 'Type',
+				subtype: 'Subtype',
+				themes: 'Themes',
+				styles: 'Styles',
+				gameConcepts: 'Game Concepts',
+				waysToWin: 'Ways to Win',
+				company: 'Companies',
+				technology: 'Technologies',
+				platform: 'Channel',
+				reels: 'Reels',
+				volatility: 'Volatility',
+			},
+			sendingRequest: 'Sending request..',
+			serverCommunication: 'Sending user info, please wait..',
+			switchToDesktop: 'Switch to Desktop',
+			switchToMobileDevice: 'Switch to Mobile',
+			notAvailableInDemo: 'This feature is not available in the demo version of the game.',
+			timeout: 'You have been logged out',
+			serverError: 'There has been an error. Please try again.',
+			noResultsFound: 'No results found.',
+			noResultsFoundForGameId: 'No game with ID {{game_id}} found.',
+			invalidGameId: 'Invalid game ID.',
+		},
+		url: {
+			noHTML5: 'https://www.greentube.com/demo-helpers/no-html5.html',
+			error: 'https://www.greentube.com/demo-helpers/error.html',
+		},
+		defaultGameFilters: [],
+		defaultLatestGamesFilters: [1585],
+		defaultUpcomingGamesFilters: [1585],
+		latestReleasesPerPage: 5,
+		gamesPerPage: 20,
+		collapsedGamesPerPage: 5,
+		pressReleasesPerPage: 9,
+		search: {
+			pagination: {
+				visiblePages: 5,
+			},
+			sortBy: {
+				alphabet: 'a',
+				release: 'r',
+			},
+			view: {
+				box: 'box',
+				details: 'details',
+			},
+		},
+		map: {
+			latitude: '48.1869214',
+			longitude: '16.363564300000007',
+			zoom: 14,
+			title: '',
+			marker: {
+				image: 'https://b2b-assets.greentube.com/wp-content/themes/greentube/images/greentube-marker.png',
+			},
+			markerActive: {
+				image: 'https://b2b-assets.greentube.com/wp-content/themes/greentube/images/greentube-marker-active.png',
+			},
+		},
+		cookie: {
+			title: 'Greentube uses cookies',
+			text: 'By using this website, you agree to our use of <a href="https://www.greentube.com/privacy-policy#cookies">cookies</a> in accordance with our <a href="https://www.greentube.com/privacy-policy/">Privacy Policy</a>.',
+			dismissButtonLabel: 'Ok',
+			showLink: false,
+		},
+		clientSpace: {
+			betLevelsLink: '<a href="#bet-levels" class="scroll-to">See bet levels</a>',
+		},
+		salesSpace: {
+			markets: ['georgia','romania','belgium','italy','latvia','nordics','spain','uk'],
+		},
+		technologies: [{"id":1585,"name":"NovoSDK","backgroundColor":"#042a57"},{"id":1586,"name":"Mynt","backgroundColor":"#00b3af"},{"id":1587,"name":"Other","backgroundColor":null}]  ,
+		dataLayer: {
+			searchInputDelay: 1000,
+			page: (isB2bPage || isSalesPage) ? 'b2b' : 'main',
+		},
+		complianceCountryCodes: ['GB'],
+		chart: {
+			color: {
+				palette: {
+					1: {
+						green: ['#56de21'],
+						yellow: ['#c48b1a'],
+						blue: ['#007398'],
+						multicolor: ['#56de21'],
+					},
+					2: {
+						green: ['#cddb28', '#39b54a'],
+						yellow: ['#cddb28', '#39b54a'],
+						blue: ['#cddb28', '#39b54a'],
+						multicolor: ['#cddb28', '#39b54a'],
+					},
+					3: {
+						green: ['#cddb28', '#8fc73e', '#39b54a'],
+						yellow: ['#cddb28', '#8fc73e', '#39b54a'],
+						blue: ['#cddb28', '#8fc73e', '#39b54a'],
+						multicolor: ['#cddb28', '#8fc73e', '#39b54a'],
+					},
+					4: {
+						green: ['#8fc73e', '#39b54a', '#cddb28', '#02a319'],
+						yellow: ['#8fc73e', '#39b54a', '#cddb28', '#02a319'],
+						blue: ['#8fc73e', '#39b54a', '#cddb28', '#02a319'],
+						multicolor: ['#8fc73e', '#39b54a', '#cddb28', '#02a319'],
+					},
+				},
+				dark: {
+					font: '#ffffff',
+					gridLines: '#8f8f8f',
+				},
+				light: {
+					font: '#000000',
+					gridLines: '#9a9a9a',
+				},
+			},
+		},
+	};
+</script>
+
+
+
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v27.1 (Yoast SEO v27.1.1) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->
+	<title>Greentube | NOVOMATIC Digital Gaming and Entertainment division</title>
+	<meta name="description" content="Greentube GmbH is the leading full-service provider in the online and mobile gaming sector! we deliver safe and secure casino entertainment to players around the world." />
+	<link rel="canonical" href="https://www.greentube.com/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Greentube" />
+	<meta property="og:description" content="Greentube GmbH is the leading full-service provider in the online and mobile gaming sector! we deliver safe and secure casino entertainment to players around the world." />
+	<meta property="og:url" content="https://www.greentube.com/" />
+	<meta property="og:site_name" content="Greentube" />
+	<meta property="article:modified_time" content="2026-03-30T20:13:09+00:00" />
+	<meta property="og:image" content="https://b2b-assets.greentube.com/wp-content/uploads/untitled-design-2.jpg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content="https://b2b-assets.greentube.com/wp-content/uploads/untitled-design-2.jpg" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.greentube.com/","url":"https://www.greentube.com/","name":"Greentube | NOVOMATIC Digital Gaming and Entertainment division","isPartOf":{"@id":"https://www.greentube.com/#website"},"about":{"@id":"https://www.greentube.com/#organization"},"primaryImageOfPage":{"@id":"https://www.greentube.com/#primaryimage"},"image":{"@id":"https://www.greentube.com/#primaryimage"},"thumbnailUrl":"https://b2b-assets.greentube.com/wp-content/uploads/untitled-design-2.jpg","datePublished":"2018-01-08T00:51:33+00:00","dateModified":"2026-03-30T20:13:09+00:00","description":"Greentube GmbH is the leading full-service provider in the online and mobile gaming sector! we deliver safe and secure casino entertainment to players around the world.","breadcrumb":{"@id":"https://www.greentube.com/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.greentube.com/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.greentube.com/#primaryimage","url":"https://b2b-assets.greentube.com/wp-content/uploads/untitled-design-2.jpg","contentUrl":"https://b2b-assets.greentube.com/wp-content/uploads/untitled-design-2.jpg","width":1200,"height":600},{"@type":"BreadcrumbList","@id":"https://www.greentube.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://www.greentube.com/#website","url":"https://www.greentube.com/","name":"Greentube","description":"Greentube, the global interactive business unit of NOVOMATIC, is the leading full-service provider in the online and mobile gaming sector and a pioneer in the development and provision of state-of-the-art gaming solutions.","publisher":{"@id":"https://www.greentube.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.greentube.com/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.greentube.com/#organization","name":"Greentube","url":"https://www.greentube.com/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.greentube.com/#/schema/logo/image/","url":"https://b2b-assets.greentube.com/wp-content/uploads/greentube-logo.svg","contentUrl":"https://b2b-assets.greentube.com/wp-content/uploads/greentube-logo.svg","width":566.9,"height":127.1,"caption":"Greentube"},"image":{"@id":"https://www.greentube.com/#/schema/logo/image/"}}]}</script>
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.google.com' />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=https://b2b-assets.greentube.com/wp-includes/css/classic-themes.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='cpsh-shortcodes-css' href='https://b2b-assets.greentube.com/wp-content/plugins/column-shortcodes//assets/css/shortcodes.css?ver=1.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='greentube-style-css' href='https://b2b-assets.greentube.com/wp-content/themes/greentube/style.css?ver=vstart1700132104443vend' type='text/css' media='all' />
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/bootstrap.bundle.min.js?ver=1775394015" id="bootstrap-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/mustache.min.js" id="mustache-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/jquery.min.js?ver=1775394015" id="jquery-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/jquery.fancybox.min.js" id="fancybox-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/Chart.min.js" id="chartjs-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/tablesort.min.js" id="tablesort-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/libraries/sorts/tablesort.number.min.js" id="tablesort.number-js"></script>
+<link rel='shortlink' href='https://www.greentube.com/' />
+<link rel="icon" href="https://b2b-assets.greentube.com/wp-content/uploads/cropped-greentube-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://b2b-assets.greentube.com/wp-content/uploads/cropped-greentube-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://b2b-assets.greentube.com/wp-content/uploads/cropped-greentube-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://b2b-assets.greentube.com/wp-content/uploads/cropped-greentube-favicon-270x270.png" />
+</head>
+
+<body class="home wp-singular page-template-default page page-id-4 wp-theme-greentube theme-dark post-style-basic-center">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPPS7XG"
+		        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+	<script id="template-key-data-volatility" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Volatility</span></div>
+		<div class="col-6 faux-td text-end">
+			{{&volatility}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-release-date" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Release Date</span></div>
+		<div class="col-6 faux-td text-end">
+			{{releaseDate}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-licenses" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Licenses</span></div>
+		<div class="col-6 faux-td text-end">
+			{{licenses}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-top-prices" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Top Prize</span></div>
+		<div class="col-6 faux-td text-end">
+			{{#topPrices}}
+			{{.}}
+			{{/topPrices}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-jackpot" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Jackpot</span></div>
+		<div class="col-6 faux-td text-end">
+			{{&jackpot}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-hit-rates" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Hit Rate</span></div>
+		<div class="col-6 faux-td text-end">
+			{{&hitRate}}
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-custom-rows" type="text/template">
+	{{#customRows}}
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">{{key}}</span></div>
+		<div class="col-6 faux-td text-end">
+			{{value}}
+		</div>
+	</div>
+	{{/customRows}}
+</script>
+
+<script id="template-key-data-variations" type="text/template">
+	<div class="row faux-tr no-gutters align-items-top">
+		<div class="col-lg-3 faux-td mt-2">
+			<span class="font-alt">Variations</span></div>
+		<div id="variations-content"
+		     class="col-lg-9 faux-td text-lg-right">
+			<div class="table mb-0">
+				<div class="tr">
+					<span class="td screen-reader-text">Variation</span>
+					<span class="td">{{variation_titles.return_1_label}}</span>
+					<span class="td">{{variation_titles.return_2_label}}</span>
+				</div>
+
+				{{#returns}}
+				<div class="tr">
+					<span class="td screen-reader-text">{{&variation}}</span>
+					<span class="td">{{return_1}}</span>
+					<span class="td">{{return_2}}</span>
+				</div>
+				{{/returns}}
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-assets" type="text/template">
+	<div class="faux-tr pt-4 pt-xxxl-0">
+		<div class="h4 text-uppercase pt-5 pt-xl-2">Download assets</div>
+	</div>
+
+	{{#assets}}
+	<div class="faux-tr">
+		<a href="{{url}}" target="_blank"
+		   class="invisible-link download-link circle-link circle-link-small d-flex align-items-center justify-content-between py-2"
+		   onclick="dataLayer.push({'event': 'assetDownload', 'gameName': '{{postTitle}}'});">
+			<div class="download-title circle-title text-uppercase px-3 py-2"><span class="a">{{title}}</span></div>
+			<div class="d-flex align-items-center">
+				<span class="download-info circle-title text-end pe-2">{{fileSize}}</span>
+				<span class="circle-icon"><span class="fas fa-download"></span></span>
+			</div>
+		</a>
+	</div>
+	{{/assets}}
+
+	<div class="pb-4"></div>
+</script>
+
+<script id="template-key-data-availability" type="text/template">
+	<div class="row no-gutters align-items-top">
+		<div class="col-12">
+			<div class="table custom-table custom-table-2 pt-1 key-data-table">
+				<div class="tr thead">
+					<div class="th">License</div>
+					<div class="th">Game&nbsp;ID</div>
+					<div class="th">RTP</div>
+					<div class="th">Jackpot Contri&shy;bution</div>
+					<div class="th">Min. Bet</div>
+					<div class="th">Max. Bet</div>
+					<div class="th">Max. Exposure Multiplier</div>
+					<div class="th text-center">Release</div>
+					<div class="th text-center">Specifications &amp; Documents</div>
+					<div class="th text-center">Certificate</div>
+				</div>
+
+				{{#availability}}
+				<div class="tr tbody simple-pagination-item">
+					<div class="td">
+						<div class="label">License</div>
+						<div class="value text-right">
+							{{license}}
+							{{#licenseNumber}}
+							<div class="pt-1 ps-lg-1">
+								<em class="text-nowrap">License number:
+									{{{licenseNumber}}}</em>
+							</div>
+							{{/licenseNumber}}
+						</div>
+					</div>
+					<div class="td">
+						<div class="label">Game&nbsp;ID</div>
+						<div class="value nowrap">{{gameId}}</div>
+					</div>
+					<div class="td">
+						<div class="label">RTP</div>
+						<div class="value">{{rtp}}</div>
+					</div>
+					<div class="td">
+						<div class="label">Jackpot Contribution</div>
+						<div class="value">{{jackpotContribution}}</div>
+					</div>
+					<div class="td">
+						<div class="label">Min. Bet</div>
+						<div class="value">{{minBet}}</div>
+					</div>
+					<div class="td">
+						<div class="label">Max. Bet</div>
+						<div class="value">{{maxBet}}</div>
+					</div>
+					<div class="td">
+						<div class="label">Max. Exposure Multiplier</div>
+						<div class="value">{{maxExposureMultiplier}}</div>
+					</div>
+					<div class="td release-date-container">
+						<div class="label">Release</div>
+						<div class="value">
+							<div class="d-flex justify-content-center align-items-center">
+								<div class="release-date text-center">
+									{{{releaseDate}}}
+								</div>
+							</div>
+						</div>
+					</div>
+					 <div class="td">
+                                                <div class="label">Specifications &amp; Documents</div>
+                                                <div class="value d-flex justify-content-center">
+                                                        <div class="{{specificationsClass}} license-download-container p-0">
+                                                                <a href="{{specificationsFile}}" target="_blank"
+                                                                   class="circle-link circle-link-reversed circle-link-small row align-items-center mx-2 justify-content-end"
+                                                                   onclick="dataLayer.push({'event': 'specificationsDownload', 'gameName':  '{{postTitle}}'});"><span
+                                                                                class="screen-reader-text">{{specificationsFile}}</span><span
+                                                                                class="circle-icon"><span
+                                                                                        class="fas fa-download"></span></span></a>
+                                                        </div>
+                                                </div>
+                                        </div>
+					<div class="td" style="padding-right: 10px !important;">
+						<div class="label">Certificate</div>
+						<div class="value d-flex justify-content-center">
+							<div class="{{licenseClass}} license-download-container p-0">
+								<a href="{{licenseFile}}" target="_blank"
+								   class="circle-link circle-link-reversed circle-link-small row align-items-center mx-2 justify-content-end"
+								   onclick="dataLayer.push({'event': 'licenseDownload', 'gameName':  '{{postTitle}}'});"><span
+										class="screen-reader-text">{{licenseFile}}</span><span
+										class="circle-icon"><span
+											class="fas fa-download"></span></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/availability}}
+			</div>
+		</div>
+	</div>
+
+	<div class="simple-pagination-availability w-100 pt-3 font-small text-end">
+		<div class="simple-pagination-info-container">
+			<div class="simple-pagination-index d-inline-block">
+				<span class="d-inline-block pe-2">Show:</span>
+				<div class="d-inline-block me-5 fancy-pagination-select">
+					<span class="fancy-pagination-select-selection">5</span>
+
+					<select class="simple-pagination-select">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+						<option value="100">100</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="simple-pagination-info d-inline-block">
+				<a href="#" class="simple-pagination-link simple-pagination-previous basic-link"><span
+						class="far fa-angle-left"></span> <span
+						class="screen-reader-text">Previous</span></a>
+
+				<div class="d-inline-block px-3">
+					<span class="simple-pagination-label-from"></span>
+					-
+					<span class="simple-pagination-label-to"></span>
+					of
+					<span class="simple-pagination-label-all d-inline-block"></span>
+				</div>
+
+				<a href="#" class="simple-pagination-link simple-pagination-next basic-link"><span
+						class="far fa-angle-right"></span> <span
+						class="screen-reader-text">Next</span></a>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="template-key-data-error" type="text/template">
+	<span>An error occurred. Please try again later.</span>
+</script>
+
+<script id="template-key-data-bet-levels" type="text/template">
+	{{&betLevels}}
+</script>
+
+<script id="template-key-data-category" type="text/template">
+	<div class="row faux-tr no-gutters align-items-center">
+		<div class="col-6 faux-td">
+			<span class="font-alt">Category</span></div>
+		<div class="col-6 faux-td text-end">
+			{{category}}
+		</div>
+	</div>
+</script>
+
+
+	<script id="template-game-card" type="text/template">
+		<div
+		class="game-button-container " >
+		<a href="{{link}}" id="game-game-{{id}}"
+		   class="game-button invisible-link h-100  no-character {{{cardClass}}}">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											{{#button}}
+						<div class="game-button-image" style="background-image: url('{{button}}');">
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 2px;">
+								{{#technologies}}
+								<span style="line-height: 14px; text-align: left;">
+									<span class="d-inline-block text-end"
+									      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: {{backgroundColor}};">
+										{{name}}
+									</span>
+								</span>
+								{{/technologies}}
+
+								{{#features}}
+								<span style="line-height: 14px; text-align: left;">
+									<span class="d-inline-block text-end"
+									      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background: linear-gradient(180deg, #ffd84d, #e1a615); color: black !important;">
+										{{.}}
+									</span>
+								</span>
+								{{/features}}
+							</div>
+						</div>
+						{{/button}}
+					
+											{{#atmosphere}}
+						<div class="compliance-game-button-content" style="background-image: url('{{atmosphere}}')">
+							<div class="h5 entry-title">{{{title}}}</div>
+						</div>
+						{{/atmosphere}}
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											{{#atmosphere}}
+						<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('{{atmosphere}}')"></div>
+						{{/atmosphere}}
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">{{{title}}}</div>
+
+													{{#screenshot}}
+							<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('{{screenshot}}')"></div>
+							{{/screenshot}}
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+	</script>
+	<script id="template-press-release-card" type="text/template">
+	
+	<a href="{{link}}"	class="{{card_class}} invisible-link post-preview-card-2 mt-4 row pb-10 has-content card-term-{{term_id}}">
+	<div class="col-12">
+		<div class="ps-lg-6 post-preview-card-2-inner">
+			<div class="row align-items-stretch gx-0">
+				<div
+					class="col-lg-4 col-xl-3">
+					<div class="featured-image-container p-4 p-lg-0 h-100 z-1">
+						<div class="featured-image active-in-viewport h-100">
+															<span
+									class="tags term term-{{term_id}} tag-style-white">{{term_name}}</span>
+							
+							<div class="background-cover the-featured-image d-lg-block h-100"
+							     style="background-image: url('{{image}}');"></div>
+
+															<div class="background-cover compliance-featured-image h-100"
+								     style="background-image: url('{{compliance_image}}');"></div>
+													</div>
+					</div>
+				</div>
+
+				<div
+					class="col-lg-8 col-xl-9 style-gs-2">
+					<div class="px-4 py-lg-4 h-100">
+														<div
+									class="date pb-2 pb-lg-1 small-text move-up-in-viewport">{{date}}</div>
+								<h2 class="h4 line-clamp-lg-2 pb-4 pb-lg-0 move-up-in-viewport delay-150">{{{title}}}</h2>
+
+																	<div
+										class="move-up-in-viewport delay-250 pb-lg-2 ">
+										<div class="line-clamp-3 min-line-3">{{{content}}}</div>
+									</div>
+																					</div>
+
+											<div
+							class="button button-small button-tertiary-filled me-4 fade-in-in-viewport">Read more</div>
+									</div>
+			</div>
+		</div>
+	</div>
+	</a>
+	</script>
+	<script id="template-download-card" type="text/template">
+		<div id="card-{{id}}"
+	     class="download-card d-flex has-content align-items-between move-up-in-viewport card-term- {{card_class}}">
+		<div class="d-flex flex-column post-card-content p-3 p-lg-4 style-gs-3">
+			<div class="content-container flex-grow-1">
+									<div class="stacked-tags-container">
+						{{#main_tags}}
+						<span
+							class="main-tag term term-1 mr-1 mb-2">{{.}}</span>
+						{{/main_tags}}
+						{{#sub_tags}}
+						<span
+							class="sub-tag term term-1 mr-1 mb-2">{{.}}</span>
+						{{/sub_tags}}
+					</div>
+
+					<span class="d-block date pt-6 pb-4">{{date}}</span>
+
+					<h3 class="h4 text-uppercase entry-title ">{{{title}}}</h3>
+
+									
+									<div class="pt-2 pb-4">
+						<div class="entry-content">
+							{{{content}}}						</div>
+					</div>
+							</div>
+
+							<a href="{{permalink}}"
+				   target="_blank"
+				   class="w-100 m-0 button button-small button-tertiary-filled button-with-icon">
+					<span class="circle-title">{{link_label}}</span>
+					<span class="button-icon"><span
+							class="fab {{target_icon}}"></span></span>
+				</a>
+					</div>
+	</div>
+	</script>
+	<script id="charts-container-template" type="text/template">
+	<div class="row justify-content-center">
+		<div class="charts-container col-12 col-xl-11">
+			<div>
+				<div class="chart-description pb-4"></div>
+				<div>
+					<div class="d-flex flex-row flex-nowrap align-items-center">
+						<canvas class="chart"></canvas>
+					</div>
+					<div class="chart-tooltip"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="chart-legend d-lg-flex justify-content-around pt-1"></div>
+</script>
+
+<script id="charts-nav-tabs-template" type="text/template">
+	<div class="row justify-content-center">
+		<div class="chart-nav-container col-12 col-xl-11">
+			<ul class="chart-nav nav nav-tabs mt-4 mb-2 d-flex justify-content-center">
+				{{#items}}
+				<li class="nav-item text-center mb-2">
+					<a class="nav-link chart-nav-link {{class}}" href="#" data-bs-toggle="tab" role="tab"
+					   data-target-index="{{index}}">{{label}}</a>
+				</li>
+				{{/items}}
+			</ul>
+		</div>
+	</div>
+</script>
+
+<script id="charts-legend-template" type="text/template">
+	<div>
+		<div class="chart-legend-title">
+			<span class="chart-legend-circle me-2" style="background-color: {{color}}"></span> {{label}}
+		</div>
+		<p>{{description}}</p>
+	</div>
+</script>
+
+<script id="charts-tooltip-template" type="text/template">
+	<div class="m-3 mt-2 rounded text-dar text-start">
+		{{#items}}
+		<div class="tooltip-h1">{{value}}<span class="tooltip-h2">{{axisLabel}}</span></div>
+		<div class="tooltip-h3">{{label}}</div>
+		<div class="small-text d-flex flex-row flex-nowrap align-items-center w-100 mt-1">
+			<span class="chart-legend-circle me-1" style="background-color: {{color}}"></span>
+			<span class="chart-tooltip-legend">{{legend}}</span>
+		</div>
+		{{^last}}
+		<hr>
+		{{/last}}
+		{{/items}}
+	</div>
+</script>
+	<script id="template-rolling-roadmap-modal" type="text/template">
+	<div class="modal fade" id="consent-text" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content style-white">
+				<div class="modal-header">
+					<h2 class="h4 modal-title mb-0">
+						<span class="h5 d-block mb-0"
+						      style="opacity: .3;">Certificates</span>
+						{{gameTitle}}
+					</h2>
+				</div>
+				<div class="modal-body">
+					<div class="px-3 py-4">
+						{{#downloadSingleCertificateLink}}
+						<div class="pb-4">
+							<a href="{{downloadSingleCertificateLink}}"
+							   class="invisible-link circle-link row align-items-center justify-content-start"
+							   target="_blank"
+							   onclick="dataLayer.push({'event': 'certificatesDownload', 'gameTitle': '{{gameTitle}}'});">
+<span class="circle-icon"
+								      style="background-image: url('https://b2b-assets.greentube.com/wp-content/themes/greentube/src/img/icon-download.svg'); background-position: center; background-repeat: no-repeat; background-size: 15px;"><span
+										class="fas fa-download"></span></span>
+								<span class="font-alt circle-title col-10">
+								<span class="a gs">Download the certificate for {{gameTitle}}</span>
+						</span>
+							</a>
+						</div>
+						{{/downloadSingleCertificateLink}}
+
+						<a href="{{downloadAllCertificatesLink}}"
+						   class="invisible-link circle-link row align-items-center justify-content-start"
+						   target="_blank"
+						   onclick="dataLayer.push({'event': 'certificatesDownload', 'gameTitle': '{{gameTitle}}'});">
+<span class="circle-icon"
+								      style="background-image: url('https://b2b-assets.greentube.com/wp-content/themes/greentube/src/img/icon-download.svg'); background-position: center; background-repeat: no-repeat; background-size: 15px;"><span
+										class="fas fa-download"></span></span>
+							<span class="font-alt circle-title col-10">
+								<span
+									class="a gs">Download all available certificates for {{gameTitle}}</span>
+						</span>
+						</a>
+					</div>
+
+					<div class="pt-4 small-text" style="font-size: 14px; line-height: 22px;">
+						To download a specific certificate please visit <a
+							href="{{gameLink}}" target="_blank">{{gameTitle}}</a>.
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="button button-primary-filled" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text"
+	   href="#content">Skip to content</a>
+	<header class="site-header">
+		<div class="container-large h-100">
+			<div class="row align-items-center align-items-lg-end h-100 pt-2 pt-lg-0 pb-3">
+				<div class="col-6 col-lg-4 col-xxl-3 d-flex align-items-end fade-in-in-viewport">
+					<a href="https://www.greentube.com/" id="home"
+					   class="invisible-link site-logo-link z-2"
+					   rel="home">
+						<img src="https://b2b-assets.greentube.com/wp-content/themes/greentube/src/img/greentube-logo.svg"
+						     alt="Greentube">
+						<span class="screen-reader-text">Greentube</span>
+					</a>
+
+				</div>
+
+				<div class="col-6 col-lg-8 col-xxl-9 d-flex flex-column align-items-lg-end justify-content-lg-end">
+					<div class="sub-nav d-none d-lg-flex justify-content-end pb-2 move-up-in-viewport delay-333 z-1">
+						<a href="#" class="logout inverted-link"
+						   title="Logout">Logout							<span class="fas fa-sign-out-alt ms-1"></span></a>
+
+						<div class="share-link-container">
+			<a href="https://www.facebook.com/GreentubeGmbH/"
+		   class="share-link facebook-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Facebook'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-facebook"></span>
+			<span class="screen-reader-text">Facebook</span>
+		</a>
+	
+			<a href="https://www.youtube.com/user/GreentubeVienna"
+		   class="share-link youtube-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'YouTube'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-youtube"></span>
+			<span class="screen-reader-text">YouTube</span>
+		</a>
+	
+			<a href="https://www.linkedin.com/company/greentube-gmbh/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'LinkedIn'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-linkedin"></span>
+			<span class="screen-reader-text">LinkedIn</span>
+		</a>
+	
+			<a href="https://www.instagram.com/greentubeofficial/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Instagram'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-instagram"></span>
+			<span class="screen-reader-text">Instagram</span>
+		</a>
+	</div>
+					</div>
+
+					<div class="move-up-in-viewport delay-150">
+													<nav class="site-menu d-none d-lg-block">
+								<ul id="menu-2022" class="menu"><li id="menu-item-69" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-69 object-67"><a href="https://www.greentube.com/products-and-services/"><span>Products &#038; Services</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-4147" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-4147 object-59"><a href="https://www.greentube.com/product/slots/"><span>Slot Games</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-24287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24287 object-24097"><a href="https://www.greentube.com/products-and-services/new-releases/"><span>New Releases</span></a></li>
+		<li id="menu-item-24329" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24329 object-21554"><a href="https://www.greentube.com/diamond-link-series/"><span>Diamond Link Series</span></a></li>
+		<li id="menu-item-25993" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25993 object-24196"><a href="https://www.greentube.com/products-and-services/win-ways-mechanics/"><span>Win Ways™ Mechanics</span></a></li>
+		<li id="menu-item-26354" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26354 object-24172"><a href="https://www.greentube.com/diamond-mystery/"><span>Diamond Mystery™ Series</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-4148" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4148 object-57"><a href="https://www.greentube.com/product/table-games/"><span>Table Games</span></a></li>
+	<li id="menu-item-4145" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4145 object-4140"><a href="https://www.greentube.com/product/poker/"><span>Video Poker Games</span></a></li>
+	<li id="menu-item-4149" class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4149 object-55"><a href="https://www.greentube.com/product/bingo/"><span>Video Bingo Games</span></a></li>
+	<li id="menu-item-62033" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62033 object-62031"><a href="https://www.greentube.com/all-games/"><span>All Games</span></a></li>
+	<li id="menu-item-4154" class="divider menu-item menu-item-type-custom menu-item-object-custom menu-item-4154 object-4154"><a href="#"><span>&#8211;</span></a></li>
+	<li id="menu-item-4153" class="menu-item menu-item-type-post_type menu-item-object-service menu-item-4153 object-4151"><a href="https://www.greentube.com/service/social-casino/"><span>Online &#038; Social Casino</span></a></li>
+	<li id="menu-item-3577" class="menu-item menu-item-type-post_type menu-item-object-service menu-item-3577 object-3575"><a href="https://www.greentube.com/service/plurius-server-based-gaming/"><span>Greentube Plurius™ – Server Based Gaming</span></a></li>
+	<li id="menu-item-67203" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67203 object-67203"><a href="https://www.greentube.com/service/mynt/"><span>Mynt</span></a></li>
+	<li id="menu-item-76" class="menu-item menu-item-type-post_type menu-item-object-service menu-item-76 object-63"><a href="https://www.greentube.com/service/novosdk/"><span>novoSDK</span></a></li>
+	<li id="menu-item-77" class="menu-item menu-item-type-post_type menu-item-object-service menu-item-77 object-61"><a href="https://www.greentube.com/service/greentube-pro/"><span>Greentube Pro</span></a></li>
+</ul>
+</li>
+<li id="menu-item-125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-125 object-97"><a href="https://www.greentube.com/media/"><span>Media</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-3578" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3578 object-1"><a href="https://www.greentube.com/news/"><span>News</span></a></li>
+	<li id="menu-item-124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124 object-99"><a href="https://www.greentube.com/events/"><span>Upcoming Events</span></a></li>
+</ul>
+</li>
+<li id="menu-item-769" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-769 object-767"><a href="https://www.greentube.com/careers/"><span>Careers</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-22035" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22035 object-21771"><a href="https://www.greentube.com/open-positions/"><span>Open Positions</span></a></li>
+	<li id="menu-item-5065" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5065 object-5063"><a href="https://www.greentube.com/teams/"><span>Teams</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-4933" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4933 object-775"><a href="https://www.greentube.com/jobs/development/"><span>Development</span></a></li>
+		<li id="menu-item-4934" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4934 object-774"><a href="https://www.greentube.com/jobs/information-technology/"><span>Information Technology</span></a></li>
+		<li id="menu-item-4935" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4935 object-773"><a href="https://www.greentube.com/jobs/design/"><span>Design</span></a></li>
+		<li id="menu-item-4936" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4936 object-772"><a href="https://www.greentube.com/jobs/communication-marketing-sales/"><span>Communication, Marketing &#038; Sales</span></a></li>
+		<li id="menu-item-4937" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4937 object-771"><a href="https://www.greentube.com/jobs/product-project-management/"><span>Product &#038; Project Management</span></a></li>
+		<li id="menu-item-4938" class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4938 object-770"><a href="https://www.greentube.com/jobs/administration-support/"><span>Administration &#038; Support</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-796" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-796 object-794"><a href="https://www.greentube.com/locations/"><span>Locations</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-804" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-804 object-793"><a href="https://www.greentube.com/location/vienna/"><span>Vienna, Austria</span></a></li>
+		<li id="menu-item-800" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-800 object-792"><a href="https://www.greentube.com/location/graz/"><span>Graz, Austria</span></a></li>
+		<li id="menu-item-19461" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19461 object-19432"><a href="https://www.greentube.com/location/us/"><span>Las Vegas, United States</span></a></li>
+		<li id="menu-item-802" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-802 object-787"><a href="https://www.greentube.com/location/nottingham/"><span>Nottingham, UK</span></a></li>
+		<li id="menu-item-70230" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70230 object-70230"><a href="https://www.greentube.com/location/slovenia-ljubljana/"><span>Ljubljana, Slovenia</span></a></li>
+		<li id="menu-item-70231" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70231 object-70231"><a href="https://www.greentube.com/location/maribor-slovenia/"><span>Maribor, Slovenia</span></a></li>
+		<li id="menu-item-798" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-798 object-788"><a href="https://www.greentube.com/location/bratislava/"><span>Bratislava, Slovakia</span></a></li>
+		<li id="menu-item-19463" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19463 object-19443"><a href="https://www.greentube.com/location/netherlands/"><span>Waalwijk, The Netherlands</span></a></li>
+		<li id="menu-item-19462" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19462 object-19454"><a href="https://www.greentube.com/location/serbia-belgrade/"><span>Belgrade, Serbia</span></a></li>
+		<li id="menu-item-797" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-797 object-791"><a href="https://www.greentube.com/location/birkirkara/"><span>Birkirkara, Malta</span></a></li>
+		<li id="menu-item-803" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-803 object-789"><a href="https://www.greentube.com/location/vancouver/"><span>Vancouver, Canada</span></a></li>
+		<li id="menu-item-4065" class="menu-item menu-item-type-post_type menu-item-object-location menu-item-4065 object-4060"><a href="https://www.greentube.com/location/athens/"><span>Athens, Greece</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-14119" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14119 object-14116"><a href="https://www.greentube.com/insights-and-tips/"><span>Insights &#038; Tips</span></a></li>
+</ul>
+</li>
+<li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-40 object-38"><a href="https://www.greentube.com/about-us/"><span>About Us</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-34" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34 object-8"><a href="https://www.greentube.com/management/"><span>Management</span></a></li>
+	<li id="menu-item-37" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37 object-27"><a href="https://www.greentube.com/subsidiaries/"><span>Subsidiaries</span></a></li>
+	<li id="menu-item-761" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-761 object-759"><a href="https://www.greentube.com/references/"><span>References</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-22446" class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-22446 object-17"><a href="https://www.greentube.com/reference-type/clients/"><span>Clients</span></a></li>
+		<li id="menu-item-764" class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-764 object-19"><a href="https://www.greentube.com/reference-type/jurisdictions/"><span>Jurisdictions</span></a></li>
+		<li id="menu-item-763" class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-763 object-20"><a href="https://www.greentube.com/reference-type/certifications/"><span>Certifications</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-10100" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-10100 object-10061"><a href="https://www.greentube.com/corporate-responsibility/"><span>Corporate Responsibility</span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-10105" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10105 object-10063"><a href="https://www.greentube.com/corporate-responsibility/responsible-entertainment/"><span>Responsible Entertainment</span></a></li>
+		<li id="menu-item-10103" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10103 object-10069"><a href="https://www.greentube.com/corporate-responsibility/enjoy-working-us/"><span>Enjoy working with us</span></a></li>
+		<li id="menu-item-10102" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10102 object-10073"><a href="https://www.greentube.com/corporate-responsibility/going-green/"><span>Going Green</span></a></li>
+		<li id="menu-item-10101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10101 object-10076"><a href="https://www.greentube.com/corporate-responsibility/always-compliant/"><span>Always Compliant</span></a></li>
+	</ul>
+</li>
+	<li id="menu-item-81" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-81 object-79"><a href="https://www.greentube.com/contact/"><span>Contact</span></a></li>
+	<li id="menu-item-5315" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5315 object-5311"><a href="https://www.greentube.com/privacy-policy/"><span>Privacy Notice</span></a></li>
+</ul>
+</li>
+<li id="menu-item-5074" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5074 object-3185"><a href="https://www.greentube.com/client-space/"><span>Client Space</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-9443" class="logged-in-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-9443 object-9422"><a href="https://www.greentube.com/login/"><span>Log In</span></a></li>
+	<li id="menu-item-8162" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8162 object-8162"><a href="https://www.greentube.com/wp-login.php?action=lostpassword"><span>Reset Password</span></a></li>
+	<li id="menu-item-31175" class="logged-out-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-31175 object-20697"><a href="https://www.greentube.com/rolling-roadmap/"><span>Rolling Roadmap</span></a></li>
+</ul>
+</li>
+<li class="logout menu-item"><a href="#" class="logout" title="Logout">Logout <span class="fas fa-sign-out-alt"></span></a></li></ul>							</nav>
+						
+						<div class="hamburger d-lg-none">
+							<div class="hamburger-line line1"></div>
+							<div class="hamburger-line line2"></div>
+							<div class="hamburger-line line3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+			<nav class="mobile-site-menu-container d-lg-none">
+			<div class="container-small">
+				<div class="mobile-site-menu inactive"><ul id="menu-2023" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-69 object-67"><a href="https://www.greentube.com/products-and-services/"><span>Products &#038; Services</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-4147 object-59"><a href="https://www.greentube.com/product/slots/"><span>Slot Games</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24287 object-24097"><a href="https://www.greentube.com/products-and-services/new-releases/"><span>New Releases</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24329 object-21554"><a href="https://www.greentube.com/diamond-link-series/"><span>Diamond Link Series</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25993 object-24196"><a href="https://www.greentube.com/products-and-services/win-ways-mechanics/"><span>Win Ways™ Mechanics</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26354 object-24172"><a href="https://www.greentube.com/diamond-mystery/"><span>Diamond Mystery™ Series</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4148 object-57"><a href="https://www.greentube.com/product/table-games/"><span>Table Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4145 object-4140"><a href="https://www.greentube.com/product/poker/"><span>Video Poker Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4149 object-55"><a href="https://www.greentube.com/product/bingo/"><span>Video Bingo Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62033 object-62031"><a href="https://www.greentube.com/all-games/"><span>All Games</span></a></li>
+	<li class="divider menu-item menu-item-type-custom menu-item-object-custom menu-item-4154 object-4154"><a href="#"><span>&#8211;</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-4153 object-4151"><a href="https://www.greentube.com/service/social-casino/"><span>Online &#038; Social Casino</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-3577 object-3575"><a href="https://www.greentube.com/service/plurius-server-based-gaming/"><span>Greentube Plurius™ – Server Based Gaming</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67203 object-67203"><a href="https://www.greentube.com/service/mynt/"><span>Mynt</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-76 object-63"><a href="https://www.greentube.com/service/novosdk/"><span>novoSDK</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-77 object-61"><a href="https://www.greentube.com/service/greentube-pro/"><span>Greentube Pro</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-125 object-97"><a href="https://www.greentube.com/media/"><span>Media</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3578 object-1"><a href="https://www.greentube.com/news/"><span>News</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124 object-99"><a href="https://www.greentube.com/events/"><span>Upcoming Events</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-769 object-767"><a href="https://www.greentube.com/careers/"><span>Careers</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22035 object-21771"><a href="https://www.greentube.com/open-positions/"><span>Open Positions</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5065 object-5063"><a href="https://www.greentube.com/teams/"><span>Teams</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4933 object-775"><a href="https://www.greentube.com/jobs/development/"><span>Development</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4934 object-774"><a href="https://www.greentube.com/jobs/information-technology/"><span>Information Technology</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4935 object-773"><a href="https://www.greentube.com/jobs/design/"><span>Design</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4936 object-772"><a href="https://www.greentube.com/jobs/communication-marketing-sales/"><span>Communication, Marketing &#038; Sales</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4937 object-771"><a href="https://www.greentube.com/jobs/product-project-management/"><span>Product &#038; Project Management</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4938 object-770"><a href="https://www.greentube.com/jobs/administration-support/"><span>Administration &#038; Support</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-796 object-794"><a href="https://www.greentube.com/locations/"><span>Locations</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-804 object-793"><a href="https://www.greentube.com/location/vienna/"><span>Vienna, Austria</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-800 object-792"><a href="https://www.greentube.com/location/graz/"><span>Graz, Austria</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19461 object-19432"><a href="https://www.greentube.com/location/us/"><span>Las Vegas, United States</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-802 object-787"><a href="https://www.greentube.com/location/nottingham/"><span>Nottingham, UK</span></a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70230 object-70230"><a href="https://www.greentube.com/location/slovenia-ljubljana/"><span>Ljubljana, Slovenia</span></a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70231 object-70231"><a href="https://www.greentube.com/location/maribor-slovenia/"><span>Maribor, Slovenia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-798 object-788"><a href="https://www.greentube.com/location/bratislava/"><span>Bratislava, Slovakia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19463 object-19443"><a href="https://www.greentube.com/location/netherlands/"><span>Waalwijk, The Netherlands</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19462 object-19454"><a href="https://www.greentube.com/location/serbia-belgrade/"><span>Belgrade, Serbia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-797 object-791"><a href="https://www.greentube.com/location/birkirkara/"><span>Birkirkara, Malta</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-803 object-789"><a href="https://www.greentube.com/location/vancouver/"><span>Vancouver, Canada</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-4065 object-4060"><a href="https://www.greentube.com/location/athens/"><span>Athens, Greece</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14119 object-14116"><a href="https://www.greentube.com/insights-and-tips/"><span>Insights &#038; Tips</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-40 object-38"><a href="https://www.greentube.com/about-us/"><span>About Us</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34 object-8"><a href="https://www.greentube.com/management/"><span>Management</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37 object-27"><a href="https://www.greentube.com/subsidiaries/"><span>Subsidiaries</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-761 object-759"><a href="https://www.greentube.com/references/"><span>References</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-22446 object-17"><a href="https://www.greentube.com/reference-type/clients/"><span>Clients</span></a></li>
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-764 object-19"><a href="https://www.greentube.com/reference-type/jurisdictions/"><span>Jurisdictions</span></a></li>
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-763 object-20"><a href="https://www.greentube.com/reference-type/certifications/"><span>Certifications</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-10100 object-10061"><a href="https://www.greentube.com/corporate-responsibility/"><span>Corporate Responsibility</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10105 object-10063"><a href="https://www.greentube.com/corporate-responsibility/responsible-entertainment/"><span>Responsible Entertainment</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10103 object-10069"><a href="https://www.greentube.com/corporate-responsibility/enjoy-working-us/"><span>Enjoy working with us</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10102 object-10073"><a href="https://www.greentube.com/corporate-responsibility/going-green/"><span>Going Green</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10101 object-10076"><a href="https://www.greentube.com/corporate-responsibility/always-compliant/"><span>Always Compliant</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-81 object-79"><a href="https://www.greentube.com/contact/"><span>Contact</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5315 object-5311"><a href="https://www.greentube.com/privacy-policy/"><span>Privacy Notice</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5074 object-3185"><a href="https://www.greentube.com/client-space/"><span>Client Space</span></a>
+<ul class="sub-menu">
+	<li class="logged-in-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-9443 object-9422"><a href="https://www.greentube.com/login/"><span>Log In</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8162 object-8162"><a href="https://www.greentube.com/wp-login.php?action=lostpassword"><span>Reset Password</span></a></li>
+	<li class="logged-out-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-31175 object-20697"><a href="https://www.greentube.com/rolling-roadmap/"><span>Rolling Roadmap</span></a></li>
+</ul>
+</li>
+<li class="logout menu-item"><a href="#" class="logout" title="Logout">Logout <span class="fas fa-sign-out-alt"></span></a></li></ul></div>
+				<div class="text-center pt-5">
+					<div class="share-link-container">
+			<a href="https://www.facebook.com/GreentubeGmbH/"
+		   class="share-link facebook-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Facebook'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-facebook"></span>
+			<span class="screen-reader-text">Facebook</span>
+		</a>
+	
+			<a href="https://www.youtube.com/user/GreentubeVienna"
+		   class="share-link youtube-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'YouTube'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-youtube"></span>
+			<span class="screen-reader-text">YouTube</span>
+		</a>
+	
+			<a href="https://www.linkedin.com/company/greentube-gmbh/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'LinkedIn'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-linkedin"></span>
+			<span class="screen-reader-text">LinkedIn</span>
+		</a>
+	
+			<a href="https://www.instagram.com/greentubeofficial/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Instagram'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-instagram"></span>
+			<span class="screen-reader-text">Instagram</span>
+		</a>
+	</div>
+				</div>
+			</div>
+		</nav>
+	
+	<div class="site-content">
+	
+	<div class="style-black pb-lg-24 slotpromo-22859 ">
+					<div class="slotpromo-atmosphere fade-in-in-viewport"
+			     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/12/rumble-riches-haulin-gold-atmosphere.jpg');"></div>
+		
+		<div class="container-small slotpromo-container">
+			<div class="row no-gutters align-items-stretch flex-column-reverse flex-lg-row">
+				<div class="col-12 col-lg-6_5 fade-in-in-viewport delay-250">
+											<div class="slotpromo-video-container">
+							<iframe id="game-video"
+							        class="optanon-category-C0001"
+							        title="Rumble Riches™ – Haulin’ Gold™ Video"
+							        src="https://player.vimeo.com/video/1175089437?api=1&player_id=vimeo-1175089437&badge=0&byline=0&portrait=0&title=0&color=44AA51&autoplay=1&muted=1&dnt=1"
+							        allow="autoplay; fullscreen"
+							        mozallowfullscreen webkitallowfullscreen allowfullscreen></iframe>
+
+							<div id="play-game-video"
+							     class="iphone-screen iphone-screen-compliance slotpromo-video-compliance"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/themes/greentube/src/img/video-compliance.jpg');"></div>
+						</div>
+									</div>
+
+				<div class="col-12 col-lg-3_5 text-center">
+											<div class="slotpromo-character fade-in-in-viewport delay-333"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/12/rumble-riches-haulin-gold-character.png');"></div>
+					
+					<article class="slotpromo-content">
+						<header class="entry-header">
+															<span
+									class="slotpromo-meta move-up-in-viewport delay-500 strong">CHECK OUT OUR LATEST RELEASE:</span>
+							
+							<h1 class="slotpromo-title move-up-in-viewport delay-450">Rumble Riches™ &#8211; Haulin&#8217; Gold™</h1>
+						</header>
+
+						<footer class="entry-footer pt-lg-2 move-up-in-viewport delay-666">
+															<a href="https://www.greentube.com/game/rumble-riches-haulin-gold/"
+								   class="button button-primary-filled">Discover more!</a>
+													</footer>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div class="featured-games pt-9 pt-15 pb-9 pb-lg-20 d-flex">
+		<div class="flex-grow-1 flare flare-left">&nbsp;</div>
+		<div class="container-small w-100">
+			<h2 class="move-up-in-viewport pb-3 text-center text-lg-start">Featured games</h2>
+
+			<div class="game-buttons-container">
+					<div
+		class="game-button-container game-button-container-large" >
+		<a href="https://www.greentube.com/game/firecracker-frenzy-money-toad/" id="game-game-75272"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-large h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/11/firecracker-frenzy-money-toad-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/11/firecracker-frenzy-money-toad-atmosphere.jpg');">
+							<div class="h5 entry-title">Firecracker Frenzy™ &#8211; Money Toad™</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/11/firecracker-frenzy-money-toad-atmosphere.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Firecracker Frenzy™ &#8211; Money Toad™</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/11/firecracker-frenzy-money-toad-screenshot-1200x675.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/gorilla-cash/" id="game-game-75130"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/09/gorilla-cash-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/09/gorilla-cash-atmosphere.jpg');">
+							<div class="h5 entry-title">Gorilla Cash™</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/09/gorilla-cash-atmosphere.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Gorilla Cash™</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/09/gorilla-cash-screenshot-1200x675.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/enchanted-pegasus-boom/" id="game-game-71156"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/enchanted-pegasus-boom-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/enchanted-pegasus-boom-atmosphere.jpg');">
+							<div class="h5 entry-title">Enchanted Pegasus™ BOOM</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/enchanted-pegasus-boom-atmosphere.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Enchanted Pegasus™ BOOM</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/enchanted-pegasus-boom-screenshot-1200x675.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/piggy-prizes-jingle-jackpots/" id="game-game-70801"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/piggy-prizes-jingle-jackpot-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/piggy-prizes-jingle-jackpot-atmosphere-1200x1200.jpg');">
+							<div class="h5 entry-title">Piggy Prizes™ Jingle Jackpots™</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/piggy-prizes-jingle-jackpot-atmosphere-1200x1200.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Piggy Prizes™ Jingle Jackpots™</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/piggy-prizes-jingle-jackpot-screenshot-1200x675.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/creepy-candy/" id="game-game-69404"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/creepy-candy-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/creepy-candy-atmosphere-1200x1200.jpg');">
+							<div class="h5 entry-title">Creepy Candy</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/creepy-candy-atmosphere-1200x1200.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Creepy Candy</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/07/creepy-candy-screenshot-1200x631.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/lucky-luchadoras/" id="game-game-68921"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/05/lucky-luchadoras-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/05/lucky-luchadoras-atmosphere.jpg');">
+							<div class="h5 entry-title">Lucky Luchadoras</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/05/lucky-luchadoras-atmosphere.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Lucky Luchadoras</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/05/lucky-luchadoras-screenshot-1200x631.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+		<div
+		class="game-button-container " >
+		<a href="https://www.greentube.com/game/firecracker-frenzy-empress-wealth/" id="game-game-67929"
+		   class="game-button invisible-link h-100  no-character ">
+			<div class="js-tilt-glare js-tilt js-tilt-small h-100">
+				<div class="game-button-content d-flex flex-column text-center h-100">
+											<div class="game-button-image"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/04/firecracker-frenzy-empress-wealth-icon.jpg');">
+
+							<div class="pt-2 d-flex flex-column"
+							     style="position: absolute; top: 0; left: 0; row-gap: 7px;">
+																		<span style="line-height: 14px; text-align: left;">
+											<span class="d-inline-block text-end"
+											      style="min-width: 70px; font-weight: 700; font-size: 12px; padding: 3px 5px; border-radius: 0 2px 2px 0; background-color: #042a57;">
+												NovoSDK											</span>
+										</span>
+									
+															</div>
+						</div>
+					
+											<div class="compliance-game-button-content"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/04/firecracker-frenzy-empress-wealth-atmosphere.jpg');">
+							<div class="h5 entry-title">Firecracker Frenzy™ Empress Wealth™</div>
+						</div>
+					
+					<span
+						class="release-date ">{{{upcomingReleaseDate}}}</span>
+				</div>
+
+				<div class="game-button-content-hover text-center p-3 h-100">
+											<div class="game-button-image game-button-atmosphere"
+						     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/04/firecracker-frenzy-empress-wealth-atmosphere.jpg');"></div>
+					
+					<div class="d-flex flex-column h-100">
+						<div class="h5 entry-title">Firecracker Frenzy™ Empress Wealth™</div>
+
+													<div class="flex-grow-1 game-button-screenshot"
+							     style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2025/04/firecracker-frenzy-empress-wealth-screenshot_mainfeature1-1200x675.jpg');"></div>
+											</div>
+
+									</div>
+			</div>
+		</a>
+	</div>
+				</div>
+
+			<div class="text-center pt-5">
+				<a href="https://www.greentube.com/games/"
+				   class="text-uppercase">See all games</a>
+			</div>
+		</div>
+		<div class="flex-grow-1 flare flare-right">&nbsp;</div>
+	</div>
+
+	<div class="py-9 py-lg-20 background-white">
+	<div class="container-small">
+		<a href="https://www.greentube.com/news/" class="d-block invisible-link">
+			<h2 class="h1 section-title move-up-in-viewport black text-center text-lg-start">Latest news</h2>
+		</a>
+
+					<div class="row black text-center text-lg-start">
+				<div class="col-lg-8 col-xxl-6 move-up-in-viewport delay-150">
+					<p>
+						Stay informed about our ongoing game launches, market expansions, <br />
+and partner announcements, visit our news section to learn more					</p>
+				</div>
+			</div>
+		
+		<div class="row justify-content-between align-items-stretch gx-xxl-5 pt-9 pt-lg-14">
+							<div
+					class="col-12 col-lg-4 pb-4 pb-lg-0 move-up-in-viewport delay-150">
+					
+	<a href="https://www.greentube.com/rumble-riches-haulin-gold-is-now-available-for-our-b2b-partners/"
+	   class="post-preview-card invisible-link pb-4 h-100 "
+	   target="_self">
+		<div class="post-preview-card-content h-100 p-4">
+			<div class="pb-4 ">
+				
+									<div class="featured-image-container">
+						<div
+							class="featured-image the-featured-image "
+							style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2026/03/haulin-gold-800x600-1.jpg');">
+
+													</div>
+
+											</div>
+							</div>
+
+							<div class="h3">Rumble Riches™ – Haulin’ Gold™ is now available for our B2B partners!</div>
+			
+			
+							<div
+					class="button me-4 button-small button-tertiary-filled">Read more</div>
+					</div>
+	</a>
+					</div>
+								<div
+					class="col-12 col-lg-4 pb-4 pb-lg-0 move-up-in-viewport delay-250">
+					
+	<a href="https://www.greentube.com/greentube-enters-slovenian-market-with-casino-si-partnership/"
+	   class="post-preview-card invisible-link pb-4 h-100 "
+	   target="_self">
+		<div class="post-preview-card-content h-100 p-4">
+			<div class="pb-4 ">
+									<div class="post-preview-card-tags tags z-2">Partnerships</div>
+				
+									<div class="featured-image-container">
+						<div
+							class="featured-image the-featured-image "
+							style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2026/02/opher-1200x800.jpg');">
+
+													</div>
+
+											</div>
+							</div>
+
+							<div class="h3">Greentube enters Slovenian market with Casino.si partnership</div>
+			
+			
+							<div
+					class="button me-4 button-small button-tertiary-filled">Read more</div>
+					</div>
+	</a>
+					</div>
+								<div
+					class="col-12 col-lg-4 pb-4 pb-lg-0 move-up-in-viewport delay-333">
+					
+	<a href="https://www.greentube.com/firecracker-frenzy-money-toad-slot-qa-with-richard-ganster/"
+	   class="post-preview-card invisible-link pb-4 h-100 "
+	   target="_self">
+		<div class="post-preview-card-content h-100 p-4">
+			<div class="pb-4 ">
+									<div class="post-preview-card-tags tags z-2">Editorials</div>
+				
+									<div class="featured-image-container">
+						<div
+							class="featured-image the-featured-image "
+							style="background-image: url('https://b2b-assets.greentube.com/wp-content/uploads/2026/02/richie-favourite-scaled-e1771846099225-1200x840.jpg');">
+
+													</div>
+
+											</div>
+							</div>
+
+							<div class="h3">Firecracker Frenzy – Money Toad Slot Q&#038;A with Richard Ganster</div>
+			
+			
+							<div
+					class="button me-4 button-small button-tertiary-filled">Read more</div>
+					</div>
+	</a>
+					</div>
+						</div>
+	</div>
+</div>
+
+	<div class="hog d-flex">
+	<div class="flex-grow-1">&nbsp;</div>
+	<div class="container-small pt-24 pt-lg-35 pt-xxl-48 pb-9 pb-lg-24 pb-xxl-48 w-100">
+		<div class="row justify-content-between">
+			<div class="col-12 col-lg-6 move-up-in-viewport">
+									<img src="https://b2b-assets.greentube.com/wp-content/uploads/2025/12/hog_gt_logo_vertical_white-cmyk-edited.svg"
+					     alt="HOG_GT_Logo_Vertical_White-CMYK - Edited">
+							</div>
+
+			<div class="col-12 col-lg-5 pt-20 pt-lg-0 pb-lg-5 text-center text-lg-start">
+				<a href="https://www.greentube.com/products-and-services/" class="invisible-link">
+					<h2 class="h1 entry-title move-up-in-viewport delay-250">
+						About Us					</h2>
+				</a>
+
+				<div class="row move-up-in-viewport delay-333 pt-4 pt-lg-0">
+					<p class="col-xl-9">
+						As the NOVOMATIC Digital Gaming and Entertainment division, we deliver safe and secure casino entertainment to players around the world.<br />
+<br />
+Discover the exciting world of Greentube and the products and services we provide!					</p>
+				</div>
+
+				<div class="pt-5 move-up-in-viewport delay-450">
+					<a href="https://www.greentube.com/products-and-services/"
+					   class="button button-primary-filled">Products &#038; Services</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flex-grow-1 angled-g">&nbsp;</div>
+</div>
+
+	<div class="module-careers home-module module-content background-white py-5 py-lg-20">
+	<div class="container-small">
+			<div
+		class="row flex-column-reverse flex-lg-row text-center text-lg-start">
+		<div class="col-12 col-lg-5 order-2">
+			<div
+				class="py-5 single-post-header px-4 px-lg-0 z-1">
+				<div class="single-post-header-background style-gs"></div>
+									<h2 class="h1 move-up-in-viewport white"> Start your career with Greentube!</h2>				
+									<p class="strong move-up-in-viewport delay-150 white excerpt">If you’re looking for a vibrant and extremely international company that will let your curiosity grow, that values your desire to learn and your passion to develop, or in short, a company that will give you the tools to make the most of yourself, then Greentube is for you.</p>
+							</div>
+
+							<div
+					class="">
+					
+											<div class="pt-5 move-up-in-viewport delay-333">
+							<a href="https://www.greentube.com/careers/" class="button button-primary-filled"
+							   target="_self">Read more</a>
+						</div>
+									</div>
+					</div>
+
+					<div class="col-12 col-lg-7 col-lg-7 order-3 single-post-content-media-container-outer">
+				<div
+					class="has-standard-media pt-6  pt-lg-10 pb-lg-5 fade-in-in-viewport delay-250 single-post-content-media-container z-2">
+											<img src="https://b2b-assets.greentube.com/wp-content/uploads/greentube_careerswebsite_development_2-1-1200x674.jpg"
+						     class="w-100 single-post-content-media "
+						     alt="">
+									</div>
+			</div>
+		
+			</div>
+		</div>
+</div>
+</div>
+
+<footer class="site-footer pt-7 pt-lg-15 font-small">
+	<div class="container-small">
+		<div id="sitemap" class="row pb-6 pb-lg-10 move-up-in-viewport">
+			<h2 class="screen-reader-text">Sitemap</h2>
+
+							<div class="col-12">
+					<nav class="sitemap">
+						<ul id="menu-2024" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-69 object-67"><a href="https://www.greentube.com/products-and-services/"><span>Products &#038; Services</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-has-children menu-item-4147 object-59"><a href="https://www.greentube.com/product/slots/"><span>Slot Games</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24287 object-24097"><a href="https://www.greentube.com/products-and-services/new-releases/"><span>New Releases</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24329 object-21554"><a href="https://www.greentube.com/diamond-link-series/"><span>Diamond Link Series</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25993 object-24196"><a href="https://www.greentube.com/products-and-services/win-ways-mechanics/"><span>Win Ways™ Mechanics</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26354 object-24172"><a href="https://www.greentube.com/diamond-mystery/"><span>Diamond Mystery™ Series</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4148 object-57"><a href="https://www.greentube.com/product/table-games/"><span>Table Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4145 object-4140"><a href="https://www.greentube.com/product/poker/"><span>Video Poker Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-product menu-item-4149 object-55"><a href="https://www.greentube.com/product/bingo/"><span>Video Bingo Games</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-62033 object-62031"><a href="https://www.greentube.com/all-games/"><span>All Games</span></a></li>
+	<li class="divider menu-item menu-item-type-custom menu-item-object-custom menu-item-4154 object-4154"><a href="#"><span>&#8211;</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-4153 object-4151"><a href="https://www.greentube.com/service/social-casino/"><span>Online &#038; Social Casino</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-3577 object-3575"><a href="https://www.greentube.com/service/plurius-server-based-gaming/"><span>Greentube Plurius™ – Server Based Gaming</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-67203 object-67203"><a href="https://www.greentube.com/service/mynt/"><span>Mynt</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-76 object-63"><a href="https://www.greentube.com/service/novosdk/"><span>novoSDK</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-service menu-item-77 object-61"><a href="https://www.greentube.com/service/greentube-pro/"><span>Greentube Pro</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-125 object-97"><a href="https://www.greentube.com/media/"><span>Media</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3578 object-1"><a href="https://www.greentube.com/news/"><span>News</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124 object-99"><a href="https://www.greentube.com/events/"><span>Upcoming Events</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-769 object-767"><a href="https://www.greentube.com/careers/"><span>Careers</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22035 object-21771"><a href="https://www.greentube.com/open-positions/"><span>Open Positions</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5065 object-5063"><a href="https://www.greentube.com/teams/"><span>Teams</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4933 object-775"><a href="https://www.greentube.com/jobs/development/"><span>Development</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4934 object-774"><a href="https://www.greentube.com/jobs/information-technology/"><span>Information Technology</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4935 object-773"><a href="https://www.greentube.com/jobs/design/"><span>Design</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4936 object-772"><a href="https://www.greentube.com/jobs/communication-marketing-sales/"><span>Communication, Marketing &#038; Sales</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4937 object-771"><a href="https://www.greentube.com/jobs/product-project-management/"><span>Product &#038; Project Management</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-team menu-item-4938 object-770"><a href="https://www.greentube.com/jobs/administration-support/"><span>Administration &#038; Support</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-796 object-794"><a href="https://www.greentube.com/locations/"><span>Locations</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-804 object-793"><a href="https://www.greentube.com/location/vienna/"><span>Vienna, Austria</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-800 object-792"><a href="https://www.greentube.com/location/graz/"><span>Graz, Austria</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19461 object-19432"><a href="https://www.greentube.com/location/us/"><span>Las Vegas, United States</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-802 object-787"><a href="https://www.greentube.com/location/nottingham/"><span>Nottingham, UK</span></a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70230 object-70230"><a href="https://www.greentube.com/location/slovenia-ljubljana/"><span>Ljubljana, Slovenia</span></a></li>
+		<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-70231 object-70231"><a href="https://www.greentube.com/location/maribor-slovenia/"><span>Maribor, Slovenia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-798 object-788"><a href="https://www.greentube.com/location/bratislava/"><span>Bratislava, Slovakia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19463 object-19443"><a href="https://www.greentube.com/location/netherlands/"><span>Waalwijk, The Netherlands</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-19462 object-19454"><a href="https://www.greentube.com/location/serbia-belgrade/"><span>Belgrade, Serbia</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-797 object-791"><a href="https://www.greentube.com/location/birkirkara/"><span>Birkirkara, Malta</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-803 object-789"><a href="https://www.greentube.com/location/vancouver/"><span>Vancouver, Canada</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-location menu-item-4065 object-4060"><a href="https://www.greentube.com/location/athens/"><span>Athens, Greece</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14119 object-14116"><a href="https://www.greentube.com/insights-and-tips/"><span>Insights &#038; Tips</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-40 object-38"><a href="https://www.greentube.com/about-us/"><span>About Us</span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-34 object-8"><a href="https://www.greentube.com/management/"><span>Management</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37 object-27"><a href="https://www.greentube.com/subsidiaries/"><span>Subsidiaries</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-761 object-759"><a href="https://www.greentube.com/references/"><span>References</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-22446 object-17"><a href="https://www.greentube.com/reference-type/clients/"><span>Clients</span></a></li>
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-764 object-19"><a href="https://www.greentube.com/reference-type/jurisdictions/"><span>Jurisdictions</span></a></li>
+		<li class="menu-item menu-item-type-taxonomy menu-item-object-reference-type menu-item-763 object-20"><a href="https://www.greentube.com/reference-type/certifications/"><span>Certifications</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-10100 object-10061"><a href="https://www.greentube.com/corporate-responsibility/"><span>Corporate Responsibility</span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10105 object-10063"><a href="https://www.greentube.com/corporate-responsibility/responsible-entertainment/"><span>Responsible Entertainment</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10103 object-10069"><a href="https://www.greentube.com/corporate-responsibility/enjoy-working-us/"><span>Enjoy working with us</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10102 object-10073"><a href="https://www.greentube.com/corporate-responsibility/going-green/"><span>Going Green</span></a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10101 object-10076"><a href="https://www.greentube.com/corporate-responsibility/always-compliant/"><span>Always Compliant</span></a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-81 object-79"><a href="https://www.greentube.com/contact/"><span>Contact</span></a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5315 object-5311"><a href="https://www.greentube.com/privacy-policy/"><span>Privacy Notice</span></a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-5074 object-3185"><a href="https://www.greentube.com/client-space/"><span>Client Space</span></a>
+<ul class="sub-menu">
+	<li class="logged-in-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-9443 object-9422"><a href="https://www.greentube.com/login/"><span>Log In</span></a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8162 object-8162"><a href="https://www.greentube.com/wp-login.php?action=lostpassword"><span>Reset Password</span></a></li>
+	<li class="logged-out-hidden menu-item menu-item-type-post_type menu-item-object-page menu-item-31175 object-20697"><a href="https://www.greentube.com/rolling-roadmap/"><span>Rolling Roadmap</span></a></li>
+</ul>
+</li>
+</ul>					</nav>
+				</div>
+					</div>
+
+		<hr class="divider fade-in-in-viewport delay-150">
+
+		<div class="row pt-7 pt-lg-15 pb-15 align-items-center">
+			<div class="col-12 col-lg-5 move-up-in-viewport delay-250 d-flex">
+				<div>
+					<a href="https://www.greentube.com/" class="invisible-link footer-logo d-block"
+					   rel="home">
+						<img
+							src="https://b2b-assets.greentube.com/wp-content/themes/greentube/src/img/greentube-icon.svg"
+							alt="Greentube">
+						<span
+							class="screen-reader-text">Go to frontpage</span>
+					</a>
+				</div>
+				<div class="flex-grow-1 ps-4">
+					<a href="mailto:&#x6f;&#102;f&#x69;&#x63;&#101;&#64;&#x67;&#x72;&#101;e&#x6e;&#x74;&#117;b&#x65;&#x2e;&#99;o&#x6d;"  class="h5 inverted-link">&#111;f&#x66;i&#x63;e&#x40;g&#x72;e&#x65;n&#x74;&#117;&#x62;&#101;&#x2e;&#99;&#x6f;&#109;</a><br>
+					<a href="tel:0043190171" class="h5 inverted-link">Phone:
+						+43 1 90 171</a>
+
+					<div class="pt-2">
+						<div class="share-link-container">
+			<a href="https://www.facebook.com/GreentubeGmbH/"
+		   class="share-link facebook-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Facebook'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-facebook"></span>
+			<span class="screen-reader-text">Facebook</span>
+		</a>
+	
+			<a href="https://www.youtube.com/user/GreentubeVienna"
+		   class="share-link youtube-link"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'YouTube'});"
+		   target="_blank">
+			<span class="icon fab fa-gt-youtube"></span>
+			<span class="screen-reader-text">YouTube</span>
+		</a>
+	
+			<a href="https://www.linkedin.com/company/greentube-gmbh/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'LinkedIn'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-linkedin"></span>
+			<span class="screen-reader-text">LinkedIn</span>
+		</a>
+	
+			<a href="https://www.instagram.com/greentubeofficial/"
+		   onclick="dataLayer.push({'event': 'socialInteraction', 'network': 'Instagram'});"
+		   class="share-link linkedin-link" target="_blank">
+			<span class="icon fab fa-gt-instagram"></span>
+			<span class="screen-reader-text">Instagram</span>
+		</a>
+	</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12 col-lg-7 pt-9 pt-lg-0 text-end move-up-in-viewport delay-150 d-flex align-items-center">
+				<div class="flex-grow-1">
+					<p class="strong copyright">
+						&copy; 2026 Copyright<br
+							class="d-lg-none">
+						Greentube
+						GmbH<br>
+						Wiedner Hauptstrasse 94 | A-1050 Vienna</p>
+<div class="pt-2" style="font-size: 13px; max-width: 560px; margin-left: auto;">
+						Greentube GmbH holds a Remote Gambling Software licence and is regulated in Great Britain by the
+						Gambling Commission under account number <a
+							href="https://www.gamblingcommission.gov.uk/public-register/business/detail/41020"
+							target="_blank">41020</a>.<br><br>
+Greentube GmbH is regulated by the Malta Gaming Authority and licensed to offer Type 1 Gaming Services as a corporate entity 
+under authorization number <a href="https://authorisation.mga.org.mt/verification.aspx?lang=EN&company=7c4bf96f-c677-416e-9237-c95b469c7150&details=1" target="_blank">MGA/CRP/120/2006</a> 
+dated 1st March 2023.
+					</div>
+</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</div>
+
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","https://b2b-assets.greentube.com/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","https://b2b-assets.greentube.com/wp-content/themes/greentube/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="https://www.google.com/recaptcha/api.js" id="recaptcha-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/dist/app.bundle.1700132104442.js?ver=6.9.4" id="greentube-scripts-js"></script>
+<script type="text/javascript" src="https://b2b-assets.greentube.com/wp-content/themes/greentube/scripts.min.js?ver=1775394015" id="greentube-gulp-scripts-js"></script>
+
+</body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/?utm_source=w3tc&utm_medium=footer_comment&utm_campaign=free_plugin
+
+Page Caching using Disk: Enhanced 
+Content Delivery Network via b2b-assets.greentube.com
+Minified using Disk
+
+Served from: www.greentube.com @ 2026-04-05 15:00:17 by W3 Total Cache
+-->

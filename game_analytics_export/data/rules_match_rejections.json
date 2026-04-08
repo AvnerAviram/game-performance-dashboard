@@ -1,0 +1,326 @@
+[
+  {
+    "name": "Wheel Of Fortune Diamond Spins 2x Wild",
+    "page_title": "Wheel of Fortune Diamond Spins 2x Wilds",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'wheel of fortune diamond spins 2x wild' != 'wheel of fortune diamond spins 2x wilds'"
+  },
+  {
+    "name": "Fire And Roses Joker 2 All In",
+    "page_title": "Fire and Roses Joker 2 All-In",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'fire and roses joker 2 all in' != 'fire and roses joker 2 allin'"
+  },
+  {
+    "name": "Links Of Ra 2",
+    "page_title": "Links of Ra II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'links of ra 2' != 'links of ra ii'"
+  },
+  {
+    "name": "Blue Wizard Collect Em And Link",
+    "page_title": "Blue Wizard: Collect'Em and Link",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'blue wizard collect em and link' != 'blue wizard collectem and link'"
+  },
+  {
+    "name": "3 Lucky Maneki Hold And Spin",
+    "page_title": "3 Lucky Maneki Hold N Spin",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: '3 lucky maneki hold and spin' != '3 lucky maneki hold n spin'"
+  },
+  {
+    "name": "Zeus 2",
+    "page_title": "Zeus II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'zeus 2' != 'zeus ii'"
+  },
+  {
+    "name": "Flaming Hot Chili Pot Jackpot Royale Express",
+    "page_title": "Flaming Hot Chilli Pot Jackpot Royale Express",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'flaming hot chili pot jackpot royale express' != 'flaming hot chilli pot jackpot royale express'"
+  },
+  {
+    "name": "China Shores Quick Strike",
+    "page_title": "China Shores Quick Strike Online",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'china shores quick strike' != 'china shores quick strike online'"
+  },
+  {
+    "name": "12 Coins Grand Platinum Edition Santas Jackpot",
+    "page_title": "12 Coins Grand Platinum Edition Santas Jackpots",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: '12 coins grand platinum edition santas jackpot' != '12 coins grand platinum edition santas jackpots'"
+  },
+  {
+    "name": "Lil Demon Mega Collect Em",
+    "page_title": "Lil Demon: Mega Collect'Em",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'lil demon mega collect em' != 'lil demon mega collectem'"
+  },
+  {
+    "name": "Jack O Lantern Jackpots",
+    "page_title": "Jack o'Lantern Jackpots",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'jack o lantern jackpots' != 'jack olantern jackpots'"
+  },
+  {
+    "name": "Mega Fire Blaze Pigies And The Bank",
+    "page_title": "Mega Fire Blaze: Piggies and the Bank",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'mega fire blaze pigies and the bank' != 'mega fire blaze piggies and the bank'"
+  },
+  {
+    "name": "Silent Samurai Mega Collect Em",
+    "page_title": "Silent Samurai: Mega Collect'Em",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'silent samurai mega collect em' != 'silent samurai mega collectem'"
+  },
+  {
+    "name": "Lucky Larry Lobstermania",
+    "page_title": "Lucky Larry's Lobstermania",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'lucky larry lobstermania' != 'lucky larrys lobstermania'"
+  },
+  {
+    "name": "Spin Vention",
+    "page_title": "Spin-vention",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'spin vention' != 'spinvention'"
+  },
+  {
+    "name": "Invaders From The Planet Moolah",
+    "page_title": "Invaders from Planet Moolah",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'invaders from the planet moolah' != 'invaders from planet moolah'"
+  },
+  {
+    "name": "Robocop Collect Em",
+    "page_title": "Robocop: Collect'em",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'robocop collect em' != 'robocop collectem'"
+  },
+  {
+    "name": "Fu Gui Hao Men Splendid Fortune",
+    "page_title": "Fu Gui Hao Men Splendid Fortunes",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'fu gui hao men splendid fortune' != 'fu gui hao men splendid fortunes'"
+  },
+  {
+    "name": "Zeus 3",
+    "page_title": "Zeus III",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'zeus 3' != 'zeus iii'"
+  },
+  {
+    "name": "Blood Suckers 2",
+    "page_title": "Blood Suckers II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'blood suckers 2' != 'blood suckers ii'"
+  },
+  {
+    "name": "Gold O Plenty",
+    "page_title": "Gold O'Plenty",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'gold o plenty' != 'gold oplenty'"
+  },
+  {
+    "name": "Loki Wild Tiles",
+    "page_title": "Loki Wild-Tiles",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'loki wild tiles' != 'loki wildtiles'"
+  },
+  {
+    "name": "Xtension Cash Snow Kingdom",
+    "page_title": "Xtension Cash-Snow Kingdom",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'xtension cash snow kingdom' != 'xtension cashsnow kingdom'"
+  },
+  {
+    "name": "Pixies Of The Forest 2",
+    "page_title": "Pixies of the Forest II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'pixies of the forest 2' != 'pixies of the forest ii'"
+  },
+  {
+    "name": "Xtension Cash Stars Up",
+    "page_title": "Xtension Cash-Stars Up",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'xtension cash stars up' != 'xtension cashstars up'"
+  },
+  {
+    "name": "Mighty Cash Long Teng Hu Xiao Dragon Files",
+    "page_title": "Mighty Cash Long Teng Hu Xiao Dragon",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'mighty cash long teng hu xiao dragon files' != 'mighty cash long teng hu xiao dragon'"
+  },
+  {
+    "name": "Hot Slot 777 Crown Xmas Edition",
+    "page_title": "Hot Slot: 777 Crown Xmas",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'hot slot 777 crown xmas edition' != 'hot slot 777 crown xmas'"
+  },
+  {
+    "name": "Tomb Of Gold 2",
+    "page_title": "Tomb of Gold II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'tomb of gold 2' != 'tomb of gold ii'"
+  },
+  {
+    "name": "Experi Mental",
+    "page_title": "Experi-Mental",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'experi mental' != 'experimental'"
+  },
+  {
+    "name": "Xtension Cash Red Dreams",
+    "page_title": "Xtension Cash-Red Dreams",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'xtension cash red dreams' != 'xtension cashred dreams'"
+  },
+  {
+    "name": "Street Fighter 2 The World Warrior Slot",
+    "page_title": "Street Fighter II The World Warrior Slot",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'street fighter 2 the world warrior slot' != 'street fighter ii the world warrior slot'"
+  },
+  {
+    "name": "Halloween Fortune Ii",
+    "page_title": "Halloween Fortune 2",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'halloween fortune ii' != 'halloween fortune 2'"
+  },
+  {
+    "name": "Kings Of Crystals 2 Power Combo",
+    "page_title": "Kings of Crystals II Power Combo",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'kings of crystals 2 power combo' != 'kings of crystals ii power combo'"
+  },
+  {
+    "name": "Ice Heist 2 The Museum Snatch A Roo",
+    "page_title": "Ice Heist 2: The Museum Snatch-a-roo",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'ice heist 2 the museum snatch a roo' != 'ice heist 2 the museum snatcharoo'"
+  },
+  {
+    "name": "Sun Of Fortune Xmas Edition",
+    "page_title": "Sun of Fortune Xmas",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'sun of fortune xmas edition' != 'sun of fortune xmas'"
+  },
+  {
+    "name": "Mighty 777 With Sticky Credits",
+    "page_title": "Mighty 777 Sticky Credits",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'mighty 777 with sticky credits' != 'mighty 777 sticky credits'"
+  },
+  {
+    "name": "Age Of The Gods Glorius Griffin",
+    "page_title": "Age of the Gods: Glorious Griffin",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'age of the gods glorius griffin' != 'age of the gods glorious griffin'"
+  },
+  {
+    "name": "Cash A Cabana",
+    "page_title": "Cash-A-Cabana",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'cash a cabana' != 'cashacabana'"
+  },
+  {
+    "name": "Artemis Rising Expand N Win",
+    "page_title": "Artemis Rising Expand'N Win",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'artemis rising expand n win' != 'artemis rising expandn win'"
+  },
+  {
+    "name": "Slingo X Scream",
+    "page_title": "Slingo X-Scream",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'slingo x scream' != 'slingo xscream'"
+  },
+  {
+    "name": "Full Force Link Ch Ing Wa Sheng",
+    "page_title": "Full Force Link Ch'ing - Wa Sheng",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'full force link ch ing wa sheng' != 'full force link ching wa sheng'"
+  },
+  {
+    "name": "Wild Explosion Get Cha Money",
+    "page_title": "Wild Explosion Get'cha Money",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'wild explosion get cha money' != 'wild explosion getcha money'"
+  },
+  {
+    "name": "Sizzling Kingdom Bison Xmas",
+    "page_title": "Sizzling Kingdom Bison Xmas Edition",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'sizzling kingdom bison xmas' != 'sizzling kingdom bison xmas edition'"
+  },
+  {
+    "name": "Light The Lamp",
+    "page_title": "Gretzky Light The Lamp",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'light the lamp' != 'gretzky light the lamp'"
+  },
+  {
+    "name": "Medusa 2",
+    "page_title": "Medusa II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'medusa 2' != 'medusa ii'"
+  },
+  {
+    "name": "Stick Em",
+    "page_title": "Stick'Em",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'stick em' != 'stickem'"
+  },
+  {
+    "name": "Win A Beest",
+    "page_title": "Win-a-Beest",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'win a beest' != 'winabeest'"
+  },
+  {
+    "name": "Scudamore Super Stakes",
+    "page_title": "Scudamore's Super Stakes",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'scudamore super stakes' != 'scudamores super stakes'"
+  },
+  {
+    "name": "Pot O Gold",
+    "page_title": "Pot O'Gold",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'pot o gold' != 'pot ogold'"
+  },
+  {
+    "name": "Wild O Tron 3000",
+    "page_title": "Wild-O-Tron 3000",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'wild o tron 3000' != 'wildotron 3000'"
+  },
+  {
+    "name": "Lara Jones Treasure Of Egypt 2",
+    "page_title": "Lara Jones: Treasures of Egypt  II",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'lara jones treasure of egypt 2' != 'lara jones treasures of egypt ii'"
+  },
+  {
+    "name": "Hotel Yeti Way",
+    "page_title": "Hotel Yeti-Way",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'hotel yeti way' != 'hotel yetiway'"
+  },
+  {
+    "name": "Dyn A Miners",
+    "page_title": "Dyn-a-Miners",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'dyn a miners' != 'dynaminers'"
+  },
+  {
+    "name": "King Of The Catch Splash",
+    "page_title": "King of Catch Splash",
+    "method": "round4_fuzzy_verified",
+    "reason": "norm mismatch: 'king of the catch splash' != 'king of catch splash'"
+  }
+]
