@@ -1,2 +1,3 @@
 .env
 game_analytics_export/data/.env
+node_modules/
