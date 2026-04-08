@@ -699,6 +699,46 @@ function analyzeGameConcept() {
         }
     }
 
+    // Art Direction section for the detected theme
+    if (primaryTheme) {
+        const artGames = matchingGames.filter(g => F.artSetting(g));
+        if (artGames.length >= 3) {
+            const artTally = fn => {
+                const m = {};
+                artGames.forEach(g => {
+                    const v = fn(g);
+                    if (Array.isArray(v))
+                        v.forEach(x => x && x !== 'No Characters (symbol-only game)' && (m[x] = (m[x] || 0) + 1));
+                    else if (v) m[v] = (m[v] || 0) + 1;
+                });
+                return Object.entries(m)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+            };
+            const artSettings = artTally(g => F.artSetting(g));
+            const artMoods = artTally(g => F.artMood(g));
+            const artChars = artTally(g => F.artCharacters(g));
+            const artElem = artTally(g => F.artElements(g));
+            const artPill = ([n, c]) =>
+                `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(n)} (${c})</span>`;
+            if (artSettings.length) {
+                html += `
+                <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
+                    <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <h3 class="text-sm font-bold text-gray-900 dark:text-white">🎨 Art Direction for ${escapeHtml(primaryTheme)}</h3>
+                        <p class="text-[10px] text-gray-400 mt-0.5">Based on ${artGames.length} games with art characterization</p>
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Settings</div><div class="flex flex-wrap gap-1">${artSettings.map(artPill).join('')}</div></div>
+                        ${artMoods.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Mood</div><div class="flex flex-wrap gap-1">${artMoods.map(artPill).join('')}</div></div>` : ''}
+                        ${artChars.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Characters</div><div class="flex flex-wrap gap-1">${artChars.map(artPill).join('')}</div></div>` : ''}
+                        ${artElem.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Visual Elements</div><div class="flex flex-wrap gap-1">${artElem.map(artPill).join('')}</div></div>` : ''}
+                    </div>
+                </div>`;
+            }
+        }
+    }
+
     const suggestions = [];
     if (!primaryTheme)
         suggestions.push('Try mentioning a specific theme like "Egyptian", "Asian", "Fantasy", or "Adventure"');

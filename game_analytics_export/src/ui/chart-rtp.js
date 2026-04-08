@@ -107,7 +107,7 @@ export function createRtpChart() {
                 },
             },
         });
-        injectCoveragePill('chart-rtp', rtpTotal, allGames.length, 'with RTP data');
+        // Coverage pill omitted on overview
     } catch (err) {
         console.error('[RTP-CHART] FAILED:', err);
     }

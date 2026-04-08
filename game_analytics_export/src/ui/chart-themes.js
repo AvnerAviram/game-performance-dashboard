@@ -12,6 +12,7 @@ import {
     getModernGridConfig,
     createXWarp,
     bubbleScaleOptionsWarped,
+    quadrantBorderColor,
     needsLeaderLine,
     snapLabelToBubble,
     injectCoveragePill,
@@ -490,7 +491,7 @@ export function createScatterChart() {
         const scatterWithTheme = scatterAllGames.filter(
             g => F.themeConsolidated(g) && !/^unknown$/i.test(F.themeConsolidated(g))
         );
-        injectCoveragePill('chart-scatter', scatterWithTheme.length, scatterAllGames.length, 'with theme data');
+        // Coverage pill omitted on overview — shown on full insights page
 
         log(
             '[SCATTER] chart created:',
@@ -505,7 +506,7 @@ export function createScatterChart() {
     }
 }
 
-export function createMarketLandscapeChart() {
+export function createMarketLandscapeChart(providerFilter) {
     const canvas = document.getElementById('chart-market-landscape');
     if (!canvas) return;
 
@@ -517,10 +518,44 @@ export function createMarketLandscapeChart() {
     try {
         const ctx = canvas.getContext('2d');
         const chartColors = getChartColors();
-        const allThemes = getActiveThemes().filter(t => (t['Game Count'] || 0) >= 2);
-        const allGames = getActiveGames();
+        const allGamesRaw = getActiveGames();
+        const allGames = providerFilter ? allGamesRaw.filter(g => F.provider(g) === providerFilter) : allGamesRaw;
 
-        if (!allThemes.length) return;
+        let allThemes;
+        if (providerFilter) {
+            const themeAgg = {};
+            for (const g of allGames) {
+                const t = F.themeConsolidated(g);
+                if (!t || /^unknown$/i.test(t)) continue;
+                if (!themeAgg[t]) themeAgg[t] = { count: 0, theoSum: 0, mktSum: 0 };
+                themeAgg[t].count++;
+                themeAgg[t].theoSum += F.theoWin(g);
+                themeAgg[t].mktSum += F.marketShare(g);
+            }
+            allThemes = Object.entries(themeAgg)
+                .filter(([, s]) => s.count >= 2)
+                .map(([theme, s]) => ({
+                    Theme: theme,
+                    'Game Count': s.count,
+                    'Avg Theo Win Index': s.theoSum / s.count,
+                    'Market Share %': s.mktSum,
+                }));
+        } else {
+            allThemes = getActiveThemes().filter(t => (t['Game Count'] || 0) >= 2);
+        }
+
+        if (!allThemes.length) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '13px Inter, system-ui, sans-serif';
+            ctx.fillStyle = '#94a3b8';
+            ctx.textAlign = 'center';
+            ctx.fillText(
+                providerFilter ? 'Not enough theme data for this provider' : 'No theme data available',
+                canvas.width / 2,
+                canvas.height / 2
+            );
+            return;
+        }
 
         const providerCountByTheme = {};
         allGames.forEach(g => {

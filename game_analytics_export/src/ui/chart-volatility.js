@@ -111,7 +111,6 @@ export function createVolatilityChart() {
                 },
             },
         });
-        injectCoveragePill('chart-volatility', reliableTotal, allGames.length, 'with verified volatility');
     } catch (err) {
         console.error('[VOLATILITY-CHART] FAILED:', err);
     }

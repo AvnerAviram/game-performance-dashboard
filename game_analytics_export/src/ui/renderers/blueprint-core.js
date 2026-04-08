@@ -11,6 +11,7 @@ import { parseSymbols } from '../../lib/symbol-utils.js';
 import { renderFeaturePills, renderSynergyPanel, renderInsightsTab } from './blueprint-insights.js';
 import { renderCompetitionTab } from './blueprint-competition.js';
 import { renderSymbolsTab } from './blueprint-symbols.js';
+import { renderArtTab } from './blueprint-art.js';
 
 export function initBlueprint() {
     let blueprintWrapper = document.getElementById('blueprint-advisor-wrapper');
@@ -664,6 +665,7 @@ export function initBlueprint() {
         els.tabInsights.innerHTML = '';
         els.tabCompetition.innerHTML = '';
         els.tabSymbols.innerHTML = '';
+        if (els.tabArt) els.tabArt.innerHTML = '';
         if (els.layoutPanel) els.layoutPanel.classList.add('hidden');
     });
 
@@ -968,6 +970,7 @@ export function initBlueprint() {
                 '<div class="text-center text-gray-400 text-sm py-8">No games match the selected sub-themes</div>';
             els.tabCompetition.innerHTML = '';
             els.tabSymbols.innerHTML = '';
+            if (els.tabArt) els.tabArt.innerHTML = '';
             updateScore(0, {});
             _hideOverlay();
             return;
@@ -1077,6 +1080,7 @@ export function initBlueprint() {
             featOf,
         });
         renderSymbolsTab(els.tabSymbols, { themeGames: symFilteredGames(themeGames), selectedFeatures, themeAvg });
+        renderArtTab(els.tabArt, { themeGames, themeAvg, selectedCategories });
 
         els.featContainer.querySelectorAll('.bp-feat-pill').forEach(pill => {
             pill.addEventListener('click', () => {
@@ -1282,6 +1286,7 @@ function getBlueprintElements() {
         tabInsights: document.getElementById('bp-tab-insights'),
         tabCompetition: document.getElementById('bp-tab-competition'),
         tabSymbols: document.getElementById('bp-tab-symbols'),
+        tabArt: document.getElementById('bp-tab-art'),
         clearBtn: document.getElementById('bp-clear-btn'),
         layoutPanel: document.getElementById('bp-layout-panel'),
         layoutPills: document.getElementById('bp-layout-pills'),
@@ -1374,11 +1379,13 @@ function buildBlueprintHTML() {
                     <div class="sticky top-0 z-10 bg-white dark:bg-gray-800 flex border-b border-gray-200 dark:border-gray-700 px-3 pt-1 gap-1.5 shrink-0">
                         <button class="bp-tab flex items-center gap-1.5 px-5 py-3 text-sm font-bold rounded-t-lg border-b-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 transition-all" data-tab="insights">📊 Insights</button>
                         <button class="bp-tab flex items-center gap-1.5 px-5 py-3 text-sm font-bold rounded-t-lg border-b-2 border-transparent bg-gray-100 dark:bg-gray-700/40 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700/60 transition-all" data-tab="symbols">🍒 Symbols</button>
+                        <button class="bp-tab flex items-center gap-1.5 px-5 py-3 text-sm font-bold rounded-t-lg border-b-2 border-transparent bg-gray-100 dark:bg-gray-700/40 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700/60 transition-all" data-tab="art">🎨 Art Direction</button>
                         <button class="bp-tab flex items-center gap-1.5 px-5 py-3 text-sm font-bold rounded-t-lg border-b-2 border-transparent bg-gray-100 dark:bg-gray-700/40 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-gray-700/60 transition-all" data-tab="competition">⚔️ Competition</button>
                     </div>
                     <div class="overflow-y-auto flex-1 min-h-0">
                         <div id="bp-tab-insights" class="bp-tab-content p-6"></div>
                         <div id="bp-tab-symbols" class="bp-tab-content p-6 hidden"></div>
+                        <div id="bp-tab-art" class="bp-tab-content p-6 hidden"></div>
                         <div id="bp-tab-competition" class="bp-tab-content p-6 hidden"></div>
                     </div>
                 </div>

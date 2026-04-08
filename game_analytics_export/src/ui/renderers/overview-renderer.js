@@ -177,6 +177,7 @@ function renderTopThemesCards() {
             labelColor: 'text-amber-700 dark:text-amber-400',
             gradient: 'from-amber-600 to-yellow-600',
             value: best._si.toFixed(2),
+            valueLabel: 'Performance Index',
         },
         {
             theme: opportunity,
@@ -190,6 +191,7 @@ function renderTopThemesCards() {
             labelColor: 'text-emerald-700 dark:text-emerald-400',
             gradient: 'from-emerald-600 to-teal-600',
             value: opportunity._avgTheo.toFixed(2),
+            valueLabel: 'Avg Performance Index',
         },
         {
             theme: rising,
@@ -203,6 +205,7 @@ function renderTopThemesCards() {
             labelColor: 'text-sky-700 dark:text-sky-400',
             gradient: 'from-sky-600 to-blue-600',
             value: rising._si.toFixed(2),
+            valueLabel: 'Performance Index',
         },
         {
             theme: saturated,
@@ -216,6 +219,7 @@ function renderTopThemesCards() {
             labelColor: 'text-orange-700 dark:text-orange-400',
             gradient: 'from-orange-600 to-amber-600',
             value: saturated._gc.toString(),
+            valueLabel: 'Game Count',
         },
         {
             theme: worst,
@@ -229,6 +233,7 @@ function renderTopThemesCards() {
             labelColor: 'text-red-700 dark:text-red-400',
             gradient: 'from-red-600 to-rose-600',
             value: worst._si.toFixed(2),
+            valueLabel: 'Performance Index',
         },
         {
             theme: declining,
@@ -242,6 +247,7 @@ function renderTopThemesCards() {
             labelColor: 'text-slate-600 dark:text-slate-400',
             gradient: 'from-slate-500 to-gray-500',
             value: declining._si.toFixed(2),
+            valueLabel: 'Performance Index',
         },
     ];
 
@@ -260,7 +266,8 @@ function renderTopThemesCards() {
                 </div>
             </div>
             <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(name)}</div>
-            <div class="text-xl font-black bg-gradient-to-r ${c.gradient} bg-clip-text text-transparent mb-1">${c.value}</div>
+            <div class="text-xl font-black bg-gradient-to-r ${c.gradient} bg-clip-text text-transparent">${c.value}</div>
+            <div class="text-[9px] font-semibold uppercase tracking-wide ${c.labelColor} opacity-60 mb-1">${c.valueLabel}</div>
             <div class="text-[10px] text-gray-500 dark:text-gray-400">${c.theme._gc} games · Avg ${c.theme._avgTheo.toFixed(2)}</div>
         </div>`;
     });

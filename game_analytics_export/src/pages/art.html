@@ -143,9 +143,15 @@
                         </div>
                     </div>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        All 38 art environments — find high-performing niches with low competition
+                        All art environments — find high-performing niches with low competition
                     </p>
                 </div>
+                <select
+                    id="art-landscape-mood-filter"
+                    class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500 cursor-pointer shrink-0"
+                >
+                    <option value="">All Moods</option>
+                </select>
             </div>
         </div>
         <div class="p-6 w-full overflow-visible relative" style="height: 680px; min-height: 680px">
@@ -382,6 +388,55 @@
         </div>
     </div>
 
+    <!-- Art Trends -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    📈
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Art Trends</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
+                                Each line shows how an art dimension's game count has changed over the years. Rising
+                                lines = growing popularity. Use the dropdown to switch dimensions. Toggle items on/off
+                                by clicking the legend.
+                            </div>
+                        </div>
+                    </div>
+                    <p id="art-trend-subtitle" class="text-sm text-gray-500 dark:text-gray-400">
+                        How art environments are trending year over year
+                    </p>
+                </div>
+                <select
+                    id="art-trend-dimension"
+                    class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500 cursor-pointer shrink-0"
+                >
+                    <option value="environment">Environments</option>
+                    <option value="mood">Moods</option>
+                    <option value="elements">Elements</option>
+                    <option value="characters">Characters</option>
+                    <option value="narrative">Narratives</option>
+                </select>
+            </div>
+        </div>
+        <div class="p-6" style="height: 420px; min-height: 420px">
+            <canvas id="art-trend-chart" class="w-full block" style="display: block; box-sizing: border-box"></canvas>
+        </div>
+    </div>
+
     <!-- Best Combos Table -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
         <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
@@ -403,11 +458,16 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
-                                <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
-                                Complete art recipes ranked by opportunity score. Each recipe shows the
-                                <strong>Environment + Mood</strong> combo with the most common
-                                <strong>characters, elements, and narrative</strong> found in those games. <br /><br />
-                                💎 marks high-performing recipes with ≤15 games — prime opportunities.
+                                <strong class="text-gray-900 dark:text-white block mb-1">Why this works</strong>
+                                Successful games share repeatable art DNA — specific
+                                <strong>Environment + Mood</strong> combos that consistently outperform. Recipes surface
+                                these proven patterns and reveal gaps where few games exist but performance is high.<br /><br />
+                                <strong class="text-gray-900 dark:text-white block mb-1 mt-1">How to read</strong>
+                                Each row is a complete recipe with characters, elements, narrative, specs (volatility,
+                                layout, RTP), and trend direction. 💎 marks high-performing combos with ≤15 games —
+                                prime opportunities.<br /><br />
+                                <span class="text-indigo-500 dark:text-indigo-400">Click any recipe</span> to open a
+                                detail panel with matching games.
                             </div>
                         </div>
                     </div>

@@ -52,6 +52,8 @@ export function createArtSettingChart() {
 
         const labels = settings.map(s => s.setting.split('/')[0]);
 
+        const artBorders = bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
+
         chartInstances.artSettings = new Chart(ctx, {
             type: 'bubble',
             data: {
@@ -60,7 +62,7 @@ export function createArtSettingChart() {
                         label: 'Art Environments',
                         data: bubbleData,
                         backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
-                        borderColor: bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
+                        borderColor: artBorders,
                         borderWidth: 1.5,
                         hoverRadius: 4,
                     },
@@ -115,7 +117,7 @@ export function createArtSettingChart() {
                 },
             },
         });
-        injectCoveragePill('chart-art-settings', artGames.length, allGames.length, 'with art data');
+        // Coverage pill omitted on overview
     } catch (err) {
         console.error('[ART-SETTINGS-CHART] FAILED:', err);
     }

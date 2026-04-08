@@ -56,6 +56,8 @@ export function createProvidersChart() {
 
         const labels = providers.map(p => p.name);
 
+        const provBorderOv = bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
+
         chartInstances.providers = new Chart(ctx, {
             type: 'bubble',
             data: {
@@ -64,7 +66,7 @@ export function createProvidersChart() {
                         label: 'Providers',
                         data: bubbleData,
                         backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
-                        borderColor: bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
+                        borderColor: provBorderOv,
                         borderWidth: 1.5,
                         hoverRadius: 4,
                     },
@@ -103,7 +105,7 @@ export function createProvidersChart() {
             },
         });
         const withTheo = allGames.filter(g => F.theoWin(g) > 0);
-        injectCoveragePill('chart-providers', withTheo.length, allGames.length, 'with Theo Win data');
+        // Coverage pill omitted on overview
     } catch (err) {
         console.error('[PROVIDERS-CHART] FAILED:', err);
     }

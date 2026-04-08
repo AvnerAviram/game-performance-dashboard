@@ -368,11 +368,13 @@ export function renderArt() {
 
     renderStats(allGames, artGames, settings, moods);
     renderSettingLandscape(settings, globalAvg);
+    wireMoodDropdown(artGames, moods, globalAvg);
     renderSettingsChart(settings, artGames);
     renderMoodChart(moods);
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
+    renderArtTrends(artGames);
     renderArtRecipes(recipes, globalAvg, artGames);
     renderProviderArtCards(artGames, globalAvg);
     renderArtStrategicCards(artGames, globalAvg);
@@ -905,6 +907,278 @@ function renderSettingLandscape(settings, globalAvg) {
     });
 }
 
+// ── Mood filter for Art Landscape ──
+
+function wireMoodDropdown(artGames, moods, globalAvg) {
+    const select = document.getElementById('art-landscape-mood-filter');
+    if (!select) return;
+
+    const sortedMoods = [...moods].sort((a, b) => b.count - a.count);
+
+    select.innerHTML =
+        '<option value="">All Moods</option>' +
+        sortedMoods
+            .map(m => `<option value="${escapeAttr(m.mood)}">${escapeHtml(m.mood)} (${m.count})</option>`)
+            .join('');
+
+    select.addEventListener('change', () => {
+        const mood = select.value;
+        const filtered = mood ? artGames.filter(g => F.artMood(g) === mood) : artGames;
+        if (filtered.length < 2) {
+            const canvas = document.getElementById('art-opportunity-chart');
+            if (canvas) {
+                destroyChart('opportunity');
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '13px Inter, system-ui, sans-serif';
+                ctx.fillStyle = '#94a3b8';
+                ctx.textAlign = 'center';
+                ctx.fillText('Not enough art data for this mood', canvas.width / 2, canvas.height / 2);
+            }
+            return;
+        }
+        const minGames = mood ? 2 : 1;
+        const filteredSettings = getArtSettingMetrics(filtered).filter(s => s.count >= minGames);
+        renderSettingLandscape(filteredSettings, globalAvg);
+    });
+}
+
+// ── Art Trends ──
+
+function computeArtMoodTrends(artGames) {
+    const now = new Date().getFullYear();
+    const recentCutoff = now - 2;
+    const byMood = {};
+    for (const g of artGames) {
+        const mood = F.artMood(g);
+        const yr = F.originalReleaseYear(g);
+        if (!mood || !yr || yr < 2000) continue;
+        if (!byMood[mood]) byMood[mood] = { recent: 0, older: 0, total: 0 };
+        byMood[mood].total++;
+        if (yr >= recentCutoff) byMood[mood].recent++;
+        else byMood[mood].older++;
+    }
+    const totalRecent = Object.values(byMood).reduce((s, e) => s + e.recent, 0) || 1;
+    const totalOlder = Object.values(byMood).reduce((s, e) => s + e.older, 0) || 1;
+    const result = {};
+    for (const [mood, d] of Object.entries(byMood)) {
+        if (d.total < 5) {
+            result[mood] = { direction: 'insufficient', recentPct: 0, olderPct: 0, change: 0, total: d.total };
+            continue;
+        }
+        const recentPct = d.recent / totalRecent;
+        const olderPct = d.older / totalOlder;
+        const ratio = olderPct > 0 ? recentPct / olderPct : recentPct > 0 ? 2 : 1;
+        const change = (ratio - 1) * 100;
+        let direction = 'stable';
+        if (ratio >= 1.2) direction = 'rising';
+        else if (ratio <= 0.8) direction = 'declining';
+        result[mood] = { direction, recentPct, olderPct, change, total: d.total };
+    }
+    return result;
+}
+
+function renderArtTrends(artGames) {
+    const canvas = document.getElementById('art-trend-chart');
+    if (!canvas) return;
+
+    const DIMENSION_CONFIG = {
+        environment: { accessor: g => [F.artSetting(g)].filter(Boolean), label: 'Environments' },
+        mood: { accessor: g => [F.artMood(g)].filter(Boolean), label: 'Moods' },
+        elements: { accessor: g => F.artElements(g) || [], label: 'Elements' },
+        characters: { accessor: g => F.artCharacters(g) || [], label: 'Characters' },
+        narrative: { accessor: g => [F.artNarrative(g)].filter(Boolean), label: 'Narratives' },
+    };
+
+    function buildYearData(dimension) {
+        const cfg = DIMENSION_CONFIG[dimension] || DIMENSION_CONFIG.environment;
+        const byDim = {};
+        const yearSet = new Set();
+        for (const g of artGames) {
+            const vals = cfg.accessor(g);
+            const yr = F.originalReleaseYear(g);
+            if (!vals.length || !yr || yr < 2015) continue;
+            yearSet.add(yr);
+            for (const dim of vals) {
+                if (!dim || dim === 'No Characters (symbol-only game)' || dim === 'No Narrative (classic/abstract)')
+                    continue;
+                if (!byDim[dim]) byDim[dim] = {};
+                byDim[dim][yr] = (byDim[dim][yr] || 0) + 1;
+            }
+        }
+        const years = [...yearSet].sort((a, b) => a - b);
+        const dims = Object.entries(byDim)
+            .map(([name, yrMap]) => ({
+                name,
+                total: Object.values(yrMap).reduce((s, v) => s + v, 0),
+                data: years.map(y => yrMap[y] || 0),
+            }))
+            .filter(d => d.total >= 5)
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 10);
+        return { years, dims };
+    }
+
+    const TREND_COLORS = [
+        '#6366f1',
+        '#ec4899',
+        '#f97316',
+        '#22c55e',
+        '#06b6d4',
+        '#a855f7',
+        '#eab308',
+        '#f43f5e',
+        '#14b8a6',
+        '#3b82f6',
+    ];
+
+    function drawTrendChart(dimension) {
+        destroyChart('artTrend');
+        const { years, dims } = buildYearData(dimension);
+        if (!years.length || !dims.length) return;
+        const chartColors = getChartColors();
+        const ctx = canvas.getContext('2d');
+
+        const datasets = dims.map((d, i) => ({
+            label: shortLabel(d.name),
+            data: d.data,
+            borderColor: TREND_COLORS[i % TREND_COLORS.length],
+            _origColor: TREND_COLORS[i % TREND_COLORS.length],
+            _origWidth: 2.5,
+            backgroundColor: TREND_COLORS[i % TREND_COLORS.length] + '22',
+            borderWidth: 2.5,
+            pointRadius: 4,
+            pointHoverRadius: 8,
+            tension: 0.3,
+            fill: false,
+        }));
+
+        const hlDataset = (chart, activeIdx) => {
+            chart.data.datasets.forEach((ds, i) => {
+                if (activeIdx < 0) {
+                    ds.borderWidth = ds._origWidth || 2.5;
+                    if (ds._origColor) ds.borderColor = ds._origColor;
+                } else if (i === activeIdx) {
+                    ds.borderWidth = 4.5;
+                } else {
+                    ds.borderWidth = 1;
+                    const c = ds._origColor || ds.borderColor;
+                    ds.borderColor = typeof c === 'string' && c.startsWith('#') ? c + '40' : c;
+                }
+            });
+            chart.update('none');
+            if (activeIdx < 0) {
+                chart.data.datasets.forEach(ds => {
+                    if (ds._origColor) ds.borderColor = ds._origColor;
+                });
+                chart.update('none');
+            }
+        };
+
+        const soloDs = (chart, idx) => {
+            const allHidden = chart.data.datasets.every((ds, j) => (j === idx ? !ds.hidden : ds.hidden));
+            chart.data.datasets.forEach((ds, j) => {
+                if (allHidden) {
+                    ds.hidden = false;
+                    ds.borderWidth = ds._origWidth || 2.5;
+                    if (ds._origColor) ds.borderColor = ds._origColor;
+                } else {
+                    ds.hidden = j !== idx;
+                    if (j === idx) {
+                        ds.borderWidth = ds._origWidth || 2.5;
+                        if (ds._origColor) ds.borderColor = ds._origColor;
+                    }
+                }
+            });
+            chart.update();
+        };
+
+        chartInstances.artTrend = new Chart(ctx, {
+            type: 'line',
+            data: { labels: years.map(String), datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: { duration: 400 },
+                layout: { padding: { top: 16, right: 24, bottom: 8, left: 16 } },
+                interaction: { mode: 'nearest', intersect: true },
+                onHover: (evt, elements, chart) => hlDataset(chart, elements.length ? elements[0].datasetIndex : -1),
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            color: chartColors.textColor,
+                            font: { size: 10 },
+                            boxWidth: 12,
+                            padding: 12,
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                        },
+                        onClick: (evt, legendItem, legend) => soloDs(legend.chart, legendItem.datasetIndex),
+                        onHover: (evt, legendItem, legend) => {
+                            evt.native.target.style.cursor = 'pointer';
+                            hlDataset(legend.chart, legendItem.datasetIndex);
+                        },
+                        onLeave: (evt, legendItem, legend) => {
+                            evt.native.target.style.cursor = 'default';
+                            hlDataset(legend.chart, -1);
+                        },
+                    },
+                    tooltip: {
+                        ...getModernTooltipConfig(),
+                        callbacks: {
+                            title: items => items[0]?.label || '',
+                            label: item => `${item.dataset.label}: ${item.formattedValue} games`,
+                        },
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Game Count',
+                            color: chartColors.textColor,
+                            font: { size: 10, weight: 'bold' },
+                        },
+                        ticks: { color: chartColors.textColor, font: { size: 10 } },
+                        grid: getModernGridConfig(),
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Release Year',
+                            color: chartColors.textColor,
+                            font: { size: 10, weight: 'bold' },
+                        },
+                        ticks: { color: chartColors.textColor, font: { size: 10 } },
+                        grid: getModernGridConfig(),
+                    },
+                },
+            },
+        });
+    }
+
+    const updateSubtitle = dim => {
+        const sub = document.getElementById('art-trend-subtitle');
+        if (sub) {
+            const label = (DIMENSION_CONFIG[dim] || DIMENSION_CONFIG.environment).label.toLowerCase();
+            sub.textContent = `How art ${label} are trending year over year`;
+        }
+    };
+
+    drawTrendChart('environment');
+
+    const dimSelect = document.getElementById('art-trend-dimension');
+    if (dimSelect) {
+        dimSelect.addEventListener('change', () => {
+            drawTrendChart(dimSelect.value);
+            updateSubtitle(dimSelect.value);
+        });
+    }
+}
+
 // ── Bar charts (gradient style matching overview) ──
 
 function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, onClickFn, displayLabelOverrides) {
@@ -1129,7 +1403,8 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
         return;
     }
 
-    const INITIAL_SHOW = 20;
+    const INITIAL_SHOW = 10;
+    const PAGE_SIZE = 20;
     const maxTheo = Math.max(...sorted.map(r => r.avgTheo), 1);
     const MEDALS = ['🥇', '🥈', '🥉'];
 
@@ -1138,29 +1413,32 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
     const rows = sorted
         .map((r, i) => {
             const lift = avg > 0 ? ((r.avgTheo - avg) / avg) * 100 : 0;
-            const liftSign = lift > 0 ? '+' : '';
-            const liftColor =
-                lift > 15
-                    ? 'text-emerald-600 dark:text-emerald-400'
-                    : lift > 0
-                      ? 'text-emerald-500 dark:text-emerald-400'
-                      : lift < -15
-                        ? 'text-red-500 dark:text-red-400'
-                        : 'text-gray-500 dark:text-gray-400';
-            const liftBg =
-                lift > 0
-                    ? 'bg-emerald-50 dark:bg-emerald-900/30'
-                    : lift < 0
-                      ? 'bg-red-50 dark:bg-red-900/30'
-                      : 'bg-gray-50 dark:bg-gray-700';
+            const liftColor = lift > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400';
+            const liftBg = lift >= 0 ? 'bg-emerald-50 dark:bg-emerald-900/20' : 'bg-red-50 dark:bg-red-900/20';
+            const liftIcon = lift >= 0 ? '▲' : '▼';
             const barWidth = maxTheo > 0 ? (r.avgTheo / maxTheo) * 100 : 0;
             const opp = calcOppScore(r, avg);
             const isOpp = r.avgTheo > avg && r.count <= 15;
-            const rowHighlight = i < 3 ? 'bg-gradient-to-r from-amber-50/30 to-transparent dark:from-amber-900/10' : '';
+            const barGradient =
+                i < 3
+                    ? 'from-amber-400 to-orange-500'
+                    : lift >= 0
+                      ? 'from-indigo-400 to-emerald-400'
+                      : 'from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500';
+            const rowBg = i < 3 ? 'bg-gradient-to-r from-amber-50/40 to-transparent dark:from-amber-900/10' : '';
 
-            const rankNum = i + 1;
-            const medalSuffix = i < 3 ? ` <span class="text-[10px] leading-none">${MEDALS[i]}</span>` : '';
-            const rank = `<span class="text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">${rankNum}</span>${medalSuffix}`;
+            const rank =
+                i < 3
+                    ? `<div class="flex flex-col items-center gap-0.5"><span class="text-base leading-none">${MEDALS[i]}</span><span class="text-[9px] font-bold text-amber-600 dark:text-amber-400">#${i + 1}</span></div>`
+                    : `<span class="text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">#${i + 1}</span>`;
+
+            const trend = trendMap[r.setting];
+            const trendBadge =
+                trend && trend.direction !== 'stable' && trend.direction !== 'insufficient'
+                    ? trend.direction === 'rising'
+                        ? `<span class="text-[9px] font-medium text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-1.5 py-0.5 rounded-full">▲ Rising</span>`
+                        : `<span class="text-[9px] font-medium text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-1.5 py-0.5 rounded-full">▼ Declining</span>`
+                    : '';
 
             const recipeGames = artGames
                 ? artGames.filter(g => F.artSetting(g) === r.setting && F.artMood(g) === r.mood)
@@ -1168,105 +1446,136 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
             const domVol = recipeGames.length ? getDominantVolatility(recipeGames) : '';
             const domLayout = recipeGames.length ? getDominantLayout(recipeGames) : '';
             const avgRtp = recipeGames.length ? getAvgRtp(recipeGames) : 0;
-            const contextChips = [];
+
+            const chars = (r.topCharacters || [])
+                .filter(c => c && c !== 'No Characters (symbol-only game)')
+                .slice(0, 3);
+            const elems = (r.topElements || []).slice(0, 3);
+            const narr = r.narrative && r.narrative !== 'No Narrative (classic/abstract)' ? r.narrative : '';
+
+            const pipeSep =
+                '<span class="inline-block w-px h-3 bg-gray-300 dark:bg-gray-600 mx-1 align-middle"></span>';
+            const pill = (label, values, bgCls, textCls) => {
+                const display = Array.isArray(values) ? values.map(v => `<span>${v}</span>`).join(pipeSep) : values;
+                return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md ${bgCls}"><span class="text-[9px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">${label}</span><span class="text-[11px] font-bold ${textCls}">${display}</span></span>`;
+            };
+
+            const specPills = [];
             if (domVol)
-                contextChips.push(
-                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium">⚡ ${escapeHtml(domVol)}</span>`
+                specPills.push(
+                    pill(
+                        'Volatility',
+                        escapeHtml(domVol),
+                        'bg-violet-50 dark:bg-violet-900/20',
+                        'text-violet-700 dark:text-violet-300'
+                    )
                 );
             if (domLayout)
-                contextChips.push(
-                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 font-medium">🎰 ${escapeHtml(domLayout)}</span>`
+                specPills.push(
+                    pill(
+                        'Layout',
+                        escapeHtml(domLayout),
+                        'bg-sky-50 dark:bg-sky-900/20',
+                        'text-sky-700 dark:text-sky-300'
+                    )
                 );
             if (avgRtp > 0)
-                contextChips.push(
-                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-medium">RTP ${avgRtp.toFixed(1)}%</span>`
+                specPills.push(
+                    pill(
+                        'RTP',
+                        `${avgRtp.toFixed(1)}%`,
+                        'bg-orange-50 dark:bg-orange-900/20',
+                        'text-orange-700 dark:text-orange-300'
+                    )
                 );
-            const contextHtml = contextChips.length
-                ? contextChips.join('<span class="w-px h-3 bg-gray-200 dark:bg-gray-600"></span>')
-                : '';
 
-            const trend = trendMap[r.setting];
-            const trendBadge =
-                trend && trend.direction !== 'stable'
-                    ? `<span class="text-[8px] ${trend.direction === 'rising' ? 'text-emerald-500' : 'text-red-400'}">${trend.direction === 'rising' ? '▲' : '▼'}</span>`
+            const artPills = [];
+            if (chars.length)
+                artPills.push(
+                    pill(
+                        'Characters',
+                        chars.map(c => escapeHtml(shortLabel(c))),
+                        'bg-amber-50 dark:bg-amber-900/20',
+                        'text-amber-700 dark:text-amber-300'
+                    )
+                );
+            if (elems.length)
+                artPills.push(
+                    pill(
+                        'Elements',
+                        elems.map(e => escapeHtml(shortLabel(e))),
+                        'bg-teal-50 dark:bg-teal-900/20',
+                        'text-teal-700 dark:text-teal-300'
+                    )
+                );
+            if (narr)
+                artPills.push(
+                    pill(
+                        'Narrative',
+                        escapeHtml(shortLabel(narr)),
+                        'bg-rose-50 dark:bg-rose-900/20',
+                        'text-rose-700 dark:text-rose-300'
+                    )
+                );
+
+            const hasSpecs = specPills.length > 0;
+            const hasArt = artPills.length > 0;
+            const SEP = '<span class="text-gray-300 dark:text-gray-600 text-[10px] mx-0.5">·</span>';
+            const detailSection =
+                hasSpecs || hasArt
+                    ? `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex flex-wrap items-start gap-3">
+                            ${hasSpecs ? `<div><div class="text-[8px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Specs</div><div class="flex flex-wrap items-center gap-1.5">${specPills.join(SEP)}</div></div>` : ''}
+                            ${hasSpecs && hasArt ? '<div class="w-px h-10 bg-gray-300 dark:bg-gray-600 self-center shrink-0"></div>' : ''}
+                            ${hasArt ? `<div><div class="text-[8px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Art Details</div><div class="flex flex-wrap items-center gap-1.5">${artPills.join(SEP)}</div></div>` : ''}
+                        </div>
+                    </div>`
                     : '';
 
-            const charChips = (r.topCharacters || [])
-                .filter(c => c && c !== 'No Characters (symbol-only game)')
-                .slice(0, 3)
-                .map(
-                    c =>
-                        `<span class="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200">${escapeHtml(shortLabel(c))}</span>`
-                )
-                .join('');
-            const elemChips = (r.topElements || [])
-                .slice(0, 3)
-                .map(
-                    e =>
-                        `<span class="text-[10px] px-1.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200">${escapeHtml(shortLabel(e))}</span>`
-                )
-                .join('');
-            const narrChip =
-                r.narrative && r.narrative !== 'No Narrative (classic/abstract)'
-                    ? `<span class="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-50 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200">${escapeHtml(shortLabel(r.narrative))}</span>`
-                    : '';
-            const hasDetails = charChips || elemChips || narrChip;
-
-            return `<div class="recipe-row px-4 py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowHighlight}" onclick="${safeOnclick('window.showArtRecipe', r.setting, r.mood)}">
-                <div class="flex items-start gap-3">
-                    <div class="w-7 pt-0.5 text-center shrink-0 flex flex-col items-center gap-0.5">${rank}</div>
-                    <div class="flex-1 min-w-0 space-y-2">
-                        <div class="flex flex-wrap items-center gap-1.5">
-                            <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Env</span>
-                            ${multiPill(r.setting, SETTING_PALETTE)}${trendBadge}
-                            <span class="text-gray-300 dark:text-gray-600 mx-0.5">+</span>
-                            <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Mood</span>
+            return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" onclick="${safeOnclick('window.showArtRecipe', r.setting, r.mood)}">
+            <div class="px-4 py-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 text-center shrink-0">${rank}</div>
+                    <div class="w-px h-10 bg-gray-300 dark:bg-gray-600 shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex flex-wrap items-center gap-1.5 mb-2">
+                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Environment</span>
+                            ${multiPill(r.setting, SETTING_PALETTE)}
+                            <span class="text-gray-300 dark:text-gray-600 text-xs mx-0.5">×</span>
+                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Mood</span>
                             ${multiPill(r.mood, MOOD_PALETTE)}
+                            ${trendBadge}
+                            ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
                         </div>
-                        <div class="flex flex-wrap items-center gap-3 px-3 py-2 rounded-lg bg-gray-50/80 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/40">
-                            <div class="flex items-center gap-1.5">
-                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Theo</span>
-                                <div class="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                                    <div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-emerald-400" style="width:${barWidth.toFixed(0)}%"></div>
-                                </div>
-                                <span class="text-[12px] font-bold text-gray-900 dark:text-white tabular-nums">${r.avgTheo.toFixed(2)}</span>
+                        <div class="border-t border-dashed border-gray-200 dark:border-gray-700 pt-1.5 mt-1.5 flex items-center gap-2">
+                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Avg Theo</span>
+                            <div class="w-28 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden shrink-0">
+                                <div class="h-full rounded-full bg-gradient-to-r ${barGradient}" style="width:${barWidth.toFixed(0)}%"></div>
                             </div>
-                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
-                            <div class="flex items-center gap-1">
-                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Lift</span>
-                                <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-semibold ${liftColor} ${liftBg}">${lift >= 0 ? '▲' : '▼'}${liftSign}${Math.abs(lift).toFixed(0)}%</span>
-                            </div>
-                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
-                            <div class="flex items-center gap-1">
-                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Games</span>
-                                <span class="text-[12px] font-bold text-gray-700 dark:text-gray-300 tabular-nums">${r.count}</span>
-                            </div>
-                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
-                            <div class="flex items-center gap-1">
-                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Opp</span>
-                                <span class="text-[12px] font-bold tabular-nums ${opp >= 0.5 ? 'text-emerald-600 dark:text-emerald-400' : opp >= 0.3 ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'}">${opp.toFixed(2)}</span>
-                            </div>
-                            ${isOpp ? '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-bold uppercase rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-800">💎 Opp</span>' : ''}
+                            <span class="text-sm font-bold text-gray-900 dark:text-white tabular-nums">${r.avgTheo.toFixed(1)}</span>
                         </div>
-                        ${
-                            contextHtml
-                                ? `<div class="flex flex-wrap items-center gap-1.5 pl-1">${contextHtml}</div>`
-                                : ''
-                        }
-                        ${
-                            hasDetails
-                                ? `<div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 pl-1">
-                            ${charChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Characters</span><div class="flex flex-wrap gap-1">${charChips}</div></div>` : ''}
-                            ${charChips && (elemChips || narrChip) ? '<span class="w-px h-3 bg-gray-200 dark:bg-gray-700"></span>' : ''}
-                            ${elemChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Elements</span><div class="flex flex-wrap gap-1">${elemChips}</div></div>` : ''}
-                            ${elemChips && narrChip ? '<span class="w-px h-3 bg-gray-200 dark:bg-gray-700"></span>' : ''}
-                            ${narrChip ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Narrative</span>${narrChip}</div>` : ''}
-                        </div>`
-                                : ''
-                        }
+                    </div>
+                    <div class="w-px h-14 bg-gray-300 dark:bg-gray-600 shrink-0"></div>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <div class="text-center px-2.5">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Lift</div>
+                            <span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold ${liftColor} ${liftBg}">${liftIcon}${Math.abs(lift).toFixed(0)}%</span>
+                        </div>
+                        <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 shrink-0"></div>
+                        <div class="text-center px-2.5">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Games</div>
+                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200 tabular-nums">${r.count}</span>
+                        </div>
+                        <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 shrink-0"></div>
+                        <div class="text-center px-2.5">
+                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Opportunity</div>
+                            <span class="text-sm font-bold tabular-nums ${opp >= 0.5 ? 'text-emerald-600 dark:text-emerald-400' : opp >= 0.3 ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300'}">${opp.toFixed(2)}</span>
+                        </div>
                     </div>
                 </div>
-            </div>`;
+                ${detailSection}
+            </div>
+        </div>`;
         })
         .join('');
 
@@ -1282,13 +1591,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
 
     container.innerHTML = `
         <div class="divide-y divide-gray-200 dark:divide-gray-700" id="art-recipes-list">${rows}</div>
-        ${
-            hasMore
-                ? `<div class="px-3 pt-2 pb-1" id="art-recipes-show-more-wrap">
-                    <button id="art-recipes-show-more" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium cursor-pointer">Show ${sorted.length - INITIAL_SHOW} more…</button>
-                </div>`
-                : ''
-        }
+        ${hasMore ? '<div class="px-3 pt-2 pb-1" id="art-recipes-show-more-wrap"><button id="art-recipes-show-more" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium cursor-pointer"></button></div>' : ''}
         <div class="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
             ${sorted.length} recipes · ${beatingMarket} beating art avg (${avg.toFixed(2)}) · sorted by ${SORT_LABELS[_recipeCache.sortMode] || 'opportunity score'}
         </div>`;
@@ -1296,17 +1599,33 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
     const listEl = document.getElementById('art-recipes-list');
     if (listEl && hasMore) {
         const allRows = listEl.querySelectorAll('.recipe-row');
+        let visible = INITIAL_SHOW;
         allRows.forEach((row, idx) => {
             if (idx >= INITIAL_SHOW) row.style.display = 'none';
         });
+
         const btn = document.getElementById('art-recipes-show-more');
-        if (btn) {
-            btn.addEventListener('click', () => {
-                allRows.forEach(row => {
-                    row.style.display = '';
-                });
+        const updateBtn = () => {
+            if (!btn) return;
+            const remaining = sorted.length - visible;
+            if (remaining <= 0) {
                 const wrap = document.getElementById('art-recipes-show-more-wrap');
                 if (wrap) wrap.remove();
+            } else {
+                const next = Math.min(PAGE_SIZE, remaining);
+                btn.textContent = `Show ${next} more… (${remaining} remaining)`;
+            }
+        };
+        updateBtn();
+
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const nextLimit = Math.min(visible + PAGE_SIZE, sorted.length);
+                for (let j = visible; j < nextLimit; j++) {
+                    if (allRows[j]) allRows[j].style.display = '';
+                }
+                visible = nextLimit;
+                updateBtn();
             });
         }
     }
@@ -1340,16 +1659,17 @@ function computeArtSettingTrends(artGames) {
     const result = {};
     for (const [env, d] of Object.entries(byEnv)) {
         if (d.total < 5) {
-            result[env] = { direction: 'insufficient', recentPct: 0, olderPct: 0 };
+            result[env] = { direction: 'insufficient', recentPct: 0, olderPct: 0, change: 0, total: d.total };
             continue;
         }
         const recentPct = d.recent / totalRecent;
         const olderPct = d.older / totalOlder;
         const ratio = olderPct > 0 ? recentPct / olderPct : recentPct > 0 ? 2 : 1;
+        const change = (ratio - 1) * 100;
         let direction = 'stable';
         if (ratio >= 1.2) direction = 'rising';
         else if (ratio <= 0.8) direction = 'declining';
-        result[env] = { direction, recentPct, olderPct };
+        result[env] = { direction, recentPct, olderPct, change, total: d.total };
     }
     return result;
 }

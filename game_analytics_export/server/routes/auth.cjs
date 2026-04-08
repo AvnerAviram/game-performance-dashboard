@@ -1,19 +1,10 @@
 const { Router } = require('express');
-const rateLimit = require('express-rate-limit');
 const bcrypt = require('bcryptjs');
 const { loadUsers } = require('../helpers.cjs');
 
 const router = Router();
 
-const loginLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000,
-    max: 10,
-    standardHeaders: true,
-    legacyHeaders: false,
-    message: { error: 'Too many login attempts. Please try again in 15 minutes.' },
-});
-
-router.post('/api/login', loginLimiter, async (req, res) => {
+router.post('/api/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {

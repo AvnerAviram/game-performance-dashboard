@@ -102,7 +102,7 @@ function _renderArtProfileContent(settings, moods, characters, total) {
     html += _renderArtSubSection('Environments', '🌍', settings, total, 5);
     html += _renderArtSubSection('Moods', '🎭', moods, total, 5);
     if (characters.length) {
-        html += _renderArtSubSection('Characters', '👤', characters, total, 5);
+        html += _renderArtSubSection('Characters', '🧙', characters, total, 5);
     }
     return html || EmptyState('No art data');
 }
@@ -458,6 +458,53 @@ window.showThemeDetails = function (themeName, opts) {
         topGamesHtml = EmptyState('No games found for this theme');
     }
 
+    // --- Sub-themes: breakdown categories that belong to this consolidated theme ---
+    const sortedSubThemes = [];
+    if (themeBreakdowns) {
+        const lowerTheme = themeName.toLowerCase();
+        const SKIP_SUFFIXES = new Set(['general', 'other', 'misc', 'miscellaneous']);
+        for (const [key, val] of Object.entries(themeBreakdowns)) {
+            const lowerKey = key.toLowerCase();
+            if (lowerKey === lowerTheme) continue;
+            const isPrefix = lowerKey.startsWith(lowerTheme + ' ') || lowerKey.startsWith(lowerTheme + '/');
+            if (!isPrefix) continue;
+            // Strip parent prefix: "Animals - Wolves" → "Wolves", "Fire/Volcanic" → "Volcanic"
+            const displayName = key
+                .replace(new RegExp('^' + themeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s/\\-]+', 'i'), '')
+                .trim();
+            if (!displayName || SKIP_SUFFIXES.has(displayName.toLowerCase())) continue;
+            sortedSubThemes.push([displayName, val.game_count || 0]);
+        }
+        sortedSubThemes.sort((a, b) => b[1] - a[1]);
+    }
+
+    const SUB_INITIAL = 8;
+    let subThemesHtml = '';
+    if (sortedSubThemes.length > 0) {
+        const subTotal = sortedSubThemes.reduce((s, [, c]) => s + c, 0);
+        const subItems = sortedSubThemes
+            .map(([name, count], i) => {
+                const pct = subTotal > 0 ? (count / subTotal) * 100 : 0;
+                const pctStr = pct >= 10 || pct === Math.round(pct) ? `${Math.round(pct)}` : pct.toFixed(1);
+                const barW = Math.min(100, Math.max(2, Math.round(pct)));
+                const hidden = i >= SUB_INITIAL ? ' style="display:none"' : '';
+                return `<div data-cl-item${hidden} class="py-1">
+                    <div class="flex items-baseline justify-between mb-0.5">
+                        <span class="text-[11px] font-medium text-gray-800 dark:text-gray-200">${escapeHtml(name)}</span>
+                        <span class="text-[10px] text-gray-500 dark:text-gray-400 ml-2 shrink-0">${count} (${pctStr}%)</span>
+                    </div>
+                    <div class="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div class="h-full bg-emerald-400 dark:bg-emerald-500 rounded-full" style="width:${barW}%"></div>
+                    </div>
+                </div>`;
+            })
+            .join('');
+        subThemesHtml =
+            sortedSubThemes.length > SUB_INITIAL
+                ? collapsibleList(subItems, sortedSubThemes.length, SUB_INITIAL, 'theme-subs')
+                : subItems;
+    }
+
     const featureMap = {};
     themeGames.forEach(g => {
         parseFeatures(g.features).forEach(f => {
@@ -543,6 +590,15 @@ window.showThemeDetails = function (themeName, opts) {
         accent: ACCENTS.themes,
         content: descContent,
     });
+    if (subThemesHtml) {
+        html += PanelSection({
+            title: `Sub-Themes (${sortedSubThemes.length})`,
+            icon: '🏷️',
+            gradient: GRADIENTS.themes,
+            accent: ACCENTS.themes,
+            content: `<div class="space-y-0">${subThemesHtml}</div>`,
+        });
+    }
     html += PanelSection({
         title: `Top Games (${sortedGames.length})`,
         icon: '🏆',

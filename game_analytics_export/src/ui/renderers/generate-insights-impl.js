@@ -2,8 +2,11 @@
  * Insights orchestrator — wires up heatmaps, recipes, strategic cards,
  * combo explorer, outliers, and delegates to blueprint-advisor.js.
  */
-import { gameData } from '../../lib/data.js';
+import { gameData, getActiveGames } from '../../lib/data.js';
 import { log, warn } from '../../lib/env.js';
+import { getProviderMetrics } from '../../lib/metrics.js';
+import { escapeHtml, escapeAttr } from '../../lib/sanitize.js';
+import { F } from '../../lib/game-fields.js';
 import {
     createMarketLandscapeChart,
     createVolatilityLandscapeChart,
@@ -59,6 +62,7 @@ export function generateInsights() {
     if (document.getElementById('market-landscape-chart')) {
         try {
             createMarketLandscapeChart();
+            wireThemeLandscapeProviderFilter();
             log('  ✅ Market Landscape chart created');
         } catch (e) {
             warn('Market Landscape chart:', e);
@@ -98,4 +102,32 @@ export function generateInsights() {
 
     initCategoryFilter();
     log('💡 All insights generated successfully');
+}
+
+function wireThemeLandscapeProviderFilter() {
+    const select = document.getElementById('theme-landscape-provider-filter');
+    if (!select) return;
+
+    const allGames = getActiveGames();
+    const providers = getProviderMetrics(allGames, { minGames: 2 });
+    const sorted = [...providers].sort((a, b) => b.count - a.count);
+
+    select.innerHTML =
+        '<option value="">All Providers</option>' +
+        sorted.map(p => `<option value="${escapeAttr(p.name)}">${escapeHtml(p.name)} (${p.count})</option>`).join('');
+
+    select.addEventListener('change', () => {
+        const prov = select.value || undefined;
+        const sub = document.getElementById('theme-landscape-subtitle');
+        if (sub) {
+            sub.textContent = prov
+                ? `Showing themes for ${prov} — X = game count, Y = avg Performance Index`
+                : 'X = game count, Y = avg Performance Index, bubble size = game count';
+        }
+        try {
+            createMarketLandscapeChart(prov);
+        } catch (e) {
+            warn('Market Landscape filter:', e);
+        }
+    });
 }

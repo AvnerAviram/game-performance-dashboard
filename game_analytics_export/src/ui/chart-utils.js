@@ -443,13 +443,27 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                 const fontStr = `600 ${fontSize}px Inter, system-ui, sans-serif`;
                 c.font = fontStr;
 
-                const truncName = (name, max = 18) => (name.length > max ? name.slice(0, max - 1) + '…' : name);
+                const maxLabels = opts.maxLabels || labels.length;
+                const truncMax = opts.truncate || 18;
+                const truncName = (name, max = truncMax) => (name.length > max ? name.slice(0, max - 1) + '…' : name);
+
+                // Decide which bubbles get labels (top N by radius)
+                let labelIndices;
+                if (maxLabels < labels.length) {
+                    const ranked = bubbleData.map((d, i) => ({ i, r: d.r })).sort((a, b) => b.r - a.r);
+                    const allowed = new Set(ranked.slice(0, maxLabels).map(d => d.i));
+                    labelIndices = allowed;
+                } else {
+                    labelIndices = null;
+                }
+
                 const labs = [];
                 const ancs = [];
                 const labMeta = [];
                 const midX = chartArea.left + areaW / 2;
                 const midY = chartArea.top + areaH / 2;
                 meta0.data.forEach((pt, i) => {
+                    if (labelIndices && !labelIndices.has(i)) return;
                     const label = truncName(labels[i] || '');
                     if (!label) return;
                     const pxR = pt.options?.radius ?? bubbleData[i]?.r ?? 12;
@@ -473,7 +487,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
 
                 saLabelSolver(labs, ancs, areaW, areaH, chartArea.left, chartArea.top);
 
-                const entries = [];
+                const candidates = [];
                 const leaderThreshold = 15;
                 for (let k = 0; k < labs.length; k++) {
                     const l = labs[k];
@@ -487,7 +501,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     }
 
                     const rect = { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height };
-                    entries.push({
+                    candidates.push({
                         label: meta.label,
                         dataIndex: meta.index,
                         rect,
@@ -500,9 +514,11 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                         bx: a.x,
                         by: a.y,
                         leaderColor: meta.leaderColor,
+                        ancR: a.r,
                     });
                 }
-                cachedLabels = entries;
+
+                cachedLabels = candidates;
             }
 
             cachedLabels.forEach(entry => {

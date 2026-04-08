@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gad-v12';
+const CACHE_NAME = 'gad-v20';
 
 self.addEventListener('install', event => {
     event.waitUntil(self.skipWaiting());

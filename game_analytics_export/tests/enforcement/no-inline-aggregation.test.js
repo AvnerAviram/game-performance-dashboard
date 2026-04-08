@@ -35,6 +35,7 @@ const STAYS_INLINE_FILES = new Set([
     'ui/renderers/overview-renderer.js',
     'ui/renderers/themes-renderer.js',
     'ui/renderers/art-renderer.js',
+    'ui/renderers/blueprint-art.js',
     'ui/chart-brands.js',
     'ui/filter-dropdowns.js',
 ]);

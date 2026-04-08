@@ -139,7 +139,6 @@ describe('SA Label Solver – quality metrics', () => {
     });
 
     it('crowded-below: label placed above bubble, not into the crowd', () => {
-        // Classic bubble with many bubbles below — label should go above
         const ancs = [
             makeAnc(500, 250, 20),
             makeAnc(480, 310, 18),
@@ -152,12 +151,47 @@ describe('SA Label Solver – quality metrics', () => {
         const labs = ancs.map((a, i) => makeLab(a.x + a.r + 4, a.y - 6, names[i].length * 6, 12));
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
 
-        // Classic (index 0) should be placed near its bubble top (within 2px tolerance for solver jitter)
         const classicCenter = labs[0].y + labs[0].height / 2;
         expect(classicCenter).toBeLessThan(ancs[0].y + 2);
 
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
         expect(m.labelLabelOverlaps).toBe(0);
+    });
+
+    it('brand-density: 30 brands with 10 sharing same X (after jitter)', () => {
+        // Simulates Brand Landscape: 10 brands at count=5 (X~200px, jittered ±15px),
+        // 3 at count=6, 4 at count=8, rest spread out. All within 780px chart height.
+        const CHART_BRAND = { left: 60, top: 20, w: 1100, h: 740 };
+        const ancs = [];
+        const names = [];
+        // 10 brands at X~200, varying Y (jittered)
+        for (let i = 0; i < 10; i++) {
+            ancs.push(makeAnc(200 + (i - 5) * 6, 100 + i * 55, 10));
+            names.push(`Brand${i}`);
+        }
+        // 3 brands at X~280
+        for (let i = 0; i < 3; i++) {
+            ancs.push(makeAnc(280 + i * 5, 150 + i * 80, 12));
+            names.push(`Mid${i}`);
+        }
+        // 4 brands at X~350
+        for (let i = 0; i < 4; i++) {
+            ancs.push(makeAnc(350 + i * 4, 120 + i * 70, 13));
+            names.push(`High${i}`);
+        }
+        // 13 spread-out brands
+        for (let i = 0; i < 13; i++) {
+            ancs.push(makeAnc(400 + i * 50, 80 + ((i * 137) % 600), 8 + (i % 5) * 3));
+            names.push(`Spread${i}`);
+        }
+        const labs = ancs.map((a, i) => makeLab(a.x + a.r + 4, a.y - 6, names[i].length * 6, 12));
+        saLabelSolver(labs, ancs, CHART_BRAND.w, CHART_BRAND.h, CHART_BRAND.left, CHART_BRAND.top);
+        const m = labelQualityMetrics(labs, ancs, CHART_BRAND.left, CHART_BRAND.top, CHART_BRAND.w, CHART_BRAND.h);
+
+        expect(m.labelLabelOverlaps).toBeLessThan(3);
+        expect(m.labelBubbleOverlaps).toBeLessThan(3);
+        expect(m.outOfBounds).toBe(0);
+        expect(m.avgDist).toBeLessThan(100);
     });
 });
 
