@@ -99,8 +99,11 @@ copyFile(
 // logs/ directory (empty placeholder so Node logging works immediately)
 fs.mkdirSync(path.join(RELEASE, 'logs'), { recursive: true });
 
-// Root files
-copyFile(PKG_PATH, path.join(RELEASE, 'package.json'));
+// Root files — write a production-safe package.json (strip dev-only lifecycle scripts)
+const releasePkg = JSON.parse(fs.readFileSync(PKG_PATH, 'utf-8'));
+releasePkg.scripts = { start: 'node server/server.cjs', server: 'node server/server.cjs' };
+delete releasePkg.devDependencies;
+fs.writeFileSync(path.join(RELEASE, 'package.json'), JSON.stringify(releasePkg, null, 4) + '\n');
 const lockPath = path.join(ROOT, 'package-lock.json');
 if (fs.existsSync(lockPath)) {
     copyFile(lockPath, path.join(RELEASE, 'package-lock.json'));

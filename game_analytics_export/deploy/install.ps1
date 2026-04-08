@@ -71,9 +71,13 @@ if (-not $SkipRestart) {
 
 # ── 2. Install production dependencies ─────────────────────────────────
 Write-Host "  Installing dependencies (npm install --omit=dev)..."
-npm install --omit=dev 2>&1 | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "npm install failed with exit code $LASTEXITCODE"
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = "SilentlyContinue"
+& npm install --omit=dev 2>$null
+$npmExit = $LASTEXITCODE
+$ErrorActionPreference = $prevEAP
+if ($npmExit -ne 0) {
+    throw "npm install failed with exit code $npmExit"
 }
 Write-Host "  Dependencies installed." -ForegroundColor Green
 
