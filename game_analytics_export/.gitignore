@@ -79,3 +79,35 @@ data/*.cleaned.json
 # E2E test screenshots and debug logs (generated during runs)
 tests/e2e/*.png
 tests/e2e/*.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data pipeline scratch files (prefixed with _)
+data/_*.json
+data/_*.py
+data/_*.html
+data/_*.cjs
+data/_backup_*/
+data/_legacy/
+
+# Extraction pipeline intermediates
+data/extraction_results*.jsonl
+data/extraction_checkpoint.json
+data/extraction_sparse_games.txt
+data/*_test_results.jsonl
+
+# Data backups (large, regenerable)
+data/game_data_master_backup_*.json
+
+# Staging intermediates (used by pipeline scripts, not app)
+data/staged_best_of_sources.json
+data/staged_specs_external.json
+data/thin_gt_extractions.json
+
+# Downloaded spreadsheets
+data/*.xlsx
+
+# Husky (replaced by .hooks/)
+.husky/
