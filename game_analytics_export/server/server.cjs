@@ -42,13 +42,16 @@ app.use(
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                scriptSrc: ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", 'https://cdn.jsdelivr.net'],
+                scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
                 scriptSrcAttr: ["'unsafe-inline'"],
-                styleSrc: ["'self'", "'unsafe-inline'", 'https://cdn.jsdelivr.net', 'https://fonts.googleapis.com'],
-                fontSrc: ["'self'", 'https://fonts.gstatic.com'],
-                imgSrc: ["'self'", 'data:', 'blob:'],
-                connectSrc: ["'self'", 'https://cdn.jsdelivr.net'],
+                styleSrc: ["'self'", "'unsafe-inline'"],
+                fontSrc: ["'self'"],
+                imgSrc: ["'self'", 'data:'],
+                connectSrc: ["'self'", 'https://extensions.duckdb.org'],
                 workerSrc: ["'self'", 'blob:'],
+                frameAncestors: ["'none'"],
+                baseUri: ["'self'"],
+                formAction: ["'self'"],
                 upgradeInsecureRequests: IS_PROD ? [] : null,
             },
         },
@@ -131,6 +134,7 @@ const PUBLIC_PATHS = [
     '/robots.txt',
     '/health.json',
     '/sw.js',
+    '/duckdb/',
 ];
 
 function isPublicPath(url) {

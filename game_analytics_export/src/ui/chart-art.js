@@ -1,3 +1,4 @@
+import { Chart } from './chart-setup.js';
 import { getActiveGames } from '../lib/data.js';
 import { getArtSettingMetrics } from '../lib/metrics.js';
 import { F } from '../lib/game-fields.js';
@@ -56,7 +57,7 @@ export function createArtSettingChart() {
             data: {
                 datasets: [
                     {
-                        label: 'Art Settings',
+                        label: 'Art Environments',
                         data: bubbleData,
                         backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
                         borderColor: bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
@@ -79,7 +80,7 @@ export function createArtSettingChart() {
                 onHover: (e, elements) => {
                     e.native.target.style.cursor = elements.length ? 'pointer' : 'default';
                 },
-                layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
+                layout: { padding: { top: 24, right: 16, bottom: 24, left: 16 } },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
@@ -107,7 +108,10 @@ export function createArtSettingChart() {
                         ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
                         grid: getModernGridConfig(),
                     },
-                    x: bubbleScaleOptionsWarped(chartColors, xWarp).x,
+                    x: {
+                        ...bubbleScaleOptionsWarped(chartColors, xWarp, 'Number of Games').x,
+                        min: -0.15,
+                    },
                 },
             },
         });

@@ -1,8 +1,7 @@
 // Brand / franchise landscape bubble chart
-import { gameData, getActiveGames } from '../lib/data.js';
+import { Chart } from './chart-setup.js';
+import { getActiveGames } from '../lib/data.js';
 import { F } from '../lib/game-fields.js';
-import { escapeHtml } from '../lib/sanitize.js';
-import { saLabelSolver } from '../lib/sa-label-solver.js';
 import {
     getChartColors,
     getModernTooltipConfig,
@@ -11,12 +10,9 @@ import {
     quadrantBorderColor,
     quadrantLabel,
     median,
-    bubbleScaleOptions,
-    bubbleScaleOptionsLog,
     bubbleScaleOptionsWarped,
     createXWarp,
     createYWarp,
-    createBubbleLabelPlugin,
     createSABubbleLabelPlugin,
     createSAHoverHandler,
     createSAClickHandler,
@@ -156,64 +152,6 @@ export function createBrandsChart() {
 
 // ── Brand Landscape (Market Insights page) ──
 
-const BRAND_LANDSCAPE_MAJOR = 40;
-
-const QUAD_META = {
-    opportunity: { label: '💎 Opportunity', bg: 'rgba(16,185,129,0.25)', border: 'rgb(16,185,129)' },
-    leader: { label: '🏆 Leaders', bg: 'rgba(99,102,241,0.25)', border: 'rgb(99,102,241)' },
-    niche: { label: '🔍 Niche', bg: 'rgba(100,116,139,0.20)', border: 'rgb(100,116,139)' },
-    saturated: { label: '⚠️ Saturated', bg: 'rgba(239,68,68,0.25)', border: 'rgb(239,68,68)' },
-};
-
-function classifyQuadrant(wx, wy, medX, medY) {
-    if (wy >= medY) return wx < medX ? 'opportunity' : 'leader';
-    return wx < medX ? 'niche' : 'saturated';
-}
-
-function removeClusterPopup() {
-    const el = document.getElementById('brand-cluster-popup');
-    if (el) el.remove();
-}
-
-function showClusterPopup(canvas, cluster, px, py) {
-    removeClusterPopup();
-    const qm = QUAD_META[cluster.quadrant];
-    const items = cluster.brands
-        .sort((a, b) => b.totalShare - a.totalShare)
-        .map(
-            f =>
-                `<div class="flex items-center justify-between gap-3 py-1.5 px-2.5 hover:bg-gray-50 dark:hover:bg-gray-700/40 rounded cursor-pointer transition-colors" onclick="window.showFranchiseDetails && window.showFranchiseDetails('${escapeHtml(f.name).replace(/'/g, "\\'")}')">
-            <span class="text-xs text-gray-800 dark:text-gray-200 truncate">${escapeHtml(f.name)}</span>
-            <span class="text-[10px] text-gray-400 shrink-0">${f.count} titles</span>
-        </div>`
-        )
-        .join('');
-
-    const popup = document.createElement('div');
-    popup.id = 'brand-cluster-popup';
-    popup.className =
-        'absolute z-50 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden';
-    popup.style.cssText = `left:${px + 14}px; top:${Math.max(8, py - 140)}px; width:270px; max-height:340px;`;
-    popup.innerHTML = `
-        <div class="px-3 py-2 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between">
-            <span class="text-xs font-bold text-gray-700 dark:text-gray-200">${qm.label} · ${cluster.brands.length} brands</span>
-            <button onclick="this.closest('#brand-cluster-popup').remove()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-sm leading-none cursor-pointer">✕</button>
-        </div>
-        <div class="overflow-y-auto p-1" style="max-height:290px">${items}</div>`;
-
-    const wrapper = canvas.parentElement;
-    wrapper.style.position = 'relative';
-    wrapper.appendChild(popup);
-
-    const closeOnOutside = e => {
-        if (!popup.contains(e.target)) {
-            removeClusterPopup();
-            document.removeEventListener('mousedown', closeOnOutside);
-        }
-    };
-    setTimeout(() => document.addEventListener('mousedown', closeOnOutside), 50);
-}
-
 export function createBrandLandscapeChart() {
     const canvas = document.getElementById('chart-brand-landscape');
     if (!canvas) return;
@@ -222,7 +160,6 @@ export function createBrandLandscapeChart() {
         chartInstances.brandLandscape.destroy();
         chartInstances.brandLandscape = null;
     }
-    removeClusterPopup();
 
     try {
         const ctx = canvas.getContext('2d');
@@ -230,114 +167,51 @@ export function createBrandLandscapeChart() {
         const allGames = getActiveGames();
         if (!allGames.length) return;
 
-        const franchises = getFranchiseBubbles(allGames, 2);
-        if (!franchises.length) return;
-
-        const majors = franchises.slice(0, BRAND_LANDSCAPE_MAJOR);
-        const minors = franchises.slice(BRAND_LANDSCAPE_MAJOR);
+        const franchises = getFranchiseBubbles(allGames, 5);
+        if (!franchises.length) {
+            console.warn('[BRAND-LANDSCAPE] No franchises with >= 5 games found.');
+            return;
+        }
 
         const allX = franchises.map(f => f.count);
         const allY = franchises.map(f => f.avgTheo);
         const xWarp = createXWarp(allX);
-        const yWarp = createYWarp(allY);
+        const yWarp = createYWarp(allY, 5.0);
         const medX = xWarp.warpVal(median(allX));
         const medY = yWarp.warp(median(allY));
 
         const maxCount = Math.max(...allX, 1);
-        const rMin = 5;
-        const rMax = 34;
-        const majorData = majors.map(f => ({
-            x: xWarp.warpVal(f.count),
-            y: yWarp.warp(f.avgTheo),
+        const rMin = 6;
+        const rMax = 38;
+        const jitter = (str, salt) => {
+            const h = ((str.charCodeAt(0) || 0) * 31 + (str.charCodeAt(1) || 0) * 17 + salt) % 100;
+            return (h / 100 - 0.5) * 0.3;
+        };
+        const bubbleData = franchises.map(f => ({
+            x: xWarp.warpVal(f.count) + jitter(f.name, 0),
+            y: yWarp.warp(f.avgTheo) + jitter(f.name, 7),
             r: rMin + Math.sqrt(f.count / maxCount) * (rMax - rMin),
         }));
-        const majorLabels = majors.map(f => f.name);
-        const majorBorders = majorData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
-
-        // Cluster remaining brands by quadrant
-        const clusterBuckets = {};
-        for (const f of minors) {
-            const wx = xWarp.warpVal(f.count);
-            const wy = yWarp.warp(f.avgTheo);
-            const q = classifyQuadrant(wx, wy, medX, medY);
-            if (!clusterBuckets[q]) clusterBuckets[q] = { quadrant: q, brands: [] };
-            clusterBuckets[q].brands.push(f);
-        }
-
-        const clusterList = Object.values(clusterBuckets).filter(c => c.brands.length > 0);
-
-        // Position clusters at quadrant midpoints (between median and edge)
-        const warpedX = majorData.map(d => d.x);
-        const warpedY = majorData.map(d => d.y);
-        const xMax = Math.max(...warpedX);
-        const yMax = Math.max(...warpedY);
-
-        const clusterData = clusterList.map(c => {
-            const isLeft = c.quadrant === 'opportunity' || c.quadrant === 'niche';
-            const isTop = c.quadrant === 'opportunity' || c.quadrant === 'leader';
-            const wx = isLeft ? medX * 0.4 : medX + (xMax - medX) * 0.75;
-            const wy = isTop ? medY + (yMax - medY) * 0.75 : medY * 0.5;
-            return {
-                x: wx,
-                y: wy,
-                r: Math.max(18, Math.min(48, 18 + Math.sqrt(c.brands.length / 15) * 20)),
-            };
-        });
+        const labels = franchises.map(f => f.name);
+        const borders = bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
 
         const datasets = [
             {
-                label: 'Top Brands',
-                data: majorData,
-                backgroundColor: majorData.map(d => quadrantBgColor(d.x, d.y, medX, medY, 0.45)),
-                borderColor: majorBorders,
+                label: 'Brands',
+                data: bubbleData,
+                backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY, 0.45)),
+                borderColor: borders,
                 borderWidth: 1.5,
                 hoverRadius: 5,
             },
         ];
 
-        if (clusterData.length) {
-            datasets.push({
-                label: 'Brand Clusters',
-                data: clusterData,
-                backgroundColor: clusterList.map(c => QUAD_META[c.quadrant].bg),
-                borderColor: clusterList.map(c => QUAD_META[c.quadrant].border),
-                borderWidth: 2,
-                borderDash: [4, 3],
-                hoverRadius: 4,
-            });
-        }
-
-        const saPlugin = createSABubbleLabelPlugin('brandLandscapeLabels', majorData, majorLabels, majorBorders);
-
-        const clusterLabelPlugin = {
-            id: 'brandClusterLabels',
-            afterDatasetsDraw(chart) {
-                if (!clusterList.length) return;
-                const meta = chart.getDatasetMeta(1);
-                if (!meta || !meta.data) return;
-                const c = chart.ctx;
-                c.save();
-                meta.data.forEach((pt, i) => {
-                    const cl = clusterList[i];
-                    const qm = QUAD_META[cl.quadrant];
-                    c.font = 'bold 11px Inter, system-ui, sans-serif';
-                    c.fillStyle = qm.border;
-                    c.textAlign = 'center';
-                    c.textBaseline = 'middle';
-                    c.fillText(`+${cl.brands.length}`, pt.x, pt.y);
-                });
-                c.restore();
-            },
-        };
+        const saPlugin = createSABubbleLabelPlugin('brandLandscapeLabels', bubbleData, labels, borders);
 
         chartInstances.brandLandscape = new Chart(ctx, {
             type: 'bubble',
             data: { datasets },
-            plugins: [
-                createQuadrantPlugin('brandLandscapeQuadrant', medX, medY, chartColors),
-                saPlugin,
-                clusterLabelPlugin,
-            ],
+            plugins: [createQuadrantPlugin('brandLandscapeQuadrant', medX, medY, chartColors), saPlugin],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -349,27 +223,11 @@ export function createBrandLandscapeChart() {
                         ...getModernTooltipConfig(),
                         callbacks: {
                             title: items => {
-                                const el = items[0];
-                                if (el.datasetIndex === 1) {
-                                    const cl = clusterList[el.dataIndex];
-                                    return cl
-                                        ? `${QUAD_META[cl.quadrant].label} · ${cl.brands.length} brands (click to browse)`
-                                        : '';
-                                }
-                                const f = majors[el.dataIndex];
+                                const f = franchises[items[0].dataIndex];
                                 return f ? `🎮 ${f.name}` : '';
                             },
                             label: item => {
-                                if (item.datasetIndex === 1) {
-                                    const cl = clusterList[item.dataIndex];
-                                    if (!cl) return '';
-                                    const top3 = cl.brands
-                                        .slice(0, 3)
-                                        .map(f => f.name)
-                                        .join(', ');
-                                    return [`Top: ${top3}${cl.brands.length > 3 ? '…' : ''}`];
-                                }
-                                const f = majors[item.dataIndex];
+                                const f = franchises[item.dataIndex];
                                 if (!f) return '';
                                 const provStr = f.providers.slice(0, 3).join(', ');
                                 const q = quadrantLabel(xWarp.warpVal(f.count), yWarp.warp(f.avgTheo), medX, medY);
@@ -382,33 +240,14 @@ export function createBrandLandscapeChart() {
                     },
                 },
                 scales: bubbleScaleOptionsWarped(chartColors, xWarp, 'Title Count', 'Avg Performance Index', yWarp),
-                onHover: (e, elements, chart) => {
-                    const native = e.native;
-                    if (!native) return;
-                    if (elements.length && elements[0].datasetIndex === 1) {
-                        native.target.style.cursor = 'pointer';
-                        return;
-                    }
-                    createSAHoverHandler()(e, elements, chart);
-                },
-                onClick: (evt, elements, chart) => {
-                    if (elements.length && elements[0].datasetIndex === 1) {
-                        const ci = elements[0].index;
-                        const cl = clusterList[ci];
-                        if (!cl) return;
-                        const meta = chart.getDatasetMeta(1);
-                        const pt = meta.data[ci];
-                        showClusterPopup(canvas, cl, pt.x, pt.y);
-                        return;
-                    }
-                    createSAClickHandler(idx => {
-                        const f = majors[idx];
-                        if (f && window.showFranchiseDetails) window.showFranchiseDetails(f.name);
-                    })(evt, elements, chart);
-                },
+                onHover: createSAHoverHandler(),
+                onClick: createSAClickHandler(idx => {
+                    const f = franchises[idx];
+                    if (f && window.showFranchiseDetails) window.showFranchiseDetails(f.name);
+                }),
             },
         });
-        chartInstances.brandLandscape._saModule = { saLabelSolver };
+
         const branded = franchises.reduce((s, f) => s + f.count, 0);
         injectCoveragePill('chart-brand-landscape', branded, allGames.length, 'in branded franchises');
     } catch (err) {

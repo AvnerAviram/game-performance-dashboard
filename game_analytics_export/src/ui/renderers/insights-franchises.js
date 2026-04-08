@@ -148,7 +148,15 @@ window.sortFranchisesBy = function (field) {
 
     const tableBody = document.getElementById('franchise-table-body');
     if (tableBody) {
-        tableBody.innerHTML = buildFranchiseRows(_franchiseData);
+        const filtered = _franchiseFilter
+            ? _franchiseData.filter(
+                  f =>
+                      f.franchise.toLowerCase().includes(_franchiseFilter) ||
+                      (f.type || '').toLowerCase().includes(_franchiseFilter) ||
+                      f.providers.some(p => p.toLowerCase().includes(_franchiseFilter))
+              )
+            : _franchiseData;
+        tableBody.innerHTML = buildFranchiseRows(filtered);
         if (_franchiseExpanded) {
             tableBody.querySelectorAll('.franchise-overflow').forEach(el => el.classList.remove('hidden'));
         }
@@ -173,9 +181,46 @@ window.toggleFranchiseShowMore = function () {
     }
 };
 
+window.filterFranchises = function (query) {
+    _franchiseFilter = (query || '').trim().toLowerCase();
+    const tableBody = document.getElementById('franchise-table-body');
+    if (!tableBody) return;
+    const filtered = _franchiseFilter
+        ? _franchiseData.filter(
+              f =>
+                  f.franchise.toLowerCase().includes(_franchiseFilter) ||
+                  (f.type || '').toLowerCase().includes(_franchiseFilter) ||
+                  f.providers.some(p => p.toLowerCase().includes(_franchiseFilter))
+          )
+        : _franchiseData;
+    tableBody.innerHTML = buildFranchiseRows(filtered);
+    if (_franchiseFilter || _franchiseExpanded) {
+        tableBody.querySelectorAll('.franchise-overflow').forEach(el => el.classList.remove('hidden'));
+    }
+    const btn = document.getElementById('franchise-show-more-btn');
+    const wrap = document.getElementById('franchise-show-more-wrap');
+    if (btn && wrap) {
+        if (_franchiseFilter || filtered.length <= INITIAL_SHOW) {
+            wrap.classList.add('hidden');
+        } else {
+            wrap.classList.remove('hidden');
+            btn.textContent = _franchiseExpanded ? 'Show less' : `Show ${filtered.length - INITIAL_SHOW} more…`;
+        }
+    }
+    const countEl = document.getElementById('franchise-result-count');
+    if (countEl) {
+        countEl.textContent = _franchiseFilter
+            ? `${filtered.length} of ${_franchiseData.length}`
+            : `${_franchiseData.length} brands`;
+    }
+};
+
+let _franchiseFilter = '';
+
 function renderFranchiseTable(title, franchises) {
     if (!franchises.length) return '';
     _franchiseData = franchises;
+    _franchiseFilter = '';
 
     const thCls = field =>
         `franchise-sort-th text-[10px] font-bold uppercase tracking-wider text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors select-none ${_franchiseSortField === field ? (_franchiseSortDir === 'asc' ? 'sorted-asc' : 'sorted-desc') : ''}`;
@@ -189,7 +234,16 @@ function renderFranchiseTable(title, franchises) {
             : '';
 
     return `
-    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-3">${escapeHtml(title)}</h4>
+    <div class="flex items-center gap-3 mb-3">
+      <h4 class="text-sm font-bold text-gray-900 dark:text-white">${escapeHtml(title)}</h4>
+      <div class="relative">
+        <input type="text" id="franchise-search" placeholder="Search brands…"
+          oninput="window.filterFranchises(this.value)"
+          class="w-44 pl-7 pr-2 py-1.5 text-xs rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400" />
+        <svg class="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+      <span id="franchise-result-count" class="text-[10px] text-gray-400">${franchises.length} brands</span>
+    </div>
     <div class="overflow-x-auto">
       <table class="w-full text-sm">
         <thead>
@@ -218,19 +272,21 @@ const INITIAL_SHOW = 20;
 function buildFranchiseRows(franchises) {
     return franchises
         .map((f, i) => {
-            const rowId = `franchise-games-${i}`;
-            const medal = i === 0 ? '🥇 ' : i === 1 ? '🥈 ' : i === 2 ? '🥉 ' : '';
+            const realRank = _franchiseData.indexOf(f);
+            const rank = realRank >= 0 ? realRank : i;
+            const rowId = `franchise-games-${rank}`;
+            const medal = rank === 0 ? '🥇 ' : rank === 1 ? '🥈 ' : rank === 2 ? '🥉 ' : '';
             const typeBadge =
                 f.type === 'licensed_ip'
                     ? '<span class="px-1.5 py-0.5 text-[9px] font-bold rounded bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300 cursor-help" title="Licensed IP: a branded title based on an external property (e.g. Batman, Monopoly, Narcos)">IP</span>'
                     : '<span class="px-1.5 py-0.5 text-[9px] font-bold rounded bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 cursor-help" title="Game Brand: an organic series of sequels sharing a name (e.g. Book of Dead, Starburst, Gonzo\'s Quest)">Brand</span>';
             const vsColor = f.vsMedian >= 0 ? 'text-emerald-600' : 'text-red-500';
             const vsArrow = f.vsMedian >= 0 ? '▲' : '▼';
-            const overflowCls = i >= INITIAL_SHOW ? ' franchise-overflow hidden' : '';
+            const overflowCls = rank >= INITIAL_SHOW ? ' franchise-overflow hidden' : '';
             return `
           <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors cursor-pointer${overflowCls}"
               onclick="document.getElementById('${rowId}').classList.toggle('hidden')">
-            <td class="py-2.5 px-3 text-gray-400 font-medium">${medal}${i + 1}</td>
+            <td class="py-2.5 px-3 text-gray-400 font-medium">${medal}${rank + 1}</td>
             <td class="py-2.5 px-3 font-bold text-gray-900 dark:text-white">
               <span class="flex items-center gap-1">${escapeHtml(f.franchise)}
                 <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>

@@ -15,12 +15,12 @@ export const saLabelSolver = (labs, ancs, w, h, left, top) => {
     if (m === 0) return;
 
     const wLabLab = 18.0;
-    const wLabAnc = 50.0;
+    const wLabAnc = 90.0;
     const wLen = 0.12;
     const wInter = 1.0;
     const maxMove = 22.0;
     const maxAngle = 0.6;
-    const nSweeps = 3000;
+    const nSweeps = Math.min(5000, 2000 + m * 40);
     const initialT = 1.8;
 
     let seed = 42;
@@ -58,7 +58,7 @@ export const saLabelSolver = (labs, ancs, w, h, left, top) => {
                 if (j === i) continue;
                 const aj = ancs[j];
                 const dist = Math.hypot(cx - aj.x, cy - aj.y);
-                const threshold = aj.r + 60;
+                const threshold = aj.r + 80;
                 if (dist < threshold) {
                     const p = ((threshold - dist) / threshold) * 3;
                     score += p * p;
@@ -147,7 +147,7 @@ export const saLabelSolver = (labs, ancs, w, h, left, top) => {
 
         for (let i = 0; i < ancs.length; i++) {
             const ai = ancs[i];
-            const ancPad = 8;
+            const ancPad = 14;
             const ax1 = ai.x - ai.r - ancPad;
             const ay1 = ai.y - ai.r - ancPad;
             const ax2 = ai.x + ai.r + ancPad;

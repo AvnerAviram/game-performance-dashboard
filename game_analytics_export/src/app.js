@@ -39,6 +39,13 @@ import { refreshCharts } from './ui/charts-modern.js';
 window.refreshCharts = refreshCharts;
 import { setupAuthUI } from './features/auth-ui.js';
 
+function setLoadingStatus(text, pct) {
+    const statusEl = document.getElementById('loading-status');
+    const barEl = document.getElementById('loading-bar');
+    if (statusEl) statusEl.textContent = text;
+    if (barEl) barEl.style.width = `${pct}%`;
+}
+
 // Initialize app
 async function init() {
     log('🎮 Dashboard initializing...');
@@ -48,7 +55,7 @@ async function init() {
         return;
     }
 
-    // Verify server session is still valid
+    setLoadingStatus('Verifying session', 10);
     const sessionUser = await verifySession();
     if (!sessionUser) {
         redirectToLogin();
@@ -56,6 +63,7 @@ async function init() {
     }
 
     try {
+        setLoadingStatus('Loading game data', 25);
         const data = await loadGameData();
         if (!data) throw new Error('Failed to load game data');
         log('✅ Data loaded:', {
@@ -64,6 +72,7 @@ async function init() {
             mechanics: data.mechanics?.length || 0,
         });
 
+        setLoadingStatus('Building dashboard', 70);
         updateHeaderStats();
         setupDarkMode();
         setupAuthUI();
@@ -77,10 +86,11 @@ async function init() {
             });
         };
 
+        setLoadingStatus('Rendering page', 85);
         const initialPage = window.location.hash.replace('#', '') || 'overview';
         await showPage(initialPage);
 
-        // Hide loading overlay
+        setLoadingStatus('Ready', 100);
         const overlay = document.getElementById('loading-overlay');
         if (overlay) overlay.style.opacity = '0';
         setTimeout(() => overlay?.remove(), 300);

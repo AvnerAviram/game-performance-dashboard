@@ -6,9 +6,15 @@ on:
   pull_request:
     branches: [main, master]
 
+env:
+  CI: true
+  SKIP_LIVE_API: true
+
 jobs:
-  lint:
+  gate:
+    name: Test + Build + Browser Smoke (full gate)
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -17,60 +23,23 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm run lint
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
 
-      - run: npm run typecheck
+      - name: Formatting check
+        run: npm run format:check
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Lint
+        run: npm run lint
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+      - name: Type check
+        run: npm run typecheck
 
-      - run: npm ci
+      - name: Run ALL vitest tests (no exclusions)
+        run: npm test
 
-      - run: npm run build
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - run: npm ci
-
-      - run: npx playwright install --with-deps
-
-      - run: npm test
-      - run: npm run test:e2e
-
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-
-      - run: npm ci
-
-      - run: npm run build
-
-      - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v11
-        with:
-          configPath: ./lighthouserc.json
-          budgetPath: ./budget.json
-          uploadArtifacts: true
+      - name: Post-build browser smoke test (build + serve + real browser)
+        run: node tests/e2e/post-build-smoke.mjs

@@ -1,7 +1,7 @@
 // Provider landscape bubble chart
+import { Chart } from './chart-setup.js';
 import { gameData, getActiveGames } from '../lib/data.js';
 import { getProviderMetrics } from '../lib/metrics.js';
-import { saLabelSolver } from '../lib/sa-label-solver.js';
 import {
     getChartColors,
     getModernTooltipConfig,
@@ -188,7 +188,6 @@ export function createProviderLandscapeChart() {
                 scales: bubbleScaleOptionsWarped(chartColors, xWarp),
             },
         });
-        chartInstances.providerLandscape._saModule = { saLabelSolver };
         const plWithTheo = allGames.filter(g => F.theoWin(g) > 0);
         injectCoveragePill('chart-provider-landscape', plWithTheo.length, allGames.length, 'with Theo Win data');
     } catch (err) {

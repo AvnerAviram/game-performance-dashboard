@@ -746,7 +746,7 @@ export function showGameDetails(gameName) {
 
         const artMetrics = [
             {
-                label: 'Setting',
+                label: 'Environment',
                 value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artSetting)}</span>`,
             },
         ];
@@ -769,7 +769,7 @@ export function showGameDetails(gameName) {
                 : '');
 
         artSection = PanelSection({
-            title: 'Art Design',
+            title: 'Art Insights',
             icon: '🎨',
             gradient: GRADIENTS.category,
             accent: ACCENTS.category,

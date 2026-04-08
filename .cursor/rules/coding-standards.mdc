@@ -24,6 +24,26 @@ Always use `F.xxx(game)` from `src/lib/game-fields.js` for game field access:
 - `F.themeConsolidated(game)` — never `game.theme_consolidated`
 - `F.volatility(game)` — never `game.specs_volatility`
 
+## Chart.js Import
+
+Always import `Chart` from `src/ui/chart-setup.js` — never use global `Chart`, CDN `<script>`, or `import from 'chart.js'` directly:
+```js
+import { Chart } from './chart-setup.js';  // or '../ui/chart-setup.js' etc.
+```
+`chart-setup.js` registers only the needed controllers (Bar, Bubble, Line) and plugins. Adding a new chart type? Register it there.
+
+## DuckDB WASM
+
+DuckDB WASM is self-hosted in `public/duckdb/` (not CDN). Never add CDN `<script>` or `import()` from jsdelivr for DuckDB. The `@duckdb/duckdb-wasm` npm package is used and bundled by Vite.
+
+## Data Pipeline
+
+After changing any data source (`game_data_master.json`, `theme_consolidation_map.json`, `franchise_mapping.json`, `confidence_map.json`, `staged_art_characterization.json`), run:
+```
+npm run build:data
+```
+This regenerates `data/games.parquet` and `data/games_processed.json`.
+
 ## HTML Security
 
 All dynamic content in HTML templates must use sanitization:

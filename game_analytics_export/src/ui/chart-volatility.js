@@ -1,7 +1,7 @@
 // Volatility landscape bubble chart — filtered to verified/extracted confidence only
+import { Chart } from './chart-setup.js';
 import { gameData, getActiveGames } from '../lib/data.js';
 import { VOL_COLORS } from '../lib/shared-config.js';
-import { saLabelSolver } from '../lib/sa-label-solver.js';
 import { getVolatilityMetrics } from '../lib/metrics.js';
 import {
     getChartColors,
@@ -237,7 +237,6 @@ export function createVolatilityLandscapeChart() {
                 }),
             },
         });
-        chartInstances.volatilityLandscape._saModule = { saLabelSolver };
         injectCoveragePill('chart-volatility-landscape', reliableTotal, allGames.length, 'with verified volatility');
     } catch (err) {
         console.error('[VOLATILITY-LANDSCAPE] FAILED:', err);

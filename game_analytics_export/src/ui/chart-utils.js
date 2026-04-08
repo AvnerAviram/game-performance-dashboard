@@ -1,23 +1,24 @@
 // Shared Chart.js utilities: color palettes, gradients, tooltips, grid config, label helpers
 
-if (typeof Chart !== 'undefined') {
-    Chart.register({
-        id: 'coverageAnnotation',
-        afterDraw(chart) {
-            const txt = chart._coverageText;
-            if (!txt) return;
-            const { ctx, chartArea } = chart;
-            if (!chartArea) return;
-            ctx.save();
-            ctx.font = '10px system-ui, sans-serif';
-            ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
-            ctx.textAlign = 'right';
-            ctx.textBaseline = 'bottom';
-            ctx.fillText(txt, chartArea.right - 4, chartArea.bottom - 4);
-            ctx.restore();
-        },
-    });
-}
+import { Chart } from './chart-setup.js';
+import { saLabelSolver } from '../lib/sa-label-solver.js';
+
+Chart.register({
+    id: 'coverageAnnotation',
+    afterDraw(chart) {
+        const txt = chart._coverageText;
+        if (!txt) return;
+        const { ctx, chartArea } = chart;
+        if (!chartArea) return;
+        ctx.save();
+        ctx.font = '10px system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(txt, chartArea.right - 4, chartArea.bottom - 4);
+        ctx.restore();
+    },
+});
 
 const modernColors = {
     gold: { start: '#fbbf24', end: '#f59e0b' },
@@ -312,7 +313,7 @@ export function needsLeaderLine(dist, threshold, idx, ancs) {
  * Snap a label to sit snugly beside its bubble (just outside the radius).
  * Picks the best cardinal position (top/right/bottom/left) that stays in bounds.
  */
-export function snapLabelToBubble(lab, anc, chartArea) {
+export function snapLabelToBubble(lab, anc, chartArea, allAncs) {
     const gap = 4;
     const candidates = [
         { x: anc.x - lab.width / 2, y: anc.y - anc.r - gap - lab.height },
@@ -325,7 +326,15 @@ export function snapLabelToBubble(lab, anc, chartArea) {
     for (const c of candidates) {
         const inX = c.x >= chartArea.left && c.x + lab.width <= chartArea.right;
         const inY = c.y >= chartArea.top && c.y + lab.height <= chartArea.bottom;
-        const score = (inX ? 2 : 0) + (inY ? 2 : 0);
+        let score = (inX ? 2 : 0) + (inY ? 2 : 0);
+        if (allAncs) {
+            for (const aj of allAncs) {
+                if (aj === anc) continue;
+                const cx = Math.max(c.x, Math.min(aj.x, c.x + lab.width));
+                const cy = Math.max(c.y, Math.min(aj.y, c.y + lab.height));
+                if (Math.hypot(cx - aj.x, cy - aj.y) < aj.r + 4) score -= 5;
+            }
+        }
         if (score > bestScore) {
             bestScore = score;
             best = c;
@@ -462,10 +471,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     });
                 });
 
-                const { saLabelSolver } = chart._saModule || {};
-                if (saLabelSolver) {
-                    saLabelSolver(labs, ancs, areaW, areaH, chartArea.left, chartArea.top);
-                }
+                saLabelSolver(labs, ancs, areaW, areaH, chartArea.left, chartArea.top);
 
                 const entries = [];
                 const leaderThreshold = 15;
@@ -477,7 +483,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     const wantsLeader = needsLeaderLine(dist, leaderThreshold, k, ancs);
 
                     if (!wantsLeader && dist > a.r + 6) {
-                        snapLabelToBubble(l, a, chartArea);
+                        snapLabelToBubble(l, a, chartArea, ancs);
                     }
 
                     const rect = { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height };
@@ -580,8 +586,8 @@ export function injectCoveragePill(canvasId, covered, total, label) {
 
     const pct = covered > 0 ? Math.max(1, Math.round((covered / total) * 100)) : 0;
 
-    // Draw coverage on the chart canvas via the global coverageAnnotation plugin
-    if (typeof Chart !== 'undefined') {
+    // Draw coverage on the chart canvas via the coverageAnnotation plugin
+    {
         const chartInstance = Chart.getChart(canvas);
         if (chartInstance) {
             chartInstance._coverageText = `${pct}% coverage · ${covered.toLocaleString()} of ${total.toLocaleString()} games ${label}`;

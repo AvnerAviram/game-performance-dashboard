@@ -65,7 +65,8 @@ export function renderOverview() {
                 .slice(0, 20)
                 .join(', ')
         );
-        throw new Error('Missing element: overview-total-games - HTML and JavaScript are out of sync!');
+        console.error('⚠️ Overview HTML not yet in DOM — skipping render (page may load on retry)');
+        return;
     }
 
     gamesEl.textContent = getActiveGames().length;

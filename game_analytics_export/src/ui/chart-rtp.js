@@ -1,7 +1,7 @@
 // RTP landscape bubble chart
+import { Chart } from './chart-setup.js';
 import { gameData, getActiveGames } from '../lib/data.js';
 import { getRtpBandMetrics } from '../lib/metrics.js';
-import { saLabelSolver } from '../lib/sa-label-solver.js';
 import {
     getChartColors,
     getModernTooltipConfig,
@@ -196,7 +196,6 @@ export function createRtpLandscapeChart() {
                 }),
             },
         });
-        chartInstances.rtpLandscape._saModule = { saLabelSolver };
         injectCoveragePill('chart-rtp-landscape', rtpTotal, allGames.length, 'with RTP data');
     } catch (err) {
         console.error('[RTP-LANDSCAPE] FAILED:', err);

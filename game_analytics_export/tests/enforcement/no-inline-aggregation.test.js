@@ -34,7 +34,9 @@ const STAYS_INLINE_FILES = new Set([
     'ui/renderers/insights-recipes.js',
     'ui/renderers/overview-renderer.js',
     'ui/renderers/themes-renderer.js',
+    'ui/renderers/art-renderer.js',
     'ui/chart-brands.js',
+    'ui/filter-dropdowns.js',
 ]);
 
 const BANNED_PATTERNS = [

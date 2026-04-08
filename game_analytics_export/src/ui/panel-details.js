@@ -99,7 +99,7 @@ function _renderArtSubSection(title, icon, rows, total, initialShow) {
 
 function _renderArtProfileContent(settings, moods, characters, total) {
     let html = '';
-    html += _renderArtSubSection('Settings', '🏛️', settings, total, 5);
+    html += _renderArtSubSection('Environments', '🌍', settings, total, 5);
     html += _renderArtSubSection('Moods', '🎭', moods, total, 5);
     if (characters.length) {
         html += _renderArtSubSection('Characters', '👤', characters, total, 5);
@@ -741,7 +741,7 @@ window.showFranchiseDetails = function (franchiseName) {
         accent: ACCENTS.performance,
         content: MetricGrid([
             { label: 'Titles', value: fGames.length },
-            { label: 'Avg Theo Win', value: avgTheo.toFixed(2) },
+            { label: 'Avg Performance Index', value: avgTheo.toFixed(2) },
             { label: 'Market Share %', value: `${totalShare.toFixed(1)}%` },
             { label: 'Providers', value: providers.length },
             { label: 'Year Range', value: yearRange },

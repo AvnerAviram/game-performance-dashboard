@@ -8,13 +8,13 @@
 import { log } from '../env.js';
 import { parseFeatures } from '../parse-features.js';
 import { normalizeProvider } from '../shared-config.js';
-
-const duckdb = await import('https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.28.0/+esm');
+import * as duckdb from '@duckdb/duckdb-wasm';
 
 let db = null;
 let connection = null;
 let initialized = false;
 let initializationPromise = null;
+let initFailed = false;
 
 /** Raw theme_primary → consolidated theme (from theme_consolidation_map.json). Set when games load. */
 let themeConsolidationMap = {};
@@ -47,6 +47,10 @@ export async function initializeDatabase() {
         return { db, connection };
     }
 
+    if (initFailed) {
+        throw new Error('DuckDB initialization previously failed — use JSON fallback');
+    }
+
     if (initializationPromise) {
         log('DuckDB initialization in progress, waiting...');
         return initializationPromise;
@@ -56,8 +60,17 @@ export async function initializeDatabase() {
         try {
             log('Initializing DuckDB WASM...');
 
-            const JSDELIVR_BUNDLES = duckdb.getJsDelivrBundles();
-            const bundle = await duckdb.selectBundle(JSDELIVR_BUNDLES);
+            const SELF_HOSTED_BUNDLES = {
+                mvp: {
+                    mainModule: new URL('/duckdb/duckdb-mvp.wasm', location.origin).href,
+                    mainWorker: new URL('/duckdb/duckdb-browser-mvp.worker.js', location.origin).href,
+                },
+                eh: {
+                    mainModule: new URL('/duckdb/duckdb-eh.wasm', location.origin).href,
+                    mainWorker: new URL('/duckdb/duckdb-browser-eh.worker.js', location.origin).href,
+                },
+            };
+            const bundle = await duckdb.selectBundle(SELF_HOSTED_BUNDLES);
 
             const worker_url = URL.createObjectURL(
                 new Blob([`importScripts("${bundle.mainWorker}");`], { type: 'text/javascript' })
@@ -83,6 +96,7 @@ export async function initializeDatabase() {
         } catch (error) {
             console.error('Failed to initialize DuckDB:', error);
             initializationPromise = null;
+            initFailed = true;
             throw error;
         }
     })();
@@ -92,10 +106,23 @@ export async function initializeDatabase() {
 
 /**
  * Start fetching data files early (before DuckDB WASM is ready).
+ * Prefers the pre-built Parquet file; falls back to JSON + supplementary files.
  */
 function prefetchData() {
+    const parquetFetch = fetch('/data/games.parquet')
+        .then(r => {
+            if (!r.ok) throw new Error(`Parquet ${r.status}`);
+            return r.arrayBuffer().then(buf => ({ format: 'parquet', buffer: buf }));
+        })
+        .catch(() => null);
+
+    const jsonFallback = fetch('/api/data/games', { credentials: 'same-origin' }).catch(() =>
+        fetch('data/game_data_master.json')
+    );
+
     return Promise.all([
-        fetch('/api/data/games', { credentials: 'same-origin' }).catch(() => fetch('data/game_data_master.json')),
+        parquetFetch,
+        jsonFallback,
         fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() =>
             fetch('data/theme_consolidation_map.json')
         ),
@@ -110,212 +137,189 @@ function prefetchData() {
 }
 
 /**
- * Load game_data_master.json into DuckDB table
+ * Load games into DuckDB — prefers Parquet (fast), falls back to JSON row-by-row.
  */
 async function loadGamesData(dataPromise) {
     try {
         log('Loading games data into DuckDB...');
 
-        const [response, themeMapResponse, franchiseResponse, confidenceResponse, artResponse] = await (dataPromise ||
-            prefetchData());
+        const [parquetResult, jsonResponse, themeMapResponse, franchiseResponse, confidenceResponse, artResponse] =
+            await (dataPromise || prefetchData());
 
-        if (!response.ok) {
-            throw new Error(
-                `HTTP ${response.status}: ${response.statusText} - Failed to load data/game_data_master.json`
-            );
+        // Theme consolidation map is needed regardless of load path
+        const themeMapRaw = themeMapResponse?.ok ? await themeMapResponse.json() : {};
+        themeConsolidationMap = themeMapRaw && typeof themeMapRaw === 'object' ? themeMapRaw : {};
+
+        // Fast path: load pre-built Parquet (all transformations baked in at build time)
+        if (parquetResult?.format === 'parquet') {
+            return loadFromParquet(parquetResult.buffer);
         }
 
-        const games = await response.json();
-        const themeMap = themeMapResponse.ok ? await themeMapResponse.json() : {};
-        themeConsolidationMap = themeMap && typeof themeMap === 'object' ? themeMap : {};
-        let franchiseMap = {};
-        try {
-            if (franchiseResponse && franchiseResponse.ok) franchiseMap = await franchiseResponse.json();
-        } catch (e) {
-            console.warn('Failed to parse franchise_mapping.json, continuing without franchise data:', e.message);
-        }
-        let confidenceMap = {};
-        try {
-            if (confidenceResponse && confidenceResponse.ok) confidenceMap = await confidenceResponse.json();
-        } catch (e) {
-            console.warn('Failed to parse confidence_map.json, continuing without confidence data:', e.message);
-        }
-        let artMap = {};
-        try {
-            if (artResponse && artResponse.ok) artMap = await artResponse.json();
-        } catch (e) {
-            console.warn('Failed to parse staged_art_characterization.json, continuing without art data:', e.message);
-        }
-        log(`Fetched ${games.length} games from game_data_master.json`);
+        // Slow path: JSON with row-by-row INSERT (legacy / dev without build step)
+        return loadFromJSON(jsonResponse, themeMapRaw, franchiseResponse, confidenceResponse, artResponse);
+    } catch (error) {
+        console.error('Failed to load games data:', error);
+        throw error;
+    }
+}
 
-        await connection.query(`
+/**
+ * Fast path: register Parquet buffer and create table in one SQL statement.
+ */
+async function loadFromParquet(buffer) {
+    log('⚡ Loading from pre-built Parquet...');
+    await db.registerFileBuffer('games.parquet', new Uint8Array(buffer));
+    await connection.query("CREATE TABLE games AS SELECT * FROM parquet_scan('games.parquet')");
+
+    const countResult = await connection.query('SELECT COUNT(*) as count FROM games');
+    const count = Number(countResult.toArray()[0].count);
+    const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
+    const fc = Number(featCount.toArray()[0].c);
+    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
+    const ac = Number(artCount.toArray()[0].c);
+
+    log(`Loaded ${count} games into DuckDB from Parquet (${fc} with features, ${ac} with art)`);
+    return count;
+}
+
+/**
+ * Legacy path: fetch JSON, transform, INSERT row-by-row.
+ */
+async function loadFromJSON(response, themeMap, franchiseResponse, confidenceResponse, artResponse) {
+    log('Loading from JSON (legacy path)...');
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText} - Failed to load game data`);
+    }
+
+    const games = await response.json();
+    let franchiseMap = {};
+    try {
+        if (franchiseResponse?.ok) franchiseMap = await franchiseResponse.json();
+    } catch (e) {
+        console.warn('Failed to parse franchise_mapping.json:', e.message);
+    }
+    let confidenceMap = {};
+    try {
+        if (confidenceResponse?.ok) confidenceMap = await confidenceResponse.json();
+    } catch (e) {
+        console.warn('Failed to parse confidence_map.json:', e.message);
+    }
+    let artMap = {};
+    try {
+        if (artResponse?.ok) artMap = await artResponse.json();
+    } catch (e) {
+        console.warn('Failed to parse staged_art_characterization.json:', e.message);
+    }
+    log(`Fetched ${games.length} games from JSON`);
+
+    await connection.query(`
       CREATE TABLE IF NOT EXISTS games (
-        id VARCHAR,
-        name VARCHAR,
-        name_normalized VARCHAR,
-        theme_primary VARCHAR,
-        theme_secondary VARCHAR,
-        theme_consolidated VARCHAR,
-        provider_studio VARCHAR,
-        provider_parent VARCHAR,
-        specs_reels INTEGER,
-        specs_rows INTEGER,
-        specs_paylines VARCHAR,
-        specs_rtp DOUBLE,
-        specs_volatility VARCHAR,
-        performance_theo_win DOUBLE,
-        performance_rank INTEGER,
-        performance_anomaly VARCHAR,
-        performance_market_share_percent DOUBLE,
+        id VARCHAR, name VARCHAR, name_normalized VARCHAR,
+        theme_primary VARCHAR, theme_secondary VARCHAR, theme_consolidated VARCHAR,
+        provider_studio VARCHAR, provider_parent VARCHAR,
+        specs_reels INTEGER, specs_rows INTEGER, specs_paylines VARCHAR,
+        specs_rtp DOUBLE, specs_volatility VARCHAR,
+        performance_theo_win DOUBLE, performance_rank INTEGER,
+        performance_anomaly VARCHAR, performance_market_share_percent DOUBLE,
         performance_percentile VARCHAR,
-        release_year INTEGER,
-        release_month INTEGER,
-        original_release_year INTEGER,
-        original_release_month INTEGER,
-        features VARCHAR,
-        themes_all VARCHAR,
-        themes_raw VARCHAR,
-        symbols VARCHAR,
-        description VARCHAR,
-        demo_url VARCHAR,
-        data_quality VARCHAR,
-        sites INTEGER,
-        avg_bet DOUBLE,
-        median_bet DOUBLE,
-        games_played_index DOUBLE,
-        coin_in_index DOUBLE,
-        max_win DOUBLE,
-        min_bet DOUBLE,
-        max_bet DOUBLE,
-        franchise VARCHAR,
-        franchise_type VARCHAR,
-        game_category VARCHAR,
-        game_sub_category VARCHAR,
-        rtp_confidence VARCHAR,
-        volatility_confidence VARCHAR,
-        reels_confidence VARCHAR,
-        paylines_confidence VARCHAR,
-        max_win_confidence VARCHAR,
-        min_bet_confidence VARCHAR,
-        max_bet_confidence VARCHAR,
-        art_setting VARCHAR,
-        art_characters VARCHAR,
-        art_elements VARCHAR,
-        art_mood VARCHAR,
-        art_narrative VARCHAR
+        release_year INTEGER, release_month INTEGER,
+        original_release_year INTEGER, original_release_month INTEGER,
+        features VARCHAR, themes_all VARCHAR, themes_raw VARCHAR,
+        symbols VARCHAR, description VARCHAR, demo_url VARCHAR,
+        data_quality VARCHAR, sites INTEGER,
+        avg_bet DOUBLE, median_bet DOUBLE, games_played_index DOUBLE,
+        coin_in_index DOUBLE, max_win DOUBLE, min_bet DOUBLE, max_bet DOUBLE,
+        franchise VARCHAR, franchise_type VARCHAR,
+        game_category VARCHAR, game_sub_category VARCHAR,
+        rtp_confidence VARCHAR, volatility_confidence VARCHAR,
+        reels_confidence VARCHAR, paylines_confidence VARCHAR,
+        max_win_confidence VARCHAR, min_bet_confidence VARCHAR, max_bet_confidence VARCHAR,
+        art_setting VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
+        art_mood VARCHAR, art_narrative VARCHAR
       )
     `);
 
-        // Filter out bogus summary rows (e.g. game_category "Total")
-        const validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
+    const validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
+    const sorted = [...validGames].sort((a, b) => (b.theo_win || 0) - (a.theo_win || 0));
 
-        // Sort by theo_win DESC to compute rank
-        const sorted = [...validGames].sort((a, b) => (b.theo_win || 0) - (a.theo_win || 0));
+    const isReliable = game => {
+        const c = confidenceMap[game.name] || {};
+        const specReliable = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'].some(
+            f => c[`${f}_confidence`] === 'verified' || c[`${f}_confidence`] === 'extracted'
+        );
+        const hasFeatures = Array.isArray(game.features) && game.features.length > 0;
+        return specReliable || hasFeatures;
+    };
 
-        // Pre-compute which games are reliable so rank is contiguous within the dashboard view
-        const isReliable = game => {
-            const c = confidenceMap[game.name] || {};
-            const specReliable = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'].some(
-                f => c[`${f}_confidence`] === 'verified' || c[`${f}_confidence`] === 'extracted'
-            );
-            const hasFeatures = Array.isArray(game.features) && game.features.length > 0;
-            return specReliable || hasFeatures;
+    let reliableRank = 0;
+    for (let i = 0; i < sorted.length; i++) {
+        const game = sorted[i];
+        const rank = isReliable(game) ? ++reliableRank : null;
+
+        const safeStr = val => {
+            if (val === null || val === undefined || val === '') return 'NULL';
+            return `'${String(val).replace(/'/g, "''")}'`;
+        };
+        const safeNum = val => {
+            if (val === null || val === undefined) return 'NULL';
+            const num = Number(val);
+            return isNaN(num) ? 'NULL' : num;
         };
 
-        let reliableRank = 0;
-        for (let i = 0; i < sorted.length; i++) {
-            const game = sorted[i];
-            const rank = isReliable(game) ? ++reliableRank : null;
+        const name = String(game.name || '').replace(/'/g, "''");
+        const nameNorm = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+        const themePrimary = String(game.theme_primary || 'Unknown').replace(/'/g, "''");
+        const themeSecondary = String(game.theme_secondary || '').replace(/'/g, "''");
+        const themeConsolidated = (themeMap[game.theme_primary] || game.theme_primary || 'Unknown').replace(/'/g, "''");
+        const paylines = game.paylines_count
+            ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
+            : '';
+        const rawStudio = game.studio || game.provider || '';
+        const studioOrParent =
+            !rawStudio || /^unknown$/i.test(rawStudio) ? game.parent_company || rawStudio : rawStudio;
+        const normalizedStudio = normalizeProvider(studioOrParent);
 
-            const safeStr = val => {
-                if (val === null || val === undefined || val === '') return 'NULL';
-                return `'${String(val).replace(/'/g, "''")}'`;
-            };
+        const featuresJson =
+            Array.isArray(game.features) && game.features.length > 0
+                ? JSON.stringify(game.features).replace(/'/g, "''")
+                : null;
+        const themesAllJson =
+            Array.isArray(game.themes_all) && game.themes_all.length > 0
+                ? JSON.stringify(game.themes_all).replace(/'/g, "''")
+                : null;
+        const themesRawJson =
+            Array.isArray(game.themes_raw) && game.themes_raw.length > 0
+                ? JSON.stringify(game.themes_raw).replace(/'/g, "''")
+                : null;
+        const symbolsJson =
+            Array.isArray(game.symbols) && game.symbols.length > 0
+                ? JSON.stringify(game.symbols).replace(/'/g, "''")
+                : null;
 
-            const safeNum = val => {
-                if (val === null || val === undefined) return 'NULL';
-                const num = Number(val);
-                return isNaN(num) ? 'NULL' : num;
-            };
-
-            const name = String(game.name || '').replace(/'/g, "''");
-            const nameNorm = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
-            const themePrimary = String(game.theme_primary || 'Unknown').replace(/'/g, "''");
-            const themeSecondary = String(game.theme_secondary || '').replace(/'/g, "''");
-            const themeConsolidated = (themeMap[game.theme_primary] || game.theme_primary || 'Unknown').replace(
-                /'/g,
-                "''"
-            );
-
-            const paylines = game.paylines_count
-                ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
-                : '';
-
-            const rawStudio = game.studio || game.provider || '';
-            const studioOrParent =
-                !rawStudio || /^unknown$/i.test(rawStudio) ? game.parent_company || rawStudio : rawStudio;
-            const normalizedStudio = normalizeProvider(studioOrParent);
-
-            const featuresJson =
-                Array.isArray(game.features) && game.features.length > 0
-                    ? JSON.stringify(game.features).replace(/'/g, "''")
-                    : null;
-            const themesAllJson =
-                Array.isArray(game.themes_all) && game.themes_all.length > 0
-                    ? JSON.stringify(game.themes_all).replace(/'/g, "''")
-                    : null;
-            const themesRawJson =
-                Array.isArray(game.themes_raw) && game.themes_raw.length > 0
-                    ? JSON.stringify(game.themes_raw).replace(/'/g, "''")
-                    : null;
-            const symbolsJson =
-                Array.isArray(game.symbols) && game.symbols.length > 0
-                    ? JSON.stringify(game.symbols).replace(/'/g, "''")
-                    : null;
-
-            await connection.query(`
+        await connection.query(`
         INSERT INTO games VALUES (
-          '${(game.id || '').replace(/'/g, "''")}',
-          '${name}',
-          '${nameNorm}',
-          '${themePrimary}',
-          '${themeSecondary}',
-          '${themeConsolidated}',
-          ${safeStr(normalizedStudio)},
-          ${safeStr(game.parent_company)},
-          ${safeNum(game.reels)},
-          ${safeNum(game.rows)},
+          '${(game.id || '').replace(/'/g, "''")}', '${name}', '${nameNorm}',
+          '${themePrimary}', '${themeSecondary}', '${themeConsolidated}',
+          ${safeStr(normalizedStudio)}, ${safeStr(game.parent_company)},
+          ${safeNum(game.reels)}, ${safeNum(game.rows)},
           ${paylines ? `'${paylines.replace(/'/g, "''")}'` : 'NULL'},
-          ${safeNum(game.rtp)},
-          ${safeStr(game.volatility)},
-          ${safeNum(game.theo_win) || 0},
-          ${rank === null ? 'NULL' : rank},
+          ${safeNum(game.rtp)}, ${safeStr(game.volatility)},
+          ${safeNum(game.theo_win) || 0}, ${rank === null ? 'NULL' : rank},
           ${safeStr(game.anomaly)},
           ${typeof safeNum(game.market_share_pct) === 'number' ? safeNum(game.market_share_pct) * 100 : 0},
           ${safeStr(game.percentile)},
-          ${safeNum(game.release_year)},
-          ${safeNum(game.release_month)},
-          ${safeNum(game.original_release_year)},
-          ${safeNum(game.original_release_month)},
+          ${safeNum(game.release_year)}, ${safeNum(game.release_month)},
+          ${safeNum(game.original_release_year)}, ${safeNum(game.original_release_month)},
           ${featuresJson ? `'${featuresJson}'` : 'NULL'},
           ${themesAllJson ? `'${themesAllJson}'` : 'NULL'},
           ${themesRawJson ? `'${themesRawJson}'` : 'NULL'},
           ${symbolsJson ? `'${symbolsJson}'` : 'NULL'},
-          ${safeStr(game.description)},
-          ${safeStr(game.demo_url)},
-          ${safeStr(game.data_quality)},
-          ${safeNum(game.sites)},
-          ${safeNum(game.avg_bet)},
-          ${safeNum(game.median_bet)},
-          ${safeNum(game.games_played_index)},
-          ${safeNum(game.coin_in_index)},
-          ${safeNum(game.max_win)},
-          ${safeNum(game.min_bet)},
-          ${safeNum(game.max_bet)},
-          ${safeStr(franchiseMap[game.id]?.franchise)},
-          ${safeStr(franchiseMap[game.id]?.franchise_type)},
-          ${safeStr(game.game_category)},
-          ${safeStr(game.game_sub_category)},
+          ${safeStr(game.description)}, ${safeStr(game.demo_url)}, ${safeStr(game.data_quality)},
+          ${safeNum(game.sites)}, ${safeNum(game.avg_bet)}, ${safeNum(game.median_bet)},
+          ${safeNum(game.games_played_index)}, ${safeNum(game.coin_in_index)},
+          ${safeNum(game.max_win)}, ${safeNum(game.min_bet)}, ${safeNum(game.max_bet)},
+          ${safeStr(franchiseMap[game.id]?.franchise)}, ${safeStr(franchiseMap[game.id]?.franchise_type)},
+          ${safeStr(game.game_category)}, ${safeStr(game.game_sub_category)},
           ${safeStr(confidenceMap[game.name]?.rtp_confidence)},
           ${safeStr(confidenceMap[game.name]?.volatility_confidence)},
           ${safeStr(confidenceMap[game.name]?.reels_confidence)},
@@ -326,28 +330,20 @@ async function loadGamesData(dataPromise) {
           ${safeStr(artMap[game.name]?.art_setting)},
           ${safeStr(artMap[game.name]?.art_characters ? JSON.stringify(artMap[game.name].art_characters) : null)},
           ${safeStr(artMap[game.name]?.art_elements ? JSON.stringify(artMap[game.name].art_elements) : null)},
-          ${safeStr(artMap[game.name]?.art_mood)},
-          ${safeStr(artMap[game.name]?.art_narrative)}
+          ${safeStr(artMap[game.name]?.art_mood)}, ${safeStr(artMap[game.name]?.art_narrative)}
         )
       `);
-        }
-
-        const countResult = await connection.query('SELECT COUNT(*) as count FROM games');
-        const count = Number(countResult.toArray()[0].count);
-
-        const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
-        const fc = Number(featCount.toArray()[0].c);
-
-        const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
-        const ac = Number(artCount.toArray()[0].c);
-
-        log(`Loaded ${count} games into DuckDB (${fc} with features, ${ac} with art)`);
-
-        return count;
-    } catch (error) {
-        console.error('Failed to load games data:', error);
-        throw error;
     }
+
+    const countResult = await connection.query('SELECT COUNT(*) as count FROM games');
+    const count = Number(countResult.toArray()[0].count);
+    const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
+    const fc = Number(featCount.toArray()[0].c);
+    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
+    const ac = Number(artCount.toArray()[0].c);
+
+    log(`Loaded ${count} games into DuckDB from JSON (${fc} with features, ${ac} with art)`);
+    return count;
 }
 
 /**

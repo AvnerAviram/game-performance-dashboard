@@ -1,4 +1,4 @@
-<!-- Art Design Page -->
+<!-- Art Insights Page -->
 <div class="pb-8">
     <!-- Sticky Header -->
     <div
@@ -7,7 +7,7 @@
         <div class="flex justify-between items-center py-5">
             <div>
                 <h2 class="text-[1.65rem] font-bold tracking-tight text-gray-900 dark:text-white mb-1.5">
-                    Art Design Intelligence
+                    Art Insights
                 </h2>
                 <p id="art-subtitle" class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                     Visual design analysis across environments, mood & tone, characters and elements
@@ -208,15 +208,28 @@
                         🌍
                     </div>
                     <h3 class="text-base font-semibold text-gray-900 dark:text-white">Art Environments</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Top art environments by game count. Click any bar to see games with that environment.
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="p-6" style="height: 380px; min-height: 380px">
+            <div class="p-6 pb-2" style="height: 380px; min-height: 380px">
                 <canvas
                     id="art-settings-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
+            <div class="px-6 pb-4" id="art-settings-trend-legend"></div>
         </div>
 
         <!-- Mood & Tone -->
@@ -232,6 +245,18 @@
                         🎭
                     </div>
                     <h3 class="text-base font-semibold text-gray-900 dark:text-white">Mood & Tone</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Art moods ranked by average Performance Index. Click any bar to see games with that mood.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="p-6" style="height: 380px; min-height: 380px">
@@ -259,6 +284,19 @@
                         🧙
                     </div>
                     <h3 class="text-base font-semibold text-gray-900 dark:text-white">Top Characters</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Most common character types by game count. Click any bar to see games featuring that
+                            character.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="p-6" style="height: 380px; min-height: 380px">
@@ -283,6 +321,18 @@
                         💎
                     </div>
                     <h3 class="text-base font-semibold text-gray-900 dark:text-white">Top Visual Elements</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Most common visual elements by game count. Click any bar to see games with that element.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="p-6" style="height: 380px; min-height: 380px">
@@ -307,6 +357,19 @@
                         📜
                     </div>
                     <h3 class="text-base font-semibold text-gray-900 dark:text-white">Narratives</h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
+                        >
+                            Narrative themes ranked by average Performance Index. Click any bar to see games with that
+                            narrative.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="p-6" style="height: 380px; min-height: 380px">
@@ -352,44 +415,58 @@
                         Complete art direction recipes — environment, mood, characters, elements, narrative
                     </p>
                 </div>
-                <div
+                <select
                     id="art-recipe-sort"
-                    class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700/50 rounded-lg p-0.5 shrink-0"
+                    class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500 cursor-pointer shrink-0"
                 >
-                    <button
-                        data-sort="opportunity"
-                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap bg-white dark:bg-gray-600 text-indigo-700 dark:text-indigo-300 shadow-sm"
-                    >
-                        💎 Opportunity
-                    </button>
-                    <button
-                        data-sort="theo-desc"
-                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                        📊 Performance Index ↓
-                    </button>
-                    <button
-                        data-sort="count-asc"
-                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                        🔢 Games ↑
-                    </button>
-                    <button
-                        data-sort="count-desc"
-                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                        🔢 Games ↓
-                    </button>
-                    <button
-                        data-sort="name-az"
-                        class="art-sort-btn text-[10px] font-medium px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                    >
-                        🔤 A–Z
-                    </button>
-                </div>
+                    <option value="opportunity">Sort: 💎 Opportunity</option>
+                    <option value="theo-desc">Sort: Avg Theo ↓</option>
+                    <option value="count-asc">Sort: Game Count ↑</option>
+                    <option value="count-desc">Sort: Game Count ↓</option>
+                    <option value="name-az">Sort: Name A–Z</option>
+                </select>
             </div>
         </div>
         <div class="p-6" id="art-combos-table"></div>
+    </div>
+
+    <!-- Provider Art DNA -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-indigo-100 to-violet-100 dark:from-indigo-900/40 dark:to-violet-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    🏢
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Provider Art DNA</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1"
+                                    >Provider specialization</strong
+                                >
+                                Which providers focus on which art environments and moods, based on their portfolio.
+                                Shows their best-performing environment and signature mood. Click a card to explore that
+                                environment.
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Art environment and mood specialization by provider
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="p-6" id="art-provider-cards"></div>
     </div>
 
     <!-- Strategic Art Recommendations (Build Next / Avoid / Watch) -->

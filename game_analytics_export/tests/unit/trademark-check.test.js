@@ -230,23 +230,31 @@ import https from 'node:https';
 function tmSearch(query) {
     return new Promise((resolve, reject) => {
         const url = `https://tmsearchapi.com/search/mark?q=${encodeURIComponent(query)}&limit=10`;
-        https
+        const req = https
             .get(url, res => {
                 let body = '';
                 res.on('data', c => (body += c));
                 res.on('end', () => {
                     try {
-                        resolve(JSON.parse(body));
+                        const data = JSON.parse(body);
+                        resolve({
+                            total_count: data.total_count ?? 0,
+                            results: Array.isArray(data.results) ? data.results : [],
+                        });
                     } catch {
                         reject(new Error('Invalid JSON from API'));
                     }
                 });
             })
             .on('error', reject);
+        req.setTimeout(10000, () => {
+            req.destroy();
+            reject(new Error('API timeout'));
+        });
     });
 }
 
-const SKIP_LIVE = process.env.CI === 'true';
+const SKIP_LIVE = process.env.CI === 'true' || process.env.SKIP_LIVE_API === 'true';
 const liveIt = SKIP_LIVE ? it.skip : it;
 
 describe('Live API validation', () => {

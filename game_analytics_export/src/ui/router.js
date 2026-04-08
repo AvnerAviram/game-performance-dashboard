@@ -1,4 +1,8 @@
 // SPA Router - page navigation and Game Lab sub-navigation
+//
+// Page HTML is bundled via Vite ?raw imports (lazy-loaded chunks).
+// This eliminates runtime fetch() calls to src/pages/*.html, which broke
+// on Vercel due to Clean URLs, trailing slashes, and SPA fallback routing.
 import { log, warn } from '../lib/env.js';
 import { initializeCharts } from './charts-modern.js';
 import {
@@ -17,6 +21,23 @@ import { renderTickets } from '../features/tickets.js';
 import { setupPrediction } from '../features/prediction.js';
 import { updateAuthUI } from '../features/auth-ui.js';
 import { resetFilterState } from '../lib/filters.js';
+
+const PAGE_HTML = {
+    overview: () => import('../pages/overview.html?raw'),
+    themes: () => import('../pages/themes.html?raw'),
+    mechanics: () => import('../pages/mechanics.html?raw'),
+    games: () => import('../pages/games.html?raw'),
+    providers: () => import('../pages/providers.html?raw'),
+    insights: () => import('../pages/insights.html?raw'),
+    'game-lab': () => import('../pages/game-lab.html?raw'),
+    trends: () => import('../pages/trends.html?raw'),
+    art: () => import('../pages/art.html?raw'),
+    tickets: () => import('../pages/tickets.html?raw'),
+    'ai-assistant': () => import('../pages/ai-assistant.html?raw'),
+    anomalies: () => import('../pages/anomalies.html?raw'),
+    'name-generator': () => import('../pages/name-generator.html?raw'),
+    prediction: () => import('../pages/prediction.html?raw'),
+};
 
 async function initializePage(pageName) {
     resetFilterState(pageName);
@@ -202,10 +223,10 @@ export async function showPage(page, { pushHistory = true } = {}) {
     }
 
     try {
-        const response = await fetch(`src/pages/${page}.html?v=${Date.now()}`);
-        if (!response.ok) throw new Error(`Page not found: ${page}`);
+        const loader = PAGE_HTML[page];
+        if (!loader) throw new Error(`No page loader for: ${page}`);
 
-        const html = await response.text();
+        const { default: html } = await loader();
         container.innerHTML = html;
         container.scrollTop = 0;
 
@@ -237,25 +258,6 @@ export async function showPage(page, { pushHistory = true } = {}) {
     if (backdrop) {
         backdrop.classList.add('hidden');
         backdrop.classList.remove('block');
-    }
-
-    if (page === 'trends') {
-        setTimeout(async () => {
-            try {
-                const { renderTrends } = await import('../features/trends.js');
-                renderTrends();
-            } catch (error) {
-                console.error('Error loading trends:', error);
-            }
-        }, 250);
-    }
-
-    if (page === 'anomalies') {
-        setTimeout(() => {
-            renderAnomalies();
-            const topBtn = document.querySelector('button[onclick="showAnomalies(\'top\')"]');
-            if (topBtn) topBtn.click();
-        }, 100);
     }
 
     updateGameLabSubnav(page);

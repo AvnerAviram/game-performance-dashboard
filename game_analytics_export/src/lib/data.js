@@ -79,7 +79,10 @@ export async function loadGameData() {
 
     // Fallback to direct JSON
     log('📊 Loading via direct JSON (fallback)...');
-    await loadViaJSON();
+    const jsonSuccess = await loadViaJSON();
+    if (!jsonSuccess) {
+        throw new Error('Both DuckDB and JSON fallback failed. Dashboard cannot load data.');
+    }
     gameData._dataSource = 'json_fallback';
     log('✅ Data loaded via JSON fallback');
     return gameData;
@@ -186,8 +189,126 @@ async function loadViaDuckDB() {
 }
 
 async function loadViaJSON() {
-    console.error('DuckDB loading failed and JSON fallback is not implemented. Ensure your browser supports WASM.');
-    return false;
+    try {
+        const response = await fetch('/data/games_processed.json').catch(() => fetch('data/games_processed.json'));
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const games = await response.json();
+        log(`📊 JSON fallback: loaded ${games.length} games`);
+
+        // Build theme consolidation map from loaded data
+        for (const g of games) {
+            if (g.theme_primary && g.theme_consolidated) {
+                gameData.themeConsolidationMap[g.theme_primary] = g.theme_consolidated;
+            }
+        }
+
+        // Filter reliable games (same logic as DuckDB RELIABLE_GAME clause)
+        const reliableGames = games.filter(g => {
+            const confFields = [
+                g.rtp_confidence,
+                g.volatility_confidence,
+                g.reels_confidence,
+                g.paylines_confidence,
+                g.max_win_confidence,
+                g.min_bet_confidence,
+                g.max_bet_confidence,
+            ];
+            const specReliable = confFields.some(c => c === 'verified' || c === 'extracted');
+            const hasFeatures = g.features && g.features !== '[]';
+            return specReliable || hasFeatures;
+        });
+
+        gameData.allGames = reliableGames;
+
+        // Compute stats
+        gameData.total_games = reliableGames.length;
+        const themeSet = new Set(reliableGames.map(g => g.theme_consolidated).filter(Boolean));
+        gameData.theme_count = themeSet.size;
+        const mechSet = new Set();
+        for (const g of reliableGames) {
+            parseFeatures(g.features).forEach(f => mechSet.add(f));
+        }
+        gameData.mechanic_count = mechSet.size;
+
+        // Build theme distribution
+        const themeAgg = {};
+        for (const g of reliableGames) {
+            const t = g.theme_consolidated || 'Unknown';
+            if (!themeAgg[t]) themeAgg[t] = { count: 0, theoSum: 0, mktSum: 0 };
+            themeAgg[t].count++;
+            themeAgg[t].theoSum += g.performance_theo_win || 0;
+            themeAgg[t].mktSum += g.performance_market_share_percent || 0;
+        }
+        gameData.themes = Object.entries(themeAgg)
+            .filter(([t]) => !/^unknown$/i.test(t) && !t.toUpperCase().includes('FLAGGED FOR RESEARCH'))
+            .map(([theme, s]) => ({
+                Theme: theme,
+                'Game Count': s.count,
+                'Avg Theo Win Index': s.theoSum / s.count,
+                'Market Share %': s.mktSum,
+                theme,
+                game_count: s.count,
+                avg_theo_win: s.theoSum / s.count,
+                total_market_share: s.mktSum,
+            }));
+
+        // Build mechanic distribution
+        const mechAgg = {};
+        for (const g of reliableGames) {
+            const feats = parseFeatures(g.features);
+            for (const f of feats) {
+                if (!mechAgg[f]) mechAgg[f] = { count: 0, theoSum: 0, mktSum: 0 };
+                mechAgg[f].count++;
+                mechAgg[f].theoSum += g.performance_theo_win || 0;
+                mechAgg[f].mktSum += g.performance_market_share_percent || 0;
+            }
+        }
+        gameData.mechanics = Object.entries(mechAgg).map(([mechanic, s]) => ({
+            Mechanic: mechanic,
+            'Game Count': s.count,
+            'Avg Theo Win Index': s.theoSum / s.count,
+            'Market Share %': s.mktSum,
+            mechanic,
+            game_count: s.count,
+            avg_theo_win: s.theoSum / s.count,
+            total_market_share: s.mktSum,
+        }));
+
+        // Anomalies
+        const byTheo = [...reliableGames].sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
+        gameData.top_anomalies = byTheo.slice(0, 30).map(g => ({
+            game: g.name,
+            themes: [g.theme_consolidated || 'Unknown'],
+            mechanics: parseFeatures(g.features),
+            'Theo Win': g.performance_theo_win || 0,
+            'Market Share %': g.performance_market_share_percent || 0,
+            rank: g.performance_rank || 999,
+            theo_win_index: g.performance_theo_win || 0,
+            z_score: ((g.performance_theo_win || 0) - 10) / 5,
+            ...g,
+        }));
+        gameData.bottom_anomalies = byTheo
+            .slice(-30)
+            .reverse()
+            .map(g => ({
+                game: g.name,
+                themes: [g.theme_consolidated || 'Unknown'],
+                mechanics: parseFeatures(g.features),
+                'Theo Win': g.performance_theo_win || 0,
+                'Market Share %': g.performance_market_share_percent || 0,
+                rank: g.performance_rank || 999,
+                theo_win_index: g.performance_theo_win || 0,
+                z_score: ((g.performance_theo_win || 0) - 10) / 5,
+                ...g,
+            }));
+
+        calculateSmartIndex();
+        return true;
+    } catch (error) {
+        console.error('❌ JSON fallback failed:', error);
+        return false;
+    }
 }
 
 function applySmartIndex(

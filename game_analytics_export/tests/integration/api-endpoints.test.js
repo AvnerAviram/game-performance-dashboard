@@ -83,14 +83,20 @@ async function waitForServer(url, maxAttempts = 20) {
 
 describe('API Data Endpoints - Integration', () => {
     beforeAll(async () => {
-        originalUsersContent = existsSync(USERS_FILE) ? readFileSync(USERS_FILE, 'utf-8') : null;
+        const raw = existsSync(USERS_FILE) ? readFileSync(USERS_FILE, 'utf-8') : null;
+        if (raw) {
+            const clean = JSON.parse(raw).filter(u => !u.username.startsWith('__apitest'));
+            originalUsersContent = JSON.stringify(clean, null, 2);
+        }
 
+        const existingUsers = raw ? JSON.parse(raw).filter(u => !u.username.startsWith('__apitest')) : [];
         const testUser = {
             username: '__apitest__',
             passwordHash: bcrypt.hashSync('testpass123', 12),
             role: 'user',
         };
-        writeFileSync(USERS_FILE, JSON.stringify([testUser], null, 2));
+        existingUsers.push(testUser);
+        writeFileSync(USERS_FILE, JSON.stringify(existingUsers, null, 2));
 
         const nodePath = process.execPath;
         serverProcess = spawn(nodePath, ['server/server.cjs'], {
@@ -119,7 +125,12 @@ describe('API Data Endpoints - Integration', () => {
             serverProcess = null;
         }
         if (originalUsersContent !== null) {
-            writeFileSync(USERS_FILE, originalUsersContent);
+            try {
+                const restored = JSON.parse(originalUsersContent).filter(u => !u.username.startsWith('__apitest'));
+                writeFileSync(USERS_FILE, JSON.stringify(restored, null, 2));
+            } catch {
+                writeFileSync(USERS_FILE, originalUsersContent);
+            }
         } else if (existsSync(USERS_FILE)) {
             unlinkSync(USERS_FILE);
         }

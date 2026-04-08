@@ -1,25 +1,14 @@
-const CACHE_NAME = 'gad-v5';
-const CDN_CACHE = 'gad-cdn-v5';
-
-const CDN_URLS = [
-    'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js',
-    'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.28.0/+esm',
-];
+const CACHE_NAME = 'gad-v12';
 
 self.addEventListener('install', event => {
-    event.waitUntil(
-        caches
-            .open(CDN_CACHE)
-            .then(cache => cache.addAll(CDN_URLS))
-            .then(() => self.skipWaiting())
-    );
+    event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches
             .keys()
-            .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME && k !== CDN_CACHE).map(k => caches.delete(k))))
+            .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
             .then(() => self.clients.claim())
     );
 });
@@ -27,24 +16,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     const url = event.request.url;
 
-    // CDN resources: cache-first (immutable versioned URLs)
-    if (url.startsWith('https://cdn.jsdelivr.net/')) {
-        event.respondWith(
-            caches.match(event.request).then(
-                cached =>
-                    cached ||
-                    fetch(event.request).then(resp => {
-                        const clone = resp.clone();
-                        caches.open(CDN_CACHE).then(c => c.put(event.request, clone));
-                        return resp;
-                    })
-            )
-        );
-        return;
-    }
-
-    // Hashed assets (/assets/main-abc123.js): cache-first (immutable)
-    if (url.includes('/assets/') && !url.endsWith('.html')) {
+    // Hashed assets + self-hosted DuckDB WASM: cache-first (immutable)
+    if ((url.includes('/assets/') || url.includes('/duckdb/')) && !url.endsWith('.html')) {
         event.respondWith(
             caches.match(event.request).then(
                 cached =>
@@ -55,6 +28,26 @@ self.addEventListener('fetch', event => {
                         return resp;
                     })
             )
+        );
+        return;
+    }
+
+    // Game data files: stale-while-revalidate (fast repeat loads, eventual freshness)
+    if (url.includes('/data/games.parquet') || url.includes('/data/games_processed.json')) {
+        event.respondWith(
+            caches.match(event.request).then(cached => {
+                const networkFetch = fetch(event.request)
+                    .then(resp => {
+                        if (resp.ok) {
+                            const clone = resp.clone();
+                            caches.open(CACHE_NAME).then(c => c.put(event.request, clone));
+                        }
+                        return resp;
+                    })
+                    .catch(() => cached || fetch(event.request));
+
+                return cached || networkFetch;
+            })
         );
         return;
     }

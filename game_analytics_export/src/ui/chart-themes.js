@@ -1,4 +1,5 @@
 // Theme, mechanics, games, scatter, and market landscape charts
+import { Chart } from './chart-setup.js';
 import { getActiveGames, getActiveThemes, getActiveMechanics } from '../lib/data.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { log } from '../lib/env.js';
@@ -750,7 +751,7 @@ export function createMarketLandscapeChart() {
                         const showLeader = needsLeaderLine(dist, leaderThreshold, k, ancs);
 
                         if (!showLeader && dist > a.r + 6) {
-                            snapLabelToBubble(l, a, chartArea);
+                            snapLabelToBubble(l, a, chartArea, ancs);
                         }
 
                         const rect = { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height };

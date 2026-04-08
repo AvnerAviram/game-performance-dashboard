@@ -257,7 +257,7 @@ function handleProviderQuery(provName) {
     if (bestThemes.length) {
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Best Performing Themes (2+ games)</p>`;
         html += miniTable(
-            ['Theme', 'Games', 'Avg Theo'],
+            ['Theme', 'Games', 'Avg PI'],
             bestThemes.map(([t, d]) => [
                 `<span class="font-medium">${escapeHtml(t)}</span>`,
                 d.count,
@@ -338,7 +338,7 @@ function handleFeatureQuery(featName) {
     if (bestThemes.length) {
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Best Themes for ${escapeHtml(featName)}</p>`;
         html += miniTable(
-            ['Theme', 'Games', 'Avg Theo'],
+            ['Theme', 'Games', 'Avg PI'],
             bestThemes.map(([t, d]) => [
                 `<span class="font-medium">${escapeHtml(t)}</span>`,
                 d.count,
@@ -518,7 +518,7 @@ function handleVolatilityQuestion() {
 
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Volatility vs Performance</p>`;
     html += miniTable(
-        ['Volatility', 'Games', 'Avg Theo'],
+        ['Volatility', 'Games', 'Avg PI'],
         sorted.map(s => [
             `<span class="font-semibold">${escapeHtml(s.vol)}</span>`,
             s.count,
@@ -550,7 +550,7 @@ function handleLayoutQuestion() {
 
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Reel Layout Analysis</p>`;
     html += miniTable(
-        ['Layout', 'Games', 'Avg Theo', 'Share'],
+        ['Layout', 'Games', 'Avg PI', 'Share'],
         sorted.map(s => [
             `<span class="font-semibold">${escapeHtml(s.layout)}</span>`,
             s.count,
@@ -585,7 +585,7 @@ function handleComboRecipe() {
     let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">Winning Mechanic Combinations</p>`;
     html += `<p class="text-xs text-gray-500 mb-2">Mechanic pairs ranked by average Theo Win (min 3 games)</p>`;
     html += miniTable(
-        ['#', 'Combo', 'Games', 'Avg Theo'],
+        ['#', 'Combo', 'Games', 'Avg PI'],
         top.map((c, i) => [
             i + 1,
             `<span class="font-medium">${escapeHtml(c.combo)}</span>`,

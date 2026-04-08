@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <base href="/" />
         <!-- prettier-ignore -->
         <meta name="description" content="Game Analytics Dashboard — performance data, theme and mechanic analysis, and game design tools" />
         <script>
@@ -18,20 +19,8 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
         <meta http-equiv="Pragma" content="no-cache" />
         <meta http-equiv="Expires" content="0" />
-        <!-- Preconnect to CDN and preload heavy resources in parallel with JS parsing -->
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <link
-            rel="preload"
-            href="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
-            as="script"
-            crossorigin
-        />
+        <!-- DuckDB WASM loaded on-demand by duckdb-client.js (35MB, not worth preloading) -->
         <title>Game Analytics Dashboard</title>
-        <meta
-            name="description"
-            content="Internal analytics dashboard for game performance, themes, mechanics, and provider insights."
-        />
         <link rel="icon" type="image/png" href="/src/assets/ags-logo.png" />
         <link rel="stylesheet" href="/src/output.css" />
     </head>
@@ -47,8 +36,15 @@
             class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 transition-opacity duration-300"
         >
             <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p class="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
-            <p class="text-sm text-gray-500 dark:text-gray-500 mt-1">Initializing DuckDB</p>
+            <p class="text-gray-600 dark:text-gray-400 font-medium">Loading dashboard...</p>
+            <p id="loading-status" class="text-sm text-gray-500 dark:text-gray-500 mt-1">Verifying session</p>
+            <div class="mt-4 w-48 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div
+                    id="loading-bar"
+                    class="h-full bg-indigo-500 rounded-full transition-all duration-500 ease-out"
+                    style="width: 5%"
+                ></div>
+            </div>
         </div>
         <div class="flex h-full" id="app-shell">
             <!-- Sidebar (collapsible) -->
@@ -287,7 +283,7 @@
                         class="nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
                         data-page="art"
                         onclick="showPage('art')"
-                        aria-label="Art Design"
+                        aria-label="Art Insights"
                     >
                         <span class="nav-icon text-lg flex items-center justify-center w-5 flex-shrink-0">
                             <svg
@@ -304,7 +300,7 @@
                                 <circle cx="12" cy="12" r="3" />
                             </svg>
                         </span>
-                        <span class="nav-text sidebar-text flex-1">Art Design</span>
+                        <span class="nav-text sidebar-text flex-1">Art Insights</span>
                         <span
                             class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0"
                             >🚧 WIP</span
@@ -720,10 +716,7 @@
             </div>
         </div>
 
-        <!-- Chart.js only (Plotly removed - unused, saved ~3MB) -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-
-        <!-- Main application -->
+        <!-- Main application (Chart.js loaded via ESM import, tree-shaken) -->
         <script type="module" src="src/app.js?v=250"></script>
     </body>
 </html>

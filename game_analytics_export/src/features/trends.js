@@ -1,4 +1,5 @@
 // Trends Module - Year-over-year analysis (Chart.js)
+import { Chart } from '../ui/chart-setup.js';
 import { gameData } from '../lib/data.js';
 import { log, warn } from '../lib/env.js';
 import { parseFeatures } from '../lib/parse-features.js';
@@ -469,11 +470,6 @@ function getLineColors() {
 }
 
 export function renderTrends() {
-    if (typeof Chart === 'undefined') {
-        warn('Chart.js not loaded yet, trends will render when available');
-        return;
-    }
-
     const el = document.getElementById('overall-trend-chart');
     if (!el || el.offsetParent === null || el.offsetWidth === 0) {
         setTimeout(renderTrends, 100);

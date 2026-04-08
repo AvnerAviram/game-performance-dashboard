@@ -1,3 +1,4 @@
+import { Chart } from '../chart-setup.js';
 import { getActiveGames } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
@@ -9,6 +10,10 @@ import {
     getArtElementMetrics,
     getArtRecipeMetrics,
     getGlobalAvgTheo,
+    getDominantVolatility,
+    getDominantLayout,
+    getAvgRtp,
+    getProviderMetrics,
 } from '../../lib/metrics.js';
 import {
     getChartColors,
@@ -86,16 +91,24 @@ function hashColor(name, palette) {
     return palette[Math.abs(h) % palette.length];
 }
 
+function darkenHex(hex, factor = 0.65) {
+    const r = Math.round(parseInt(hex.slice(1, 3), 16) * factor);
+    const g = Math.round(parseInt(hex.slice(3, 5), 16) * factor);
+    const b = Math.round(parseInt(hex.slice(5, 7), 16) * factor);
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}
+
 function multiPill(compoundName, palette) {
     const parts = compoundName
         .split('/')
         .map(s => s.trim())
         .filter(Boolean);
     const baseColor = hashColor(compoundName, palette);
+    const textColor = darkenHex(baseColor, 0.55);
     return parts
         .map(
             p =>
-                `<span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-semibold rounded" style="background:${baseColor}18;color:${baseColor};border:1px solid ${baseColor}30">${escapeHtml(p)}</span>`
+                `<span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold rounded" style="background:${baseColor}15;color:${textColor};border:1px solid ${baseColor}25">${escapeHtml(p)}</span>`
         )
         .join(' ');
 }
@@ -120,7 +133,7 @@ function buildArtBreakdown(games, excludeDimension) {
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Settings', items: sorted, clickFn: 'window.showArtSetting' });
+        if (sorted.length) dims.push({ label: 'Environments', items: sorted, clickFn: 'window.showArtSetting' });
     }
 
     if (excludeDimension !== 'mood') {
@@ -355,12 +368,13 @@ export function renderArt() {
 
     renderStats(allGames, artGames, settings, moods);
     renderSettingLandscape(settings, globalAvg);
-    renderSettingsChart(settings);
+    renderSettingsChart(settings, artGames);
     renderMoodChart(moods);
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
-    renderArtRecipes(recipes, globalAvg);
+    renderArtRecipes(recipes, globalAvg, artGames);
+    renderProviderArtCards(artGames, globalAvg);
     renderArtStrategicCards(artGames, globalAvg);
 }
 
@@ -740,7 +754,7 @@ function renderSettingLandscape(settings, globalAvg) {
         data: {
             datasets: [
                 {
-                    label: 'Settings',
+                    label: 'Environments',
                     data: bubbleData,
                     backgroundColor: bgColors,
                     borderColor: borderColors,
@@ -754,7 +768,7 @@ function renderSettingLandscape(settings, globalAvg) {
             responsive: true,
             maintainAspectRatio: false,
             animation: { duration: 400 },
-            layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
+            layout: { padding: { top: 24, right: 16, bottom: 24, left: 24 } },
             onClick: (e, elements) => {
                 const chart = chartInstances.opportunity;
                 if (!chart) return;
@@ -840,20 +854,20 @@ function renderSettingLandscape(settings, globalAvg) {
                 },
                 x: {
                     type: 'linear',
-                    min: 0,
+                    min: warpX(logX(1)) - 0.15,
                     title: {
                         display: true,
-                        text: 'Game Count',
+                        text: 'Number of Games',
                         color: chartColors.textColor,
                         font: { size: 10, weight: 'bold' },
                     },
                     afterBuildTicks(axis) {
-                        const nice = [0, 2, 5, 10, 20, 50, 100, 200, 500];
+                        const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500];
                         const seen = new Set();
                         axis.ticks = nice
                             .map(v => warpX(logX(v)))
                             .filter(wv => {
-                                if (wv < 0 || wv > (axis.max || 5)) return false;
+                                if (wv < (axis.min ?? 0) || wv > (axis.max || 5)) return false;
                                 const k = wv.toFixed(6);
                                 if (seen.has(k)) return false;
                                 seen.add(k);
@@ -866,10 +880,9 @@ function renderSettingLandscape(settings, globalAvg) {
                         font: { size: 10 },
                         padding: 6,
                         callback: val => {
-                            if (val === 0) return '0';
                             const lv = unwarpX(val);
                             const orig = Math.round(Math.pow(10, lv));
-                            const nice = [0, 2, 5, 10, 20, 50, 100, 200, 500];
+                            const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500];
                             const closest = nice.reduce((a, b) => (Math.abs(b - orig) < Math.abs(a - orig) ? b : a));
                             return closest.toLocaleString();
                         },
@@ -894,7 +907,7 @@ function renderSettingLandscape(settings, globalAvg) {
 
 // ── Bar charts (gradient style matching overview) ──
 
-function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, onClickFn) {
+function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, onClickFn, displayLabelOverrides) {
     destroyChart(chartKey);
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -904,7 +917,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
     const top12 = labels.slice(0, 12);
     const top12Vals = values.slice(0, 12);
 
-    const displayLabels = top12.map(l => shortLabel(l));
+    const displayLabels = displayLabelOverrides ? displayLabelOverrides.slice(0, 12) : top12.map(l => shortLabel(l));
     const gradientColors = generateModernColors(ctx, top12.length);
 
     chartInstances[chartKey] = new Chart(ctx, {
@@ -953,6 +966,12 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                 x: {
                     beginAtZero: true,
                     grid: getModernGridConfig(),
+                    title: {
+                        display: true,
+                        text: metric,
+                        color: chartColors.textColor,
+                        font: { size: 10, weight: 'bold' },
+                    },
                     ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 4 },
                 },
                 y: {
@@ -969,7 +988,13 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
     });
 }
 
-function renderSettingsChart(settings) {
+function renderSettingsChart(settings, artGames) {
+    const trendMap = artGames ? computeArtSettingTrends(artGames) : {};
+    const trendSuffix = name => {
+        const t = trendMap[name];
+        if (!t || t.direction === 'stable' || t.direction === 'insufficient') return '';
+        return t.direction === 'rising' ? ' ▲' : ' ▼';
+    };
     createHorizontalBar(
         'art-settings-chart',
         settings.map(s => s.setting),
@@ -977,8 +1002,15 @@ function renderSettingsChart(settings) {
         'Games',
         'settings',
         '#6366f1',
-        name => window.showArtSetting(name)
+        name => window.showArtSetting(name),
+        settings.map(s => shortLabel(s.setting) + trendSuffix(s.setting))
     );
+    const legendEl = document.getElementById('art-settings-trend-legend');
+    if (legendEl) {
+        const rising = Object.values(trendMap).filter(t => t.direction === 'rising').length;
+        const declining = Object.values(trendMap).filter(t => t.direction === 'declining').length;
+        legendEl.innerHTML = `<span class="text-[9px] text-gray-400 dark:text-gray-500">Trends (last 2yr vs prior): <span class="text-emerald-500">▲ rising (${rising})</span> · <span class="text-red-400">▼ declining (${declining})</span></span>`;
+    }
 }
 
 function renderMoodChart(moods) {
@@ -986,7 +1018,7 @@ function renderMoodChart(moods) {
         'art-mood-chart',
         moods.map(m => m.mood),
         moods.map(m => m.avgTheo),
-        'Avg Theo',
+        'Avg Performance Index',
         'moods',
         '#a855f7',
         name => window.showArtMood(name)
@@ -1022,7 +1054,7 @@ function renderNarrativeChart(narratives) {
         'art-narrative-chart',
         narratives.map(n => n.narrative),
         narratives.map(n => n.avgTheo),
-        'Avg Theo',
+        'Avg Performance Index',
         'narratives',
         '#f43f5e',
         name => window.showArtNarrative(name)
@@ -1033,14 +1065,16 @@ function renderNarrativeChart(narratives) {
 
 let _recipeCache = { recipes: [], avg: 0, sortMode: 'opportunity' };
 
+function calcOppScore(r, avg) {
+    if (avg <= 0) return 0;
+    const lift = r.avgTheo / avg;
+    const gap = Math.pow(r.count, -0.7);
+    const confidence = Math.min(1, (r.count - 1) / 4);
+    return lift * gap * confidence;
+}
+
 function sortRecipes(recipes, avg, mode) {
-    const oppScore = r => {
-        if (avg <= 0) return 0;
-        const lift = r.avgTheo / avg;
-        const gap = 1 / Math.log2(r.count + 1);
-        const confidence = Math.min(1, (r.count - 1) / 4);
-        return lift * gap * confidence;
-    };
+    const oppScore = r => calcOppScore(r, avg);
     const sorted = [...recipes];
     switch (mode) {
         case 'theo-desc':
@@ -1063,7 +1097,7 @@ function sortRecipes(recipes, avg, mode) {
     return sorted;
 }
 
-function renderArtRecipes(recipes, globalAvg) {
+function renderArtRecipes(recipes, globalAvg, artGames) {
     const container = document.getElementById('art-combos-table');
     if (!container) return;
 
@@ -1073,31 +1107,33 @@ function renderArtRecipes(recipes, globalAvg) {
             : globalAvg;
     const avg = artAvg > 0 ? artAvg : globalAvg;
 
-    _recipeCache = { recipes, avg, sortMode: 'opportunity' };
+    _recipeCache = { recipes, avg, sortMode: 'opportunity', artGames };
     setupRecipeSortButtons();
 
     const sorted = sortRecipes(recipes, avg, 'opportunity');
-    renderArtRecipesInner(sorted, avg, container);
+    renderArtRecipesInner(sorted, avg, container, artGames);
 }
 
 function reRenderRecipes(mode) {
     _recipeCache.sortMode = mode;
-    const { recipes, avg } = _recipeCache;
+    const { recipes, avg, artGames } = _recipeCache;
     const sorted = sortRecipes(recipes, avg, mode);
     const container = document.getElementById('art-combos-table');
     if (!container) return;
-    renderArtRecipesInner(sorted, avg, container);
+    renderArtRecipesInner(sorted, avg, container, artGames);
 }
 
-function renderArtRecipesInner(sorted, avg, container) {
+function renderArtRecipesInner(sorted, avg, container, artGames) {
     if (!sorted.length) {
         container.innerHTML = '<div class="text-center text-gray-400 dark:text-gray-500 py-8">No recipes found</div>';
         return;
     }
 
-    const INITIAL_SHOW = 25;
+    const INITIAL_SHOW = 20;
     const maxTheo = Math.max(...sorted.map(r => r.avgTheo), 1);
     const MEDALS = ['🥇', '🥈', '🥉'];
+
+    const trendMap = artGames ? computeArtSettingTrends(artGames) : {};
 
     const rows = sorted
         .map((r, i) => {
@@ -1118,14 +1154,42 @@ function renderArtRecipesInner(sorted, avg, container) {
                       ? 'bg-red-50 dark:bg-red-900/30'
                       : 'bg-gray-50 dark:bg-gray-700';
             const barWidth = maxTheo > 0 ? (r.avgTheo / maxTheo) * 100 : 0;
+            const opp = calcOppScore(r, avg);
             const isOpp = r.avgTheo > avg && r.count <= 15;
             const rowHighlight = i < 3 ? 'bg-gradient-to-r from-amber-50/30 to-transparent dark:from-amber-900/10' : '';
 
             const rankNum = i + 1;
-            const rank =
-                i < 3
-                    ? `<span class="text-base leading-none">${MEDALS[i]}</span>`
-                    : `<span class="text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">${rankNum}</span>`;
+            const medalSuffix = i < 3 ? ` <span class="text-[10px] leading-none">${MEDALS[i]}</span>` : '';
+            const rank = `<span class="text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">${rankNum}</span>${medalSuffix}`;
+
+            const recipeGames = artGames
+                ? artGames.filter(g => F.artSetting(g) === r.setting && F.artMood(g) === r.mood)
+                : [];
+            const domVol = recipeGames.length ? getDominantVolatility(recipeGames) : '';
+            const domLayout = recipeGames.length ? getDominantLayout(recipeGames) : '';
+            const avgRtp = recipeGames.length ? getAvgRtp(recipeGames) : 0;
+            const contextChips = [];
+            if (domVol)
+                contextChips.push(
+                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-violet-50 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium">⚡ ${escapeHtml(domVol)}</span>`
+                );
+            if (domLayout)
+                contextChips.push(
+                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-sky-50 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 font-medium">🎰 ${escapeHtml(domLayout)}</span>`
+                );
+            if (avgRtp > 0)
+                contextChips.push(
+                    `<span class="text-[9px] px-1.5 py-0.5 rounded bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-medium">RTP ${avgRtp.toFixed(1)}%</span>`
+                );
+            const contextHtml = contextChips.length
+                ? contextChips.join('<span class="w-px h-3 bg-gray-200 dark:bg-gray-600"></span>')
+                : '';
+
+            const trend = trendMap[r.setting];
+            const trendBadge =
+                trend && trend.direction !== 'stable'
+                    ? `<span class="text-[8px] ${trend.direction === 'rising' ? 'text-emerald-500' : 'text-red-400'}">${trend.direction === 'rising' ? '▲' : '▼'}</span>`
+                    : '';
 
             const charChips = (r.topCharacters || [])
                 .filter(c => c && c !== 'No Characters (symbol-only game)')
@@ -1148,42 +1212,60 @@ function renderArtRecipesInner(sorted, avg, container) {
                     : '';
             const hasDetails = charChips || elemChips || narrChip;
 
-            return `<div class="recipe-row px-3 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer ${rowHighlight}" onclick="${safeOnclick('window.showArtRecipe', r.setting, r.mood)}">
-                <div class="flex items-center gap-3">
-                    <div class="w-6 text-center shrink-0">${rank}</div>
-                    <div class="flex flex-wrap gap-1.5 min-w-0 flex-1">
-                        ${multiPill(r.setting, SETTING_PALETTE)}
-                        <span class="text-gray-300 dark:text-gray-600">+</span>
-                        ${multiPill(r.mood, MOOD_PALETTE)}
-                    </div>
-                </div>
-                <div class="ml-9 mt-2 flex flex-wrap items-center gap-4">
-                    <div class="flex items-center gap-2">
-                        <span class="text-[11px] font-medium text-gray-500 dark:text-gray-400">Theo</span>
-                        <div class="w-20 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                            <div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-emerald-400" style="width:${barWidth.toFixed(0)}%"></div>
+            return `<div class="recipe-row px-4 py-4 hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowHighlight}" onclick="${safeOnclick('window.showArtRecipe', r.setting, r.mood)}">
+                <div class="flex items-start gap-3">
+                    <div class="w-7 pt-0.5 text-center shrink-0 flex flex-col items-center gap-0.5">${rank}</div>
+                    <div class="flex-1 min-w-0 space-y-2">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Env</span>
+                            ${multiPill(r.setting, SETTING_PALETTE)}${trendBadge}
+                            <span class="text-gray-300 dark:text-gray-600 mx-0.5">+</span>
+                            <span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Mood</span>
+                            ${multiPill(r.mood, MOOD_PALETTE)}
                         </div>
-                        <span class="text-sm font-bold text-gray-900 dark:text-white tabular-nums">${r.avgTheo.toFixed(2)}</span>
+                        <div class="flex flex-wrap items-center gap-3 px-3 py-2 rounded-lg bg-gray-50/80 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/40">
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Theo</span>
+                                <div class="w-16 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-emerald-400" style="width:${barWidth.toFixed(0)}%"></div>
+                                </div>
+                                <span class="text-[12px] font-bold text-gray-900 dark:text-white tabular-nums">${r.avgTheo.toFixed(2)}</span>
+                            </div>
+                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
+                            <div class="flex items-center gap-1">
+                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Lift</span>
+                                <span class="inline-flex px-1.5 py-0.5 rounded text-[10px] font-semibold ${liftColor} ${liftBg}">${lift >= 0 ? '▲' : '▼'}${liftSign}${Math.abs(lift).toFixed(0)}%</span>
+                            </div>
+                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
+                            <div class="flex items-center gap-1">
+                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Games</span>
+                                <span class="text-[12px] font-bold text-gray-700 dark:text-gray-300 tabular-nums">${r.count}</span>
+                            </div>
+                            <span class="w-px h-3.5 bg-gray-200 dark:bg-gray-600"></span>
+                            <div class="flex items-center gap-1">
+                                <span class="text-[10px] text-gray-400 dark:text-gray-500">Opp</span>
+                                <span class="text-[12px] font-bold tabular-nums ${opp >= 0.5 ? 'text-emerald-600 dark:text-emerald-400' : opp >= 0.3 ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-500 dark:text-gray-400'}">${opp.toFixed(2)}</span>
+                            </div>
+                            ${isOpp ? '<span class="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-bold uppercase rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-800">💎 Opp</span>' : ''}
+                        </div>
+                        ${
+                            contextHtml
+                                ? `<div class="flex flex-wrap items-center gap-1.5 pl-1">${contextHtml}</div>`
+                                : ''
+                        }
+                        ${
+                            hasDetails
+                                ? `<div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 pl-1">
+                            ${charChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Characters</span><div class="flex flex-wrap gap-1">${charChips}</div></div>` : ''}
+                            ${charChips && (elemChips || narrChip) ? '<span class="w-px h-3 bg-gray-200 dark:bg-gray-700"></span>' : ''}
+                            ${elemChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Elements</span><div class="flex flex-wrap gap-1">${elemChips}</div></div>` : ''}
+                            ${elemChips && narrChip ? '<span class="w-px h-3 bg-gray-200 dark:bg-gray-700"></span>' : ''}
+                            ${narrChip ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-medium text-gray-500 dark:text-gray-400">Narrative</span>${narrChip}</div>` : ''}
+                        </div>`
+                                : ''
+                        }
                     </div>
-                    <div class="flex items-center gap-1.5">
-                        <span class="text-[11px] font-medium text-gray-500 dark:text-gray-400">Lift</span>
-                        <span class="inline-flex px-1.5 py-0.5 rounded text-[11px] font-semibold ${liftColor} ${liftBg}">${lift >= 0 ? '▲' : '▼'}${liftSign}${Math.abs(lift).toFixed(0)}%</span>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                        <span class="text-[11px] font-medium text-gray-500 dark:text-gray-400">Games</span>
-                        <span class="text-sm font-bold text-gray-700 dark:text-gray-300 tabular-nums">${r.count}</span>
-                    </div>
-                    ${isOpp ? '<span class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold uppercase rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 ring-1 ring-emerald-200 dark:ring-emerald-800">💎 Opportunity</span>' : ''}
                 </div>
-                ${
-                    hasDetails
-                        ? `<div class="ml-9 mt-2.5 flex flex-wrap gap-x-5 gap-y-2">
-                    ${charChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">Characters</span><div class="flex flex-wrap gap-1">${charChips}</div></div>` : ''}
-                    ${elemChips ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">Elements</span><div class="flex flex-wrap gap-1">${elemChips}</div></div>` : ''}
-                    ${narrChip ? `<div class="flex items-center gap-1.5"><span class="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wide">Narrative</span>${narrChip}</div>` : ''}
-                </div>`
-                        : ''
-                }
             </div>`;
         })
         .join('');
@@ -1199,7 +1281,7 @@ function renderArtRecipesInner(sorted, avg, container) {
     };
 
     container.innerHTML = `
-        <div class="divide-y divide-gray-100 dark:divide-gray-700/50" id="art-recipes-list">${rows}</div>
+        <div class="divide-y divide-gray-200 dark:divide-gray-700" id="art-recipes-list">${rows}</div>
         ${
             hasMore
                 ? `<div class="px-3 pt-2 pb-1" id="art-recipes-show-more-wrap">
@@ -1231,21 +1313,138 @@ function renderArtRecipesInner(sorted, avg, container) {
 }
 
 function setupRecipeSortButtons() {
-    const wrap = document.getElementById('art-recipe-sort');
-    if (!wrap) return;
-    const activeCls = 'bg-white dark:bg-gray-600 text-indigo-700 dark:text-indigo-300 shadow-sm';
-    const inactiveCls = 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300';
-    wrap.querySelectorAll('.art-sort-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const mode = btn.dataset.sort;
-            if (mode === _recipeCache.sortMode) return;
-            wrap.querySelectorAll('.art-sort-btn').forEach(b => {
-                b.className = b.className.replace(activeCls, '').replace(inactiveCls, '').trim();
-                b.classList.add(...(b.dataset.sort === mode ? activeCls : inactiveCls).split(' '));
-            });
-            reRenderRecipes(mode);
-        });
+    const sel = document.getElementById('art-recipe-sort');
+    if (!sel) return;
+    sel.addEventListener('change', () => {
+        reRenderRecipes(sel.value);
     });
+}
+
+// ── Art Environment Trends ──
+
+function computeArtSettingTrends(artGames) {
+    const now = new Date().getFullYear();
+    const recentCutoff = now - 2;
+    const byEnv = {};
+    for (const g of artGames) {
+        const env = F.artSetting(g);
+        const yr = F.originalReleaseYear(g);
+        if (!env || !yr || yr < 2000) continue;
+        if (!byEnv[env]) byEnv[env] = { recent: 0, older: 0, total: 0 };
+        byEnv[env].total++;
+        if (yr >= recentCutoff) byEnv[env].recent++;
+        else byEnv[env].older++;
+    }
+    const totalRecent = Object.values(byEnv).reduce((s, e) => s + e.recent, 0) || 1;
+    const totalOlder = Object.values(byEnv).reduce((s, e) => s + e.older, 0) || 1;
+    const result = {};
+    for (const [env, d] of Object.entries(byEnv)) {
+        if (d.total < 5) {
+            result[env] = { direction: 'insufficient', recentPct: 0, olderPct: 0 };
+            continue;
+        }
+        const recentPct = d.recent / totalRecent;
+        const olderPct = d.older / totalOlder;
+        const ratio = olderPct > 0 ? recentPct / olderPct : recentPct > 0 ? 2 : 1;
+        let direction = 'stable';
+        if (ratio >= 1.2) direction = 'rising';
+        else if (ratio <= 0.8) direction = 'declining';
+        result[env] = { direction, recentPct, olderPct };
+    }
+    return result;
+}
+
+// ── Provider Art Specialization ──
+
+function renderProviderArtCards(artGames, globalAvg) {
+    const container = document.getElementById('art-provider-cards');
+    if (!container) return;
+
+    const providers = getProviderMetrics(artGames, { minGames: 3 }).slice(0, 8);
+    if (!providers.length) {
+        container.innerHTML = '<p class="text-xs text-gray-400 dark:text-gray-500">Not enough data</p>';
+        return;
+    }
+
+    const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
+
+    const cards = providers.map(p => {
+        const provGames = artGames.filter(g => F.provider(g) === p.name);
+        const envMap = {};
+        const moodMap = {};
+        for (const g of provGames) {
+            const env = F.artSetting(g);
+            const mood = F.artMood(g);
+            if (env) {
+                if (!envMap[env]) envMap[env] = { count: 0, theoSum: 0 };
+                envMap[env].count++;
+                envMap[env].theoSum += F.theoWin(g);
+            }
+            if (mood) moodMap[mood] = (moodMap[mood] || 0) + 1;
+        }
+        const bestEnv = Object.entries(envMap)
+            .filter(([, d]) => d.count >= 2)
+            .sort((a, b) => b[1].theoSum / b[1].count - a[1].theoSum / a[1].count)[0];
+        const topMood = Object.entries(moodMap).sort((a, b) => b[1] - a[1])[0];
+        const avgTheo = p.avgTheo;
+        const lift = artAvg > 0 ? ((avgTheo / artAvg - 1) * 100).toFixed(0) : '0';
+        const liftNum = Number(lift);
+        const topGame = [...provGames].sort((a, b) => F.theoWin(b) - F.theoWin(a))[0];
+        const envCount = Object.keys(envMap).length;
+
+        return { name: p.name, count: p.count, avgTheo, lift: liftNum, bestEnv, topMood, topGame, envCount };
+    });
+
+    const html = cards
+        .map(c => {
+            const liftColor =
+                c.lift > 10
+                    ? 'text-emerald-600 dark:text-emerald-400'
+                    : c.lift < -10
+                      ? 'text-red-500 dark:text-red-400'
+                      : 'text-gray-600 dark:text-gray-400';
+            const liftSign = c.lift > 0 ? '+' : '';
+            const bestEnvName = c.bestEnv ? c.bestEnv[0] : '—';
+            const bestEnvTheo = c.bestEnv ? (c.bestEnv[1].theoSum / c.bestEnv[1].count).toFixed(1) : '—';
+            const topMoodName = c.topMood ? c.topMood[0] : '—';
+            const topGameName = c.topGame?.name || '—';
+
+            return `<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onclick="${safeOnclick('window.showArtSetting', bestEnvName)}">
+                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 px-4 py-3 border-b border-gray-100 dark:border-gray-700">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-bold text-gray-900 dark:text-white truncate">${escapeHtml(c.name)}</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-white/70 dark:bg-gray-800/70 text-gray-600 dark:text-gray-400 font-medium">${c.count} games</span>
+                    </div>
+                </div>
+                <div class="px-4 py-3 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500">Avg Theo</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xs font-bold text-gray-900 dark:text-white tabular-nums">${c.avgTheo.toFixed(1)}</span>
+                            <span class="text-[10px] font-semibold ${liftColor}">${liftSign}${c.lift}%</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500">Best Env</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium truncate max-w-[120px]">${escapeHtml(shortLabel(bestEnvName))} <span class="text-gray-400">(${bestEnvTheo})</span></span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500">Mood</span>
+                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 font-medium truncate max-w-[120px]">${escapeHtml(shortLabel(topMoodName))}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400 dark:text-gray-500">Diversity</span>
+                        <span class="text-[10px] text-gray-600 dark:text-gray-400 font-medium">${c.envCount} environments</span>
+                    </div>
+                    <div class="pt-1 border-t border-gray-100 dark:border-gray-700">
+                        <div class="text-[9px] text-gray-400 dark:text-gray-500 truncate">Top: ${escapeHtml(topGameName)}</div>
+                    </div>
+                </div>
+            </div>`;
+        })
+        .join('');
+
+    container.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">${html}</div>`;
 }
 
 // ── Strategic Art Recommendations (Build Next / Avoid / Watch) ──

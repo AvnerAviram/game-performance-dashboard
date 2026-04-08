@@ -2,80 +2,66 @@
 
 ## Overview
 
-End-to-end tests that exercise the dashboard in a real Chromium browser via Playwright. These catch runtime TypeErrors, missing DOM elements, broken click handlers, and field-name mismatches that source-level Vitest tests cannot.
+End-to-end tests that exercise the dashboard in a real Chromium browser via Playwright. These catch runtime issues that source-level Vitest tests cannot: CSP violations, DuckDB WASM failures, broken click handlers, missing DOM elements, and page routing errors.
 
 ## Quick Start
 
 ```bash
-# 1. Start the server (in a separate terminal)
-npm start                   # Express on port 3000
+# Self-contained: builds, starts server, runs browser tests, shuts down
+node tests/e2e/post-build-smoke.mjs    # ~30 seconds
 
-# 2. Run the smoke test
-npm run test:smoke          # ~24 seconds
+# Or via the full gate (format + vitest + smoke):
+npm run test:gate
 ```
 
 ## Test Files
 
-| File | Purpose | Run with |
-|------|---------|----------|
-| `smoke-e2e.spec.mjs` | Comprehensive smoke test (12 areas) | `npm run test:smoke` |
-| `test-production.mjs` | Production readiness checks | `npm run test:e2e` |
-| `data-integrity.spec.mjs` | Data integrity verification | Custom Playwright config |
-| `verify-all-features.spec.mjs` | Feature verification | Custom Playwright config |
-| `dashboard-navigation.spec.js` | Navigation and page load tests | Custom Playwright config |
+| File | Purpose | Self-contained? | Run with |
+|------|---------|-----------------|----------|
+| `post-build-smoke.mjs` | **Mandatory gate** — build + serve + 30 browser checks | ✅ Yes | `npm run test:gate` / CI |
+| `smoke-e2e.spec.mjs` | Deep interactive tests (cross-panel nav, scoped breadcrumbs, table sort) | ❌ Needs server | `npx playwright test --config=playwright-smoke.config.mjs` |
+| `data-integrity.spec.mjs` | Source JSON vs dashboard comparison (GGR share, provider ranking, NaN scan) | ❌ Needs server | `npx playwright test --config=playwright-integrity.config.mjs` |
+| `verify-all-features.spec.mjs` | Blueprint advisor flow, sidebar icons, winning combos | ❌ Needs server | `npx playwright test --config=playwright-verify.config.mjs` |
 
-## Smoke Test Coverage
+## Post-Build Smoke Test Coverage
 
-`smoke-e2e.spec.mjs` logs in once, then exercises every major interactive feature:
+`post-build-smoke.mjs` is the mandatory gate. It builds the app, starts the Express server on an isolated port, and runs ~30 checks in headless Chromium:
 
-1. **Page navigation** -- all 6 pages load without JS errors
-2. **Theme panel** -- click `.theme-link` on Themes table, verify panel opens with content
-3. **Mechanic panel** -- click `.mechanic-link`, verify panel opens
-4. **Provider panel** -- click provider name, verify panel opens
-5. **Game panel** -- click game name, verify panel opens with performance data
-6. **Cross-panel: theme** -- open theme panel via JS, verify it works
-7. **Cross-panel: theme to provider** -- click provider inside theme panel
-8. **Scoped breadcrumb** -- provider panel opens scoped theme, verify `>` separator in title; click theme name to remove scope
-9. **Overview cards** -- clickable theme cards on overview page
-10. **Insights links** -- clickable theme links on insights page
-11. **Filter switching** -- switch theme view (all/leaders/opportunities/premium)
-12. **Table sorting** -- sort themes table by clicking column header
+1. **Login** — page loads, credentials work, redirects to dashboard
+2. **Data loading** — `window.gameData` populated, reports DuckDB vs JSON fallback
+3. **CSP** — no Content Security Policy violations in console
+4. **Data integrity** — overview stats: games > 2000, themes > 20, mechanics > 10
+5. **Charts** — canvas elements rendered
+6. **All pages** — overview, themes, mechanics, providers, games, insights, game-lab, trends, art load without JS errors
+7. **Panel interactions** — theme, provider, and game panels open on click
+8. **Data quality** — no `undefined` or `NaN` in visible text across all pages
+9. **API auth** — unauthenticated requests to `/api/data/games` and `/api/tickets` return 401
+10. **Security headers** — CSP present, allows `extensions.duckdb.org`, no stale CDN refs
+11. **Console errors** — zero critical errors across entire session
 
-A JS error listener runs throughout; any `pageerror` fails the test.
+## Pipeline Integration
 
-## Configuration
-
-- **Config:** `playwright-smoke.config.mjs`
-- **Base URL:** `http://localhost:3000`
-- **Browser:** Chromium (headless)
-- **Timeout:** 120s (test), with internal waits between actions
-- **Screenshots:** Captured on failure
-
-## Integration with Test Pipeline
-
-```bash
-npm run test:all    # Runs: vitest run && playwright smoke test
 ```
+npm run test:gate
+  ├── npm run format:check     (Prettier)
+  ├── npm test                 (1205 vitest tests)
+  └── post-build-smoke.mjs    (build + browser)
 
-The smoke test is included in `test:all` and runs after Vitest completes.
+CI (.github/workflows/ci.yml) runs the same sequence.
+Pre-commit hook runs format:check + vitest (no build, too slow for commits).
+```
 
 ## Troubleshooting
-
-**Server not running?**
-```bash
-npm start    # Express on port 3000 (NOT python http.server)
-```
-
-**Login fails?**
-Check `.env` has valid test credentials. The smoke test uses `e2e_test_user`.
 
 **Playwright not installed?**
 ```bash
 npx playwright install chromium
 ```
 
-**Port 3000 in use?**
+**Port 3099 in use?** (smoke test port)
 ```bash
-lsof -ti:3000 | xargs kill -9
-npm start
+lsof -ti:3099 | xargs kill -9
 ```
+
+**DuckDB fails in headless mode?**
+The 35MB WASM file sometimes struggles in headless Chromium. The smoke test accepts JSON fallback as long as data loads. DuckDB-specific validation is in `data-integrity.spec.mjs`.
