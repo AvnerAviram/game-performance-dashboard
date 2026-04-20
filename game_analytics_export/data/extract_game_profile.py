@@ -29,11 +29,11 @@ GT_PATH = DATA_DIR / "ground_truth_ags.json"
 MATCHES_PATH = DATA_DIR / "rules_game_matches.json"
 SYNONYM_PATH = DATA_DIR / "_legacy" / "synonym_mapping.json"
 
-_ART_FIELDS = ('art_setting', 'art_characters', 'art_elements', 'art_mood', 'art_narrative')
+_ART_FIELDS = ('art_theme', 'art_characters', 'art_elements', 'art_mood', 'art_narrative')
 _initial_art_count = None
 
 def _count_art(master):
-    return sum(1 for g in master if g.get('art_setting'))
+    return sum(1 for g in master if g.get('art_theme'))
 
 def safe_write_master(master, label=""):
     """Write master JSON with art-field preservation guard."""
@@ -42,7 +42,7 @@ def safe_write_master(master, label=""):
         _initial_art_count = _count_art(master)
     current = _count_art(master)
     if _initial_art_count > 0 and current < _initial_art_count * 0.95:
-        print(f"  ABORT WRITE ({label}): art_setting dropped from {_initial_art_count} to {current}. "
+        print(f"  ABORT WRITE ({label}): art_theme dropped from {_initial_art_count} to {current}. "
               f"Master NOT overwritten.")
         return False
     with open(MASTER_PATH, 'w') as f:
@@ -1096,26 +1096,30 @@ ART_STAGED_PATH = DATA_DIR / "staged_art_characterization.json"
 ART_GT_PATH = DATA_DIR / "ground_truth_art.json"
 ART_TEST_RESULTS_PATH = DATA_DIR / "art_test_results.jsonl"
 
-ART_SETTING_VALUES = [
-    "Ancient Temple/Ruins", "Deep Ocean/Underwater", "Enchanted Forest",
+ART_THEME_VALUES = [
+    "Ancient Temple/Ruins", "Deep Ocean/Underwater", "Fantasy/Fairy Tale",
     "Wild West/Frontier", "Outer Space", "Neon/Cyber City", "Medieval Castle",
     "Tropical Island/Beach", "Arctic/Snow", "Jungle/Rainforest", "Desert/Sahara",
     "Haunted Manor/Graveyard", "Candy/Sweet World", "Circus/Carnival",
     "Urban/Modern City", "Mountain/Volcano", "Farm/Countryside", "Royal Palace/Court",
-    "Pirate Ship/Port", "Treasure Cave/Mine", "Mystical/Magic Realm",
-    "Asian Temple/Garden", "Arena/Colosseum", "Sky/Clouds", "Laboratory/Workshop",
+    "Pirate Ship/Port", "Treasure Cave/Mine", "Magic/Fantasy",
+    "Asian Temple/Garden", "Ancient Greece", "Sky/Clouds", "Laboratory/Workshop",
     "Tavern/Saloon",
     "Norse/Viking Realm", "Irish/Celtic Highlands", "Festive/Holiday",
     "Prehistoric/Primordial", "Steampunk/Victorian",
     "Lakeside/River/Fishing Dock",
+    "Prairie/Plains/Grassland",
+    "Mexican/Latin Village", "Coastal/Beach/Shore",
+    "Arabian Palace/Bazaar",
     "Classic Slots", "Fruit Machine", "Luxury/VIP", "Casino Floor",
     "Savanna/Wildlife", "Australian Outback",
 ]
 
 ART_CHARACTER_VALUES = [
     "Explorer/Adventurer", "Pharaoh/Egyptian Ruler", "Leprechaun", "Dragon",
-    "Pirate/Captain", "Viking/Norse Warrior", "Greek/Roman God", "Wizard/Sorcerer",
-    "Wild Animals (lion, wolf, eagle)", "Domestic Animals (cat, dog, horse)",
+    "Pirate/Captain", "Viking/Norse Warrior", "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+    "Norse Deity (Thor, Odin, Loki, Freya)", "Wizard/Sorcerer",
+    "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)", "Domestic Animals (cat, dog, horse, pig)",
     "Sea Creatures (fish, octopus, shark)", "Mythical Creature (phoenix, unicorn, griffin)",
     "King/Queen/Royalty", "Fairy/Elf/Pixie", "Cowboy/Sheriff", "Vampire/Werewolf",
     "Monster/Demon", "Robot/Alien", "Ninja/Samurai", "Knight/Crusader",
@@ -1128,7 +1132,7 @@ ART_CHARACTER_VALUES = [
 ART_ELEMENT_VALUES = [
     "Gems/Jewels/Crystals", "Gold Coins/Treasure", "Fruits (cherry, lemon, watermelon)",
     "Fire/Flames/Lava", "Lightning/Thunder/Electricity", "Water/Waves/Rain",
-    "Ancient Artifacts (scrolls, amulets, masks)", "Weapons/Armor (swords, shields)",
+    "Ancient Artifacts (amulets, masks, relics)", "Weapons/Armor (swords, shields)",
     "Magic/Spells (wands, potions, orbs)", "Books/Scrolls/Maps",
     "Playing Card Values (A, K, Q, J, 10)", "Sevens/Bars/Bells (classic)",
     "Stars/Sparkles/Cosmic", "Nature/Flowers/Trees", "Food/Candy/Drinks",
@@ -1155,6 +1159,7 @@ ART_NARRATIVE_VALUES = [
     "Fairy Tale/Storybook", "Wealth/Fortune/Prosperity",
     "Fishing/Angling", "Music/Performance/Concert", "Crime/Mystery/Detective",
     "Branded/Licensed Story (TV, movie, celebrity)",
+    "Cultural/Mythological Story",
     "No Narrative (classic/abstract)",
 ]
 
@@ -1208,7 +1213,7 @@ def load_art_training_examples():
 
 
 def build_art_system_prompt():
-    settings_str = "\n".join(f"  - {v}" for v in ART_SETTING_VALUES)
+    themes_str = "\n".join(f"  - {v}" for v in ART_THEME_VALUES)
     characters_str = "\n".join(f"  - {v}" for v in ART_CHARACTER_VALUES)
     elements_str = "\n".join(f"  - {v}" for v in ART_ELEMENT_VALUES)
     moods_str = "\n".join(f"  - {v}" for v in ART_MOOD_VALUES)
@@ -1223,32 +1228,54 @@ You will receive a game's name, description, symbol list, themes, and (when avai
 ## YOUR TASK
 Classify each game across 7 design dimensions. Use ONLY values from the controlled vocabulary lists below. Be specific and evidence-based — only classify what you can actually infer from the provided text.
 
-## DIMENSION 1: SETTING — Where does this game take place?
+## DIMENSION 1: THEME — Where does this game take place?
 Pick the single best match. Be SPECIFIC — never leave a game unclassified. Key distinctions:
 - Traditional 7s, bars, bells slots → "Classic Slots" (the industry standard term)
 - Fruit-themed reels (cherry, lemon, watermelon focus) → "Fruit Machine"
 - Premium/glamour/diamonds/VIP → "Luxury/VIP"
 - Casino/gambling themed (dice, poker, roulette) → "Casino Floor"
 - African savanna, safari, wildlife → "Savanna/Wildlife"
+- North American wildlife on prairies/plains (buffalo, moose, elk) → "Prairie/Plains/Grassland"
 - Australian animals, outback → "Australian Outback"
 - Viking/Norse games → "Norse/Viking Realm", NOT "Arctic/Snow"
-- Irish/Celtic/Leprechaun games → "Irish/Celtic Highlands", NOT "Enchanted Forest"
+- Irish/Celtic/Leprechaun games → "Irish/Celtic Highlands", NOT "Fantasy/Fairy Tale"
 - Christmas/Easter/Holiday games → "Festive/Holiday"
+- Arabian Nights, Aladdin, genie, lamp games → "Arabian Palace/Bazaar"
 - Dinosaur/Caveman games → "Prehistoric/Primordial"
 - Fishing games (Big Bass, etc.) → "Lakeside/River/Fishing Dock"
+- Alien/creature games in labs or reactors (Reactoonz, etc.) → "Laboratory/Workshop", NOT "Outer Space" (use "Outer Space" only for actual space/starfield/galaxy settings)
 - NEVER use "Generic/Abstract" — every slot has a recognizable setting/style category
-{settings_str}
+{themes_str}
 
 ## DIMENSION 2: CHARACTERS — Who/what is the protagonist or featured character?
 Pick ALL that apply (often 1-3). Characters are beings that appear as symbols or are referenced in the game narrative.
+IMPORTANT deity distinction:
+- Zeus, Poseidon, Athena, Hercules, Medusa = "Greek/Roman Deity (Zeus, Poseidon, Athena)"
+- Thor, Odin, Loki, Freya, Heimdall = "Norse Deity (Thor, Odin, Loki, Freya)"
+- NEVER mix these — a Norse game must NOT have Greek deity and vice versa.
 {characters_str}
 
 ## DIMENSION 3: VISUAL ELEMENTS — What key objects/props define the reel icons?
 Pick ALL that apply (typically 2-5). These are the distinctive visual objects players see on the reels.
+STRICT RULE: Only include an element if it is EXPLICITLY mentioned in the description, symbols list, or HTML rules. Do NOT infer elements that aren't directly referenced. For example:
+- Do NOT add "Vehicles" unless the game description explicitly mentions ships, cars, planes, boats as reel symbols. A fishing game does not have vehicles just because fishing could involve boats.
+- Do NOT add "Weapons/Armor" unless swords, shields, etc. are explicitly named as symbols.
+- Do NOT add elements based on your general knowledge of a game — only what is stated in the provided text.
+- When in doubt, leave it out. Precision > recall for elements.
 {elements_str}
 
 ## DIMENSION 4: MOOD — What should the player FEEL?
-Pick the single best match:
+Pick the single best match. Key distinctions:
+- "Adventurous/Exciting" = active danger, exploration, quests, action. Indiana Jones energy.
+- "Serene/Calm/Peaceful" = relaxing, laid-back, nature-watching, fishing, gentle. No urgency.
+- "Epic/Grand/Heroic" = gods, warriors, battles, mythic scale. Power fantasy.
+- "Luxurious/Elegant/Premium" = wealth, sophistication, VIP, gold, jewels. Aspirational.
+- "Dark/Mysterious" = secrets, shadows, ancient curses, suspense. NOT the same as dark colors.
+- "Bright/Fun/Cheerful" = light-hearted, colorful, simple fun. Party energy.
+- "Cartoon/Playful/Fun" = silly, goofy, kid-friendly, humorous. Wacky characters.
+- Fishing/nature/wildlife games are typically "Serene/Calm/Peaceful", NOT "Adventurous/Exciting".
+- A game about treasure with a calm setting (no danger) = "Serene", not "Adventurous".
+- Wild West showdown/outlaw games with tension, danger = "Intense/Action/Thrilling" or "Dark/Mysterious", depending on atmosphere.
 {moods_str}
 
 ## DIMENSION 5: NARRATIVE — What is the story hook?
@@ -1256,24 +1283,46 @@ Pick the single best match:
 {narratives_str}
 
 ## DIMENSION 6: ART STYLE — What visual rendering style?
-Pick the single best match. This is harder to infer from text — use provider patterns and descriptive language as clues. If truly uncertain, use null.
+Pick the single best match. This is the HARDEST dimension — only classify if you have DIRECT evidence:
+- "Cartoon/Illustrated" = described as cartoon, comic, animated, whimsical art, cartoony characters
+- "Realistic 3D" = described as 3D rendered, cinematic, lifelike, immersive 3D graphics
+- "Stylized 2.5D" = described as semi-3D, layered, isometric, parallax backgrounds
+- "Minimalist/Classic" = described as clean, simple, retro, stripped-back, classic design
+- "Painterly/Hand-drawn" = described as watercolor, painted, hand-drawn, artistic brushstrokes
+- "Pixel/Retro" = described as pixel art, 8-bit, retro arcade style
+- "Anime/Manga" = described as anime-style, manga-inspired, Japanese animation art
+- "Photographic/Cinematic" = uses real photographs or photo-realistic imagery
+DO NOT guess art style from provider name alone. If the description does not mention visual rendering approach, use null. Confidence should be 1-2 unless you have explicit evidence.
 {styles_str}
 
 ## DIMENSION 7: COLOR TONE — What is the dominant color feel?
-Pick the single best match. Infer from setting, mood, and theme. If truly uncertain, use null.
+Pick the single best match based on THEME and VISUAL DESCRIPTIONS, not mood:
+- Egyptian/desert/sand/gold themes → usually "Warm (golds, reds, ambers)" even if mood is dark/mysterious
+- Ocean/ice/night sky themes → usually "Cool (blues, purples, silvers)"
+- Horror/vampire/dark dungeon → "Dark (blacks, deep tones, shadows)"
+- Neon/gems/space with bright colors → "Bright/Vibrant (saturated, neon)"
+- Forest/nature/wildlife → "Earthy (greens, browns, natural)"
+- Cute/candy/fairy → "Pastel/Soft (muted, gentle)"
+- Gold/jewels/treasure/premium → "Metallic/Jewel Tones (rich, shimmering)"
+IMPORTANT: Color tone is about VISUAL PALETTE, not emotional mood. A "Dark/Mysterious" mood game can still have warm gold colors (e.g., Egyptian games). If uncertain, use null.
 {colors_str}
 
 ## CLASSIFICATION RULES
 1. Use ONLY values from the lists above. Do not invent new values.
-2. For CHARACTERS: pay close attention to the GAME NAME — it often names the character directly:
-   - "Huff N Puff" = Big Bad Wolf fairy tale → "Wild Animals (lion, wolf, eagle)" + "Domestic Animals (cat, dog, horse)" for pigs
+2. For CHARACTERS: pay close attention to the GAME NAME and symbol descriptions — they reveal characters:
+   - "Huff N Puff" = Big Bad Wolf fairy tale → "Wild Animals" + "Domestic Animals" for pigs
    - "Dragon" in name → "Dragon"
-   - "Rakin Bacon" = pig → "Domestic Animals (cat, dog, horse)"
+   - "Rakin Bacon" = pig → "Domestic Animals (cat, dog, horse, pig)"
    - Names like "Buffalo", "Gorilla", "Tiger" → the animal IS the character
    - If symbols mention PIGGY, PIG, WOLF, DRAGON etc., those are characters, not just elements
-   - "No Characters" means truly NO beings — only objects like gems, fruits, numbers. If ANY character/animal is referenced, do NOT use "No Characters".
+   - Western outlaw/gunslinger/sheriff games → "Cowboy/Sheriff" (outlaws ARE cowboys in slot context)
+   - Norse mythology gods (Thor, Odin, Loki) → "Greek/Roman God" (covers all mythology gods). Valkyries and Norse warriors → "Viking/Norse Warrior", NOT "Fairy/Elf/Pixie"
+   - Santa Claus, elves, reindeer in Christmas games → "Cartoon/Mascot Character"
+   - Circus performers (clowns, ringmasters, acrobats) → "Cartoon/Mascot Character"
+   - "No Characters" means truly NO beings — only objects like gems, fruits, numbers. If the game description mentions ANY named person, outlaw, explorer, performer, Santa, or animal protagonist, do NOT use "No Characters".
+   - WILD vs DOMESTIC: "Domestic Animals" = pets and farm animals (cat, dog, horse, pig, chicken). Wildlife like bear, moose, raccoon, cougar, elk, lynx = "Wild Animals". Buffalo/bison → use "Bull/Buffalo".
 3. For ELEMENTS: focus on what makes this game VISUALLY DISTINCTIVE. Every slot has reels — list what's ON them.
-4. For SETTING: choose the most specific match. "Ancient Temple/Ruins" for Egyptian, not "Classic Slots". Use "Classic Slots" ONLY for traditional 7s/bars/bells retro games.
+4. For THEME: choose the most specific match. "Ancient Temple/Ruins" for Egyptian, not "Classic Slots". Use "Classic Slots" ONLY for traditional 7s/bars/bells retro games.
 5. For MOOD: consider the overall emotional tone. A game about treasure hunting with bright colors = "Adventurous/Exciting", not "Dark/Mysterious".
 6. For NARRATIVE: what is the player's implicit story? Be specific:
    - "Fairy Tale/Storybook" for games based on fairy tales (Three Little Pigs, Goldilocks, Jack and the Beanstalk, etc.)
@@ -1284,20 +1333,31 @@ Pick the single best match. Infer from setting, mood, and theme. If truly uncert
    - "Crime/Mystery/Detective" for crime, mafia, gangster, cops, detective games
    - "Branded/Licensed Story (TV, movie, celebrity)" for games based on TV shows, movies, or celebrities
    - "Collection/Harvest/Gathering" ONLY for games where the core story is farming, harvesting crops, or gathering resources — NOT for every game with a collect mechanic
-   - "No Narrative (classic/abstract)" for fruit/classic/generic slots with no thematic story
+   - "No Narrative (classic/abstract)" ONLY for fruit/classic/generic slots with truly no thematic story. If a game has named characters, an outlaw theme, a heist, a treasure hunt, or ANY story hook, it is NOT "No Narrative".
+   - Western games with outlaws, train robberies, showdowns → "Heist/Robbery/Escape" or "Crime/Mystery/Detective"
    - Use specific narratives over vague ones. If the game has a fairy tale character, it's probably "Fairy Tale/Storybook" not "Collection/Harvest/Gathering".
-7. For ART STYLE and COLOR TONE: these are harder from text alone. Use clues like "classic" → Minimalist, "cartoon" → Cartoon/Illustrated, provider patterns (NetEnt often = Realistic 3D, Hacksaw = Minimalist). Use null if you genuinely cannot determine.
+7. For ART STYLE: NEVER guess based on provider name. Only classify if the text EXPLICITLY describes the visual rendering approach (e.g., "cartoon style", "3D graphics", "hand-painted"). If the description only mentions game mechanics without visual style details, use null with confidence 1.
+8. For COLOR TONE: base this on the VISUAL THEME and described colors, NOT on the mood. Egyptian games = warm golds even if mood is dark. Ocean games = cool blues even if mood is exciting. If no color information is available, use null.
+
+## CONFIDENCE SCORING
+Rate your confidence 1-5 for EACH dimension:
+- 5 = Obvious from game name or description (e.g., "Cleopatra" → Ancient Temple/Ruins)
+- 4 = Strong evidence in description/symbols/themes
+- 3 = Reasonable inference from available context
+- 2 = Educated guess with weak evidence
+- 1 = No real evidence, speculative
+Dimensions with confidence below 3 may be filtered out. Be honest — low confidence is better than a wrong answer.
 
 ## OUTPUT FORMAT
 Return a JSON object with this exact structure:
 {{
-  "art_setting": "<single value from Setting list>",
-  "art_characters": ["<value1>", "<value2>", ...],
-  "art_elements": ["<value1>", "<value2>", ...],
-  "art_mood": "<single value from Mood list>",
-  "art_narrative": "<single value from Narrative list>",
-  "art_style": "<single value from Style list or null>",
-  "art_color_tone": "<single value from Color Tone list or null>"
+  "art_theme": {{"value": "<single value from Theme list>", "confidence": 4}},
+  "art_characters": [{{"value": "<character>", "confidence": 5}}, ...],
+  "art_elements": [{{"value": "<element>", "confidence": 4}}, ...],
+  "art_mood": {{"value": "<single value from Mood list>", "confidence": 3}},
+  "art_narrative": {{"value": "<single value from Narrative list>", "confidence": 4}},
+  "art_style": {{"value": "<single value from Style list or null>", "confidence": 2}},
+  "art_color_tone": {{"value": "<single value from Color Tone list or null>", "confidence": 2}}
 }}
 
 Return ONLY valid JSON. No markdown, no commentary."""
@@ -1350,34 +1410,34 @@ def build_art_user_prompt(game_name, description, symbols, themes,
 
 NAME_CHARACTER_HINTS = {
     # Wild animals
-    r'\bwolf\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bhuff\b.*\bpuff\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\blion\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\btiger\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\beagle\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bpanther\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bjaguar\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bleopard\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bcheetah\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bcobra\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bviper\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bcrocodile\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bcroc\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bfox\b': 'Wild Animals (lion, wolf, eagle)',
+    r'\bwolf\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bhuff\b.*\bpuff\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\blion\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\btiger\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\beagle\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bpanther\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bjaguar\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bleopard\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bcheetah\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bcobra\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bviper\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bcrocodile\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bcroc\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bfox\b|^fox': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
     # Domestic animals
-    r'\bpig\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bpiggy\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bpiggies\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bbacon\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bhog\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bboar\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bcat\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bdog\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bhorse\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bmustang\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bstallion\b': 'Domestic Animals (cat, dog, horse)',
-    r'\bbunny\b': 'Domestic Animals (cat, dog, horse)',
-    r'\brabbit\b': 'Domestic Animals (cat, dog, horse)',
+    r'\bpig\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bpiggy\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bpiggies\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bbacon\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bhog\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bboar\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bcat\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bdog\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bhorse\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bmustang\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bstallion\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\bbunny\b': 'Domestic Animals (cat, dog, horse, pig)',
+    r'\brabbit\b': 'Domestic Animals (cat, dog, horse, pig)',
     # Bull/Buffalo
     r'\bbuffalo\b': 'Bull/Buffalo',
     r'\bbull\b': 'Bull/Buffalo',
@@ -1423,7 +1483,7 @@ NAME_CHARACTER_HINTS = {
     # Dragon
     r'\bdragon\b': 'Dragon',
     # Elephants (map to Wild Animals — they're safari animals)
-    r'\belephant\b': 'Wild Animals (lion, wolf, eagle)',
+    r'\belephant\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
     # Mythical creatures
     r'\bphoenix\b': 'Mythical Creature (phoenix, unicorn, griffin)',
     r'\bunicorn\b': 'Mythical Creature (phoenix, unicorn, griffin)',
@@ -1517,7 +1577,7 @@ NAME_CHARACTER_HINTS = {
     r'\bbatman\b': 'Superhero/Heroine',
 }
 
-NAME_SETTING_HINTS = {
+NAME_THEME_HINTS = {
     r'\begypt(?:ian)?\b': 'Ancient Temple/Ruins',
     r'\bpharaoh\b': 'Ancient Temple/Ruins',
     r'\bcleopatra\b': 'Ancient Temple/Ruins',
@@ -1527,14 +1587,14 @@ NAME_SETTING_HINTS = {
     r'\baztec\b': 'Ancient Temple/Ruins',
     r'\bmayan?\b': 'Ancient Temple/Ruins',
     r'\bincan?\b': 'Ancient Temple/Ruins',
-    r'\bzeus\b': 'Arena/Colosseum',
-    r'\bolympus\b': 'Arena/Colosseum',
-    r'\brome\b': 'Arena/Colosseum',
-    r'\broman\b': 'Arena/Colosseum',
-    r'\bgreek\b': 'Arena/Colosseum',
-    r'\bgladiator\b': 'Arena/Colosseum',
-    r'\bspartan\b': 'Arena/Colosseum',
-    r'\bcaesar\b': 'Arena/Colosseum',
+    r'\bzeus\b': 'Ancient Greece',
+    r'\bolympus\b': 'Ancient Greece',
+    r'\brome\b': 'Ancient Greece',
+    r'\broman\b': 'Ancient Greece',
+    r'\bgreek\b': 'Ancient Greece',
+    r'\bgladiator\b': 'Ancient Greece',
+    r'\bspartan\b': 'Ancient Greece',
+    r'\bcaesar\b': 'Ancient Greece',
     r'\bviking\b': 'Norse/Viking Realm',
     r'\bnorse\b': 'Norse/Viking Realm',
     r'\bvalhallan?\b': 'Norse/Viking Realm',
@@ -1606,6 +1666,8 @@ NAME_SETTING_HINTS = {
     r'\bfishing\b': 'Lakeside/River/Fishing Dock',
     r'\bangl(?:er|ing)\b': 'Lakeside/River/Fishing Dock',
     r'\bbass\b': 'Lakeside/River/Fishing Dock',
+    r'chili|salsa|taco|fiesta|mexican|mariachi|sombrero|pinata': 'Mexican/Latin Village',
+    r'beach|coast|shore|surfing|surf\b': 'Coastal/Beach/Shore',
 }
 
 STRONG_NARRATIVE_HINTS = {
@@ -1658,19 +1720,19 @@ NAME_ELEMENT_HINTS = {
 }
 
 HTML_CHARACTER_PATTERNS = {
-    r'\bwolf\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bpig(?:gy)?\d?\b': 'Domestic Animals (cat, dog, horse)',
+    r'\bwolf\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bpig(?:gy)?\d?\b': 'Domestic Animals (cat, dog, horse, pig)',
     r'\bdragon\b': 'Dragon',
     r'\bpirate\b': 'Pirate/Captain',
     r'\bleprechaun\b': 'Leprechaun',
     r'\bgorilla\b': 'Monkey/Ape',
     r'\bbuffalo\b': 'Bull/Buffalo',
     r'\bmonk(?:ey)?\b': 'Monkey/Ape',
-    r'\blion\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\btiger\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\beagle\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\belephant\b': 'Wild Animals (lion, wolf, eagle)',
-    r'\bpanther\b': 'Wild Animals (lion, wolf, eagle)',
+    r'\blion\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\btiger\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\beagle\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\belephant\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+    r'\bpanther\b': 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
     r'\bshark\b': 'Sea Creatures (fish, octopus, shark)',
     r'\bdolphin\b': 'Sea Creatures (fish, octopus, shark)',
     r'\bwhale\b': 'Sea Creatures (fish, octopus, shark)',
@@ -1681,22 +1743,129 @@ HTML_CHARACTER_PATTERNS = {
     r'\bknight\b': 'Knight/Crusader',
     r'\bprincess\b': 'King/Queen/Royalty',
     r'\bprince\b': 'King/Queen/Royalty',
+    r'\bqueen\b': 'King/Queen/Royalty',
+    r'\bking\b(?!.*\bcard)': 'King/Queen/Royalty',
     r'\bwitch\b': 'Wizard/Sorcerer',
     r'\bwizard\b': 'Wizard/Sorcerer',
     r'\bgenie\b': 'Wizard/Sorcerer',
     r'\bvampire\b': 'Vampire/Werewolf',
     r'\bfairy\b': 'Fairy/Elf/Pixie',
-    r'\bcat\b': 'Domestic Animals (cat, dog, horse)',
+    r'\bmedusa\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+    r'\bpegasus\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+    r'\bminotaur\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+    r'\bphoenix\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+    r'\bcerberus\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+    r'\bcharon\b': 'Greek/Roman God',
+    r'\bhades\b': 'Greek/Roman God',
+    r'\bposeidon\b': 'Greek/Roman God',
+    r'\bzeus\b': 'Greek/Roman God',
+    r'\bfisherman\b': 'Explorer/Adventurer',
+    r'\bhunter\b': 'Explorer/Adventurer',
+    r'\bcat\b': 'Domestic Animals (cat, dog, horse, pig)',
 }
 
 
-def post_process_art(art_result, game_name="", clean_html=""):
+def _unwrap_confidence(raw):
+    """Extract value and confidence from new format {"value": ..., "confidence": N}
+    or fall back to old format (plain string/list)."""
+    if isinstance(raw, dict) and 'value' in raw:
+        return raw['value'], raw.get('confidence', 3)
+    return raw, 5  # legacy format — assume high confidence
+
+
+def _unwrap_list_confidence(raw):
+    """Extract values and confidences from new list format
+    [{"value": ..., "confidence": N}, ...] or old format ["val1", ...]."""
+    if not raw or not isinstance(raw, list):
+        return [], []
+    values = []
+    confidences = []
+    for item in raw:
+        if isinstance(item, dict) and 'value' in item:
+            values.append(item['value'])
+            confidences.append(item.get('confidence', 3))
+        elif isinstance(item, str):
+            values.append(item)
+            confidences.append(5)  # legacy
+    return values, confidences
+
+
+# Curated aliases for values the LLM commonly returns that don't exactly match vocabulary
+ART_THEME_ALIASES = {
+    "egyptian temple": "Ancient Temple/Ruins",
+    "ancient egypt": "Ancient Temple/Ruins",
+    "underwater": "Deep Ocean/Underwater",
+    "ocean": "Deep Ocean/Underwater",
+    "forest": "Fantasy/Fairy Tale",
+    "jungle": "Jungle/Rainforest",
+    "space": "Outer Space",
+    "cyberpunk": "Neon/Cyber City",
+    "castle": "Medieval Castle",
+    "beach": "Tropical Island/Beach",
+    "island": "Tropical Island/Beach",
+    "snow": "Arctic/Snow",
+    "arctic": "Arctic/Snow",
+    "desert": "Desert/Sahara",
+    "haunted": "Haunted Manor/Graveyard",
+    "candy": "Candy/Sweet World",
+    "circus": "Circus/Carnival",
+    "city": "Urban/Modern City",
+    "mountain": "Mountain/Volcano",
+    "volcano": "Mountain/Volcano",
+    "farm": "Farm/Countryside",
+    "palace": "Royal Palace/Court",
+    "pirate": "Pirate Ship/Port",
+    "cave": "Treasure Cave/Mine",
+    "mine": "Treasure Cave/Mine",
+    "magic": "Magic/Fantasy",
+    "asian": "Asian Temple/Garden",
+    "arena": "Ancient Greece",
+    "sky": "Sky/Clouds",
+    "lab": "Laboratory/Workshop",
+    "tavern": "Tavern/Saloon",
+    "saloon": "Tavern/Saloon",
+    "viking": "Norse/Viking Realm",
+    "norse": "Norse/Viking Realm",
+    "irish": "Irish/Celtic Highlands",
+    "celtic": "Irish/Celtic Highlands",
+    "holiday": "Festive/Holiday",
+    "christmas": "Festive/Holiday",
+    "prehistoric": "Prehistoric/Primordial",
+    "steampunk": "Steampunk/Victorian",
+    "fishing": "Lakeside/River/Fishing Dock",
+    "classic": "Classic Slots",
+    "fruit": "Fruit Machine",
+    "luxury": "Luxury/VIP",
+    "vip": "Luxury/VIP",
+    "casino": "Casino Floor",
+    "savanna": "Savanna/Wildlife",
+    "safari": "Savanna/Wildlife",
+    "prairie": "Prairie/Plains/Grassland",
+    "plains": "Prairie/Plains/Grassland",
+    "grassland": "Prairie/Plains/Grassland",
+    "outback": "Australian Outback",
+}
+
+ART_CHARACTER_ALIASES = {
+    "greek/roman god": "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+    "greek god": "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+    "roman god": "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+    "norse god": "Norse Deity (Thor, Odin, Loki, Freya)",
+    "norse deity": "Norse Deity (Thor, Odin, Loki, Freya)",
+}
+
+ART_ELEMENT_ALIASES = {
+    "ancient artifacts (scrolls, amulets, masks)": "Ancient Artifacts (amulets, masks, relics)",
+}
+
+
+def post_process_art(art_result, game_name="", clean_html="", description="", symbols=None, themes=None):
     """Normalize art extraction results to controlled vocabulary, then apply
     deterministic name-based and HTML-based rules to catch what Claude misses."""
     if not art_result or not isinstance(art_result, dict):
         return art_result
 
-    setting_lower = {v.lower(): v for v in ART_SETTING_VALUES}
+    theme_lower = {v.lower(): v for v in ART_THEME_VALUES}
     character_lower = {v.lower(): v for v in ART_CHARACTER_VALUES}
     element_lower = {v.lower(): v for v in ART_ELEMENT_VALUES}
     mood_lower = {v.lower(): v for v in ART_MOOD_VALUES}
@@ -1704,18 +1873,30 @@ def post_process_art(art_result, game_name="", clean_html=""):
     style_lower = {v.lower(): v for v in ART_STYLE_VALUES}
     color_lower = {v.lower(): v for v in ART_COLOR_TONE_VALUES}
 
-    def normalize_single(val, lookup, fallback=None):
+    # Unwrap confidence-aware format
+    theme_raw, theme_conf = _unwrap_confidence(art_result.get('art_theme'))
+    chars_raw, chars_conf = _unwrap_list_confidence(art_result.get('art_characters'))
+    elems_raw, elems_conf = _unwrap_list_confidence(art_result.get('art_elements'))
+    mood_raw, mood_conf = _unwrap_confidence(art_result.get('art_mood'))
+    narrative_raw, narrative_conf = _unwrap_confidence(art_result.get('art_narrative'))
+    style_raw, style_conf = _unwrap_confidence(art_result.get('art_style'))
+    color_raw, color_conf = _unwrap_confidence(art_result.get('art_color_tone'))
+
+    def normalize_single(val, lookup, alias_map=None, fallback=None):
+        """Match value to vocabulary using exact match, then curated aliases.
+        No fuzzy substring matching — prevents false matches."""
         if not val or not isinstance(val, str):
             return fallback
         exact = lookup.get(val.lower())
         if exact:
             return exact
-        for key, canonical in lookup.items():
-            if val.lower() in key or key in val.lower():
-                return canonical
+        if alias_map:
+            alias = alias_map.get(val.lower())
+            if alias:
+                return alias
         return fallback
 
-    def normalize_list(vals, lookup):
+    def normalize_list(vals, lookup, alias_map=None):
         if not vals or not isinstance(vals, list):
             return []
         result = []
@@ -1723,26 +1904,44 @@ def post_process_art(art_result, game_name="", clean_html=""):
         for v in vals:
             if not isinstance(v, str):
                 continue
-            canonical = normalize_single(v, lookup)
+            canonical = normalize_single(v, lookup, alias_map=alias_map)
             if canonical and canonical not in seen:
                 seen.add(canonical)
                 result.append(canonical)
         return result
 
-    art_result['art_setting'] = normalize_single(
-        art_result.get('art_setting'), setting_lower, "Classic Slots")
-    art_result['art_characters'] = normalize_list(
-        art_result.get('art_characters'), character_lower)
-    art_result['art_elements'] = normalize_list(
-        art_result.get('art_elements'), element_lower)
-    art_result['art_mood'] = normalize_single(
-        art_result.get('art_mood'), mood_lower, "Bright/Fun/Cheerful")
+    # Normalize with confidence-aware defaults:
+    # Only use fallback default if confidence >= 3
+    theme_fallback = "Classic Slots" if theme_conf >= 3 else None
+    mood_fallback = "Bright/Fun/Cheerful" if mood_conf >= 3 else None
+    narrative_fallback = "No Narrative (classic/abstract)" if narrative_conf >= 3 else None
+
+    art_result['art_theme'] = normalize_single(
+        theme_raw, theme_lower, ART_THEME_ALIASES, theme_fallback)
+    art_result['art_characters'] = normalize_list(chars_raw, character_lower, ART_CHARACTER_ALIASES)
+    art_result['art_elements'] = normalize_list(elems_raw, element_lower, ART_ELEMENT_ALIASES)
+    art_result['art_mood'] = normalize_single(mood_raw, mood_lower, fallback=mood_fallback)
     art_result['art_narrative'] = normalize_single(
-        art_result.get('art_narrative'), narrative_lower, "No Narrative (classic/abstract)")
-    art_result['art_style'] = normalize_single(
-        art_result.get('art_style'), style_lower)
-    art_result['art_color_tone'] = normalize_single(
-        art_result.get('art_color_tone'), color_lower)
+        narrative_raw, narrative_lower, fallback=narrative_fallback)
+    art_result['art_style'] = normalize_single(style_raw, style_lower)
+    art_result['art_color_tone'] = normalize_single(color_raw, color_lower)
+
+    # Store per-dimension confidence
+    art_result['_confidence'] = {
+        'theme': theme_conf,
+        'characters': chars_conf,
+        'elements': elems_conf,
+        'mood': mood_conf,
+        'narrative': narrative_conf,
+        'style': style_conf,
+        'color_tone': color_conf,
+    }
+
+    # Filter out low-confidence style/color (these are hardest to infer from text)
+    if style_conf < 3:
+        art_result['art_style'] = None
+    if color_conf < 3:
+        art_result['art_color_tone'] = None
 
     # --- Rule 1: Name-based character detection ---
     name_lower = game_name.lower()
@@ -1766,12 +1965,15 @@ def post_process_art(art_result, game_name="", clean_html=""):
     if real_chars:
         art_result['art_characters'] = real_chars
 
-    # --- Rule 4: Name-based setting override (only if current is Classic Slots) ---
-    if art_result['art_setting'] == "Classic Slots":
-        for pat, setting_val in NAME_SETTING_HINTS.items():
-            if re.search(pat, name_lower):
-                art_result['art_setting'] = setting_val
-                break
+    # --- Rule 4: Name-based theme override ---
+    # Strong name evidence overrides weak/generic LLM themes
+    overridable_themes = {"Classic Slots", "Laboratory/Workshop", "Outer Space",
+                            "Magic/Fantasy", "Urban/Modern City"}
+    for pat, theme_val in NAME_THEME_HINTS.items():
+        if re.search(pat, name_lower):
+            if art_result['art_theme'] in overridable_themes or theme_val == art_result['art_theme']:
+                art_result['art_theme'] = theme_val
+            break
 
     # --- Rule 5a: Strong narrative override (fairy tales — always win) ---
     for pat, narrative_val in STRONG_NARRATIVE_HINTS.items():
@@ -1796,24 +1998,26 @@ def post_process_art(art_result, game_name="", clean_html=""):
 
     # --- Rule 7: Huff N Puff special case (Three Little Pigs fairy tale) ---
     if re.search(r'\bhuff\b.*\bpuff\b', name_lower):
-        wolf = 'Wild Animals (lion, wolf, eagle)'
-        pig = 'Domestic Animals (cat, dog, horse)'
+        wolf = 'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)'
+        pig = 'Domestic Animals (cat, dog, horse, pig)'
         if wolf not in art_result['art_characters']:
             art_result['art_characters'].append(wolf)
         if pig not in art_result['art_characters']:
             art_result['art_characters'].append(pig)
         art_result['art_narrative'] = 'Fairy Tale/Storybook'
 
-    # --- Rule 8: Christmas/Holiday setting + mood override (always wins) ---
+    # --- Rule 8: Christmas/Holiday theme + mood + narrative override (always wins) ---
     if re.search(r'\b(christmas|xmas|easter|valentine|holiday)\b', name_lower):
-        art_result['art_setting'] = 'Festive/Holiday'
+        art_result['art_theme'] = 'Festive/Holiday'
         art_result['art_mood'] = 'Festive/Holiday/Celebratory'
+        if art_result['art_narrative'] not in ('Branded/Licensed Story (TV, movie, celebrity)',):
+            art_result['art_narrative'] = 'Celebration/Festival/Party'
 
-    # --- Rule 9: Fishing setting + narrative + element injection ---
+    # --- Rule 9: Fishing theme + narrative + element injection ---
     if re.search(r'\b(fishing|angl(?:er|ing))\b', name_lower) or \
        (re.search(r'\bbass\b', name_lower) and re.search(r'\b(bonanza|splash|catch)\b', name_lower)):
-        if art_result['art_setting'] == 'Classic Slots':
-            art_result['art_setting'] = 'Lakeside/River/Fishing Dock'
+        if art_result['art_theme'] == 'Classic Slots':
+            art_result['art_theme'] = 'Lakeside/River/Fishing Dock'
         art_result['art_narrative'] = 'Fishing/Angling'
         fishing_elem = 'Fishing/Tackle/Bait (rods, hooks, nets)'
         if fishing_elem not in art_result.get('art_elements', []):
@@ -1824,40 +2028,466 @@ def post_process_art(art_result, game_name="", clean_html=""):
         if not re.search(r'\b(harvest|farm|crop|garden|plant|seed|orchard|apple)\b', name_lower):
             art_result['art_narrative'] = 'No Narrative (classic/abstract)'
 
-    # --- Rule 11: Fallback — if no characters after all rules, set No Characters ---
+    # --- Rule 10b: Link & Win / Collect games → Wealth/Fortune narrative ---
+    _desc_low = (description or "").lower() if isinstance(description, str) else ""
+    if re.search(r'\b(link\s*(?:&|and)\s*win|collect\s*(?:em|\'em)|cash\s*pots?|hold\s*(?:&|and)\s*spin)\b', name_lower + " " + _desc_low):
+        if art_result['art_narrative'] in ('Discovery/Exploration', 'No Narrative (classic/abstract)'):
+            art_result['art_narrative'] = 'Wealth/Fortune/Prosperity'
+
+    # --- Rule 11: Description + symbol-based character detection ---
+    desc_lower = (description or "").lower() if isinstance(description, str) else ""
+    sym_names = " ".join(
+        (s.get('name', '') if isinstance(s, dict) else str(s))
+        for s in (symbols or [])
+    ).lower()
+    desc_sym_text = desc_lower + " " + sym_names + " " + html_lower
+    desc_char_patterns = {
+        r'\bgeisha\b': 'King/Queen/Royalty',
+        r'\barabian\s*(?:woman|princess|beauty)\b': 'King/Queen/Royalty',
+        r'\bprincess\b': 'King/Queen/Royalty',
+        r'\bsanta\b': 'Cartoon/Mascot Character',
+        r'\bringmaster\b': 'Cartoon/Mascot Character',
+        r'\bclown\b': 'Cartoon/Mascot Character',
+        r'\bfisherman\b': 'Explorer/Adventurer',
+        r'\bsheriff\b': 'Cowboy/Sheriff',
+        r'\boutlaw\b': 'Cowboy/Sheriff',
+        r'\bmedusa\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bpegasus\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bminotaur\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bphoenix\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bgriffin\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bsphinx\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bunicorn\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bcerberus\b': 'Mythical Creature (phoenix, unicorn, griffin)',
+        r'\bleprechaun\b': 'Leprechaun',
+        r'\bmaria\b.*\b(?:dead|muertos|skull|skeleton|graveyard|horror)\b': 'Explorer/Adventurer',
+        r'\b(?:day\s*of\s*(?:the\s*)?dead|d[ií]a\s*de\s*(?:los\s*)?muertos)\b': 'Explorer/Adventurer',
+        r'\bmaria\s*(?:symbol|wild)\b': 'Explorer/Adventurer',
+    }
+    for pat, char_val in desc_char_patterns.items():
+        if re.search(pat, desc_sym_text) and char_val not in chars:
+            chars.add(char_val)
+            art_result['art_characters'] = list(chars)
+    no_char = "No Characters (symbol-only game)"
+    real_chars = [c for c in art_result['art_characters'] if c != no_char]
+    if real_chars:
+        art_result['art_characters'] = real_chars
+
+    # --- Rule 12: Anti-hallucination — remove characters with NO evidence ---
+    all_text = (name_lower + " " + desc_lower + " " +
+                " ".join(str(s) for s in (symbols or [])).lower() + " " +
+                " ".join(str(t) for t in (themes or [])).lower() + " " +
+                html_lower)
+    char_evidence = {
+        'Domestic Animals (cat, dog, horse, pig)': r'\b(cat|dog|horse|pig|pup|kitten|sheep|chicken|hen|cow|farm\s*animal|pooch|puppy|huff\b.*\bpuff)',
+        'Robot/Alien': r'\b(robot|alien|android|cyborg|mech|ufo|space\s*(?:invad|creat)|extraterrestrial)',
+        'Leprechaun': r'\b(leprechaun|shamrock|irish|celtic|clover|rainbow\s*riches)',
+        'Bird (peacock, parrot, owl)': r'\b(bird|eagle|hawk|parrot|peacock|owl|crane|heron|falcon|raven|robin|pelican|flamingo|duck|rooster|chicken|hen|golden\s*bird)',
+        'Wizard/Sorcerer': r'\b(wizard|sorcerer|witch|warlock|mage|alchemist|enchantress|genie|djinn|merlin|blue\s*wizard)',
+    }
+    filtered_chars = []
+    for c in art_result['art_characters']:
+        evidence_pat = char_evidence.get(c)
+        if evidence_pat and not re.search(evidence_pat, all_text):
+            continue
+        filtered_chars.append(c)
+    if filtered_chars:
+        art_result['art_characters'] = filtered_chars
+
+    # --- Rule 12a2: Fix Fairy/Elf misclassification for Day of Dead / human character games ---
+    if 'Fairy/Elf/Pixie' in art_result['art_characters']:
+        fairy_evidence = r'\b(fairy|fairie|elf|elves|pixie|sprite|nymph|tinker)\b'
+        if not re.search(fairy_evidence, all_text):
+            art_result['art_characters'] = [
+                c for c in art_result['art_characters'] if c != 'Fairy/Elf/Pixie'
+            ]
+
+    # --- Rule 12b: Character conflict resolution (like features gateway-vs-pick) ---
+    # When name strongly implies an animal character, remove Leprechaun unless
+    # "leprechaun" appears literally in name or description
+    cur_chars = set(art_result['art_characters'])
+    animal_chars = {
+        'Wild Animals (lion, wolf, eagle, bear, moose, raccoon)',
+        'Domestic Animals (cat, dog, horse, pig)',
+        'Panda/Bear', 'Bull/Buffalo', 'Monkey/Ape', 'Dragon',
+        'Bird (peacock, parrot, owl)', 'Sea Creatures (fish, octopus, shark)',
+    }
+    has_animal_from_name = bool(cur_chars & animal_chars) and any(
+        re.search(pat, name_lower) for pat in [
+            r'\bfox', r'\bwolf', r'\blion', r'\btiger', r'\bbear', r'\bcat\b',
+            r'\bdog\b', r'\bhorse', r'\bbull', r'\bbuffalo', r'\bpig', r'\bmonkey',
+            r'\bpanda', r'\bdragon', r'\bbird', r'\bfish', r'\beagle', r'\bshark',
+        ])
+    if has_animal_from_name and 'Leprechaun' in cur_chars:
+        if not re.search(r'\bleprechaun\b', name_lower + " " + desc_lower):
+            art_result['art_characters'] = [c for c in art_result['art_characters'] if c != 'Leprechaun']
+
+    # --- Rule 12c: Symbol-based character correction ---
+    # If symbols mention "hunter" but LLM said Cowboy, override
+    sym_text = " ".join(str(s.get('name', '') if isinstance(s, dict) else s) for s in (symbols or [])).lower()
+    if re.search(r'\bhunter\b', sym_text) and 'Cowboy/Sheriff' in art_result['art_characters']:
+        if not re.search(r'\b(cowboy|sheriff|outlaw|bounty|western\s*(?:outlaw|showdown))\b', name_lower + " " + desc_lower):
+            art_result['art_characters'] = [
+                'Explorer/Adventurer' if c == 'Cowboy/Sheriff' else c
+                for c in art_result['art_characters']
+            ]
+
+    # --- Rule 12d: Demote King/Queen/Royalty when only evidence is card symbols ---
+    if 'King/Queen/Royalty' in art_result['art_characters']:
+        royalty_kw = r'\b(prince|princess|emperor|empress|royal|throne|crown|pharaoh|cleopatra|geisha|monarch)\b'
+        has_royalty_in_context = bool(re.search(royalty_kw, all_text))
+        has_sym_royalty = any(
+            re.search(r'\b(prince|princess|emperor|empress|crown|throne)\b',
+                       (s.get('name', '') if isinstance(s, dict) else str(s)).lower())
+            for s in (symbols or [])
+        )
+        if not has_royalty_in_context and not has_sym_royalty:
+            art_result['art_characters'] = [
+                c for c in art_result['art_characters'] if c != 'King/Queen/Royalty'
+            ]
+            if not art_result['art_characters']:
+                art_result['art_characters'] = ['No Characters (symbol-only game)']
+
+    # --- Rule 13: Mood override from description keywords ---
+    mood_playful_keywords = r'\b(comedy|comedic|playful|lighthearted|light-hearted|whimsical|goofy|silly|wacky|humorous|funny|amusing)\b'
+    mood_calm_keywords = r'\b(relaxing|laid-?back|peaceful|tranquil|serene|zen|gentle|soothing)\b'
+    if re.search(mood_playful_keywords, desc_lower):
+        if art_result['art_mood'] in ('Intense/Action/Thrilling', 'Dark/Mysterious', 'Epic/Grand/Heroic'):
+            art_result['art_mood'] = 'Cartoon/Playful/Fun'
+    if re.search(mood_calm_keywords, desc_lower):
+        if art_result['art_mood'] in ('Intense/Action/Thrilling', 'Adventurous/Exciting'):
+            art_result['art_mood'] = 'Serene/Calm/Peaceful'
+
+    # --- Rule 14: Theme override from description context ---
+    theme_desc_hints = {
+        r'\b(diner|restaurant|roadside|truck\s*stop|café|bar\b)': 'Tavern/Saloon',
+        r'\bstadium\b': 'Ancient Greece',
+        r'\blaboratory\b|\blab\b.*\bscien': 'Laboratory/Workshop',
+    }
+    for pat, theme_val in theme_desc_hints.items():
+        if re.search(pat, desc_lower):
+            if art_result['art_theme'] in ('Classic Slots', 'Outer Space', 'Urban/Modern City'):
+                art_result['art_theme'] = theme_val
+
+    # --- Rule 15: Mexican/Latin setting + character detection ---
+    if re.search(r'\b(chili|salsa|taco|fiesta|mexican|mariachi|sombrero|pinata|burrito)\b', name_lower):
+        if art_result['art_theme'] not in ('Mexican/Latin Village',):
+            art_result['art_theme'] = 'Mexican/Latin Village'
+
+    # --- Rule 16: Dia de los Muertos ---
+    if re.search(r'\b(dia.de|day.of.dead|muertos|sugar.skull|calavera)\b', name_lower + " " + _desc_low):
+        art_result['art_theme'] = 'Mexican/Latin Village'
+        if art_result['art_narrative'] in ('No Narrative (classic/abstract)',):
+            art_result['art_narrative'] = 'Cultural/Mythological Story'
+
+    # --- Rule 17: Rainbow/Shamrock → Leprechaun character ---
+    if re.search(r'\b(rainbow|shamrock|pot.of.gold|clover)\b', name_lower) and 'irish' in name_lower.replace("'", ""):
+        chars = art_result.get('art_characters', [])
+        if 'Leprechaun' not in chars:
+            art_result['art_characters'] = [c for c in chars if c != 'No Characters (symbol-only game)'] + ['Leprechaun']
+
+    # --- Rule 18: Mythology narrative when gods are present ---
+    god_chars = {'Greek/Roman Deity (Zeus, Poseidon, Athena)', 'Norse Deity (Thor, Odin, Loki, Freya)', 'Pharaoh/Egyptian Ruler'}
+    if god_chars & set(art_result.get('art_characters', [])):
+        myth_themes = {'Norse/Viking Realm', 'Ancient Greece', 'Ancient Temple/Ruins'}
+        if art_result['art_theme'] in myth_themes:
+            if art_result['art_narrative'] in ('Quest/Adventure/Journey', 'Battle/Combat/War', 'Discovery/Exploration'):
+                art_result['art_narrative'] = 'Cultural/Mythological Story'
+
+    # --- Rule 19: Egyptian temple → remove Greek deity hallucination ---
+    greek_deity = 'Greek/Roman Deity (Zeus, Poseidon, Athena)'
+    if art_result['art_theme'] == 'Ancient Temple/Ruins':
+        if greek_deity in art_result.get('art_characters', []):
+            if not re.search(r'\b(greek|roman|zeus|athena|apollo|poseidon|hercules|heracles)\b', name_lower + " " + _desc_low):
+                art_result['art_characters'] = [c for c in art_result['art_characters'] if c != greek_deity]
+                if not art_result['art_characters']:
+                    art_result['art_characters'] = ['Pharaoh/Egyptian Ruler']
+
+    # --- Rule 21: Element disambiguation — Gold Coins/Treasure vs Money/Cash/Bills ---
+    gold_elem = "Gold Coins/Treasure"
+    money_elem = "Money/Cash/Bills"
+    elems = art_result.get('art_elements', [])
+    if gold_elem in elems and money_elem in elems:
+        modern_themes = {'Casino Floor', 'Urban/Modern City', 'Neon/Cyber City', 'Luxury/VIP'}
+        if art_result.get('art_theme') in modern_themes:
+            art_result['art_elements'] = [e for e in elems if e != gold_elem]
+        elif re.search(r'\b(cash|money|dollar|bill|bank|vault|atm)\b', name_lower):
+            art_result['art_elements'] = [e for e in elems if e != gold_elem]
+        else:
+            art_result['art_elements'] = [e for e in elems if e != money_elem]
+
+    # --- Rule 22: Norse theme → reclassify Greek deity to Norse deity ---
+    norse_deity = 'Norse Deity (Thor, Odin, Loki, Freya)'
+    norse_themes = {'Norse/Viking Realm'}
+    if art_result.get('art_theme') in norse_themes:
+        if greek_deity in art_result.get('art_characters', []):
+            art_result['art_characters'] = [
+                norse_deity if c == greek_deity else c
+                for c in art_result['art_characters']
+            ]
+        norse_kw = r'\b(thor|odin|loki|freya|freyja|heimdall|tyr|baldur|fenrir|mjolnir|valhalla|ragnarok|asgard)\b'
+        if re.search(norse_kw, name_lower + " " + _desc_low):
+            if norse_deity not in art_result['art_characters']:
+                art_result['art_characters'] = [
+                    c for c in art_result['art_characters']
+                    if c != 'No Characters (symbol-only game)'
+                ] + [norse_deity]
+
+    # --- Rule 23: Greek/Roman theme → ensure correct deity type ---
+    greek_themes = {'Ancient Greece'}
+    if art_result.get('art_theme') in greek_themes:
+        if norse_deity in art_result.get('art_characters', []):
+            art_result['art_characters'] = [
+                greek_deity if c == norse_deity else c
+                for c in art_result['art_characters']
+            ]
+        greek_kw = r'\b(zeus|athena|poseidon|hades|apollo|ares|hermes|aphrodite|hercules|heracles|medusa|olympus|titan)\b'
+        if re.search(greek_kw, name_lower + " " + _desc_low):
+            if greek_deity not in art_result['art_characters']:
+                art_result['art_characters'] = [
+                    c for c in art_result['art_characters']
+                    if c != 'No Characters (symbol-only game)'
+                ] + [greek_deity]
+
+    # --- Rule 24: Cross-dimensional validation ---
+    xd_chars = set(art_result.get('art_characters', []))
+    xd_theme = art_result.get('art_theme', '')
+    if xd_theme in norse_themes and greek_deity in xd_chars:
+        xd_chars.discard(greek_deity)
+        xd_chars.add(norse_deity)
+    if xd_theme in greek_themes and norse_deity in xd_chars:
+        xd_chars.discard(norse_deity)
+        xd_chars.add(greek_deity)
+    egyptian_themes = {'Ancient Temple/Ruins', 'Desert/Sahara'}
+    if xd_theme in egyptian_themes:
+        xd_chars.discard('Viking/Norse Warrior')
+        xd_chars.discard(norse_deity)
+    if xd_theme in norse_themes:
+        xd_chars.discard('Pharaoh/Egyptian Ruler')
+    art_result['art_characters'] = list(xd_chars) if xd_chars else art_result['art_characters']
+
+    # --- Rule 25: Fix "No Narrative" for non-classic themes ---
+    classic_themes = {'Classic Slots', 'Fruit Machine', 'Casino Floor', 'Luxury/VIP'}
+    if art_result.get('art_narrative') == 'No Narrative (classic/abstract)':
+        if art_result.get('art_theme') not in classic_themes:
+            theme = art_result.get('art_theme', '')
+            narrative_infer = {
+                'Farm/Countryside': 'Collection/Harvest/Gathering',
+                'Mountain/Volcano': 'Discovery/Exploration',
+                'Circus/Carnival': 'Celebration/Festival/Party',
+                'Festive/Holiday': 'Celebration/Festival/Party',
+                'Pirate Ship/Port': 'Treasure Hunt/Gold Rush',
+                'Treasure Cave/Mine': 'Treasure Hunt/Gold Rush',
+                'Norse/Viking Realm': 'Cultural/Mythological Story',
+                'Ancient Greece': 'Cultural/Mythological Story',
+                'Ancient Temple/Ruins': 'Cultural/Mythological Story',
+                'Irish/Celtic Highlands': 'Treasure Hunt/Gold Rush',
+                'Lakeside/River/Fishing Dock': 'Fishing/Angling',
+                'Haunted Manor/Graveyard': 'Survival/Horror',
+                'Medieval Castle': 'Battle/Combat/War',
+                'Jungle/Rainforest': 'Discovery/Exploration',
+                'Deep Ocean/Underwater': 'Discovery/Exploration',
+                'Outer Space': 'Discovery/Exploration',
+                'Mexican/Latin Village': 'Cultural/Mythological Story',
+                'Prehistoric/Primordial': 'Discovery/Exploration',
+                'Asian Temple/Garden': 'Cultural/Mythological Story',
+                'Royal Palace/Court': 'Wealth/Fortune/Prosperity',
+                'Desert/Sahara': 'Discovery/Exploration',
+                'Savanna/Wildlife': 'Discovery/Exploration',
+                'Prairie/Plains/Grassland': 'Discovery/Exploration',
+                'Australian Outback': 'Discovery/Exploration',
+                'Steampunk/Victorian': 'Discovery/Exploration',
+            }
+            inferred = narrative_infer.get(theme)
+            if inferred:
+                art_result['art_narrative'] = inferred
+
+    # --- Rule 26: Cap elements at 5 per game ---
+    if len(art_result.get('art_elements', [])) > 5:
+        art_result['art_elements'] = art_result['art_elements'][:5]
+
+    # --- Rule 27: Description/name-based theme correction ---
+    theme = art_result.get('art_theme', '')
+    name_lower = game_name.lower()
+    desc_lower = description.lower() if description else ''
+    combined_lower = name_lower + ' ' + desc_lower
+
+    theme_overrides = {
+        'arabian': 'Arabian Palace/Bazaar',
+        '1001 night': 'Arabian Palace/Bazaar',
+        'aladdin': 'Arabian Palace/Bazaar',
+        'genie': 'Arabian Palace/Bazaar',
+        'safari': 'Savanna/Wildlife',
+        'african savanna': 'Savanna/Wildlife',
+        'wild west': 'Wild West/Frontier',
+        'western-themed': 'Wild West/Frontier',
+        'cowboy': 'Wild West/Frontier',
+    }
+
+    if theme in ('Classic Slots', 'Ancient Temple/Ruins'):
+        for keyword, target_theme in theme_overrides.items():
+            if keyword in combined_lower and theme != target_theme:
+                art_result['art_theme'] = target_theme
+                break
+
+    # --- Rule 20: Fallback — if no characters after all rules, set No Characters ---
     if not art_result['art_characters']:
         art_result['art_characters'] = ["No Characters (symbol-only game)"]
 
     return art_result
 
 
+def _extract_symbol_images(html_raw, max_images=6):
+    """Extract unique symbol/game images from HTML rules page for vision analysis.
+    Extracts og:image meta tags (best screenshots) plus inline <img> tags.
+    Returns list of dicts with base64 data and media_type, sorted by size descending."""
+    import requests as _requests
+    import base64 as _b64
+
+    # 1. Extract og:image meta tags (usually full game screenshots)
+    og_urls = re.findall(
+        r'<meta[^>]+(?:property|name)=["\']og:image(?::secure_url)?["\'][^>]+content=["\']([^"\']+)["\']',
+        html_raw, re.IGNORECASE
+    )
+    og_urls += re.findall(
+        r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']og:image(?::secure_url)?["\']',
+        html_raw, re.IGNORECASE
+    )
+
+    # 2. Extract inline img tags
+    img_urls = re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html_raw)
+
+    # Deduplicate preserving order, og:image first
+    seen_urls = set()
+    ordered_urls = []
+    for url in og_urls + img_urls:
+        norm = url.split('?')[0]
+        if norm not in seen_urls:
+            seen_urls.add(norm)
+            ordered_urls.append(url)
+
+    LOGO_FRAGMENTS = ['4059c782afec4a3c88cc8c0379acccaa', 'logo', 'favicon', 'nav-', 'icon-', 'arrow', 'bullet']
+    filtered_urls = [u for u in ordered_urls
+                     if not any(frag in u.lower() for frag in LOGO_FRAGMENTS)]
+
+    if not filtered_urls:
+        return []
+
+    # Download and sort by size
+    candidates = []
+    for url in filtered_urls[:max_images * 2]:  # fetch more, keep best
+        try:
+            resp = _requests.get(url, timeout=8)
+            if resp.status_code != 200 or len(resp.content) < 2048:
+                continue
+            ct = resp.headers.get('content-type', 'image/png').split(';')[0]
+            if ct not in ('image/png', 'image/jpeg', 'image/gif', 'image/webp'):
+                if ct == 'image/svg+xml':
+                    continue
+                ct = 'image/png'
+            candidates.append({
+                'media_type': ct,
+                'data': _b64.standard_b64encode(resp.content).decode('utf-8'),
+                'size': len(resp.content),
+            })
+        except Exception:
+            continue
+
+    # Sort by size descending (larger images = better quality)
+    candidates.sort(key=lambda x: x['size'], reverse=True)
+
+    # Return top N without the size field
+    return [{'media_type': c['media_type'], 'data': c['data']} for c in candidates[:max_images]]
+
+
 def extract_art(game_name, description, symbols, themes, slug=None,
-                model="claude-sonnet-4-20250514", provider=None, examples=None):
-    """Extract art characterization for a single game."""
+                model="claude-sonnet-4-20250514", provider=None, examples=None,
+                use_vision=False):
+    """Extract art characterization for a single game.
+    
+    If use_vision=True and slug is provided, symbol images from the HTML rules
+    page are included in the prompt for visual character/element detection.
+    """
     clean_html = None
+    html_raw = None
     if slug:
         html_path = RULES_HTML_DIR / f"{slug}.html"
         if html_path.exists():
             with open(html_path) as f:
-                clean_html = clean_html_for_claude(f.read())
+                html_raw = f.read()
+            clean_html = clean_html_for_claude(html_raw)
 
     if examples is None:
         examples = load_art_training_examples()
 
     system = build_art_system_prompt()
-    user = build_art_user_prompt(game_name, description, symbols, themes,
-                                 clean_html, provider, examples=examples)
+    user_text = build_art_user_prompt(game_name, description, symbols, themes,
+                                      clean_html, provider, examples=examples)
 
-    result, usage = call_claude(system, user, model)
+    symbol_images = []
+    if use_vision and html_raw:
+        symbol_images = _extract_symbol_images(html_raw)
+
+    if symbol_images:
+        user_content = []
+        user_content.append({"type": "text", "text": (
+            "IMPORTANT: Below are ACTUAL SYMBOL IMAGES from this game. "
+            "Look at them carefully — they show the real visual design. "
+            "If you see a person, animal, creature, or character in ANY image, "
+            "you MUST include them in art_characters even if the text doesn't mention them. "
+            "Also use the images to determine art_style (2D/3D/Cartoon) and "
+            "art_color_tone from the actual colors you see.\n"
+        )})
+        for img in symbol_images:
+            user_content.append({
+                "type": "image",
+                "source": {
+                    "type": "base64",
+                    "media_type": img['media_type'],
+                    "data": img['data'],
+                }
+            })
+        user_content.append({"type": "text", "text": user_text})
+
+        client = _get_client()
+        system_block = [{"type": "text", "text": system,
+                         "cache_control": {"type": "ephemeral"}}]
+        response = client.messages.create(
+            model=model,
+            max_tokens=4096,
+            temperature=0,
+            system=system_block,
+            messages=[{"role": "user", "content": user_content}],
+        )
+        text = response.content[0].text.strip()
+        if text.startswith("```"):
+            text = re.sub(r'^```(?:json)?\s*', '', text)
+            text = re.sub(r'\s*```$', '', text)
+        try:
+            result = json.loads(text)
+        except json.JSONDecodeError:
+            json_match = re.search(r'\{[\s\S]*\}', text)
+            if json_match:
+                try:
+                    result = json.loads(json_match.group())
+                except json.JSONDecodeError:
+                    result = None
+            else:
+                result = None
+        usage = response.usage
+    else:
+        result, usage = call_claude(system, user_text, model)
+
     if result is None:
         return None, "Claude returned unparseable response"
 
-    result = post_process_art(result, game_name, clean_html or "")
-    result['art_confidence'] = 'text_inferred'
+    result = post_process_art(result, game_name, clean_html or "", description, symbols, themes)
+    result['art_confidence'] = 'vision_enhanced' if symbol_images else 'text_inferred'
 
     return result, {
         "input_tokens": usage.input_tokens,
         "output_tokens": usage.output_tokens,
+        "images_used": len(symbol_images),
     }
 
 
@@ -1872,7 +2502,7 @@ def extract_art_batch(games_list, model="claude-sonnet-4-20250514"):
     system = build_art_system_prompt()
 
     requests = []
-    id_to_name = {}
+    id_to_game_data = {}
     for idx, game in enumerate(games_list):
         clean_html = None
         if game.get('slug'):
@@ -1892,13 +2522,18 @@ def extract_art_batch(games_list, model="claude-sonnet-4-20250514"):
         )
 
         safe_id = re.sub(r'[^a-zA-Z0-9_-]', '_', game['name'])[:60] + f"_{idx}"
-        id_to_name[safe_id] = game['name']
+        id_to_game_data[safe_id] = {
+            'name': game['name'],
+            'description': game.get('description', ''),
+            'symbols': syms,
+            'themes': game.get('themes', []),
+        }
 
         requests.append({
             "custom_id": safe_id,
             "params": {
                 "model": model,
-                "max_tokens": 1024,
+                "max_tokens": 2048,
                 "system": [{"type": "text", "text": system}],
                 "messages": [{"role": "user", "content": user}],
             }
@@ -1906,10 +2541,10 @@ def extract_art_batch(games_list, model="claude-sonnet-4-20250514"):
 
     batch = client.messages.batches.create(requests=requests)
 
-    # Save ID mapping for result decoding
+    # Save game data mapping for result decoding + post-processing
     map_path = DATA_DIR / f"_art_batch_{batch.id}_map.json"
     with open(map_path, 'w') as f:
-        json.dump(id_to_name, f)
+        json.dump(id_to_game_data, f)
 
     return batch.id, len(requests)
 
@@ -1927,17 +2562,23 @@ def process_art_batch_results(batch_id):
             "processing": batch.request_counts.processing,
         }
 
-    # Load ID-to-name mapping
+    # Load game data mapping (supports both old id_to_name and new id_to_game_data formats)
     map_path = DATA_DIR / f"_art_batch_{batch_id}_map.json"
-    id_to_name = {}
+    id_to_game_data = {}
     if map_path.exists():
         with open(map_path) as f:
-            id_to_name = json.load(f)
+            raw_map = json.load(f)
+        for k, v in raw_map.items():
+            if isinstance(v, str):
+                id_to_game_data[k] = {'name': v}
+            else:
+                id_to_game_data[k] = v
 
     results = {}
     for result in client.messages.batches.results(batch_id):
         safe_id = result.custom_id
-        name = id_to_name.get(safe_id, safe_id)
+        game_data = id_to_game_data.get(safe_id, {'name': safe_id})
+        name = game_data['name']
         if result.result.type == "succeeded":
             msg = result.result.message
             text = msg.content[0].text.strip()
@@ -1957,7 +2598,25 @@ def process_art_batch_results(batch_id):
                     parsed = None
 
             if parsed:
-                parsed = post_process_art(parsed, name, "")
+                batch_html = ""
+                try:
+                    if MATCHES_PATH.exists():
+                        with open(MATCHES_PATH) as mf:
+                            matches = json.load(mf)
+                        slug = matches.get(name, {}).get('slug') if isinstance(matches.get(name), dict) else matches.get(name)
+                        if slug:
+                            html_path = RULES_HTML_DIR / f"{slug}.html"
+                            if html_path.exists():
+                                with open(html_path) as hf:
+                                    batch_html = clean_html_for_claude(hf.read())
+                except Exception:
+                    pass
+                parsed = post_process_art(
+                    parsed, name, batch_html,
+                    description=game_data.get('description', ''),
+                    symbols=game_data.get('symbols'),
+                    themes=game_data.get('themes'),
+                )
                 parsed['art_confidence'] = 'text_inferred'
                 results[name] = parsed
         else:
@@ -1969,29 +2628,45 @@ def process_art_batch_results(batch_id):
     }
 
 
-def apply_art_to_master(game_entry, art_result):
-    """Write art characterization fields into a game_data_master.json entry."""
-    for field in ['art_setting', 'art_characters', 'art_elements', 'art_mood',
-                  'art_narrative', 'art_style', 'art_color_tone', 'art_confidence']:
+def apply_art_to_master(game_entry, art_result, gt_data=None):
+    """Write art characterization fields into a game_data_master.json entry.
+    If gt_data is provided and the game is in GT, GT values override LLM output."""
+    art_fields = ['art_theme', 'art_characters', 'art_elements', 'art_mood',
+                  'art_narrative', 'art_style', 'art_color_tone', 'art_confidence',
+                  '_confidence']
+    for field in art_fields:
         if field in art_result:
             game_entry[field] = art_result[field]
 
+    if gt_data and game_entry.get('name') in gt_data:
+        gt_entry = gt_data[game_entry['name']]
+        for field in art_fields:
+            if field in gt_entry:
+                game_entry[field] = gt_entry[field]
+        game_entry['art_confidence'] = 'ground_truth'
+
 
 def compare_art_with_gt(extraction, gt_art):
-    """Compare art extraction against ground truth. Returns per-dimension accuracy + aggregate F1."""
+    """Compare art extraction against ground truth. Returns per-dimension accuracy + aggregate F1.
+    Scores 7 dimensions: theme, mood, narrative, characters, elements, style, color_tone.
+    Style and color_tone are optional — only scored when present in GT."""
     if not extraction or not gt_art:
         return {"error": "no extraction or GT"}
 
     result = {}
 
-    # Single-value dimensions: exact match
-    for dim in ['art_setting', 'art_mood', 'art_narrative']:
+    single_dims = ['art_theme', 'art_mood', 'art_narrative']
+    optional_single_dims = ['art_style', 'art_color_tone']
+
+    for dim in single_dims + optional_single_dims:
+        gt_val = gt_art.get(dim, '')
+        if dim in optional_single_dims and not gt_val:
+            continue
         pred = extraction.get(dim, '')
-        truth = gt_art.get(dim, '')
-        match = pred == truth
+        match = pred == gt_val
         result[dim] = {
             "predicted": pred,
-            "truth": truth,
+            "truth": gt_val,
             "match": match,
         }
 
@@ -2024,28 +2699,33 @@ def compare_art_with_gt(extraction, gt_art):
             "fn": sorted(fn),
         }
 
-    # Aggregate score: count exact matches + multi-value F1s
-    single_scores = [1.0 if result[d]['match'] else 0.0 for d in ['art_setting', 'art_mood', 'art_narrative']]
+    # Aggregate: all scored dimensions (singles as 1/0, multis as F1)
+    scored_singles = [d for d in single_dims + optional_single_dims if d in result]
+    single_scores = [1.0 if result[d]['match'] else 0.0 for d in scored_singles]
     multi_scores = [result[d]['f1'] for d in ['art_characters', 'art_elements']]
     all_scores = single_scores + multi_scores
     result['aggregate_score'] = round(sum(all_scores) / len(all_scores), 3)
+    result['dimensions_scored'] = len(all_scores)
 
     return result
 
 
 def print_art_gt_summary(results):
-    """Print summary of art GT test results."""
+    """Print summary of art GT test results (up to 7 dimensions)."""
     if not results:
         print("No results to summarize.")
         return
 
-    dims = ['art_setting', 'art_mood', 'art_narrative', 'art_characters', 'art_elements']
-    dim_scores = {d: [] for d in dims}
+    single_dims = ['art_theme', 'art_mood', 'art_narrative', 'art_style', 'art_color_tone']
+    multi_dims = ['art_characters', 'art_elements']
+    all_dims = single_dims + multi_dims
+    dim_scores = {d: [] for d in all_dims}
 
     for name, comp in results:
-        for d in ['art_setting', 'art_mood', 'art_narrative']:
-            dim_scores[d].append(1.0 if comp[d]['match'] else 0.0)
-        for d in ['art_characters', 'art_elements']:
+        for d in single_dims:
+            if d in comp:
+                dim_scores[d].append(1.0 if comp[d]['match'] else 0.0)
+        for d in multi_dims:
             dim_scores[d].append(comp[d]['f1'])
 
     print("\n" + "=" * 60)
@@ -2054,15 +2734,19 @@ def print_art_gt_summary(results):
     print(f"Games tested: {len(results)}")
     print()
 
-    for d in dims:
+    for d in all_dims:
         scores = dim_scores[d]
-        avg = sum(scores) / len(scores) if scores else 0
+        if not scores:
+            continue
+        avg = sum(scores) / len(scores)
         perfect = sum(1 for s in scores if s == 1.0)
-        label = d.replace('art_', '').upper()
-        print(f"  {label:12s}: {avg:.1%} avg  ({perfect}/{len(scores)} perfect)")
+        label = d.replace('art_', '').replace('_', ' ').upper()
+        n_label = f"({perfect}/{len(scores)} perfect)"
+        print(f"  {label:12s}: {avg:.1%} avg  {n_label}")
 
     agg = [comp['aggregate_score'] for _, comp in results]
-    print(f"\n  {'AGGREGATE':12s}: {sum(agg)/len(agg):.1%} avg")
+    avg_agg = sum(agg) / len(agg)
+    print(f"\n  {'AGGREGATE':12s}: {avg_agg:.1%} avg")
 
     # Show worst performers
     worst = sorted(results, key=lambda x: x[1]['aggregate_score'])[:5]
@@ -2072,10 +2756,10 @@ def print_art_gt_summary(results):
             if comp['aggregate_score'] >= 1.0:
                 break
             issues = []
-            for d in ['art_setting', 'art_mood', 'art_narrative']:
-                if not comp[d]['match']:
+            for d in single_dims:
+                if d in comp and not comp[d]['match']:
                     issues.append(f"{d.replace('art_','')}: {comp[d]['predicted']} != {comp[d]['truth']}")
-            for d in ['art_characters', 'art_elements']:
+            for d in multi_dims:
                 if comp[d]['f1'] < 1.0:
                     if comp[d]['fp']:
                         issues.append(f"{d.replace('art_','')} FP: {comp[d]['fp']}")
@@ -2084,6 +2768,7 @@ def print_art_gt_summary(results):
             print(f"  {name} (score={comp['aggregate_score']:.1%}): {'; '.join(issues)}")
 
     print("=" * 60)
+    return avg_agg
 
 
 # ─── Symbol Extraction ──────────────────────────────────────────
@@ -2542,6 +3227,126 @@ def print_gt_summary(valid, total_tokens_in=0, total_tokens_out=0):
         print(f"    {prov:30s} {len(pr)} games  F1={pf1:.1%}  ({perfect_p} perfect)")
 
 
+def validate_art_batch(results, vocab=None):
+    """Anti-hallucination validator for batch art extraction results.
+
+    Checks:
+    1. All values from controlled vocabulary
+    2. Character count <= 5 per game
+    3. Element count <= 7 per game
+    4. "No Characters" doesn't coexist with specific characters
+    5. Style/color_tone not null when vision was used
+    6. Confidence distribution sanity
+
+    Args:
+        results: dict of {game_name: art_result}
+        vocab: optional dict of vocabulary sets (auto-loaded if None)
+
+    Returns:
+        dict with 'clean' (list of clean game names), 'flagged' (list of
+        {name, issues: [str]} dicts), 'stats' (summary counts)
+    """
+    if vocab is None:
+        vocab = {
+            'art_theme': set(ART_THEME_VALUES),
+            'art_characters': set(ART_CHARACTER_VALUES),
+            'art_elements': set(ART_ELEMENT_VALUES),
+            'art_mood': set(ART_MOOD_VALUES),
+            'art_narrative': set(ART_NARRATIVE_VALUES),
+            'art_style': set(ART_STYLE_VALUES),
+            'art_color_tone': set(ART_COLOR_TONE_VALUES),
+        }
+
+    clean = []
+    flagged = []
+
+    for name, art in results.items():
+        issues = []
+
+        # 1. Vocabulary checks
+        theme = art.get('art_theme')
+        if theme and theme not in vocab['art_theme']:
+            issues.append(f"art_theme '{theme}' not in vocabulary")
+
+        mood = art.get('art_mood')
+        if mood and mood not in vocab['art_mood']:
+            issues.append(f"art_mood '{mood}' not in vocabulary")
+
+        narrative = art.get('art_narrative')
+        if narrative and narrative not in vocab['art_narrative']:
+            issues.append(f"art_narrative '{narrative}' not in vocabulary")
+
+        style = art.get('art_style')
+        if style and style not in vocab['art_style']:
+            issues.append(f"art_style '{style}' not in vocabulary")
+
+        color_tone = art.get('art_color_tone')
+        if color_tone and color_tone not in vocab['art_color_tone']:
+            issues.append(f"art_color_tone '{color_tone}' not in vocabulary")
+
+        chars = art.get('art_characters', [])
+        if isinstance(chars, list):
+            for c in chars:
+                if c not in vocab['art_characters']:
+                    issues.append(f"art_characters '{c}' not in vocabulary")
+
+        elements = art.get('art_elements', [])
+        if isinstance(elements, list):
+            for e in elements:
+                if e not in vocab['art_elements']:
+                    issues.append(f"art_elements '{e}' not in vocabulary")
+
+        # 2. Character count limit
+        if isinstance(chars, list) and len(chars) > 5:
+            issues.append(f"Too many characters ({len(chars)}), max 5")
+
+        # 3. Element count limit
+        if isinstance(elements, list) and len(elements) > 7:
+            issues.append(f"Too many elements ({len(elements)}), max 7")
+
+        # 4. "No Characters" conflict
+        if isinstance(chars, list) and len(chars) > 1:
+            if 'No Characters (symbol-only game)' in chars:
+                issues.append("'No Characters' coexists with specific characters")
+
+        # 5. Missing required fields
+        if not theme:
+            issues.append("art_theme is empty")
+        if not mood:
+            issues.append("art_mood is empty")
+
+        # 6. Cross-dimensional validation
+        greek_d = 'Greek/Roman Deity (Zeus, Poseidon, Athena)'
+        norse_d = 'Norse Deity (Thor, Odin, Loki, Freya)'
+        char_set = set(chars) if isinstance(chars, list) else set()
+        if theme == 'Norse/Viking Realm' and greek_d in char_set:
+            issues.append(f"Norse theme has Greek deity")
+        if theme == 'Ancient Greece' and norse_d in char_set:
+            issues.append(f"Greek theme has Norse deity")
+        if theme in ('Ancient Temple/Ruins', 'Desert/Sahara') and 'Viking/Norse Warrior' in char_set:
+            issues.append(f"Egyptian theme has Viking warrior")
+        if theme == 'Norse/Viking Realm' and 'Pharaoh/Egyptian Ruler' in char_set:
+            issues.append(f"Norse theme has Egyptian ruler")
+
+        # 7. Element count cap (should be <=5 after post-processing)
+        if isinstance(elements, list) and len(elements) > 5:
+            issues.append(f"Too many elements after rules ({len(elements)}), max 5")
+
+        if issues:
+            flagged.append({'name': name, 'issues': issues})
+        else:
+            clean.append(name)
+
+    stats = {
+        'total': len(results),
+        'clean': len(clean),
+        'flagged': len(flagged),
+        'pct_clean': f"{len(clean) / max(len(results), 1) * 100:.1f}%",
+    }
+
+    return {'clean': clean, 'flagged': flagged, 'stats': stats}
+
+
 # ─── CLI ──────────────────────────────────────────────────────────
 
 def main():
@@ -2553,7 +3358,7 @@ def main():
     parser.add_argument("--test-games", type=str, help="Test specific games by comma-separated names (must be in GT)")
     parser.add_argument("--rescore", action="store_true", help="Re-score cached results from gt_test_results.jsonl against current GT (no API calls)")
     parser.add_argument("--run-all", action="store_true", help="Run sequential extraction on all games with HTML rules")
-    parser.add_argument("--batch", action="store_true", help="Run batch API extraction (50%% cheaper, async)")
+    parser.add_argument("--batch", action="store_true", help="Run batch API extraction (50 pct cheaper, async)")
     parser.add_argument("--model", default="claude-sonnet-4-20250514", help="Claude model to use")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of games to process")
     parser.add_argument("--offset", type=int, default=0, help="Skip first N games (for resuming)")
@@ -2565,7 +3370,10 @@ def main():
     parser.add_argument("--apply-art", action="store_true", help="Apply staged art characterization to master (requires user approval)")
     parser.add_argument("--test-art", action="store_true", help="Test art characterization against ground truth (held-out games)")
     parser.add_argument("--test-art-games", type=str, help="Test specific art games by comma-separated names (must be in art GT)")
-    parser.add_argument("--extract-art-batch", action="store_true", help="Submit art extraction as batch job (50% cheaper)")
+    parser.add_argument("--gt-gate", action="store_true", help="Run GT gate: extract all art GT games, score, pass/fail based on threshold")
+    parser.add_argument("--gt-threshold", type=float, default=0.97, help="Minimum aggregate score for GT gate to pass (default: 0.97)")
+    parser.add_argument("--use-vision", action="store_true", help="Enable vision (symbol images) for art extraction")
+    parser.add_argument("--extract-art-batch", action="store_true", help="Submit art extraction as batch job (50 pct cheaper)")
     parser.add_argument("--art-batch-poll", type=str, help="Poll/retrieve results from art batch job by batch_id")
     parser.add_argument("--apply", action="store_true", help="Write results to game_data_master.json")
     parser.add_argument("--verbose", action="store_true", help="Show detailed output")
@@ -2931,7 +3739,7 @@ def main():
             name = game['name']
             if name in staged:
                 continue
-            if game.get('art_setting'):
+            if game.get('art_theme'):
                 continue
             slug = matches.get(name, {}).get('slug', '') if name in matches else ''
             targets.append({
@@ -2944,7 +3752,7 @@ def main():
             })
 
         if not targets:
-            print("No games to extract. All games already staged or have art_setting.")
+            print("No games to extract. All games already staged or have art_theme.")
             sys.exit(0)
 
         CHUNK_SIZE = 500
@@ -2975,7 +3783,7 @@ def main():
                 continue
             if not game.get('description') and not game.get('symbols'):
                 continue
-            if game.get('art_setting') and not args.apply_art:
+            if game.get('art_theme') and not args.apply_art:
                 continue
             targets.append(game)
 
@@ -2991,14 +3799,24 @@ def main():
                 sys.exit(1)
             with open(ART_STAGED_PATH) as f:
                 staged = json.load(f)
+            gt_data = None
+            if ART_GT_PATH.exists():
+                with open(ART_GT_PATH) as f:
+                    gt_data = json.load(f)
+                print(f"GT override active: {len(gt_data)} ground truth games")
             applied = 0
+            gt_overridden = 0
             for name, art_data in staged.items():
                 game = master_lookup.get(name)
                 if game:
-                    apply_art_to_master(game, art_data)
+                    apply_art_to_master(game, art_data, gt_data=gt_data)
                     applied += 1
+                    if gt_data and name in gt_data:
+                        gt_overridden += 1
             safe_write_master(master, "apply-art")
             print(f"Applied art characterization to {applied} games in master.")
+            if gt_overridden:
+                print(f"GT override applied to {gt_overridden} games.")
             sys.exit(0)
 
         print(f"ART CHARACTERIZATION: {len(targets)} games with description/symbols")
@@ -3044,11 +3862,11 @@ def main():
             total_out += meta['output_tokens']
             extracted += 1
 
-            setting = art_result.get('art_setting', '?')
+            theme = art_result.get('art_theme', '?')
             mood = art_result.get('art_mood', '?')
             chars = art_result.get('art_characters', [])
             chars_short = chars[0] if chars else '?'
-            print(f" — {setting} | {mood} | {chars_short}")
+            print(f" — {theme} | {mood} | {chars_short}")
 
             staged[name] = art_result
 
@@ -3064,6 +3882,114 @@ def main():
         print(f"Total staged: {len(staged)} games in {ART_STAGED_PATH.name}")
         print(f"  Tokens: {total_in:,} in, {total_out:,} out")
         print(f"  Est. cost: ${cost:.2f}")
+
+    elif args.gt_gate:
+        # ─── GT Gate: pass/fail check for art accuracy ───────────────
+        ART_GT_GATE_RESULTS = DATA_DIR / "art_gt_gate_results.json"
+        if not ART_GT_PATH.exists():
+            print(f"No art GT file at {ART_GT_PATH}")
+            sys.exit(1)
+
+        with open(ART_GT_PATH) as f:
+            art_gt = json.load(f)
+
+        test_games = []
+        for name, gt_data in art_gt.items():
+            game = master_lookup.get(name)
+            if not game:
+                continue
+            if game.get('game_category') != 'Slot':
+                continue
+            test_games.append({
+                'name': name,
+                'slug': matches.get(name, {}).get('slug', ''),
+                'gt_art': gt_data,
+                'provider': game.get('provider_studio', ''),
+                'description': game.get('description', ''),
+                'symbols': game.get('symbols', []),
+                'themes': game.get('themes_all', []),
+            })
+
+        print(f"GT GATE: {len(test_games)} games | threshold: {args.gt_threshold:.0%} | vision: {args.use_vision}")
+        print(f"Model: {args.model}")
+        print()
+
+        art_examples = load_art_training_examples()
+        results = []
+        total_in = 0
+        total_out = 0
+
+        for i, game in enumerate(test_games):
+            name = game['name']
+            syms = game['symbols']
+            if isinstance(syms, dict):
+                syms = syms.get('functional_symbols', [])
+
+            print(f"[{i+1}/{len(test_games)}] {name}", end="", flush=True)
+
+            art_result, meta = extract_art(
+                name,
+                description=game['description'],
+                symbols=syms,
+                themes=game['themes'],
+                slug=game['slug'],
+                model=args.model,
+                provider=game['provider'],
+                examples=art_examples,
+                use_vision=args.use_vision,
+            )
+
+            if art_result is None:
+                print(f" — error: {meta}")
+                continue
+
+            total_in += meta['input_tokens']
+            total_out += meta['output_tokens']
+
+            comparison = compare_art_with_gt(art_result, game['gt_art'])
+            results.append((name, comparison))
+
+            score = comparison.get('aggregate_score', 0)
+            dims_scored = comparison.get('dimensions_scored', 5)
+            theme_ok = "✓" if comparison['art_theme']['match'] else "✗"
+            mood_ok = "✓" if comparison['art_mood']['match'] else "✗"
+            narr_ok = "✓" if comparison['art_narrative']['match'] else "✗"
+            char_f1 = comparison['art_characters']['f1']
+            elem_f1 = comparison['art_elements']['f1']
+            imgs = meta.get('images_used', 0)
+            vis_tag = f" 📷{imgs}" if imgs else ""
+
+            print(f" — {score:.0%}/{dims_scored}d (thm:{theme_ok} mood:{mood_ok} narr:{narr_ok} "
+                  f"char:{char_f1:.0%} elem:{elem_f1:.0%}){vis_tag}")
+
+        avg_agg = print_art_gt_summary(results)
+
+        cost = (total_in * 3 + total_out * 15) / 1_000_000
+        print(f"\nTokens: {total_in:,} in, {total_out:,} out")
+        print(f"Est. cost: ${cost:.2f}")
+
+        # Save timestamped gate report
+        gate_report = {
+            "timestamp": time.strftime('%Y-%m-%dT%H:%M:%S'),
+            "threshold": args.gt_threshold,
+            "aggregate_score": avg_agg,
+            "passed": avg_agg >= args.gt_threshold,
+            "games_tested": len(results),
+            "vision": args.use_vision,
+            "model": args.model,
+            "cost_usd": round(cost, 4),
+            "per_game": {name: comp for name, comp in results},
+        }
+        with open(ART_GT_GATE_RESULTS, 'w') as f:
+            json.dump(gate_report, f, indent=2)
+        print(f"\nGate report saved to {ART_GT_GATE_RESULTS.name}")
+
+        if avg_agg >= args.gt_threshold:
+            print(f"\n✅ GT GATE PASSED: {avg_agg:.1%} >= {args.gt_threshold:.0%}")
+            sys.exit(0)
+        else:
+            print(f"\n❌ GT GATE FAILED: {avg_agg:.1%} < {args.gt_threshold:.0%}")
+            sys.exit(1)
 
     elif args.test_art or args.test_art_games:
         # Art characterization GT evaluation
@@ -3127,6 +4053,7 @@ def main():
                 model=args.model,
                 provider=game['provider'],
                 examples=art_examples,
+                use_vision=args.use_vision,
             )
 
             if art_result is None:
@@ -3140,13 +4067,15 @@ def main():
             results.append((name, comparison))
 
             score = comparison.get('aggregate_score', 0)
-            setting_ok = "✓" if comparison['art_setting']['match'] else "✗"
+            theme_ok = "✓" if comparison['art_theme']['match'] else "✗"
             mood_ok = "✓" if comparison['art_mood']['match'] else "✗"
             narr_ok = "✓" if comparison['art_narrative']['match'] else "✗"
             char_f1 = comparison['art_characters']['f1']
             elem_f1 = comparison['art_elements']['f1']
+            imgs = meta.get('images_used', 0)
+            vis_tag = f" 📷{imgs}" if imgs else ""
 
-            print(f" — {score:.0%} (set:{setting_ok} mood:{mood_ok} narr:{narr_ok} char:{char_f1:.0%} elem:{elem_f1:.0%})")
+            print(f" — {score:.0%} (thm:{theme_ok} mood:{mood_ok} narr:{narr_ok} char:{char_f1:.0%} elem:{elem_f1:.0%}){vis_tag}")
 
             # Save result to JSONL
             with open(ART_TEST_RESULTS_PATH, 'a') as f:

@@ -2,13 +2,13 @@
 
 **If you are a new AI agent: start here.** This is the only file you need to understand the data pipeline.
 
-**Updated**: Apr 7, 2026
+**Updated**: Apr 6, 2026
 
 ---
 
 ## Current State
 
-4,551 games in master. 4,238 with global release dates (93% slot coverage). 3,453 with symbols (1,368 full paytable from legacy merge). 1,731 franchise-mapped. AGS ground truth fully backfilled. Features use HIDDEN_FEATURES blocklist (Multiplier removed). Server gzip compression enabled (13.2→1.0 MB). Trend legend hover highlighting. Brand sorting. Bubble chart click-to-panel. **Art characterization pipeline built** — taxonomy validated against industry standards, 27-game GT, few-shot examples, F1 eval loop (`--test-art`), 83.8% aggregate accuracy on held-out set.
+4,550 games in master. NJ release year 100% coverage (all games). 887 with global release dates (19.5% — AGS: 36, slot.report: 851). 3,453 with symbols (1,368 full paytable from legacy merge). 1,731 franchise-mapped. AGS ground truth fully backfilled. Features use HIDDEN_FEATURES blocklist (Multiplier removed). Server gzip compression enabled (13.2→1.0 MB). Trend legend hover highlighting. Brand sorting. Bubble chart click-to-panel. **Art characterization pipeline built** — taxonomy validated against industry standards, 27-game GT, few-shot examples, F1 eval loop (`--test-art`), 83.8% aggregate accuracy on held-out set. **Year pipeline complete** — NJ year is primary everywhere, global year is bonus field in game detail panel only.
 
 ### Trusted Data Sources
 
@@ -89,14 +89,16 @@ cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py 
 | `theo_win` | number |
 | `market_share_pct` | number |
 
-### Global Release Date fields (also protected)
+### Global Release Date fields (informational — NOT used for dashboard analysis)
+
+**Note:** NJ year (`release_year`) is the primary year for all dashboard analysis. Global year is a supplementary field shown in game detail panels only.
 
 | Field | Coverage | Source |
 |-------|----------|-------|
-| `original_release_date` | 2,327/4,551 (51%) | SlotReport, SlotCatalog, staged |
-| `original_release_year` | 2,327/4,551 (51%) | Derived from date |
-| `original_release_month` | 2,327/4,551 (51%) | Derived from date |
-| `original_release_date_source` | 2,327/4,551 (51%) | "slotreport", "slotcatalog", "staged" |
+| `original_release_date` | 887/4,550 (19.5%) | `ags_provider_data` (36), `slotreport` (851) |
+| `original_release_year` | 887/4,550 (19.5%) | Derived from date |
+| `original_release_month` | 887/4,550 (19.5%) | Derived from date |
+| `original_release_date_source` | 887/4,550 (19.5%) | `"ags_provider_data"` or `"slotreport"` |
 
 ### Extracted fields (from Claude API + HTML rules)
 
@@ -116,7 +118,7 @@ cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py 
 
 | Field | Coverage | Notes |
 |-------|----------|-------|
-| `art_setting` | 0% (pipeline ready) | Single value from 33-item taxonomy. Norse/Viking, Irish/Celtic, Festive, etc. |
+| `art_theme` | 0% (pipeline ready) | Single value from 33-item taxonomy. Norse/Viking, Irish/Celtic, Festive, etc. |
 | `art_characters` | 0% (pipeline ready) | Array. 29-item taxonomy. Pharaoh, Viking, Leprechaun, Dinosaur, etc. |
 | `art_elements` | 0% (pipeline ready) | Array. 25-item taxonomy. Gems, Gold, Fruits, Fishing, etc. |
 | `art_mood` | 0% (pipeline ready) | Single value from 13-item taxonomy. Dark, Bright, Epic, Festive, etc. |
@@ -141,12 +143,13 @@ Key schema additions (beyond CSV fields):
 - `franchise VARCHAR` / `franchise_type VARCHAR` — from `franchise_mapping.json`
 - `*_confidence VARCHAR` — per-field confidence from `confidence_map.json`
 
-The Trends page uses `COALESCE(original_release_year, release_year)` to prefer global dates.
+The Trends page uses `release_year` (NJ launch year) as the primary date for all analysis. Global year is informational only.
 
 ### Centralized Data Access
 
 - **`getActiveGames()`** / **`getActiveThemes()`** / **`getActiveMechanics()`** — filtered data getters in `data.js`
-- **`F.originalReleaseYear(g)`** — falls back to `release_year` when original is absent
+- **`F.releaseYear(g)`** — NJ launch year, PRIMARY year for all dashboard analysis
+- **`F.originalReleaseYear(g)`** — global release year only (returns 0 when absent, no NJ fallback)
 - **`F.themesAll(g)`** — auto-parses JSON strings from DuckDB
 - **`parseFeatures(val)`** — auto-filters `HIDDEN_FEATURES` (e.g., Multiplier)
 - Category filter: `applyCategory()` in `chart-config.js` recomputes all view data
@@ -209,7 +212,7 @@ python3 data/extract_game_profile.py --extract-art --apply-art
 3. **DO NOT overwrite `ground_truth_ags.json` or `ground_truth_art.json`** without explicit user approval.
 4. **DO NOT skip tests.** All 1095 JS + 53 Python tests must pass after any change.
 5. **DO NOT overwrite XLSX fields** (runtime gate + test enforce this).
-6. **DO NOT use `g.release_year` for trends/analysis** — use `F.originalReleaseYear(g)`.
+6. **Use `F.releaseYear(g)` for all trends/analysis** (NJ year). Use `F.originalReleaseYear(g)` only for the global year bonus field in game detail panels.
 7. **DO NOT hardcode threshold values** — use constants from `shared-config.js`.
 
 ---

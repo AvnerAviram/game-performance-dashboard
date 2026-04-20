@@ -140,7 +140,7 @@ window.showMechanicDetails = function (mechanicName, opts) {
     const titleEl = document.getElementById('mechanic-panel-title');
     if (titleEl) {
         if (scopeProvider) {
-            titleEl.innerHTML = `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showMechanicDetails', mechanicName)}">${escapeHtml(mechanicName)}</span> <span class="text-gray-400 font-normal">›</span> <span class="text-gray-500 dark:text-gray-400 font-normal text-sm">${escapeHtml(scopeProvider)}</span>`;
+            titleEl.innerHTML = `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: mechanicName }))}' onclick="${safeOnclick('window.showMechanicDetails', mechanicName)}">${escapeHtml(mechanicName)}</span> <span class="text-gray-400 font-normal">›</span> <span class="text-gray-500 dark:text-gray-400 font-normal text-sm">${escapeHtml(scopeProvider)}</span>`;
         } else {
             titleEl.textContent = mechanicName;
         }
@@ -212,7 +212,7 @@ window.showMechanicDetails = function (mechanicName, opts) {
                 const provName = matchedGame ? F.provider(matchedGame) : '';
                 const theo = matchedGame ? F.theoWin(matchedGame) : null;
                 const clickAttr = matchedGame
-                    ? `onclick="${safeOnclick('window.showGameDetails', resolvedName)}" class="flex items-center gap-2 py-1.5 border-b border-gray-100 dark:border-gray-700/50 last:border-0 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded px-1 transition-colors"`
+                    ? `data-xray='${escapeAttr(JSON.stringify({ game: resolvedName, field: 'name' }))}' onclick="${safeOnclick('window.showGameDetails', resolvedName)}" class="flex items-center gap-2 py-1.5 border-b border-gray-100 dark:border-gray-700/50 last:border-0 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded px-1 transition-colors"`
                     : `class="flex items-center gap-2 py-1.5 border-b border-gray-100 dark:border-gray-700/50 last:border-0 rounded px-1 opacity-60"`;
                 return `<div ${clickAttr}>
                 <div class="flex-1 min-w-0">
@@ -248,7 +248,7 @@ window.showMechanicDetails = function (mechanicName, opts) {
     if (scopeProvider) {
         mechHtml += `<div class="mx-4 mb-3 px-3 py-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between">
             <span class="text-xs text-indigo-700 dark:text-indigo-300">Filtered to <strong>${escapeHtml(scopeProvider)}</strong></span>
-            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
+            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: scopeProvider }))}' onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 Back to ${escapeHtml(scopeProvider)}
             </button>
@@ -332,7 +332,7 @@ window.closeMechanicPanel = function () {
 };
 
 window.closeAllPanels = function (except) {
-    const panelIds = ['mechanic-panel', 'theme-panel', 'game-panel', 'provider-panel'];
+    const panelIds = ['mechanic-panel', 'theme-panel', 'game-panel', 'provider-panel', 'xray-panel'];
     const panels = panelIds.filter(id => id !== except).map(id => document.getElementById(id));
     panels.forEach(el => {
         if (el) el.style.right = '-650px';
@@ -372,7 +372,7 @@ window.showThemeDetails = function (themeName, opts) {
     const titleEl = document.getElementById('theme-panel-title');
     if (titleEl) {
         if (scopeProvider) {
-            titleEl.innerHTML = `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', themeName)}">${escapeHtml(themeName)}</span> <span class="text-gray-400 font-normal">›</span> <span class="text-gray-500 dark:text-gray-400 font-normal text-sm">${escapeHtml(scopeProvider)}</span>`;
+            titleEl.innerHTML = `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: themeName }))}' onclick="${safeOnclick('window.showThemeDetails', themeName)}">${escapeHtml(themeName)}</span> <span class="text-gray-400 font-normal">›</span> <span class="text-gray-500 dark:text-gray-400 font-normal text-sm">${escapeHtml(scopeProvider)}</span>`;
         } else {
             titleEl.textContent = themeName;
         }
@@ -431,7 +431,7 @@ window.showThemeDetails = function (themeName, opts) {
             const pGames = themeGames.filter(g => F.provider(g) === p);
             const pAvg = pGames.reduce((s, g) => s + (F.theoWin(g) || 0), 0) / (pGames.length || 1);
             const hidden = i >= PROV_INITIAL ? ' style="display:none"' : '';
-            return `<div data-cl-item${hidden} class="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700 last:border-0 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}">
+            return `<div data-cl-item${hidden} class="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700 last:border-0 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: p }))}' onclick="${safeOnclick('window.showProviderDetails', p)}">
             <span class="text-sm text-gray-700 dark:text-gray-300">${escapeHtml(p)}</span>
             <span class="text-xs text-gray-500 dark:text-gray-400">${pGames.length} games · ${pAvg.toFixed(2)} avg</span>
         </div>`;
@@ -539,7 +539,7 @@ window.showThemeDetails = function (themeName, opts) {
     if (scopeProvider) {
         html += `<div class="mx-4 mb-3 px-3 py-2.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 flex items-center justify-between">
             <span class="text-xs text-indigo-700 dark:text-indigo-300">Filtered to <strong>${escapeHtml(scopeProvider)}</strong></span>
-            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
+            <button class="flex items-center gap-1.5 text-[11px] font-medium text-indigo-600 dark:text-indigo-400 bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 px-2.5 py-1 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: scopeProvider }))}' onclick="${safeOnclick('window.showProviderDetails', scopeProvider)}">
                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 Back to ${escapeHtml(scopeProvider)}
             </button>
@@ -547,14 +547,14 @@ window.showThemeDetails = function (themeName, opts) {
     }
 
     // --- Build Art Profile from art characterization data ---
-    const artGames = themeGames.filter(g => F.artSetting(g));
+    const artGames = themeGames.filter(g => F.artTheme(g));
     let artProfileHtml = '';
     if (artGames.length > 0) {
         const settingCounts = {};
         const moodCounts = {};
         const characterCounts = {};
         for (const g of artGames) {
-            const s = F.artSetting(g);
+            const s = F.artTheme(g);
             if (s) settingCounts[s] = (settingCounts[s] || 0) + 1;
             const m = F.artMood(g);
             if (m) moodCounts[m] = (moodCounts[m] || 0) + 1;
@@ -785,7 +785,7 @@ window.showFranchiseDetails = function (franchiseName) {
     const totalShare = fGames.reduce((s, g) => s + F.marketShare(g), 0);
     const providers = [...new Set(fGames.map(g => F.provider(g)).filter(p => p && p !== 'Unknown'))];
     const themes = [...new Set(fGames.map(g => F.themeConsolidated(g)).filter(Boolean))];
-    const years = fGames.map(g => F.originalReleaseYear(g)).filter(y => y > 0);
+    const years = fGames.map(g => F.releaseYear(g)).filter(y => y > 0);
     const minYear = years.length ? Math.min(...years) : null;
     const maxYear = years.length ? Math.max(...years) : null;
     const yearRange = minYear && maxYear ? (minYear === maxYear ? `${minYear}` : `${minYear}–${maxYear}`) : 'N/A';

@@ -23,7 +23,7 @@ This is the single source of truth. **4,550 games**, flat objects. Canonical fie
 | `market_share_pct` | number | Fractional (0.021 = 2.1%) — DuckDB multiplies by 100 |
 | `release_year` | number | NJ launch year |
 | `release_month` | number | NJ launch month |
-| `original_release_year` | number | Global release year (preferred for trends) |
+| `original_release_year` | number | Global release year (bonus field, detail panel only — NOT for trends) |
 | `original_release_month` | number | |
 | `theme_primary` | string | |
 | `themes_all` | array | |
@@ -80,6 +80,6 @@ F.volatility(g)    // g.specs_volatility || g.volatility
    - Add to `game_data_master.json` (via extraction script)
    - Add column to DuckDB CREATE TABLE + INSERT in `duckdb-client.js`
    - Add accessor to `F` in `game-fields.js`
-5. **Run `npm test` (1,151+ tests)** before declaring any change done.
+5. **Run `npm test` (1,616+ tests)** before declaring any change done.
 6. The `FIELD_NAMES` object in `game-fields.js` uses DuckDB column names (for SQL sort keys).
 7. **`market_share_pct`** is fractional in JSON (0.021) but percentage in DuckDB (2.1). The ×100 conversion happens in `duckdb-client.js`. Do not "fix" this — it is intentional.

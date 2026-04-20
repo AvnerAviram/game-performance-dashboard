@@ -1,6 +1,6 @@
 // Mechanics page renderer
 import { getActiveMechanics } from '../../lib/data.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { DEFAULT_PAGE_SIZE } from '../../lib/shared-config.js';
 
 let filteredMechanics = null;
@@ -76,18 +76,21 @@ export function renderMechanics(mechanicsToRender = null) {
         const row = tbody.insertRow();
         row.className = `group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 cursor-pointer ${rankBg}`;
         row.onclick = () => window.showMechanicDetails(mech.Mechanic);
+        const mechName = mech.Mechanic;
+        const mxDim = (metric, dv) =>
+            escapeAttr(JSON.stringify({ metric, dimension: 'feature', value: mechName, displayValue: dv }));
         row.innerHTML = `
             <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16">${medal}${globalIndex + 1}</td>
-            <td class="px-4 py-3.5">
-                <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(mech.Mechanic)}</span>
+            <td class="px-4 py-3.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: mechName, rank: globalIndex + 1 }))}'>
+                <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(mechName)}</span>
             </td>
-            <td class="px-4 py-3.5 w-40">
+            <td class="px-4 py-3.5 w-40" data-xray='${mxDim('game_count', String(gc))}'>
                 <div class="flex items-center gap-2">
                     <span class="text-sm tabular-nums text-gray-700 dark:text-gray-300 w-8 text-right">${gc}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gray-400 dark:bg-gray-500 transition-all" style="width:${gcBarW}%"></div></div>
                 </div>
             </td>
-            <td class="px-4 py-3.5 w-56">
+            <td class="px-4 py-3.5 w-56" data-xray='${mxDim('smart_index', si.toFixed(2))}'>
                 <div class="flex items-center gap-2">
                     <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}</span>
                     <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>

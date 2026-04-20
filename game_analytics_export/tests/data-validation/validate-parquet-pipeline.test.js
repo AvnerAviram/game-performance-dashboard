@@ -78,7 +78,7 @@ describe('Parquet pipeline: games_processed.json', () => {
     });
 
     test('art data is populated', () => {
-        const withArt = processedGames.filter(g => g.art_setting);
+        const withArt = processedGames.filter(g => g.art_theme);
         expect(withArt.length).toBeGreaterThan(3000);
     });
 

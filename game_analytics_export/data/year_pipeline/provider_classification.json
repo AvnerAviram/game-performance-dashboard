@@ -1,0 +1,48 @@
+{
+  "_description": "Provider classification for year extraction. Determines whether NJ year can proxy for global year, and how to interpret external source dates.",
+  "_updated": "2026-04-16",
+  "_source": "Defined in extract_release_year.mjs PROVIDER_CLASS. Duplicated here for reference.",
+  "classes": {
+    "ONLINE_FIRST": {
+      "description": "No land-based history. NJ year IS the global online year. Confidence 4 for NJ proxy.",
+      "providers": [
+        "Wazdan", "Gaming Realms", "Spinberry", "Oddsworks", "Betixon",
+        "Gamecode", "Red Rake Gaming", "Slotmill", "Hacksaw Gaming",
+        "Avatarux", "Spinomenal", "Rogue", "Octoplay", "Ruby Play",
+        "1x2 Network", "Bang Bang Games", "Spearhead Studios"
+      ]
+    },
+    "ONLINE_MAJOR": {
+      "description": "Primarily online companies, but may launch in UK/Malta before NJ. NJ year is approximate (±1yr). Confidence 3 for NJ proxy.",
+      "providers": [
+        "Playtech", "Games Global", "White Hat Studios", "Bragg Gaming Group",
+        "Evolution", "Play'n GO", "Relax Gaming", "4theplayer",
+        "Fantasma Games", "Kalamba Games", "Boom Entertainment",
+        "Everymatrix", "Skillzz Gaming", "Reel Play"
+      ]
+    },
+    "LAND_BASED_HIGH_RISK": {
+      "description": "Land-based cabinet origins. External source dates may reflect cabinet release, not online launch. High risk of wrong dates from SC/SL.",
+      "providers": [
+        "Ainsworth", "Konami", "Aruze", "Incredible Technologies", "Sega Sammy"
+      ]
+    },
+    "MIXED_ORIGIN": {
+      "description": "Some titles are land-based ports, some are online-original. Need per-game judgment.",
+      "providers": [
+        "IGT", "Light & Wonder", "Aristocrat", "Everi"
+      ]
+    },
+    "MOSTLY_ONLINE": {
+      "description": "Primarily online but some legacy land-based titles. Generally trustworthy for online dates.",
+      "providers": [
+        "Inspired", "High 5 Games", "Greentube", "Design Works Gaming"
+      ]
+    }
+  },
+  "notes": [
+    "Any provider not listed falls to UNKNOWN in the pipeline",
+    "AGS is LAND_BASED_HIGH_RISK but has provider GT — its years are from ags_provider_data, not external sources",
+    "Classification affects confidence scoring and post-processing rules in extract_release_year.mjs"
+  ]
+}

@@ -59,7 +59,7 @@ export function generateProviderThemeMatrix() {
         let recentCount = 0;
         let olderTheo = 0;
         let olderCount = 0;
-        const years = provGames.map(g => F.originalReleaseYear(g)).filter(y => y != null && y > 1900);
+        const years = provGames.map(g => F.releaseYear(g)).filter(y => y != null && y > 1900);
         const maxY = years.length ? Math.max(...years) : new Date().getFullYear();
         const recentThresh = maxY - 2;
         const olderThresh = maxY - 5;
@@ -83,7 +83,7 @@ export function generateProviderThemeMatrix() {
                 const l = `${r}x${rw}`;
                 layoutCounts[l] = (layoutCounts[l] || 0) + 1;
             }
-            const y = F.originalReleaseYear(g);
+            const y = F.releaseYear(g);
             if (y != null && y >= recentThresh) {
                 recentTheo += theo;
                 recentCount++;
@@ -124,6 +124,7 @@ export function generateProviderThemeMatrix() {
 
         html += `
             <div class="rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-md transition-all overflow-hidden cursor-pointer group"
+                 data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: prov }))}'
                  onclick="${safeOnclick('window.showProviderDetails', prov)}">
                 <div class="p-3 pb-2">
                     <div class="flex items-center justify-between mb-1.5">
@@ -149,7 +150,7 @@ export function generateProviderThemeMatrix() {
                     </div>
                     <div class="flex items-center gap-1.5">
                         <span class="text-[9px] text-gray-400 w-14 shrink-0">Best in</span>
-                        <span class="text-[10px] font-semibold text-indigo-600 dark:text-indigo-400 truncate cursor-pointer hover:underline" title="${escapeAttr(bestThemeName)}" onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', bestThemeName)}">${escapeHtml(bestThemeName)}</span>
+                        <span class="text-[10px] font-semibold text-indigo-600 dark:text-indigo-400 truncate cursor-pointer hover:underline" title="${escapeAttr(bestThemeName)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: bestThemeName }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', bestThemeName)}">${escapeHtml(bestThemeName)}</span>
                         <span class="text-[9px] text-gray-400 shrink-0">${bestThemeCount}g · ${bestTheoAvg.toFixed(1)}</span>
                     </div>
                     ${

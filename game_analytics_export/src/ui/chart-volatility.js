@@ -56,6 +56,7 @@ export function createVolatilityChart() {
             x: xWarp.warpVal(v.count),
             y: v.avgTheo,
             r: Math.max(10, Math.min(28, 10 + Math.sqrt(v.count / maxCount) * 18)),
+            _label: v.name,
         }));
 
         const labels = sorted.map(v => v.name);
@@ -104,6 +105,7 @@ export function createVolatilityChart() {
                 },
                 scales: bubbleScaleOptionsWarped(chartColors, xWarp),
                 onClick: (_evt, elements) => {
+                    if (window.xrayActive) return;
                     if (!elements.length) return;
                     const idx = elements[0].index;
                     const vol = volData[idx];
@@ -152,6 +154,7 @@ export function createVolatilityLandscapeChart() {
             x: xWarp.warpVal(v.count),
             y: v.avgTheo,
             r: Math.max(8, Math.min(40, 8 + Math.sqrt(v.count / maxCount) * 32)),
+            _label: v.name,
         }));
 
         const labels = sorted.map(v => v.name);

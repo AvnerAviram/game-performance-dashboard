@@ -52,6 +52,7 @@ export function createRtpChart() {
             x: xWarp.warpVal(b.count),
             y: b.avgTheo,
             r: Math.max(10, Math.min(28, 10 + Math.sqrt(b.count / maxCount) * 18)),
+            _label: b.label,
         }));
 
         const labels = bandData.map(b => b.label);
@@ -100,6 +101,7 @@ export function createRtpChart() {
                 },
                 scales: bubbleScaleOptionsWarped(chartColors, xWarp),
                 onClick: (_evt, elements) => {
+                    if (window.xrayActive) return;
                     if (!elements.length) return;
                     const idx = elements[0].index;
                     const band = bandData[idx];
@@ -145,6 +147,7 @@ export function createRtpLandscapeChart() {
             x: xWarp.warpVal(b.count),
             y: b.avgTheo,
             r: Math.max(8, Math.min(40, 8 + Math.sqrt(b.count / maxCount) * 32)),
+            _label: b.label,
         }));
 
         const labels = bandData.map(b => b.label);

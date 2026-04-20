@@ -1,0 +1,4805 @@
+{
+  "version": "1.0",
+  "description": "User review verdicts per game per dimension. If a game is here, do NOT ask the user to review it again.",
+  "total_reviewed": 256,
+  "review_rounds": {
+    "ags_v4": {
+      "date": "2026-04-13",
+      "games": 89
+    },
+    "gt_review_v4": {
+      "date": "2026-04-14",
+      "games": 20
+    },
+    "expansion_v3": {
+      "date": "2026-04-15",
+      "games": 28
+    },
+    "v11_4_batch": {
+      "date": "2026-04-19",
+      "games": 25
+    },
+    "fresh_batch_v11": {
+      "date": "2026-04-19",
+      "games": 30
+    },
+    "auto_v11_5": {
+      "date": "2026-04-19",
+      "count": 32,
+      "description": "Automated self-verification of v2-classified games with screenshots"
+    },
+    "auto_text_v11_5": {
+      "date": "2026-04-19",
+      "count": 32,
+      "description": "Automated verification of text-only classified games (batch 1)"
+    }
+  },
+  "games": {
+    "10001-Nights.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements: Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Glow/Aura"
+        }
+      }
+    },
+    "10x-cash.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "not Casino Floor - more like money/gold/casino"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "its green and gold mostly"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "15-Armadillos.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "2x-spin-cycle.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "its more purple, and some gold"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "2x3x-rush.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "more red, blue, a bit neon but not really"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "3-Clown-Monty.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "spooky/scary Circus"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "weird cart/windows element, also Theme should be spooky/scary Circus"
+        }
+      }
+    },
+    "3-Lucky-Leprechauns.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "3-crazy-tikis.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "3x-ultra-diamond.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "really purple, some red gold"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "5-flaming-dollars.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "blue flames"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "88-Fortunes-Jackpot-Festival.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "88-Fortunes.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "asian childs, a boy and a girl - outside of the reels"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "animals are just symbols, also ship - separate symbols"
+        }
+      }
+    },
+    "888-Panda.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "8x-Crystal-Bells.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "9-Coins.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "classic/fire i think"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Acorn-Pixie.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Action-Jack.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Age-Of-The-Gods-Maze-Keeper.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also red"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Torches/Lanterns/Candles should be separated - not the same thing"
+        }
+      }
+    },
+    "Agent-Blitz-Mission-Moneymaker.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "ya - but its Apollo"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Aliyas-Wishes.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "All-That-Cash-Power-Bet.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Aloha-Christmas.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Gifts/Wrapped Presents is more accurate than Christmas Decorations"
+        }
+      }
+    },
+    "Amazon-Gold.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Ancient-Disco.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "its only a symbol - not a real char"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "got them right but hieroglyphs are missing"
+        }
+      }
+    },
+    "Apollo-Stacks.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "yes warm but mostly blue"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Arctic-Enchantress.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Armadillo-Does-Christmas.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Be specific: Candles, not Torches/Lanterns/Candles"
+        }
+      }
+    },
+    "Ashoka.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Atomic-Meltdown.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Aztec-Chief.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "King/Queen/Royalty not really"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Banana-Splits.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Basketball-Star-On-Fire.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "should also say basketball"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "basketball court should be in elements"
+        }
+      }
+    },
+    "Basketball-Star.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "more like brown, blue"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "add basket ball court"
+        }
+      }
+    },
+    "Battle-Mania.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Big-Catch-Bass-Fishing.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Big-Spinner.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Blazing-Bison-Gold-Blitz.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Blazing-Luck.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "not fruit its more classic"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Blue-Diamond.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Bonanza-Blast.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Bonus-Bunnies.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Boomtown-Gold-Mine.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "Break-Da-Bank-Again-Respin.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Brilliant-Gems.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Buckin-Bucks.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Buffalo-Blitz.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Buffalo.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Bullion-Bars.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Buster-Hammer-Carnival.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Candy-Paradise.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Capital-Gains.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Captain-Glum-Pirate-Hunter.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "ship/boat is only a symbol, not element"
+        }
+      }
+    },
+    "Cash-Eruption-Vegas.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "Should be Vegas Casino theme + Casino Floor secondary. BG is Vegas outdoor not casino indoor"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Missed Statue of Liberty, Eiffel Tower - Vegas city landmark elements"
+        }
+      }
+    },
+    "Cash-Eruption.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "more like mountain volcano/ancient temple"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "no, its only in the symbol"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no mountain - thats a symbol. rest seems good"
+        }
+      }
+    },
+    "Casinomeister.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also blue, purple, green"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also mountains, grass"
+        }
+      }
+    },
+    "Chicken-Fox-5x-Skillstar.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "just on symbols"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Chicken-Fox.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "missed all the cash elements"
+        }
+      }
+    },
+    "Chili-Chili-Fire.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "China-Gold.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Chinese-Treasures.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Chocolate-Cash-Pots.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Christmas.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Cleopatra-Gold.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "only Ancient Stone Carvings, Hieroglyphs, stone Arc - rest are symbols"
+        }
+      }
+    },
+    "Cleopatra.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Coin-Burst.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Cornelius.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "gems, farm house, barn"
+        }
+      }
+    },
+    "Cosmic-Cash.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "add specifically stars and planets"
+        }
+      }
+    },
+    "Crazy-Wizard.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "no blue - its the operators header, not the game"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Crystal-Magic.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Da-Vinci-Diamonds.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dancing-Drums-Explosion-Mega-Drop.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also blue/purple"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "christmas trees, snowflakes"
+        }
+      }
+    },
+    "Desert-Hawk.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Diamond-Link-Almighty-Wolf.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "all are symbols"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Diamond-Safari.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "more like blue, brown earth colors + green"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dino-Pays.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "not a real char - its in the logo"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Double-Diamond.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Double-Jackpot.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Dragon-Champions.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Dragon-Fa.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dragon-Match-Megaways.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dynamite-Riches.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Egyptian-Magic.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "El-Dorado.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Elements-The-Awakening.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also coral reef"
+        }
+      }
+    },
+    "Epic-Riches.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fairy-Fantasy-Exotic-Wilds.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Faith.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also gray"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "they are symbols"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Finns-Golden-Tavern.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "no char"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "separate Torches/Lanterns/Candles - asked multiple times"
+        }
+      }
+    },
+    "Fire-Joker.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "Fishin-Bonanza.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "frame is more like a rope frame"
+        }
+      }
+    },
+    "Flame.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Flamenco-Stacks.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Forest-Dragons.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fortune-Coin.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fortune-Temple.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Torches should be separated from Lanterns/Candles, also stairs missing"
+        }
+      }
+    },
+    "Fortunium.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also black"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Frankie-Dettoris-Magic-Seven.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Fu-Nan-Fu-Nu.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fulong-88.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Giant-Gems.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Giza-Infinity-Reels.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Goddess-Treasures.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gold-Blitz.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "v11_4_batch",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gold-Inferno.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gold-Volcano.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "Golden-Nile.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Golden-Ram.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Golden-Tides.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Golden-Tour.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Golden-Winner.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Golden-Wins-Deluxe.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Golden-Wins.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Golden-Wisdom.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Golden.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "Goldstruck.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gong-Xi-Fa-Cai-Grand.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gonzos-Quest.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "Not Gonzo - its a weird knight or something"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Correct elements but no torches - remove Torches"
+        }
+      }
+    },
+    "Gordon-Ramsay-Hells-Kitchen.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Grand-Royale.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Great-Guardians.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Halloween-Fortune.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Happy-Lucky.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "no blue here, black instead though"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also torches"
+        }
+      }
+    },
+    "He-He-Yang.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also light blue (sky)"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Ice-Joker.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "INVALID: incorrect screenshot shows rules page, not gameplay"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "INVALID: incorrect screenshot shows rules page, not gameplay"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "INVALID: incorrect screenshot shows rules page, not gameplay"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "INVALID: incorrect screenshot shows rules page, not gameplay"
+        }
+      }
+    },
+    "Immortal-Romance.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Irish-Eyes-2.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also trees, pyramid"
+        }
+      }
+    },
+    "Its-Time.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jade-Dragon.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jade-Wins-Deluxe.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jade-Wins.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jimi-Hendrix.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "Should include Jimi Hendrix as character"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jinfu-Long.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jinse-Dao-Dragon.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jokers-Riches-2.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "all symbols"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Jokers-Riches.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Jumanji.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Kanga-Cash-Ainsworth.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Katmandu-X.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Kitty-Glitter.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Lock-It-Link-Diamonds.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "London-Tube.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Missed train / train station"
+        }
+      }
+    },
+    "Lone-Star-Jackpots.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also farm/tree/field"
+        }
+      }
+    },
+    "Longhorn-Jackpots.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Lucky-Reels.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Lucky-Rooster.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Madame-Ink.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Manic-Potions.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Mayan-Gold.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Mermaids-Fortune.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Mighty-Black-Knight.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Monopoly-Grand-Hotel.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Monopoly-Money-Grab.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Neon-Links.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Oceans-Treasure.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Oink-Farm.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Olympus-Strikes.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Olympus-Thunder.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Outback-Riches.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Outback-Walkabout.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Paddy-O-Plunder.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Panda-Blessings.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Peacock-Beauty.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "there is a lady and a peacock characters"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Peaky-Blinders.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Pharaoh-Sun.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Pharaohs-Dream.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Phoenix-Fa.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Phoenix-Xing.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Platinum-8x8x8x.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Pompeii.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Power-Prizes-Noble-Peacock.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Prosperity-Link-Wan-Shi-Ru-Yi.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Radiant-Gems-Rapid-Respin.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Rakin-Bacon.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Reactoonz.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Red-Silk.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Reel-Steal.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Roulette.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Royal-Masquerade.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Scatters-Matter.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "Sevens-Staxx.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Sherwood-Gold.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Shou-Hu-Shen.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Slingo-Xing-Yun-Xian.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Spinsane.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Starburst.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Steam-Tower.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Stinkin-Rich.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also pink"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "they are symbols"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Super-25-Stars.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "Classic is correct but should add Casino Floor as secondary theme"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Also missing: Casino Floor / Slot Machines"
+        }
+      }
+    },
+    "Super-Hot-Joker.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "The-Great-Pigsby.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Thunder-Cash-Fruity-Fruity.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Thunder-Cash.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "slot machines, table games also"
+        }
+      }
+    },
+    "Thunderstruck-Stormchaser.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Thunderstruck.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Tiger-7s.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Tomb-Of-Mirrors.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Missed Egyptian statues, added Boat unnecessarily"
+        }
+      }
+    },
+    "Trillionaire-Megaways.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Twenty-Seven.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_text_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "Ultra-Rush-Sky-Fire.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Vegas-No-Limit-Wins.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "also red"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Vegas-Stacks.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Viking-Raid-Zone.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also chandeliers, high class expensive house"
+        }
+      }
+    },
+    "Viking-Runecraft.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also asian statue and house"
+        }
+      }
+    },
+    "Way-Out-Wilds.html": {
+      "reviewed_at": "2026-04-14",
+      "review_round": "gt_review_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "there is a purple frame"
+        }
+      }
+    },
+    "a-visit-from-st-nick-power-bet.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "atlantis-10k-ways.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "balloon-strike-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "big-bounty-gold.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Also missing: Coin Stacks"
+        }
+      }
+    },
+    "blazin-bank-run.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "capital-reels.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "cash-can-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "cash-zap-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "cloud-princess.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "colossal-diamonds.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-boost.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-cash-oasis-riches.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-hunter-vip.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-nudge.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-rose.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-rush-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "diamond-spins-dionysus.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "double-shamrock.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "fire-joker-100.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "fish-fest-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "fortune-coin-fever-spins.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "Dragon is part of the logo - hard for Claude Vision to distinguish"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Remove redundant bloat elements (same pattern as g0)"
+        }
+      }
+    },
+    "fortune-tree-of-wealth.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "golden-blessings.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "golden-money.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "golden-plunder.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "golden-winner-grand-chance.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "hades-lost-treasures.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "auto_v11_5",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      },
+      "auto_verified": true
+    },
+    "hypercharged-jinzita.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "jungle-jim-gold-blitz.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Also missing: Egyptian statues"
+        }
+      }
+    },
+    "liberty-diamond.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "long-bao-bao.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "lucky-sky.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "mad-hit-diamonds.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "green more than everything"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "mad-hit-gorillatron.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "magic-treasures-dragon.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "mine-blast.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "olympus-strikes-ultratap.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also a viking city/village"
+        }
+      }
+    },
+    "rakin-bacon-odyssey.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "rakin-bacon-sahara.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "rich-wilde-and-the-pearls-of-vishnu.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "rockets-red-glare.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "san-fa-pandas.html": {
+      "reviewed_at": "2026-04-19",
+      "review_round": "fresh_batch_v11",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Missing: Asian Decorations, Asian Architecture"
+        }
+      }
+    },
+    "silver-lux-coin-stacks.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "sizzlin-stacks.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "slingshot-blast-ultratap.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "spartacus-lightning-blitz.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "there is a tiger above the reels"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "spin-bonanza.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "splash-of-gold.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Egyptian man/animal like statues"
+        }
+      }
+    },
+    "straight-cash.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "thundering-blaze.html": {
+      "reviewed_at": "2026-04-15",
+      "review_round": "expansion_v3",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also underwater structures"
+        }
+      }
+    },
+    "triple-jelly.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "zen-wins.html": {
+      "reviewed_at": "2026-04-13",
+      "review_round": "ags_v4",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    }
+  }
+}

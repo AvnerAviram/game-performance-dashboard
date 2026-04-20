@@ -7,7 +7,7 @@
  *
  * Usage: Import and use functions to generate HTML
  */
-import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, xray } from '../lib/sanitize.js';
 import { VOL_BADGE_CLASSES, normalizeVolatility } from '../lib/shared-config.js';
 import { log } from '../lib/env.js';
 import { F } from '../lib/game-fields.js';
@@ -124,6 +124,7 @@ export const GameListItem = (game, index) => {
     ${rankBadge}
     <div class="flex-1 min-w-0">
       <div class="text-[13px] font-semibold text-gray-800 dark:text-gray-100 truncate cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+           data-xray='${escapeAttr(JSON.stringify({ game: gameName, field: 'name' }))}'
            onclick="${safeOnclick('window.showGameDetails', gameName)}">${escapeHtml(gameName)}</div>
       <div class="flex items-center gap-1.5 mt-0.5">
         <span class="text-[10px] text-gray-400 dark:text-gray-500 truncate">${escapeHtml(provider)}</span>

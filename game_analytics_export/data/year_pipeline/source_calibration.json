@@ -1,0 +1,686 @@
+{
+  "_description": "Calibration results for each year data source tested against AGS ground truth. Every new source MUST be added here before being trusted.",
+  "_updated": "2026-04-19",
+  "sources": {
+    "slotslaunch_scrape": {
+      "status": "CALIBRATED",
+      "tested_date": "2026-04-19",
+      "gt_games_found": 2,
+      "gt_games_total": 58,
+      "year_correct": 0,
+      "year_wrong": 2,
+      "accuracy_pct": 0,
+      "avg_days_off": 15,
+      "misses": [
+        {
+          "name": "Great Blue",
+          "provider": "Playtech",
+          "gt_year": 2013,
+          "source_year": 2022,
+          "delta": 9
+        },
+        {
+          "name": "Cash Eruption",
+          "provider": "IGT",
+          "gt_year": 2020,
+          "source_year": 2022,
+          "delta": 2
+        }
+      ],
+      "notes": "Best source found. URL scraping matched only 37% due to slug mismatches. API not yet tested.",
+      "trust_level": 4,
+      "data_file": "_slotslaunch_scrape.json",
+      "calibration_file": "_slotslaunch_calibration.json",
+      "by_provider": {
+        "AGS": {
+          "found": 0,
+          "total": 36,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Evolution": {
+          "found": 0,
+          "total": 9,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Play'n GO": {
+          "found": 0,
+          "total": 7,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Games Global": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Playtech": {
+          "found": 1,
+          "total": 2,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "IGT": {
+          "found": 1,
+          "total": 2,
+          "correct": 0,
+          "accuracy": 0
+        }
+      }
+    },
+    "slotcatalog_cache": {
+      "status": "CALIBRATED",
+      "tested_date": "2026-04-19",
+      "gt_games_found": 3,
+      "gt_games_total": 58,
+      "year_correct": 2,
+      "year_wrong": 1,
+      "accuracy_pct": 66.7,
+      "misses": [
+        {
+          "name": "Starburst",
+          "provider": "Evolution",
+          "gt_year": 2012,
+          "source_year": 2013,
+          "delta": 1
+        }
+      ],
+      "notes": "Often returns land-based cabinet dates, especially for providers with land-based origins. DO NOT trust alone for Ainsworth, Konami, Aristocrat, IGT, L&W, AGS.",
+      "trust_level": 2,
+      "data_file": "_sc_release_dates.json",
+      "by_provider": {
+        "AGS": {
+          "found": 0,
+          "total": 36,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Evolution": {
+          "found": 2,
+          "total": 9,
+          "correct": 1,
+          "accuracy": 50
+        },
+        "Play'n GO": {
+          "found": 1,
+          "total": 7,
+          "correct": 1,
+          "accuracy": 100
+        },
+        "Games Global": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Playtech": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        },
+        "IGT": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        }
+      }
+    },
+    "slot_report_api": {
+      "status": "CALIBRATED",
+      "tested_date": "2026-04-19",
+      "notes": "slot.report free API data. 5,592 games from 58 online-focused providers. Cross-validated against 934 existing master years: 99.9% exact match (933/934), 100% within ±1yr. 0 AGS GT games — cannot calibrate against ground truth. Added as pipeline source (trust 3) on 2026-04-19. Matches 939 master games (20.6%), but only 5 stripped games — minimal new coverage. Primary value is consensus boosting for online-first providers.",
+      "cross_validation": {
+        "date": "2026-04-19",
+        "master_matches": 939,
+        "with_existing_year": 934,
+        "exact_agreement": 933,
+        "off_by_1": 1,
+        "off_by_2_plus": 0,
+        "agreement_pct": 99.9,
+        "stripped_matches": 5,
+        "provider_accuracy": {
+          "Evolution": {
+            "count": 394,
+            "exact_pct": 100
+          },
+          "Play'n GO": {
+            "count": 210,
+            "exact_pct": 99.5
+          },
+          "Games Global": {
+            "count": 155,
+            "exact_pct": 100
+          },
+          "Hacksaw Gaming": {
+            "count": 39,
+            "exact_pct": 100
+          },
+          "Light & Wonder": {
+            "count": 30,
+            "exact_pct": 100
+          }
+        }
+      },
+      "gt_games_found": 16,
+      "gt_games_total": 58,
+      "provider_count": 58,
+      "total_games": 5592,
+      "games_with_release_date": 4703,
+      "top_providers": [
+        "Pragmatic Play (817)",
+        "Play'n GO (445)",
+        "Red Tiger (339)",
+        "BGaming (293)",
+        "NetEnt (244)",
+        "iSoftBet (226)",
+        "Hacksaw Gaming (165)",
+        "Games Global (117)"
+      ],
+      "trust_level": 3,
+      "data_file": "_slot_report_data.json",
+      "match_file": "_slot_report_matches.json",
+      "api_url": "https://slot.report/api/v1/slots.json",
+      "limitation": "Covers ONLY online-first European/international providers. No US land-based providers. Cannot be calibrated against AGS GT.",
+      "year_correct": 16,
+      "year_wrong": 0,
+      "accuracy_pct": 100,
+      "misses": [],
+      "by_provider": {
+        "AGS": {
+          "found": 0,
+          "total": 36,
+          "correct": 0,
+          "accuracy": null
+        },
+        "Evolution": {
+          "found": 7,
+          "total": 9,
+          "correct": 7,
+          "accuracy": 100
+        },
+        "Play'n GO": {
+          "found": 7,
+          "total": 7,
+          "correct": 7,
+          "accuracy": 100
+        },
+        "Games Global": {
+          "found": 2,
+          "total": 2,
+          "correct": 2,
+          "accuracy": 100
+        },
+        "Playtech": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        },
+        "IGT": {
+          "found": 0,
+          "total": 2,
+          "correct": 0,
+          "accuracy": null
+        }
+      }
+    },
+    "slotslaunch_api": {
+      "status": "NOT_TESTED",
+      "notes": "Structured API with release date field and land_based flag. Requires API token. Would fix the 37% match rate from URL scraping.",
+      "trust_level": 0,
+      "api_docs": "https://docs.slotslaunch.com/article/12-api-endpoints"
+    },
+    "eilers_csv": {
+      "status": "CALIBRATED",
+      "notes": "NJ Online Gaming Platform Dates only. 100% accurate for NJ dates but these are NJ launch, not global online release. Already imported as release_year in master.",
+      "trust_level": "NJ_ONLY",
+      "data_file": "eilers_source.csv"
+    },
+    "claude_api_lookup": {
+      "status": "FAILED",
+      "tested_date": "2026-04",
+      "notes": "Tested Claude API for year lookup. 40-50% exact accuracy. Unreliable — all 1,778 Claude-guessed years were stripped from master.",
+      "trust_level": 0
+    },
+    "nj_proxy": {
+      "status": "CALIBRATED",
+      "tested_date": "2026-04-19",
+      "gt_games_found": 58,
+      "gt_games_total": 58,
+      "year_correct": 3,
+      "year_wrong": 55,
+      "accuracy_pct": 5.2,
+      "misses": [
+        {
+          "name": "Golden Wins",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Jade Wins",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Longhorn Jackpots",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Fu Nan Fu Nu",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Rakin Bacon",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Olympus Strikes",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "River Dragons",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Forest Dragons",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Pharaoh Sun",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Bonanza Blast",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Capital Gains",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Apollo Stacks",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Crystal Magic",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Jade Dragon",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Grand Royale",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Vegas Stacks",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Luck And Luxury",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Flamenco Stacks",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Red Silk",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Blazing Luck",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Aztec Chief",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2024,
+          "delta": 3
+        },
+        {
+          "name": "Dragon Fa",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Imperial Luck",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Peacock Beauty",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Mermaids Fortune",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Golden Wins Deluxe",
+          "provider": "AGS",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Rakin Bacon Jackpots Bonus Board",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2025,
+          "delta": 5
+        },
+        {
+          "name": "Rakin Bacon Jackpots Bonus Wheel",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2025,
+          "delta": 5
+        },
+        {
+          "name": "Rakin Bacon Odyssey",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2024,
+          "delta": 4
+        },
+        {
+          "name": "Rakin Bacon Sahara",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2024,
+          "delta": 4
+        },
+        {
+          "name": "Jade Wins Deluxe",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2023,
+          "delta": 4
+        },
+        {
+          "name": "Olympus Strikes Ultratap",
+          "provider": "AGS",
+          "gt_year": 2019,
+          "source_year": 2025,
+          "delta": 6
+        },
+        {
+          "name": "Bonanza Blast Ultratap",
+          "provider": "AGS",
+          "gt_year": 2020,
+          "source_year": 2024,
+          "delta": 4
+        },
+        {
+          "name": "Starburst",
+          "provider": "Evolution",
+          "gt_year": 2012,
+          "source_year": 2021,
+          "delta": 9
+        },
+        {
+          "name": "Dead Or Alive",
+          "provider": "Evolution",
+          "gt_year": 2009,
+          "source_year": 2021,
+          "delta": 12
+        },
+        {
+          "name": "Divine Fortune",
+          "provider": "Evolution",
+          "gt_year": 2017,
+          "source_year": 2021,
+          "delta": 4
+        },
+        {
+          "name": "Jimi Hendrix",
+          "provider": "Evolution",
+          "gt_year": 2016,
+          "source_year": 2021,
+          "delta": 5
+        },
+        {
+          "name": "Jumanji",
+          "provider": "Evolution",
+          "gt_year": 2018,
+          "source_year": 2021,
+          "delta": 3
+        },
+        {
+          "name": "Gonzos Quest",
+          "provider": "Evolution",
+          "gt_year": 2011,
+          "source_year": 2021,
+          "delta": 10
+        },
+        {
+          "name": "Book Of Dead",
+          "provider": "Play'n GO",
+          "gt_year": 2016,
+          "source_year": 2022,
+          "delta": 6
+        },
+        {
+          "name": "Reactoonz",
+          "provider": "Play'n GO",
+          "gt_year": 2017,
+          "source_year": 2022,
+          "delta": 5
+        },
+        {
+          "name": "Fire Joker",
+          "provider": "Play'n GO",
+          "gt_year": 2016,
+          "source_year": 2022,
+          "delta": 6
+        },
+        {
+          "name": "Rise Of Olympus",
+          "provider": "Play'n GO",
+          "gt_year": 2018,
+          "source_year": 2022,
+          "delta": 4
+        },
+        {
+          "name": "Legacy Of Dead",
+          "provider": "Play'n GO",
+          "gt_year": 2020,
+          "source_year": 2022,
+          "delta": 2
+        },
+        {
+          "name": "Immortal Romance",
+          "provider": "Games Global",
+          "gt_year": 2011,
+          "source_year": 2021,
+          "delta": 10
+        },
+        {
+          "name": "Thunderstruck Ii",
+          "provider": "Games Global",
+          "gt_year": 2010,
+          "source_year": 2021,
+          "delta": 11
+        },
+        {
+          "name": "Age Of The Gods",
+          "provider": "Playtech",
+          "gt_year": 2016,
+          "source_year": 2024,
+          "delta": 8
+        },
+        {
+          "name": "Great Blue",
+          "provider": "Playtech",
+          "gt_year": 2013,
+          "source_year": 2021,
+          "delta": 8
+        },
+        {
+          "name": "Cash Eruption",
+          "provider": "IGT",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Wheel Of Fortune Triple Extreme Spin",
+          "provider": "IGT",
+          "gt_year": 2015,
+          "source_year": 2021,
+          "delta": 6
+        },
+        {
+          "name": "Gonzos Quest Megaways",
+          "provider": "Evolution",
+          "gt_year": 2020,
+          "source_year": 2021,
+          "delta": 1
+        },
+        {
+          "name": "Reactoonz 2",
+          "provider": "Play'n GO",
+          "gt_year": 2020,
+          "source_year": 2022,
+          "delta": 2
+        },
+        {
+          "name": "Starburst Xxxtreme",
+          "provider": "Evolution",
+          "gt_year": 2021,
+          "source_year": 2022,
+          "delta": 1
+        },
+        {
+          "name": "Dead Or Alive 2",
+          "provider": "Evolution",
+          "gt_year": 2019,
+          "source_year": 2021,
+          "delta": 2
+        },
+        {
+          "name": "Rise Of Olympus 100",
+          "provider": "Play'n GO",
+          "gt_year": 2022,
+          "source_year": 2023,
+          "delta": 1
+        }
+      ],
+      "by_provider": {
+        "AGS": {
+          "found": 36,
+          "total": 36,
+          "correct": 3,
+          "accuracy": 8.3
+        },
+        "Evolution": {
+          "found": 9,
+          "total": 9,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "Play'n GO": {
+          "found": 7,
+          "total": 7,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "Games Global": {
+          "found": 2,
+          "total": 2,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "Playtech": {
+          "found": 2,
+          "total": 2,
+          "correct": 0,
+          "accuracy": 0
+        },
+        "IGT": {
+          "found": 2,
+          "total": 2,
+          "correct": 0,
+          "accuracy": 0
+        }
+      },
+      "notes": "Uses NJ release_year from master as proxy for global year. Only accurate for online-first providers where NJ launch ≈ global launch. Terrible for older games (pre-NJ era).",
+      "trust_level": 1
+    }
+  }
+}

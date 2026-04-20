@@ -197,25 +197,25 @@ function handleThemeQuery(themeName) {
     }
 
     // Art direction data
-    const artGames = tGames.filter(g => F.artSetting(g));
+    const artGames = tGames.filter(g => F.artTheme(g));
     if (artGames.length >= 3) {
-        const artSettings = {};
+        const artThemes = {};
         const artMoods = {};
         artGames.forEach(g => {
-            const s = F.artSetting(g);
-            if (s) artSettings[s] = (artSettings[s] || 0) + 1;
+            const s = F.artTheme(g);
+            if (s) artThemes[s] = (artThemes[s] || 0) + 1;
             const m = F.artMood(g);
             if (m) artMoods[m] = (artMoods[m] || 0) + 1;
         });
-        const topSettings = Object.entries(artSettings)
+        const topThemes = Object.entries(artThemes)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 4);
         const topMoods = Object.entries(artMoods)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 3);
-        if (topSettings.length) {
+        if (topThemes.length) {
             html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1 mt-2">Art Direction (${artGames.length} games)</p>`;
-            html += `<div class="flex flex-wrap gap-1 mb-1">${topSettings.map(([s, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(s)} (${c})</span>`).join('')}</div>`;
+            html += `<div class="flex flex-wrap gap-1 mb-1">${topThemes.map(([s, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(s)} (${c})</span>`).join('')}</div>`;
             if (topMoods.length) {
                 html += `<div class="flex flex-wrap gap-1 mb-2">${topMoods.map(([m, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300">${escapeHtml(m)} (${c})</span>`).join('')}</div>`;
             }
@@ -780,7 +780,7 @@ function generateSmartResponse(question) {
 function handleArtQuery(question) {
     const lo = question.toLowerCase();
     const games = allGames();
-    const artGames = games.filter(g => F.artSetting(g));
+    const artGames = games.filter(g => F.artTheme(g));
     if (artGames.length < 5) return null;
 
     const theme = findThemeInQ(question);
@@ -801,7 +801,7 @@ function handleArtQuery(question) {
             .slice(0, 6);
     };
 
-    const settings = tally(g => F.artSetting(g));
+    const artThemeList = tally(g => F.artTheme(g));
     const moods = tally(g => F.artMood(g));
     const chars = tally(g => F.artCharacters(g)).filter(([n]) => n !== 'No Characters (symbol-only game)');
     const elements = tally(g => F.artElements(g));
@@ -819,8 +819,8 @@ function handleArtQuery(question) {
             )
             .join('');
 
-    if (settings.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Settings</p><div class="flex flex-wrap gap-1 mb-2">${pills(settings)}</div>`;
+    if (artThemeList.length)
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Themes</p><div class="flex flex-wrap gap-1 mb-2">${pills(artThemeList)}</div>`;
     if (moods.length)
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Mood</p><div class="flex flex-wrap gap-1 mb-2">${pills(moods)}</div>`;
     if (chars.length)

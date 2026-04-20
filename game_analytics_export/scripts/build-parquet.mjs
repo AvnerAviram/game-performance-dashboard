@@ -134,11 +134,18 @@ async function main() {
             max_win_confidence: conf.max_win_confidence || null,
             min_bet_confidence: conf.min_bet_confidence || null,
             max_bet_confidence: conf.max_bet_confidence || null,
-            art_setting: art.art_setting || null,
+            art_theme: art.art_theme || null,
             art_characters: art.art_characters ? JSON.stringify(art.art_characters) : null,
             art_elements: art.art_elements ? JSON.stringify(art.art_elements) : null,
             art_mood: art.art_mood || null,
             art_narrative: art.art_narrative || null,
+            art_style: art.art_style || null,
+            art_color_tone: art.art_color_tone || null,
+            art_confidence: art.art_confidence || null,
+            data_confidence: game.data_confidence || null,
+            extraction_date: game.extraction_date || null,
+            html_rules_available: !!game.html_rules_available,
+            original_release_date_source: game.original_release_date_source || null,
         };
     });
 

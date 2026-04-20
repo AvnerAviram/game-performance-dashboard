@@ -1,0 +1,30 @@
+{
+  "pipeline_version": "v11.5",
+  "model": "claude-sonnet-4-20250514",
+  "dimensions": [
+    "art_theme",
+    "art_theme_secondary",
+    "art_color_tone",
+    "art_characters",
+    "art_elements",
+    "art_narrative",
+    "is_branded"
+  ],
+  "scored_dimensions": [
+    "art_theme",
+    "art_color_tone",
+    "art_characters",
+    "art_elements"
+  ],
+  "accuracy_targets": {
+    "art_theme": 0.97,
+    "art_color_tone": 0.97,
+    "art_characters": 0.97,
+    "art_elements": 0.9
+  },
+  "element_vocab_version": "3.0",
+  "use_masking": true,
+  "use_theme_hints": true,
+  "use_desc_crossref": true,
+  "use_vision": true
+}

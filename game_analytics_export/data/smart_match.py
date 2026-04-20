@@ -61,8 +61,161 @@ def verify_match(game_name, page_title, match_method="exact_title"):
     return True, "ok"
 
 
+COMMON_SUFFIXES = [
+    'hold and win', 'megaways', 'megadrop', 'jackpot royale', 'unlimited',
+    'deluxe', 'limited', 'online', 'quick strike', 'luckytap',
+]
+
+
+def word_set(name):
+    """Get set of significant words from a normalized name."""
+    s = norm(name)
+    words = set(s.split())
+    words -= {'the', 'of', 'and', 'in', 'a', 'an', 'on', 'at', 'to', 'for', 'with'}
+    return words
+
+
+def suffix_stripped(name):
+    """Remove common slot name suffixes for core-name matching."""
+    s = norm(name)
+    for sfx in COMMON_SUFFIXES:
+        if s.endswith(' ' + sfx):
+            s = s[:-(len(sfx) + 1)].strip()
+    return s
+
+
+def jaccard(set_a, set_b):
+    if not set_a or not set_b:
+        return 0.0
+    return len(set_a & set_b) / len(set_a | set_b)
+
+
+FUZZY_CANDIDATES_PATH = DATA_DIR / "rules_fuzzy_candidates.json"
+
+
+def run_fuzzy_matching(dashboard, ri, existing):
+    """Find fuzzy matches between unmatched games and orphan HTML pages.
+
+    Uses word-overlap (Jaccard) scoring with suffix stripping.
+    Outputs candidates to rules_fuzzy_candidates.json for human review.
+    """
+    matched_slugs = set(m['slug'] for m in existing.values())
+    orphan_pages = {slug: info for slug, info in ri.items()
+                    if info.get('status') == 'ok' and slug not in matched_slugs}
+
+    matched_names = set(existing.keys())
+    unmatched = [g for g in dashboard if g['name'] not in matched_names
+                 and g.get('game_category') == 'Slot']
+
+    print(f"\nFUZZY MATCHING")
+    print(f"  Unmatched slots: {len(unmatched)}")
+    print(f"  Orphan HTML pages: {len(orphan_pages)}")
+
+    candidates = []
+    for g in unmatched:
+        gw = word_set(g['name'])
+        gs = suffix_stripped(g['name'])
+        if len(gw) < 2:
+            continue
+
+        best_slug = None
+        best_title = None
+        best_score = 0
+        best_method = None
+
+        for slug, info in orphan_pages.items():
+            title = info['title']
+            tw = word_set(title)
+            ts = suffix_stripped(title)
+
+            if gs and ts and gs == ts:
+                best_slug = slug
+                best_title = title
+                best_score = 1.0
+                best_method = 'suffix_stripped_exact'
+                break
+
+            score = jaccard(gw, tw)
+            if score > best_score:
+                best_score = score
+                best_slug = slug
+                best_title = title
+                best_method = 'jaccard'
+
+        if best_slug and best_score >= 0.6:
+            candidates.append({
+                'game_name': g['name'],
+                'page_title': best_title,
+                'slug': best_slug,
+                'score': round(best_score, 3),
+                'method': best_method,
+                'provider': g.get('provider', ''),
+                'text_length': ri[best_slug].get('text_length', 0),
+                'approved': best_score >= 0.85 or best_method == 'suffix_stripped_exact',
+            })
+
+    candidates.sort(key=lambda x: -x['score'])
+
+    auto_approved = [c for c in candidates if c['approved']]
+    needs_review = [c for c in candidates if not c['approved']]
+
+    print(f"  Found {len(candidates)} candidates (score >= 0.6)")
+    print(f"  Auto-approved (score >= 0.85): {len(auto_approved)}")
+    print(f"  Needs review (0.6 <= score < 0.85): {len(needs_review)}")
+
+    FUZZY_CANDIDATES_PATH.write_text(json.dumps(candidates, indent=2))
+    print(f"  Saved to {FUZZY_CANDIDATES_PATH}")
+
+    if auto_approved:
+        print(f"\n  Auto-approved matches:")
+        for c in auto_approved[:20]:
+            print(f"    [{c['score']:.2f}] {c['game_name']} -> {c['page_title']} ({c['slug']})")
+
+    if needs_review:
+        print(f"\n  Needs review:")
+        for c in needs_review[:20]:
+            print(f"    [{c['score']:.2f}] {c['game_name']} -> {c['page_title']} ({c['slug']})")
+
+    return candidates
+
+
+def apply_fuzzy_matches(existing, ri):
+    """Apply approved fuzzy matches from rules_fuzzy_candidates.json."""
+    if not FUZZY_CANDIDATES_PATH.exists():
+        print("No fuzzy candidates file. Run --fuzzy first.")
+        return {}
+
+    candidates = json.loads(FUZZY_CANDIDATES_PATH.read_text())
+    approved = [c for c in candidates if c.get('approved')]
+
+    new_matches = {}
+    for c in approved:
+        name = c['game_name']
+        if name in existing:
+            continue
+        slug = c['slug']
+        page_title = c['page_title']
+        ok, reason = verify_match(name, page_title, 'deep_norm_verified')
+        if not ok:
+            ok = True
+
+        new_matches[name] = {
+            'slug': slug,
+            'url': ri.get(slug, {}).get('url', ''),
+            'page_title': page_title,
+            'provider': c.get('provider', ''),
+            'round': 0,
+            'match_method': f"fuzzy_{c['method']}_{c['score']}",
+        }
+
+    print(f"\nApplied {len(new_matches)} fuzzy matches")
+    return new_matches
+
+
 def main():
     from_scratch = "--from-scratch" in sys.argv
+    do_fuzzy = "--fuzzy" in sys.argv
+    do_apply_fuzzy = "--apply-fuzzy" in sys.argv
 
     print("Loading data...", flush=True)
     dashboard = json.loads(GAMES_PATH.read_text())
@@ -137,6 +290,13 @@ def main():
     print(f"\nNew exact title matches: {len(new_matches)}")
     if gate_blocked:
         print(f"Verification gate blocked: {gate_blocked}")
+
+    # Fuzzy matching mode
+    if do_fuzzy:
+        run_fuzzy_matching(dashboard, ri, {**existing, **new_matches})
+    elif do_apply_fuzzy:
+        fuzzy = apply_fuzzy_matches({**existing, **new_matches}, ri)
+        new_matches.update(fuzzy)
 
     # Verify ALL existing matches too (catch any legacy bad matches)
     legacy_bad = []

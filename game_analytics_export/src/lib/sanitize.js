@@ -41,6 +41,14 @@ export function sanitizeUrl(url) {
 }
 
 /**
+ * Wrap content with a data-xray attribute for X-Ray provenance inspection.
+ * The content is NOT escaped here — caller must pre-escape it.
+ */
+export function xray(game, field, content) {
+    return `<span data-xray='${escapeAttr(JSON.stringify({ game, field }))}'>${content}</span>`;
+}
+
+/**
  * Build a safe onclick handler string for use in HTML templates.
  * Escapes the value for both JS string context and HTML attribute context.
  */

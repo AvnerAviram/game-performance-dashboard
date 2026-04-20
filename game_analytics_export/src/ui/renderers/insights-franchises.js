@@ -1,6 +1,6 @@
 import { getActiveGames } from '../../lib/data.js';
 import { F } from '../../lib/game-fields.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { parseFeatures } from '../../lib/parse-features.js';
 import { SHORT_FEATURE_LABELS } from '../../lib/features.js';
 import { log } from '../../lib/env.js';
@@ -80,12 +80,14 @@ export function renderFranchiseIntelligence(container) {
     let html = '';
 
     html += `<div class="grid grid-cols-2 gap-4 mb-6">
-    <div class="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 rounded-lg p-4 border border-violet-200 dark:border-violet-800">
+    <div class="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 rounded-lg p-4 border border-violet-200 dark:border-violet-800"
+         data-xray='${escapeAttr(JSON.stringify({ dimension: 'franchise', value: 'summary_licensed_ips', metric: 'franchise_ip_count', displayValue: String(ipCount) }))}'>
       <div class="text-[10px] font-bold uppercase tracking-wide text-violet-600 dark:text-violet-400 mb-1">Licensed IPs</div>
       <div class="text-2xl font-black text-violet-700 dark:text-violet-300">${licensedIps.length}</div>
       <div class="text-xs text-gray-500 dark:text-gray-400">${ipCount} games · Avg Theo ${ipAvg.toFixed(2)}</div>
     </div>
-    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800"
+         data-xray='${escapeAttr(JSON.stringify({ dimension: 'franchise', value: 'summary_brands', metric: 'franchise_brand_count', displayValue: String(famCount) }))}'>
       <div class="text-[10px] font-bold uppercase tracking-wide text-blue-600 dark:text-blue-400 mb-1">Brands</div>
       <div class="text-2xl font-black text-blue-700 dark:text-blue-300">${gameFamilies.length}</div>
       <div class="text-xs text-gray-500 dark:text-gray-400">${famCount} games · Avg Theo ${famAvg.toFixed(2)}</div>
@@ -105,6 +107,7 @@ export function renderFranchiseIntelligence(container) {
             .map(
                 t => `
           <div class="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg p-3 border border-emerald-200 dark:border-emerald-800 cursor-pointer hover:shadow-md transition-shadow"
+               data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.theme }))}'
                onclick="${safeOnclick('window.showThemeDetails', t.theme)}">
             <div class="text-sm font-bold text-gray-900 dark:text-white">${escapeHtml(t.theme)}</div>
             <div class="text-xs text-gray-500 dark:text-gray-400">${t.count} games · Avg Theo ${t.avgTheo.toFixed(2)}</div>
@@ -282,26 +285,35 @@ function buildFranchiseRows(franchises) {
                     : '<span class="px-1.5 py-0.5 text-[9px] font-bold rounded bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 cursor-help" title="Game Brand: an organic series of sequels sharing a name (e.g. Book of Dead, Starburst, Gonzo\'s Quest)">Brand</span>';
             const vsColor = f.vsMedian >= 0 ? 'text-emerald-600' : 'text-red-500';
             const vsArrow = f.vsMedian >= 0 ? '▲' : '▼';
+            const vsMedianStr = `${vsArrow} ${Math.abs(f.vsMedian).toFixed(0)}%`;
+            const shareStr = `${f.totalShare.toFixed(2)}%`;
+            const avgTheoStr = f.avgTheo.toFixed(2);
             const overflowCls = rank >= INITIAL_SHOW ? ' franchise-overflow hidden' : '';
             return `
           <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors cursor-pointer${overflowCls}"
               onclick="document.getElementById('${rowId}').classList.toggle('hidden')">
             <td class="py-2.5 px-3 text-gray-400 font-medium">${medal}${rank + 1}</td>
-            <td class="py-2.5 px-3 font-bold text-gray-900 dark:text-white">
+            <td class="py-2.5 px-3 font-bold text-gray-900 dark:text-white"
+                data-xray='${escapeAttr(JSON.stringify({ dimension: 'franchise', value: f.franchise }))}'>
               <span class="flex items-center gap-1">${escapeHtml(f.franchise)}
                 <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </span>
             </td>
             <td class="py-2.5 px-3">${typeBadge}</td>
-            <td class="py-2.5 px-3 text-right text-gray-600 dark:text-gray-300">${f.count}</td>
-            <td class="py-2.5 px-3 text-right font-semibold text-gray-900 dark:text-white">${f.avgTheo.toFixed(2)}</td>
-            <td class="py-2.5 px-3 text-right font-medium ${vsColor}">${vsArrow} ${Math.abs(f.vsMedian).toFixed(0)}%</td>
-            <td class="py-2.5 px-3 text-right text-gray-600 dark:text-gray-300">${f.totalShare.toFixed(2)}%</td>
+            <td class="py-2.5 px-3 text-right text-gray-600 dark:text-gray-300"
+                data-xray='${escapeAttr(JSON.stringify({ metric: 'game_count', dimension: 'franchise', value: f.franchise, displayValue: String(f.count) }))}'>${f.count}</td>
+            <td class="py-2.5 px-3 text-right font-semibold text-gray-900 dark:text-white"
+                data-xray='${escapeAttr(JSON.stringify({ metric: 'avg_theo_win', dimension: 'franchise', value: f.franchise, displayValue: avgTheoStr }))}'>${avgTheoStr}</td>
+            <td class="py-2.5 px-3 text-right font-medium ${vsColor}"
+                data-xray='${escapeAttr(JSON.stringify({ metric: 'vs_median_pct', dimension: 'franchise', value: f.franchise, displayValue: vsMedianStr }))}'>${vsMedianStr}</td>
+            <td class="py-2.5 px-3 text-right text-gray-600 dark:text-gray-300"
+                data-xray='${escapeAttr(JSON.stringify({ metric: 'market_share', dimension: 'franchise', value: f.franchise, displayValue: shareStr }))}'>${shareStr}</td>
             <td class="py-2.5 px-3 text-gray-500 dark:text-gray-400 text-xs">${f.providers
                 .slice(0, 2)
                 .map(p => escapeHtml(p))
                 .join(', ')}${f.providers.length > 2 ? ` +${f.providers.length - 2}` : ''}</td>
             <td class="py-2.5 px-3 text-xs text-gray-500 dark:text-gray-400 truncate max-w-[150px] cursor-pointer hover:text-indigo-600"
+                data-xray='${escapeAttr(JSON.stringify({ game: f.topGame?.name || '', field: 'name' }))}'
                 onclick="event.stopPropagation();${safeOnclick('window.showGameDetails', f.topGame?.name || '')}"
                 title="${escapeHtml(f.topGame?.name || '')}">${escapeHtml(f.topGame?.name || '')}</td>
           </tr>
@@ -375,15 +387,15 @@ function buildGameRows(f) {
                     ? `${g.specs_reels || g.reels}×${g.specs_rows || g.rows}`
                     : '';
             const rtp = F.rtp(g);
-            const year = F.originalReleaseYear(g);
+            const year = F.releaseYear(g);
             const provider = F.provider(g);
             const ps = getProviderStyle(provider);
-            const artSetting = F.artSetting(g);
+            const artTheme = F.artTheme(g);
             const artMood = F.artMood(g);
 
             const artTags = [
-                artSetting
-                    ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-300">🎨 ${escapeHtml(artSetting)}</span>`
+                artTheme
+                    ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-300">🎨 ${escapeHtml(artTheme)}</span>`
                     : '',
                 artMood
                     ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-300">🎭 ${escapeHtml(artMood)}</span>`
@@ -394,6 +406,7 @@ function buildGameRows(f) {
 
             return `
       <div class="flex items-center gap-3 py-2.5 px-4 hover:bg-white dark:hover:bg-gray-700/40 cursor-pointer transition-colors ${idx > 0 ? 'border-t border-gray-100 dark:border-gray-700/40' : ''}"
+           data-xray='${escapeAttr(JSON.stringify({ game: g.name || '', field: 'name' }))}'
            onclick="${safeOnclick('window.showGameDetails', g.name || '')}">
         <div class="text-[10px] text-gray-300 dark:text-gray-600 w-4 text-right shrink-0 font-medium">${idx + 1}</div>
         <div class="min-w-0 flex-1">

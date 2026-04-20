@@ -2,7 +2,7 @@
  * Theme × feature combo explorer (pair/triple/quadruple within themes).
  */
 import { getActiveGames } from '../../lib/data.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { parseFeatsLocal } from './overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
 
@@ -135,12 +135,13 @@ export function renderComboExplorer(comboDiv) {
                                 : c.feats.length === 3
                                   ? 'bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400'
                                   : 'bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400';
+                        const themeName = c.theme;
                         return `
-                    <div class="group flex items-start gap-2 p-2 rounded-lg hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all">
+                    <div class="group flex items-start gap-2 p-2 rounded-lg hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: themeName }))}'>
                         <span class="shrink-0 mt-0.5 w-5 text-center">${medal}</span>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center gap-1.5 mb-1">
-                                <span class="text-[10px] font-bold text-gray-900 dark:text-white cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', c.theme)}">${escapeHtml(c.theme)}</span>
+                                <span class="text-[10px] font-bold text-gray-900 dark:text-white cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', themeName)}">${escapeHtml(themeName)}</span>
                                 <span class="text-[8px] font-bold px-1.5 py-0.5 rounded-full ${sizeBg}">${sizeLabel}</span>
                             </div>
                             <div class="flex flex-wrap gap-1 mb-1">

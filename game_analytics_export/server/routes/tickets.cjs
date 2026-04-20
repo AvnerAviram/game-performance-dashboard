@@ -13,7 +13,23 @@ const APP_VERSION = (() => {
 })();
 
 const MAX_FIELD_LEN = 500;
-const VALID_ISSUE_TYPES = ['data-issue', 'ui-bug', 'feature-request', 'other'];
+const VALID_ISSUE_TYPES = ['data-issue', 'data-correction', 'ui-bug', 'feature-request', 'other'];
+
+const CORRECTION_FIELDS = [
+    'gameId',
+    'fieldPath',
+    'currentValue',
+    'proposedValue',
+    'sourceEvidence',
+    'sourceUrl',
+    'diagnosis',
+];
+
+function sanitizeStr(val, max) {
+    if (val == null) return undefined;
+    if (typeof val !== 'string') return String(val).slice(0, max);
+    return val.trim().slice(0, max);
+}
 
 router.get('/api/tickets', requireAuth, (req, res) => {
     try {
@@ -38,6 +54,27 @@ router.post('/api/tickets', requireAuth, (req, res) => {
         }
         const safeIssueType = VALID_ISSUE_TYPES.includes(issueType) ? issueType : 'data-issue';
         const tickets = loadTickets();
+
+        // Dedup: if a data-correction ticket already exists for the same game+field, update it
+        if (safeIssueType === 'data-correction' && req.body.fieldPath) {
+            const existing = tickets.find(
+                t =>
+                    t.issueType === 'data-correction' &&
+                    t.status === 'open' &&
+                    t.gameName === gameName.trim() &&
+                    t.fieldPath === req.body.fieldPath
+            );
+            if (existing) {
+                existing.description = description.trim();
+                existing.proposedValue = sanitizeStr(req.body.proposedValue, MAX_FIELD_LEN);
+                existing.sourceEvidence = sanitizeStr(req.body.sourceEvidence, MAX_FIELD_LEN);
+                existing.updatedAt = new Date().toISOString();
+                existing.updatedBy = req.session.user.username;
+                saveTickets(tickets);
+                return res.status(200).json(existing);
+            }
+        }
+
         const ticket = {
             id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
             gameName: gameName.trim(),
@@ -48,6 +85,14 @@ router.post('/api/tickets', requireAuth, (req, res) => {
             createdAt: new Date().toISOString(),
             appVersion: APP_VERSION,
         };
+
+        if (safeIssueType === 'data-correction') {
+            for (const f of CORRECTION_FIELDS) {
+                const val = sanitizeStr(req.body[f], MAX_FIELD_LEN);
+                if (val !== undefined) ticket[f] = val;
+            }
+        }
+
         tickets.push(ticket);
         saveTickets(tickets);
         res.status(201).json(ticket);
@@ -57,7 +102,7 @@ router.post('/api/tickets', requireAuth, (req, res) => {
     }
 });
 
-const VALID_STATUSES = ['open', 'in-progress', 'resolved', 'closed', 'archived'];
+const VALID_STATUSES = ['open', 'in-progress', 'resolved', 'closed', 'archived', 'approved'];
 
 router.patch('/api/tickets/bulk', requireAdmin, (req, res) => {
     try {

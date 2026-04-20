@@ -10,7 +10,7 @@
                     Art Insights
                 </h2>
                 <p id="art-subtitle" class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                    Visual design analysis across environments, mood & tone, characters and elements
+                    Visual design analysis across themes, mood & tone, characters and elements
                 </p>
             </div>
             <div class="relative -mr-1 flex items-center">
@@ -84,7 +84,7 @@
     </div>
 
     <!-- Coverage Stats Bar -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
             <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
                 Art Coverage
@@ -92,10 +92,8 @@
             <div id="art-stat-coverage" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
-            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
-                Environments
-            </div>
-            <div id="art-stat-settings" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Themes</div>
+            <div id="art-stat-themes" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
         </div>
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
             <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Moods</div>
@@ -106,6 +104,18 @@
                 Avg Performance Index
             </div>
             <div id="art-stat-avg-theo" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Art Styles
+            </div>
+            <div id="art-stat-styles" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
+        </div>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
+            <div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">
+                Color Tones
+            </div>
+            <div id="art-stat-color-tones" class="text-2xl font-bold text-gray-900 dark:text-white">--</div>
         </div>
     </div>
 
@@ -134,16 +144,16 @@
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
-                                Each bubble is one art <strong>environment</strong> (e.g. Ancient Temple, Enchanted
-                                Forest). <strong>X-axis</strong> = number of games with this environment.
-                                <strong>Y-axis</strong> = average Performance Index (performance).
-                                <strong>Bubble size</strong> = game count. <br /><br />
+                                Each bubble is one art <strong>theme</strong> (e.g. Ancient Temple, Fantasy/Fairy Tale).
+                                <strong>X-axis</strong> = number of games with this theme. <strong>Y-axis</strong> =
+                                average Performance Index (performance). <strong>Bubble size</strong> = game count.
+                                <br /><br />
                                 <strong>💎 Top-left</strong> = high performance, few games — best opportunities.
                             </div>
                         </div>
                     </div>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        All art environments — find high-performing niches with low competition
+                        All art themes — find high-performing niches with low competition
                     </p>
                 </div>
                 <select
@@ -199,9 +209,9 @@
         </div>
     </div>
 
-    <!-- Art Environments & Moods (side-by-side) -->
+    <!-- Art Themes & Moods (side-by-side) -->
     <div class="grid md:grid-cols-2 gap-6 mb-6">
-        <!-- Art Environments -->
+        <!-- Art Themes -->
         <div
             class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
             style="overflow: visible"
@@ -213,7 +223,7 @@
                     >
                         🌍
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Art Environments</h3>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Art Themes</h3>
                     <div class="relative group">
                         <button
                             class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
@@ -223,19 +233,19 @@
                         <div
                             class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
                         >
-                            Top art environments by game count. Click any bar to see games with that environment.
+                            Top art themes by game count. Click any bar to see games with that theme.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="p-6 pb-2" style="height: 380px; min-height: 380px">
                 <canvas
-                    id="art-settings-chart"
+                    id="art-themes-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
-            <div class="px-6 pb-4" id="art-settings-trend-legend"></div>
+            <div class="px-6 pb-4" id="art-themes-trend-legend"></div>
         </div>
 
         <!-- Mood & Tone -->
@@ -268,6 +278,47 @@
             <div class="p-6" style="height: 380px; min-height: 380px">
                 <canvas
                     id="art-mood-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Art Style & Color Tone -->
+    <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <!-- Art Style Distribution -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+        >
+            <div class="p-6 pb-3">
+                <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    🎨 Art Style Distribution
+                </h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Visual rendering approach across games</p>
+            </div>
+            <div class="px-6 pb-6" style="height: 250px; min-height: 250px">
+                <canvas
+                    id="art-styles-chart"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+
+        <!-- Color Tone Distribution -->
+        <div
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+        >
+            <div class="p-6 pb-3">
+                <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    🌈 Color Tone Distribution
+                </h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Dominant color palettes across games</p>
+            </div>
+            <div class="px-6 pb-6" style="height: 250px; min-height: 250px">
+                <canvas
+                    id="art-color-tone-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
@@ -417,14 +468,14 @@
                         </div>
                     </div>
                     <p id="art-trend-subtitle" class="text-sm text-gray-500 dark:text-gray-400">
-                        How art environments are trending year over year
+                        How art themes are trending year over year
                     </p>
                 </div>
                 <select
                     id="art-trend-dimension"
                     class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-xs focus:ring-2 focus:ring-indigo-500 cursor-pointer shrink-0"
                 >
-                    <option value="environment">Environments</option>
+                    <option value="environment">Themes</option>
                     <option value="mood">Moods</option>
                     <option value="elements">Elements</option>
                     <option value="characters">Characters</option>
@@ -434,6 +485,58 @@
         </div>
         <div class="p-6" style="height: 420px; min-height: 420px">
             <canvas id="art-trend-chart" class="w-full block" style="display: block; box-sizing: border-box"></canvas>
+        </div>
+    </div>
+
+    <!-- Blue Ocean Opportunities -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
+        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-cyan-100 to-blue-100 dark:from-cyan-900/40 dark:to-blue-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
+                >
+                    🌊
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-1.5">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Blue Ocean Opportunities</h3>
+                        <div class="relative group">
+                            <button
+                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-cyan-100 hover:text-cyan-600 flex items-center justify-center text-[9px] font-bold cursor-help"
+                            >
+                                ?
+                            </button>
+                            <div
+                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                                <strong class="text-gray-900 dark:text-white block mb-1"
+                                    >High performance, low competition</strong
+                                >
+                                Each bubble is a <strong>Theme + Mood</strong> combo. Top-right quadrant = strong
+                                performer with few games — the blue ocean. Bottom-right = uncrowded but weak
+                                performance. Top-left = proven but crowded (red ocean).<br /><br />
+                                <strong class="text-gray-900 dark:text-white block mb-1 mt-1">Axes</strong>
+                                X: Competition (game count, inverted — right = fewer games).<br />
+                                Y: Performance Index (higher = better).<br />
+                                Size: Market share footprint.<br /><br />
+                                <span class="text-cyan-500 dark:text-cyan-400">Click any bubble</span> to see matching
+                                games.
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Art combos with the best performance and fewest competitors
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 relative" style="height: 520px; min-height: 520px">
+            <canvas
+                id="art-blue-ocean-chart"
+                class="w-full block"
+                style="display: block; box-sizing: border-box"
+            ></canvas>
+            <div id="art-blue-ocean-tooltip" class="hidden absolute z-50 pointer-events-none"></div>
         </div>
     </div>
 
@@ -460,8 +563,8 @@
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Why this works</strong>
                                 Successful games share repeatable art DNA — specific
-                                <strong>Environment + Mood</strong> combos that consistently outperform. Recipes surface
-                                these proven patterns and reveal gaps where few games exist but performance is high.<br /><br />
+                                <strong>Theme + Mood</strong> combos that consistently outperform. Recipes surface these
+                                proven patterns and reveal gaps where few games exist but performance is high.<br /><br />
                                 <strong class="text-gray-900 dark:text-white block mb-1 mt-1">How to read</strong>
                                 Each row is a complete recipe with characters, elements, narrative, specs (volatility,
                                 layout, RTP), and trend direction. 💎 marks high-performing combos with ≤15 games —
@@ -472,7 +575,7 @@
                         </div>
                     </div>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Complete art direction recipes — environment, mood, characters, elements, narrative
+                        Complete art direction recipes — theme, mood, characters, elements, narrative
                     </p>
                 </div>
                 <select
@@ -514,14 +617,13 @@
                                 <strong class="text-gray-900 dark:text-white block mb-1"
                                     >Provider specialization</strong
                                 >
-                                Which providers focus on which art environments and moods, based on their portfolio.
-                                Shows their best-performing environment and signature mood. Click a card to explore that
-                                environment.
+                                Which providers focus on which art themes and moods, based on their portfolio. Shows
+                                their best-performing theme and signature mood. Click a card to explore that theme.
                             </div>
                         </div>
                     </div>
                     <p class="text-sm text-gray-500 dark:text-gray-400">
-                        Art environment and mood specialization by provider
+                        Art theme and mood specialization by provider
                     </p>
                 </div>
             </div>
@@ -547,7 +649,7 @@
                         <div
                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                         >
-                            Environment+Mood combos with above-average Performance Index and low game count, ranked by
+                            Theme+Mood combos with above-average Performance Index and low game count, ranked by
                             opportunity score.
                         </div>
                     </div>

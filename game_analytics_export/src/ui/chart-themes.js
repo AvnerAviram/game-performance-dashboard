@@ -2,6 +2,7 @@
 import { Chart } from './chart-setup.js';
 import { getActiveGames, getActiveThemes, getActiveMechanics } from '../lib/data.js';
 import { parseFeatures } from '../lib/parse-features.js';
+import { calculateSmartIndex } from '../lib/metrics.js';
 import { log } from '../lib/env.js';
 import {
     generateModernColors,
@@ -12,7 +13,13 @@ import {
     getModernGridConfig,
     createXWarp,
     bubbleScaleOptionsWarped,
+    quadrantBgColor,
     quadrantBorderColor,
+    quadrantLabel,
+    median,
+    createQuadrantPlugin,
+    createSABubbleLabelPlugin,
+    createSAHoverHandler,
     needsLeaderLine,
     snapLabelToBubble,
     injectCoveragePill,
@@ -61,6 +68,7 @@ export function createThemesChart() {
             maintainAspectRatio: false,
             layout: { padding: { right: 8 } },
             onClick: (e, elements) => {
+                if (window.xrayActive) return;
                 if (elements.length && window.showThemeDetails) {
                     const idx = elements[0].index;
                     const theme = top10[idx]?.Theme;
@@ -122,9 +130,14 @@ function consolidateMechanicsByCanonicalName(mechanics) {
         byCanonical[canonical]['Game Count'] += gc;
         byCanonical[canonical].totalTheoWin += (m['Avg Theo Win Index'] || m.avg_theo_win || 0) * gc;
     });
-    return Object.values(byCanonical)
-        .map(m => ({ ...m, 'Avg Theo Win Index': m['Game Count'] > 0 ? m.totalTheoWin / m['Game Count'] : 0 }))
-        .sort((a, b) => b['Game Count'] - a['Game Count'])
+    const rows = Object.values(byCanonical).map(m => ({
+        ...m,
+        'Avg Theo Win Index': m['Game Count'] > 0 ? m.totalTheoWin / m['Game Count'] : 0,
+    }));
+    const globalAvg = rows.reduce((s, r) => s + (r['Avg Theo Win Index'] || 0), 0) / (rows.length || 1);
+    return rows
+        .map(m => ({ ...m, 'Smart Index': calculateSmartIndex(m['Avg Theo Win Index'], m['Game Count'], globalAvg) }))
+        .sort((a, b) => b['Smart Index'] - a['Smart Index'])
         .slice(0, 10);
 }
 
@@ -148,8 +161,8 @@ export function createMechanicsChart() {
             labels: mechanicData.map(m => m.Mechanic),
             datasets: [
                 {
-                    label: 'Games',
-                    data: mechanicData.map(m => m['Game Count']),
+                    label: 'Performance Index',
+                    data: mechanicData.map(m => m['Smart Index']),
                     backgroundColor: generateModernColors(ctx, 10),
                     borderWidth: 0,
                     borderRadius: 6,
@@ -164,6 +177,7 @@ export function createMechanicsChart() {
             maintainAspectRatio: false,
             layout: { padding: { right: 8 } },
             onClick: (e, elements) => {
+                if (window.xrayActive) return;
                 if (elements.length && window.showMechanicDetails) {
                     const idx = elements[0].index;
                     const mechanic = mechanicData[idx]?.Mechanic;
@@ -185,12 +199,12 @@ export function createMechanicsChart() {
                             return `⚙️ ${mechanicData[tooltipItems[0].dataIndex].Mechanic}`;
                         },
                         label: tooltipItem => {
-                            return `Games: ${tooltipItem.parsed.x}`;
+                            return `Performance Index: ${tooltipItem.parsed.x.toFixed(2)}`;
                         },
                         afterBody: tooltipItems => {
                             const mechanic = mechanicData[tooltipItems[0].dataIndex];
                             const theoWin = mechanic['Avg Theo Win Index'] || mechanic['Avg Theoretical Win'] || 0;
-                            return [`Avg Performance Index: ${theoWin.toFixed(2)}`];
+                            return [`Games: ${mechanic['Game Count']}`, `Avg Performance Index: ${theoWin.toFixed(2)}`];
                         },
                     },
                 },
@@ -253,6 +267,7 @@ export function createGamesChart() {
             maintainAspectRatio: false,
             layout: { padding: { right: 8 } },
             onClick: (e, elements) => {
+                if (window.xrayActive) return;
                 if (elements.length && window.showGameDetails) {
                     const game = topGames[elements[0].index];
                     if (game?.name) window.showGameDetails(game.name);
@@ -329,118 +344,116 @@ export function createScatterChart() {
         const medX = xWarp.warpVal(rawMedX);
         const medY = [...yVals].sort((a, b) => a - b)[Math.floor(yVals.length / 2)] || 2;
 
+        const LABEL_COUNT = 20;
+        const majors = allThemes.slice(0, LABEL_COUNT);
+        const minors = allThemes.slice(LABEL_COUNT);
+
         const maxCount = Math.max(...xVals, 1);
-        const bubbleData = allThemes.map(t => {
+        const majorData = majors.map(t => {
             const x = t['Game Count'] || 0;
             const y = t['Avg Theo Win Index'] || 0;
-            const r = Math.max(5, Math.min(16, Math.sqrt(x / maxCount) * 14 + 3));
-            return { x: xWarp.warpVal(x), y, r };
+            const r = Math.max(6, Math.min(18, Math.sqrt(x / maxCount) * 14 + 4));
+            return { x: xWarp.warpVal(x), y, r, _label: t.Theme || '' };
         });
+        const majorLabels = majors.map(t => t.Theme || '');
+        const majorBorders = majorData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
 
-        const themeLabels = allThemes.map(t => t.Theme || '');
+        const clusters = [
+            { key: 'tl', items: [] },
+            { key: 'tr', items: [] },
+            { key: 'bl', items: [] },
+            { key: 'br', items: [] },
+        ];
+        for (const t of minors) {
+            const wx = xWarp.warpVal(t['Game Count'] || 0);
+            const wy = t['Avg Theo Win Index'] || 0;
+            const ci = wx < medX ? (wy >= medY ? 0 : 2) : wy >= medY ? 1 : 3;
+            clusters[ci].items.push(t);
+        }
+        const clusterData = [];
+        const clusterLabels = [];
+        for (const c of clusters) {
+            if (!c.items.length) continue;
+            const avgX = c.items.reduce((s, t) => s + xWarp.warpVal(t['Game Count'] || 0), 0) / c.items.length;
+            const avgY = c.items.reduce((s, t) => s + (t['Avg Theo Win Index'] || 0), 0) / c.items.length;
+            clusterData.push({ x: avgX, y: avgY, r: 12 + Math.sqrt(c.items.length) * 3 });
+            clusterLabels.push(`+${c.items.length}`);
+        }
 
-        const bgColors = bubbleData.map(d => {
-            if (d.y >= medY && d.x < medX) return 'rgba(16,185,129,0.65)';
-            if (d.y >= medY && d.x >= medX) return 'rgba(99,102,241,0.65)';
-            if (d.y < medY && d.x < medX) return 'rgba(156,163,175,0.55)';
-            return 'rgba(239,68,68,0.55)';
-        });
-        const borderColors = bubbleData.map(d => {
-            if (d.y >= medY && d.x < medX) return 'rgb(16,185,129)';
-            if (d.y >= medY && d.x >= medX) return 'rgb(99,102,241)';
-            if (d.y < medY && d.x < medX) return 'rgb(156,163,175)';
-            return 'rgb(239,68,68)';
-        });
-
-        log('[SCATTER] data sample:', JSON.stringify(bubbleData.slice(0, 3)));
-
-        const quadrantPlugin = {
-            id: 'quadrantLabels',
-            beforeDatasetsDraw(chart) {
-                const {
-                    ctx: c,
-                    chartArea: { left, right, top, bottom },
-                    scales: { x: xScale, y: yScale },
-                } = chart;
-                const mx = xScale.getPixelForValue(medX);
-                const my = yScale.getPixelForValue(medY);
-
-                c.save();
-                c.setLineDash([5, 4]);
-                c.lineWidth = 1;
-                c.strokeStyle = chartColors.gridColor || 'rgba(148,163,184,0.4)';
-                c.beginPath();
-                c.moveTo(mx, top);
-                c.lineTo(mx, bottom);
-                c.stroke();
-                c.beginPath();
-                c.moveTo(left, my);
-                c.lineTo(right, my);
-                c.stroke();
-                c.setLineDash([]);
-                c.restore();
+        const datasets = [
+            {
+                label: 'Themes',
+                data: majorData,
+                backgroundColor: majorData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
+                borderColor: majorBorders,
+                borderWidth: 1.5,
+                hoverRadius: 4,
             },
+        ];
+        if (clusterData.length) {
+            datasets.push({
+                label: `${minors.length} other themes`,
+                data: clusterData,
+                backgroundColor: 'rgba(148,163,184,0.15)',
+                borderColor: 'rgba(148,163,184,0.4)',
+                borderWidth: 1,
+                borderDash: [3, 2],
+                hoverRadius: 4,
+            });
+        }
+
+        const clusterLabelPlugin = {
+            id: 'themeClusterLabels',
             afterDatasetsDraw(chart) {
-                const {
-                    ctx: c,
-                    chartArea: { left, right, top, bottom },
-                    scales: { x: xScale, y: yScale },
-                } = chart;
-                const _mx = xScale.getPixelForValue(medX);
-                const _my = yScale.getPixelForValue(medY);
-                const pad = 8;
-
+                if (!clusterData.length) return;
+                const { ctx: c } = chart;
+                const meta1 = chart.getDatasetMeta(1);
+                if (!meta1?.data?.length) return;
                 c.save();
-                c.font = 'bold 10px Inter, system-ui, sans-serif';
-                c.globalAlpha = 0.55;
-
-                c.fillStyle = 'rgb(16,185,129)';
-                c.textAlign = 'left';
-                c.textBaseline = 'top';
-                c.fillText('💎 Opportunity', left + pad, top + pad);
-
-                c.fillStyle = 'rgb(99,102,241)';
-                c.textAlign = 'right';
-                c.textBaseline = 'top';
-                c.fillText('🏆 Leaders', right - pad, top + pad);
-
-                c.fillStyle = 'rgb(156,163,175)';
-                c.textAlign = 'left';
-                c.textBaseline = 'bottom';
-                c.fillText('🔍 Niche', left + pad, bottom - pad);
-
-                c.fillStyle = 'rgb(239,68,68)';
-                c.textAlign = 'right';
-                c.textBaseline = 'bottom';
-                c.fillText('⚠️ Saturated', right - pad, bottom - pad);
-
+                c.font = 'bold 11px Inter, system-ui, sans-serif';
+                c.textAlign = 'center';
+                c.textBaseline = 'middle';
+                c.fillStyle = 'rgba(100,116,139,0.7)';
+                meta1.data.forEach((pt, i) => {
+                    c.fillText(clusterLabels[i], pt.x, pt.y);
+                });
                 c.restore();
             },
         };
 
+        const saPlugin = createSABubbleLabelPlugin('themeScatterLabels', majorData, majorLabels, majorBorders);
+
         chartInstances.scatter = new Chart(ctx, {
             type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Themes',
-                        data: bubbleData,
-                        backgroundColor: bgColors,
-                        borderColor: borderColors,
-                        borderWidth: 1.5,
-                        hoverRadius: 4,
-                    },
-                ],
-            },
-            plugins: [quadrantPlugin],
+            data: { datasets },
+            plugins: [
+                createQuadrantPlugin('themeScatterQuadrant', medX, medY, chartColors),
+                saPlugin,
+                clusterLabelPlugin,
+            ],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: { duration: 600 },
+                onHover: createSAHoverHandler(),
                 onClick: (e, elements) => {
-                    if (elements.length && window.showThemeDetails) {
-                        const name = themeLabels[elements[0].index];
+                    if (window.xrayActive) return;
+                    if (elements.length && elements[0].datasetIndex === 0 && window.showThemeDetails) {
+                        const name = majorLabels[elements[0].index];
                         if (name) window.showThemeDetails(name);
+                        return;
+                    }
+                    if (!elements.length) {
+                        const chart = chartInstances.scatter;
+                        if (chart?._saFindLabel) {
+                            const rect = chart.canvas.getBoundingClientRect();
+                            const cx = e.native.clientX - rect.left;
+                            const cy = e.native.clientY - rect.top;
+                            const li = chart._saFindLabel(cx, cy);
+                            if (li >= 0 && majorLabels[li] && window.showThemeDetails) {
+                                window.showThemeDetails(majorLabels[li]);
+                            }
+                        }
                     }
                 },
                 layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
@@ -448,22 +461,16 @@ export function createScatterChart() {
                     legend: { display: false },
                     tooltip: {
                         ...getModernTooltipConfig(),
+                        filter: ti => ti.datasetIndex === 0,
                         callbacks: {
                             title: items => {
                                 const idx = items[0].dataIndex;
-                                return `🎨 ${stripParenthetical(themeLabels[idx])}`;
+                                return `🎨 ${stripParenthetical(majorLabels[idx])}`;
                             },
                             label: item => {
-                                const q =
-                                    item.parsed.y >= medY
-                                        ? item.parsed.x < medX
-                                            ? '💎 Opportunity'
-                                            : '🏆 Leader'
-                                        : item.parsed.x < medX
-                                          ? '🔍 Niche'
-                                          : '⚠️ Saturated';
-                                const t = allThemes[item.dataIndex];
-                                const gc = t ? t['Game Count'] || 0 : Math.round(item.parsed.x);
+                                const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
+                                const t = majors[item.dataIndex];
+                                const gc = t ? t['Game Count'] || 0 : 0;
                                 return `Games: ${gc}  |  Avg PI: ${item.parsed.y.toFixed(2)}  |  ${q}`;
                             },
                         },
@@ -486,12 +493,6 @@ export function createScatterChart() {
                 },
             },
         });
-
-        const scatterAllGames = getActiveGames();
-        const scatterWithTheme = scatterAllGames.filter(
-            g => F.themeConsolidated(g) && !/^unknown$/i.test(F.themeConsolidated(g))
-        );
-        // Coverage pill omitted on overview — shown on full insights page
 
         log(
             '[SCATTER] chart created:',
@@ -646,6 +647,7 @@ export function createMarketLandscapeChart(providerFilter) {
             y: warpY(sqrtY(t.yOrig)),
             r: rMin + Math.sqrt(t.count / maxCount) * (rMax - rMin),
             yOrig: t.yOrig,
+            _label: t.name,
         }));
         const majorLabels = majorThemes.map(t => t.name);
         const majorBg = majorData.map(d => quadrantColor(d.y, d.x).bg + '0.45)');
@@ -952,6 +954,7 @@ export function createMarketLandscapeChart(providerFilter) {
                 maintainAspectRatio: false,
                 animation: { duration: 400 },
                 onClick: (e, elements) => {
+                    if (window.xrayActive) return;
                     const chart = chartInstances.marketLandscape;
                     if (!chart) return;
                     if (!elements.length) return;
@@ -1080,6 +1083,7 @@ export function createMarketLandscapeChart(providerFilter) {
             },
         });
         canvas.addEventListener('click', e => {
+            if (window.xrayActive) return;
             const chart = chartInstances.marketLandscape;
             if (!chart) return;
             const hit = findLabelHit(e.clientX, e.clientY);

@@ -299,76 +299,12 @@
     "franchise": "Action Dragons",
     "franchise_type": "game_family"
   },
-  "game-0935-adventures_of_doubloon_island": {
-    "franchise": "Adventures",
-    "franchise_type": "game_family"
-  },
-  "game-3602-adventures_of_captain_blackjack": {
-    "franchise": "Adventures",
-    "franchise_type": "game_family"
-  },
   "game-0043-adventures_beyond_wonderland_live": {
     "franchise": "Adventures Beyond Wonderland",
     "franchise_type": "game_family"
   },
   "game-0060-adventures_beyond_wonderland": {
     "franchise": "Adventures Beyond Wonderland",
-    "franchise_type": "game_family"
-  },
-  "game-0449-age_of_the_gods_collect_em": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-1987-age_of_conquest_diamonds_and_dragons": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-2148-age_of_akkadia": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3126-age_of_egypt": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3590-age_of_conquest": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3754-age_of_beasts_infinity_reels": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-1342-age_of_the_gods_wheels_of_olympus": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-1847-age_of_the_gods_ruler_of_the_sky": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-2175-age_of_the_gods_wonder_warriors": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3050-age_of_the_gods_glorius_griffin": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3096-age_of_the_gods_maze_keeper": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3710-age_of_the_gods_furious_four": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-3846-age_of_the_gods": {
-    "franchise": "Age",
-    "franchise_type": "game_family"
-  },
-  "game-4144-age_of_the_gods_god_of_storms": {
-    "franchise": "Age",
     "franchise_type": "game_family"
   },
   "game-2174-alexander_the_great": {
@@ -851,110 +787,6 @@
     "franchise": "Bonus Island",
     "franchise_type": "game_family"
   },
-  "game-1086-book_of_dead": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-1916-book_of_halloween": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-2031-book_of_sevens": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-2290-book_of_the_sphinx": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-2585-book_of_the_irish": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-2866-book_of_oz": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-2915-book_of_captain_silver": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3020-book_of_christmas": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3022-book_of_kings": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3039-book_of_independence": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3081-book_of_toro": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3085-book_of_oktoberfest": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3191-book_of_sam": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3216-book_of_ra_deluxe_10_win_ways": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3306-book_of_blackeyes_bounty": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3398-book_of_fusion": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3400-book_of_99": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3500-book_of_atem": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3580-book_of_unseen": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3597-book_of_enchantments": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3698-book_of_deities": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-3729-book_of_the_full_moon": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-4331-book_of_itza": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-4370-book_of_souls_ii_el_dorado": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-4503-book_of_armadillo": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
-  "game-4518-book_of_relics_megadrop": {
-    "franchise": "Book",
-    "franchise_type": "game_family"
-  },
   "game-3281-bound_for_riches_egyptian_majesty": {
     "franchise": "Bound For Riches",
     "franchise_type": "game_family"
@@ -1189,14 +1021,6 @@
   },
   "game-2289-bullion_bars": {
     "franchise": "Bullion Bars",
-    "franchise_type": "game_family"
-  },
-  "game-0282-burn_in_hell_hold_and_win": {
-    "franchise": "Burn",
-    "franchise_type": "game_family"
-  },
-  "game-2411-burn_in_love": {
-    "franchise": "Burn",
     "franchise_type": "game_family"
   },
   "game-1746-burning_stars_3_halloween": {
@@ -1467,14 +1291,6 @@
     "franchise": "Coin Trio",
     "franchise_type": "game_family"
   },
-  "game-2389-coins_of_egypt": {
-    "franchise": "Coins",
-    "franchise_type": "game_family"
-  },
-  "game-3935-coins_of_fortune": {
-    "franchise": "Coins",
-    "franchise_type": "game_family"
-  },
   "game-1395-colt_lightning_firestorm": {
     "franchise": "Colt Lightning",
     "franchise_type": "game_family"
@@ -1742,14 +1558,6 @@
   "game-2420-deal_or_no_deal_whats_in_your_case": {
     "franchise": "Deal or No Deal",
     "franchise_type": "licensed_ip"
-  },
-  "game-3996-defenders_of_asgard": {
-    "franchise": "Defenders",
-    "franchise_type": "game_family"
-  },
-  "game-4375-defenders_of_the_realm": {
-    "franchise": "Defenders",
-    "franchise_type": "game_family"
   },
   "game-1165-demi_gods_5": {
     "franchise": "Demi Gods",
@@ -2067,22 +1875,6 @@
     "franchise": "Dragon Unleashed",
     "franchise_type": "game_family"
   },
-  "game-0207-dragons_of_arcane_wild": {
-    "franchise": "Dragons",
-    "franchise_type": "game_family"
-  },
-  "game-2103-dragons_of_the_north_megaways": {
-    "franchise": "Dragons",
-    "franchise_type": "game_family"
-  },
-  "game-2335-dragons_of_the_north": {
-    "franchise": "Dragons",
-    "franchise_type": "game_family"
-  },
-  "game-2467-dragons_of_the_north_deluxe": {
-    "franchise": "Dragons",
-    "franchise_type": "game_family"
-  },
   "game-1630-dragons_blessings_prosperity": {
     "franchise": "Dragons Blessings",
     "franchise_type": "game_family"
@@ -2159,14 +1951,6 @@
     "franchise": "El Dorado",
     "franchise_type": "game_family"
   },
-  "game-0531-empire_of_wilds": {
-    "franchise": "Empire",
-    "franchise_type": "game_family"
-  },
-  "game-4422-empire_of_dead": {
-    "franchise": "Empire",
-    "franchise_type": "game_family"
-  },
   "game-0079-european_roulette_vip": {
     "franchise": "European Roulette",
     "franchise_type": "game_family"
@@ -2213,18 +1997,6 @@
   },
   "game-3497-fate_of_the_8_power_wheel": {
     "franchise": "Fate Of The 8",
-    "franchise_type": "game_family"
-  },
-  "game-4458-fiesta_de_musica": {
-    "franchise": "Fiesta",
-    "franchise_type": "game_family"
-  },
-  "game-4524-fiesta_de_toros": {
-    "franchise": "Fiesta",
-    "franchise_type": "game_family"
-  },
-  "game-4550-fiesta_de_bailarina": {
-    "franchise": "Fiesta",
     "franchise_type": "game_family"
   },
   "game-0305-finn_and_the_swirly_spin": {
@@ -2479,14 +2251,6 @@
     "franchise": "Fortune Mint Fu",
     "franchise_type": "game_family"
   },
-  "game-0896-fortunes_of_the_dead": {
-    "franchise": "Fortunes",
-    "franchise_type": "game_family"
-  },
-  "game-3148-fortunes_of_egypt": {
-    "franchise": "Fortunes",
-    "franchise_type": "game_family"
-  },
   "game-1652-foxin_wins_hq": {
     "franchise": "Foxin Wins",
     "franchise_type": "game_family"
@@ -2619,22 +2383,6 @@
     "franchise": "Game King Video Poker",
     "franchise_type": "game_family"
   },
-  "game-3003-gates_of_glory": {
-    "franchise": "Gates",
-    "franchise_type": "game_family"
-  },
-  "game-3970-gates_of_babylon": {
-    "franchise": "Gates",
-    "franchise_type": "game_family"
-  },
-  "game-3730-gems_of_egypt_queen_of_alexandria": {
-    "franchise": "Gems",
-    "franchise_type": "game_family"
-  },
-  "game-4078-gems_of_giza": {
-    "franchise": "Gems",
-    "franchise_type": "game_family"
-  },
   "game-1434-genie_wishmaker_jackpot_royale": {
     "franchise": "Genie Wishmaker",
     "franchise_type": "game_family"
@@ -2645,14 +2393,6 @@
   },
   "game-2885-genie_wishmaker_megaways": {
     "franchise": "Genie Wishmaker",
-    "franchise_type": "game_family"
-  },
-  "game-0477-get_the_coins": {
-    "franchise": "Get",
-    "franchise_type": "game_family"
-  },
-  "game-1767-get_the_cheese": {
-    "franchise": "Get",
     "franchise_type": "game_family"
   },
   "game-2661-gifts_of_fortune_megaways": {
@@ -2701,50 +2441,6 @@
   },
   "game-0228-gobble_gobble_gobble_megaways": {
     "franchise": "Gobble Gobble Gobble",
-    "franchise_type": "game_family"
-  },
-  "game-1544-goddess_of_the_nile": {
-    "franchise": "Goddess",
-    "franchise_type": "game_family"
-  },
-  "game-3016-goddess_of_valhalla": {
-    "franchise": "Goddess",
-    "franchise_type": "game_family"
-  },
-  "game-3665-goddess_of_egypt": {
-    "franchise": "Goddess",
-    "franchise_type": "game_family"
-  },
-  "game-4341-goddess_of_fortunes": {
-    "franchise": "Goddess",
-    "franchise_type": "game_family"
-  },
-  "game-1546-gods_of_troy": {
-    "franchise": "Gods",
-    "franchise_type": "game_family"
-  },
-  "game-2018-gods_of_ireland": {
-    "franchise": "Gods",
-    "franchise_type": "game_family"
-  },
-  "game-2799-gods_of_gold_infinireels": {
-    "franchise": "Gods",
-    "franchise_type": "game_family"
-  },
-  "game-3375-gods_of_kemet": {
-    "franchise": "Gods",
-    "franchise_type": "game_family"
-  },
-  "game-2487-gods_of_troy_megaways": {
-    "franchise": "Gods",
-    "franchise_type": "game_family"
-  },
-  "game-3108-gold_of_fortune_god": {
-    "franchise": "Gold",
-    "franchise_type": "game_family"
-  },
-  "game-4253-gold_of_thora": {
-    "franchise": "Gold",
     "franchise_type": "game_family"
   },
   "game-0007-gold_blitz_fortunes": {
@@ -2995,14 +2691,6 @@
     "franchise": "Grizzly Gold",
     "franchise_type": "game_family"
   },
-  "game-2985-guardians_of_the_deep": {
-    "franchise": "Guardians",
-    "franchise_type": "game_family"
-  },
-  "game-3564-guardians_of_luxor": {
-    "franchise": "Guardians",
-    "franchise_type": "game_family"
-  },
   "game-2293-guss_gold_christmas": {
     "franchise": "Guss Gold",
     "franchise_type": "game_family"
@@ -3139,14 +2827,6 @@
     "franchise": "Hot Spot",
     "franchise_type": "game_family"
   },
-  "game-0509-house_of_spins": {
-    "franchise": "House",
-    "franchise_type": "game_family"
-  },
-  "game-4015-house_of_doom": {
-    "franchise": "House",
-    "franchise_type": "game_family"
-  },
   "game-0005-huff_n_even_more_puff": {
     "franchise": "Huff N Puff",
     "franchise_type": "game_family"
@@ -3277,14 +2957,6 @@
   },
   "game-2163-j_mania_loco_habanero": {
     "franchise": "J Mania",
-    "franchise_type": "game_family"
-  },
-  "game-1973-jack_in_a_pot": {
-    "franchise": "Jack",
-    "franchise_type": "game_family"
-  },
-  "game-4280-jack_in_the_box": {
-    "franchise": "Jack",
     "franchise_type": "game_family"
   },
   "game-1074-jack_hammer_4_chasing_the_dragon": {
@@ -3427,62 +3099,6 @@
     "franchise": "Kanga Cash",
     "franchise_type": "game_family"
   },
-  "game-2419-king_of_sweets": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-2519-king_of_slots": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-2619-king_of_the_watering_hole_jackpot_royale": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-2732-king_of_macedonia": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-3819-king_of_cats": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-3904-king_of_babylon_action_spins": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-3906-king_of_babylon": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-3909-king_of_the_pharaohs": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-3991-king_of_the_trident_deluxe": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-4027-king_of_alexandria_mega_moolah": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-4233-king_of_the_trident": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-4273-king_of_3_kingdoms": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-4336-king_of_the_jungle": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
-  "game-4398-king_of_the_catch_splash": {
-    "franchise": "King",
-    "franchise_type": "game_family"
-  },
   "game-0015-kong_3_even_bigger_bonus": {
     "franchise": "King Kong",
     "franchise_type": "licensed_ip"
@@ -3535,128 +3151,12 @@
     "franchise": "Kitty Glitter",
     "franchise_type": "game_family"
   },
-  "game-3849-knights_of_the_secret_sword": {
-    "franchise": "Knights",
-    "franchise_type": "game_family"
-  },
-  "game-4333-knights_of_avalon": {
-    "franchise": "Knights",
-    "franchise_type": "game_family"
-  },
-  "game-0369-lady_of_fortune_destiny_spins": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-3318-lady_of_hope": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-4114-lady_of_the_dead_deluxe": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-4400-lady_of_egypt": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-2990-lady_of_fortune_remastered": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-3919-lady_of_fortune": {
-    "franchise": "Lady",
-    "franchise_type": "game_family"
-  },
-  "game-3661-lamp_of_wonders_tapper": {
-    "franchise": "Lamp",
-    "franchise_type": "game_family"
-  },
-  "game-4490-lamp_of_magic": {
-    "franchise": "Lamp",
-    "franchise_type": "game_family"
-  },
   "game-4102-lara_jones_treasure_of_egypt_2": {
     "franchise": "Lara Jones Treasure Of Egypt",
     "franchise_type": "game_family"
   },
   "game-4526-lara_jones_treasure_of_egypt": {
     "franchise": "Lara Jones Treasure Of Egypt",
-    "franchise_type": "game_family"
-  },
-  "game-1112-legacy_of_gods": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-1584-legacy_of_dead": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-2766-legacy_of_gems_blitzways": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-3227-legacy_of_oz": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-3256-legacy_of_athena": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-3276-legacy_of_the_nile_extreme": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-3323-legacy_of_the_wild_2": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-3938-legacy_of_the_nile": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-4159-legacy_of_inca": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-4224-legacy_of_dynasties": {
-    "franchise": "Legacy",
-    "franchise_type": "game_family"
-  },
-  "game-0967-legend_of_the_pharaoh": {
-    "franchise": "Legend",
-    "franchise_type": "game_family"
-  },
-  "game-3861-legend_of_fortune": {
-    "franchise": "Legend",
-    "franchise_type": "game_family"
-  },
-  "game-4459-legend_of_9_suns": {
-    "franchise": "Legend",
-    "franchise_type": "game_family"
-  },
-  "game-2679-legends_of_troy_the_siege": {
-    "franchise": "Legends",
-    "franchise_type": "game_family"
-  },
-  "game-4130-legends_of_lucha_libre_superstars": {
-    "franchise": "Legends",
-    "franchise_type": "game_family"
-  },
-  "game-4146-legends_of_the_tomb": {
-    "franchise": "Legends",
-    "franchise_type": "game_family"
-  },
-  "game-4508-legends_of_kalahari": {
-    "franchise": "Legends",
-    "franchise_type": "game_family"
-  },
-  "game-3212-legends_of_troy": {
-    "franchise": "Legends",
-    "franchise_type": "game_family"
-  },
-  "game-4023-legends_of_troy_achilles_glory": {
-    "franchise": "Legends",
     "franchise_type": "game_family"
   },
   "game-1798-legion_gold_victory": {
@@ -3815,14 +3315,6 @@
     "franchise": "Live Dealer",
     "franchise_type": "game_family"
   },
-  "game-1261-lock_and_hit_red_knight": {
-    "franchise": "Lock",
-    "franchise_type": "game_family"
-  },
-  "game-2348-lock_and_pop": {
-    "franchise": "Lock",
-    "franchise_type": "game_family"
-  },
   "game-1583-lock_it_link_diamonds": {
     "franchise": "Lock It Link",
     "franchise_type": "game_family"
@@ -3849,18 +3341,6 @@
   },
   "game-1612-lotus_land_quick_strike": {
     "franchise": "Lotus Land",
-    "franchise_type": "game_family"
-  },
-  "game-2326-luck_of_the_lamp_cash_link": {
-    "franchise": "Luck",
-    "franchise_type": "game_family"
-  },
-  "game-2958-luck_of_the_devil_power_combo": {
-    "franchise": "Luck",
-    "franchise_type": "game_family"
-  },
-  "game-4484-luck_of_the_dead": {
-    "franchise": "Luck",
     "franchise_type": "game_family"
   },
   "game-1224-lucky_8_keno": {
@@ -3969,14 +3449,6 @@
   },
   "game-2935-mad_hit_wild_alice": {
     "franchise": "Mad Hit",
-    "franchise_type": "game_family"
-  },
-  "game-3301-magic_of_the_ring_deluxe": {
-    "franchise": "Magic",
-    "franchise_type": "game_family"
-  },
-  "game-3639-magic_of_the_nile": {
-    "franchise": "Magic",
     "franchise_type": "game_family"
   },
   "game-1611-magic_fruits_4_deluxe": {
@@ -4583,14 +4055,6 @@
     "franchise": "Piggy Riches",
     "franchise_type": "game_family"
   },
-  "game-3527-pirates_of_the_black_skull": {
-    "franchise": "Pirates",
-    "franchise_type": "game_family"
-  },
-  "game-4489-pirates_of_the_mediterranean_remastered": {
-    "franchise": "Pirates",
-    "franchise_type": "game_family"
-  },
   "game-0379-pixies_of_the_forest": {
     "franchise": "Pixies Of The Forest",
     "franchise_type": "game_family"
@@ -4645,30 +4109,6 @@
   },
   "game-1214-pop_a_shot_2_luckytap": {
     "franchise": "Pop A Shot",
-    "franchise_type": "game_family"
-  },
-  "game-2062-power_of_gods_medusa": {
-    "franchise": "Power",
-    "franchise_type": "game_family"
-  },
-  "game-3074-power_of_sun_svarog": {
-    "franchise": "Power",
-    "franchise_type": "game_family"
-  },
-  "game-2607-power_of_gods_hades": {
-    "franchise": "Power",
-    "franchise_type": "game_family"
-  },
-  "game-2822-power_of_gods_valhalla": {
-    "franchise": "Power",
-    "franchise_type": "game_family"
-  },
-  "game-4232-power_of_gods_egypt": {
-    "franchise": "Power",
-    "franchise_type": "game_family"
-  },
-  "game-4403-power_of_gods_the_pantheon": {
-    "franchise": "Power",
     "franchise_type": "game_family"
   },
   "game-2385-power_prizes_noble_peacock": {
@@ -4729,54 +4169,6 @@
   },
   "game-0670-quadruple_da_vinci_diamonds": {
     "franchise": "Quadruple Da Vinci Diamonds",
-    "franchise_type": "game_family"
-  },
-  "game-0475-queen_of_shadows": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-0734-queen_of_the_pyramids_mega_collect_em": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-1316-queen_of_the_gods": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-1614-queen_of_the_nile": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-1808-queen_of_riches": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-2143-queen_of_the_castle": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-2685-queen_of_alexandria": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-3099-queen_of_ice": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-3456-queen_of_the_forest": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-3487-queen_of_the_amazon": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-3692-queen_of_water": {
-    "franchise": "Queen",
-    "franchise_type": "game_family"
-  },
-  "game-3946-queen_of_egypt_exotic_wilds": {
-    "franchise": "Queen",
     "franchise_type": "game_family"
   },
   "game-0431-queens_of_ra_coin_collect": {
@@ -4935,22 +4327,6 @@
     "franchise": "Reel Rush",
     "franchise_type": "game_family"
   },
-  "game-2615-reign_of_fire": {
-    "franchise": "Reign",
-    "franchise_type": "game_family"
-  },
-  "game-4334-reign_of_the_mountain_king": {
-    "franchise": "Reign",
-    "franchise_type": "game_family"
-  },
-  "game-1527-return_of_ahmun_ra": {
-    "franchise": "Return",
-    "franchise_type": "game_family"
-  },
-  "game-2737-return_of_the_green_knight": {
-    "franchise": "Return",
-    "franchise_type": "game_family"
-  },
   "game-0350-rich_little_piggies_world_class_hallowee": {
     "franchise": "Rich Little",
     "franchise_type": "game_family"
@@ -5011,18 +4387,6 @@
     "franchise": "Rich Wilde",
     "franchise_type": "game_family"
   },
-  "game-2709-riches_of_aus_hold_and_win": {
-    "franchise": "Riches",
-    "franchise_type": "game_family"
-  },
-  "game-3160-riches_of_the_nile": {
-    "franchise": "Riches",
-    "franchise_type": "game_family"
-  },
-  "game-3810-riches_of_midgard_land_and_expand": {
-    "franchise": "Riches",
-    "franchise_type": "game_family"
-  },
   "game-0271-rick_and_morty_strike_back_jackpot_royal": {
     "franchise": "Rick and Morty",
     "franchise_type": "licensed_ip"
@@ -5045,58 +4409,6 @@
   },
   "game-3866-riddle_of_riches_mystery_cruise": {
     "franchise": "Riddle Of Riches",
-    "franchise_type": "game_family"
-  },
-  "game-0598-rise_of_olympus_100": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-1149-rise_of_cleopatra": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-2357-rise_of_the_dragon": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-2608-rise_of_the_mountain_king": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-2827-rise_of_maya": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-3559-rise_of_merlin": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-3638-rise_of_athena": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-3709-rise_of_the_sabertooth": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-3998-rise_of_the_tiger": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-4119-rise_of_gods_reckoning": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-4438-rise_of_tut_magic": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-2064-rise_of_olympus": {
-    "franchise": "Rise",
-    "franchise_type": "game_family"
-  },
-  "game-2624-rise_of_olympus_origins": {
-    "franchise": "Rise",
     "franchise_type": "game_family"
   },
   "game-2645-road_to_riches_race_day": {
@@ -5141,14 +4453,6 @@
   },
   "game-3255-roller_wheel_money_roll": {
     "franchise": "Roller Wheel",
-    "franchise_type": "game_family"
-  },
-  "game-3865-rome_the_golden_age": {
-    "franchise": "Rome",
-    "franchise_type": "game_family"
-  },
-  "game-4330-rome_the_conquerors": {
-    "franchise": "Rome",
     "franchise_type": "game_family"
   },
   "game-1008-rome_fight_for_gold_eternal_empire": {
@@ -5219,104 +4523,12 @@
     "franchise": "San Fa",
     "franchise_type": "game_family"
   },
-  "game-1740-sands_of_eternity_2": {
-    "franchise": "Sands",
-    "franchise_type": "game_family"
-  },
-  "game-3608-sands_of_mystery": {
-    "franchise": "Sands",
-    "franchise_type": "game_family"
-  },
-  "game-1858-sands_of_eternity": {
-    "franchise": "Sands",
-    "franchise_type": "game_family"
-  },
   "game-1557-santa_pays_luckytap": {
     "franchise": "Santa Pays",
     "franchise_type": "game_family"
   },
   "game-1650-santa_pays": {
     "franchise": "Santa Pays",
-    "franchise_type": "game_family"
-  },
-  "game-2892-scroll_of_dead": {
-    "franchise": "Scroll",
-    "franchise_type": "game_family"
-  },
-  "game-4376-scroll_of_seth": {
-    "franchise": "Scroll",
-    "franchise_type": "game_family"
-  },
-  "game-0198-secrets_of_the_phoenix_blaze": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-2308-secrets_of_christmas": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-2521-secrets_of_atlantis": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-0214-secrets_of_the_phoenix": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-0373-secrets_of_the_phoenix_elements": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-0844-secrets_of_the_phoenix_megaways": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-1057-secrets_of_the_phoenix_hold_and_gold": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-1250-secrets_of_the_forest_2": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-2603-secrets_of_the_forest_extreme": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-2659-secrets_of_the_forest": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-3046-secrets_of_the_tiger_hold_and_gold": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-3662-secrets_of_the_stones": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-3880-secrets_of_the_gods_hold_and_gold": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-4149-secrets_of_the_temple": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-4261-secrets_of_the_festival": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-4283-secrets_of_the_queen": {
-    "franchise": "Secrets",
-    "franchise_type": "game_family"
-  },
-  "game-2903-sevens_and_suns": {
-    "franchise": "Sevens",
-    "franchise_type": "game_family"
-  },
-  "game-3515-sevens_and_jok3rs": {
-    "franchise": "Sevens",
     "franchise_type": "game_family"
   },
   "game-0790-shadow_of_the_panther_power_bet": {
@@ -5329,14 +4541,6 @@
   },
   "game-2463-shadow_of_the_panther_infinity": {
     "franchise": "Shadow Of The Panther",
-    "franchise_type": "game_family"
-  },
-  "game-3242-shields_of_rome": {
-    "franchise": "Shields",
-    "franchise_type": "game_family"
-  },
-  "game-3928-shields_of_the_wild": {
-    "franchise": "Shields",
     "franchise_type": "game_family"
   },
   "game-4193-silver_enchantress_extreme": {
@@ -5719,30 +4923,6 @@
     "franchise": "Spinnin Records",
     "franchise_type": "game_family"
   },
-  "game-0992-spirit_of_mustang": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
-  "game-1287-spirit_of_nature": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
-  "game-1714-spirit_of_the_beast": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
-  "game-3451-spirit_of_the_lamp": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
-  "game-4236-spirit_of_the_river": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
-  "game-2638-spirit_of_mustang_deluxe": {
-    "franchise": "Spirit",
-    "franchise_type": "game_family"
-  },
   "game-3746-split_dragon_power_bet": {
     "franchise": "Split Dragon",
     "franchise_type": "game_family"
@@ -5829,18 +5009,6 @@
   },
   "game-0892-stock_market": {
     "franchise": "Stock Market",
-    "franchise_type": "game_family"
-  },
-  "game-1641-story_of_medusa_2": {
-    "franchise": "Story",
-    "franchise_type": "game_family"
-  },
-  "game-3391-story_of_loki_master_of_illusions": {
-    "franchise": "Story",
-    "franchise_type": "game_family"
-  },
-  "game-3975-story_of_odin": {
-    "franchise": "Story",
     "franchise_type": "game_family"
   },
   "game-3851-stumpy_mcdoodles": {
@@ -5931,14 +5099,6 @@
     "franchise": "Sweet Alchemy",
     "franchise_type": "game_family"
   },
-  "game-4157-tales_of_camelot": {
-    "franchise": "Tales",
-    "franchise_type": "game_family"
-  },
-  "game-4225-tales_of_mithrune_syns_fortune": {
-    "franchise": "Tales",
-    "franchise_type": "game_family"
-  },
   "game-0511-ted_cash_lock_jackpot_royale": {
     "franchise": "Ted",
     "franchise_type": "licensed_ip"
@@ -5962,34 +5122,6 @@
   "game-1170-ted": {
     "franchise": "Ted",
     "franchise_type": "licensed_ip"
-  },
-  "game-1073-temple_of_fire": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-1609-temple_of_wealth": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-2472-temple_of_tollan": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-2878-temple_of_prosperity": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-3312-temple_of_nudges": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-3995-temple_of_medusa": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
-  },
-  "game-4059-temple_of_treasures_megaways": {
-    "franchise": "Temple",
-    "franchise_type": "game_family"
   },
   "game-0288-temple_tumble": {
     "franchise": "Temple Tumble",
@@ -6227,26 +5359,6 @@
     "franchise": "Thunder Drums",
     "franchise_type": "game_family"
   },
-  "game-2752-ticket_to_wild": {
-    "franchise": "Ticket",
-    "franchise_type": "game_family"
-  },
-  "game-3923-ticket_to_riches": {
-    "franchise": "Ticket",
-    "franchise_type": "game_family"
-  },
-  "game-0174-tiger_and_dragon": {
-    "franchise": "Tiger",
-    "franchise_type": "game_family"
-  },
-  "game-2788-tiger_and_jewel": {
-    "franchise": "Tiger",
-    "franchise_type": "game_family"
-  },
-  "game-0227-tiger_and_dragon_cash_on_reels": {
-    "franchise": "Tiger",
-    "franchise_type": "game_family"
-  },
   "game-2614-tiger_palace": {
     "franchise": "Tiger Palace",
     "franchise_type": "game_family"
@@ -6283,34 +5395,6 @@
     "franchise": "Timber Wolf",
     "franchise_type": "game_family"
   },
-  "game-2083-tomb_of_gold_2": {
-    "franchise": "Tomb",
-    "franchise_type": "game_family"
-  },
-  "game-2325-tomb_of_akhenaten": {
-    "franchise": "Tomb",
-    "franchise_type": "game_family"
-  },
-  "game-3926-tomb_of_nefertiti": {
-    "franchise": "Tomb",
-    "franchise_type": "game_family"
-  },
-  "game-4092-tomb_of_mirrors": {
-    "franchise": "Tomb",
-    "franchise_type": "game_family"
-  },
-  "game-4095-tomb_of_gold": {
-    "franchise": "Tomb",
-    "franchise_type": "game_family"
-  },
-  "game-0854-tome_of_insanity": {
-    "franchise": "Tome",
-    "franchise_type": "game_family"
-  },
-  "game-1327-tome_of_madness": {
-    "franchise": "Tome",
-    "franchise_type": "game_family"
-  },
   "game-2254-top_o_the_pots_jackpot_royale": {
     "franchise": "Top O",
     "franchise_type": "game_family"
@@ -6337,30 +5421,6 @@
   },
   "game-4039-treasure_spirits_dragon": {
     "franchise": "Treasure Spirits",
-    "franchise_type": "game_family"
-  },
-  "game-0728-treasures_of_troy": {
-    "franchise": "Treasures",
-    "franchise_type": "game_family"
-  },
-  "game-2365-treasures_of_the_pyramid": {
-    "franchise": "Treasures",
-    "franchise_type": "game_family"
-  },
-  "game-2533-treasures_of_kongar": {
-    "franchise": "Treasures",
-    "franchise_type": "game_family"
-  },
-  "game-2612-treasures_of_the_lamps": {
-    "franchise": "Treasures",
-    "franchise_type": "game_family"
-  },
-  "game-3834-treasures_of_the_count": {
-    "franchise": "Treasures",
-    "franchise_type": "game_family"
-  },
-  "game-4412-treasures_of_kilauea": {
-    "franchise": "Treasures",
     "franchise_type": "game_family"
   },
   "game-0212-triple_double_da_vinci_diamonds": {
@@ -6413,14 +5473,6 @@
   },
   "game-1441-tuna_overload": {
     "franchise": "Tuna Overload",
-    "franchise_type": "game_family"
-  },
-  "game-1061-twice_the_diamonds": {
-    "franchise": "Twice",
-    "franchise_type": "game_family"
-  },
-  "game-3930-twice_the_money": {
-    "franchise": "Twice",
     "franchise_type": "game_family"
   },
   "game-0631-twin_spin_megaways": {
@@ -6531,10 +5583,6 @@
     "franchise": "Ultra Stack",
     "franchise_type": "game_family"
   },
-  "game-3137-valley_of_the_fortunes": {
-    "franchise": "Valley",
-    "franchise_type": "game_family"
-  },
   "game-0845-vault_cracker": {
     "franchise": "Vault Cracker",
     "franchise_type": "game_family"
@@ -6569,14 +5617,6 @@
   },
   "game-3637-volcano_eruption_extreme": {
     "franchise": "Volcano Eruption",
-    "franchise_type": "game_family"
-  },
-  "game-2703-ways_of_the_phoenix": {
-    "franchise": "Ways",
-    "franchise_type": "game_family"
-  },
-  "game-4110-ways_of_the_labyrinth": {
-    "franchise": "Ways",
     "franchise_type": "game_family"
   },
   "game-0064-wheel_of_fortune_diamond_spins_2x_wild": {
@@ -6799,22 +5839,6 @@
     "franchise": "Wildfire Wins",
     "franchise_type": "game_family"
   },
-  "game-2292-wings_of_fortune": {
-    "franchise": "Wings",
-    "franchise_type": "game_family"
-  },
-  "game-2879-wings_of_ra": {
-    "franchise": "Wings",
-    "franchise_type": "game_family"
-  },
-  "game-3933-wings_of_the_phoenix": {
-    "franchise": "Wings",
-    "franchise_type": "game_family"
-  },
-  "game-4332-wings_of_riches": {
-    "franchise": "Wings",
-    "franchise_type": "game_family"
-  },
   "game-1137-wish_upon_a_star": {
     "franchise": "Wish Upon",
     "franchise_type": "game_family"
@@ -6869,14 +5893,6 @@
   },
   "game-3491-wolf_strike": {
     "franchise": "Wolf Strike",
-    "franchise_type": "game_family"
-  },
-  "game-2649-wonders_of_the_deep": {
-    "franchise": "Wonders",
-    "franchise_type": "game_family"
-  },
-  "game-3882-wonders_of_africa": {
-    "franchise": "Wonders",
     "franchise_type": "game_family"
   },
   "game-2711-x_wheel_chili": {

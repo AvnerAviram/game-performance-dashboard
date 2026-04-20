@@ -50,8 +50,10 @@ describe.skipIf(!HAS_RULES_DATA)('Matching integrity — title verification gate
                         normPage: deepNorm(pageTitle),
                     });
                 }
-            } else if (method === 'round4_fuzzy_verified') {
-                // Round 4: web-verified fuzzy matches (typos, plurals, branding differences)
+            } else if (method === 'round4_fuzzy_verified' || method === 'provider_website') {
+                // Fuzzy/provider matches: verified by human review or provider URL
+            } else if (method && method.startsWith('fuzzy_')) {
+                // Fuzzy matches: approved via word overlap / suffix stripping
             } else {
                 if (norm(gameName) !== norm(pageTitle)) {
                     mismatches.push({

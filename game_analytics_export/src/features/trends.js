@@ -7,9 +7,7 @@ import { safeOnclick } from '../lib/sanitize.js';
 import { F } from '../lib/game-fields.js';
 import { getProviderMetrics } from '../lib/metrics.js';
 
-function getTheoWin(game) {
-    return game.performance_theo_win ?? game.theo_win ?? 0;
-}
+// Removed local getTheoWin — use F.theoWin(g) from game-fields.js
 
 /**
  * Compute trends data: year -> { avg, games }
@@ -21,11 +19,11 @@ export function computeTrendsData() {
 
     const byYear = {};
     for (const g of games) {
-        const y = F.originalReleaseYear(g);
+        const y = F.releaseYear(g);
         if (!y) continue;
         const yearKey = String(y);
         if (!byYear[yearKey]) byYear[yearKey] = { sum: 0, count: 0 };
-        byYear[yearKey].sum += getTheoWin(g);
+        byYear[yearKey].sum += F.theoWin(g);
         byYear[yearKey].count += 1;
     }
 
@@ -46,7 +44,7 @@ export function computeThemesTrends() {
 
     const themeCounts = {};
     for (const g of games) {
-        const t = g.theme_consolidated || 'Unknown';
+        const t = F.themeConsolidated(g);
         themeCounts[t] = (themeCounts[t] ?? 0) + 1;
     }
 
@@ -55,19 +53,17 @@ export function computeThemesTrends() {
         .slice(0, 10)
         .map(([t]) => t);
 
-    const years = [...new Set(games.map(g => F.originalReleaseYear(g)).filter(y => y))]
-        .sort((a, b) => a - b)
-        .map(String);
+    const years = [...new Set(games.map(g => F.releaseYear(g)).filter(y => y))].sort((a, b) => a - b).map(String);
 
     const result = {};
     for (const theme of top10) {
         const byYear = {};
         for (const g of games) {
-            if ((g.theme_consolidated || 'Unknown') !== theme) continue;
-            const y = String(F.originalReleaseYear(g) || '');
+            if (F.themeConsolidated(g) !== theme) continue;
+            const y = String(F.releaseYear(g) || '');
             if (!years.includes(y)) continue;
             if (!byYear[y]) byYear[y] = { sum: 0, count: 0 };
-            byYear[y].sum += getTheoWin(g);
+            byYear[y].sum += F.theoWin(g);
             byYear[y].count += 1;
         }
         result[theme] = years.map(y => {
@@ -99,9 +95,7 @@ export function computeFeatureTrends() {
         .slice(0, 10)
         .map(([f]) => f);
 
-    const years = [...new Set(games.map(g => F.originalReleaseYear(g)).filter(y => y))]
-        .sort((a, b) => a - b)
-        .map(String);
+    const years = [...new Set(games.map(g => F.releaseYear(g)).filter(y => y))].sort((a, b) => a - b).map(String);
 
     const result = {};
     for (const feature of top10) {
@@ -109,10 +103,10 @@ export function computeFeatureTrends() {
         for (const g of games) {
             const feats = parseFeatures(g.features);
             if (!feats.includes(feature)) continue;
-            const y = String(F.originalReleaseYear(g) || '');
+            const y = String(F.releaseYear(g) || '');
             if (!years.includes(y)) continue;
             if (!byYear[y]) byYear[y] = { sum: 0, count: 0 };
-            byYear[y].sum += getTheoWin(g);
+            byYear[y].sum += F.theoWin(g);
             byYear[y].count += 1;
         }
         result[feature] = years.map(y => {
@@ -140,11 +134,11 @@ export function computeProviderTrends() {
         const byYear = {};
         for (const g of games) {
             if (F.provider(g) !== prov) continue;
-            const y = F.originalReleaseYear(g);
+            const y = F.releaseYear(g);
             if (!y) continue;
             const yearKey = String(y);
             if (!byYear[yearKey]) byYear[yearKey] = { sum: 0, count: 0 };
-            byYear[yearKey].sum += getTheoWin(g);
+            byYear[yearKey].sum += F.theoWin(g);
             byYear[yearKey].count += 1;
         }
         const yearAvgs = {};
@@ -243,7 +237,7 @@ window.drillChartYear = function (chartKey, year) {
 // Build a bar chart for a single-year drill-down on a specific canvas
 function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
     const games = gameData?.allGames ?? [];
-    const yearGames = games.filter(g => String(F.originalReleaseYear(g)) === String(year));
+    const yearGames = games.filter(g => String(F.releaseYear(g)) === String(year));
     if (!yearGames.length) return;
 
     const canvas = document.getElementById(canvasId);
@@ -260,7 +254,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         yearGames.forEach(g => {
             const p = F.provider(g);
             if (!provMap[p]) provMap[p] = { sum: 0, count: 0 };
-            provMap[p].sum += getTheoWin(g);
+            provMap[p].sum += F.theoWin(g);
             provMap[p].count++;
         });
         const top = Object.entries(provMap)
@@ -275,9 +269,9 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
     } else if (type === 'theme') {
         const themeMap = {};
         yearGames.forEach(g => {
-            const t = g.theme_consolidated || 'Unknown';
+            const t = F.themeConsolidated(g);
             if (!themeMap[t]) themeMap[t] = { sum: 0, count: 0 };
-            themeMap[t].sum += getTheoWin(g);
+            themeMap[t].sum += F.theoWin(g);
             themeMap[t].count++;
         });
         const top = Object.entries(themeMap)
@@ -294,7 +288,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         yearGames.forEach(g => {
             for (const f of parseFeaturesSafe(g.features)) {
                 if (!featMap[f]) featMap[f] = { sum: 0, count: 0 };
-                featMap[f].sum += getTheoWin(g);
+                featMap[f].sum += F.theoWin(g);
                 featMap[f].count++;
             }
         });
@@ -314,7 +308,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
             const p = F.provider(g);
             if (p === 'Unknown' || !topProviderNames.includes(p)) return;
             if (!provMap[p]) provMap[p] = { sum: 0, count: 0 };
-            provMap[p].sum += getTheoWin(g);
+            provMap[p].sum += F.theoWin(g);
             provMap[p].count++;
         });
         const top = Object.entries(provMap)
@@ -379,7 +373,10 @@ function trendLegendConfig(colors) {
     return {
         position: 'bottom',
         labels: { color: colors.text, boxWidth: 12, padding: 16 },
-        onClick: (evt, legendItem, legend) => soloDataset(legend.chart, legendItem.datasetIndex),
+        onClick: (evt, legendItem, legend) => {
+            if (window.xrayActive) return;
+            soloDataset(legend.chart, legendItem.datasetIndex);
+        },
         onHover: (evt, legendItem, legend) => {
             evt.native.target.style.cursor = 'pointer';
             highlightDataset(legend.chart, legendItem.datasetIndex);
@@ -564,6 +561,13 @@ export function renderTrends() {
                     responsive: true,
                     maintainAspectRatio: false,
                     layout: { padding: { top: 16, right: 24, bottom: 48, left: 56 } },
+                    onClick: (evt, elements) => {
+                        if (window.xrayActive) return;
+                        if (elements.length) {
+                            const yr = overallYears[elements[0].index];
+                            if (yr) window.drillChartYear('overall', yr);
+                        }
+                    },
                     plugins: {
                         legend: { display: false },
                         tooltip: {
@@ -616,6 +620,7 @@ export function renderTrends() {
                     onHover: (evt, elements, chart) =>
                         highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
                     onClick: (evt, elements, chart) => {
+                        if (window.xrayActive) return;
                         if (!elements.length) {
                             resetDatasets(chart);
                             return;
@@ -674,6 +679,7 @@ export function renderTrends() {
                     onHover: (evt, elements, chart) =>
                         highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
                     onClick: (evt, elements, chart) => {
+                        if (window.xrayActive) return;
                         if (!elements.length) {
                             resetDatasets(chart);
                             return;
@@ -731,6 +737,7 @@ export function renderTrends() {
                     onHover: (evt, elements, chart) =>
                         highlightDataset(chart, elements.length ? elements[0].datasetIndex : -1),
                     onClick: (evt, elements, chart) => {
+                        if (window.xrayActive) return;
                         if (!elements.length) {
                             resetDatasets(chart);
                             return;

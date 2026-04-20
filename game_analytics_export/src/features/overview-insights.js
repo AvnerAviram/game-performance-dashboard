@@ -122,6 +122,7 @@ export function renderComparisonCards(performers) {
     if (performers.bestMechanic) {
         cards.push(`
             <div class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg shadow-sm border border-purple-200 dark:border-purple-800 p-3 hover:shadow-md transition-all cursor-pointer"
+                 data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: performers.bestMechanic.name }))}'
                  onclick="${safeOnclick('window.showMechanicDetails', performers.bestMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
@@ -140,6 +141,7 @@ export function renderComparisonCards(performers) {
     if (performers.bestProvider) {
         cards.push(`
             <div class="bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 rounded-lg shadow-sm border border-emerald-200 dark:border-emerald-800 p-3 hover:shadow-md transition-all cursor-pointer"
+                 data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: performers.bestProvider.name }))}'
                  onclick="${safeOnclick('window.showProviderDetails', performers.bestProvider.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">🏢</span>
@@ -158,6 +160,7 @@ export function renderComparisonCards(performers) {
     if (performers.mostCommonMechanic) {
         cards.push(`
             <div class="bg-gradient-to-br from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 rounded-lg shadow-sm border border-cyan-200 dark:border-cyan-800 p-3 hover:shadow-md transition-all cursor-pointer"
+                 data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: performers.mostCommonMechanic.name }))}'
                  onclick="${safeOnclick('window.showMechanicDetails', performers.mostCommonMechanic.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">📦</span>
@@ -176,6 +179,7 @@ export function renderComparisonCards(performers) {
     if (performers.highestRTPGame) {
         cards.push(`
             <div class="bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20 rounded-lg shadow-sm border border-indigo-200 dark:border-indigo-800 p-3 hover:shadow-md transition-all cursor-pointer"
+                 data-xray='${escapeAttr(JSON.stringify({ game: performers.highestRTPGame.name, field: 'theo_win' }))}'
                  onclick="${safeOnclick('window.showGameDetails', performers.highestRTPGame.name || '')}">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">💎</span>

@@ -1,0 +1,76 @@
+{
+  "_description": "Known pitfalls and traps for year extraction. Read before touching any year data.",
+  "_updated": "2026-04-16",
+  "pitfalls": [
+    {
+      "id": "land_based_dates",
+      "severity": "CRITICAL",
+      "title": "Land-Based Cabinet Dates",
+      "description": "SlotCatalog and sometimes other sources return the date a game was first released as a physical slot machine cabinet, not when it went online. This is the #1 source of wrong year data.",
+      "affected_providers": ["Ainsworth", "Konami", "Aristocrat", "IGT", "Light & Wonder", "Aruze", "Incredible Technologies", "Everi", "AGS"],
+      "example": "Buffalo (Aristocrat): cabinet ~2008, online NJ 2023. SlotCatalog shows 2008.",
+      "mitigation": "Always check provider type. For land-based-origin providers, cross-reference with SlotsLaunch which tracks online dates specifically."
+    },
+    {
+      "id": "epoch_dates",
+      "severity": "HIGH",
+      "title": "January 1, 1970 (Unix Epoch Zero)",
+      "description": "SlotsLaunch returns epoch dates for some games. Found 26 instances, mostly Wazdan and Gaming Realms.",
+      "affected_providers": ["Wazdan", "Gaming Realms", "Spinomenal"],
+      "mitigation": "Filter out any year <= 1970 or year === 1969."
+    },
+    {
+      "id": "nj_not_global",
+      "severity": "HIGH",
+      "title": "NJ Year != Global Year",
+      "description": "NJ launch is typically 1-3 years after global online launch for European/international providers. The release_year in master is the NJ date, NOT the global date.",
+      "example": "A game launches in Malta/UK in 2019, reaches NJ in 2021. NJ year = 2021, global year = 2019.",
+      "mitigation": "Never use NJ year as global year for non-online-first providers."
+    },
+    {
+      "id": "nj_equals_global",
+      "severity": "INFO",
+      "title": "NJ Year = Global Year (Online-First Providers)",
+      "description": "For providers that only exist online and focus on the US market, NJ IS their primary/simultaneous market.",
+      "affected_providers": ["Wazdan", "Gaming Realms", "Spinberry", "Oddsworks", "Betixon", "Gamecode", "Red Rake Gaming", "Slotmill", "Hacksaw Gaming", "Avatarux", "Spinomenal", "Rogue", "Octoplay", "Ruby Play", "1x2 Network", "Bang Bang Games", "Spearhead Studios"],
+      "mitigation": "For these providers, NJ year is a safe proxy (confidence 4)."
+    },
+    {
+      "id": "year_boundary",
+      "severity": "MEDIUM",
+      "title": "Year-Boundary Edge Cases",
+      "description": "A game released Dec 17, 2020 might show up as Jan 14, 2021 on SlotsLaunch. This 28-day offset crosses a year boundary.",
+      "example": "Red Silk: GT=2020-12-17, SL=January 14, 2021. Off by 28 days but wrong year.",
+      "mitigation": "Accept +/-1 year tolerance when SL date is in Jan/Feb and GT/NJ suggests prior December."
+    },
+    {
+      "id": "game_variants",
+      "severity": "MEDIUM",
+      "title": "Game Variants Have Separate Launch Dates",
+      "description": "Variants like 'Megajackpots Cash Eruption' have separate NJ launch dates from 'Cash Eruption'. External sources may not distinguish them.",
+      "mitigation": "Match variants carefully. The original_release_year should reflect the base game's online launch."
+    },
+    {
+      "id": "slug_mismatch",
+      "severity": "MEDIUM",
+      "title": "Provider/Game Slug Mismatches",
+      "description": "URL-based scraping of SlotsLaunch fails ~60% of the time because their slugs don't follow predictable patterns from game names.",
+      "mitigation": "Use the SlotsLaunch API instead of constructing URLs. The API has proper search/filter by name."
+    },
+    {
+      "id": "global_after_nj",
+      "severity": "HIGH",
+      "title": "Global Year AFTER NJ Year Is Invalid",
+      "description": "If a source gives a global online year AFTER the NJ launch year, it's wrong. NJ IS online, so global online can't be after NJ.",
+      "count_in_master": 37,
+      "mitigation": "Filter out any result where source_year > nj_year + 1. The +1 tolerance covers timing edge cases."
+    },
+    {
+      "id": "slotcatalog_low_trust",
+      "severity": "HIGH",
+      "title": "SlotCatalog Is Only 70% Accurate",
+      "description": "SlotCatalog was calibrated at 70% on AGS GT. It is the source for 1,327 existing years in master. Many of these may be wrong.",
+      "mitigation": "Cross-reference SlotCatalog years with SlotsLaunch or slot.report. Do not trust SC alone for land-based-origin providers."
+    }
+  ]
+}

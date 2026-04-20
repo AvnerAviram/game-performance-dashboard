@@ -33,10 +33,10 @@ export function getProviderMetrics(games, opts = {}) {
         map[prov].totalTheo += F.theoWin(g);
         map[prov].totalMkt += F.marketShare(g);
     }
-    return Object.values(map)
+    const rows = Object.values(map)
         .map(p => ({ ...p, avgTheo: p.count > 0 ? p.totalTheo / p.count : 0, ggrShare: p.totalMkt }))
-        .filter(p => p.count >= minGames)
-        .sort((a, b) => b.ggrShare - a.ggrShare);
+        .filter(p => p.count >= minGames);
+    return addSmartIndex(rows);
 }
 
 /**
@@ -71,9 +71,8 @@ export function getThemeMetrics(games) {
         map[theme].totalTheo += F.theoWin(g);
         map[theme].totalMkt += F.marketShare(g);
     }
-    return Object.values(map)
-        .map(t => ({ ...t, avgTheo: t.count > 0 ? t.totalTheo / t.count : 0 }))
-        .sort((a, b) => b.count - a.count);
+    const rows = Object.values(map).map(t => ({ ...t, avgTheo: t.count > 0 ? t.totalTheo / t.count : 0 }));
+    return addSmartIndex(rows);
 }
 
 /**
@@ -110,9 +109,8 @@ export function getFeatureMetrics(games) {
             map[feat].totalTheo += theo;
         }
     }
-    return Object.values(map)
-        .map(f => ({ ...f, avgTheo: f.count > 0 ? f.totalTheo / f.count : 0 }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
+    const rows = Object.values(map).map(f => ({ ...f, avgTheo: f.count > 0 ? f.totalTheo / f.count : 0 }));
+    return addSmartIndex(rows);
 }
 
 /**
@@ -350,19 +348,19 @@ export function addSmartIndex(rows) {
 // ── Art Design Metrics ─────────────────────────────────────────────────
 
 /**
- * Aggregate games by art setting.
+ * Aggregate games by art theme.
  * @param {Object[]} games
- * @returns {{ setting, count, totalTheo, avgTheo, totalMkt }[]}
+ * @returns {{ theme, count, totalTheo, avgTheo, totalMkt }[]}
  */
-export function getArtSettingMetrics(games) {
+export function getArtThemeMetrics(games) {
     const map = {};
     for (const g of games) {
-        const setting = F.artSetting(g);
-        if (!setting) continue;
-        if (!map[setting]) map[setting] = { setting, count: 0, totalTheo: 0, totalMkt: 0 };
-        map[setting].count++;
-        map[setting].totalTheo += F.theoWin(g);
-        map[setting].totalMkt += F.marketShare(g);
+        const theme = F.artTheme(g);
+        if (!theme) continue;
+        if (!map[theme]) map[theme] = { theme, count: 0, totalTheo: 0, totalMkt: 0 };
+        map[theme].count++;
+        map[theme].totalTheo += F.theoWin(g);
+        map[theme].totalMkt += F.marketShare(g);
     }
     return Object.values(map)
         .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
@@ -452,22 +450,60 @@ export function getArtElementMetrics(games) {
 }
 
 /**
+ * Aggregate games by art style.
+ * @param {Object[]} games
+ * @returns {{ style, count, totalTheo, avgTheo }[]}
+ */
+export function getArtStyleMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const style = F.artStyle(g);
+        if (!style) continue;
+        if (!map[style]) map[style] = { style, count: 0, totalTheo: 0 };
+        map[style].count++;
+        map[style].totalTheo += F.theoWin(g);
+    }
+    return Object.values(map)
+        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
+        .sort((a, b) => b.count - a.count);
+}
+
+/**
+ * Aggregate games by art color tone.
+ * @param {Object[]} games
+ * @returns {{ colorTone, count, totalTheo, avgTheo }[]}
+ */
+export function getArtColorToneMetrics(games) {
+    const map = {};
+    for (const g of games) {
+        const ct = F.artColorTone(g);
+        if (!ct) continue;
+        if (!map[ct]) map[ct] = { colorTone: ct, count: 0, totalTheo: 0 };
+        map[ct].count++;
+        map[ct].totalTheo += F.theoWin(g);
+    }
+    return Object.values(map)
+        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
+        .sort((a, b) => b.count - a.count);
+}
+
+/**
  * Cross-dimensional art combo analysis: setting × mood.
  * Returns combos with count >= minGames, sorted by avgTheo descending.
  * @param {Object[]} games
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum games per combo (default 3)
- * @returns {{ setting, mood, count, avgTheo, totalTheo, mktShare }[]}
+ * @returns {{ theme, mood, count, avgTheo, totalTheo, mktShare }[]}
  */
 export function getArtComboMetrics(games, opts = {}) {
     const minGames = opts.minGames ?? 3;
     const map = {};
     for (const g of games) {
-        const setting = F.artSetting(g);
+        const theme = F.artTheme(g);
         const mood = F.artMood(g);
-        if (!setting || !mood) continue;
-        const key = `${setting}|||${mood}`;
-        if (!map[key]) map[key] = { setting, mood, count: 0, totalTheo: 0, mktShare: 0 };
+        if (!theme || !mood) continue;
+        const key = `${theme}|||${mood}`;
+        if (!map[key]) map[key] = { theme, mood, count: 0, totalTheo: 0, mktShare: 0 };
         map[key].count++;
         map[key].totalTheo += F.theoWin(g);
         map[key].mktShare += F.marketShare(g);
@@ -479,24 +515,24 @@ export function getArtComboMetrics(games, opts = {}) {
 }
 
 /**
- * Enriched art recipes: setting × mood combos with top characters, elements, and dominant narrative.
+ * Enriched art recipes: theme × mood combos with top characters, elements, and dominant narrative.
  * @param {Object[]} games
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum games per combo (default 3)
  * @param {number} [opts.topN] — max items per sub-dimension (default 5)
- * @returns {{ setting, mood, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], narrative: string }[]}
+ * @returns {{ theme, mood, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], narrative: string }[]}
  */
 export function getArtRecipeMetrics(games, opts = {}) {
     const minGames = opts.minGames ?? 3;
     const topN = opts.topN ?? 5;
     const map = {};
     for (const g of games) {
-        const setting = F.artSetting(g);
+        const theme = F.artTheme(g);
         const mood = F.artMood(g);
-        if (!setting || !mood) continue;
-        const key = `${setting}|||${mood}`;
+        if (!theme || !mood) continue;
+        const key = `${theme}|||${mood}`;
         if (!map[key]) {
-            map[key] = { setting, mood, count: 0, totalTheo: 0, mktShare: 0, charFreq: {}, elemFreq: {}, narrFreq: {} };
+            map[key] = { theme, mood, count: 0, totalTheo: 0, mktShare: 0, charFreq: {}, elemFreq: {}, narrFreq: {} };
         }
         const entry = map[key];
         entry.count++;
@@ -532,7 +568,7 @@ export function getArtRecipeMetrics(games, opts = {}) {
     return Object.values(map)
         .filter(c => c.count >= minGames)
         .map(c => ({
-            setting: c.setting,
+            theme: c.theme,
             mood: c.mood,
             count: c.count,
             avgTheo: c.totalTheo / c.count,

@@ -31,12 +31,12 @@ All values validated against SlotCatalog, KeyToCasino, and slot.report industry 
 
 ### 1. Setting (33 values) — WHERE does this game take place?
 
-Ancient Temple/Ruins, Deep Ocean/Underwater, Enchanted Forest, Wild West/Frontier,
+Ancient Temple/Ruins, Deep Ocean/Underwater, Fantasy/Fairy Tale, Wild West/Frontier,
 Outer Space, Neon/Cyber City, Medieval Castle, Tropical Island/Beach, Arctic/Snow,
 Jungle/Rainforest, Desert/Sahara, Haunted Manor/Graveyard, Candy/Sweet World,
 Circus/Carnival, Urban/Modern City, Mountain/Volcano, Farm/Countryside,
-Royal Palace/Court, Pirate Ship/Port, Treasure Cave/Mine, Mystical/Magic Realm,
-Asian Temple/Garden, Arena/Colosseum, Sky/Clouds, Laboratory/Workshop, Tavern/Saloon,
+Royal Palace/Court, Pirate Ship/Port, Treasure Cave/Mine, Magic/Fantasy,
+Asian Temple/Garden, Ancient Greece, Sky/Clouds, Laboratory/Workshop, Tavern/Saloon,
 Norse/Viking Realm, Irish/Celtic Highlands, Festive/Holiday,
 Prehistoric/Primordial, Steampunk/Victorian, Lakeside/River/Fishing Dock,
 Generic/Abstract

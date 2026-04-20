@@ -3,12 +3,15 @@ import { getActiveGames } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
 import {
-    getArtSettingMetrics,
+    getArtThemeMetrics,
     getArtMoodMetrics,
     getArtNarrativeMetrics,
     getArtCharacterMetrics,
     getArtElementMetrics,
+    getArtStyleMetrics,
+    getArtColorToneMetrics,
     getArtRecipeMetrics,
+    getArtComboMetrics,
     getGlobalAvgTheo,
     getDominantVolatility,
     getDominantLayout,
@@ -46,7 +49,7 @@ function destroyChart(key) {
 
 // ── Pill helpers ──
 
-const SETTING_PALETTE = [
+const THEME_PALETTE = [
     '#6366f1',
     '#a855f7',
     '#ec4899',
@@ -124,16 +127,17 @@ function buildArtBreakdown(games, excludeDimension) {
 
     const dims = [];
 
-    if (excludeDimension !== 'setting') {
+    if (excludeDimension !== 'theme') {
         const map = {};
         games.forEach(g => {
-            const v = F.artSetting(g);
+            const v = F.artTheme(g);
             if (v) map[v] = (map[v] || 0) + 1;
         });
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Environments', items: sorted, clickFn: 'window.showArtSetting' });
+        if (sorted.length)
+            dims.push({ label: 'Themes', items: sorted, clickFn: 'window.showArtTheme', dim: 'art_theme' });
     }
 
     if (excludeDimension !== 'mood') {
@@ -145,7 +149,7 @@ function buildArtBreakdown(games, excludeDimension) {
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Moods', items: sorted, clickFn: 'window.showArtMood' });
+        if (sorted.length) dims.push({ label: 'Moods', items: sorted, clickFn: 'window.showArtMood', dim: 'art_mood' });
     }
 
     if (excludeDimension !== 'character') {
@@ -160,7 +164,13 @@ function buildArtBreakdown(games, excludeDimension) {
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Characters', items: sorted, clickFn: 'window.showArtCharacter' });
+        if (sorted.length)
+            dims.push({
+                label: 'Characters',
+                items: sorted,
+                clickFn: 'window.showArtCharacter',
+                dim: 'art_characters',
+            });
     }
 
     if (excludeDimension !== 'element') {
@@ -175,7 +185,8 @@ function buildArtBreakdown(games, excludeDimension) {
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Elements', items: sorted, clickFn: 'window.showArtElement' });
+        if (sorted.length)
+            dims.push({ label: 'Elements', items: sorted, clickFn: 'window.showArtElement', dim: 'art_elements' });
     }
 
     if (excludeDimension !== 'narrative') {
@@ -187,7 +198,44 @@ function buildArtBreakdown(games, excludeDimension) {
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Narratives', items: sorted, clickFn: 'window.showArtNarrative' });
+        if (sorted.length)
+            dims.push({
+                label: 'Narratives',
+                items: sorted,
+                clickFn: 'window.showArtNarrative',
+                dim: 'art_narrative',
+            });
+    }
+
+    if (excludeDimension !== 'style') {
+        const map = {};
+        games.forEach(g => {
+            const v = F.artStyle(g);
+            if (v) map[v] = (map[v] || 0) + 1;
+        });
+        const sorted = Object.entries(map)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 6);
+        if (sorted.length)
+            dims.push({ label: 'Styles', items: sorted, clickFn: 'window.showArtStyle', dim: 'art_style' });
+    }
+
+    if (excludeDimension !== 'colorTone') {
+        const map = {};
+        games.forEach(g => {
+            const v = F.artColorTone(g);
+            if (v) map[v] = (map[v] || 0) + 1;
+        });
+        const sorted = Object.entries(map)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 6);
+        if (sorted.length)
+            dims.push({
+                label: 'Color tones',
+                items: sorted,
+                clickFn: 'window.showArtColorTone',
+                dim: 'art_color_tone',
+            });
     }
 
     if (!dims.length) return '';
@@ -200,7 +248,7 @@ function buildArtBreakdown(games, excludeDimension) {
             <div class="flex flex-wrap gap-1.5">${d.items
                 .map(([name, count]) => {
                     const pct = ((count / total) * 100).toFixed(0);
-                    return `<span class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" onclick="${safeOnclick(d.clickFn, name)}">${escapeHtml(name)} <span class="text-[9px] text-gray-400">${count} · ${pct}%</span></span>`;
+                    return `<span class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">${escapeHtml(name)} <span class="text-[9px] text-gray-400">${count} · ${pct}%</span></span>`;
                 })
                 .join('')}</div>
         </div>
@@ -251,7 +299,7 @@ function showArtFilteredGames(title, filterFn, opts) {
     });
 
     const excludeDim = opts?.excludeDimension || null;
-    const artGames = games.filter(g => F.artSetting(g));
+    const artGames = games.filter(g => F.artTheme(g));
     const artBreakdown = buildArtBreakdown(artGames, excludeDim);
     if (artBreakdown) {
         html += PanelSection({
@@ -271,7 +319,7 @@ function showArtFilteredGames(title, filterFn, opts) {
                 const pGames = games.filter(g => F.provider(g) === p);
                 const pAvg = pGames.reduce((s, g) => s + (F.theoWin(g) || 0), 0) / (pGames.length || 1);
                 const hidden = i >= PROV_INITIAL ? ' style="display:none"' : '';
-                return `<div data-cl-item${hidden} class="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700 last:border-0 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showProviderDetails', p)}">
+                return `<div data-cl-item${hidden} class="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-700 last:border-0 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: p }))}' onclick="${safeOnclick('window.showProviderDetails', p)}">
                 <span class="text-sm text-gray-700 dark:text-gray-300">${escapeHtml(p)}</span>
                 <span class="text-xs text-gray-500 dark:text-gray-400">${pGames.length} games · ${pAvg.toFixed(2)} avg</span>
             </div>`;
@@ -329,8 +377,8 @@ function showArtFilteredGames(title, filterFn, opts) {
     document.body.style.overflow = 'hidden';
 }
 
-window.showArtSetting = function (setting) {
-    showArtFilteredGames(`Setting: ${setting}`, g => F.artSetting(g) === setting, { excludeDimension: 'setting' });
+window.showArtTheme = function (setting) {
+    showArtFilteredGames(`Theme: ${setting}`, g => F.artTheme(g) === setting, { excludeDimension: 'theme' });
 };
 window.showArtMood = function (mood) {
     showArtFilteredGames(`Mood: ${mood}`, g => F.artMood(g) === mood, { excludeDimension: 'mood' });
@@ -350,37 +398,50 @@ window.showArtNarrative = function (narrative) {
         excludeDimension: 'narrative',
     });
 };
+window.showArtStyle = function (style) {
+    showArtFilteredGames(`Style: ${style}`, g => F.artStyle(g) === style, { excludeDimension: 'style' });
+};
+window.showArtColorTone = function (tone) {
+    showArtFilteredGames(`Color tone: ${tone}`, g => F.artColorTone(g) === tone, {
+        excludeDimension: 'colorTone',
+    });
+};
 window.showArtRecipe = function (setting, mood) {
-    showArtFilteredGames(`${setting} + ${mood}`, g => F.artSetting(g) === setting && F.artMood(g) === mood);
+    showArtFilteredGames(`${setting} + ${mood}`, g => F.artTheme(g) === setting && F.artMood(g) === mood);
 };
 
 export function renderArt() {
     const allGames = getActiveGames();
-    const artGames = allGames.filter(g => F.artSetting(g));
+    const artGames = allGames.filter(g => F.artTheme(g));
 
-    const settings = getArtSettingMetrics(artGames);
+    const themes = getArtThemeMetrics(artGames);
     const moods = getArtMoodMetrics(artGames);
     const narratives = getArtNarrativeMetrics(artGames);
     const characters = getArtCharacterMetrics(artGames);
     const elements = getArtElementMetrics(artGames);
+    const styles = getArtStyleMetrics(artGames);
+    const colorTones = getArtColorToneMetrics(artGames);
     const recipes = getArtRecipeMetrics(artGames, { minGames: 3 });
     const globalAvg = getGlobalAvgTheo(allGames);
 
-    renderStats(allGames, artGames, settings, moods);
-    renderSettingLandscape(settings, globalAvg);
+    renderStats(allGames, artGames, themes, moods, styles, colorTones);
+    renderThemeLandscape(themes, globalAvg);
     wireMoodDropdown(artGames, moods, globalAvg);
-    renderSettingsChart(settings, artGames);
+    renderThemesChart(themes, artGames);
     renderMoodChart(moods);
+    renderArtStylesChart(styles);
+    renderArtColorToneChart(colorTones);
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
     renderArtTrends(artGames);
+    renderBlueOcean(artGames, globalAvg);
     renderArtRecipes(recipes, globalAvg, artGames);
     renderProviderArtCards(artGames, globalAvg);
     renderArtStrategicCards(artGames, globalAvg);
 }
 
-function renderStats(allGames, artGames, settings, moods) {
+function renderStats(allGames, artGames, themes, moods, styles, colorTones) {
     const pct = allGames.length > 0 ? ((artGames.length / allGames.length) * 100).toFixed(1) : '0';
     const avgTheo = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : 0;
 
@@ -391,19 +452,21 @@ function renderStats(allGames, artGames, settings, moods) {
     };
 
     set('art-stat-coverage', `${artGames.length} (${pct}%)`);
-    set('art-stat-settings', settings.length);
+    set('art-stat-themes', themes.length);
     set('art-stat-moods', moods.length);
     set('art-stat-avg-theo', avgTheo.toFixed(2));
+    set('art-stat-styles', styles.length);
+    set('art-stat-color-tones', colorTones.length);
 
     const sub = el('art-subtitle');
     if (sub) {
-        sub.textContent = `Visual design analysis across ${artGames.length} classified games — ${settings.length} settings, ${moods.length} moods`;
+        sub.textContent = `Visual design analysis across ${artGames.length} classified games — ${themes.length} themes, ${moods.length} moods, ${styles.length} styles, ${colorTones.length} color tones`;
     }
 }
 
 // ── Art Landscape bubble chart (mirrors Theme Landscape pattern) ──
 
-function renderSettingLandscape(settings, globalAvg) {
+function renderThemeLandscape(themes, globalAvg) {
     destroyChart('opportunity');
     const canvas = document.getElementById('art-opportunity-chart');
     if (!canvas) return;
@@ -411,10 +474,10 @@ function renderSettingLandscape(settings, globalAvg) {
     const ctx = canvas.getContext('2d');
     const chartColors = getChartColors();
 
-    if (!settings.length) return;
+    if (!themes.length) return;
 
-    const xVals = settings.map(s => s.count);
-    const yVals = settings.map(s => s.avgTheo);
+    const xVals = themes.map(s => s.count);
+    const yVals = themes.map(s => s.avgTheo);
     const rawMedX = median(xVals);
     const rawMedY = median(yVals);
 
@@ -477,16 +540,17 @@ function renderSettingLandscape(settings, globalAvg) {
         return wx < medX ? '🔍 Niche' : '⚠️ Saturated';
     };
 
-    const bubbleData = settings.map(s => ({
+    const bubbleData = themes.map(s => ({
         x: warpX(logX(s.count)),
         y: warpY(sqrtY(s.avgTheo)),
         r: rMin + Math.sqrt(s.count / maxCount) * (rMax - rMin),
         yOrig: s.avgTheo,
-        setting: s.setting,
+        theme: s.theme,
+        _label: s.theme,
         count: s.count,
     }));
 
-    const bubbleLabels = settings.map(s => shortLabel(s.setting));
+    const bubbleLabels = themes.map(s => shortLabel(s.theme));
     const bgColors = bubbleData.map(d => quadrantColor(d.y, d.x).bg + '0.45)');
     const borderColors = bubbleData.map(d => quadrantColor(d.y, d.x).border + '0.7)');
 
@@ -727,7 +791,7 @@ function renderSettingLandscape(settings, globalAvg) {
         const d = bubbleData[hit.index];
         if (!d) return;
         const q = quadrantName(d.y, d.x);
-        titleEl.textContent = `🎨 ${d.setting}`;
+        titleEl.textContent = `🎨 ${d.theme}`;
         bodyEl.textContent = `Games: ${d.count}  |  Avg Theo: ${d.yOrig.toFixed(2)}  |  ${q}`;
         if (swatchEl) {
             const color = quadrantColor(d.y, d.x);
@@ -756,7 +820,7 @@ function renderSettingLandscape(settings, globalAvg) {
         data: {
             datasets: [
                 {
-                    label: 'Environments',
+                    label: 'Themes',
                     data: bubbleData,
                     backgroundColor: bgColors,
                     borderColor: borderColors,
@@ -772,11 +836,12 @@ function renderSettingLandscape(settings, globalAvg) {
             animation: { duration: 400 },
             layout: { padding: { top: 24, right: 16, bottom: 24, left: 24 } },
             onClick: (e, elements) => {
+                if (window.xrayActive) return;
                 const chart = chartInstances.opportunity;
                 if (!chart) return;
                 if (elements.length) {
                     const d = bubbleData[elements[0].index];
-                    if (d?.setting) window.showArtSetting(d.setting);
+                    if (d?.theme) window.showArtTheme(d.theme);
                     return;
                 }
             },
@@ -897,12 +962,300 @@ function renderSettingLandscape(settings, globalAvg) {
 
     // Label click handler (click on displaced labels opens panel)
     canvas.addEventListener('click', e => {
+        if (window.xrayActive) return;
         const chart = chartInstances.opportunity;
         if (!chart) return;
         const hit = findLabelHit(e.clientX, e.clientY);
         if (hit) {
             const d = bubbleData[hit.index];
-            if (d?.setting) window.showArtSetting(d.setting);
+            if (d?.theme) window.showArtTheme(d.theme);
+        }
+    });
+}
+
+// ── Blue Ocean Opportunities bubble chart (recipe-level: Theme × Mood) ──
+
+function renderBlueOcean(artGames, globalAvg) {
+    destroyChart('blueOcean');
+    const canvas = document.getElementById('art-blue-ocean-chart');
+    if (!canvas) return;
+
+    const combos = getArtComboMetrics(artGames, { minGames: 2 });
+    if (!combos.length) return;
+
+    const ctx = canvas.getContext('2d');
+    const chartColors = getChartColors();
+
+    const xVals = combos.map(c => c.count);
+    const yVals = combos.map(c => c.avgTheo);
+    const maxCount = Math.max(...xVals, 1);
+    const rMin = 5;
+    const rMax = 32;
+
+    // X-axis: inverted game count (fewer games = further right = more opportunity)
+    const maxX = Math.max(...xVals);
+    const invertX = v => Math.log10(Math.max(1, maxX + 1 - v));
+    const rawMedCount = median(xVals);
+    const medXInv = invertX(rawMedCount);
+    const rawMedY = median(yVals);
+
+    // Y-axis: sqrt for spread
+    const sqrtY = v => Math.sqrt(Math.max(0, v));
+    const warpedMedY = sqrtY(rawMedY);
+
+    const quadrantColor = (wy, wx) => {
+        if (wy >= warpedMedY && wx >= medXInv) return { bg: 'rgba(6,182,212,', border: 'rgba(6,182,212,' }; // Blue Ocean
+        if (wy >= warpedMedY && wx < medXInv) return { bg: 'rgba(99,102,241,', border: 'rgba(99,102,241,' }; // Red Ocean
+        if (wy < warpedMedY && wx >= medXInv) return { bg: 'rgba(100,116,139,', border: 'rgba(100,116,139,' }; // Unproven
+        return { bg: 'rgba(239,68,68,', border: 'rgba(239,68,68,' }; // Avoid
+    };
+
+    const bubbleData = combos.map(c => {
+        const wx = invertX(c.count);
+        const wy = sqrtY(c.avgTheo);
+        return {
+            x: wx,
+            y: wy,
+            r: rMin + Math.sqrt(c.mktShare / Math.max(...combos.map(cc => cc.mktShare), 0.001)) * (rMax - rMin),
+            theme: c.theme,
+            mood: c.mood,
+            count: c.count,
+            avgTheo: c.avgTheo,
+            mktShare: c.mktShare,
+            _label: `${shortLabel(c.theme)} + ${shortLabel(c.mood)}`,
+        };
+    });
+
+    const bgColors = bubbleData.map(d => quadrantColor(d.y, d.x).bg + '0.5)');
+    const borderColors = bubbleData.map(d => quadrantColor(d.y, d.x).border + '0.8)');
+
+    const quadrantPlugin = {
+        id: 'blueOceanQuadrants',
+        beforeDatasetsDraw(chart) {
+            const {
+                ctx: c,
+                chartArea: { left, right, top, bottom },
+                scales: { x: xScale, y: yScale },
+            } = chart;
+            const mx = xScale.getPixelForValue(medXInv);
+            const my = yScale.getPixelForValue(warpedMedY);
+            const isDark = document.documentElement.classList.contains('dark');
+
+            const drawQuad = (x1, y1, x2, y2, color, labelText) => {
+                c.save();
+                c.fillStyle = isDark ? color.replace('0.06', '0.12') : color;
+                c.fillRect(x1, y1, x2 - x1, y2 - y1);
+                c.restore();
+                c.save();
+                c.font = '700 11px Inter, system-ui, sans-serif';
+                c.fillStyle = isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.18)';
+                c.textAlign = x1 < mx ? 'left' : 'right';
+                c.textBaseline = y1 < my ? 'top' : 'bottom';
+                const px = x1 < mx ? x1 + 8 : x2 - 8;
+                const py = y1 < my ? y1 + 6 : y2 - 6;
+                c.fillText(labelText, px, py);
+                c.restore();
+            };
+
+            drawQuad(mx, top, right, my, 'rgba(6,182,212,0.06)', '🌊 Blue Ocean');
+            drawQuad(left, top, mx, my, 'rgba(99,102,241,0.06)', '🔴 Red Ocean');
+            drawQuad(left, my, mx, bottom, 'rgba(239,68,68,0.06)', '⚠️ Avoid');
+            drawQuad(mx, my, right, bottom, 'rgba(100,116,139,0.06)', '🔍 Unproven');
+
+            c.save();
+            c.setLineDash([4, 4]);
+            c.strokeStyle = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.08)';
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(mx, top);
+            c.lineTo(mx, bottom);
+            c.stroke();
+            c.beginPath();
+            c.moveTo(left, my);
+            c.lineTo(right, my);
+            c.stroke();
+            c.restore();
+        },
+    };
+
+    // SA label solver for non-overlapping labels
+    const topN = bubbleData
+        .map((d, i) => ({ ...d, _i: i }))
+        .sort((a, b) => {
+            const aOpp = a.avgTheo / Math.max(a.count, 1);
+            const bOpp = b.avgTheo / Math.max(b.count, 1);
+            return bOpp - aOpp;
+        })
+        .slice(0, 30);
+
+    const placements = saLabelSolver({
+        bubbles: topN.map(d => ({ x: d.x, y: d.y, r: d.r })),
+        labels: topN.map(d => d._label),
+        canvasWidth: canvas.parentElement?.clientWidth || 800,
+        canvasHeight: 520,
+        maxIter: 500,
+    });
+
+    let resolvedLabels = null;
+
+    const labelPlugin = {
+        id: 'blueOceanLabels',
+        afterDatasetsDraw(chart) {
+            const {
+                ctx: c,
+                chartArea: { left, right, top, bottom },
+                scales: { x: xScale, y: yScale },
+            } = chart;
+            const isDark = document.documentElement.classList.contains('dark');
+            resolvedLabels = [];
+
+            for (let i = 0; i < topN.length; i++) {
+                const d = topN[i];
+                const p = placements[i];
+                if (!p) continue;
+
+                const bx = xScale.getPixelForValue(d.x);
+                const by = yScale.getPixelForValue(d.y);
+                const lbl = d._label.length > 28 ? d._label.slice(0, 27) + '…' : d._label;
+
+                c.save();
+                c.font = '600 9px Inter, system-ui, sans-serif';
+                const tw = c.measureText(lbl).width;
+                c.restore();
+
+                let lx, ly;
+                if (needsLeaderLine(p)) {
+                    const pxOff = ((p.x - d.x) / (Math.abs(p.x - d.x) || 1)) * 40;
+                    const pyOff = ((p.y - d.y) / (Math.abs(p.y - d.y) || 1)) * 20;
+                    lx = bx + pxOff;
+                    ly = by + pyOff;
+                    c.save();
+                    c.strokeStyle = isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.12)';
+                    c.lineWidth = 0.8;
+                    c.beginPath();
+                    c.moveTo(bx, by);
+                    c.lineTo(lx, ly);
+                    c.stroke();
+                    c.restore();
+                } else {
+                    ({ lx, ly } = snapLabelToBubble(bx, by, d.r, tw, 11, left, right, top, bottom));
+                }
+
+                lx = Math.max(left + 2, Math.min(right - tw - 2, lx));
+                ly = Math.max(top + 12, Math.min(bottom - 4, ly));
+
+                resolvedLabels.push({ x: lx, y: ly - 11, w: tw + 4, h: 14, index: d._i });
+
+                c.save();
+                c.font = '600 9px Inter, system-ui, sans-serif';
+                c.fillStyle = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.65)';
+                c.fillText(lbl, lx, ly);
+                c.restore();
+            }
+        },
+    };
+
+    chartInstances.blueOcean = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+            datasets: [
+                {
+                    data: bubbleData,
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
+                    borderWidth: 1.5,
+                    hoverBorderWidth: 2.5,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 600 },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    ...getModernTooltipConfig(),
+                    callbacks: {
+                        title: ctx => {
+                            const d = ctx[0]?.raw;
+                            return d ? `${d.theme} + ${d.mood}` : '';
+                        },
+                        label: ctx => {
+                            const d = ctx.raw;
+                            if (!d) return '';
+                            return [
+                                `Performance: ${d.avgTheo.toFixed(2)}`,
+                                `Games: ${d.count}`,
+                                `Market Share: ${(d.mktShare * 100).toFixed(1)}%`,
+                            ];
+                        },
+                    },
+                },
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Performance Index',
+                        color: chartColors.textColor,
+                        font: { size: 10, weight: 'bold' },
+                    },
+                    ticks: {
+                        color: chartColors.textColor,
+                        font: { size: 10 },
+                        callback: val => {
+                            const orig = val * val;
+                            return orig.toFixed(1);
+                        },
+                    },
+                    grid: getModernGridConfig(),
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Competition (fewer games →)',
+                        color: chartColors.textColor,
+                        font: { size: 10, weight: 'bold' },
+                    },
+                    ticks: {
+                        color: chartColors.textColor,
+                        font: { size: 10 },
+                        callback: val => {
+                            const count = Math.round(maxX + 1 - Math.pow(10, val));
+                            return count > 0 ? count : '';
+                        },
+                    },
+                    grid: getModernGridConfig(),
+                },
+            },
+        },
+        plugins: [quadrantPlugin, labelPlugin],
+    });
+
+    canvas.addEventListener('click', e => {
+        if (window.xrayActive) return;
+        const chart = chartInstances.blueOcean;
+        if (!chart) return;
+
+        const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+        if (points.length > 0) {
+            const d = bubbleData[points[0].index];
+            if (d) window.showArtRecipe(d.theme, d.mood);
+            return;
+        }
+
+        if (resolvedLabels) {
+            const rect = canvas.getBoundingClientRect();
+            const cx = e.clientX - rect.left;
+            const cy = e.clientY - rect.top;
+            for (const lb of resolvedLabels) {
+                if (cx >= lb.x && cx <= lb.x + lb.w && cy >= lb.y && cy <= lb.y + lb.h) {
+                    const d = bubbleData[lb.index];
+                    if (d) window.showArtRecipe(d.theme, d.mood);
+                    return;
+                }
+            }
         }
     });
 }
@@ -938,8 +1291,8 @@ function wireMoodDropdown(artGames, moods, globalAvg) {
             return;
         }
         const minGames = mood ? 2 : 1;
-        const filteredSettings = getArtSettingMetrics(filtered).filter(s => s.count >= minGames);
-        renderSettingLandscape(filteredSettings, globalAvg);
+        const filteredThemes = getArtThemeMetrics(filtered).filter(s => s.count >= minGames);
+        renderThemeLandscape(filteredThemes, globalAvg);
     });
 }
 
@@ -951,7 +1304,7 @@ function computeArtMoodTrends(artGames) {
     const byMood = {};
     for (const g of artGames) {
         const mood = F.artMood(g);
-        const yr = F.originalReleaseYear(g);
+        const yr = F.releaseYear(g);
         if (!mood || !yr || yr < 2000) continue;
         if (!byMood[mood]) byMood[mood] = { recent: 0, older: 0, total: 0 };
         byMood[mood].total++;
@@ -983,7 +1336,7 @@ function renderArtTrends(artGames) {
     if (!canvas) return;
 
     const DIMENSION_CONFIG = {
-        environment: { accessor: g => [F.artSetting(g)].filter(Boolean), label: 'Environments' },
+        environment: { accessor: g => [F.artTheme(g)].filter(Boolean), label: 'Themes' },
         mood: { accessor: g => [F.artMood(g)].filter(Boolean), label: 'Moods' },
         elements: { accessor: g => F.artElements(g) || [], label: 'Elements' },
         characters: { accessor: g => F.artCharacters(g) || [], label: 'Characters' },
@@ -996,7 +1349,7 @@ function renderArtTrends(artGames) {
         const yearSet = new Set();
         for (const g of artGames) {
             const vals = cfg.accessor(g);
-            const yr = F.originalReleaseYear(g);
+            const yr = F.releaseYear(g);
             if (!vals.length || !yr || yr < 2015) continue;
             yearSet.add(yr);
             for (const dim of vals) {
@@ -1115,7 +1468,10 @@ function renderArtTrends(artGames) {
                             usePointStyle: true,
                             pointStyle: 'circle',
                         },
-                        onClick: (evt, legendItem, legend) => soloDs(legend.chart, legendItem.datasetIndex),
+                        onClick: (evt, legendItem, legend) => {
+                            if (window.xrayActive) return;
+                            soloDs(legend.chart, legendItem.datasetIndex);
+                        },
                         onHover: (evt, legendItem, legend) => {
                             evt.native.target.style.cursor = 'pointer';
                             hlDataset(legend.chart, legendItem.datasetIndex);
@@ -1148,7 +1504,7 @@ function renderArtTrends(artGames) {
                     x: {
                         title: {
                             display: true,
-                            text: 'Release Year',
+                            text: 'NJ Launch Year',
                             color: chartColors.textColor,
                             font: { size: 10, weight: 'bold' },
                         },
@@ -1164,7 +1520,7 @@ function renderArtTrends(artGames) {
         const sub = document.getElementById('art-trend-subtitle');
         if (sub) {
             const label = (DIMENSION_CONFIG[dim] || DIMENSION_CONFIG.environment).label.toLowerCase();
-            sub.textContent = `How art ${label} are trending year over year`;
+            sub.textContent = `How art ${label} trend year over year`;
         }
     };
 
@@ -1197,7 +1553,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
     chartInstances[chartKey] = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: displayLabels,
+            labels: top12,
             datasets: [
                 {
                     label: metric,
@@ -1216,6 +1572,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
             maintainAspectRatio: false,
             layout: { padding: { left: 4, right: 8 } },
             onClick: (e, elements) => {
+                if (window.xrayActive) return;
                 if (elements.length && onClickFn) {
                     const idx = elements[0].index;
                     onClickFn(top12[idx]);
@@ -1255,6 +1612,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                         font: { size: 11 },
                         autoSkip: false,
                         padding: 6,
+                        callback: (_, idx) => displayLabels[idx] || top12[idx],
                     },
                 },
             },
@@ -1262,24 +1620,24 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
     });
 }
 
-function renderSettingsChart(settings, artGames) {
-    const trendMap = artGames ? computeArtSettingTrends(artGames) : {};
+function renderThemesChart(themes, artGames) {
+    const trendMap = artGames ? computeArtThemeTrends(artGames) : {};
     const trendSuffix = name => {
         const t = trendMap[name];
         if (!t || t.direction === 'stable' || t.direction === 'insufficient') return '';
         return t.direction === 'rising' ? ' ▲' : ' ▼';
     };
     createHorizontalBar(
-        'art-settings-chart',
-        settings.map(s => s.setting),
-        settings.map(s => s.count),
+        'art-themes-chart',
+        themes.map(s => s.theme),
+        themes.map(s => s.count),
         'Games',
         'settings',
         '#6366f1',
-        name => window.showArtSetting(name),
-        settings.map(s => shortLabel(s.setting) + trendSuffix(s.setting))
+        name => window.showArtTheme(name),
+        themes.map(s => shortLabel(s.theme) + trendSuffix(s.theme))
     );
-    const legendEl = document.getElementById('art-settings-trend-legend');
+    const legendEl = document.getElementById('art-themes-trend-legend');
     if (legendEl) {
         const rising = Object.values(trendMap).filter(t => t.direction === 'rising').length;
         const declining = Object.values(trendMap).filter(t => t.direction === 'declining').length;
@@ -1296,6 +1654,38 @@ function renderMoodChart(moods) {
         'moods',
         '#a855f7',
         name => window.showArtMood(name)
+    );
+}
+
+function renderArtStylesChart(styles) {
+    if (!styles.length) {
+        destroyChart('styles');
+        return;
+    }
+    createHorizontalBar(
+        'art-styles-chart',
+        styles.map(s => s.style),
+        styles.map(s => s.count),
+        'Games',
+        'styles',
+        '#ec4899',
+        name => window.showArtStyle(name)
+    );
+}
+
+function renderArtColorToneChart(colorTones) {
+    if (!colorTones.length) {
+        destroyChart('colorTones');
+        return;
+    }
+    createHorizontalBar(
+        'art-color-tone-chart',
+        colorTones.map(s => s.colorTone),
+        colorTones.map(s => s.count),
+        'Games',
+        'colorTones',
+        '#06b6d4',
+        name => window.showArtColorTone(name)
     );
 }
 
@@ -1361,7 +1751,7 @@ function sortRecipes(recipes, avg, mode) {
             sorted.sort((a, b) => b.count - a.count || b.avgTheo - a.avgTheo);
             break;
         case 'name-az':
-            sorted.sort((a, b) => (a.setting + a.mood).localeCompare(b.setting + b.mood));
+            sorted.sort((a, b) => (a.theme + a.mood).localeCompare(b.theme + b.mood));
             break;
         case 'opportunity':
         default:
@@ -1408,7 +1798,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
     const maxTheo = Math.max(...sorted.map(r => r.avgTheo), 1);
     const MEDALS = ['🥇', '🥈', '🥉'];
 
-    const trendMap = artGames ? computeArtSettingTrends(artGames) : {};
+    const trendMap = artGames ? computeArtThemeTrends(artGames) : {};
 
     const rows = sorted
         .map((r, i) => {
@@ -1432,7 +1822,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                     ? `<div class="flex flex-col items-center gap-0.5"><span class="text-base leading-none">${MEDALS[i]}</span><span class="text-[9px] font-bold text-amber-600 dark:text-amber-400">#${i + 1}</span></div>`
                     : `<span class="text-xs font-bold text-gray-400 dark:text-gray-500 tabular-nums">#${i + 1}</span>`;
 
-            const trend = trendMap[r.setting];
+            const trend = trendMap[r.theme];
             const trendBadge =
                 trend && trend.direction !== 'stable' && trend.direction !== 'insufficient'
                     ? trend.direction === 'rising'
@@ -1441,11 +1831,22 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                     : '';
 
             const recipeGames = artGames
-                ? artGames.filter(g => F.artSetting(g) === r.setting && F.artMood(g) === r.mood)
+                ? artGames.filter(g => F.artTheme(g) === r.theme && F.artMood(g) === r.mood)
                 : [];
             const domVol = recipeGames.length ? getDominantVolatility(recipeGames) : '';
             const domLayout = recipeGames.length ? getDominantLayout(recipeGames) : '';
             const avgRtp = recipeGames.length ? getAvgRtp(recipeGames) : 0;
+
+            const providerSet = new Set(recipeGames.map(g => F.provider(g)).filter(Boolean));
+            const provCount = providerSet.size;
+            const riskLevel =
+                r.count >= 10 && provCount >= 3 ? 'Low' : r.count >= 5 && provCount >= 2 ? 'Medium' : 'High';
+            const riskColor =
+                riskLevel === 'Low'
+                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30'
+                    : riskLevel === 'Medium'
+                      ? 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30'
+                      : 'text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/30';
 
             const chars = (r.topCharacters || [])
                 .filter(c => c && c !== 'No Characters (symbol-only game)')
@@ -1532,20 +1933,22 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                     </div>`
                     : '';
 
-            return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" onclick="${safeOnclick('window.showArtRecipe', r.setting, r.mood)}">
+            return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: r.theme }))}' onclick="${safeOnclick('window.showArtRecipe', r.theme, r.mood)}">
             <div class="px-4 py-4">
                 <div class="flex items-center gap-3">
                     <div class="w-8 text-center shrink-0">${rank}</div>
                     <div class="w-px h-10 bg-gray-300 dark:bg-gray-600 shrink-0"></div>
                     <div class="min-w-0 flex-1">
                         <div class="flex flex-wrap items-center gap-1.5 mb-2">
-                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Environment</span>
-                            ${multiPill(r.setting, SETTING_PALETTE)}
+                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Theme</span>
+                            ${multiPill(r.theme, THEME_PALETTE)}
                             <span class="text-gray-300 dark:text-gray-600 text-xs mx-0.5">×</span>
                             <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Mood</span>
                             ${multiPill(r.mood, MOOD_PALETTE)}
                             ${trendBadge}
                             ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
+                            <span class="text-[9px] font-medium ${riskColor} px-1.5 py-0.5 rounded-full">${riskLevel} Risk</span>
+                            <span class="text-[9px] text-gray-400 dark:text-gray-500">${provCount} provider${provCount !== 1 ? 's' : ''}</span>
                         </div>
                         <div class="border-t border-dashed border-gray-200 dark:border-gray-700 pt-1.5 mt-1.5 flex items-center gap-2">
                             <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Avg Theo</span>
@@ -1639,15 +2042,15 @@ function setupRecipeSortButtons() {
     });
 }
 
-// ── Art Environment Trends ──
+// ── Art Theme Trends ──
 
-function computeArtSettingTrends(artGames) {
+function computeArtThemeTrends(artGames) {
     const now = new Date().getFullYear();
     const recentCutoff = now - 2;
     const byEnv = {};
     for (const g of artGames) {
-        const env = F.artSetting(g);
-        const yr = F.originalReleaseYear(g);
+        const env = F.artTheme(g);
+        const yr = F.releaseYear(g);
         if (!env || !yr || yr < 2000) continue;
         if (!byEnv[env]) byEnv[env] = { recent: 0, older: 0, total: 0 };
         byEnv[env].total++;
@@ -1693,7 +2096,7 @@ function renderProviderArtCards(artGames, globalAvg) {
         const envMap = {};
         const moodMap = {};
         for (const g of provGames) {
-            const env = F.artSetting(g);
+            const env = F.artTheme(g);
             const mood = F.artMood(g);
             if (env) {
                 if (!envMap[env]) envMap[env] = { count: 0, theoSum: 0 };
@@ -1729,7 +2132,7 @@ function renderProviderArtCards(artGames, globalAvg) {
             const topMoodName = c.topMood ? c.topMood[0] : '—';
             const topGameName = c.topGame?.name || '—';
 
-            return `<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onclick="${safeOnclick('window.showArtSetting', bestEnvName)}">
+            return `<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: bestEnvName }))}' onclick="${safeOnclick('window.showArtTheme', bestEnvName)}">
                 <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                     <div class="flex items-center justify-between">
                         <span class="text-sm font-bold text-gray-900 dark:text-white truncate">${escapeHtml(c.name)}</span>
@@ -1754,7 +2157,7 @@ function renderProviderArtCards(artGames, globalAvg) {
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="text-[10px] text-gray-400 dark:text-gray-500">Diversity</span>
-                        <span class="text-[10px] text-gray-600 dark:text-gray-400 font-medium">${c.envCount} environments</span>
+                        <span class="text-[10px] text-gray-600 dark:text-gray-400 font-medium">${c.envCount} themes</span>
                     </div>
                     <div class="pt-1 border-t border-gray-100 dark:border-gray-700">
                         <div class="text-[9px] text-gray-400 dark:text-gray-500 truncate">Top: ${escapeHtml(topGameName)}</div>
@@ -1770,7 +2173,7 @@ function renderProviderArtCards(artGames, globalAvg) {
 // ── Strategic Art Recommendations (Build Next / Avoid / Watch) ──
 
 function enrichRecipe(r, artGames, avg) {
-    const games = artGames.filter(g => F.artSetting(g) === r.setting && F.artMood(g) === r.mood);
+    const games = artGames.filter(g => F.artTheme(g) === r.theme && F.artMood(g) === r.mood);
     const provArr = Object.entries(
         games.reduce((m, g) => {
             const p = F.provider(g);
@@ -1823,9 +2226,9 @@ function renderCardItem(c, color, clickAction) {
     const liftNum = Number(c.lift);
     const liftSign = liftNum >= 0 ? '+' : '';
 
-    return `<div class="space-y-0.5 cursor-pointer ${s.hover} rounded-lg px-2 py-1.5 -mx-2 transition-colors" onclick="${clickAction}">
+    return `<div class="space-y-0.5 cursor-pointer ${s.hover} rounded-lg px-2 py-1.5 -mx-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: c.theme }))}' onclick="${clickAction}">
         <div class="flex items-center justify-between gap-2">
-            <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="${s.title1}">${escapeHtml(shortLabel(c.setting))}</span> <span class="text-[8px] text-gray-400 font-normal">env</span> + <span class="${s.title2}">${escapeHtml(shortLabel(c.mood))}</span> <span class="text-[8px] text-gray-400 font-normal">mood</span></div></div>
+            <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="${s.title1}">${escapeHtml(shortLabel(c.theme))}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="${s.title2}">${escapeHtml(shortLabel(c.mood))}</span> <span class="text-[8px] text-gray-400 font-normal">mood</span></div></div>
             <div class="flex items-center gap-1.5 shrink-0">
                 <span class="text-[10px] px-1.5 py-0.5 rounded ${s.badge} font-medium">${c.count} games</span>
                 <span class="text-[10px] font-bold ${s.theo}">${c.avgTheo.toFixed(1)} avg theo</span>
@@ -1861,9 +2264,7 @@ function renderArtStrategicCards(artGames, globalAvg) {
             .slice(0, 5);
 
         buildNextDiv.innerHTML = opps.length
-            ? opps
-                  .map(c => renderCardItem(c, 'emerald', safeOnclick('window.showArtRecipe', c.setting, c.mood)))
-                  .join('')
+            ? opps.map(c => renderCardItem(c, 'emerald', safeOnclick('window.showArtRecipe', c.theme, c.mood))).join('')
             : '<p class="text-xs text-gray-400">No opportunities detected</p>';
     }
 
@@ -1875,35 +2276,35 @@ function renderArtStrategicCards(artGames, globalAvg) {
             .slice(0, 5);
 
         avoidDiv.innerHTML = avoid.length
-            ? avoid.map(c => renderCardItem(c, 'red', safeOnclick('window.showArtRecipe', c.setting, c.mood))).join('')
+            ? avoid.map(c => renderCardItem(c, 'red', safeOnclick('window.showArtRecipe', c.theme, c.mood))).join('')
             : '<p class="text-xs text-gray-400">No underperformers</p>';
     }
 
     if (watchDiv) {
-        const settings = getArtSettingMetrics(artGames);
-        const watch = settings
+        const themes = getArtThemeMetrics(artGames);
+        const watch = themes
             .filter(s => s.count >= 2 && s.count <= 15 && s.avgTheo > avg)
             .map(s => {
-                const settingGames = artGames.filter(g => F.artSetting(g) === s.setting);
+                const themeGames = artGames.filter(g => F.artTheme(g) === s.theme);
                 const provArr = Object.entries(
-                    settingGames.reduce((m, g) => {
+                    themeGames.reduce((m, g) => {
                         const p = F.provider(g);
                         if (p) m[p] = (m[p] || 0) + 1;
                         return m;
                     }, {})
                 ).sort((a, b) => b[1] - a[1]);
-                const topGame = [...settingGames].sort((a, b) => F.theoWin(b) - F.theoWin(a))[0];
+                const topGame = [...themeGames].sort((a, b) => F.theoWin(b) - F.theoWin(a))[0];
                 const lift = ((s.avgTheo / avg - 1) * 100).toFixed(0);
                 const dominantMood = (() => {
                     const moodMap = {};
-                    settingGames.forEach(g => {
+                    themeGames.forEach(g => {
                         const m = F.artMood(g);
                         if (m) moodMap[m] = (moodMap[m] || 0) + 1;
                     });
                     return Object.entries(moodMap).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
                 })();
                 return {
-                    setting: s.setting,
+                    theme: s.theme,
                     mood: dominantMood,
                     count: s.count,
                     avgTheo: s.avgTheo,
@@ -1920,7 +2321,7 @@ function renderArtStrategicCards(artGames, globalAvg) {
             .slice(0, 5);
 
         watchDiv.innerHTML = watch.length
-            ? watch.map(s => renderCardItem(s, 'amber', safeOnclick('window.showArtSetting', s.setting))).join('')
-            : '<p class="text-xs text-gray-400">No emerging environments</p>';
+            ? watch.map(s => renderCardItem(s, 'amber', safeOnclick('window.showArtTheme', s.theme))).join('')
+            : '<p class="text-xs text-gray-400">No emerging themes</p>';
     }
 }

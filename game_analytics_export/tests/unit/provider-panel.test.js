@@ -60,7 +60,7 @@ describe('Provider Panel – source-level validation', () => {
 
     describe('Null checks exist for DOM elements', () => {
         test('showGameDetails guards panel title', () => {
-            expect(uiPanelsSrc).toMatch(/gamePanelTitle\)\s*gamePanelTitle\.textContent/);
+            expect(uiPanelsSrc).toMatch(/gamePanelTitle\)\s*\{?\s*gamePanelTitle\.(textContent|innerHTML)/);
         });
 
         test('showGameDetails guards panel and backdrop with if', () => {

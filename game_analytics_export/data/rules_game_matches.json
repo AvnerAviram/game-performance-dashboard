@@ -27216,5 +27216,1576 @@
     "game_category": "Slot",
     "round": 0,
     "match_method": "exact_title"
+  },
+  "Azteca Gold Collect": {
+    "slug": "pariplayaztechgldclt",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplayaztechgldclt",
+    "page_title": "Azteca Gold Collect",
+    "provider": "Red Rake Gaming",
+    "game_category": "Slot",
+    "round": 0,
+    "match_method": "exact_title"
+  },
+  "Money Megaways": {
+    "slug": "nyxmoneymegaways",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxmoneymegaways",
+    "page_title": "Money Megaways",
+    "provider": "Pixiu Gaming",
+    "game_category": "Slot",
+    "round": 0,
+    "match_method": "exact_title"
+  },
+  "Chillilot": {
+    "slug": "oddsworkschillilot",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/oddsworkschillilot",
+    "page_title": "Chillilot",
+    "provider": "Oddsworks",
+    "game_category": "Slot",
+    "round": 0,
+    "match_method": "exact_title"
+  },
+  "Cash Eruption Slingo": {
+    "slug": "slingoslingocasheruption",
+    "url": "https://help.borgataonline.com/en/casino-help/instantwin/slingoslingocasheruption",
+    "page_title": "Slingo Cash Eruption",
+    "provider": "Gaming Realms",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Extra Chilli Megaways": {
+    "slug": "nyxextrachilli",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxextrachilli",
+    "page_title": "Extra Chilli",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Bonanza Megaways": {
+    "slug": "nyxbonanza",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxbonanza",
+    "page_title": "Bonanza",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Wild Turkey Megaways": {
+    "slug": "nentwildturkey",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/nentwildturkey",
+    "page_title": "Wild Turkey\u2122",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Temple Tumble": {
+    "slug": "relaxtempletumbl",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/relaxtempletumbl",
+    "page_title": "Temple Tumble Megaways",
+    "provider": "Relax Gaming",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Wolves Collect Em And Link": {
+    "slug": "playtechwolvescemlinknew",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechwolvescemlinknew",
+    "page_title": "Wolves Collect Em & Link",
+    "provider": "Playtech",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Bonanza Falls Megaways": {
+    "slug": "nyxbonanzafals",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxbonanzafals",
+    "page_title": "Bonanza Falls",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "China Shores Quick Strike": {
+    "slug": "konamichinashoresqsonline",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/konamichinashoresqsonline",
+    "page_title": "China Shores Quick Strike Online",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Invaders From The Planet Moolah": {
+    "slug": "wmsinvadersfromtheplanetmoolah",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/wmsinvadersfromtheplanetmoolah",
+    "page_title": "Invaders from Planet Moolah",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Mega Fire Blaze Dwarves And Goblins": {
+    "slug": "playtechmfbdwrvsngblnsit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechmfbdwrvsngblnsit",
+    "page_title": "MEGA FIRE BLAZE: DWARVES & GOBLINS",
+    "provider": "Playtech",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Sweet Success": {
+    "slug": "blueprintsweetsuccessmegaways",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/blueprintsweetsuccessmegaways",
+    "page_title": "Sweet Success Megaways",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Cleopatra Megaways Hold And Win": {
+    "slug": "isbcleopatramegaways",
+    "url": "https://help.bwin.es/en/casino-help/slots/isbcleopatramegaways",
+    "page_title": "Cleopatra Megaways",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Imperial Wealth Quick Strike": {
+    "slug": "spinkonamiimperialwealth",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamiimperialwealth",
+    "page_title": "Imperial Wealth",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "China Mystery Quick Strike": {
+    "slug": "konamichinamystery94",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/konamichinamystery94",
+    "page_title": "China Mystery",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Space Invaders Win And Spin": {
+    "slug": "inspiredspaceinvaderswin",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/inspiredspaceinvaderswin",
+    "page_title": "Space Invaders Win & Spin",
+    "provider": "Inspired",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Gypsy Fire Quick Strike": {
+    "slug": "konamigypsyfire",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/konamigypsyfire",
+    "page_title": "Gypsy Fire",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Jumpin Jalapenos Quick Strike": {
+    "slug": "spinkonamijumpinjalapenos",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamijumpinjalapenos",
+    "page_title": "Jumpin' Jalapenos",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Stellar Jackpots Silver Pride": {
+    "slug": "nyxstellarjackpotssilverpride",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxstellarjackpotssilverpride",
+    "page_title": "Stellar Jackpots with Silver Pride",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Raging Rhino Ultra Megadrop": {
+    "slug": "nyxragingrhinoultrajp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/nyxragingrhinoultrajp",
+    "page_title": "Raging Rhino Ultra",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "10001 Nights Limited": {
+    "slug": "rtgtonenightsjp",
+    "url": "https://help.sportingbet.com/en/casino-help/jackpot-slots/rtgtonenightsjp",
+    "page_title": "10001 Nights",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Bounty Raid Limited": {
+    "slug": "livedealernebountyrjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/livedealernebountyrjp",
+    "page_title": "Bounty Raid",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Lotus Land Quick Strike": {
+    "slug": "spinlotusland",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinlotusland",
+    "page_title": "Lotus Land",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Cairo Link And Win": {
+    "slug": "eusmdcairolinkwin",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdcairolinkwin",
+    "page_title": "Cairo Link & Win",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Diamonds Sapphires Rubies": {
+    "slug": "nyxdiamondsapphirenrubie",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/nyxdiamondsapphirenrubie",
+    "page_title": "Diamonds Sapphires and Rubies",
+    "provider": "Design Works Gaming",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Scarab Fortunes Win And Spin": {
+    "slug": "nyxscarabfortunewinspin",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxscarabfortunewinspin",
+    "page_title": "Scarab Fortunes Win & Spin",
+    "provider": "Inspired",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Wild Wild West": {
+    "slug": "novowildwest",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/novowildwest",
+    "page_title": "Wild West",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Shaolin Panda Chaos Reels": {
+    "slug": "octoplayshaolinpcreelultd",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/octoplayshaolinpcreelultd",
+    "page_title": "Shaolin Panda Chaos Reels Unlimited",
+    "provider": "Octoplay",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Pyramid Quest For Immortality": {
+    "slug": "netentpyramidthequestofimmortality",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentpyramidthequestofimmortality",
+    "page_title": "Pyramid: The Quest of Immortality!",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Big Prize Bubblegum Deluxe": {
+    "slug": "nyxbigprizebubblegum",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxbigprizebubblegum",
+    "page_title": "Big Prize Bubblegum",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Treasure Tiles Of Scarab": {
+    "slug": "eusmdtreasurets",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdtreasurets",
+    "page_title": "Treasure Tiles Scarab",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Dr Wild And The Eye Of Dead": {
+    "slug": "whitehatdrwildeyeofdead",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/whitehatdrwildeyeofdead",
+    "page_title": "Dr Wild and the Eye of the Dead",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Mighty 777 With Sticky Credits": {
+    "slug": "spinmighty777stickycredit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinmighty777stickycredit",
+    "page_title": "Mighty 777 Sticky Credits",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Mighty Empire Hold And Win": {
+    "slug": "igtmightyempireholdnwin",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtmightyempireholdnwin",
+    "page_title": "Mighty Empire: Hold & Win",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Secrets Of The Tiger Hold And Gold": {
+    "slug": "roxorsecretsofthethandg",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxorsecretsofthethandg",
+    "page_title": "Secrets of the Tiger Hold & Gold",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Valley Of The Fortunes": {
+    "slug": "nyxvalleyoffortunes",
+    "url": "https://help.on.betmgm.ca/en/casino-help/slots/nyxvalleyoffortunes",
+    "page_title": "Valley of Fortunes",
+    "provider": "High 5 Games",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Hansel And Gretel Candyhouse": {
+    "slug": "livedealernehngcandyhojp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/livedealernehngcandyhojp",
+    "page_title": "Hansel & Gretel Candyhouse",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Eternal Clash": {
+    "slug": "octoplayeternalclashultd",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/octoplayeternalclashultd",
+    "page_title": "Eternal Clash Unlimited",
+    "provider": "Octoplay",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Jane Jones Book Of Kings 2": {
+    "slug": "playtechjanejonesbok2",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/playtechjanejonesbok2",
+    "page_title": "Jane Jones in Book of Kings 2",
+    "provider": "Playtech",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Dinero Loco Deluxe": {
+    "slug": "spindinerolocous",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spindinerolocous",
+    "page_title": "Dinero Loco",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Candy Mine": {
+    "slug": "nyxcandyminemegaways88",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxcandyminemegaways88",
+    "page_title": "Candy Mine Megaways",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "King Of The Jungle": {
+    "slug": "jungleking",
+    "url": "",
+    "page_title": "Jungle King",
+    "provider": "Ainsworth",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "King Of The Catch Splash": {
+    "slug": "roxorkngfdcatchspl",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxorkngfdcatchspl",
+    "page_title": "King of Catch Splash",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Gems And Riches": {
+    "slug": "pariplaygemsandriches",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplaygemsandriches",
+    "page_title": "Gems & Riches",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_1.0"
+  },
+  "Book Of Relics Megadrop": {
+    "slug": "nyxbookofrelicsjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/nyxbookofrelicsjp",
+    "page_title": "Book of Relics",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_suffix_stripped_exact_1.0"
+  },
+  "Mighty Cash Long Teng Hu Xiao Dragon Files": {
+    "slug": "roxormightycashltnghxdfs",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxormightycashltnghxdfs",
+    "page_title": "Mighty Cash Long Teng Hu Xiao Dragon",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.875"
+  },
+  "Deal Or No Deal Whats In Your Case": {
+    "slug": "whitehatdealornodealwcjr",
+    "url": "",
+    "page_title": "Deal or No Deal: What's In Your Case JPR",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.857"
+  },
+  "Grand Link Express Hold And Win": {
+    "slug": "octoplaygrandlnkexhwulus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/octoplaygrandlnkexhwulus",
+    "page_title": "Grand Link Express Hold and Win Unlimited",
+    "provider": "Octoplay",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.833"
+  },
+  "3 Lucky Maneki Hold And Spin": {
+    "slug": "pariplay3luckymanekih",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplay3luckymanekih",
+    "page_title": "3 Lucky Maneki Hold N Spin",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.833"
+  },
+  "Chili Chili Fire Hot Rush Red": {
+    "slug": "konamichilifirehtrusrdfvr",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/konamichilifirehtrusrdfvr",
+    "page_title": "Chili Chili Fire Hot Rush Red Fever",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.833"
+  },
+  "Hot Slot 777 Crown Xmas Edition": {
+    "slug": "nyxhotslot777crownxmasus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxhotslot777crownxmasus",
+    "page_title": "Hot Slot: 777 Crown Xmas",
+    "provider": "Wazdan",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.833"
+  },
+  "Money Blast Quick Strike": {
+    "slug": "konamimoneyblastwithqsl",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/konamimoneyblastwithqsl",
+    "page_title": "Money Blast with Quick Strike Online",
+    "provider": "Konami",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Irish Riches Megaways Jackpot Royale": {
+    "slug": "whitehatirishrichesjr",
+    "url": "",
+    "page_title": "Irish Riches Jackpot Royale",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Thriller Gorilla Cashpots Jackpot": {
+    "slug": "whitehatthrillergorilcpjr",
+    "url": "",
+    "page_title": "Thriller Gorilla Cashpots Jackpot Royale",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Millionaires Mile Hold And Win Riches": {
+    "slug": "igtmillionairesmilehndw",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtmillionairesmilehndw",
+    "page_title": "Millionaire's Mile: Hold And Win",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Full Force Link Vegas Revue": {
+    "slug": "spinfullforcevegasrevue",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinfullforcevegasrevue",
+    "page_title": "Full Force Vegas Revue",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Full Force Link Good Deal": {
+    "slug": "spinfullforcegooddealus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinfullforcegooddealus",
+    "page_title": "Full Force Good Deal",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Sizzling Kingdom Bison Xmas": {
+    "slug": "nyxsizzlkinbxmasedition",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsizzlkinbxmasedition",
+    "page_title": "Sizzling Kingdom Bison Xmas Edition",
+    "provider": "Wazdan",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.8"
+  },
+  "Majestic Fury Megaways": {
+    "slug": "whitehatmajesticfurymwul",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/whitehatmajesticfurymwul",
+    "page_title": "Majestic Fury Megaways Unleashed",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Big Win Cat Pawsperity": {
+    "slug": "pngbigwincat",
+    "url": "",
+    "page_title": "Big Win Cat",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Megajackpots Wheel Of Fortune On Air": {
+    "slug": "igtwheeloffortuneonairjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/igtwheeloffortuneonairjp",
+    "page_title": "Wheel of Fortune On Air",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Slingo Gold Cash Freespin": {
+    "slug": "slingogoldcashfreespins",
+    "url": "https://help.borgataonline.com/en/casino-help/instantwin/slingogoldcashfreespins",
+    "page_title": "Slingo Gold Cash",
+    "provider": "Gaming Realms",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Flaming Hot Chili Pot Jackpot Royale Express": {
+    "slug": "whitehatflamnotchilpotjre",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/whitehatflamnotchilpotjre",
+    "page_title": "Flaming Hot Chilli Pot Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "12 Coins Grand Platinum Edition Santas Jackpot": {
+    "slug": "nyx12coinsgrandpeditionsj",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyx12coinsgrandpeditionsj",
+    "page_title": "12 Coins Grand Platinum Edition Santas Jackpots",
+    "provider": "Wazdan",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Fishin Pots Of Gold Gold Blitz": {
+    "slug": "eusmdfishinpotsogld",
+    "url": "https://help.bwin.es/en/casino-help/slots/eusmdfishinpotsogld",
+    "page_title": "Fishin' Pots of Gold",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Raging Rhino Rampage Buypass": {
+    "slug": "nyxragingrhinorampage",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxragingrhinorampage",
+    "page_title": "Raging Rhino Rampage",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Green Machine Deluxe Powerbet": {
+    "slug": "gameiomgreenmachinedel",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/gameiomgreenmachinedel",
+    "page_title": "Green Machine Deluxe",
+    "provider": "High 5 Games",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Fuzanglong Fire Wilds": {
+    "slug": "novofuzanglongfirewilds",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/novofuzanglongfirewilds",
+    "page_title": "Fuzanglong \u2013 Fire Wilds",
+    "provider": "Greentube",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Sun Of Fortune Xmas Edition": {
+    "slug": "nyxsunoffortunexmas",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsunoffortunexmas",
+    "page_title": "Sun of Fortune Xmas",
+    "provider": "Wazdan",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.75"
+  },
+  "Wheel Of Fortune Diamond Spins 2x Wild": {
+    "slug": "igtwofdiamondspin2xwilds",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/igtwofdiamondspin2xwilds",
+    "page_title": "Wheel of Fortune Diamond Spins 2x Wilds",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.714"
+  },
+  "Gonzos Quest 2 Return To El Dorado": {
+    "slug": "evoossgonzosquest2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/evoossgonzosquest2",
+    "page_title": "Gonzo's Quest II: Return to El Dorado",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.714"
+  },
+  "Fu Gui Hao Men Splendid Fortune": {
+    "slug": "igtfghmensplfortunes",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtfghmensplfortunes",
+    "page_title": "Fu Gui Hao Men Splendid Fortunes",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.714"
+  },
+  "Quick Hit Ultra Pays Monkeys Fortune": {
+    "slug": "nyxqhupmonkeysfortune",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxqhupmonkeysfortune",
+    "page_title": "Quick Hit Ultra Pays Monkey\u2019s Fortune",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.714"
+  },
+  "Street Fighter 2 The World Warrior Slot": {
+    "slug": "netentstreetfiitwws",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentstreetfiitwws",
+    "page_title": "Street Fighter II The World Warrior Slot",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.714"
+  },
+  "Megajackpots Cash Eruption": {
+    "slug": "igtcasheruption",
+    "url": "https://help.bwin.es/en/casino-help/slots/igtcasheruption",
+    "page_title": "Cash Eruption",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Fire And Roses Joker 2 All In": {
+    "slug": "eusmdfireandrosesj2a",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdfireandrosesj2a",
+    "page_title": "Fire and Roses Joker 2 All-In",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Links Of Ra 2": {
+    "slug": "eusmdlinksofra",
+    "url": "https://help.bwin.es/en/casino-help/slots/eusmdlinksofra",
+    "page_title": "Links of Ra",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Wheel Of Fortune Gold Spin Triple Red Hot 7s": {
+    "slug": "igtwoftrprh777goldspinjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/igtwoftrprh777goldspinjp",
+    "page_title": "Wof Gold Spin Triple Red Hot 7s",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Megajackpots Wolf Run": {
+    "slug": "igtwolfrun",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtwolfrun",
+    "page_title": "Wolf Run",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Lightning Gorilla 2 Max Boltage": {
+    "slug": "nyxlightninggorilla2maxim",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxlightninggorilla2maxim",
+    "page_title": "Lightning Gorilla 2 Maximum Boltage",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Mega Fire Blaze Pigies And The Bank": {
+    "slug": "playtechpiggiesbankmfbit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechpiggiesbankmfbit",
+    "page_title": "Mega Fire Blaze: Piggies and the Bank",
+    "provider": "Playtech",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Megajackpots Ocean Spirit": {
+    "slug": "igtoceanspirit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtoceanspirit",
+    "page_title": "Ocean Spirit",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Crazy Wizard Classic": {
+    "slug": "igtcrazywizardus",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/igtcrazywizardus",
+    "page_title": "Crazy Wizard",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Megajackpots Mistress Of Egypt": {
+    "slug": "igtmistressofegypt",
+    "url": "https://help.bwin.es/en/casino-help/slots/igtmistressofegypt",
+    "page_title": "Mistress of Egypt",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Megajackpots Ocean Belles": {
+    "slug": "igtoceanbellesjp1",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/igtoceanbellesjp1",
+    "page_title": "Ocean Belles",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Eagle Storm Jackpot Royal Express": {
+    "slug": "whitehateaglestormjpre",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/whitehateaglestormjpre",
+    "page_title": "Eagle Storm Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Brilliant Diamonds Hold And Win With Bonus Buy": {
+    "slug": "igtbrilliantdmhnw",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtbrilliantdmhnw",
+    "page_title": "Brilliant Diamonds Hold and Win",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Blood Suckers 2": {
+    "slug": "netentbloodsuckershtml",
+    "url": "https://help.bwin.es/en/casino-help/slots/netentbloodsuckershtml",
+    "page_title": "Blood Suckers",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Immortal Romance 2": {
+    "slug": "mgsimmortalromancehtml",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/mgsimmortalromancehtml",
+    "page_title": "Immortal Romance",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Secrets Of The Forest 2": {
+    "slug": "nyxsecretsoftheforest",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsecretsoftheforest",
+    "page_title": "Secrets of the Forest",
+    "provider": "High 5 Games",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Megajackpots Golden Goddess": {
+    "slug": "igtgoldengoddess1html",
+    "url": "https://help.bwin.es/en/casino-help/slots/igtgoldengoddess1html",
+    "page_title": "Golden Goddess",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Slingo Carnival Bonus": {
+    "slug": "spinslingocarnivalbonus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinslingocarnivalbonus",
+    "page_title": "Slingo Carnival",
+    "provider": "Gaming Realms",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Big Bang Boom": {
+    "slug": "nentbigbang",
+    "url": "",
+    "page_title": "Big Bang\u2122",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Wild Fury Jackpots": {
+    "slug": "igtwildfurynj",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtwildfurynj",
+    "page_title": "Wild Fury",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "A Visit From St Nick Power Bet": {
+    "slug": "gameiomavisitfrmstnick",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/gameiomavisitfrmstnick",
+    "page_title": "A Visit from St Nick",
+    "provider": "High 5 Games",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Pixies Of The Forest 2": {
+    "slug": "igtpixiesoftheforest1",
+    "url": "https://help.bwin.es/en/casino-help/slots/igtpixiesoftheforest1",
+    "page_title": "Pixies of the Forest",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Diamond 777 Mutliplier Retro Roller": {
+    "slug": "eusmddiamond777mrr",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmddiamond777mrr",
+    "page_title": "Diamond 777 Multiplier Retro Roller",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Warrior Graveyard Xnudge": {
+    "slug": "gameiomwarriorgraveyard",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/gameiomwarriorgraveyard",
+    "page_title": "Warrior Graveyard",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Hyper Strike Hyper Spins": {
+    "slug": "eusmdhyperstrike",
+    "url": "https://help.bwin.es/en/casino-help/slots/eusmdhyperstrike",
+    "page_title": "Hyper Strike",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Kings Of Crystals 2 Power Combo": {
+    "slug": "eusmdkoc2pc",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdkoc2pc",
+    "page_title": "Kings of Crystals II Power Combo",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Spinata Grande": {
+    "slug": "netentspinatagrandetouch",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentspinatagrandetouch",
+    "page_title": "Spinata Grande Touch",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Fire Burner": {
+    "slug": "igtfireburner",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtfireburner",
+    "page_title": "Fire Burner Slot",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Witch Pickings": {
+    "slug": "nyxwitchpickings",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/nyxwitchpickings",
+    "page_title": "Witch Pickings SCRATCH",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Monkeys Gold Xpays": {
+    "slug": "gameiommonkeysgold",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/gameiommonkeysgold",
+    "page_title": "Monkey's Gold",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Ms Robin Hood": {
+    "slug": "robinhood",
+    "url": "",
+    "page_title": "Robin Hood",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "90k Yeti": {
+    "slug": "slingo90kyetigb",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/slingo90kyetigb",
+    "page_title": "90k Yeti Gigablox",
+    "provider": "Gaming Realms",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Bonus 7s Wild": {
+    "slug": "igt7swild1",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igt7swild1",
+    "page_title": "7s Wild",
+    "provider": "Light & Wonder",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Jack Hammer": {
+    "slug": "netentjackhammertouch",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentjackhammertouch",
+    "page_title": "Jack Hammer Touch",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Light The Lamp": {
+    "slug": "pariplaygretzkylighttlamp",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplaygretzkylighttlamp",
+    "page_title": "Gretzky Light The Lamp",
+    "provider": "Spinberry",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Bounty Hunt Reloaded": {
+    "slug": "nyxbountyhunt",
+    "url": "https://help.sportingbet.com/en/casino-help/slots/nyxbountyhunt",
+    "page_title": "Bounty Hunt",
+    "provider": "Reel Play",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Dr Wildshock Mad Loot Lab": {
+    "slug": "eusmddrwildshock",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmddrwildshock",
+    "page_title": "Dr. Wildshock's Mad Loot Lab",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Legion Gold Unleashed": {
+    "slug": "pnglegiongold",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/pnglegiongold",
+    "page_title": "Legion Gold",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Coin Burst": {
+    "slug": "roxorcoinburstcraze",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxorcoinburstcraze",
+    "page_title": "Coin Burst Craze",
+    "provider": "Aristocrat",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.667"
+  },
+  "Porkin Cashpots Combo Frenzy Jackpot Royale": {
+    "slug": "whitehatporkincashpotfjpr",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/whitehatporkincashpotfjpr",
+    "page_title": "Porkin Cash Pots Combo Frenzy Jackpot Royale",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.625"
+  },
+  "Big Catch Bass Fishing Megaways Jackpot Royale": {
+    "slug": "whitehatbgcbassfishinmwjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/whitehatbgcbassfishinmwjp",
+    "page_title": "Big Catch Bass Fishing Megaways JPR",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.625"
+  },
+  "Full Force Link Ch Ing Wa Sheng": {
+    "slug": "spinfforcechlngwasheng",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinfforcechlngwasheng",
+    "page_title": "Full Force Link Ch'ing - Wa Sheng",
+    "provider": "Incredible Technologies",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.625"
+  },
+  "333 Boom Banks Power Combo": {
+    "slug": "eusmd333bbpc",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmd333bbpc",
+    "page_title": "333 Boom Banks",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Saint Nicked 3 Present Tense": {
+    "slug": "whitehatsaintnicked3us",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/whitehatsaintnicked3us",
+    "page_title": "Saint Nicked 3",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Dragon Power 10k Ways": {
+    "slug": "spindragonpower10000ways",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spindragonpower10000ways",
+    "page_title": "Dragon Power 10000 Ways",
+    "provider": "Bragg Gaming Group",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Lucky Larry Lobstermania 2": {
+    "slug": "igtluckylarryslobstermania2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtluckylarryslobstermania2",
+    "page_title": "Lucky Larry\u2019s Lobstermania 2",
+    "provider": "IGT",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Peaky Blinders 2 The Shelby Empire": {
+    "slug": "whitehatpeakyblinders2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/whitehatpeakyblinders2",
+    "page_title": "Peaky Blinders 2",
+    "provider": "White Hat Studios",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Temple Tumble 2 Dream Drop": {
+    "slug": "relaxtempletumble2us",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/relaxtempletumble2us",
+    "page_title": "Temple Tumble 2",
+    "provider": "Relax Gaming",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "333 Fat Frogs Power Combo": {
+    "slug": "eusmd33fatfrogspc",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmd33fatfrogspc",
+    "page_title": "333 Fat Frogs",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "3 Cherry Frenzy": {
+    "slug": "eusmd3cherryfrenzy",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmd3cherryfrenzy",
+    "page_title": "3 Cherry Frenzy Lock & Win",
+    "provider": "Games Global",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Slots O Luck": {
+    "slug": "nyxslotsoluckfreespins",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxslotsoluckfreespins",
+    "page_title": "Slots O Luck Free Spins",
+    "provider": "Inspired",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Majestic Mysteries Power Reel": {
+    "slug": "livedealernemajesticmprjp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/livedealernemajesticmprjp",
+    "page_title": "Majestic Mysteries Power Reels",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Wild Force Frosty Win": {
+    "slug": "oddsworkswildforcefrostyw",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/oddsworkswildforcefrostyw",
+    "page_title": "Wild Force Frosty Wins",
+    "provider": "Oddsworks",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Reel Hot 7s Classic": {
+    "slug": "ainsworthreelhot7sclassic",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/ainsworthreelhot7sclassic",
+    "page_title": "Reel Hot 7s Classics",
+    "provider": "Ainsworth",
+    "round": 0,
+    "match_method": "fuzzy_jaccard_0.6"
+  },
+  "Mirror Joker": {
+    "slug": "prov_playngo_mirrorjoker",
+    "url": "https://www.playngo.com/games/mirror-joker",
+    "page_title": "Mirror Joker",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Wild Bandolier": {
+    "slug": "prov_playngo_wildbandolier",
+    "url": "https://www.playngo.com/games/wild-bandolier",
+    "page_title": "Wild Bandolier",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Prism Of Gems": {
+    "slug": "prov_playngo_prismofgems",
+    "url": "https://www.playngo.com/games/prism-of-gems",
+    "page_title": "Prism Of Gems",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Finn And The Candy Spin": {
+    "slug": "prov_evolution_finnandthecandyspin",
+    "url": "https://games.evolution.com/slots/finn-and-the-candy-spin/",
+    "page_title": "Finn And The Candy Spin",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Xways Hoarder Xsplit": {
+    "slug": "prov_evolution_xwayshoarderxsplit",
+    "url": "https://games.evolution.com/slots/xways-hoarder-xsplit/",
+    "page_title": "Xways Hoarder Xsplit",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Dynamite Riches Megaways Limited": {
+    "slug": "prov_evolution_dynamiterichesmegaways",
+    "url": "https://games.evolution.com/slots/dynamite-riches-megaways/",
+    "page_title": "Dynamite Riches Megaways Limited",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Big Money Wheel": {
+    "slug": "prov_evolution_bigmoneywheel",
+    "url": "https://games.evolution.com/slots/big-money-wheel/",
+    "page_title": "Big Money Wheel",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Love Is In The Fair": {
+    "slug": "prov_playngo_loveisinthefair",
+    "url": "https://www.playngo.com/games/love-is-in-the-fair",
+    "page_title": "Love Is In The Fair",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Treats Of Terror": {
+    "slug": "prov_playngo_treatsofterror",
+    "url": "https://www.playngo.com/games/treats-of-terror",
+    "page_title": "Treats Of Terror",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Ternion": {
+    "slug": "prov_playngo_ternion",
+    "url": "https://www.playngo.com/games/ternion",
+    "page_title": "Ternion",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Cat Wilde And The Pyramids Of Dead": {
+    "slug": "prov_playngo_catwildeandthepyramidsofdead",
+    "url": "https://www.playngo.com/games/cat-wilde-and-the-pyramids-of-dead",
+    "page_title": "Cat Wilde And The Pyramids Of Dead",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Rocco Gallo": {
+    "slug": "prov_playngo_roccogallo",
+    "url": "https://www.playngo.com/games/rocco-gallo",
+    "page_title": "Rocco Gallo",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Chambers Of Ancients": {
+    "slug": "prov_playngo_chambersofancients",
+    "url": "https://www.playngo.com/games/chambers-of-ancients",
+    "page_title": "Chambers Of Ancients",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Legion Gold And The Sphinx Of Dead": {
+    "slug": "prov_playngo_legiongoldandthesphinxofdead",
+    "url": "https://www.playngo.com/games/legion-gold-and-the-sphinx-of-dead",
+    "page_title": "Legion Gold And The Sphinx Of Dead",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Tower Quest Legacy": {
+    "slug": "prov_playngo_towerquestlegacy",
+    "url": "https://www.playngo.com/games/tower-quest-legacy",
+    "page_title": "Tower Quest Legacy",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Joker Flip": {
+    "slug": "prov_playngo_jokerflip",
+    "url": "https://www.playngo.com/games/joker-flip",
+    "page_title": "Joker Flip",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Cat Wilde And The Incan Quest": {
+    "slug": "prov_playngo_catwildeandtheincanquest",
+    "url": "https://www.playngo.com/games/cat-wilde-and-the-incan-quest",
+    "page_title": "Cat Wilde And The Incan Quest",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Boat Bonanza Christmas": {
+    "slug": "prov_playngo_boatbonanzachristmas",
+    "url": "https://www.playngo.com/games/boat-bonanza-christmas",
+    "page_title": "Boat Bonanza Christmas",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Merlin Realm Of Charm": {
+    "slug": "prov_playngo_merlinrealmofcharm",
+    "url": "https://www.playngo.com/games/merlin-realm-of-charm",
+    "page_title": "Merlin Realm Of Charm",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Dio Killing The Dragon": {
+    "slug": "prov_playngo_diokillingthedragon",
+    "url": "https://www.playngo.com/games/dio-killing-the-dragon",
+    "page_title": "Dio Killing The Dragon",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Legacy Of Inca": {
+    "slug": "prov_playngo_legacyofinca",
+    "url": "https://www.playngo.com/games/legacy-of-inca",
+    "page_title": "Legacy Of Inca",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Whispering Winds": {
+    "slug": "prov_playngo_whisperingwinds",
+    "url": "https://www.playngo.com/games/whispering-winds",
+    "page_title": "Whispering Winds",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Piranha Pays": {
+    "slug": "prov_playngo_piranhapays",
+    "url": "https://www.playngo.com/games/piranha-pays",
+    "page_title": "Piranha Pays",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Highway Legends": {
+    "slug": "prov_playngo_highwaylegends",
+    "url": "https://www.playngo.com/games/highway-legends",
+    "page_title": "Highway Legends",
+    "provider": "Play'n GO",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Tomb Of Akhenaten": {
+    "slug": "prov_evolution_tombofakhenaten",
+    "url": "https://games.evolution.com/slots/tomb-of-akhenaten/",
+    "page_title": "Tomb Of Akhenaten",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Royal Nuts": {
+    "slug": "prov_evolution_royalnuts",
+    "url": "https://games.evolution.com/slots/royal-nuts/",
+    "page_title": "Royal Nuts",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Pyramid": {
+    "slug": "prov_evolution_pyramid",
+    "url": "https://games.evolution.com/slots/pyramid/",
+    "page_title": "Pyramid",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Lock And Pop": {
+    "slug": "prov_evolution_lockandpop",
+    "url": "https://games.evolution.com/slots/lock-and-pop/",
+    "page_title": "Lock And Pop",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Dont Eat The Candy": {
+    "slug": "prov_evolution_donteatthecandy",
+    "url": "https://games.evolution.com/slots/dont-eat-the-candy/",
+    "page_title": "Dont Eat The Candy",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Punk Rocker": {
+    "slug": "prov_evolution_punkrocker",
+    "url": "https://games.evolution.com/slots/punk-rocker/",
+    "page_title": "Punk Rocker",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Pandoras Treasure": {
+    "slug": "prov_evolution_pandorastreasure",
+    "url": "https://games.evolution.com/slots/pandoras-treasure/",
+    "page_title": "Pandoras Treasure",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Gifts Of Fortune Megaways": {
+    "slug": "prov_evolution_giftsoffortune",
+    "url": "https://games.evolution.com/slots/gifts-of-fortune/",
+    "page_title": "Gifts Of Fortune Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Buckshot Wilds": {
+    "slug": "prov_evolution_buckshotwilds",
+    "url": "https://games.evolution.com/slots/buckshot-wilds/",
+    "page_title": "Buckshot Wilds",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Wild Portals Megaways": {
+    "slug": "prov_evolution_wildportals",
+    "url": "https://games.evolution.com/slots/wild-portals/",
+    "page_title": "Wild Portals Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Jungle Spirit Megaways": {
+    "slug": "prov_evolution_junglespiritmegaways",
+    "url": "https://games.evolution.com/slots/jungle-spirit-megaways/",
+    "page_title": "Jungle Spirit Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Ticket To Wild": {
+    "slug": "prov_evolution_tickettowild",
+    "url": "https://games.evolution.com/slots/ticket-to-wild/",
+    "page_title": "Ticket To Wild",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Mine Blown": {
+    "slug": "prov_evolution_mineblown",
+    "url": "https://games.evolution.com/slots/mine-blown/",
+    "page_title": "Mine Blown",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Crab Trap": {
+    "slug": "prov_evolution_crabtrap",
+    "url": "https://games.evolution.com/slots/crab-trap/",
+    "page_title": "Crab Trap",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "White Rabbit Megaways": {
+    "slug": "prov_evolution_whiterabbit",
+    "url": "https://games.evolution.com/slots/white-rabbit/",
+    "page_title": "White Rabbit Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Panda Money Megaways": {
+    "slug": "prov_evolution_pandamoney",
+    "url": "https://games.evolution.com/slots/panda-money/",
+    "page_title": "Panda Money Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Druids Magic": {
+    "slug": "prov_evolution_druidsmagic",
+    "url": "https://games.evolution.com/slots/druids-magic/",
+    "page_title": "Druids Magic",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Elk Hunter": {
+    "slug": "prov_evolution_elkhunter",
+    "url": "https://games.evolution.com/slots/elk-hunter/",
+    "page_title": "Elk Hunter",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Space Wars Megaways Xxxtreme": {
+    "slug": "prov_evolution_spacewarsmegawaysxxxtreme",
+    "url": "https://games.evolution.com/slots/space-wars-megaways-xxxtreme/",
+    "page_title": "Space Wars Megaways Xxxtreme",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Golden Wheels Of Egypt": {
+    "slug": "prov_evolution_goldenwheelsofegypt",
+    "url": "https://games.evolution.com/slots/golden-wheels-of-egypt/",
+    "page_title": "Golden Wheels Of Egypt",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Tombstone Rip": {
+    "slug": "prov_evolution_tombstonerip",
+    "url": "https://games.evolution.com/slots/tombstone-rip/",
+    "page_title": "Tombstone Rip",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Thrill To Grill": {
+    "slug": "prov_evolution_thrilltogrill",
+    "url": "https://games.evolution.com/slots/thrill-to-grill/",
+    "page_title": "Thrill To Grill",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Twin Happiness": {
+    "slug": "prov_evolution_twinhappiness",
+    "url": "https://games.evolution.com/slots/twin-happiness/",
+    "page_title": "Twin Happiness",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "101 Candies": {
+    "slug": "prov_evolution_101candies",
+    "url": "https://games.evolution.com/slots/101-candies/",
+    "page_title": "101 Candies",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Slot Vegas Fully Loaded Megaways": {
+    "slug": "prov_evolution_slotvegasfullyloaded",
+    "url": "https://games.evolution.com/slots/slot-vegas-fully-loaded/",
+    "page_title": "Slot Vegas Fully Loaded Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Golden Realms": {
+    "slug": "prov_evolution_goldenrealms",
+    "url": "https://games.evolution.com/slots/golden-realms/",
+    "page_title": "Golden Realms",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Kingmaker Fully Loaded Megaways": {
+    "slug": "prov_evolution_kingmakerfullyloaded",
+    "url": "https://games.evolution.com/slots/kingmaker-fully-loaded/",
+    "page_title": "Kingmaker Fully Loaded Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Manhattan Goes Wild": {
+    "slug": "prov_evolution_manhattangoeswild",
+    "url": "https://games.evolution.com/slots/manhattan-goes-wild/",
+    "page_title": "Manhattan Goes Wild",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Rainforest Gold": {
+    "slug": "prov_evolution_rainforestgold",
+    "url": "https://games.evolution.com/slots/rainforest-gold/",
+    "page_title": "Rainforest Gold",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Rage": {
+    "slug": "prov_evolution_rage",
+    "url": "https://games.evolution.com/slots/rage/",
+    "page_title": "Rage",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Cursed Treasure": {
+    "slug": "prov_evolution_cursedtreasure",
+    "url": "https://games.evolution.com/slots/cursed-treasure/",
+    "page_title": "Cursed Treasure",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Gladiator Clash": {
+    "slug": "prov_evolution_gladiatorclash",
+    "url": "https://games.evolution.com/slots/gladiator-clash/",
+    "page_title": "Gladiator Clash",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Casino Win Spin": {
+    "slug": "prov_evolution_casinowinspin",
+    "url": "https://games.evolution.com/slots/casino-win-spin/",
+    "page_title": "Casino Win Spin",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Magic Lab": {
+    "slug": "prov_evolution_magiclab",
+    "url": "https://games.evolution.com/slots/magic-lab/",
+    "page_title": "Magic Lab",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Beach Invaders": {
+    "slug": "prov_evolution_beachinvaders",
+    "url": "https://games.evolution.com/slots/beach-invaders/",
+    "page_title": "Beach Invaders",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Coins Of Fortune": {
+    "slug": "prov_evolution_coinsoffortune",
+    "url": "https://games.evolution.com/slots/coins-of-fortune/",
+    "page_title": "Coins Of Fortune",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Good Old 7s": {
+    "slug": "prov_evolution_goodold7s",
+    "url": "https://games.evolution.com/slots/good-old-7s/",
+    "page_title": "Good Old 7s",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "The Race Megaways": {
+    "slug": "prov_evolution_therace",
+    "url": "https://games.evolution.com/slots/the-race/",
+    "page_title": "The Race Megaways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Milky Ways": {
+    "slug": "prov_evolution_milkyways",
+    "url": "https://games.evolution.com/slots/milky-ways/",
+    "page_title": "Milky Ways",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Hot 4 Cash": {
+    "slug": "prov_evolution_hot4cash",
+    "url": "https://games.evolution.com/slots/hot-4-cash/",
+    "page_title": "Hot 4 Cash",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Tractor Beam": {
+    "slug": "prov_evolution_tractorbeam",
+    "url": "https://games.evolution.com/slots/tractor-beam/",
+    "page_title": "Tractor Beam",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
+  },
+  "Wixx": {
+    "slug": "prov_evolution_wixx",
+    "url": "https://games.evolution.com/slots/wixx/",
+    "page_title": "Wixx",
+    "provider": "Evolution",
+    "round": 0,
+    "match_method": "provider_website"
   }
 }

@@ -14,7 +14,7 @@ import {
 import { createVolatilityChart, createVolatilityLandscapeChart } from './chart-volatility.js';
 import { createRtpChart, createRtpLandscapeChart } from './chart-rtp.js';
 import { createBrandsChart, createBrandLandscapeChart } from './chart-brands.js';
-import { createArtSettingChart } from './chart-art.js';
+import { createArtThemeChart } from './chart-art.js';
 
 /** Re-export for consumers that import from charts-modern.js barrel */
 export { createMarketLandscapeChart } from './chart-themes.js';
@@ -45,7 +45,7 @@ export function initializeCharts() {
     createVolatilityChart();
     createRtpChart();
     createBrandsChart();
-    createArtSettingChart();
+    createArtThemeChart();
 
     const retryMissing = () => {
         if (!chartInstances.scatter) createScatterChart();
@@ -54,7 +54,7 @@ export function initializeCharts() {
         if (!chartInstances.volatility) createVolatilityChart();
         if (!chartInstances.rtp) createRtpChart();
         if (!chartInstances.brands) createBrandsChart();
-        if (!chartInstances.artSettings) createArtSettingChart();
+        if (!chartInstances.artThemes) createArtThemeChart();
     };
     setTimeout(retryMissing, 500);
     setTimeout(retryMissing, 1500);
@@ -75,7 +75,7 @@ export function refreshCharts() {
     createVolatilityChart();
     createRtpChart();
     createBrandsChart();
-    createArtSettingChart();
+    createArtThemeChart();
     setTimeout(() => {
         isRefreshing = false;
     }, 100);

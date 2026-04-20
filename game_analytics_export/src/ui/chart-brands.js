@@ -155,60 +155,117 @@ export function createBrandsChart() {
             x: xWarpOv.warpVal(f.count),
             y: f.avgTheo,
             r: Math.max(8, Math.min(24, 8 + Math.sqrt(f.totalShare / maxShare) * 16)),
-        }));
-
-        const minorData = minors.map(f => ({
-            x: xWarpOv.warpVal(f.count),
-            y: f.avgTheo,
-            r: 4,
+            _label: f.name,
         }));
 
         const majorLabels = majors.map(f => f.name);
+        const majorBorders = majorData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
+
+        const clusters = [
+            { key: 'tl', items: [] },
+            { key: 'tr', items: [] },
+            { key: 'bl', items: [] },
+            { key: 'br', items: [] },
+        ];
+        for (const f of minors) {
+            const wx = xWarpOv.warpVal(f.count);
+            const wy = f.avgTheo;
+            const ci = wx < medX ? (wy >= medY ? 0 : 2) : wy >= medY ? 1 : 3;
+            clusters[ci].items.push(f);
+        }
+        const clusterData = [];
+        const clusterLabelsOv = [];
+        for (const c of clusters) {
+            if (!c.items.length) continue;
+            const avgX = c.items.reduce((s, f) => s + xWarpOv.warpVal(f.count), 0) / c.items.length;
+            const avgY = c.items.reduce((s, f) => s + f.avgTheo, 0) / c.items.length;
+            clusterData.push({ x: avgX, y: avgY, r: 12 + Math.sqrt(c.items.length) * 3 });
+            clusterLabelsOv.push(`+${c.items.length}`);
+        }
 
         const datasets = [
             {
                 label: 'Top Brands',
                 data: majorData,
                 backgroundColor: majorData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
-                borderColor: majorData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
+                borderColor: majorBorders,
                 borderWidth: 1.5,
                 hoverRadius: 4,
             },
         ];
 
-        if (minorData.length) {
+        if (clusterData.length) {
             datasets.push({
                 label: `${minors.length} other brands`,
-                data: minorData,
-                backgroundColor: 'rgba(148,163,184,0.25)',
+                data: clusterData,
+                backgroundColor: 'rgba(148,163,184,0.15)',
                 borderColor: 'rgba(148,163,184,0.4)',
-                borderWidth: 0.5,
-                hoverRadius: 2,
+                borderWidth: 1,
+                borderDash: [3, 2],
+                hoverRadius: 4,
             });
         }
+
+        const clusterLabelPlugin = {
+            id: 'brandOvClusterLabels',
+            afterDatasetsDraw(chart) {
+                if (!clusterData.length) return;
+                const { ctx: c } = chart;
+                const meta1 = chart.getDatasetMeta(1);
+                if (!meta1?.data?.length) return;
+                c.save();
+                c.font = 'bold 11px Inter, system-ui, sans-serif';
+                c.textAlign = 'center';
+                c.textBaseline = 'middle';
+                c.fillStyle = 'rgba(100,116,139,0.7)';
+                meta1.data.forEach((pt, i) => {
+                    c.fillText(clusterLabelsOv[i], pt.x, pt.y);
+                });
+                c.restore();
+            },
+        };
+
+        const saPlugin = createSABubbleLabelPlugin('brandOvLabels', majorData, majorLabels, majorBorders);
 
         chartInstances.brands = new Chart(ctx, {
             type: 'bubble',
             data: { datasets },
-            plugins: [createQuadrantPlugin('brandQuadrant', medX, medY, chartColors)],
+            plugins: [createQuadrantPlugin('brandQuadrant', medX, medY, chartColors), saPlugin, clusterLabelPlugin],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: { duration: 600 },
+                onHover: createSAHoverHandler(),
+                onClick: (e, elements) => {
+                    if (window.xrayActive) return;
+                    if (elements.length && elements[0].datasetIndex === 0) {
+                        const f = majors[elements[0].index];
+                        if (f && window.showFranchiseDetails) window.showFranchiseDetails(f.name);
+                        return;
+                    }
+                    if (!elements.length) {
+                        const chart = chartInstances.brands;
+                        if (chart?._saFindLabel) {
+                            const rect = chart.canvas.getBoundingClientRect();
+                            const cx = e.native.clientX - rect.left;
+                            const cy = e.native.clientY - rect.top;
+                            const li = chart._saFindLabel(cx, cy);
+                            if (li >= 0 && majorLabels[li] && window.showFranchiseDetails) {
+                                window.showFranchiseDetails(majorLabels[li]);
+                            }
+                        }
+                    }
+                },
                 layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
                         ...getModernTooltipConfig(),
+                        filter: ti => ti.datasetIndex === 0,
                         callbacks: {
-                            title: items => {
-                                const dsIdx = items[0].datasetIndex;
-                                const idx = items[0].dataIndex;
-                                const f = dsIdx === 0 ? majors[idx] : minors[idx];
-                                return f ? `🎮 ${f.name}` : '';
-                            },
+                            title: items => `🎮 ${majors[items[0].dataIndex]?.name || ''}`,
                             label: item => {
-                                const f = item.datasetIndex === 0 ? majors[item.dataIndex] : minors[item.dataIndex];
+                                const f = majors[item.dataIndex];
                                 if (!f) return '';
                                 const q = quadrantLabel(xWarpOv.warpVal(f.count), f.avgTheo, medX, medY);
                                 return `Titles: ${f.count}  |  Avg PI: ${f.avgTheo.toFixed(2)}  |  Share: ${f.totalShare.toFixed(1)}%  |  ${q}`;
@@ -217,16 +274,8 @@ export function createBrandsChart() {
                     },
                 },
                 scales: bubbleScaleOptionsWarped(chartColors, xWarpOv, 'Title Count', 'Avg Performance Index'),
-                onClick: (_evt, elements) => {
-                    if (!elements.length) return;
-                    const el = elements[0];
-                    const f = el.datasetIndex === 0 ? majors[el.index] : minors[el.index];
-                    if (f && window.showFranchiseDetails) window.showFranchiseDetails(f.name);
-                },
             },
         });
-        const branded = franchises.reduce((s, f) => s + f.count, 0);
-        // Coverage pill omitted on overview
     } catch (err) {
         console.error('[BRANDS-CHART] FAILED:', err);
     }
@@ -295,6 +344,7 @@ export function createBrandLandscapeChart() {
             x: xWarp.warpVal(f.count) + jitterX(i),
             y: yWarp.warp(f.avgTheo) + jitterY(i),
             r: rMin + Math.sqrt(f.count / maxCount) * (rMax - rMin),
+            _label: f.name,
         }));
         const majorLabels = majors.map(f => f.name);
         const majorBorders = majorData.map(d => quadrantBorderColor(d.x, d.y, medX, medY));
@@ -431,11 +481,29 @@ export function createBrandLandscapeChart() {
                         }
                     }
                     if (elements.length && elements[0].datasetIndex === 0) {
+                        chart._saSetHovered?.(elements[0].index);
                         chart.setActiveElements([{ datasetIndex: 0, index: elements[0].index }]);
-                        chart.update('none');
+                        chart.draw();
+                        return;
+                    }
+                    if (!elements.length && chart._saFindLabel) {
+                        const rect = chart.canvas.getBoundingClientRect();
+                        const li = chart._saFindLabel(native.clientX - rect.left, native.clientY - rect.top);
+                        if (li >= 0) {
+                            chart._saSetHovered?.(li);
+                            chart.setActiveElements([{ datasetIndex: 0, index: li }]);
+                            chart.draw();
+                            return;
+                        }
+                    }
+                    if (chart._saGetHovered?.() >= 0) {
+                        chart._saSetHovered?.(-1);
+                        chart.setActiveElements([]);
+                        chart.draw();
                     }
                 },
                 onClick: (evt, elements) => {
+                    if (window.xrayActive) return;
                     if (!elements.length) {
                         const chart = chartInstances.brandLandscape;
                         if (chart?._saFindLabel) {

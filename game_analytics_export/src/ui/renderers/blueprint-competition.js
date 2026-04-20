@@ -1,7 +1,7 @@
 /**
  * Blueprint advisor — Competition tab UI.
  */
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { parseFeatures as parseFeatsLocal } from '../../lib/parse-features.js';
 import { SHORT_FEATURE_LABELS } from '../../lib/features.js';
 import { F } from '../../lib/game-fields.js';
@@ -197,7 +197,7 @@ export function renderCompetitionTab(container, ctx) {
                         })
                         .join('');
                     const provider = F.provider(g);
-                    return `<div class="flex items-center gap-3 py-3 px-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-700/20 hover:bg-white dark:hover:bg-gray-700/40 hover:shadow-sm transition-all cursor-pointer" onclick="${safeOnclick('window.showGameDetails', g.name)}">
+                    return `<div class="flex items-center gap-3 py-3 px-4 rounded-lg border border-gray-100 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-700/20 hover:bg-white dark:hover:bg-gray-700/40 hover:shadow-sm transition-all cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ game: g.name, field: 'name' }))}' onclick="${safeOnclick('window.showGameDetails', g.name)}">
                     <span class="text-sm text-gray-400 font-bold w-5 shrink-0">${idx + 1}</span>
                     <div class="flex-1 min-w-0">
                         <div class="text-base font-semibold text-gray-800 dark:text-gray-200 truncate">${escapeHtml(g.name || 'Unknown')}</div>

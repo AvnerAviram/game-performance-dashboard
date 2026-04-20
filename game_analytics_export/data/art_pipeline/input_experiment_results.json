@@ -1,0 +1,1166 @@
+{
+  "run_date": "2026-04-20",
+  "model": "claude-sonnet-4-20250514",
+  "games_count": 12,
+  "configs": {
+    "A_baseline": {
+      "games": {
+        "88-Fortunes.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Orange"
+          ],
+          "art_characters": [
+            "Boy",
+            "Girl"
+          ],
+          "art_elements": [
+            "Asian Lanterns/Decorations",
+            "Ancient Stone Carvings",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Ancient-Disco.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": "Music/Entertainment",
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Neon Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Neon Glow",
+            "Columns/Pillars",
+            "Speakers/DJ Equipment",
+            "Disco Ball",
+            "Stage Lights",
+            "Neon/LED Frame",
+            "Pyramids/Temples",
+            "Hieroglyphs/Ancient Writing",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Basketball-Star.html": {
+          "art_theme": "Sports",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Brown",
+            "Blue",
+            "Gray"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Sports Arena/Stadium",
+            "Metal Frame",
+            "Basketball Court"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Blazing-Bison-Gold-Blitz.html": {
+          "art_theme": "Savanna/Wildlife",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Orange",
+            "Purple",
+            "Gold"
+          ],
+          "art_characters": [
+            "Buffalo"
+          ],
+          "art_elements": [
+            "Fire/Flames",
+            "Metal Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Cleopatra.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Brown",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stone Frame",
+            "Columns/Pillars",
+            "Hieroglyphs/Ancient Writing",
+            "Ancient Stone Carvings",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Faith.html": {
+          "art_theme": "Branded/Licensed",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Teal",
+            "Orange"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Office Items",
+            "Books/Scrolls/Maps",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "He-He-Yang.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Trees/Forest",
+            "Asian Architecture",
+            "Asian Lanterns/Decorations",
+            "Colored Frame",
+            "Bamboo/Tropical Plants"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Mayan-Gold.html": {
+          "art_theme": "Aztec/Mayan",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Orange",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Pyramids/Temples",
+            "Fire/Flames",
+            "Lightning/Electricity",
+            "Colored Frame",
+            "Ancient Stone Carvings",
+            "Torches"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Reactoonz.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Silver",
+            "Purple"
+          ],
+          "art_characters": [
+            "Alien"
+          ],
+          "art_elements": [
+            "Metal Frame",
+            "Spacecraft/UFO/Sci-Fi Objects",
+            "Stars/Planets",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Starburst.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Orange"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stars/Planets",
+            "Neon Glow",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Stinkin-Rich.html": {
+          "art_theme": "Luxury/VIP",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Yellow"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Casino Interior"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        },
+        "Way-Out-Wilds.html": {
+          "art_theme": "Classic Slots",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 0
+        }
+      }
+    },
+    "B_rules": {
+      "games": {
+        "88-Fortunes.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Orange"
+          ],
+          "art_characters": [
+            "Boy",
+            "Girl"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Asian Lanterns/Decorations",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Ancient-Disco.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": "Music/Entertainment",
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Neon Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Neon Glow",
+            "Speakers/DJ Equipment",
+            "Columns/Pillars",
+            "Neon/LED Frame",
+            "Hieroglyphs/Ancient Writing",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Basketball-Star.html": {
+          "art_theme": "Sports",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Brown",
+            "Blue",
+            "Gray"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Sports Arena/Stadium",
+            "Basketball Court",
+            "Metal Frame",
+            "Stage Lights"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Blazing-Bison-Gold-Blitz.html": {
+          "art_theme": "Savanna/Wildlife",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Orange",
+            "Purple",
+            "Gold"
+          ],
+          "art_characters": [
+            "Buffalo"
+          ],
+          "art_elements": [
+            "Fire/Flames",
+            "Colored Frame",
+            "Animals (decorative)"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Cleopatra.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Brown",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stone Frame",
+            "Hieroglyphs/Ancient Writing",
+            "Ancient Stone Carvings",
+            "Columns/Pillars",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Faith.html": {
+          "art_theme": "Branded/Licensed",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Teal",
+            "Orange"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Office Items",
+            "Books/Scrolls/Maps",
+            "Clocks/Gears/Mechanical",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "He-He-Yang.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Trees/Forest",
+            "Asian Architecture",
+            "Colored Frame",
+            "Asian Lanterns/Decorations",
+            "Vines/Ivy/Plants",
+            "Bamboo/Tropical Plants"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Mayan-Gold.html": {
+          "art_theme": "Aztec/Mayan",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Orange",
+            "Red"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Pyramids/Temples",
+            "Lightning/Electricity",
+            "Fire/Flames",
+            "Colored Frame",
+            "Ancient Stone Carvings",
+            "Torches"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Reactoonz.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Silver",
+            "Purple"
+          ],
+          "art_characters": [
+            "Alien"
+          ],
+          "art_elements": [
+            "Metal Frame",
+            "Spacecraft/UFO/Sci-Fi Objects",
+            "Stars/Planets",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Starburst.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stars/Planets",
+            "Neon Glow",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Stinkin-Rich.html": {
+          "art_theme": "Luxury/VIP",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Casino Interior"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        },
+        "Way-Out-Wilds.html": {
+          "art_theme": "Classic Slots",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 0
+        }
+      }
+    },
+    "C_desc": {
+      "games": {
+        "88-Fortunes.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Orange"
+          ],
+          "art_characters": [
+            "Boy",
+            "Girl"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Asian Lanterns/Decorations",
+            "Ancient Stone Carvings",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 237
+        },
+        "Ancient-Disco.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": "Music/Entertainment",
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Neon Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Pyramids/Temples",
+            "Speakers/DJ Equipment",
+            "Neon Glow",
+            "Columns/Pillars",
+            "Hieroglyphs/Ancient Writing",
+            "Disco Ball",
+            "Neon/LED Frame",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 291
+        },
+        "Basketball-Star.html": {
+          "art_theme": "Sports",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Brown",
+            "Blue",
+            "Gray"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Sports Arena/Stadium",
+            "Metal Frame",
+            "Stage Lights",
+            "Basketball Court"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 229
+        },
+        "Blazing-Bison-Gold-Blitz.html": {
+          "art_theme": "Savanna/Wildlife",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Orange",
+            "Purple",
+            "Gold"
+          ],
+          "art_characters": [
+            "Buffalo"
+          ],
+          "art_elements": [
+            "Fire/Flames",
+            "Metal Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 270
+        },
+        "Cleopatra.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Brown",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stone Frame",
+            "Hieroglyphs/Ancient Writing",
+            "Ancient Stone Carvings",
+            "Columns/Pillars",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 216
+        },
+        "Faith.html": {
+          "art_theme": "Branded/Licensed",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Teal",
+            "Orange"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Office Items",
+            "Books/Scrolls/Maps",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 302
+        },
+        "He-He-Yang.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Trees/Forest",
+            "Asian Architecture",
+            "Colored Frame",
+            "Asian Lanterns/Decorations",
+            "Bamboo/Tropical Plants"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 286
+        },
+        "Mayan-Gold.html": {
+          "art_theme": "Aztec/Mayan",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Orange",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Pyramids/Temples",
+            "Fire/Flames",
+            "Lightning/Electricity",
+            "Colored Frame",
+            "Stone Arch/Gateway",
+            "Ancient Stone Carvings",
+            "Torches"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 258
+        },
+        "Reactoonz.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Silver",
+            "Purple"
+          ],
+          "art_characters": [
+            "Alien"
+          ],
+          "art_elements": [
+            "Minimal/No Frame",
+            "Stars/Planets",
+            "Spacecraft/UFO/Sci-Fi Objects",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 271
+        },
+        "Starburst.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stars/Planets",
+            "Neon Glow",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 323
+        },
+        "Stinkin-Rich.html": {
+          "art_theme": "Luxury/VIP",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Casino Interior"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 353
+        },
+        "Way-Out-Wilds.html": {
+          "art_theme": "Classic Slots",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 0,
+          "_desc_text_len": 251
+        }
+      }
+    },
+    "D_full": {
+      "games": {
+        "88-Fortunes.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Orange"
+          ],
+          "art_characters": [
+            "Boy",
+            "Girl"
+          ],
+          "art_elements": [
+            "Asian Lanterns/Decorations",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 237
+        },
+        "Ancient-Disco.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": "Music/Entertainment",
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Neon Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Neon Glow",
+            "Columns/Pillars",
+            "Speakers/DJ Equipment",
+            "Disco Ball",
+            "Hieroglyphs/Ancient Writing",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 291
+        },
+        "Basketball-Star.html": {
+          "art_theme": "Sports",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Brown",
+            "Blue",
+            "Gray"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Sports Arena/Stadium",
+            "Metal Frame",
+            "Basketball Court"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 229
+        },
+        "Blazing-Bison-Gold-Blitz.html": {
+          "art_theme": "Savanna/Wildlife",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Orange",
+            "Purple",
+            "Gold"
+          ],
+          "art_characters": [
+            "Buffalo"
+          ],
+          "art_elements": [
+            "Fire/Flames"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 270
+        },
+        "Cleopatra.html": {
+          "art_theme": "Egyptian/Pharaoh",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Brown",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stone Frame",
+            "Hieroglyphs/Ancient Writing",
+            "Ancient Stone Carvings",
+            "Columns/Pillars",
+            "Pyramids/Temples",
+            "Torches",
+            "Statues/Sculptures"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 216
+        },
+        "Faith.html": {
+          "art_theme": "Branded/Licensed",
+          "art_theme_secondary": "Laboratory/Workshop",
+          "art_color_tone": [
+            "Blue",
+            "Teal",
+            "Orange"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Office Items",
+            "Books/Scrolls/Maps",
+            "Clocks/Gears/Mechanical",
+            "Minimal/No Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 302
+        },
+        "He-He-Yang.html": {
+          "art_theme": "Asian Temple/Garden",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Red",
+            "Gold",
+            "Green"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Mountains",
+            "Asian Architecture",
+            "Trees/Forest",
+            "Asian Lanterns/Decorations",
+            "Colored Frame",
+            "Bamboo/Tropical Plants"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 286
+        },
+        "Mayan-Gold.html": {
+          "art_theme": "Aztec/Mayan",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Gold",
+            "Orange",
+            "Purple"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Pyramids/Temples",
+            "Fire/Flames",
+            "Colored Frame",
+            "Ancient Stone Carvings",
+            "Torches"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 258
+        },
+        "Reactoonz.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Blue",
+            "Silver",
+            "Purple"
+          ],
+          "art_characters": [
+            "Alien"
+          ],
+          "art_elements": [
+            "Metal Frame",
+            "Spacecraft/UFO/Sci-Fi Objects",
+            "Stars/Planets",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 271
+        },
+        "Starburst.html": {
+          "art_theme": "Outer Space",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Stars/Planets",
+            "Neon Glow",
+            "Crystal/Glass Frame"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 323
+        },
+        "Stinkin-Rich.html": {
+          "art_theme": "Luxury/VIP",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Gold",
+            "Yellow"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Casino Interior"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 353
+        },
+        "Way-Out-Wilds.html": {
+          "art_theme": "Classic Slots",
+          "art_theme_secondary": null,
+          "art_color_tone": [
+            "Purple",
+            "Blue",
+            "Pink"
+          ],
+          "art_characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "art_elements": [
+            "Colored Frame",
+            "Neon Glow"
+          ],
+          "_has_screenshot": true,
+          "_rules_text_len": 1500,
+          "_desc_text_len": 251
+        }
+      }
+    }
+  },
+  "scoring": {
+    "A_baseline": {
+      "art_theme": "12/12",
+      "art_characters": "12/12",
+      "art_elements": "8/12",
+      "art_color_tone": "10/12"
+    },
+    "B_rules": {
+      "art_theme": "12/12",
+      "art_characters": "12/12",
+      "art_elements": "8/12",
+      "art_color_tone": "11/12"
+    },
+    "C_desc": {
+      "art_theme": "12/12",
+      "art_characters": "12/12",
+      "art_elements": "9/12",
+      "art_color_tone": "10/12"
+    },
+    "D_full": {
+      "art_theme": "12/12",
+      "art_characters": "12/12",
+      "art_elements": "6/12",
+      "art_color_tone": "11/12"
+    }
+  },
+  "per_game_deltas": [
+    {
+      "game": "88-Fortunes.html",
+      "dim": "art_elements",
+      "A": "miss",
+      "B": "miss",
+      "C": "match",
+      "D": "miss",
+      "note": "improved by C_desc"
+    },
+    {
+      "game": "Basketball-Star.html",
+      "dim": "art_elements",
+      "A": "miss",
+      "B": "match",
+      "C": "match",
+      "D": "miss",
+      "note": "improved by B_rules, C_desc"
+    },
+    {
+      "game": "Blazing-Bison-Gold-Blitz.html",
+      "dim": "art_elements",
+      "A": "match",
+      "B": "miss",
+      "C": "match",
+      "D": "miss",
+      "note": "REGRESSED in B_rules, D_full"
+    },
+    {
+      "game": "He-He-Yang.html",
+      "dim": "art_elements",
+      "A": "miss",
+      "B": "miss",
+      "C": "miss",
+      "D": "match",
+      "note": "improved by D_full"
+    },
+    {
+      "game": "Mayan-Gold.html",
+      "dim": "art_elements",
+      "A": "match",
+      "B": "match",
+      "C": "match",
+      "D": "miss",
+      "note": "REGRESSED in D_full"
+    },
+    {
+      "game": "Mayan-Gold.html",
+      "dim": "art_color_tone",
+      "A": "miss",
+      "B": "match",
+      "C": "miss",
+      "D": "miss",
+      "note": "improved by B_rules"
+    },
+    {
+      "game": "Reactoonz.html",
+      "dim": "art_elements",
+      "A": "match",
+      "B": "match",
+      "C": "miss",
+      "D": "match",
+      "note": "REGRESSED in C_desc"
+    },
+    {
+      "game": "Starburst.html",
+      "dim": "art_elements",
+      "A": "match",
+      "B": "match",
+      "C": "match",
+      "D": "miss",
+      "note": "REGRESSED in D_full"
+    },
+    {
+      "game": "Starburst.html",
+      "dim": "art_color_tone",
+      "A": "miss",
+      "B": "match",
+      "C": "match",
+      "D": "match",
+      "note": "improved by B_rules, C_desc, D_full"
+    },
+    {
+      "game": "Stinkin-Rich.html",
+      "dim": "art_color_tone",
+      "A": "match",
+      "B": "miss",
+      "C": "miss",
+      "D": "match",
+      "note": "REGRESSED in B_rules, C_desc"
+    }
+  ]
+}

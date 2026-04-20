@@ -1,0 +1,306 @@
+{
+  "version": "1.1",
+  "description": "Persistent user corrections for art classification. Injected into prompts and enforced in post-processing.",
+  "corrections": {
+    "Tomb-Of-Mirrors.html": {
+      "must_have_elements": [
+        "Statues/Sculptures",
+        "Ancient Stone Carvings"
+      ],
+      "must_not_elements": [
+        "Ships/Boats"
+      ],
+      "notes": "Egyptian god/animal-like statues flanking the reels. Ships/Boats is wrong. User corrected in fresh batch v11."
+    },
+    "san-fa-pandas.html": {
+      "must_have_elements": [
+        "Bamboo/Tropical Plants"
+      ],
+      "notes": "Bamboo plants/trees visible in background. User corrected twice."
+    },
+    "fortune-coin-fever-spins.html": {
+      "must_have_elements": [
+        "Bamboo/Tropical Plants"
+      ],
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "notes": "Dragon is decorative/symbol, not a character. Bamboo visible in background."
+    },
+    "Tiger-7s.html": {
+      "override_colors_remove": [
+        "Purple"
+      ],
+      "notes": "Purple is from the game UI, not the art. Tiger is above the reels."
+    },
+    "giga-match-moolah.html": {
+      "override_theme": "Luxury/VIP",
+      "notes": "Theme is Luxury/VIP/Bank, not Steampunk. Magician character with crystal ball above reels."
+    },
+    "Buffalo.html": {
+      "must_have_elements": [
+        "Mountains"
+      ],
+      "notes": "Mountains visible in background."
+    },
+    "88-Fortunes.html": {
+      "must_not_elements": [
+        "Ships/Boats",
+        "Animals (decorative)"
+      ],
+      "notes": "Animals and ship are symbols, not background elements."
+    },
+    "Cash-Eruption.html": {
+      "must_not_elements": [
+        "Mountains"
+      ],
+      "notes": "Mountain/volcano is a reel symbol, not a background element."
+    },
+    "Stinkin-Rich.html": {
+      "must_have_elements": [
+        "Casino Interior"
+      ],
+      "notes": "Slot machines visible in the casino background setting."
+    },
+    "Way-Out-Wilds.html": {
+      "must_have_elements": [
+        "Colored Frame"
+      ],
+      "notes": "Has a purple frame around the reels."
+    },
+    "san-fa-tigers.html": {
+      "must_have_elements": [
+        "Bamboo/Tropical Plants"
+      ],
+      "notes": "Bamboo/tropical plants visible in background of Asian-themed game."
+    },
+    "Gonzos-Quest.html": {
+      "override_characters": [
+        "Knight"
+      ],
+      "must_not_elements": [
+        "Torches"
+      ],
+      "notes": "User confirmed: no torches in this game"
+    },
+    "Cash-Eruption-Vegas.html": {
+      "must_have_elements": [
+        "City Landmarks/Skyline"
+      ],
+      "override_theme": "Casino Floor",
+      "notes": "Vegas outdoor backdrop with Statue of Liberty, Eiffel Tower landmarks. Post-process rule adds Urban/Modern City secondary. User corrected in fresh batch v11."
+    },
+    "Super-25-Stars.html": {
+      "must_have_elements": [
+        "Casino Interior"
+      ],
+      "override_theme_secondary": "Casino Floor",
+      "notes": "Classic slot in casino floor setting. Casino Interior visible. User corrected in fresh batch v11."
+    },
+    "London-Tube.html": {
+      "must_have_elements": [
+        "Train/Railway Station"
+      ],
+      "notes": "London Underground train/station visible. User corrected in fresh batch v11."
+    },
+    "Jimi-Hendrix.html": {
+      "override_characters": [
+        "Jimi Hendrix"
+      ],
+      "notes": "Jimi Hendrix character visible. Claude missed. User corrected in fresh batch v11."
+    },
+    "Aloha-Christmas.html": {
+      "must_have_elements": [
+        "Gifts/Wrapped Presents"
+      ],
+      "must_not_elements": [
+        "Christmas Decorations"
+      ],
+      "notes": "Gifts/wrapped presents visible, not generic Christmas decorations. User corrected in fresh batch v11."
+    },
+    "Armadillo-Does-Christmas.html": {
+      "must_not_elements": [
+        "Torches/Lanterns/Candles"
+      ],
+      "notes": "Game has candles specifically, not torches. Compound label too vague. User corrected in fresh batch v11."
+    },
+    "big-bounty-gold.html": {
+      "must_have_elements": [
+        "Coin Stacks"
+      ],
+      "notes": "Visible coin stacks as treasure. User corrected in fresh batch v11."
+    },
+    "jungle-jim-gold-blitz.html": {
+      "must_have_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "Temple/ruins statues visible in jungle setting. User corrected in fresh batch v11."
+    },
+    "Captain-Glum-Pirate-Hunter.html": {
+      "must_not_elements": [
+        "Ships/Boats"
+      ],
+      "notes": "Ship/boat is only a reel symbol, not a background element"
+    },
+    "Cleopatra-Gold.html": {
+      "must_have_elements": [
+        "Ancient Stone Carvings",
+        "Hieroglyphs/Ancient Writing",
+        "Stone Arch/Gateway"
+      ],
+      "notes": "Only stone carvings, hieroglyphs, stone arc - rest are symbols",
+      "override_elements": [
+        "Ancient Stone Carvings",
+        "Hieroglyphs/Ancient Writing",
+        "Stone Arch/Gateway"
+      ]
+    },
+    "Dino-Pays.html": {
+      "override_characters": [],
+      "notes": "Dinosaur is in the logo only, not a real character outside reels"
+    },
+    "Finns-Golden-Tavern.html": {
+      "override_characters": [],
+      "notes": "No real characters outside reels"
+    },
+    "Basketball-Star-On-Fire.html": {
+      "must_have_elements": [
+        "Basketball Court"
+      ],
+      "notes": "Basketball is the specific sport",
+      "override_theme_secondary": "Sports"
+    },
+    "Cosmic-Cash.html": {
+      "must_have_elements": [
+        "Stars/Planets"
+      ],
+      "notes": "Stars and planets are key visual elements"
+    },
+    "Fishin-Bonanza.html": {
+      "must_have_elements": [
+        "Rope Frame"
+      ],
+      "notes": "Frame is specifically a rope frame"
+    },
+    "Fortune-Temple.html": {
+      "must_have_elements": [
+        "Torches",
+        "Stairs/Steps"
+      ],
+      "notes": "Torches (separate from lanterns/candles) and stairs are key elements"
+    },
+    "Chicken-Fox.html": {
+      "must_have_elements": [
+        "Coin Stacks"
+      ],
+      "notes": "Cash/coin stacks visible in game"
+    },
+    "10001-Nights.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Lanterns"
+      ],
+      "notes": "Arabian theme uses hanging lanterns, not wall torches"
+    },
+    "Manic-Potions.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Candles"
+      ],
+      "notes": "Potion laboratory uses candles, not torches"
+    },
+    "Oceans-Treasure.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "notes": "Underwater setting - torches impossible"
+    },
+    "Royal-Masquerade.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Candles"
+      ],
+      "notes": "Royal palace uses candles/candelabras, not torches"
+    },
+    "3-Clown-Monty.html": {
+      "override_theme_secondary": "Haunted Manor/Graveyard",
+      "notes": "Spooky/scary circus - primary Circus, secondary Haunted"
+    },
+    "Age-Of-The-Gods-Maze-Keeper.html": {
+      "must_have_colors": [
+        "Red"
+      ],
+      "notes": "Red is prominent, not just orange"
+    },
+    "Diamond-Safari.html": {
+      "override_colors": [
+        "Blue",
+        "Brown",
+        "Green"
+      ],
+      "notes": "Blue, brown earth, green - not red/gold"
+    },
+    "Cornelius.html": {
+      "must_have_elements": [
+        "Farmhouse/Barn"
+      ],
+      "notes": "User flagged: gems, farm house, barn missing"
+    },
+    "Casinomeister.html": {
+      "must_have_elements": [
+        "Mountains",
+        "Fields/Grassland"
+      ],
+      "notes": "User: also mountains, grass"
+    },
+    "Elements-The-Awakening.html": {
+      "must_have_elements": [
+        "Coral Reef/Underwater"
+      ],
+      "notes": "User: also coral reef"
+    },
+    "Thunder-Cash.html": {
+      "must_have_elements": [
+        "Casino Interior"
+      ],
+      "notes": "User: slot machines, table games"
+    },
+    "Happy-Lucky.html": {
+      "must_have_elements": [
+        "Torches"
+      ],
+      "notes": "User: also torches"
+    },
+    "olympus-strikes-ultratap.html": {
+      "must_have_elements": [
+        "Viking Ship/Village"
+      ],
+      "notes": "User: also a viking city/village"
+    },
+    "splash-of-gold.html": {
+      "must_have_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "User: Egyptian man/animal statues"
+    },
+    "thundering-blaze.html": {
+      "must_have_elements": [
+        "Underwater Structures"
+      ],
+      "notes": "User: also underwater structures"
+    },
+    "Dancing-Drums-Explosion-Mega-Drop.html": {
+      "must_have_elements": [
+        "Christmas Decorations",
+        "Snowflakes/Snow"
+      ],
+      "notes": "User: christmas trees, snowflakes"
+    }
+  }
+}

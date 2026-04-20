@@ -109,8 +109,9 @@ export const F = {
 
     releaseYear: g => g.release_year || g.release?.year || 0,
     releaseMonth: g => g.release_month || g.release?.month || 0,
-    originalReleaseYear: g => g.original_release_year || g.release_year || g.release?.year || 0,
-    originalReleaseMonth: g => g.original_release_month || g.release_month || g.release?.month || 0,
+    originalReleaseYear: g => g.original_release_year || 0,
+    originalReleaseMonth: g => g.original_release_month || 0,
+    hasGlobalReleaseYear: g => Boolean(g.original_release_year),
 
     franchise: g => g.franchise || null,
     franchiseType: g => g.franchise_type || null,
@@ -125,7 +126,7 @@ export const F = {
     minBetConfidence: g => g.min_bet_confidence || null,
     maxBetConfidence: g => g.max_bet_confidence || null,
 
-    artSetting: g => g.art_setting || null,
+    artTheme: g => g.art_theme || null,
     artCharacters: g => {
         const v = g.art_characters;
         if (Array.isArray(v)) return v;
@@ -152,6 +153,9 @@ export const F = {
     },
     artMood: g => g.art_mood || null,
     artNarrative: g => g.art_narrative || null,
+    artStyle: g => g.art_style || null,
+    artColorTone: g => g.art_color_tone || null,
+    artConfidence: g => g.art_confidence || null,
 };
 
 /**

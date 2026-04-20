@@ -1,0 +1,21 @@
+---
+description: Require explicit user approval before any external API calls (Anthropic, OpenAI, etc.)
+alwaysApply: true
+---
+
+# API Cost Control
+
+**NEVER call an external API (Anthropic, OpenAI, or any paid service) without explicit user approval first.**
+
+Before any API call:
+1. Tell the user exactly how many calls will be made
+2. Estimate the token/cost impact
+3. Wait for explicit "yes" / approval before proceeding
+
+This applies to:
+- `classify_art_v2.py` classification runs (both sequential and `--batch-api`)
+- `--regression` runs (each GT game = 1 API call)
+- Any new script that calls `client.messages.create()` or similar
+- Any `anthropic.Anthropic()` usage
+
+Batch API (`--batch-api`) is preferred over sequential for large runs (50% cost savings), but still requires user approval before submission.

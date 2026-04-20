@@ -38,6 +38,7 @@ import './ui/filter-dropdowns.js';
 import { refreshCharts } from './ui/charts-modern.js';
 window.refreshCharts = refreshCharts;
 import { setupAuthUI } from './features/auth-ui.js';
+import { setupXRay } from './features/data-xray.js';
 
 function setLoadingStatus(text, pct) {
     const statusEl = document.getElementById('loading-status');
@@ -76,6 +77,7 @@ async function init() {
         updateHeaderStats();
         setupDarkMode();
         setupAuthUI();
+        setupXRay();
 
         window.setupAIInput = () => {
             document.getElementById('ai-input')?.addEventListener('keypress', e => {

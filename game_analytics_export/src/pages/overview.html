@@ -180,7 +180,7 @@
             >
                 Art Insights
             </div>
-            <div class="text-[11px] text-gray-500 dark:text-gray-400">Settings, moods & visual opportunities</div>
+            <div class="text-[11px] text-gray-500 dark:text-gray-400">Themes, moods & visual opportunities</div>
         </div>
         <svg
             class="w-4 h-4 text-gray-400 group-hover:text-fuchsia-500 transition-colors ml-auto shrink-0"
@@ -335,7 +335,12 @@
                 <span class="text-lg">🎨</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top Themes</h3>
+                        <h3
+                            class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            onclick="showPage('themes')"
+                        >
+                            Top Themes
+                        </h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -366,7 +371,12 @@
                 <span class="text-lg">⚙️</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top Mechanics</h3>
+                        <h3
+                            class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            onclick="showPage('mechanics')"
+                        >
+                            Top Mechanics
+                        </h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -376,12 +386,12 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Shows the <strong>primary mechanic</strong> of each game, ranked by number of games
-                                using that mechanic across the dataset.
+                                Shows the <strong>primary mechanic</strong> of each game, ranked by Performance Index
+                                (balancing game count and average performance).
                             </div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">By Game Count</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">By Performance Index</p>
                 </div>
             </div>
         </div>
@@ -397,7 +407,12 @@
                 <span class="text-lg">🎮</span>
                 <div>
                     <div class="flex items-center gap-1.5">
-                        <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Top Games</h3>
+                        <h3
+                            class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                            onclick="showPage('games')"
+                        >
+                            Top Games
+                        </h3>
                         <div class="relative group">
                             <button
                                 class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
@@ -700,7 +715,7 @@
         </div>
     </div>
 
-    <!-- Art Environment Landscape -->
+    <!-- Art Theme Landscape -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2">
@@ -708,7 +723,7 @@
                 <div>
                     <div class="flex items-center gap-1.5">
                         <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">
-                            Art Environment Landscape
+                            Art Theme Landscape
                         </h3>
                         <div class="relative group">
                             <button
@@ -719,7 +734,7 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is an art setting (e.g. Ancient Temple, Enchanted Forest). X = game count, Y =
+                                Each dot is an art theme (e.g. Ancient Temple, Fantasy/Fairy Tale). X = game count, Y =
                                 avg Performance Index. Dot size = game count. Dashed lines show medians creating 4
                                 quadrants.
                             </div>
@@ -736,7 +751,7 @@
             </div>
         </div>
         <div class="p-4" style="height: 380px">
-            <canvas id="chart-art-settings"></canvas>
+            <canvas id="chart-art-themes"></canvas>
         </div>
     </div>
 </div>

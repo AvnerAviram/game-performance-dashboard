@@ -8,14 +8,14 @@ Chart.register({
     afterDraw(chart) {
         const txt = chart._coverageText;
         if (!txt) return;
-        const { ctx, chartArea } = chart;
+        const { ctx, chartArea, height } = chart;
         if (!chartArea) return;
         ctx.save();
         ctx.font = '10px system-ui, sans-serif';
         ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
         ctx.textAlign = 'right';
         ctx.textBaseline = 'bottom';
-        ctx.fillText(txt, chartArea.right - 4, chartArea.bottom - 4);
+        ctx.fillText(txt, chartArea.right - 4, height - 2);
         ctx.restore();
     },
 });
@@ -385,6 +385,7 @@ export function createSAHoverHandler() {
 
 export function createSAClickHandler(clickFn) {
     return (evt, elements, chart) => {
+        if (window.xrayActive) return;
         if (elements.length) {
             clickFn(elements[0].index);
             return;

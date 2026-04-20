@@ -2,6 +2,7 @@ import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 import { apiFetch, apiPatch, apiDelete, apiPost } from '../lib/api-client.js';
 
 let showArchived = false;
+let filterType = 'all'; // 'all' | 'corrections'
 
 const STATUS_STYLES = {
     open: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300',
@@ -9,6 +10,7 @@ const STATUS_STYLES = {
     resolved: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300',
     closed: 'bg-gray-100 text-gray-700 dark:bg-gray-700/50 dark:text-gray-300',
     archived: 'bg-gray-100 text-gray-500 dark:bg-gray-700/50 dark:text-gray-400',
+    approved: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300',
 };
 
 export async function renderTickets() {
@@ -24,7 +26,14 @@ export async function renderTickets() {
         const activeTickets = tickets.filter(t => t.status !== 'archived');
         const archivedTickets = tickets.filter(t => t.status === 'archived');
         const openCount = tickets.filter(t => t.status === 'open').length;
-        const displayTickets = showArchived ? archivedTickets : activeTickets;
+        const correctionCount = tickets.filter(
+            t => t.issueType === 'data-correction' && t.status !== 'archived'
+        ).length;
+        const approvedCount = tickets.filter(t => t.issueType === 'data-correction' && t.status === 'approved').length;
+        let displayTickets = showArchived ? archivedTickets : activeTickets;
+        if (filterType === 'corrections') {
+            displayTickets = displayTickets.filter(t => t.issueType === 'data-correction');
+        }
 
         displayTickets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -32,6 +41,8 @@ export async function renderTickets() {
             ? `
             <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-2">
+                    <button onclick="window.setTicketFilter('all')" class="px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${filterType === 'all' ? 'bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-700 dark:text-indigo-300' : 'bg-white border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:border-indigo-300'}">All</button>
+                    <button onclick="window.setTicketFilter('corrections')" class="px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${filterType === 'corrections' ? 'bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-700 dark:text-indigo-300' : 'bg-white border-gray-200 text-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:border-indigo-300'}">Corrections (${correctionCount})${approvedCount > 0 ? ` <span class="ml-1 px-1 py-0.5 rounded bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-[10px]">${approvedCount} approved</span>` : ''}</button>
                     <button onclick="window.toggleArchivedView()" class="px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                         showArchived
                             ? 'bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:border-indigo-700 dark:text-indigo-300'
@@ -92,10 +103,11 @@ export async function renderTickets() {
                                     userIsAdmin
                                         ? `<td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
+                                        ${t.issueType === 'data-correction' && t.status === 'open' ? `<button onclick="${safeOnclick('window.approveCorrection', t.id)}" class="text-xs text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 font-medium">Accept</button><button onclick="${safeOnclick('window.rejectCorrection', t.id)}" class="text-xs text-red-600 hover:text-red-800 dark:text-red-400 font-medium">Reject</button>` : ''}
                                         ${
-                                            t.status === 'open'
+                                            t.status === 'open' && t.issueType !== 'data-correction'
                                                 ? `<button onclick="${safeOnclick('window.resolveTicket', t.id)}" class="text-xs text-emerald-600 hover:text-emerald-800 dark:text-emerald-400 font-medium">Resolve</button>`
-                                                : t.status !== 'archived'
+                                                : t.status !== 'archived' && t.status !== 'open'
                                                   ? `<button onclick="${safeOnclick('window.reopenTicket', t.id)}" class="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 font-medium">Reopen</button>`
                                                   : ''
                                         }
@@ -103,10 +115,26 @@ export async function renderTickets() {
                                         ${t.status !== 'archived' ? `<button onclick="${safeOnclick('window.archiveTicket', t.id)}" class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 font-medium">Archive</button>` : `<button onclick="${safeOnclick('window.reopenTicket', t.id)}" class="text-xs text-amber-600 hover:text-amber-800 dark:text-amber-400 font-medium">Restore</button>`}
                                         <button onclick="${safeOnclick('window.deleteTicket', t.id)}" class="text-xs text-red-600 hover:text-red-800 dark:text-red-400 font-medium">Delete</button>
                                     </div>
+                                    ${t.issueType === 'data-correction' ? `<button onclick="window.toggleCorrectionDetail('${escapeAttr(t.id)}')" class="text-[10px] text-gray-400 hover:text-indigo-400 mt-1 block">details</button>` : ''}
                                 </td>`
                                         : ''
                                 }
                             </tr>
+                            ${
+                                t.issueType === 'data-correction'
+                                    ? `<tr class="hidden correction-detail-row" data-detail-id="${escapeAttr(t.id)}">
+                                <td colspan="${userIsAdmin ? 9 : 8}" class="px-4 py-3 bg-gray-50 dark:bg-gray-800/50">
+                                    <div class="grid grid-cols-2 gap-2 text-xs">
+                                        ${t.fieldPath ? `<div><span class="text-gray-500 dark:text-gray-400">Field:</span> <span class="font-medium text-gray-900 dark:text-white">${escapeHtml(t.fieldPath)}</span></div>` : ''}
+                                        ${t.currentValue ? `<div><span class="text-gray-500 dark:text-gray-400">Current:</span> <span class="text-red-600 dark:text-red-400">${escapeHtml(t.currentValue)}</span></div>` : ''}
+                                        ${t.proposedValue ? `<div><span class="text-gray-500 dark:text-gray-400">Proposed:</span> <span class="text-emerald-600 dark:text-emerald-400">${escapeHtml(t.proposedValue)}</span></div>` : ''}
+                                        ${t.sourceEvidence ? `<div class="col-span-2"><span class="text-gray-500 dark:text-gray-400">Evidence:</span> <span class="bg-yellow-50 dark:bg-yellow-900/20 px-1 rounded">${escapeHtml(t.sourceEvidence)}</span></div>` : ''}
+                                        ${t.diagnosis ? `<div class="col-span-2 italic text-gray-500 dark:text-gray-400">${escapeHtml(t.diagnosis)}</div>` : ''}
+                                    </div>
+                                </td>
+                            </tr>`
+                                    : ''
+                            }
                         `
                             )
                             .join('')}
@@ -271,6 +299,47 @@ window.bulkDeleteTickets = async function () {
         renderTickets();
     } catch (err) {
         console.error('Failed to bulk delete:', err);
+    }
+};
+
+window.setTicketFilter = function (type) {
+    filterType = type;
+    renderTickets();
+};
+
+window.approveCorrection = async function (id) {
+    try {
+        await apiPatch(`/api/tickets/${id}`, { status: 'approved' });
+        renderTickets();
+    } catch (err) {
+        console.error('Failed to approve correction:', err);
+    }
+};
+
+window.rejectCorrection = async function (id) {
+    try {
+        await apiPatch(`/api/tickets/${id}`, { status: 'closed', resolution: 'Rejected by admin' });
+        renderTickets();
+    } catch (err) {
+        console.error('Failed to reject correction:', err);
+    }
+};
+
+window.toggleCorrectionDetail = function (id) {
+    const row = document.querySelector(`[data-detail-id="${id}"]`);
+    if (row) row.classList.toggle('hidden');
+};
+
+window.bulkApproveCorrections = async function () {
+    try {
+        const tickets = await apiFetch('/api/tickets');
+        const ids = tickets.filter(t => t.issueType === 'data-correction' && t.status === 'open').map(t => t.id);
+        if (ids.length === 0) return;
+        if (!confirm(`Approve ${ids.length} data correction(s)?`)) return;
+        await apiPatch('/api/tickets/bulk', { ids, status: 'approved' });
+        renderTickets();
+    } catch (err) {
+        console.error('Failed to bulk approve:', err);
     }
 };
 

@@ -113,8 +113,10 @@ describe('Server Security - Integration', () => {
             originalUsersContent = JSON.stringify(clean, null, 2);
         }
 
-        const existingUsers = existsSync(USERS_FILE) ? JSON.parse(readFileSync(USERS_FILE, 'utf-8')) : [];
-        const testUsers = existingUsers.filter(u => !u.username.startsWith('__sectest_'));
+        // Re-read fresh to pick up any concurrent writes from other test files
+        await new Promise(r => setTimeout(r, 300));
+        const freshRaw = existsSync(USERS_FILE) ? readFileSync(USERS_FILE, 'utf-8') : '[]';
+        const testUsers = JSON.parse(freshRaw).filter(u => !u.username.startsWith('__sectest_'));
         testUsers.push({
             username: '__sectest_admin__',
             passwordHash: bcrypt.hashSync('SecurePass123!', 12),

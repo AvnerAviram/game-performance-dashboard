@@ -11,7 +11,7 @@ import { parseSymbols } from '../../lib/symbol-utils.js';
 import { renderFeaturePills, renderSynergyPanel, renderInsightsTab } from './blueprint-insights.js';
 import { renderCompetitionTab } from './blueprint-competition.js';
 import { renderSymbolsTab } from './blueprint-symbols.js';
-import { renderArtTab } from './blueprint-art.js';
+import { renderArtTab, renderArtPills } from './blueprint-art.js';
 
 export function initBlueprint() {
     let blueprintWrapper = document.getElementById('blueprint-advisor-wrapper');
@@ -88,6 +88,7 @@ export function initBlueprint() {
     const selectedCategories = new Set();
     const selectedSubThemes = new Set();
     const selectedFeatures = new Set();
+    const selectedArt = { theme: null, mood: null, characters: new Set(), elements: new Set(), narrative: null };
     let selectedLayout = null;
     let suggestPanelOpen = false;
     const globalAvg = allG.length > 0 ? allG.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / allG.length : 0;
@@ -450,11 +451,11 @@ export function initBlueprint() {
 
     const allThemesTotal = categoryList.reduce((s, c) => s + c.total, 0);
     els.categoryPills.innerHTML =
-        `<button class="bp-cat-pill bp-cat-all px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="__ALL__">All Themes <span class="text-xs text-gray-400 font-normal">${allThemesTotal}</span></button>` +
+        `<button class="bp-cat-pill bp-cat-all px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="__ALL__" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: '__ALL__' }))}'>All Themes <span class="text-xs text-gray-400 font-normal">${allThemesTotal}</span></button>` +
         categoryList
             .map(
                 c =>
-                    `<button class="bp-cat-pill px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="${escapeAttr(c.cat)}">${escapeHtml(c.cat)} <span class="text-xs text-gray-400 font-normal">${c.total}</span></button>`
+                    `<button class="bp-cat-pill px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="${escapeAttr(c.cat)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.cat }))}'>${escapeHtml(c.cat)} <span class="text-xs text-gray-400 font-normal">${c.total}</span></button>`
             )
             .join('');
 
@@ -489,6 +490,7 @@ export function initBlueprint() {
         els.clearBtn.classList.add('hidden');
         els.clearBtn.classList.remove('inline-flex');
         els.featuresPanel.classList.add('hidden');
+        els.artPanel.classList.add('hidden');
         els.ideaPanel.classList.add('hidden');
         els.emptyState.classList.remove('hidden');
         els.scorePanel.style.background = 'linear-gradient(135deg,#94a3b8,#64748b)';
@@ -497,6 +499,7 @@ export function initBlueprint() {
         els.bdTheme.textContent = '—';
         els.bdFeat.textContent = '—';
         els.bdSyn.textContent = '—';
+        els.bdArt.textContent = '—';
         els.bdOpp.textContent = '—';
         els.tabsWrapper.classList.add('hidden');
         _hideOverlay();
@@ -577,6 +580,7 @@ export function initBlueprint() {
         els.clearBtn.classList.remove('hidden');
         els.clearBtn.classList.add('inline-flex');
         els.featuresPanel.classList.remove('hidden');
+        els.artPanel.classList.remove('hidden');
         els.ideaPanel.classList.remove('hidden');
         els.emptyState.classList.add('hidden');
         els.tabsWrapper.classList.remove('hidden');
@@ -594,7 +598,7 @@ export function initBlueprint() {
             els.layoutPills.innerHTML = top
                 .map(l => {
                     const sel = selectedLayout === l.layout;
-                    return `<button data-layout="${escapeAttr(l.layout)}" class="bp-layout-pill px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-150 cursor-pointer ${
+                    return `<button data-layout="${escapeAttr(l.layout)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'layout', value: l.layout }))}' class="bp-layout-pill px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-150 cursor-pointer ${
                         sel
                             ? 'bg-violet-600 text-white border-violet-600 dark:bg-violet-500 dark:border-violet-500 shadow-sm'
                             : 'border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-violet-400'
@@ -648,6 +652,11 @@ export function initBlueprint() {
         selectedCategories.clear();
         selectedSubThemes.clear();
         selectedFeatures.clear();
+        selectedArt.theme = null;
+        selectedArt.mood = null;
+        selectedArt.characters.clear();
+        selectedArt.elements.clear();
+        selectedArt.narrative = null;
         selectedLayout = null;
         suggestPanelOpen = false;
         if (els.ideaTextarea) els.ideaTextarea.value = '';
@@ -862,12 +871,53 @@ export function initBlueprint() {
             if (pairs > 0) synergyScore = Math.min(100, Math.max(0, 50 + (totalSyn / pairs) * 3));
         }
 
+        const artDims = selectedArt || {};
+        const hasArtSelection =
+            artDims.theme ||
+            artDims.mood ||
+            artDims.narrative ||
+            artDims.characters?.size > 0 ||
+            artDims.elements?.size > 0;
+
+        let artDirection = 50;
+        if (hasArtSelection) {
+            const matchesArt = g => {
+                if (artDims.theme && F.artTheme(g) !== artDims.theme) return false;
+                if (artDims.mood && F.artMood(g) !== artDims.mood) return false;
+                if (artDims.narrative && F.artNarrative(g) !== artDims.narrative) return false;
+                if (artDims.characters?.size > 0) {
+                    const gc = F.artCharacters(g) || [];
+                    if (![...artDims.characters].some(c => gc.includes(c))) return false;
+                }
+                if (artDims.elements?.size > 0) {
+                    const ge = F.artElements(g) || [];
+                    if (![...artDims.elements].some(e => ge.includes(e))) return false;
+                }
+                return true;
+            };
+            const artGames = themeGames.filter(matchesArt);
+            if (artGames.length >= 2) {
+                const artAvg =
+                    artGames.reduce((s, g) => s + (gameTheos ? gameTheos.get(g) : F.theoWin(g)), 0) / artGames.length;
+                artDirection = Math.min(100, Math.max(0, 50 + ((artAvg - themeAvg) / Math.max(themeAvg, 0.01)) * 200));
+            } else if (artGames.length === 1) {
+                const t = gameTheos ? gameTheos.get(artGames[0]) : F.theoWin(artGames[0]);
+                artDirection = t > themeAvg ? 65 : 40;
+            } else {
+                artDirection = 55;
+            }
+        }
+
         let marketOpp = 50;
-        if (selFeatsArr.length > 0) {
+        const hasSelections = selFeatsArr.length > 0 || hasArtSelection;
+        if (hasSelections) {
             let exactMatches = 0;
             themeGames.forEach(g => {
-                const fs = gameFeatSets ? gameFeatSets.get(g) : new Set(gameFeats(g));
-                if (selFeatsArr.every(f => fs.has(f))) exactMatches++;
+                const featMatch =
+                    selFeatsArr.length === 0 ||
+                    selFeatsArr.every(f => (gameFeatSets ? gameFeatSets.get(g) : new Set(gameFeats(g))).has(f));
+                const artMatch = !hasArtSelection || matchesAllArt(g);
+                if (featMatch && artMatch) exactMatches++;
             });
             if (exactMatches === 0) marketOpp = 95;
             else if (exactMatches <= 2) marketOpp = 80;
@@ -876,13 +926,38 @@ export function initBlueprint() {
             else marketOpp = 25;
         }
 
-        const score = Math.round(themeStrength * 0.25 + featQuality * 0.3 + synergyScore * 0.2 + marketOpp * 0.25);
+        function matchesAllArt(g) {
+            if (artDims.theme && F.artTheme(g) !== artDims.theme) return false;
+            if (artDims.mood && F.artMood(g) !== artDims.mood) return false;
+            if (artDims.narrative && F.artNarrative(g) !== artDims.narrative) return false;
+            if (artDims.characters?.size > 0) {
+                const gc = F.artCharacters(g) || [];
+                if (![...artDims.characters].some(c => gc.includes(c))) return false;
+            }
+            if (artDims.elements?.size > 0) {
+                const ge = F.artElements(g) || [];
+                if (![...artDims.elements].some(e => ge.includes(e))) return false;
+            }
+            return true;
+        }
+
+        const w = hasArtSelection
+            ? { theme: 0.2, feat: 0.25, syn: 0.15, art: 0.2, opp: 0.2 }
+            : { theme: 0.25, feat: 0.3, syn: 0.2, art: 0, opp: 0.25 };
+        const score = Math.round(
+            themeStrength * w.theme +
+                featQuality * w.feat +
+                synergyScore * w.syn +
+                artDirection * w.art +
+                marketOpp * w.opp
+        );
         return {
             score,
             breakdown: {
                 themeStrength: Math.round(themeStrength),
                 featQuality: Math.round(featQuality),
                 synergyScore: Math.round(synergyScore),
+                artDirection: hasArtSelection ? Math.round(artDirection) : null,
                 marketOpp: Math.round(marketOpp),
                 conceptBonus,
             },
@@ -896,6 +971,7 @@ export function initBlueprint() {
         els.bdTheme.textContent = themeLabel;
         els.bdFeat.textContent = bd.featQuality ?? '—';
         els.bdSyn.textContent = bd.synergyScore ?? '—';
+        els.bdArt.textContent = bd.artDirection ?? '—';
         els.bdOpp.textContent = bd.marketOpp ?? '—';
         const conceptHint = document.getElementById('bp-concept-hint');
         if (conceptHint) {
@@ -1080,7 +1156,29 @@ export function initBlueprint() {
             featOf,
         });
         renderSymbolsTab(els.tabSymbols, { themeGames: symFilteredGames(themeGames), selectedFeatures, themeAvg });
-        renderArtTab(els.tabArt, { themeGames, themeAvg, selectedCategories });
+        renderArtTab(els.tabArt, { themeGames, themeAvg, selectedCategories, selectedArt });
+        renderArtPills(els.artContainer, themeGames, selectedArt, renderBlueprint);
+
+        const hasArtSelection =
+            selectedArt.theme ||
+            selectedArt.mood ||
+            selectedArt.characters.size > 0 ||
+            selectedArt.elements.size > 0 ||
+            selectedArt.narrative;
+        if (els.artClear) {
+            els.artClear.classList.toggle('hidden', !hasArtSelection);
+            const clearClone = els.artClear.cloneNode(true);
+            els.artClear.replaceWith(clearClone);
+            els.artClear = clearClone;
+            clearClone.addEventListener('click', () => {
+                selectedArt.theme = null;
+                selectedArt.mood = null;
+                selectedArt.characters.clear();
+                selectedArt.elements.clear();
+                selectedArt.narrative = null;
+                renderBlueprint();
+            });
+        }
 
         els.featContainer.querySelectorAll('.bp-feat-pill').forEach(pill => {
             pill.addEventListener('click', () => {
@@ -1149,6 +1247,7 @@ export function initBlueprint() {
             if (viewBtn) {
                 const clone = viewBtn.cloneNode(true);
                 viewBtn.replaceWith(clone);
+                clone.setAttribute('data-xray', JSON.stringify({ game: gameName, field: 'name' }));
                 clone.addEventListener('click', () => {
                     if (window.showGameDetails) window.showGameDetails(gameName);
                 });
@@ -1191,7 +1290,7 @@ export function initBlueprint() {
                 loadSuggestions.innerHTML = matches
                     .map(
                         g =>
-                            `<div class="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 cursor-pointer transition-colors" data-game="${escapeAttr(g.name)}">
+                            `<div class="px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 cursor-pointer transition-colors" data-game="${escapeAttr(g.name)}" data-xray='${escapeAttr(JSON.stringify({ game: g.name, field: 'name' }))}'>
                                 <span class="font-medium">${escapeHtml(g.name)}</span>
                                 <span class="text-xs text-gray-400 ml-1">${escapeHtml(g.theme_primary || '')} · ${escapeHtml(F.provider(g))}</span>
                             </div>`
@@ -1278,6 +1377,7 @@ function getBlueprintElements() {
         bdTheme: document.getElementById('bp-bd-theme'),
         bdFeat: document.getElementById('bp-bd-feat'),
         bdSyn: document.getElementById('bp-bd-syn'),
+        bdArt: document.getElementById('bp-bd-art'),
         bdOpp: document.getElementById('bp-bd-opp'),
         emptyState: document.getElementById('bp-empty-state'),
         leftPanel: document.getElementById('bp-left-panel'),
@@ -1288,6 +1388,9 @@ function getBlueprintElements() {
         tabSymbols: document.getElementById('bp-tab-symbols'),
         tabArt: document.getElementById('bp-tab-art'),
         clearBtn: document.getElementById('bp-clear-btn'),
+        artPanel: document.getElementById('bp-art-panel'),
+        artContainer: document.getElementById('bp-art-container'),
+        artClear: document.getElementById('bp-art-clear'),
         layoutPanel: document.getElementById('bp-layout-panel'),
         layoutPills: document.getElementById('bp-layout-pills'),
         layoutClear: document.getElementById('bp-layout-clear'),
@@ -1299,17 +1402,18 @@ function getBlueprintElements() {
 
 function buildBlueprintHTML() {
     return `
-    <div class="flex gap-5" style="min-height:420px">
-        <div id="bp-left-panel" class="w-[600px] shrink-0 relative">
-            <div class="sticky top-28 flex flex-col gap-3 max-h-[calc(100vh-8rem)]">
+    <div class="flex flex-col md:flex-row gap-5" style="min-height:420px">
+        <div id="bp-left-panel" class="w-full md:w-[600px] md:shrink-0 relative">
+            <div class="md:sticky top-28 flex flex-col gap-3 md:max-h-[calc(100vh-8rem)]">
                 <div id="bp-score-panel" class="rounded-xl shadow-lg p-5 text-center transition-all duration-500" style="background:linear-gradient(135deg,#94a3b8,#64748b)">
-                    <div class="text-base font-semibold text-white/70 uppercase tracking-wider mb-1 flex items-center justify-center gap-1.5">Blueprint Score <span class="relative group"><button class="w-4 h-4 rounded-full bg-white/20 text-white/60 flex items-center justify-center text-[9px] font-bold leading-none hover:bg-white/30">?</button><span class="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Composite score (0-100) based on Theme strength, Mechanic quality, Synergy between mechanics, and Market opportunity.</span></span></div>
+                    <div class="text-base font-semibold text-white/70 uppercase tracking-wider mb-1 flex items-center justify-center gap-1.5">Blueprint Score <span class="relative group"><button class="w-4 h-4 rounded-full bg-white/20 text-white/60 flex items-center justify-center text-[9px] font-bold leading-none hover:bg-white/30">?</button><span class="hidden group-hover:block absolute left-1/2 -translate-x-1/2 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal">Composite score (0-100) based on Theme strength, Mechanic quality, Synergy, Art direction, and Market opportunity.</span></span></div>
                     <div id="bp-score-value" class="text-6xl font-black text-white leading-none mb-2">—</div>
                     <div class="w-full h-2.5 bg-white/20 rounded-full overflow-hidden mb-3"><div id="bp-score-bar" class="h-full rounded-full transition-all duration-500 bg-white/80" style="width:0%"></div></div>
-                    <div class="grid grid-cols-4 gap-1.5 text-center">
-                        <div><div id="bp-bd-theme" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Theme</div><div id="bp-concept-hint" class="hidden text-[9px] text-emerald-200 font-medium"></div></div>
-                        <div><div id="bp-bd-feat" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Mechanics</div></div>
-                        <div><div id="bp-bd-syn" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Synergy</div></div>
+                    <div class="grid grid-cols-5 gap-1 md:gap-1.5 text-center">
+                        <div><div id="bp-bd-theme" class="text-base md:text-lg font-bold text-white">—</div><div class="text-[10px] md:text-xs text-white/60">Theme</div><div id="bp-concept-hint" class="hidden text-[9px] text-emerald-200 font-medium"></div></div>
+                        <div><div id="bp-bd-feat" class="text-base md:text-lg font-bold text-white">—</div><div class="text-[10px] md:text-xs text-white/60">Mechanics</div></div>
+                        <div><div id="bp-bd-syn" class="text-base md:text-lg font-bold text-white">—</div><div class="text-[10px] md:text-xs text-white/60">Synergy</div></div>
+                        <div><div id="bp-bd-art" class="text-base md:text-lg font-bold text-white">—</div><div class="text-[10px] md:text-xs text-white/60">Art</div></div>
                         <div><div id="bp-bd-opp" class="text-lg font-bold text-white">—</div><div class="text-xs text-white/60">Opportunity</div></div>
                     </div>
                 </div>
@@ -1350,6 +1454,13 @@ function buildBlueprintHTML() {
                         </div>
                         <div id="bp-feat-container" class="flex flex-wrap gap-1.5"></div>
                         <div id="bp-synergy-container" class="mt-2"></div>
+                    </div>
+                    <div id="bp-art-panel" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Art Direction <span class="normal-case font-normal">— click to refine</span></div>
+                            <button id="bp-art-clear" class="hidden text-[10px] px-1.5 py-0.5 rounded text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors cursor-pointer">Clear</button>
+                        </div>
+                        <div id="bp-art-container" class="space-y-2"></div>
                     </div>
                     <div id="bp-layout-panel" class="hidden bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 p-4">
                         <div class="flex items-center justify-between mb-2">

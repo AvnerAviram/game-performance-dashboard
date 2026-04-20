@@ -35,22 +35,23 @@ Chart.register(
     Title
 );
 
-// Custom plugin: draws coverage annotation text on chart canvas
+// Custom plugin: draws coverage annotation below the chart x-axis
 Chart.register({
     id: 'coverageAnnotation',
     afterDraw(chart) {
         const txt = chart._coverageText;
         if (!txt) return;
-        const { ctx, chartArea } = chart;
+        const { ctx, chartArea, height } = chart;
         if (!chartArea) return;
         ctx.save();
         ctx.font = '10px system-ui, sans-serif';
         ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
         ctx.textAlign = 'right';
         ctx.textBaseline = 'bottom';
-        ctx.fillText(txt, chartArea.right - 4, chartArea.bottom - 4);
+        ctx.fillText(txt, chartArea.right - 4, height - 2);
         ctx.restore();
     },
 });
 
+window.Chart = Chart;
 export { Chart };

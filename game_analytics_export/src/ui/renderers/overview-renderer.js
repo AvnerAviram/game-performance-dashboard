@@ -1,7 +1,7 @@
 // Overview page renderer
 import { gameData, getActiveGames, getActiveMechanics, getActiveThemes } from '../../lib/data.js';
 import { getTopPerformers, renderComparisonCards } from '../../features/overview-insights.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
 import { getProviderMetrics } from '../../lib/metrics.js';
@@ -69,14 +69,41 @@ export function renderOverview() {
         return;
     }
 
-    gamesEl.textContent = getActiveGames().length;
-    themesEl.textContent = getActiveThemes().length;
-    mechanicsEl.textContent = getActiveMechanics().length;
+    const gCount = getActiveGames().length;
+    const tCount = getActiveThemes().length;
+    const mCount = getActiveMechanics().length;
+    gamesEl.textContent = gCount;
+    themesEl.textContent = tCount;
+    mechanicsEl.textContent = mCount;
+    gamesEl.dataset.xray = JSON.stringify({
+        dimension: 'overview',
+        value: 'total_games',
+        metric: 'total_games',
+        displayValue: String(gCount),
+    });
+    themesEl.dataset.xray = JSON.stringify({
+        dimension: 'overview',
+        value: 'total_themes',
+        metric: 'total_themes',
+        displayValue: String(tCount),
+    });
+    mechanicsEl.dataset.xray = JSON.stringify({
+        dimension: 'overview',
+        value: 'total_mechanics',
+        metric: 'total_mechanics',
+        displayValue: String(mCount),
+    });
 
     const providersEl = document.getElementById('overview-total-providers');
     if (providersEl) {
         const rankedProviders = getProviderMetrics(getActiveGames());
         providersEl.textContent = rankedProviders.length;
+        providersEl.dataset.xray = JSON.stringify({
+            dimension: 'overview',
+            value: 'total_providers',
+            metric: 'total_providers',
+            displayValue: String(rankedProviders.length),
+        });
     }
 
     log('  ✅ Stats updated:', {
@@ -127,8 +154,8 @@ function renderTopThemesCards() {
         if (!t) return;
         if (!yearData[t]) yearData[t] = { recent: 0, old: 0, total: 0 };
         yearData[t].total++;
-        if (F.originalReleaseYear(g) >= currentYear - 2) yearData[t].recent++;
-        if (F.originalReleaseYear(g) && F.originalReleaseYear(g) <= currentYear - 5) yearData[t].old++;
+        if (F.releaseYear(g) >= currentYear - 2) yearData[t].recent++;
+        if (F.releaseYear(g) && F.releaseYear(g) <= currentYear - 5) yearData[t].old++;
     });
 
     themes.forEach(t => {
@@ -256,6 +283,7 @@ function renderTopThemesCards() {
         const name = c.theme.Theme || c.theme.theme;
         html += `
         <div class="bg-gradient-to-br ${c.bg} ${c.dbg} rounded-lg shadow-sm border ${c.border} p-3 hover:shadow-md transition-all cursor-pointer"
+             data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: name }))}'
              onclick="${safeOnclick('window.showThemeDetails', name)}">
             <div class="flex items-center gap-2 mb-2">
                 <span class="text-lg">${c.emoji}</span>
@@ -431,6 +459,7 @@ function renderThemeFeatureHeatmap() {
             <div class="flex items-center gap-1.5 mb-2">
                 ${medal ? `<span class="text-sm">${medal}</span>` : `<span class="text-[9px] font-bold text-gray-400 dark:text-gray-500 w-4 text-center">#${i + 1}</span>`}
                 <span class="text-xs font-bold text-gray-900 dark:text-white cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors truncate flex-1"
+                      data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: r.theme }))}'
                       onclick="${safeOnclick('window.showThemeDetails', r.theme)}">${escapeHtml(r.theme)}</span>
                 <span class="text-[9px] text-gray-400 dark:text-gray-500 shrink-0">${r.gameCount} games</span>
             </div>
@@ -713,7 +742,7 @@ function renderThemeFeatureHeatmap() {
                 <div class="text-[10px] mt-1.5 ${isGood ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400'} font-medium">${isGood ? '▲ Outperforms theme average — recommended combo' : '▼ Underperforms theme average — consider alternatives'}</div>
                 <div class="mt-2 pt-2 border-t border-gray-200 dark:border-gray-700">
                     <div class="flex items-center justify-between text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1"><span>Games with this recipe</span><span>Theo</span></div>
-                    ${showGames.map(g => `<div class="flex items-center justify-between text-[10px] py-0.5"><span class="truncate text-gray-700 dark:text-gray-300 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400" onclick="${safeOnclick('window.showGameDetails', g.name)}">${escapeHtml(g.name)}</span><span class="text-gray-400 shrink-0 ml-2">${g.theo.toFixed(1)}</span></div>`).join('')}
+                    ${showGames.map(g => `<div class="flex items-center justify-between text-[10px] py-0.5"><span class="truncate text-gray-700 dark:text-gray-300 cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400" data-xray='${escapeAttr(JSON.stringify({ game: g.name, field: 'name' }))}' onclick="${safeOnclick('window.showGameDetails', g.name)}">${escapeHtml(g.name)}</span><span class="text-gray-400 shrink-0 ml-2">${g.theo.toFixed(1)}</span></div>`).join('')}
                     ${moreCount > 0 ? `<div class="text-[9px] text-gray-400 mt-0.5">+${moreCount} more games</div>` : ''}
                 </div>
             </div>`;

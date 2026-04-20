@@ -1,10 +1,11 @@
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
-import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, xray } from '../lib/sanitize.js';
 import { VolatilityBadge } from '../components/dashboard-components.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { MIN_PROVIDER_GAMES, DEFAULT_PAGE_SIZE, MARKET_LEADER_THRESHOLD } from '../lib/shared-config.js';
 import { F } from '../lib/game-fields.js';
+import { calculateSmartIndex as computeSI } from '../lib/metrics.js';
 
 // ==========================================
 // PROVIDERS PAGE - USING DUCKDB
@@ -96,12 +97,15 @@ export async function renderProviders(providersData = null) {
             return;
         }
 
-        // Eilers-style: rank by GGR Share (sum of market share %)
+        providers = providers.filter(p => (p.game_count || 0) >= MIN_PROVIDER_GAMES);
         providers.forEach(p => {
             p.provider_score = p.total_market_share || 0;
         });
-        providers = providers.filter(p => (p.game_count || 0) >= MIN_PROVIDER_GAMES);
-        providers.sort((a, b) => (b.provider_score || 0) - (a.provider_score || 0));
+        const globalAvgTheo = providers.reduce((s, p) => s + (p.avg_theo_win || 0), 0) / (providers.length || 1);
+        providers.forEach(p => {
+            p['Smart Index'] = computeSI(p.avg_theo_win || 0, p.game_count || 0, globalAvgTheo);
+        });
+        providers.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
 
         // PAGINATION LOGIC
         const ITEMS_PER_PAGE = window.providersPerPage || DEFAULT_PAGE_SIZE;
@@ -181,39 +185,42 @@ export async function renderProviders(providersData = null) {
                         : '';
             const rankBg = globalIndex < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
 
+            const pv = provider.studio;
+            const xDim = (metric, dv) =>
+                escapeAttr(JSON.stringify({ metric, dimension: 'provider', value: pv, displayValue: dv }));
             html += `
                 <tr class="group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 cursor-pointer ${rankBg}" onclick="${safeOnclick('window.showProviderDetails', provider.studio)}">
                     <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16">${medal}${globalIndex + 1}</td>
-                    <td class="px-4 py-3.5">
+                    <td class="px-4 py-3.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: pv, rank: globalIndex + 1 }))}'>
                         <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(provider.studio)}</span>
                         ${parentInfo}
                     </td>
-                    <td class="px-4 py-3.5 w-36">
+                    <td class="px-4 py-3.5 w-36" data-xray='${xDim('game_count', String(gc))}'>
                         <div class="flex items-center gap-2">
                             <span class="text-sm tabular-nums text-gray-700 dark:text-gray-300 w-8 text-right">${gc}</span>
                             <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gray-400 dark:bg-gray-500 transition-all" style="width:${gcBarW}%"></div></div>
                         </div>
                     </td>
-                    <td class="px-4 py-3.5">
+                    <td class="px-4 py-3.5" data-xray='${xDim('avg_theo_win', theo ? theo.toFixed(2) : '—')}'>
                         <div class="flex items-center gap-1.5">
                             <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${theo ? theo.toFixed(2) : '—'}</span>
                             <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${theo ? (isAboveAvg ? '▲' : '▼') : ''}</span>
                         </div>
                     </td>
-                    <td class="px-4 py-3.5 w-36">
+                    <td class="px-4 py-3.5 w-36" data-xray='${xDim('market_share', ms ? ms.toFixed(2) + '%' : '—')}'>
                         <div class="flex items-center gap-2">
                             <span class="text-sm tabular-nums text-gray-600 dark:text-gray-400 w-12 text-right">${ms ? ms.toFixed(2) + '%' : '—'}</span>
                             <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-blue-400 dark:bg-blue-500 transition-all" style="width:${msBarW}%"></div></div>
                         </div>
                     </td>
-                    <td class="px-4 py-3.5 w-40">
+                    <td class="px-4 py-3.5 w-40" data-xray='${xDim('ggr_share', score ? score.toFixed(2) + '%' : '—')}'>
                         <div class="flex items-center gap-2">
                             <span class="text-sm font-bold tabular-nums text-indigo-600 dark:text-indigo-400 w-14 text-right">${score ? score.toFixed(2) + '%' : '—'}</span>
                             <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-indigo-400 to-indigo-500 transition-all" style="width:${scoreBarW}%"></div></div>
                         </div>
                     </td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400">${provider.avg_rtp ? provider.avg_rtp.toFixed(1) + '%' : '—'}</td>
-                    <td class="px-4 py-3.5">${provider.dominant_volatility ? VolatilityBadge(provider.dominant_volatility) : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400" data-xray='${xDim('avg_rtp', provider.avg_rtp ? provider.avg_rtp.toFixed(1) + '%' : '—')}'>${provider.avg_rtp ? provider.avg_rtp.toFixed(1) + '%' : '—'}</td>
+                    <td class="px-4 py-3.5" data-xray='${xDim('dominant_volatility', provider.dominant_volatility || '—')}'>${provider.dominant_volatility ? VolatilityBadge(provider.dominant_volatility) : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
                 </tr>
             `;
         });
@@ -299,7 +306,7 @@ function renderProvidersTable(providers) {
                 : '';
 
         html += `
-            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', provider.studio)}">
+            <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: provider.studio }))}' onclick="${safeOnclick('window.showProviderDetails', provider.studio)}">
                 <td class="px-4 py-3.5 text-sm text-gray-600 dark:text-gray-400">${index + 1}</td>
                 <td class="px-4 py-3.5">
                     <span class="text-[15px] text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors font-medium">${escapeHtml(provider.studio)}</span>
@@ -430,9 +437,9 @@ export function renderGames() {
         );
     } else if (currentGameViewFilter === 'newReleases') {
         const cutoffYear = new Date().getFullYear() - 1;
-        filteredGames = filteredGames.filter(g => (F.originalReleaseYear(g) || 0) >= cutoffYear);
+        filteredGames = filteredGames.filter(g => (F.releaseYear(g) || 0) >= cutoffYear);
         filteredGames.sort((a, b) => {
-            const yDiff = (F.originalReleaseYear(b) || 0) - (F.originalReleaseYear(a) || 0);
+            const yDiff = (F.releaseYear(b) || 0) - (F.releaseYear(a) || 0);
             if (yDiff !== 0) return yDiff;
             return (b.release_month || 0) - (a.release_month || 0);
         });
@@ -452,8 +459,8 @@ export function renderGames() {
 
     // Apply sorting
     filteredGames.sort((a, b) => {
-        let valA = currentGamesSortField === 'release_year' ? F.originalReleaseYear(a) : a[currentGamesSortField];
-        let valB = currentGamesSortField === 'release_year' ? F.originalReleaseYear(b) : b[currentGamesSortField];
+        let valA = currentGamesSortField === 'release_year' ? F.releaseYear(a) : a[currentGamesSortField];
+        let valB = currentGamesSortField === 'release_year' ? F.releaseYear(b) : b[currentGamesSortField];
 
         // Handle nulls
         if (valA == null) valA = 0;
@@ -523,7 +530,7 @@ export function renderGames() {
                             Volatility
                         </th>
                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable whitespace-nowrap ${sortClass('release_year')}" onclick="window.sortGamesBy('release_year')">
-                            Release
+                            Release Year
                         </th>
                     </tr>
                 </thead>
@@ -569,7 +576,7 @@ export function renderGames() {
                         .slice(0, 2)
                         .map(
                             feat =>
-                                `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="${safeOnclick('window.showMechanicDetails', feat)}">${escapeHtml(feat)}</span>`
+                                `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'features', featureName: feat }))}' onclick="${safeOnclick('window.showMechanicDetails', feat)}">${escapeHtml(feat)}</span>`
                         )
                         .join('') +
                     (f.length > 2
@@ -598,24 +605,24 @@ export function renderGames() {
                 <tr class="group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 ${rankBg}">
                     <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${medal}${game.performance_rank || globalIdx + 1}</td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">
-                        <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(game.name)}</span>
+                        <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'name' }))}'>${escapeHtml(game.name)}</span>
                     </td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', F.provider(game))}">
-                        <span class="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">${escapeHtml(F.provider(game))}</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'provider' }))}'>${escapeHtml(F.provider(game))}</span>
                     </td>
-                    <td class="px-4 py-3.5 text-sm cursor-pointer" onclick="${game.theme_consolidated ? safeOnclick('window.showThemeDetails', game.theme_consolidated || '') : ''}">${game.theme_consolidated ? `<span class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">${escapeHtml(game.theme_consolidated)}</span>` : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
+                    <td class="px-4 py-3.5 text-sm cursor-pointer" onclick="${game.theme_consolidated ? safeOnclick('window.showThemeDetails', game.theme_consolidated || '') : ''}">${game.theme_consolidated ? `<span class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'theme_primary' }))}'>${escapeHtml(game.theme_consolidated)}</span>` : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
                     <td class="px-4 py-3.5">${featuresPills}</td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">
                         <div class="flex items-center gap-1">
-                            <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${theo ? theo.toFixed(2) : '—'}</span>
+                            <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'theo_win' }))}'>${theo ? theo.toFixed(2) : '—'}</span>
                             <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${theo ? (isAboveAvg ? '▲' : '▼') : ''}</span>
                             ${percentileBadge}
                         </div>
                     </td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.performance_market_share_percent ? game.performance_market_share_percent.toFixed(2) + '%' : '—'}</td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.specs_rtp ? game.specs_rtp + '%' : '—'}</td>
-                    <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${volatilityBadge}</td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${game.original_release_year || game.release_year || '—'}</td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'market_share' }))}'>${game.performance_market_share_percent ? game.performance_market_share_percent.toFixed(2) + '%' : '—'}</span></td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'rtp' }))}'>${game.specs_rtp ? game.specs_rtp + '%' : '—'}</span></td>
+                    <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'volatility' }))}'>${volatilityBadge}</span></td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'release_year' }))}'>${escapeHtml(String(F.releaseYear(game) || '—'))}</span></td>
                 </tr>
             `;
         });

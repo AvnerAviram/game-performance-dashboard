@@ -2,7 +2,7 @@
  * Strategic insight cards: Build next, Avoid, Watch.
  */
 import { getActiveGames, getActiveThemes } from '../../lib/data.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { getBuildNextCombos, getAvoidCombos } from '../../features/idea-generator.js';
 import { F } from '../../lib/game-fields.js';
@@ -15,9 +15,9 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
                 ? buildNext
                       .map(
                           c => `
-            <div class="space-y-0.5">
+            <div class="space-y-0.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.theme }))}'>
             <div class="flex items-center justify-between gap-2">
-                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="text-emerald-700 dark:text-emerald-400 cursor-pointer hover:underline" onclick="${safeOnclick('window.showThemeDetails', c.theme)}">${escapeHtml(c.theme)}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="text-indigo-700 dark:text-indigo-400">${escapeHtml(c.feature)}</span> <span class="text-[8px] text-gray-400 font-normal">feature</span></div></div>
+                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="text-emerald-700 dark:text-emerald-400 cursor-pointer hover:underline" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.theme }))}' onclick="${safeOnclick('window.showThemeDetails', c.theme)}">${escapeHtml(c.theme)}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="text-indigo-700 dark:text-indigo-400">${escapeHtml(c.feature)}</span> <span class="text-[8px] text-gray-400 font-normal">feature</span></div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                     <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 font-medium">${c.count} games</span>
                     <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">${c.avgTheo.toFixed(1)} avg theo</span>
@@ -44,9 +44,9 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
                 ? avoid
                       .map(
                           c => `
-            <div class="space-y-0.5">
+            <div class="space-y-0.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.theme }))}'>
             <div class="flex items-center justify-between gap-2">
-                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="text-emerald-700 dark:text-emerald-400 cursor-pointer hover:underline" onclick="${safeOnclick('window.showThemeDetails', c.theme)}">${escapeHtml(c.theme)}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="text-indigo-700 dark:text-indigo-400">${escapeHtml(c.feature)}</span> <span class="text-[8px] text-gray-400 font-normal">feature</span></div></div>
+                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="text-emerald-700 dark:text-emerald-400 cursor-pointer hover:underline" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.theme }))}' onclick="${safeOnclick('window.showThemeDetails', c.theme)}">${escapeHtml(c.theme)}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="text-indigo-700 dark:text-indigo-400">${escapeHtml(c.feature)}</span> <span class="text-[8px] text-gray-400 font-normal">feature</span></div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                     <span class="text-[10px] px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium">${c.count} games</span>
                     <span class="text-[10px] font-bold text-red-600 dark:text-red-400">${c.avgTheo.toFixed(1)} avg theo</span>
@@ -84,10 +84,8 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
                 const reasons = [];
                 let score = 0;
 
-                const recent = themeGames.filter(g => (F.originalReleaseYear(g) || 0) >= 2022);
-                const older = themeGames.filter(
-                    g => (F.originalReleaseYear(g) || 0) > 0 && (F.originalReleaseYear(g) || 0) < 2022
-                );
+                const recent = themeGames.filter(g => (F.releaseYear(g) || 0) >= 2022);
+                const older = themeGames.filter(g => (F.releaseYear(g) || 0) > 0 && (F.releaseYear(g) || 0) < 2022);
                 if (recent.length >= 2 && older.length >= 1) {
                     const recentAvg = recent.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / recent.length;
                     const olderAvg = older.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / older.length;
@@ -163,9 +161,9 @@ export function renderStrategicCards(buildNextDiv, avoidDiv, watchDiv) {
                               (a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0)
                           )[0];
                           return `
-            <div class="space-y-0.5">
+            <div class="space-y-0.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}'>
             <div class="flex items-center justify-between gap-2">
-                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate cursor-pointer hover:text-amber-600 dark:hover:text-amber-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">${escapeHtml(t.Theme)}</div></div>
+                <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate cursor-pointer hover:text-amber-600 dark:hover:text-amber-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}' onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">${escapeHtml(t.Theme)}</div></div>
                 <div class="flex items-center gap-1.5 shrink-0">
                     <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 font-medium">${gc} games</span>
                     <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400">${avgTheo.toFixed(1)} avg theo</span>

@@ -89,14 +89,24 @@ describe('API Data Endpoints - Integration', () => {
             originalUsersContent = JSON.stringify(clean, null, 2);
         }
 
-        const existingUsers = raw ? JSON.parse(raw).filter(u => !u.username.startsWith('__apitest')) : [];
         const testUser = {
             username: '__apitest__',
             passwordHash: bcrypt.hashSync('testpass123', 12),
             role: 'user',
         };
-        existingUsers.push(testUser);
-        writeFileSync(USERS_FILE, JSON.stringify(existingUsers, null, 2));
+
+        // Atomic merge: add test user while preserving all other users
+        function ensureTestUser() {
+            const current = existsSync(USERS_FILE) ? JSON.parse(readFileSync(USERS_FILE, 'utf-8')) : [];
+            if (!current.find(u => u.username === '__apitest__')) {
+                current.push(testUser);
+                writeFileSync(USERS_FILE, JSON.stringify(current, null, 2));
+            }
+        }
+        ensureTestUser();
+        // Re-verify after brief wait (handles concurrent writes from other test files)
+        await new Promise(r => setTimeout(r, 500));
+        ensureTestUser();
 
         const nodePath = process.execPath;
         serverProcess = spawn(nodePath, ['server/server.cjs'], {

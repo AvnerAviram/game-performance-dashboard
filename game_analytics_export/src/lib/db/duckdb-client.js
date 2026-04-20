@@ -175,7 +175,7 @@ async function loadFromParquet(buffer) {
     const count = Number(countResult.toArray()[0].count);
     const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
     const fc = Number(featCount.toArray()[0].c);
-    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
+    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_theme IS NOT NULL');
     const ac = Number(artCount.toArray()[0].c);
 
     log(`Loaded ${count} games into DuckDB from Parquet (${fc} with features, ${ac} with art)`);
@@ -234,8 +234,9 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         rtp_confidence VARCHAR, volatility_confidence VARCHAR,
         reels_confidence VARCHAR, paylines_confidence VARCHAR,
         max_win_confidence VARCHAR, min_bet_confidence VARCHAR, max_bet_confidence VARCHAR,
-        art_setting VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
-        art_mood VARCHAR, art_narrative VARCHAR
+        art_theme VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
+        art_mood VARCHAR, art_narrative VARCHAR,
+        art_style VARCHAR, art_color_tone VARCHAR, art_confidence VARCHAR
       )
     `);
 
@@ -327,10 +328,13 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
           ${safeStr(confidenceMap[game.name]?.max_win_confidence)},
           ${safeStr(confidenceMap[game.name]?.min_bet_confidence)},
           ${safeStr(confidenceMap[game.name]?.max_bet_confidence)},
-          ${safeStr(artMap[game.name]?.art_setting)},
+          ${safeStr(artMap[game.name]?.art_theme)},
           ${safeStr(artMap[game.name]?.art_characters ? JSON.stringify(artMap[game.name].art_characters) : null)},
           ${safeStr(artMap[game.name]?.art_elements ? JSON.stringify(artMap[game.name].art_elements) : null)},
-          ${safeStr(artMap[game.name]?.art_mood)}, ${safeStr(artMap[game.name]?.art_narrative)}
+          ${safeStr(artMap[game.name]?.art_mood)}, ${safeStr(artMap[game.name]?.art_narrative)},
+          ${safeStr(artMap[game.name]?.art_style)},
+          ${safeStr(artMap[game.name]?.art_color_tone)},
+          ${safeStr(artMap[game.name]?.art_confidence)}
         )
       `);
     }
@@ -339,7 +343,7 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
     const count = Number(countResult.toArray()[0].count);
     const featCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE features IS NOT NULL');
     const fc = Number(featCount.toArray()[0].c);
-    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_setting IS NOT NULL');
+    const artCount = await connection.query('SELECT COUNT(*) as c FROM games WHERE art_theme IS NOT NULL');
     const ac = Number(artCount.toArray()[0].c);
 
     log(`Loaded ${count} games into DuckDB from JSON (${fc} with features, ${ac} with art)`);
@@ -640,14 +644,14 @@ export async function getVolatilityDistribution() {
 export async function getReleaseYearDistribution() {
     return query(`
     SELECT 
-      COALESCE(original_release_year, release_year) as year,
+      release_year as year,
       COUNT(*) as game_count,
       AVG(performance_theo_win) as avg_theo_win
     FROM games
-    WHERE COALESCE(original_release_year, release_year) IS NOT NULL
+    WHERE release_year IS NOT NULL
       AND ${RELIABLE_GAME}
-    GROUP BY COALESCE(original_release_year, release_year)
-    ORDER BY COALESCE(original_release_year, release_year) ASC
+    GROUP BY release_year
+    ORDER BY release_year ASC
   `);
 }
 

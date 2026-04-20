@@ -1,3 +1,54 @@
 .env
 game_analytics_export/data/.env
 node_modules/
+
+# Large binary/scratch data
+game_analytics_export/data/screenshots/
+game_analytics_export/data/_qa_screenshots/
+game_analytics_export/data/rules_text/
+
+# Legacy/scratch data files
+game_analytics_export/data/_slotslaunch_scrape.json
+game_analytics_export/data/_staged_year_results.json
+game_analytics_export/data/_release_date_matches.json
+game_analytics_export/data/_lnw_slug_lookup.json
+game_analytics_export/data/_sc_all_specs.json
+game_analytics_export/data/_slot_report_data.json
+game_analytics_export/data/_evo_scrape_list.json
+game_analytics_export/data/game_data_master_backup_*.json
+game_analytics_export/data/reviewed_games.json
+game_analytics_export/data/help_page_index.json
+
+# Legacy art files (migrated to art_pipeline/)
+game_analytics_export/data/ground_truth_art.json
+game_analytics_export/data/ground_truth_art_v2.json
+game_analytics_export/data/art_corrections.json
+game_analytics_export/data/art_classification_results.json
+game_analytics_export/data/art_gt_gate_results.json
+
+# Old review/spot-check HTMLs (ephemeral, not source of truth)
+game_analytics_export/data/BATCH1_SPOT_CHECK.html
+game_analytics_export/data/EXPANSION_REVIEW_36.html
+game_analytics_export/data/EXPANSION_REVIEW_v2.html
+game_analytics_export/data/EXPANSION_V3_28.html
+game_analytics_export/data/FRESH_BATCH_30.html
+game_analytics_export/data/GT_REVIEW_20.html
+game_analytics_export/data/REVIEW_V11_4_BATCH.html
+game_analytics_export/data/REVIEW_V11_5_BATCH.html
+game_analytics_export/data/SPOT_CHECK_10.html
+game_analytics_export/data/V10_REVIEW_14.html
+game_analytics_export/data/V11_EXPANSION_49.html
+game_analytics_export/data/YEAR_REVIEW.html
+game_analytics_export/data/YEAR_REVIEW_SLOTREPORT.html
+game_analytics_export/data/YEAR_REVIEW_V2.html
+game_analytics_export/data/AGS_CLASSIFICATION_REVIEW.txt
+game_analytics_export/data/VERIFICATION_REPORT_500batch.txt
+game_analytics_export/data/_lnw_portfolio.html
+game_analytics_export/data/extraction_sparse_games.txt
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Agent config
+.claude/

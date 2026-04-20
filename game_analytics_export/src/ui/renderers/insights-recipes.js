@@ -111,6 +111,7 @@ export function renderRecipeLeaderboard() {
                   ? 'from-emerald-400 to-teal-500'
                   : 'from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500';
         const rank = i < 3 ? medals[i] : `<span class="text-[10px] font-bold text-gray-400">${i + 1}</span>`;
+        const recipeFeatureValue = r.features.join(' + ');
         const chips = r.features
             .map(
                 f =>
@@ -137,7 +138,7 @@ export function renderRecipeLeaderboard() {
             .filter(Boolean)
             .join('');
         return `
-        <div class="recipe-row px-2 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-all ${i < 3 ? 'bg-gradient-to-r from-amber-50/30 to-transparent dark:from-amber-900/10' : ''}">
+        <div class="recipe-row px-2 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-all ${i < 3 ? 'bg-gradient-to-r from-amber-50/30 to-transparent dark:from-amber-900/10' : ''}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: recipeFeatureValue }))}'>
             <div class="flex items-center gap-2">
                 <div class="w-5 text-center shrink-0 text-xs">${rank}</div>
                 <div class="flex flex-wrap gap-0.5 min-w-0 flex-1">${chips}</div>
@@ -249,10 +250,11 @@ export function renderFeatureHeatmap(heatmapDiv) {
                                         textCol = intensity > 0.3 ? '#991b1b' : '#6b7280';
                                     }
                                     const display = lift >= 0 ? `+${lift.toFixed(0)}%` : `${lift.toFixed(0)}%`;
+                                    const featureName = FEATS[j];
                                     const oppMarker = isOpportunity
                                         ? '<span class="text-amber-500 text-[8px] ml-0.5" title="Opportunity: high lift, few games">◆</span>'
                                         : '';
-                                    return `<td class="hm-cell p-1 min-w-[44px] h-8 text-center align-middle rounded cursor-pointer transition-all duration-150 hover:scale-110 hover:z-20 hover:shadow-lg hover:ring-2 hover:ring-white/60 text-[10px] font-semibold" style="background:${bg};color:${textCol}" data-theme="${escapeAttr(t)}" data-feat="${escapeAttr(FEATS[j])}" data-theo="${cell.avgTheo.toFixed(2)}" data-count="${count}" data-lift="${lift.toFixed(1)}" data-tavg="${cell.themeAvg.toFixed(2)}" data-names="${escapeAttr(cell.names.join('|'))}" onclick="if(window.useOpportunityCombo){${safeOnclick('window.useOpportunityCombo', t, FEATS[j])}}">${display}${oppMarker}</td>`;
+                                    return `<td class="hm-cell p-1 min-w-[44px] h-8 text-center align-middle rounded cursor-pointer transition-all duration-150 hover:scale-110 hover:z-20 hover:shadow-lg hover:ring-2 hover:ring-white/60 text-[10px] font-semibold" style="background:${bg};color:${textCol}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: featureName }))}' data-theme="${escapeAttr(t)}" data-feat="${escapeAttr(featureName)}" data-theo="${cell.avgTheo.toFixed(2)}" data-count="${count}" data-lift="${lift.toFixed(1)}" data-tavg="${cell.themeAvg.toFixed(2)}" data-names="${escapeAttr(cell.names.join('|'))}" onclick="if(window.useOpportunityCombo){${safeOnclick('window.useOpportunityCombo', t, FEATS[j])}}">${display}${oppMarker}</td>`;
                                 })
                                 .join('')}
                         </tr>
@@ -449,13 +451,14 @@ export function renderFeatureStacking() {
                                 const barColor = c.avgTheo >= compareAvg ? 'bg-emerald-400' : 'bg-amber-400';
                                 const label =
                                     c.count === 0 ? 'No features' : c.count === 1 ? '1 feature' : `${c.count} features`;
+                                const avgStr = c.avgTheo.toFixed(1);
                                 return `
-                            <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-3" data-xray='${escapeAttr(JSON.stringify({ metric: 'avg_theo_win', dimension: 'mechanic_count', value: String(c.count), displayValue: avgStr }))}'>
                                 <span class="text-xs font-medium text-gray-600 dark:text-gray-400 w-24 shrink-0">${label}</span>
                                 <div class="flex-1 h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                     <div class="h-full ${barColor} rounded-full stacking-bar" style="width:0%" data-target="${barW}"></div>
                                 </div>
-                                <span class="text-xs font-bold ${vsColor} tabular-nums w-12 text-right shrink-0">${c.avgTheo.toFixed(1)}</span>
+                                <span class="text-xs font-bold ${vsColor} tabular-nums w-12 text-right shrink-0">${avgStr}</span>
                                 <span class="text-[10px] text-gray-400 w-16 text-right shrink-0">${c.gameCount} games</span>
                             </div>`;
                             })
@@ -476,9 +479,10 @@ export function renderFeatureStacking() {
                                               ? 'text-emerald-600 dark:text-emerald-400'
                                               : 'text-red-500 dark:text-red-400';
                                           const barColor = isPos ? 'bg-emerald-400' : 'bg-red-400';
+                                          const featureName = f.feature;
                                           return `
-                            <div class="flex items-center gap-2">
-                                <span class="text-[11px] font-medium text-gray-700 dark:text-gray-300 w-24 shrink-0 truncate">${escapeHtml(shortF[f.feature] || f.feature)}</span>
+                            <div class="flex items-center gap-2" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: featureName }))}'>
+                                <span class="text-[11px] font-medium text-gray-700 dark:text-gray-300 w-24 shrink-0 truncate">${escapeHtml(shortF[featureName] || featureName)}</span>
                                 <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                     <div class="h-full ${barColor} rounded-full stacking-bar" style="width:0%" data-target="${barW}"></div>
                                 </div>
@@ -558,8 +562,10 @@ export function renderLayoutCorrelation() {
                                     `<span class="px-1 py-0.5 text-[9px] rounded bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium" title="${escapeAttr(f.name)} — used in ${f.pct}% of games with this layout">${escapeHtml(shortF[f.name] || f.name)} ${f.pct}%</span>`
                             )
                             .join('');
+                        const layoutString = l.layout;
+                        const countStr = String(l.count);
                         return `
-                    <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-all ${i === 0 ? 'bg-indigo-50/30 dark:bg-indigo-900/10' : ''}">
+                    <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/40 transition-all ${i === 0 ? 'bg-indigo-50/30 dark:bg-indigo-900/10' : ''}" data-xray='${escapeAttr(JSON.stringify({ metric: 'game_count', dimension: 'layout', value: layoutString, displayValue: countStr }))}'>
                         <div class="w-14 shrink-0 text-center" title="Grid layout: ${escapeAttr(l.layout)} (reels × rows)">
                             <span class="text-sm font-bold text-gray-900 dark:text-white">${escapeHtml(l.layout)}</span>
                             <div class="text-[9px] text-gray-400">${l.count} games</div>

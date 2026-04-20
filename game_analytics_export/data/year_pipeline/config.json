@@ -1,0 +1,48 @@
+{
+  "_description": "Pipeline configuration for year extraction. Thresholds, trust levels, and rules.",
+  "_updated": "2026-04-16",
+  "gt_accuracy_threshold": 95,
+  "min_confidence_to_apply": 3,
+  "source_trust_levels": {
+    "ags_provider_data": 5,
+    "verified_review": 5,
+    "verified_reference": 5,
+    "slotslaunch": 4,
+    "slotcatalog": 3,
+    "nj_proxy": 3,
+    "slotreport": 3,
+    "eilers": 2,
+    "html_copyright": 2
+  },
+  "rejection_rules": {
+    "epoch_date": "year === 1970 or year === 1969 → reject",
+    "pre_2005": "year < 2005 → reject",
+    "after_nj_year": "year > nj_year + 1 → reject"
+  },
+  "confidence_rules": {
+    "nj_proxy_online_first": 4,
+    "nj_proxy_online_major": 3,
+    "slotslaunch_delta_0_1": 4,
+    "slotslaunch_delta_2_3": 3,
+    "slotslaunch_delta_4_plus": 2,
+    "slotcatalog_delta_0_1": 3,
+    "slotcatalog_delta_2_3": 2,
+    "slotcatalog_delta_4_plus": 1,
+    "multi_source_consensus": 4,
+    "land_based_high_risk_gap_over_5": "cap to 1",
+    "mixed_origin_gap_over_4": "cap to 2"
+  },
+  "master_year_fields": {
+    "release_year": "NJ launch year (from Eilers CSV). Integer. All 4550 games have this.",
+    "release_month": "NJ launch month (from Eilers CSV). Integer 1-12.",
+    "original_release_year": "Global online release year. Integer. This is what we're trying to fill.",
+    "original_release_month": "Global online release month. Integer 1-12. Set when full date available.",
+    "original_release_date": "Global online release date. ISO string 'yyyy-mm-dd'. Set when full date available.",
+    "original_release_date_source": "Source that provided the global year. String.",
+    "original_release_confidence": "Pipeline confidence 1-5. NOT currently in master — written by --apply.",
+    "last_modified_date": "Last modification date. Usually null.",
+    "extraction_date": "Date the game was processed by extract_game_profile.py.",
+    "verification_date": "Date of verification pass (if any).",
+    "gt_applied_date": "Date AGS GT was applied (if AGS game)."
+  }
+}

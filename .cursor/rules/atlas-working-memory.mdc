@@ -1,0 +1,133 @@
+---
+description: Atlas working memory — live state of all workstreams. READ THIS FIRST at the start of every Atlas interaction. Update after every significant action.
+alwaysApply: true
+---
+
+# Atlas Working Memory
+
+> **READ THIS FILE FIRST** at the start of every interaction. This is your persistent brain.
+> **UPDATE THIS FILE** after every significant decision, discovery, or state change.
+> Last updated: 2026-04-20
+
+## Active Agents
+
+| Agent | Status | Current Task | Blocker |
+|-------|--------|-------------|---------|
+| Art | ACTIVE | Task 0-2: expand regression + fix scoring + batch sprint | Brief sent 2026-04-20, awaiting results |
+| Year | COMPLETE | Pipeline done, NJ year as primary | None |
+| Security | PAUSED | Waiting for prioritization | None |
+
+## Art Pipeline State
+
+### Data Inventory
+- Master games: 4,550 (4,201 slots)
+- Screenshots on disk: 2,759 (from SC CDN — covers 99.96% of SC cache games)
+- SC cache HTML files: 2,760
+- Slots WITHOUT screenshots: ~1,442 (these don't exist on SlotCatalog)
+- Rules HTML files: 8,860 (3,735 matched to master games)
+
+### Classification Progress
+- Total results in results.json: 2,692
+- v2 classified (current schema): 404
+- v1 legacy (old schema, needs reclassification): 2,288
+- Remaining unclassified: ~1,858
+
+### Accuracy (TRUE v11.5, on 191 human-reviewed games)
+- Theme: 97.4% (target: 97%) — AT TARGET
+- Characters: 100% (target: 97%) — EXCEEDS
+- Elements: 98.4% (target: 90%) — EXCEEDS
+- Colors: 95.3% (deprioritized) — EXCEEDS
+
+### User Reviews (THE MOST IMPORTANT ASSET)
+- **Human-reviewed: 192 games** across 5 rounds
+  - ags_v4 (2026-04-13), gt_review_v4 (2026-04-14), expansion_v3 (2026-04-15)
+  - fresh_batch_v11 (2026-04-19), v11_4_batch (2026-04-19)
+- Auto-verified: 64 games
+- Total: 256 games reviewed
+- Theme: 183 OK, 9 fixes
+- Characters: 174 OK, 18 fixes
+- Elements: 145 OK, 47 fixes
+
+### Ground Truth
+- `ground_truth.json`: 20 games (hard GT with full field values)
+- **But user_reviews.json has 192 human-reviewed games** — these are "soft GT"
+  - For OK verdicts: the result in results.json IS the correct answer
+  - For fix verdicts: the user's correction note IS the correct answer
+- **Regression should use ALL 192, not just the 20 in GT file**
+- GT is too small (20 games) for stable % — 1 miss = 5pp swing
+- With 192 games: 1 miss = 0.5pp — much more reliable
+
+### Pipeline Config
+- Model: claude-sonnet-4-20250514
+- Config C adopted: description text now included in prompt (helps elements +8.3pp)
+- Rules text NOT in prompt (hurts elements when combined with desc)
+- Batch API available (50% cost savings)
+- Pre-flight gate: blocks batches with <80% screenshot coverage
+
+### Corrections
+- 45 game-specific corrections in corrections.json (nested under `.corrections` key, wrapper has version + description)
+- Noise elements: 11 filtered (Gold Frame, Glow/Aura, etc.)
+
+### Key Decisions Made
+1. Config C (+desc in prompt) adopted — validated on 12 GT games, +1 net element improvement
+2. Rules text rejected from prompt — only helps deprioritized colors, hurts elements in combo
+3. Screenshots mandatory — text-only has unvalidated accuracy
+4. NJ year is primary, global year is supplementary (Year pipeline)
+
+### Known Issues
+- GT regression shows 90% theme on 20-game set — but 2 misses (Cash-Eruption, Thunder-Cash) are genuinely ambiguous, not pipeline bugs
+- GT scoring too rigid: doesn't accept secondary theme as valid primary
+- 113 of 120 all-OK reviewed games have no screenshot (were text-only classified) — can use for theme regression but not elements
+- Ice-Joker screenshot shows rules page, not gameplay
+
+## Experiment Results (2026-04-20)
+- Config A (baseline): Theme 100%, Chars 100%, Elements 66.7%, Colors 83.3%
+- Config B (+rules): Theme 100%, Chars 100%, Elements 66.7%, Colors 91.7%
+- Config C (+desc): Theme 100%, Chars 100%, Elements 75.0%, Colors 83.3%
+- Config D (full): Theme 100%, Chars 100%, Elements 50.0%, Colors 91.7%
+- **Conclusion: C is best for elements (priority #1), D actively hurts. B only helps deprioritized colors.**
+
+## Next Steps (Priority Order)
+1. **Expand regression to use all 192 reviewed games** — build soft GT from user_reviews + results
+2. **Fix GT scoring** — accept secondary themes as valid primary matches
+3. **Start batch classification** — graduated: 100→300→500→rest, with user spot-checks
+4. **Add screenshot to game detail side panel** (after classification done)
+
+## Non-Negotiable Rules
+1. NEVER call external APIs without user approval (state count + cost)
+2. NEVER write to game_data_master.json without permission
+3. Screenshots mandatory for classification
+4. Theme must stay ≥97% (measured on expanded 192-game set)
+5. Run regression after every pipeline change
+6. Scale slowly: verify at each batch before expanding
+7. Every user verdict saved immediately
+
+## File Map (quick reference)
+```
+game_analytics_export/data/
+├── classify_art_v2.py              ← Main pipeline (2050 lines)
+├── download_sc_screenshots.mjs     ← SC CDN screenshot downloader
+├── download_sc_screenshots_playwright.mjs ← Playwright-based (for Cloudflare bypass)
+├── run_input_experiment.py         ← Config experiment script
+├── art_pipeline/
+│   ├── results.json                ← All classification results
+│   ├── ground_truth.json           ← 20-game hard GT
+│   ├── user_reviews.json           ← 192 human reviews (THE BIG ASSET)
+│   ├── corrections.json            ← Game-specific overrides
+│   ├── config.json                 ← Pipeline settings
+│   ├── run_log.json                ← Audit trail
+│   └── input_experiment_results.json ← Experiment data
+├── game_data_master.json           ← Master game data (4,550 games)
+├── rules_game_matches.json         ← Game→rules HTML mapping
+├── screenshots/                    ← Gameplay screenshots (2,759 files)
+├── rules_html/                     ← Rules HTML (8,860 files)
+├── _legacy/sc_cache/               ← SC review HTML (2,760 files)
+└── .env                            ← API key
+
+.cursor/rules/
+├── atlas-orchestration.mdc         ← Pre-mortem gate, handoff checklist
+├── atlas-working-memory.mdc        ← THIS FILE
+├── data-schema-contract.mdc        ← Data field definitions
+├── coding-standards.mdc            ← Code formatting rules
+└── cw14-orchestration-no-shortcuts.mdc ← Audit hard gates
+```

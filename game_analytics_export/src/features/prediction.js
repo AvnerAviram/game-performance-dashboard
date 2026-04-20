@@ -7,7 +7,7 @@ import {
     predictFromSimilarGames,
     getDatasetStats,
 } from '../lib/game-analytics-engine.js';
-import { escapeHtml, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 import { log, warn } from '../lib/env.js';
 import { parseFeatsLocal } from '../ui/renderers/overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../lib/features.js';
@@ -168,7 +168,7 @@ export function suggestImprovements(container) {
     const cards = ranked
         .map(
             s => `
-        <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
+        <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: s.name }))}'>
             <div class="text-xs font-medium text-gray-900 dark:text-white">Add ${escapeHtml(s.name)}</div>
             <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">+${Math.round(s.delta)} pts</span>
         </div>`
@@ -317,9 +317,9 @@ export function predictGameSuccess() {
         </div>
         <div class="result-section">
             <strong>🎨 Theme Analysis</strong>
-            ${themeData.map(t => `<div class="analysis-item"><div class="analysis-label">${escapeHtml(t.Theme)}</div><div class="analysis-value">${t['Smart Index'].toFixed(1)}</div></div>`).join('')}
+            ${themeData.map(t => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}'><div class="analysis-label">${escapeHtml(t.Theme)}</div><div class="analysis-value">${t['Smart Index'].toFixed(1)}</div></div>`).join('')}
         </div>
-        ${mechData.length > 0 ? `<div class="result-section"><strong>⚙️ Mechanic Analysis</strong>${mechData.map(m => `<div class="analysis-item"><div class="analysis-label">${escapeHtml(m.Mechanic)}</div><div class="analysis-value">${m['Smart Index'].toFixed(1)}</div></div>`).join('')}</div>` : ''}
+        ${mechData.length > 0 ? `<div class="result-section"><strong>⚙️ Mechanic Analysis</strong>${mechData.map(m => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: m.Mechanic }))}'><div class="analysis-label">${escapeHtml(m.Mechanic)}</div><div class="analysis-value">${m['Smart Index'].toFixed(1)}</div></div>`).join('')}</div>` : ''}
         <div class="prediction-suggest-section" style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(148, 163, 184, 0.35);">
             <button type="button" class="prediction-suggest-btn w-full py-2.5 px-4 rounded-xl text-sm font-semibold border border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors">Suggest Improvements</button>
             <div class="prediction-suggestions-panel hidden"></div>
@@ -645,7 +645,7 @@ function analyzeGameConcept() {
                         const gFeats = parseFeatsLocal(g.features);
                         const theo = g.performance_theo_win || 0;
                         const isAbove = theo >= globalAvg;
-                        return `<div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/10 transition-colors cursor-pointer" onclick="${safeOnclick('window.showGameDetails', g.name)}">
+                        return `<div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/10 transition-colors cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ game: g.name, field: 'name' }))}' onclick="${safeOnclick('window.showGameDetails', g.name)}">
                         <div class="flex-1 min-w-0"><div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${escapeHtml(g.name)}</div><div class="text-[10px] text-gray-400">${escapeHtml(F.provider(g))} · ${gFeats.slice(0, 2).join(', ')}${gFeats.length > 2 ? ' +' + (gFeats.length - 2) : ''}</div></div>
                         <div class="text-right shrink-0"><div class="text-sm font-bold ${isAbove ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-500'}">${theo.toFixed(2)}</div><div class="text-[9px] text-gray-400">theo</div></div>
                     </div>`;
@@ -701,7 +701,7 @@ function analyzeGameConcept() {
 
     // Art Direction section for the detected theme
     if (primaryTheme) {
-        const artGames = matchingGames.filter(g => F.artSetting(g));
+        const artGames = matchingGames.filter(g => F.artTheme(g));
         if (artGames.length >= 3) {
             const artTally = fn => {
                 const m = {};
@@ -715,13 +715,13 @@ function analyzeGameConcept() {
                     .sort((a, b) => b[1] - a[1])
                     .slice(0, 5);
             };
-            const artSettings = artTally(g => F.artSetting(g));
+            const artThemes = artTally(g => F.artTheme(g));
             const artMoods = artTally(g => F.artMood(g));
             const artChars = artTally(g => F.artCharacters(g));
             const artElem = artTally(g => F.artElements(g));
             const artPill = ([n, c]) =>
                 `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(n)} (${c})</span>`;
-            if (artSettings.length) {
+            if (artThemes.length) {
                 html += `
                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
                     <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
@@ -729,7 +729,7 @@ function analyzeGameConcept() {
                         <p class="text-[10px] text-gray-400 mt-0.5">Based on ${artGames.length} games with art characterization</p>
                     </div>
                     <div class="p-4 space-y-2">
-                        <div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Settings</div><div class="flex flex-wrap gap-1">${artSettings.map(artPill).join('')}</div></div>
+                        <div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Themes</div><div class="flex flex-wrap gap-1">${artThemes.map(artPill).join('')}</div></div>
                         ${artMoods.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Mood</div><div class="flex flex-wrap gap-1">${artMoods.map(artPill).join('')}</div></div>` : ''}
                         ${artChars.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Characters</div><div class="flex flex-wrap gap-1">${artChars.map(artPill).join('')}</div></div>` : ''}
                         ${artElem.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Visual Elements</div><div class="flex flex-wrap gap-1">${artElem.map(artPill).join('')}</div></div>` : ''}

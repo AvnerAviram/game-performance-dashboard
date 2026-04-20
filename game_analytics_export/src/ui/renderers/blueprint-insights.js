@@ -25,7 +25,7 @@ export function renderFeaturePills(els, featScores, selectedFeatures) {
                     : f.lift >= 0
                       ? 'bg-white dark:bg-gray-800 text-blue-700 dark:text-blue-400 border-blue-200 dark:border-blue-700 hover:bg-blue-50 dark:hover:bg-blue-900/20'
                       : 'bg-white dark:bg-gray-800 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-700 hover:bg-rose-50 dark:hover:bg-rose-900/20';
-            return `<button class="bp-feat-pill inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 cursor-pointer ${cls}" data-feat="${escapeAttr(f.feat)}">${isSelected ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ' : ''}${escapeHtml(shortF[f.feat] || f.feat)} <span class="text-xs opacity-75">${liftLabel}</span></button>`;
+            return `<button class="bp-feat-pill inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 cursor-pointer ${cls}" data-feat="${escapeAttr(f.feat)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: f.feat }))}'>${isSelected ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> ' : ''}${escapeHtml(shortF[f.feat] || f.feat)} <span class="text-xs opacity-75">${liftLabel}</span></button>`;
         })
         .join('');
 

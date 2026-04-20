@@ -64,7 +64,9 @@ export function populateMechanicsFilters() {
     const providers = [...new Set(gameData.allGames.map(g => F.provider(g)))].filter(p => p && p !== 'Unknown').sort();
 
     // Get unique themes from all games
-    const themes = [...new Set(gameData.allGames.map(g => g.theme_primary))].filter(t => t).sort();
+    const themes = [...new Set(gameData.allGames.map(g => F.themeConsolidated(g)))]
+        .filter(t => t && t !== 'Unknown')
+        .sort();
 
     // Populate provider dropdown
     const providerSelect = document.getElementById('mechanics-filter-provider');
@@ -168,7 +170,7 @@ function filterMechanics() {
     }
 
     if (themeValue) {
-        filteredGames = filteredGames.filter(g => g.theme_primary === themeValue);
+        filteredGames = filteredGames.filter(g => F.themeConsolidated(g) === themeValue);
     }
 
     // Aggregate features from filtered games
@@ -225,7 +227,9 @@ export function populateProvidersFilters() {
     const featureSet = new Set();
     gameData.allGames.forEach(g => parseFeatures(g.features).forEach(f => featureSet.add(f)));
     const mechanics = [...featureSet].sort();
-    const themes = [...new Set(gameData.allGames.map(g => g.theme_primary))].filter(t => t).sort();
+    const themes = [...new Set(gameData.allGames.map(g => F.themeConsolidated(g)))]
+        .filter(t => t && t !== 'Unknown')
+        .sort();
 
     const mechanicSelect = document.getElementById('providers-filter-mechanic');
     if (mechanicSelect) {

@@ -17,7 +17,7 @@ import {
 } from '../components/dashboard-components.js';
 import { SYMBOL_CATEGORIES, SYMBOL_CAT_COLORS, categorizeSymbol, parseSymbols } from '../lib/symbol-utils.js';
 import { apiPost } from '../lib/api-client.js';
-import { escapeHtml, escapeAttr, safeOnclick, sanitizeUrl } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, sanitizeUrl, xray } from '../lib/sanitize.js';
 import { PROVIDER_URLS } from '../config/provider-urls.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { collapsibleList } from './collapsible-list.js';
@@ -30,7 +30,9 @@ export function showGameDetails(gameName) {
     log('🎮 Opening game panel for:', gameName);
 
     const gamePanelTitle = document.getElementById('game-panel-title');
-    if (gamePanelTitle) gamePanelTitle.textContent = game.name;
+    if (gamePanelTitle) {
+        gamePanelTitle.innerHTML = `${escapeHtml(game.name)} <button class="ml-2 text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 font-medium transition-colors cursor-pointer" onclick="window.openXRayPanel('${escapeAttr(game.name.replace(/'/g, "\\'"))}')" title="Data X-Ray">X-Ray</button>`;
+    }
 
     // ===== DESCRIPTION SECTION =====
     let descriptionSection = '';
@@ -409,15 +411,15 @@ export function showGameDetails(gameName) {
             ? allThemes
                   .map(
                       t =>
-                          `<span class="inline-block px-2 py-0.5 text-[11px] font-medium rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 mr-1 mb-1 cursor-pointer hover:ring-2 hover:ring-emerald-400 transition-all" onclick="${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`
+                          `<span class="inline-block px-2 py-0.5 text-[11px] font-medium rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300 mr-1 mb-1 cursor-pointer hover:ring-2 hover:ring-emerald-400 transition-all" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'theme_primary', value: t }))}' onclick="${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`
                   )
                   .join('')
             : '';
 
     const themeMechContent = `
         <div class="space-y-3">
-            ${game.theme_primary ? `<div class="flex items-center gap-2"><span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Primary Theme</span><span class="text-sm font-semibold text-emerald-700 dark:text-emerald-300 cursor-pointer hover:underline" onclick="${safeOnclick('window.showThemeDetails', game.theme_primary)}">${escapeHtml(game.theme_primary)}</span></div>` : Metric('Primary Theme', 'N/A')}
-            ${game.theme_secondary ? `<div class="text-sm text-gray-600 dark:text-gray-400 ml-0">Secondary: <span class="cursor-pointer hover:underline hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" onclick="${safeOnclick('window.showThemeDetails', game.theme_secondary)}">${escapeHtml(game.theme_secondary)}</span></div>` : ''}
+            ${game.theme_primary ? `<div class="flex items-center gap-2"><span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Primary Theme</span><span class="text-sm font-semibold text-emerald-700 dark:text-emerald-300 cursor-pointer hover:underline" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'theme_primary' }))}' onclick="${safeOnclick('window.showThemeDetails', game.theme_primary)}">${escapeHtml(game.theme_primary)}</span></div>` : Metric('Primary Theme', 'N/A')}
+            ${game.theme_secondary ? `<div class="text-sm text-gray-600 dark:text-gray-400 ml-0">Secondary: <span class="cursor-pointer hover:underline hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'theme_secondary' }))}' onclick="${safeOnclick('window.showThemeDetails', game.theme_secondary)}">${escapeHtml(game.theme_secondary)}</span></div>` : ''}
             ${allThemesHtml ? `<div class="pt-1"><div class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">All Themes</div><div class="flex flex-wrap">${allThemesHtml}</div></div>` : ''}
             <div class="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3"></div>
             <div class="pt-1">
@@ -439,6 +441,7 @@ export function showGameDetails(gameName) {
     const providerContent = `
         <div class="space-y-2">
             <div class="text-base font-semibold text-gray-900 dark:text-white cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                 data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'provider' }))}'
                  onclick="${safeOnclick('window.showProviderDetails', F.provider(game))}">${escapeHtml(F.provider(game))}</div>
             ${
                 game.provider_parent && game.provider_parent !== F.provider(game)
@@ -579,17 +582,14 @@ export function showGameDetails(gameName) {
     }
 
     // ===== RELEASE INFO SECTION =====
-    const hasOriginal = game.original_release_year && game.original_release_year !== game.release_year;
     const releaseMetrics = [];
-    if (hasOriginal) {
-        releaseMetrics.push({ label: 'Global Release', value: game.original_release_year });
+    releaseMetrics.push({ label: 'NJ Launch Year', value: game.release_year || 'N/A' });
+    releaseMetrics.push({ label: 'NJ Launch Month', value: game.release_month || 'N/A' });
+    if (game.original_release_year) {
+        releaseMetrics.push({ label: 'Global Release Year', value: game.original_release_year });
         if (game.original_release_month) {
-            releaseMetrics.push({ label: 'Global Month', value: game.original_release_month });
+            releaseMetrics.push({ label: 'Global Release Month', value: game.original_release_month });
         }
-        releaseMetrics.push({ label: 'NJ Launch', value: game.release_year || 'N/A' });
-    } else {
-        releaseMetrics.push({ label: 'Year', value: game.original_release_year || game.release_year || 'N/A' });
-        releaseMetrics.push({ label: 'Month', value: game.original_release_month || game.release_month || 'N/A' });
     }
 
     const releaseAllNa = releaseMetrics.every(m => String(m.value) === 'N/A');
@@ -729,8 +729,8 @@ export function showGameDetails(gameName) {
 
     // ===== ART DESIGN SECTION =====
     let artSection = '';
-    const artSetting = F.artSetting(game);
-    if (artSetting) {
+    const artTheme = F.artTheme(game);
+    if (artTheme) {
         const artChars = F.artCharacters(game);
         const artElems = F.artElements(game);
         const artMood = F.artMood(game);
@@ -747,7 +747,7 @@ export function showGameDetails(gameName) {
         const artMetrics = [
             {
                 label: 'Environment',
-                value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artSetting)}</span>`,
+                value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artTheme)}</span>`,
             },
         ];
         if (artMood) artMetrics.push({ label: 'Mood', value: escapeHtml(artMood) });
@@ -941,6 +941,7 @@ export function showProviderDetails(providerName) {
             const hidden = i >= THEMES_INIT ? ' style="display:none"' : '';
             const barW = ((t.count / maxThemeCount) * 100).toFixed(0);
             return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.name }))}'
                      onclick="${safeOnclick('window.showThemeForProvider', t.name, providerName)}"${hidden}>
                     <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${escapeHtml(t.name)}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-violet-400 dark:bg-violet-500 rounded-full" style="width:${barW}%"></div></div>
@@ -972,6 +973,7 @@ export function showProviderDetails(providerName) {
             const hidden = i >= MECHS_INIT ? ' style="display:none"' : '';
             const barW = ((m.count / maxMechCount) * 100).toFixed(0);
             return `<div data-cl-item class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors"
+                     data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: m.name }))}'
                      onclick="${safeOnclick('window.showMechForProvider', m.name, providerName)}"${hidden}>
                     <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-28 truncate flex-shrink-0">${escapeHtml(m.name)}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-purple-400 dark:bg-purple-500 rounded-full" style="width:${barW}%"></div></div>

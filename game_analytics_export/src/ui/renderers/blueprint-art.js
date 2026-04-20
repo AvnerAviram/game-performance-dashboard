@@ -34,9 +34,76 @@ function tallyWithTheo(games, fn) {
         .sort((a, b) => b.count - a.count);
 }
 
+export function renderArtPills(container, themeGames, selectedArt, renderBlueprint) {
+    if (!container) return;
+    const artGames = themeGames.filter(g => F.artTheme(g));
+    if (artGames.length < 3) {
+        container.innerHTML = '<div class="text-xs text-gray-400 dark:text-gray-500 italic">Not enough art data</div>';
+        return;
+    }
+
+    const settings = tallyWithTheo(artGames, g => F.artTheme(g)).slice(0, 6);
+    const moods = tallyWithTheo(artGames, g => F.artMood(g)).slice(0, 5);
+    const characters = tallyWithTheo(artGames, g => F.artCharacters(g)).slice(0, 6);
+
+    const pillHtml = (value, isSelected, dimType, colorBg, colorText) => {
+        const sel = isSelected
+            ? `ring-2 ring-offset-1 ring-indigo-500 ${colorBg} ${colorText}`
+            : `bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600`;
+        return `<button class="bp-art-pill text-[10px] px-2 py-1 rounded-full cursor-pointer transition-all ${sel}" data-dim="${escapeHtml(dimType)}" data-val="${escapeHtml(value)}">${escapeHtml(value)}</button>`;
+    };
+
+    const group = (label, items, dimType, colorBg, colorText, isSingle) => {
+        if (!items.length) return '';
+        const pills = items.map(item => {
+            const isSelected = isSingle ? selectedArt[dimType] === item.name : selectedArt[dimType]?.has?.(item.name);
+            return pillHtml(item.name, isSelected, dimType, colorBg, colorText);
+        });
+        return `<div>
+            <div class="text-[9px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">${label}</div>
+            <div class="flex flex-wrap gap-1">${pills.join('')}</div>
+        </div>`;
+    };
+
+    container.innerHTML = [
+        group(
+            'Environment',
+            settings,
+            'theme',
+            'bg-purple-100 dark:bg-purple-900/40',
+            'text-purple-700 dark:text-purple-300',
+            true
+        ),
+        group('Mood', moods, 'mood', 'bg-pink-100 dark:bg-pink-900/40', 'text-pink-700 dark:text-pink-300', true),
+        group(
+            'Characters',
+            characters,
+            'characters',
+            'bg-indigo-100 dark:bg-indigo-900/40',
+            'text-indigo-700 dark:text-indigo-300',
+            false
+        ),
+    ].join('');
+
+    container.querySelectorAll('.bp-art-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+            const dim = pill.dataset.dim;
+            const val = pill.dataset.val;
+            if (dim === 'theme' || dim === 'mood' || dim === 'narrative') {
+                selectedArt[dim] = selectedArt[dim] === val ? null : val;
+            } else if (selectedArt[dim]?.has?.(val)) {
+                selectedArt[dim].delete(val);
+            } else {
+                selectedArt[dim]?.add?.(val);
+            }
+            renderBlueprint();
+        });
+    });
+}
+
 export function renderArtTab(container, ctx) {
     const { themeGames, themeAvg, selectedCategories } = ctx;
-    const artGames = themeGames.filter(g => F.artSetting(g));
+    const artGames = themeGames.filter(g => F.artTheme(g));
 
     if (artGames.length < 3) {
         container.innerHTML = `<div class="text-center py-12">
@@ -50,7 +117,7 @@ export function renderArtTab(container, ctx) {
     const themeName = [...(selectedCategories || [])].join(' / ') || 'Selected Theme';
     const coverage = ((artGames.length / themeGames.length) * 100).toFixed(0);
 
-    const settings = tallyWithTheo(artGames, g => F.artSetting(g));
+    const settings = tallyWithTheo(artGames, g => F.artTheme(g));
     const moods = tallyWithTheo(artGames, g => F.artMood(g));
     const characters = tallyWithTheo(artGames, g => F.artCharacters(g));
     const elements = tallyWithTheo(artGames, g => F.artElements(g));
@@ -102,7 +169,7 @@ export function renderArtTab(container, ctx) {
     let recommendationHtml = '';
     if (topSetting && topMood) {
         const highPerf = artGames.filter(g => (F.theoWin(g) || 0) > themeAvg);
-        const hpSettings = tally(highPerf, g => F.artSetting(g));
+        const hpSettings = tally(highPerf, g => F.artTheme(g));
         const hpMoods = tally(highPerf, g => F.artMood(g));
         const bestSetting = hpSettings[0]?.[0] || topSetting.name;
         const bestMood = hpMoods[0]?.[0] || topMood.name;
@@ -115,7 +182,7 @@ export function renderArtTab(container, ctx) {
                 <strong>${escapeHtml(bestMood)}</strong> mood.
                 ${highPerf.length > 3 ? `Top-performing games in this theme (${highPerf.length} above avg) gravitate toward this art direction.` : ''}
             </p>
-            ${topArtGame ? `<div class="mt-2 text-xs text-gray-500">Top performer: <span class="font-semibold text-gray-700 dark:text-gray-300">${escapeHtml(F.name(topArtGame))}</span> — ${escapeHtml(F.artSetting(topArtGame) || '?')} / ${escapeHtml(F.artMood(topArtGame) || '?')} (${(F.theoWin(topArtGame) || 0).toFixed(2)} theo)</div>` : ''}
+            ${topArtGame ? `<div class="mt-2 text-xs text-gray-500">Top performer: <span class="font-semibold text-gray-700 dark:text-gray-300">${escapeHtml(F.name(topArtGame))}</span> — ${escapeHtml(F.artTheme(topArtGame) || '?')} / ${escapeHtml(F.artMood(topArtGame) || '?')} (${(F.theoWin(topArtGame) || 0).toFixed(2)} theo)</div>` : ''}
         </div>`;
     }
 

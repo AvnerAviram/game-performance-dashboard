@@ -39,12 +39,6 @@
 #sidebar.collapsed .collapse-btn {
     margin: 0 auto;
 }
-#sidebar.collapsed #dark-mode-toggle {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
-    gap: 0;
-}
 #sidebar.collapsed .shrink-0.mt-auto {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
@@ -322,17 +316,26 @@ th.sortable.sorted-asc::after {
         width: 0 !important;
         transform: translateX(-100%) !important;
     }
+
     #main-content {
         margin-left: 0 !important;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
         z-index: 1 !important;
     }
 
-    /* Sticky headers: indent past the fixed hamburger button */
+    #page-container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Sticky headers: tight padding, room for hamburger (btn right edge ≈ 56px) */
     .sticky {
-        padding-left: 3.5rem !important;
-        padding-right: 1rem !important;
+        margin-left: -0.75rem !important;
+        margin-right: -0.75rem !important;
+        padding-left: 3.75rem !important;
+        padding-right: 0.75rem !important;
     }
 
     /* Hide page-level account hamburger on mobile (accessible via sidebar) */
@@ -341,7 +344,7 @@ th.sortable.sorted-asc::after {
     }
     .sticky .flex.justify-between {
         flex-wrap: wrap;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
     .sticky .flex.gap-2 {
         flex-wrap: wrap;
@@ -365,32 +368,80 @@ th.sortable.sorted-asc::after {
         padding: 0.5rem 0.625rem !important;
         white-space: nowrap;
     }
+    /* Table container: allow horizontal scroll, contain overflow */
+    .overflow-x-auto {
+        margin-right: 0 !important;
+        max-width: 100vw !important;
+    }
+    .-mr-8 {
+        margin-right: 0 !important;
+    }
+    /* Prevent body-level horizontal scroll */
+    #main-content,
+    body {
+        overflow-x: hidden !important;
+    }
+    /* Canvas charts: constrain to viewport */
+    canvas {
+        max-width: 100% !important;
+    }
+    [style*='overflow: visible'] {
+        overflow: hidden !important;
+    }
 
     /* Grid overrides: stack on mobile */
     .grid {
         grid-template-columns: 1fr !important;
     }
 
-    /* KPI stat cards */
+    /* KPI stat cards: keep 2-col for compact stats */
+    .grid.grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
     .grid.gap-4,
     .grid.gap-6 {
         gap: 0.75rem !important;
     }
 
-    /* Pagination footers */
+    /* Pagination footers: compact single-row */
     [id$='-pagination-footer'] {
         left: 0 !important;
+        padding: 0.5rem 0.75rem !important;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+    }
+    [id$='-pagination-footer'] .flex.items-center.gap-3 {
+        gap: 0.25rem !important;
+    }
+    [id$='-pagination-footer'] .flex.items-center.gap-3 > span {
+        display: none;
+    }
+    [id$='-pagination-footer'] select {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+    [id$='-pagination-footer'] button {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+    [id$='-pagination-footer'] [id$='-showing-info'] {
+        display: none !important;
     }
 
-    /* Chart containers: cap tall charts at 280px */
+    /* Chart containers: cap tall charts at 260px */
     [style*='height: 280px'],
     [style*='height: 310px'],
     [style*='height: 340px'],
     [style*='height: 420px'],
     [style*='height: 460px'],
     [style*='height: 480px'] {
-        height: 280px !important;
-        min-height: 280px !important;
+        height: 260px !important;
+        min-height: 260px !important;
+    }
+
+    /* Page bottom padding for footer overlap */
+    .pb-32 {
+        padding-bottom: 4rem !important;
     }
 
     /* Touch-friendly tooltips: tap (focus) triggers group-hover tooltips */
@@ -402,6 +453,87 @@ th.sortable.sorted-asc::after {
 /* Touch-active state for tap-to-toggle tooltips on touch devices */
 .group.touch-active > [class*='group-hover\\:block'] {
     display: block;
+}
+
+/* ── X-Ray mode styles (Chrome DevTools–inspired) ──────── */
+
+/* Persistent floating banner */
+#xray-indicator {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 9999px;
+    background: rgba(99, 102, 241, 0.9);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.4);
+    pointer-events: none;
+    animation: xray-pulse 2s ease-in-out infinite;
+}
+body.xray-active #xray-indicator {
+    display: flex;
+}
+
+@keyframes xray-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* All interactive elements get crosshair */
+body.xray-active [data-xray],
+body.xray-active td,
+body.xray-active canvas,
+body.xray-active th {
+    cursor: crosshair !important;
+}
+
+/* Hover highlight — solid like Chrome inspect */
+body.xray-active [data-xray]:hover,
+body.xray-cmd-held [data-xray]:hover {
+    outline: 2px solid rgba(99, 102, 241, 0.8) !important;
+    outline-offset: 1px;
+    background: rgba(99, 102, 241, 0.12) !important;
+    border-radius: 3px;
+    cursor: crosshair !important;
+}
+
+body.xray-active td:hover,
+body.xray-active canvas:hover,
+body.xray-cmd-held td:hover,
+body.xray-cmd-held canvas:hover {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 1px;
+    background: rgba(99, 102, 241, 0.06);
+    cursor: crosshair !important;
+}
+
+/* Subtle shimmer on data-xray elements when X-Ray is active */
+body.xray-active [data-xray] {
+    position: relative;
+    transition:
+        background 0.15s,
+        outline 0.15s;
+}
+
+/* CMD/CTRL held: lighter variant */
+body.xray-cmd-held [class*='tabular-nums']:hover {
+    outline: 2px solid rgba(99, 102, 241, 0.4);
+    outline-offset: 1px;
+    cursor: crosshair !important;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

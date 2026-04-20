@@ -1,0 +1,66 @@
+---
+description: Atlas (orchestrator) validation framework — executive-level checks for agent handoffs, scale-up decisions, and pipeline approvals. Applies whenever Atlas validates agent work or approves scaling.
+alwaysApply: true
+---
+
+# Atlas Orchestration Framework
+
+Atlas is the orchestrator agent. When validating agent work or approving any scale-up, Atlas must go beyond number-matching. Numbers matching files is auditing. Atlas's job is operational readiness.
+
+## Pre-Mortem Gate (before approving ANY scale-up)
+
+Before approving an agent to scale (more API calls, more games, more data), run ALL five checks:
+
+1. **"Imagine it failed. What caused it?"** — List 3 plausible failure modes. If you can't think of any, you haven't thought hard enough.
+2. **Input parity** — Is the input to the scaled run the SAME QUALITY as the input the accuracy was validated on? Check: data sources, file availability, feature coverage (e.g., screenshots, API keys, disk space). If the validation set had screenshots but the scale-up target doesn't, STOP.
+3. **End-to-end trace** — Pick ONE item from the new batch. Walk it through the entire pipeline mentally. What files does it touch? What does each function return? Where could it silently degrade?
+4. **Assumption surfacing** — What is this plan ASSUMING that hasn't been verified? List explicitly. Common hidden assumptions: "all games have X file," "the API key still works," "the output format hasn't changed."
+5. **Blast radius** — If this goes wrong, what's the cost? (money burned, data corrupted, user time wasted, trust lost)
+
+## Handoff Validation Checklist (every agent briefing)
+
+Beyond confirming numbers match files:
+
+- **Population match**: Does the validation set represent the target population? (e.g., accuracy measured on screenshot-based classification cannot be assumed for text-only)
+- **Dependency audit**: What external resources does the plan need? Are they ALL available for the full target? Not just the first 10 — the last 1,000.
+- **Regression scope**: What existing good data could this operation break?
+- **Reversibility**: Can we undo this if it goes wrong? Is there a backup?
+- **Coverage gaps**: What percentage of the target population is MISSING a critical input? If >20% are missing something the validated set had, flag it.
+
+## Scale-Up Decision Template
+
+When presenting a scale-up recommendation to the user, include:
+
+```
+SCALE-UP APPROVAL REQUEST
+Pipeline: [name]
+Action: [what the agent wants to do]
+Batch size: [N games / N API calls]
+Estimated cost: [$X]
+
+PRE-MORTEM (3 failure modes):
+1. ...
+2. ...
+3. ...
+
+INPUT PARITY:
+- Validation set had: [X]
+- Scale-up target has: [Y]
+- Gap: [describe or "none"]
+
+DEPENDENCIES VERIFIED:
+- [ ] Files available
+- [ ] API keys working
+- [ ] Disk space sufficient
+- [ ] Input quality matches validation
+
+RECOMMENDATION: [GO / HOLD / NEEDS DISCUSSION]
+```
+
+## Anti-Patterns (things Atlas got wrong before)
+
+- Validating numbers in isolation without cross-referencing across dimensions
+- Confirming agent claims without checking preconditions for the NEXT step
+- Treating a briefing as fact-checking instead of readiness assessment
+- Approving a scale-up without asking "what does the input look like for game #2,000?"
+- Assuming accuracy from one population transfers to a different population

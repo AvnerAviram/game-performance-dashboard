@@ -131,25 +131,27 @@ export function renderThemes(themesToRender = null) {
         row.dataset.themeIndex = globalIndex;
         row.onclick = () => window.showThemeDetails(themeName);
 
+        const xDim = (metric, dv) =>
+            escapeAttr(JSON.stringify({ metric, dimension: 'theme', value: themeName, displayValue: dv }));
         row.innerHTML = `
             <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16">${medal}${globalIndex + 1}</td>
-            <td class="px-4 py-3.5">
+            <td class="px-4 py-3.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: themeName, rank: globalIndex + 1 }))}'>
                 ${isUnified ? `<span class="inline-flex items-center gap-1"><span class="expand-toggle cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 select-none" onclick="event.stopPropagation();toggleSubThemes(${globalIndex})">${expandIcon}</span><span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(themeName)}</span></span>` : `<span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(themeName)}</span>`}
             </td>
-            <td class="px-4 py-3.5 w-36">
+            <td class="px-4 py-3.5 w-36" data-xray='${xDim('game_count', String(gc))}'>
                 <div class="flex items-center gap-2">
                     <span class="text-sm tabular-nums text-gray-700 dark:text-gray-300 w-8 text-right">${gc}</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gray-400 dark:bg-gray-500 transition-all" style="width:${gcBarW}%"></div></div>
                 </div>
             </td>
-            <td class="px-4 py-3.5 w-56">
+            <td class="px-4 py-3.5 w-56" data-xray='${xDim('smart_index', si.toFixed(2))}'>
                 <div class="flex items-center gap-2">
                     <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}</span>
                     <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>
                     <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${isAboveAvg ? '▲' : '▼'}</span>
                 </div>
             </td>
-            <td class="px-4 py-3.5 w-36">
+            <td class="px-4 py-3.5 w-36" data-xray='${xDim('market_share', ms.toFixed(2) + '%')}'>
                 <div class="flex items-center gap-2">
                     <span class="text-sm tabular-nums text-gray-600 dark:text-gray-400 w-12 text-right">${ms.toFixed(2)}%</span>
                     <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full bg-blue-400 dark:bg-blue-500 transition-all" style="width:${msBarW}%"></div></div>
@@ -182,22 +184,25 @@ export function renderThemes(themesToRender = null) {
                 const subIsAbove = subSI >= avgSI;
                 const subBarW = Math.max(4, (subSI / maxSI) * 100);
                 const subMS = subTheme['Market Share %'] ?? 0;
+                const subGC = subTheme['Game Count'];
+                const subXDim = (metric, dv) =>
+                    escapeAttr(JSON.stringify({ metric, dimension: 'theme', value: subThemeName, displayValue: dv }));
 
                 subRow.innerHTML = `
                     <td class="px-4 py-2.5"></td>
-                    <td class="px-4 py-2.5 pl-12">
+                    <td class="px-4 py-2.5 pl-12" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: subThemeName }))}'>
                         <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                             └ ${escapeHtml(displayName)}
                         </span>
                     </td>
-                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400">${subTheme['Game Count']}</td>
-                    <td class="px-4 py-2.5">
+                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400" data-xray='${subXDim('game_count', String(subGC))}'>${subGC}</td>
+                    <td class="px-4 py-2.5" data-xray='${subXDim('smart_index', subSI.toFixed(2))}'>
                         <div class="flex items-center gap-2">
                             <span class="text-sm tabular-nums ${subIsAbove ? 'text-emerald-500 dark:text-emerald-400' : 'text-gray-500 dark:text-gray-400'}">${subSI.toFixed(2)}</span>
                             <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${subIsAbove ? 'bg-emerald-400' : 'bg-gray-300 dark:bg-gray-600'}" style="width:${subBarW}%"></div></div>
                         </div>
                     </td>
-                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400">${subMS.toFixed(2)}%</td>
+                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400" data-xray='${subXDim('market_share', subMS.toFixed(2) + '%')}'>${subMS.toFixed(2)}%</td>
                 `;
             });
         }

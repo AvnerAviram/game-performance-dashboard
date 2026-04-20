@@ -1,0 +1,532 @@
+{
+  "version": "2.1",
+  "created": "2026-04-13",
+  "description": "User-verified GT for art classification. 20 games reviewed with gameplay screenshots. Characters must be OUTSIDE reels, not reel symbols.",
+  "dimensions": [
+    "art_theme",
+    "art_theme_secondary",
+    "art_color_tone",
+    "art_characters",
+    "art_elements",
+    "art_narrative",
+    "is_branded"
+  ],
+  "accuracy_baseline": {
+    "art_theme": "95%",
+    "art_color_tone": "80%",
+    "art_characters": "55%",
+    "art_elements": "70%",
+    "art_narrative": "90%",
+    "is_branded": "100%"
+  },
+  "total_games": 20,
+  "games": {
+    "88-Fortunes.html": {
+      "sc_file": "88-Fortunes.html",
+      "name": "88 Fortunes (Light and Wonder)",
+      "art_theme": "Asian Temple/Garden",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Red",
+        "Gold",
+        "Orange"
+      ],
+      "art_characters": [
+        "Boy",
+        "Girl"
+      ],
+      "art_character_categories": {
+        "Boy": "Human Character",
+        "Girl": "Human Character"
+      },
+      "art_elements": [
+        "Asian Lanterns/Decorations",
+        "Ancient Stone Carvings",
+        "Colored Frame",
+        "Bamboo/Tropical Plants",
+        "Asian Architecture"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "Children appear outside reels. Animals/ship are symbols not elements.",
+      "user_corrected": true
+    },
+    "Ancient-Disco.html": {
+      "sc_file": "Ancient-Disco.html",
+      "name": "Ancient Disco",
+      "art_theme": "Egyptian/Pharaoh",
+      "art_theme_secondary": "Music/Entertainment",
+      "art_color_tone": [
+        "Purple",
+        "Gold",
+        "Neon Green"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Columns/Pillars",
+        "Speakers/DJ Equipment",
+        "Neon Glow",
+        "Hieroglyphs/Ancient Writing",
+        "Stone Frame",
+        "Pyramids/Temples",
+        "Torches",
+        "Statues/Sculptures"
+      ],
+      "art_narrative": "Music/Performance/Concert",
+      "is_branded": false,
+      "user_notes": "Egyptian deity is only a reel symbol. Missing hieroglyphs element.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Basketball-Star.html": {
+      "sc_file": "Basketball-Star.html",
+      "name": "Basketball Star",
+      "art_theme": "Sports",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Brown",
+        "Blue",
+        "Gray"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sports Arena/Stadium",
+        "Basketball Court",
+        "Stage Lights",
+        "Metal Frame"
+      ],
+      "art_narrative": "Competition/Tournament/Race",
+      "is_branded": false,
+      "user_notes": "Colors: brown and blue, not orange.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Blazing-Bison-Gold-Blitz.html": {
+      "sc_file": "Blazing-Bison-Gold-Blitz.html",
+      "name": "Blazing Bison Gold Blitz",
+      "art_theme": "Savanna/Wildlife",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Orange",
+        "Purple",
+        "Gold"
+      ],
+      "art_characters": [
+        "Buffalo"
+      ],
+      "art_character_categories": {
+        "Buffalo": "Wild Animals"
+      },
+      "art_elements": [
+        "Fire/Flames",
+        "Metal Frame"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_corrected": false
+    },
+    "Cash-Eruption.html": {
+      "sc_file": "Cash-Eruption.html",
+      "name": "Cash Eruption",
+      "art_theme": "Mountain/Volcano",
+      "art_theme_secondary": "Egyptian/Pharaoh",
+      "art_color_tone": [
+        "Red",
+        "Orange",
+        "Gold"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Stone Frame",
+        "Ancient Stone Carvings",
+        "Pyramids/Temples"
+      ],
+      "art_narrative": "Treasure Hunt",
+      "is_branded": false,
+      "user_notes": "Fire Goddess and mountain are symbols not characters/elements. Theme is volcano + ancient temple. No Gold Rush in narrative.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Chicken-Fox-5x-Skillstar.html": {
+      "sc_file": "Chicken-Fox-5x-Skillstar.html",
+      "name": "Chicken Fox 5x Skillstar",
+      "art_theme": "Farm/Countryside",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Yellow",
+        "Brown"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Wood Frame",
+        "Farmhouse/Barn",
+        "Fields/Grassland",
+        "Rope Frame",
+        "Coin Stacks",
+        "Trees/Forest"
+      ],
+      "art_narrative": "Collection/Harvest/Gathering",
+      "is_branded": false,
+      "user_notes": "Fox, chickens, old lady are all reel symbols only.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Cleopatra.html": {
+      "sc_file": "Cleopatra.html",
+      "name": "Cleopatra (IGT)",
+      "art_theme": "Egyptian/Pharaoh",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Brown",
+        "Purple"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Pyramids/Temples",
+        "Hieroglyphs/Ancient Writing",
+        "Ancient Stone Carvings",
+        "Torches",
+        "Columns/Pillars",
+        "Statues/Sculptures"
+      ],
+      "art_narrative": "Cultural/Mythological Story",
+      "is_branded": false,
+      "user_corrected": false,
+      "art_character_categories": {}
+    },
+    "Diamond-Link-Almighty-Wolf.html": {
+      "sc_file": "Diamond-Link-Almighty-Wolf.html",
+      "name": "Diamond Link: Almighty Wolf",
+      "art_theme": "Forest/Woodland",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Purple",
+        "Gold",
+        "Blue"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Mountains",
+        "Trees/Forest",
+        "Colored Frame",
+        "Vines/Ivy/Plants"
+      ],
+      "art_narrative": "Quest/Adventure/Journey",
+      "is_branded": false,
+      "user_notes": "Wolf, eagle, bird, raccoon are ALL reel symbols.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Faith.html": {
+      "sc_file": "Faith.html",
+      "name": "Faith",
+      "art_theme": "Branded/Licensed",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Blue",
+        "Teal",
+        "Orange"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Office Items",
+        "Books/Scrolls/Maps",
+        "Minimal/No Frame"
+      ],
+      "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
+      "is_branded": true,
+      "user_notes": "Celebrity is just a reel symbol. Add gray to colors.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "He-He-Yang.html": {
+      "sc_file": "He-He-Yang.html",
+      "name": "He He Yang",
+      "art_theme": "Asian Temple/Garden",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Red",
+        "Gold",
+        "Green"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Asian Architecture",
+        "Asian Lanterns/Decorations",
+        "Mountains",
+        "Trees/Forest",
+        "Colored Frame",
+        "Bamboo/Tropical Plants"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "Sky background adds light blue.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Jokers-Riches-2.html": {
+      "sc_file": "Jokers-Riches-2.html",
+      "name": "Jokers Riches 2",
+      "art_theme": "Medieval Castle",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Red",
+        "Brown"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Castle/Fortress/Tower",
+        "Mountains",
+        "Banners/Flags",
+        "Torches"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "King/Queen and Joker are all reel symbols.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Mayan-Gold.html": {
+      "sc_file": "Mayan-Gold.html",
+      "name": "Mayan Gold (Ainsworth)",
+      "art_theme": "Aztec/Mayan",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Orange",
+        "Red"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Pyramids/Temples",
+        "Lightning/Electricity",
+        "Fire/Flames",
+        "Colored Frame",
+        "Ancient Stone Carvings",
+        "Torches"
+      ],
+      "art_narrative": "Treasure Hunt",
+      "is_branded": false,
+      "user_corrected": false,
+      "art_character_categories": {}
+    },
+    "Olympus-Thunder.html": {
+      "sc_file": "Olympus-Thunder.html",
+      "name": "Olympus Thunder",
+      "art_theme": "Ancient Greece/Rome",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Blue",
+        "Gold",
+        "White"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Columns/Pillars",
+        "Lightning/Electricity",
+        "Stone Frame"
+      ],
+      "art_narrative": "Cultural/Mythological Story",
+      "is_branded": false,
+      "user_notes": "Ancient Greece narrative, not magic show.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Peacock-Beauty.html": {
+      "sc_file": "Peacock-Beauty.html",
+      "name": "Peacock Beauty",
+      "art_theme": "Asian Temple/Garden",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Green",
+        "Red"
+      ],
+      "art_characters": [
+        "Lady",
+        "Peacock"
+      ],
+      "art_character_categories": {
+        "Lady": "Human Character",
+        "Peacock": "Bird"
+      },
+      "art_elements": [
+        "Stone Frame",
+        "Asian Architecture",
+        "Asian Lanterns/Decorations",
+        "Magic Energy/Spell Effects",
+        "Ancient Stone Carvings",
+        "Bamboo/Tropical Plants"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "Lady and peacock ARE characters outside reels. Peacock = Bird type.",
+      "user_corrected": true
+    },
+    "Reactoonz.html": {
+      "sc_file": "Reactoonz.html",
+      "name": "Reactoonz",
+      "art_theme": "Outer Space",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Blue",
+        "Purple",
+        "Silver"
+      ],
+      "art_characters": [
+        "Alien"
+      ],
+      "art_character_categories": {
+        "Alien": "Alien/Extraterrestrial"
+      },
+      "art_elements": [
+        "Metal Frame",
+        "Spacecraft/UFO/Sci-Fi Objects"
+      ],
+      "art_narrative": "No Narrative (classic/abstract)",
+      "is_branded": false,
+      "user_corrected": false
+    },
+    "Sevens-Staxx.html": {
+      "sc_file": "Sevens-Staxx.html",
+      "name": "Sevens Staxx",
+      "art_theme": "Classic Slots",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Blue",
+        "Gold",
+        "Red"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Minimal/No Frame"
+      ],
+      "art_narrative": "No Narrative (classic/abstract)",
+      "is_branded": false,
+      "user_corrected": false,
+      "art_character_categories": {}
+    },
+    "Starburst.html": {
+      "sc_file": "Starburst.html",
+      "name": "Starburst",
+      "art_theme": "Outer Space",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Purple",
+        "Blue",
+        "Gold"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Stars/Planets",
+        "Neon Glow",
+        "Minimal/No Frame"
+      ],
+      "art_narrative": "No Narrative (classic/abstract)",
+      "is_branded": false,
+      "user_corrected": false,
+      "art_character_categories": {}
+    },
+    "Stinkin-Rich.html": {
+      "sc_file": "Stinkin-Rich.html",
+      "name": "Stinkin Rich (IGT)",
+      "art_theme": "Luxury/VIP",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Purple",
+        "Gold",
+        "Yellow"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Colored Frame",
+        "Casino Interior"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "Skunk is a reel symbol. Add pink to colors.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Thunder-Cash.html": {
+      "sc_file": "Thunder-Cash.html",
+      "name": "Thunder Cash",
+      "art_theme": "Classic Slots",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Gold",
+        "Green",
+        "Brown"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Lightning/Electricity",
+        "Minimal/No Frame",
+        "Casino Interior"
+      ],
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "is_branded": false,
+      "user_notes": "Casino floor has slot machines and table games visible.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    },
+    "Way-Out-Wilds.html": {
+      "sc_file": "Way-Out-Wilds.html",
+      "name": "Way Out Wilds",
+      "art_theme": "Classic Slots",
+      "art_theme_secondary": null,
+      "art_color_tone": [
+        "Purple",
+        "Blue",
+        "Pink"
+      ],
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Colored Frame",
+        "Neon Glow"
+      ],
+      "art_narrative": "No Narrative (classic/abstract)",
+      "is_branded": false,
+      "user_notes": "Has a purple frame around the game.",
+      "user_corrected": true,
+      "art_character_categories": {}
+    }
+  },
+  "updated": "2026-04-19",
+  "pipeline_version": "v11.5"
+}

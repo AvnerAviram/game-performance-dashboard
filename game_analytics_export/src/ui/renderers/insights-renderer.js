@@ -1,6 +1,6 @@
 // Insights & Anomalies page renderer
 import { gameData, getActiveGames } from '../../lib/data.js';
-import { escapeHtml, safeOnclick } from '../../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { analyzeGameSuccessFactors, generateRecommendations } from '../../lib/game-analytics-engine.js';
 import { parseFeatures } from '../../lib/parse-features.js';
@@ -62,7 +62,7 @@ export function renderAnomalies() {
 
             card.innerHTML = `
             <div class="flex items-start justify-between mb-2">
-                <div class="text-sm font-bold text-gray-900 dark:text-white leading-tight cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="event.stopPropagation(); ${safeOnclick('window.showGameDetails', a.game || '')}">${escapeHtml(a.game)}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white leading-tight cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: a.game || '', field: 'name' }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showGameDetails', a.game || '')}">${escapeHtml(a.game)}</div>
                 <span class="text-gray-400 text-xs ml-1 shrink-0">▼</span>
             </div>
             <div class="flex items-baseline gap-2 mb-1.5">
@@ -76,8 +76,8 @@ export function renderAnomalies() {
                 ${vsTheme ? `<span>vs Theme: <strong class="${vsTheme > 0 ? 'text-emerald-600' : 'text-red-500'}">${vsTheme > 0 ? '+' : ''}${vsTheme.toFixed(0)}%</strong></span>` : '<span></span>'}
                 ${volatility ? `<span>Vol: <strong class="text-gray-700 dark:text-gray-300">${escapeHtml(volatility)}</strong></span>` : '<span></span>'}
             </div>
-            ${provider ? `<div class="text-[10px] text-gray-400 dark:text-gray-500 mb-1 cursor-pointer hover:text-indigo-500" onclick="event.stopPropagation(); ${safeOnclick('window.showProviderDetails', provider)}">${escapeHtml(provider)}</div>` : ''}
-            <div class="text-[11px] text-gray-700 dark:text-gray-300 mb-1">${a.themes.map(t => `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`).join(', ')}</div>
+            ${provider ? `<div class="text-[10px] text-gray-400 dark:text-gray-500 mb-1 cursor-pointer hover:text-indigo-500" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: provider }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showProviderDetails', provider)}">${escapeHtml(provider)}</div>` : ''}
+            <div class="text-[11px] text-gray-700 dark:text-gray-300 mb-1">${a.themes.map(t => `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`).join(', ')}</div>
             ${
                 featList.length
                     ? `<div class="flex flex-wrap gap-1 mt-1">${featList
@@ -110,7 +110,7 @@ export function renderAnomalies() {
                                 .slice(0, 3)
                                 .map(
                                     t => `
-                                <div class="text-center p-2 bg-white dark:bg-gray-800 rounded cursor-pointer hover:ring-2 hover:ring-emerald-400 transition-all" onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">
+                                <div class="text-center p-2 bg-white dark:bg-gray-800 rounded cursor-pointer hover:ring-2 hover:ring-emerald-400 transition-all" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}' onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">
                                     <div class="text-xs text-gray-600 dark:text-gray-400">${escapeHtml(t.Theme)}</div>
                                     <div class="text-lg font-bold text-emerald-600">${(t['Smart Index'] || 0).toFixed(1)}</div>
                                     <div class="text-xs text-gray-500">${(t['Market Share %'] || 0).toFixed(1)}% market</div>
@@ -170,7 +170,7 @@ export function renderAnomalies() {
 
         card.innerHTML = `
             <div class="flex items-start justify-between mb-2">
-                <div class="text-sm font-bold text-gray-900 dark:text-white leading-tight cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="event.stopPropagation(); ${safeOnclick('window.showGameDetails', a.game || '')}">${escapeHtml(a.game)}</div>
+                <div class="text-sm font-bold text-gray-900 dark:text-white leading-tight cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: a.game || '', field: 'name' }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showGameDetails', a.game || '')}">${escapeHtml(a.game)}</div>
                 <span class="text-gray-400 text-xs ml-1 shrink-0">▼</span>
             </div>
             <div class="flex items-baseline gap-2 mb-1.5">
@@ -184,8 +184,8 @@ export function renderAnomalies() {
                 ${vsTheme ? `<span>vs Theme: <strong class="${vsTheme > 0 ? 'text-emerald-600' : 'text-red-500'}">${vsTheme > 0 ? '+' : ''}${vsTheme.toFixed(0)}%</strong></span>` : '<span></span>'}
                 ${volatility ? `<span>Vol: <strong class="text-gray-700 dark:text-gray-300">${escapeHtml(volatility)}</strong></span>` : '<span></span>'}
             </div>
-            ${provider ? `<div class="text-[10px] text-gray-400 dark:text-gray-500 mb-1 cursor-pointer hover:text-indigo-500" onclick="event.stopPropagation(); ${safeOnclick('window.showProviderDetails', provider)}">${escapeHtml(provider)}</div>` : ''}
-            <div class="text-[11px] text-gray-700 dark:text-gray-300 mb-1">${a.themes.map(t => `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`).join(', ')}</div>
+            ${provider ? `<div class="text-[10px] text-gray-400 dark:text-gray-500 mb-1 cursor-pointer hover:text-indigo-500" data-xray='${escapeAttr(JSON.stringify({ dimension: 'provider', value: provider }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showProviderDetails', provider)}">${escapeHtml(provider)}</div>` : ''}
+            <div class="text-[11px] text-gray-700 dark:text-gray-300 mb-1">${a.themes.map(t => `<span class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t }))}' onclick="event.stopPropagation(); ${safeOnclick('window.showThemeDetails', t)}">${escapeHtml(t)}</span>`).join(', ')}</div>
             ${
                 featList.length
                     ? `<div class="flex flex-wrap gap-1 mt-1">${featList
@@ -218,7 +218,7 @@ export function renderAnomalies() {
                                 .slice(0, 3)
                                 .map(
                                     t => `
-                                <div class="text-center p-2 bg-white dark:bg-gray-800 rounded cursor-pointer hover:ring-2 hover:ring-red-400 transition-all" onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">
+                                <div class="text-center p-2 bg-white dark:bg-gray-800 rounded cursor-pointer hover:ring-2 hover:ring-red-400 transition-all" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}' onclick="${safeOnclick('window.showThemeDetails', t.Theme)}">
                                     <div class="text-xs text-gray-600 dark:text-gray-400">${escapeHtml(t.Theme)}</div>
                                     <div class="text-lg font-bold text-red-600">${(t['Smart Index'] || 0).toFixed(1)}</div>
                                     <div class="text-xs text-gray-500">${(t['Market Share %'] || 0).toFixed(1)}% market</div>

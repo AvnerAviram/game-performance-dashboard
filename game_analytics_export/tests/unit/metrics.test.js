@@ -108,9 +108,10 @@ describe('getProviderMetrics', () => {
         expect(prag.avgTheo).toBeCloseTo(38.33, 1);
     });
 
-    it('sorts by ggrShare descending', () => {
+    it('sorts by Smart Index descending', () => {
         const result = getProviderMetrics(mockGames);
-        expect(result[0].ggrShare).toBeGreaterThanOrEqual(result[1].ggrShare);
+        expect(result[0].smartIndex).toBeDefined();
+        expect(result[0].smartIndex).toBeGreaterThanOrEqual(result[1].smartIndex);
     });
 
     it('respects minGames filter', () => {
@@ -140,9 +141,10 @@ describe('getThemeMetrics', () => {
         expect(egypt.avgTheo).toBeCloseTo(36.25, 1);
     });
 
-    it('sorted by count descending', () => {
+    it('sorted by Smart Index descending', () => {
         const result = getThemeMetrics(mockGames);
-        expect(result[0].count).toBeGreaterThanOrEqual(result[1].count);
+        expect(result[0].smartIndex).toBeDefined();
+        expect(result[0].smartIndex).toBeGreaterThanOrEqual(result[1].smartIndex);
     });
 });
 
@@ -167,6 +169,14 @@ describe('getFeatureMetrics', () => {
         const result = getFeatureMetrics(mockGames);
         const fs = result.find(f => f.feature === 'Free Spins');
         expect(fs.avgTheo).toBeCloseTo((40 + 50 + 60 + 20) / 4, 1);
+    });
+
+    it('sorted by Smart Index descending', () => {
+        const result = getFeatureMetrics(mockGames);
+        expect(result[0].smartIndex).toBeDefined();
+        for (let i = 0; i < result.length - 1; i++) {
+            expect(result[i].smartIndex).toBeGreaterThanOrEqual(result[i + 1].smartIndex);
+        }
     });
 });
 
