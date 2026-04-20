@@ -188,13 +188,6 @@ describe('provenance-diagnosis', () => {
             expect(result.method).toBe('Ground truth + rules text');
         });
 
-        it('returns slotcatalog for release year from slotcatalog', () => {
-            const result = getExtractionMethod('original_release_year', null, 2023, {
-                original_release_date_source: 'slotcatalog',
-            });
-            expect(result.method).toBe('SlotCatalog');
-        });
-
         it('returns null for null field', () => {
             expect(getExtractionMethod(null, null, null, {})).toBeNull();
         });
@@ -287,35 +280,6 @@ describe('provenance-diagnosis', () => {
         it('returns raw key for unknown source', () => {
             expect(resolveSourceLabel('some_unknown')).toBe('some_unknown');
         });
-    });
-
-    describe('all release date sources are handled', () => {
-        const ALL_RELEASE_SOURCES = [
-            'slotcatalog',
-            'slotcatalog_fuzzy',
-            'slotreport',
-            'slotreport_fuzzy',
-            'slotreport_corrected',
-            'html_copyright',
-            'html_extract',
-            'nj_corrected',
-            'verified_reference',
-            'evolution',
-            'claude_lookup_high',
-            'claude_lookup_medium',
-            'claude_lookup_low',
-        ];
-
-        for (const src of ALL_RELEASE_SOURCES) {
-            it(`handles original_release_date_source="${src}"`, () => {
-                const game = { original_release_date_source: src, original_release_year: 2023 };
-                const result = getExtractionMethod('original_release_year', null, 2023, game, null);
-                expect(result).not.toBeNull();
-                expect(result.method).not.toBe('CSV import');
-                expect(result.method).toBeTruthy();
-                expect(result.detail).toBeTruthy();
-            });
-        }
     });
 
     describe('SOURCE_LABELS completeness', () => {

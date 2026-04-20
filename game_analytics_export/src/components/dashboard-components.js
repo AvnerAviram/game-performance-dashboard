@@ -63,8 +63,8 @@ export const MetricGrid = metrics => `
     ${metrics
         .map(
             m => `
-      <div class="flex flex-col">
-        <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500 leading-none mb-1">${m.label}</span>
+      <div class="flex flex-col"${m.tooltip ? ` title="${m.tooltip}"` : ''}>
+        <span class="text-[10px] font-medium uppercase tracking-wider text-gray-400 dark:text-gray-500 leading-none mb-1${m.tooltip ? ' cursor-help' : ''}">${m.label}</span>
         <span class="text-sm font-bold text-gray-900 dark:text-white leading-tight">${m.value}</span>
       </div>
     `

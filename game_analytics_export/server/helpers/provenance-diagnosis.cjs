@@ -72,17 +72,6 @@ function diagnoseField(field, value, confidence, rulesText, game, providerStats,
         return 'Game verified but this field was not in the verification round.';
     }
 
-    if (field === 'original_release_year' && value && game?.release_year && value === game.release_year) {
-        return 'No global release date found; CSV launch year used.';
-    }
-
-    if (field === 'original_release_year') {
-        const src = game?.original_release_date_source;
-        if (src === 'claude_lookup_medium' || src === 'claude_lookup_low') {
-            return `AI web lookup (${src}).`;
-        }
-    }
-
     if (providerStats && field === 'rtp') {
         const ps = providerStats[game?.provider];
         if (ps && ps.rtpCoverage < 40) {
@@ -272,17 +261,6 @@ function getExtractionMethod(field, confidence, value, game, dataSource) {
             method: 'AI classification',
             detail: 'Classified from thematic keywords in rules text (setting, symbols, characters).',
         };
-    }
-    if (field === 'original_release_year') {
-        const src = game?.original_release_date_source;
-        if (src && RELEASE_DATE_SOURCE_LABELS[src]) {
-            const label = RELEASE_DATE_SOURCE_LABELS[src];
-            return { method: label, detail: `Release date from ${label}.` };
-        }
-        if (src?.endsWith('_official')) {
-            return { method: 'Provider official', detail: `From ${src.replace('_official', '')} official specs.` };
-        }
-        return { method: 'CSV import', detail: 'Launch date from imported CSV.' };
     }
     if (field === 'name') return { method: 'CSV import', detail: 'Game title from imported CSV.' };
 

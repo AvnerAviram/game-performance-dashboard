@@ -8,7 +8,7 @@
 
 ## Current State
 
-4,550 games in master. NJ release year 100% coverage (all games). 887 with global release dates (19.5% — AGS: 36, slot.report: 851). 3,453 with symbols (1,368 full paytable from legacy merge). 1,731 franchise-mapped. AGS ground truth fully backfilled. Features use HIDDEN_FEATURES blocklist (Multiplier removed). Server gzip compression enabled (13.2→1.0 MB). Trend legend hover highlighting. Brand sorting. Bubble chart click-to-panel. **Art characterization pipeline built** — taxonomy validated against industry standards, 27-game GT, few-shot examples, F1 eval loop (`--test-art`), 83.8% aggregate accuracy on held-out set. **Year pipeline complete** — NJ year is primary everywhere, global year is bonus field in game detail panel only.
+4,550 games in master. Release year (OGPD) 100% coverage (all games). 3,453 with symbols (1,368 full paytable from legacy merge). 1,731 franchise-mapped. AGS ground truth fully backfilled. Features use HIDDEN_FEATURES blocklist (Multiplier removed). Server gzip compression enabled (13.2→1.0 MB). Trend legend hover highlighting. Brand sorting. Bubble chart click-to-panel. **Art characterization pipeline built** — taxonomy validated against industry standards, 27-game GT, few-shot examples, F1 eval loop (`--test-art`), 83.8% aggregate accuracy on held-out set. **Year pipeline complete** — `release_year` is OGPD (Online Game Publication Date, Eilers tracking started 2021). `original_release_year` field removed.
 
 ### Trusted Data Sources
 
@@ -17,7 +17,7 @@
 | **Eilers CSV** | `data/eilers_source.csv` | Performance metrics, provider, game category, NJ release date, sites | 4,600 rows |
 | **HTML Rules** | `data/rules_text/*.txt` + `data/rules_html/*.html` | Official game rules — features, symbols, RTP, volatility, reels, rows, paylines | 3,409 matched games |
 | **AGS Ground Truth** | `data/ground_truth_ags.json` | Verified features/themes for F1 benchmarking (87 entries, 100% backfilled) | 87 games |
-| **SlotReport** | `data/_slot_report_data.json` | Global release dates, RTP, volatility, features | 5,592 entries (4,703 with dates) |
+| **SlotReport** | `data/_slot_report_data.json` | RTP, volatility, features (release dates no longer used) | 5,592 entries |
 | **SlotCatalog Cache** | `data/_legacy/sc_cache/*.html` | Cached game pages with release dates, specs | 2,760 pages |
 | **Staged External** | `data/staged_best_of_sources.json` | Best-of-sources specs from Evolution scrapes | 802 games |
 | **Legacy Symbols** | `data/_legacy/games_dashboard_backup_pre95.json` | Full paytable symbols (themed + card + functional) | 1,425 games (1,386 merged) |
@@ -79,8 +79,8 @@ cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py 
 | `name` | string |
 | `provider` | string |
 | `game_category` | string |
-| `release_year` | number (NJ launch date) |
-| `release_month` | number (NJ launch date) |
+| `release_year` | number (OGPD — Online Game Publication Date, Eilers tracking started 2021) |
+| `release_month` | number (release month) |
 | `sites` | number |
 | `avg_bet` | number |
 | `median_bet` | number |
@@ -89,16 +89,9 @@ cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py 
 | `theo_win` | number |
 | `market_share_pct` | number |
 
-### Global Release Date fields (informational — NOT used for dashboard analysis)
+### Global Release Date fields — REMOVED
 
-**Note:** NJ year (`release_year`) is the primary year for all dashboard analysis. Global year is a supplementary field shown in game detail panels only.
-
-| Field | Coverage | Source |
-|-------|----------|-------|
-| `original_release_date` | 887/4,550 (19.5%) | `ags_provider_data` (36), `slotreport` (851) |
-| `original_release_year` | 887/4,550 (19.5%) | Derived from date |
-| `original_release_month` | 887/4,550 (19.5%) | Derived from date |
-| `original_release_date_source` | 887/4,550 (19.5%) | `"ags_provider_data"` or `"slotreport"` |
+The `original_release_year`, `original_release_month`, `original_release_date`, and `original_release_date_source` fields have been removed from the codebase and data. The `release_year` field (OGPD from Eilers) is the single source of truth for release dates.
 
 ### Extracted fields (from Claude API + HTML rules)
 
@@ -138,18 +131,16 @@ cd game_analytics_export && python3 -m pytest data/test_extract_game_profile.py 
 The dashboard loads `game_data_master.json` into an in-browser DuckDB instance.
 
 Key schema additions (beyond CSV fields):
-- `original_release_year INTEGER` / `original_release_month INTEGER` — global release dates
 - `theme_consolidated VARCHAR` — consolidated theme from map
 - `franchise VARCHAR` / `franchise_type VARCHAR` — from `franchise_mapping.json`
 - `*_confidence VARCHAR` — per-field confidence from `confidence_map.json`
 
-The Trends page uses `release_year` (NJ launch year) as the primary date for all analysis. Global year is informational only.
+The Trends page uses `release_year` (OGPD) as the date for all analysis.
 
 ### Centralized Data Access
 
 - **`getActiveGames()`** / **`getActiveThemes()`** / **`getActiveMechanics()`** — filtered data getters in `data.js`
-- **`F.releaseYear(g)`** — NJ launch year, PRIMARY year for all dashboard analysis
-- **`F.originalReleaseYear(g)`** — global release year only (returns 0 when absent, no NJ fallback)
+- **`F.releaseYear(g)`** — OGPD release year (Online Game Publication Date, Eilers tracking started 2021)
 - **`F.themesAll(g)`** — auto-parses JSON strings from DuckDB
 - **`parseFeatures(val)`** — auto-filters `HIDDEN_FEATURES` (e.g., Multiplier)
 - Category filter: `applyCategory()` in `chart-config.js` recomputes all view data
@@ -212,7 +203,7 @@ python3 data/extract_game_profile.py --extract-art --apply-art
 3. **DO NOT overwrite `ground_truth_ags.json` or `ground_truth_art.json`** without explicit user approval.
 4. **DO NOT skip tests.** All 1095 JS + 53 Python tests must pass after any change.
 5. **DO NOT overwrite XLSX fields** (runtime gate + test enforce this).
-6. **Use `F.releaseYear(g)` for all trends/analysis** (NJ year). Use `F.originalReleaseYear(g)` only for the global year bonus field in game detail panels.
+6. **Use `F.releaseYear(g)` for all trends/analysis** — OGPD release year. `F.originalReleaseYear()` no longer exists.
 7. **DO NOT hardcode threshold values** — use constants from `shared-config.js`.
 
 ---

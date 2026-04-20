@@ -360,14 +360,14 @@ test.describe('X-Ray Drilldown', () => {
 
         const yearSet = new Set();
         for (const g of games) {
-            const y = g.original_release_year || g.release_year;
+            const y = g.release_year;
             if (y && Number(y) >= 2015 && Number(y) <= 2026) yearSet.add(Number(y));
         }
         expect(yearSet.size).toBeGreaterThan(0);
 
         const year = [...yearSet][0];
         const yearGames = games.filter(g => {
-            const ry = g.original_release_year || g.release_year;
+            const ry = g.release_year;
             return ry === year || ry === String(year);
         });
         expect(yearGames.length).toBeGreaterThan(0);

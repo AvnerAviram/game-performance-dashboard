@@ -77,7 +77,6 @@ const STRIP_FIELDS = new Set([
     'verification_notes',
     'extraction_model',
     'extraction_source',
-    'original_release_date_source',
 ]);
 
 let _gamesCache = null;
@@ -247,7 +246,6 @@ const PROVENANCE_FIELDS = [
     'reels',
     'rows',
     'paylines',
-    'original_release_year',
     'description',
     'min_bet',
     'max_bet',
@@ -285,15 +283,6 @@ const INFERRED_FIELDS = new Set(['description']);
 
 function inferConfidence(field, game, bestOf) {
     if (game.data_confidence === 'gt_verified') return 'gt_verified';
-    if (field === 'original_release_year') {
-        const src = (bestOf || {}).original_release_date_source;
-        if (src === 'verified_reference') return 'verified';
-        if (src && /official/.test(src)) return 'verified';
-        if (src && /slotcatalog|slotreport|html/i.test(src)) return 'extracted';
-        if (src && /claude_lookup_high/.test(src)) return 'extracted';
-        if (src && /claude_lookup/.test(src)) return 'text_inferred';
-        return 'extracted';
-    }
     if (EXTRACTED_FIELDS.has(field)) return 'extracted';
     if (CLASSIFIED_FIELDS.has(field)) return 'extracted';
     if (INFERRED_FIELDS.has(field)) return 'text_inferred';
@@ -360,7 +349,7 @@ router.get('/api/data/provenance/top-game', requireAuth, async (req, res) => {
         // Optional year filter: restrict to games from a specific year
         if (year) {
             const yr = String(year);
-            allGames = allGames.filter(g => String(g.original_release_year) === yr || String(g.release_year) === yr);
+            allGames = allGames.filter(g => String(g.release_year) === yr);
         }
 
         const valLower = value.toLowerCase();
@@ -460,10 +449,7 @@ router.get('/api/data/provenance/:gameName', requireAuth, (req, res) => {
                 _coverageStats,
                 _rulesMatchPct
             );
-            const dataSource =
-                f === 'original_release_year'
-                    ? bestOf.original_release_date_source || null
-                    : bestOf[`${f}_source`] || null;
+            const dataSource = bestOf[`${f}_source`] || null;
             const method = getExtractionMethod(f, rawConf, val, game, dataSource);
             const context = getContextWindow(rulesText, f, val);
             let sourceType = 'not_extracted';
@@ -537,7 +523,6 @@ router.get('/api/data/provenance/:gameName', requireAuth, (req, res) => {
             provider: game.provider || null,
             game_category: game.game_category || 'Slot',
             release_year: game.release_year || null,
-            original_release_year: game.original_release_year || null,
             overall_confidence: game.data_confidence || null,
             extraction_date: game.extraction_date || null,
             extraction_notes: game.extraction_notes || null,

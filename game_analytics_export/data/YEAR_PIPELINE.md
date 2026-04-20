@@ -1,78 +1,46 @@
 # Year Extraction Pipeline — Handoff Document
 
-> Single entry point for all global online release year work.
-> Updated: 2026-04-06 (QA fixes applied)
+> Single entry point for release year work.
+> Updated: 2026-04-06
 
 ## Current State (as of 2026-04-06)
 
 | Metric | Value |
 |--------|-------|
 | Total games in master | 4,550 |
-| NJ year (`release_year`) coverage | **4,550 / 4,550 (100%)** — from Eilers CSV |
-| NJ year range | 2021–2025 |
-| Global `original_release_year` in master | **887 / 4,550 (19.5%)** |
-| Global year sources | AGS provider data: 36, slot.report: 851 |
-| Global year range | 2008–2025 |
-| Games with NO global year source available | **3,663** (mostly land-based US providers) |
-| GT size | 61 games, 6 providers, years 2009-2022 |
-| GT accuracy of slot.report | **100% (16/16)** |
-| Tests | 1616 pass / 2 pre-existing art failures |
+| Release year (`release_year`) coverage | **4,550 / 4,550 (100%)** — OGPD from Eilers CSV |
+| Release year range | 2021–2025 |
+| `original_release_year` field | **REMOVED** — field deleted from all games and codebase |
+| Tests | All pass (2 pre-existing art failures only) |
 
-**Status: PIPELINE COMPLETE.**
+**Status: PIPELINE COMPLETE. Field `original_release_year` has been fully removed.**
 
-### Architecture decision (2026-04-06):
-- **NJ year (`release_year`) is the PRIMARY year everywhere** in the dashboard — all trends, charts, sorting, filtering, and analysis use `F.releaseYear(g)`.
-- **Global year (`original_release_year`) is a BONUS field** shown only in the game detail panel when available. It is NOT used for any trend or analytical computation.
-- `F.originalReleaseYear(g)` returns only the global year (returns 0 when absent, no fallback to NJ).
-- No commercial API can reliably fill the remaining 3,663 global year gaps (land-based providers). This is accepted.
-
-### Why NJ year as primary:
-1. NJ year has 100% coverage (all 4,550 games).
-2. The dashboard analyzes NJ market performance — the NJ launch date is the most relevant date for that analysis.
-3. Global year would mix concepts (a game released in 2015 globally but entering NJ in 2021 would sit next to a genuinely 2021 game).
-4. No feasible way to get accurate global online dates for land-based providers (IGT, L&W, Aristocrat, Konami, Greentube, Ainsworth, Everi).
-
-**Key files:**
-- `_staged_year_results.json` — 851 staged games (now applied to master)
-- `YEAR_REVIEW_SLOTREPORT.html` — review page with OK/FIX buttons
-- `extract_slotreport_years.mjs` — pipeline script (`--stats`, `--gt-test`, `--extract`, `--review`, `--apply`)
-- `calibrate_all_sources.mjs` — calibration script
-- `year_pipeline/ground_truth.json` — 61 GT games
-- `year_pipeline/source_calibration.json` — calibration results per source
-- `_backup_pre_year_reset/game_data_master.json` — pre-reset backup
+### Key facts:
+- **`release_year`** is the **Online Game Publication Date (OGPD)** from the Eilers CSV. This is a global online publication date, NOT NJ-specific.
+- Eilers began tracking OGPD in 2021; games already live at that time received 2021 as their floor date.
+- The `original_release_year` field (from slot.report) was redundant and has been removed from `game_data_master.json`, `game-fields.js`, `duckdb-client.js`, all UI code, server routes, and tests.
+- `F.releaseYear(g)` is the only year accessor. `F.originalReleaseYear()` and `F.hasGlobalReleaseYear()` no longer exist.
+- Dashboard labels show **"Release Year (OGPD)"** everywhere.
 
 ## Changelog
 
-### 2026-04-06 — PIPELINE COMPLETE: applied 851 global years, switched dashboard to NJ year primary
+### 2026-04-06 — OGPD relabel + original_release_year removal
 
 **What changed:**
-- **Applied 851 slot.report global years** to `game_data_master.json`. All 851 staged games now have `original_release_year`, `original_release_month`, `original_release_date`, and `original_release_date_source = "slotreport"`.
-- **Total global year coverage:** 887 / 4,550 (19.5%) — 36 AGS + 851 slot.report.
-- **Architectural decision: NJ year is now the primary year everywhere in the dashboard.** All trends, charts, sorting, filtering, and analytical computation use `F.releaseYear(g)` (which reads `release_year`).
-- **Global year is now a bonus field** shown only in the game detail panel. `F.originalReleaseYear(g)` no longer falls back to `release_year` — it returns 0 when absent.
-- **DuckDB `getReleaseYearDistribution()`** now uses `release_year` directly (removed `COALESCE(original_release_year, release_year)`).
-- **Files changed (src):** `game-fields.js`, `duckdb-client.js`, `ui-providers-games.js`, `ui-panels.js`, `xray-panel.js`, `art-renderer.js`, `insights-franchises.js`, `panel-details.js`, `overview-renderer.js`, `insights-providers.js`, `insights-cards.js`, `trends.js`.
-- **Files changed (tests):** `validate-data-anomalies.test.js`, `validate-release-dates.test.js`, `validate-trends-qa.test.js`, `validate-data-qa.test.js`.
-- **HANDOFF.md updated** with new accessor documentation and field counts.
-- **Tests:** 1616 pass, 2 pre-existing art failures (unrelated).
-
-**Why:**
-- No commercial API can reliably provide global online release dates for the ~3,663 land-based US providers (IGT, L&W, Aristocrat, Konami, Greentube, etc.).
-- API pricing researched: SlotsLaunch ($10-$115/mo) tracks NJ dates not global; SlotCatalog (enterprise, ~$500+/mo) has 70% accuracy due to land-based dates; SlotDemoPlay ($200/mo) unknown accuracy.
-- NJ year has 100% coverage and is the most relevant date for NJ market performance analysis.
-- Blending global + NJ would mix different concepts and confuse analysis.
-
-**Current state:**
-- NJ year: 100% coverage (4,550/4,550), range 2021-2025.
-- Global year: 19.5% coverage (887/4,550), range 2008-2025, sources: `ags_provider_data` (36), `slotreport` (851).
-- No `global_year > nj_year + 1` violations.
-- Pipeline status: **COMPLETE**. No further year extraction work planned.
+- **Discovered** that the Eilers `release_year` field is the OGPD (Online Game Publication Date) — a global online release date, not NJ-specific. Eilers tracking started in 2021.
+- **Removed `original_release_year`** (and `original_release_month`, `original_release_date`, `original_release_date_source`) from all 4,550 games in `game_data_master.json`.
+- **Removed `F.originalReleaseYear()`, `F.originalReleaseMonth()`, `F.hasGlobalReleaseYear()`** from `game-fields.js`.
+- **Removed `original_release_year`/`original_release_month`** from DuckDB schema and INSERT in `duckdb-client.js`.
+- **Removed** all `original_release_year` references from server routes (`data.cjs`) and provenance diagnosis (`provenance-diagnosis.cjs`).
+- **Relabeled UI**: "NJ Launch Year" → "Release Year (OGPD)" in `ui-panels.js`, `xray-panel.js`, `art-renderer.js`. Added OGPD tooltip.
+- **Updated tests**: 8 test files cleaned of `original_release_year` references.
+- **Updated docs**: `HANDOFF.md`, `PHASE1_TRUTH_MASTER.md`, `data-schema-contract.mdc` all updated.
 
 ---
 
 ## Historical Changelog (pre-completion, kept for reference only)
 
-> **Note:** Sections below reflect the pipeline state AT THE TIME of each entry. The current architecture is documented above — NJ year is primary, global year is bonus.
+> **Note:** Sections below reflect the pipeline state AT THE TIME of each entry. `original_release_year` no longer exists in the codebase.
 
 ---
 

@@ -1504,7 +1504,7 @@ function renderArtTrends(artGames) {
                     x: {
                         title: {
                             display: true,
-                            text: 'NJ Launch Year',
+                            text: 'Release Year (OGPD)',
                             color: chartColors.textColor,
                             font: { size: 10, weight: 'bold' },
                         },

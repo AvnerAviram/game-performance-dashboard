@@ -109,9 +109,6 @@ export const F = {
 
     releaseYear: g => g.release_year || g.release?.year || 0,
     releaseMonth: g => g.release_month || g.release?.month || 0,
-    originalReleaseYear: g => g.original_release_year || 0,
-    originalReleaseMonth: g => g.original_release_month || 0,
-    hasGlobalReleaseYear: g => Boolean(g.original_release_year),
 
     franchise: g => g.franchise || null,
     franchiseType: g => g.franchise_type || null,

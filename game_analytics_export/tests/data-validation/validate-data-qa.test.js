@@ -238,24 +238,6 @@ describe('QA: Cross-Page Consistency', () => {
         }
     });
 
-    it('[Warning] X-4: original_release_year <= release_year for all games', () => {
-        const violations = [];
-        for (const g of allGames) {
-            const orig = g.original_release_year;
-            const nj = g.release_year;
-            if (orig && nj && orig > nj) {
-                violations.push({ name: g.name, original: orig, nj });
-            }
-        }
-        if (violations.length > 0) {
-            console.warn(
-                `[QA] ${violations.length} games have original_release_year > release_year:`,
-                violations.slice(0, 5)
-            );
-        }
-        expect(violations.length).toBeLessThan(allGames.length * 0.02);
-    });
-
     it('[Warning] X-5: no table games with slot-only features', () => {
         const slotFeatures = new Set(['Free Spins', 'Hold and Spin', 'Cascading Reels', 'Megaways']);
         const flags = [];

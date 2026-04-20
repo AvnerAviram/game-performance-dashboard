@@ -58,7 +58,6 @@ function getProvenance(gameName, focusField) {
         'reels',
         'rows',
         'paylines',
-        'original_release_year',
         'description',
         'min_bet',
         'max_bet',
@@ -197,7 +196,6 @@ describe('X-Ray provenance API coverage', () => {
             'reels',
             'rows',
             'paylines',
-            'original_release_year',
             'description',
             'min_bet',
             'max_bet',
@@ -425,7 +423,6 @@ describe('X-Ray provenance API coverage', () => {
             'reels',
             'rows',
             'paylines',
-            'original_release_year',
             'name',
             'provider',
             'theo_win',
@@ -472,25 +469,7 @@ describe('X-Ray provenance API coverage', () => {
         });
     });
 
-    describe('original_release_year vs release_year', () => {
-        it('original_release_year has correct source when from slotcatalog', () => {
-            const g = games.find(g => g.original_release_date_source === 'slotcatalog' && g.original_release_year);
-            if (!g) return;
-            const result = getProvenance(g.name, 'original_release_year');
-            expect(result.focus).not.toBeNull();
-            expect(result.focus.extraction_method?.method).toBe('SlotCatalog');
-        });
-
-        it('original_release_year has AI lookup source when from claude', () => {
-            const g = games.find(
-                g => g.original_release_date_source?.startsWith('claude_lookup') && g.original_release_year
-            );
-            if (!g) return;
-            const result = getProvenance(g.name, 'original_release_year');
-            expect(result.focus).not.toBeNull();
-            expect(result.focus.extraction_method?.method).toMatch(/^AI web lookup/);
-        });
-
+    describe('release_year provenance', () => {
         it('release_year is always platform confidence', () => {
             const g = games.find(g => g.release_year);
             const result = getProvenance(g.name, 'release_year');
@@ -558,7 +537,6 @@ describe('X-Ray provenance API coverage', () => {
             'reels',
             'rows',
             'paylines',
-            'original_release_year',
             'description',
             'min_bet',
             'max_bet',

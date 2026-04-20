@@ -506,23 +506,14 @@ function renderTopGameCard(gameName, provider, category, year, overall, fields) 
 
 // ── Key fields summary for game-level clicks (no focusField) ──
 
-const KEY_FIELDS = [
-    'theme_primary',
-    'provider',
-    'rtp',
-    'volatility',
-    'theo_win',
-    'release_year',
-    'original_release_year',
-];
+const KEY_FIELDS = ['theme_primary', 'provider', 'rtp', 'volatility', 'theo_win', 'release_year'];
 const KEY_FIELD_LABELS = {
     theme_primary: 'Theme',
     provider: 'Provider',
     rtp: 'RTP',
     volatility: 'Volatility',
     theo_win: 'Theo Win',
-    release_year: 'NJ Launch Year',
-    original_release_year: 'Global Release Year',
+    release_year: 'Release Year (OGPD)',
 };
 
 function renderKeyFieldsSummary(fields, data) {
@@ -720,9 +711,8 @@ export function renderXRayPanel(data, focusField) {
     const gameId = data.id || '';
     const provider = data.provider || '';
     const category = data.game_category || 'Slot';
-    const njYear = F.releaseYear(data) || null;
-    const globalYear = F.originalReleaseYear(data) || null;
-    const year = njYear || '';
+    const releaseYear = F.releaseYear(data) || null;
+    const year = releaseYear || '';
     const overall = data.overall_confidence;
     const rulesUrl = data.source?.rules_url;
     const extractionDate = data.extraction_date;
@@ -748,7 +738,7 @@ export function renderXRayPanel(data, focusField) {
                 <span>${escapeHtml(provider)}</span>
                 <span class="text-gray-600">&middot;</span>
                 <span>${escapeHtml(category)}</span>
-                ${njYear ? `<span class="text-gray-600">&middot;</span><span>${escapeHtml(String(njYear))}${globalYear && globalYear !== njYear ? ` <span class="text-[9px] text-gray-500">(Global: ${globalYear})</span>` : ''}</span>` : ''}
+                ${releaseYear ? `<span class="text-gray-600">&middot;</span><span>${escapeHtml(String(releaseYear))}</span>` : ''}
                 <span class="text-gray-600">&middot;</span>
                 ${confBadge(overall)}
             </div>

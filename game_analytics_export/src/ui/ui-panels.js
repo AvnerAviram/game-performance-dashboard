@@ -583,14 +583,12 @@ export function showGameDetails(gameName) {
 
     // ===== RELEASE INFO SECTION =====
     const releaseMetrics = [];
-    releaseMetrics.push({ label: 'NJ Launch Year', value: game.release_year || 'N/A' });
-    releaseMetrics.push({ label: 'NJ Launch Month', value: game.release_month || 'N/A' });
-    if (game.original_release_year) {
-        releaseMetrics.push({ label: 'Global Release Year', value: game.original_release_year });
-        if (game.original_release_month) {
-            releaseMetrics.push({ label: 'Global Release Month', value: game.original_release_month });
-        }
-    }
+    releaseMetrics.push({
+        label: 'Release Year (OGPD)',
+        value: game.release_year || 'N/A',
+        tooltip: 'Online Game Publication Date — Eilers tracking started 2021; earlier games show 2021 as floor',
+    });
+    releaseMetrics.push({ label: 'Release Month', value: game.release_month || 'N/A' });
 
     const releaseAllNa = releaseMetrics.every(m => String(m.value) === 'N/A');
     const releaseSection = PanelSection({

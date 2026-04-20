@@ -327,7 +327,7 @@ describe('X-Ray data integrity: year summary data availability', () => {
     it('games exist for multiple years', () => {
         const yearSet = new Set();
         for (const g of games.slice(0, 500)) {
-            const y = g.original_release_year || g.release_year;
+            const y = g.release_year;
             if (y) yearSet.add(String(y));
         }
         expect(yearSet.size).toBeGreaterThan(3);
@@ -335,7 +335,7 @@ describe('X-Ray data integrity: year summary data availability', () => {
 
     it('filtering by year produces valid counts', () => {
         const year2023 = games.filter(g => {
-            const ry = g.original_release_year || g.release_year;
+            const ry = g.release_year;
             return ry === 2023 || ry === '2023';
         });
         expect(year2023.length).toBeGreaterThanOrEqual(0);

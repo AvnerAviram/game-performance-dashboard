@@ -48,8 +48,8 @@ Data file: `game_analytics_export/data/game_data_master.json`
 | `game_category`      | string | Slot (4,201), Instant Win (107), Table Game (103), Live Casino (55), Video Poker (27), Lottery (27), Bingo/Keno (19), Crash (10), Arcade (1) |
 | `theo_win`           | number | Theo win index — **NOT** `performance_theo_win`                                                                                              |
 | `market_share_pct`   | number | **Fractional** (0.021 = 2.1%) — DuckDB multiplies ×100                                                                                       |
-| `release_year`       | number | NJ launch year                                                                                                                               |
-| `release_month`      | number | NJ launch month                                                                                                                              |
+| `release_year`       | number | Online Release Date year (OGPD) — Eilers tracking started 2021; earlier games show 2021 as floor                                            |
+| `release_month`      | number | Online Release Date month                                                                                                                    |
 | `sites`              | number | Casino sites carrying the game                                                                                                               |
 | `avg_bet`            | number | Average bet amount                                                                                                                           |
 | `median_bet`         | number |                                                                                                                                              |
@@ -70,14 +70,12 @@ Data file: `game_analytics_export/data/game_data_master.json`
 | `reels`                         | number | varies        | — **NOT** `specs_reels`                    |
 | `rows`                          | number | varies        | — **NOT** `specs_rows`                     |
 | `paylines`                      | varies | varies        |                                            |
-| `original_release_year`         | number | 887           | Global release year (informational only — NOT used for trends) |
-| `original_release_month`        | number | varies        |                                            |
 | `min_bet`, `max_bet`, `max_win` | number | varies        |                                            |
 | `franchise`, `franchise_type`   | string | varies        |                                            |
 
 **Metadata fields:**
 
-`data_confidence`, `extraction_date`, `extraction_notes`, `html_rules_available`, `original_release_date_source`, `feature_details`, `grid_config`, `jackpot_structure`, `win_evaluation`, `default_bet`, `last_modified_date`, `game_sub_category`, `data_status`, `gt_applied_date`, `verification_date`, `verification_notes`, `themes`, `themes_raw`, `paylines_count`
+`data_confidence`, `extraction_date`, `extraction_notes`, `html_rules_available`, `feature_details`, `grid_config`, `jackpot_structure`, `win_evaluation`, `default_bet`, `last_modified_date`, `game_sub_category`, `data_status`, `gt_applied_date`, `verification_date`, `verification_notes`, `themes`, `themes_raw`, `paylines_count`
 
 ### Layer 2: DuckDB Columns (`duckdb-client.js`)
 
@@ -109,8 +107,7 @@ F.volatility(g)       → g.specs_volatility || g.volatility (+ normalization)
 F.theme(g)            → g.theme_primary
 F.themeConsolidated(g)→ g.theme_consolidated || g.theme_primary
 F.features(g)         → g.features || []
-F.releaseYear(g)      → g.release_year (NJ launch year — PRIMARY year for all dashboard analysis)
-F.originalReleaseYear(g) → g.original_release_year (global release year — bonus field in game panel ONLY, no NJ fallback)
+F.releaseYear(g)      → g.release_year (OGPD — Online Game Publication Date, primary year for all analysis)
 F.gameCategory(g)     → g.game_category || 'Slot'
 ```
 

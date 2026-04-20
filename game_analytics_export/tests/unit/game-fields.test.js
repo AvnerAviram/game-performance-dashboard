@@ -30,7 +30,6 @@ const flatGame = {
     coin_in_index: 72,
     release_year: 2024,
     release_month: 6,
-    original_release_year: 2019,
 };
 
 const nestedGame = {
@@ -78,8 +77,6 @@ describe('F accessor functions — flat DuckDB row', () => {
     it('F.coinIn', () => expect(F.coinIn(flatGame)).toBe(72));
     it('F.releaseYear', () => expect(F.releaseYear(flatGame)).toBe(2024));
     it('F.releaseMonth', () => expect(F.releaseMonth(flatGame)).toBe(6));
-    it('F.originalReleaseYear', () => expect(F.originalReleaseYear(flatGame)).toBe(2019));
-    it('F.hasGlobalReleaseYear', () => expect(F.hasGlobalReleaseYear(flatGame)).toBe(true));
 });
 
 describe('F accessor functions — nested JSON row', () => {
@@ -127,16 +124,6 @@ describe('F accessor functions — missing fields (defaults)', () => {
     it('F.coinIn', () => expect(F.coinIn(emptyGame)).toBe(0));
     it('F.releaseYear', () => expect(F.releaseYear(emptyGame)).toBe(0));
     it('F.releaseMonth', () => expect(F.releaseMonth(emptyGame)).toBe(0));
-    it('F.originalReleaseYear', () => expect(F.originalReleaseYear(emptyGame)).toBe(0));
-    it('F.hasGlobalReleaseYear', () => expect(F.hasGlobalReleaseYear(emptyGame)).toBe(false));
-});
-
-describe('F.originalReleaseYear — no NJ fallback', () => {
-    it('F.originalReleaseYear does NOT fall back to release_year', () => {
-        const njOnly = { release_year: 2024 };
-        expect(F.originalReleaseYear(njOnly)).toBe(0);
-        expect(F.hasGlobalReleaseYear(njOnly)).toBe(false);
-    });
 });
 
 describe('FIELD_NAMES constants', () => {

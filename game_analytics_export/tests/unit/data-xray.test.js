@@ -600,7 +600,7 @@ describe('Data X-Ray – universal click interception', () => {
                 specs_volatility: 'High',
                 specs_rtp: 96.5,
                 performance_theo_win: 5.2,
-                original_release_year: 2022,
+                release_year: 2022,
                 art_theme: 'Temple',
                 art_mood: 'Mystical',
                 art_characters: ['Dragon', 'Emperor'],
@@ -615,7 +615,7 @@ describe('Data X-Ray – universal click interception', () => {
                 specs_volatility: 'Medium',
                 specs_rtp: 95.0,
                 performance_theo_win: 2.1,
-                original_release_year: 2023,
+                release_year: 2023,
                 art_theme: 'Forest',
                 art_mood: 'Calm',
             },
@@ -627,7 +627,7 @@ describe('Data X-Ray – universal click interception', () => {
                 specs_volatility: 'High',
                 specs_rtp: 97.5,
                 performance_theo_win: 3.0,
-                original_release_year: 2022,
+                release_year: 2022,
             },
         ];
 
@@ -710,7 +710,7 @@ describe('Data X-Ray – universal click interception', () => {
 
         it('dimension + year intersection', () => {
             const asian = filterByDimension(games, 'theme', 'Asian');
-            const asian2022 = asian.filter(g => g.original_release_year === 2022);
+            const asian2022 = asian.filter(g => g.release_year === 2022);
             expect(asian2022).toHaveLength(1);
             expect(asian2022[0].name).toBe('Dragon Emperor');
         });
