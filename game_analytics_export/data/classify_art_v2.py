@@ -32,6 +32,7 @@ CORRECTIONS_PATH = os.path.join(PIPELINE_DIR, 'corrections.json')
 RESULTS_PATH = os.path.join(PIPELINE_DIR, 'results.json')
 USER_REVIEWS_PATH = os.path.join(PIPELINE_DIR, 'user_reviews.json')
 RUN_LOG_PATH = os.path.join(PIPELINE_DIR, 'run_log.json')
+BATCH_GATE_PATH = os.path.join(PIPELINE_DIR, 'batch_gate.json')
 OUTPUT_PATH = os.path.join(SCRIPT_DIR, 'art_v2_results.json')
 
 MODEL = "claude-sonnet-4-20250514"
@@ -61,7 +62,7 @@ VALID_THEMES = [
     "Steampunk/Victorian", "Circus/Carnival", "Branded/Licensed",
     "Classic Slots", "Fruit Machine", "Candy/Sweet World",
     "Royal Palace/Court", "Treasure Cave/Mine", "Tavern/Saloon",
-    "Laboratory/Workshop", "Festive/Holiday",
+    "Laboratory/Workshop", "Festive/Holiday", "Inferno/Fire",
 ]
 THEME_SET = set(VALID_THEMES)
 
@@ -152,40 +153,49 @@ VALID_ELEMENTS_FRAME = [
     "Stone Frame", "Wood Frame",
     "Crystal/Glass Frame", "Metal Frame", "Marble Frame",
     "Bamboo Frame", "Neon/LED Frame", "Colored Frame",
+    "Rope Frame", "Caution Tape/Crime Scene Frame",
     "Minimal/No Frame",
 ]
 VALID_ELEMENTS_SCENE = [
-    "Pyramids/Temples", "Mountains", "Castle/Fortress/Tower",
-    "Trees/Forest", "Coral Reef/Underwater", "Fields/Grassland",
+    "Pyramids", "Temples", "Mountains", "Castle", "Fortress", "Tower",
+    "Trees", "Forest", "Coral Reef/Underwater", "Fields/Grassland",
     "Village/Town", "Farmhouse/Barn", "Mansion/Palace",
     "Victorian Buildings", "Arab/Middle Eastern Architecture",
     "Asian Architecture", "Stone Arch/Gateway",
     "Underwater Structures", "Sports Arena/Stadium",
-    "Casino Interior", "Kitchen/Appliances",
-    "Japanese Garden/Trees", "Bamboo/Tropical Plants",
-    "Bank/Vault Building", "Viking Ship/Village",
+    "Casino Interior", "Kitchen", "Appliances",
+    "Japanese Garden", "Bamboo", "Tropical Plants",
+    "Bank/Vault Building", "Viking Ship", "Viking Village",
     "Basketball Court", "Stairs/Steps",
+    "Beach/Shoreline", "Hut/Shack", "Palm Trees",
+    "Western Town/Saloon", "Enchanted Forest",
+    "Sky/Clouds",
 ]
 VALID_ELEMENTS_DECOR = [
     "Torches", "Lanterns", "Candles",
     "Columns/Pillars",
     "Vines/Ivy/Plants", "Statues/Sculptures",
-    "Masks/Tribal Art", "Weapons (swords/shields)",
-    "Books/Scrolls/Maps", "Chains/Locks/Keys", "Musical Instruments",
-    "Food/Drinks", "Clocks/Gears/Mechanical", "Banners/Flags",
-    "Skulls/Bones", "Crowns/Royal Jewelry",
+    "Masks", "Tribal Art", "Weapons (swords/shields)",
+    "Books/Scrolls", "Maps", "Chains/Locks/Keys", "Musical Instruments",
+    "Food", "Drinks", "Clocks/Gears/Mechanical", "Banners/Flags",
+    "Skulls/Bones", "Crowns", "Royal Jewelry",
     "Animals (decorative)", "Ships/Boats",
-    "Speakers/DJ Equipment", "Hieroglyphs/Ancient Writing",
+    "Speakers", "DJ Equipment", "Hieroglyphs/Ancient Writing",
     "Disco Ball", "Stage Lights", "Badge/Shield Emblem",
     "Chandeliers", "Christmas Decorations", "Snowflakes/Snow",
-    "Rope Frame", "Stars/Planets",
-    "Ancient Stone Carvings", "Asian Lanterns/Decorations",
-    "Fighting Ring/Cage", "Safe/Vault/Chest",
+    "Stars", "Planets",
+    "Ancient Stone Carvings", "Asian Lanterns", "Asian Decorations",
+    "Fighting Ring/Cage", "Safe/Vault", "Chest",
     "Spacecraft/UFO/Sci-Fi Objects", "Office Items",
-    "City Landmarks/Skyline", "Train/Railway Station",
+    "City Landmarks", "Skyline", "Train/Railway Station",
     "Gifts/Wrapped Presents", "Coin Stacks",
+    "Curtains/Drapes", "Gold Coins/Treasure",
+    "Candy/Sweets/Lollipops",
+    "Flowers/Blossoms", "Hearts/Love Symbols",
+    "Wallpaper/Decorative Pattern", "Graffiti",
 ]
-VALID_ELEMENTS = VALID_ELEMENTS_EFFECTS + VALID_ELEMENTS_FRAME + VALID_ELEMENTS_SCENE + VALID_ELEMENTS_DECOR
+VALID_ELEMENTS = VALID_ELEMENTS_EFFECTS + VALID_ELEMENTS_SCENE + VALID_ELEMENTS_DECOR
+FRAME_ELEMENTS = set(VALID_ELEMENTS_FRAME)
 ELEMENT_SET = set(VALID_ELEMENTS)
 
 # ─── Narrative Vocabulary ────────────────────────────────────────
@@ -318,8 +328,11 @@ CHARACTER CLASSIFICATION RULES:
 
   USE SPECIFIC NAMES — NOT CATEGORIES:
   - Use the SPECIFIC character name: "Tiger", "Apollo", "Anubis", "Phoenix", "Leprechaun", "Magician", "Rich Wilde"
+  - For ANIMALS: name the EXACT species visible: "Gorilla", "Lion", "Eagle", "Buffalo", "Panther", "Wolf"
+    Do NOT use "Wild Animal" or "Big Cat" — always identify the specific animal.
   - Do NOT use broad categories like "Wild Animals", "Greek/Roman Deity", "Egyptian Deity"
   - If unknown, use the most specific descriptive name: "Asian Boy", "Lady in Red", "Old Wizard"
+  - REMEMBER: reel symbols are NOT characters. Only classify artwork that appears OUTSIDE the reel grid as large standalone art.
 
   CRITICAL RULES:
   - A god/animal/person appearing ONLY as a reel symbol → "No Characters (symbol-only game)"
@@ -337,26 +350,55 @@ ELEMENT CLASSIFICATION RULES:
   Draw a rectangle around the spinning reels. Everything OUTSIDE that rectangle is where elements live:
   the background scene, the frame/border, side panels, top area, bottom area.
 
-  IS an element: A pyramid in the background. A mountain range behind the reels. A stone frame around the reels.
-    Statues flanking the reels. Trees in the background. A farmhouse in the distance. Fire effects on the frame.
+  IS an element: A pyramid in the background. A mountain range behind the reels.
+    Statues flanking the reels. Trees in the background. A farmhouse in the distance.
   NOT an element: A pyramid that only appears as a small image ON the spinning reels (that is a SYMBOL).
     Generic glow, sparkles, light rays, shimmer — ignore these, they appear in almost every slot and are not useful.
+  NOT an element: Frame/border material (stone frame, wood frame, metal frame, etc.) — DO NOT list frames. Frames
+    are art decisions, not interesting for game design. Ignore the reel border material entirely.
 
   WHAT TO LOOK FOR (scan the ENTIRE screen outside the reels):
   1. BACKGROUND SCENE — What is behind/around the reels?
      Pyramids, mountains, castles, temples, forests, ocean floor, villages, cities, farmland, arenas,
-     Japanese gardens, Arab/Middle Eastern buildings, Victorian streets, Asian architecture, underwater ruins
-  2. FRAME/BORDER — What material is the frame made of?
-     Gold, stone, wood, metal, crystal, marble, bamboo, neon, colored (purple/red/blue), or minimal/none
-  3. DECORATIVE OBJECTS — What objects are placed around the reels?
+     Japanese gardens, Arab/Middle Eastern buildings, Victorian streets, Asian architecture, underwater ruins,
+     sky/clouds
+  2. DECORATIVE OBJECTS — What objects are placed around the reels?
      Statues, columns, torches, lanterns, candles, weapons, shields, bamboo, vines, chandeliers,
-     disco balls, speakers, hieroglyphs, stone carvings, Asian lanterns, skulls, banners,
-     fireworks, Christmas decorations, snowflakes, books/scrolls, musical instruments
-  4. PROMINENT EFFECTS — Only effects that DEFINE the game's look:
+     disco balls, speakers, hieroglyphs, stone carvings, Asian lanterns, Asian decorations, skulls, banners,
+     fireworks, Christmas decorations, snowflakes, books/scrolls, musical instruments, graffiti
+  3. PROMINENT EFFECTS — Only effects that DEFINE the game's look:
      Fire/flames, lightning, fog/smoke, water, snow/ice, neon glow, magic energy, bubbles, fireworks
      (Do NOT list glow, sparkles, light rays, shimmer — these are generic and not useful)
 
   CRITICAL: Be thorough. Scan every corner. Most games have 3-6 elements. List what makes THIS game visually unique.
+
+  COMMON MISSES (check these specifically):
+  - Trees visible → "Trees"; Dense forest background → "Forest"; Magical/glowing forest → "Enchanted Forest"
+  - Castle in background → "Castle"; Fortress walls → "Fortress"; Standalone tower → "Tower" (these are SEPARATE items)
+  - Candy, lollipops, sweets, cakes visible → "Candy/Sweets/Lollipops"
+  - Gold coins, treasure piles → "Gold Coins/Treasure"
+  - Palm trees → "Palm Trees"
+  - Beach or shoreline visible → "Beach/Shoreline"
+  - Huts, shacks, thatched roof buildings → "Hut/Shack"
+  - Western-style buildings, saloons → "Western Town/Saloon"
+  - Curtains or drapes → "Curtains/Drapes"
+  - Vines, leaves, ivy in background → "Vines/Ivy/Plants"
+  - Snowy mountains → list BOTH "Mountains" AND "Snowflakes/Snow"
+  - Torches visible on sides → "Torches" (separate from "Lanterns" and "Candles")
+  - Village scene → specify style: "Village/Town" or "Western Town/Saloon" or "Viking Village"
+  - Flowers or blossoms in background → "Flowers/Blossoms" (NOT "Vines/Ivy/Plants")
+  - Hearts, love symbols in background → "Hearts/Love Symbols"
+  - Wallpaper pattern, ornate background texture → "Wallpaper/Decorative Pattern"
+  - Grass or lawn visible (not just fields) → "Fields/Grassland"
+  - Stones, rocks, boulders in the background → "Mountains"
+  - Sky visible, clouds → "Sky/Clouds"
+  - Graffiti on walls or background → "Graffiti"
+  - Asian lanterns (hanging paper lanterns) → "Asian Lanterns" (separate from general "Lanterns")
+  - Asian decorative patterns, fans, parasols → "Asian Decorations" (separate from "Asian Lanterns")
+
+  COMMON FALSE POSITIVES (avoid these):
+  - "Statues/Sculptures": ONLY use if you see ACTUAL statues/sculptures as large background art flanking or decorating the game.
+    Do NOT tag Statues/Sculptures just because statue-like images appear as REEL SYMBOLS. Apply the same reel test as characters.
 """
 
 
@@ -374,19 +416,21 @@ CRITICAL_RULES = """
 7. COLOR FROM EYES, NOT THEME: Classify colors based on what you ACTUALLY SEE (or what the review describes seeing), not what you'd assume from the theme name. An "Egyptian" game could be blue, purple, or gold — look at the actual visual.
 8. MOOD FROM VISUALS, NOT NAME: A game called "Lucky" isn't automatically "Bright/Fun/Cheerful". Look at the actual visual mood — dark games with "Lucky" in the name are still "Dark/Mysterious".
 9. SECONDARY THEME NEEDS EVIDENCE: Only assign a secondary theme if there is EXPLICIT visual evidence. Don't infer secondary themes from abstract concepts.
-10. ELEMENTS ARE SCREEN-LEVEL: Elements describe the background, frame, effects, and decorative objects — NOT the symbols on the reels.
+10. ELEMENTS ARE SCREEN-LEVEL: Elements describe the background, effects, and decorative objects — NOT the symbols on the reels. DO NOT list frame/border materials (stone, wood, metal, etc.) — frames are not interesting elements.
+11. STATUES/SCULPTURES REEL TEST: "Statues/Sculptures" is ONLY for actual statues visible as BACKGROUND DECOR (flanking reels, in the background scene). If statue-like imagery only appears ON the reels as spinning symbols, do NOT list "Statues/Sculptures" as an element.
+12. NO FRAME ELEMENTS: Never list what the reel border/frame is made of. No "Stone Frame", "Wood Frame", "Metal Frame", "Neon/LED Frame", "Minimal/No Frame", etc. Frame material is an art production decision, not a game design element.
 """
 
 
 # ─── Symbol→Element keyword mapping ──────────────────────────────
 SYMBOL_ELEMENT_HINTS = {
-    r'\bpyramid': 'Pyramids/Temples/Ancient Structures',
-    r'\btemple': 'Pyramids/Temples/Ancient Structures',
+    r'\bpyramid': 'Pyramids',
+    r'\btemple': 'Temples',
     r'\bstatue': 'Statues/Sculptures',
     r'\bsculpture': 'Statues/Sculptures',
-    r'\bvault': 'Safe/Vault/Chest',
-    r'\bsafe\b': 'Safe/Vault/Chest',
-    r'\bchest\b': 'Safe/Vault/Chest',
+    r'\bvault': 'Safe/Vault',
+    r'\bsafe\b': 'Safe/Vault',
+    r'\bchest\b': 'Chest',
     r'\btorch': 'Torches',
     r'\blantern': 'Lanterns',
     r'\bcandle': 'Candles',
@@ -403,18 +447,18 @@ SYMBOL_ELEMENT_HINTS = {
     r'\bshield': 'Weapons (swords/shields)',
     r'\baxe\b': 'Weapons (swords/shields)',
     r'\bdagger': 'Weapons (swords/shields)',
-    r'\bbook\b': 'Books/Scrolls/Maps',
-    r'\bscroll': 'Books/Scrolls/Maps',
-    r'\bmap\b': 'Books/Scrolls/Maps',
+    r'\bbook\b': 'Books/Scrolls',
+    r'\bscroll': 'Books/Scrolls',
+    r'\bmap\b': 'Maps',
     r'\bskull': 'Skulls/Bones',
     r'\bbone': 'Skulls/Bones',
-    r'\bcrown': 'Crowns/Royal Jewelry',
-    r'\btiara': 'Crowns/Royal Jewelry',
+    r'\bcrown': 'Crowns',
+    r'\btiara': 'Royal Jewelry',
     r'\bfountain': 'Statues/Sculptures',
     r'\bgate\b': 'Columns/Pillars',
     r'\bcolumn': 'Columns/Pillars',
     r'\bpillar': 'Columns/Pillars',
-    r'\bmask': 'Masks/Tribal Art',
+    r'\bmask': 'Masks',
     r'\bpotion': 'Potions/Bottles',
     r'\bship\b': 'Ships/Boats',
     r'\bboat\b': 'Ships/Boats',
@@ -426,7 +470,10 @@ SYMBOL_ELEMENT_HINTS = {
     r'\bthunder': 'Lightning/Electricity',
     r'\bvine': 'Vines/Ivy/Plants',
     r'\bivy\b': 'Vines/Ivy/Plants',
-    r'\bflower': 'Vines/Ivy/Plants',
+    r'\bflower': 'Flowers/Blossoms',
+    r'\bblossom': 'Flowers/Blossoms',
+    r'\bheart': 'Hearts/Love Symbols',
+    r'\bwallpaper': 'Wallpaper/Decorative Pattern',
     r'\bmusic': 'Musical Instruments',
     r'\bguitar': 'Musical Instruments',
     r'\bdrum': 'Musical Instruments',
@@ -556,11 +603,10 @@ You MUST follow the classification cards below. Each card defines what IS and wh
 
 ## ALLOWED VALUES (use EXACTLY as written):
 THEME: {json.dumps(sorted(VALID_THEMES))}
-COLOR (pick 2-4, check ENTIRE screen including background sky, side panels, frame border): {json.dumps(COLOR_VOCABULARY)}
+COLOR (pick 2-4, check ENTIRE screen including background sky, side panels): {json.dumps(COLOR_VOCABULARY)}
 CHARACTER: {json.dumps(VALID_CHARACTERS)}
-ELEMENTS (pick all that apply):
+ELEMENTS (pick all that apply — DO NOT list frame/border materials):
   EFFECTS: {json.dumps(VALID_ELEMENTS_EFFECTS)}
-  FRAME: {json.dumps(VALID_ELEMENTS_FRAME)}
   SCENE: {json.dumps(VALID_ELEMENTS_SCENE)}
   DECOR: {json.dumps(VALID_ELEMENTS_DECOR)}
 NARRATIVE: {json.dumps(VALID_NARRATIVES)}
@@ -568,6 +614,7 @@ NARRATIVE: {json.dumps(VALID_NARRATIVES)}
 ## OUTPUT FORMAT
 Return ONLY a raw JSON object (no markdown, no backticks):
 {{
+  "screenshot_quality": "gameplay" or "promotional" or "rules_page" or "no_screenshot",
   "art_theme": "...",
   "art_theme_secondary": "..." or null,
   "art_color_tone": ["Primary", "Secondary", "Tertiary"],
@@ -585,6 +632,13 @@ Return ONLY a raw JSON object (no markdown, no backticks):
   }}
 }}
 
+SCREENSHOT QUALITY CHECK (MANDATORY — set screenshot_quality FIRST):
+  "gameplay"      = Shows an actual slot machine with visible reel grid, symbols, and game UI (spin button, bet controls). This is what we want.
+  "promotional"   = Marketing art, game logo, banner, phone mockup, app store screenshot, or any image that does NOT show the actual game reels in play.
+  "rules_page"    = Paytable, rules explanation, or help screen — not the actual game.
+  "no_screenshot" = No image was provided.
+  If screenshot_quality is NOT "gameplay", your classification confidence should be LOW (1-2) and you should rely primarily on the text description.
+
 IMPORTANT for art_character_locations: For EACH character you list, you MUST specify where it appears:
 - "outside_reels" = character artwork is OUTSIDE the reel grid (side panels, above/below reels, background)
 - "reel_only" = character ONLY appears as a symbol ON the spinning reels
@@ -592,11 +646,10 @@ Only characters with "outside_reels" should be in art_characters. If ALL are "re
 
 IMPORTANT for art_color_tone: Output EXACTLY 4 colors in most cases. After identifying the 3 most dominant colors, ALWAYS look for a 4th:
 - Is there a visible sky/background color? → "Light Blue", "Blue"
-- Is the frame/border a distinct color? → "Gray", "Brown", "Gold"
 - Are there accent/highlight colors? → "Pink", "White", "Teal"
-- Check: reel area, background BEHIND reels, frame/border material, side panels, top/bottom areas
+- Check: reel area, background BEHIND reels, side panels, top/bottom areas
 Only use 3 colors for truly monochrome/limited-palette games (e.g., black + red + gold with nothing else).
-Include background colors like sky blue ("Light Blue"), frame gray ("Gray"), pink accents, etc."""
+Include background colors like sky blue ("Light Blue"), pink accents, etc."""
 
 
 def extract_review(fname):
@@ -808,12 +861,20 @@ ELEMENT_ALIASES = {
     "skulls": "Skulls/Bones", "bones": "Skulls/Bones",
     "mountains": "Mountains", "mountain": "Mountains",
     "mountains/landscape background": "Mountains",
-    "trees": "Trees/Forest", "forest": "Trees/Forest",
-    "trees/forest background": "Trees/Forest",
+    "trees": "Trees", "forest": "Forest",
+    "trees/forest": "Trees", "trees/forest background": "Trees",
+    "castle": "Castle", "fortress": "Fortress", "tower": "Tower",
+    "castle/fortress/tower": "Castle",
+    "candy": "Candy/Sweets/Lollipops", "sweets": "Candy/Sweets/Lollipops",
+    "lollipops": "Candy/Sweets/Lollipops", "lollipop": "Candy/Sweets/Lollipops",
+    "candy/sweets": "Candy/Sweets/Lollipops",
+    "gold coins/treasure": "Gold Coins/Treasure",
+    "caution tape": None, "crime scene tape": None,
+    "caution tape/crime scene frame": None,
     "fields": "Fields/Grassland", "grassland": "Fields/Grassland", "meadow": "Fields/Grassland",
     "fields/grassland/meadow": "Fields/Grassland",
-    "pyramids": "Pyramids/Temples", "temples": "Pyramids/Temples",
-    "pyramids/temples/ancient structures": "Pyramids/Temples",
+    "pyramids": "Pyramids", "temples": "Temples",
+    "pyramids/temples": "Pyramids", "pyramids/temples/ancient structures": "Pyramids",
     "coral reef": "Coral Reef/Underwater", "coral": "Coral Reef/Underwater",
     "coral reef/underwater structures": "Coral Reef/Underwater",
     "farmhouse": "Farmhouse/Barn", "barn": "Farmhouse/Barn",
@@ -832,23 +893,28 @@ ELEMENT_ALIASES = {
     "badge": "Badge/Shield Emblem", "badge/star/shield emblem": "Badge/Shield Emblem",
     "basketball court": "Basketball Court", "sports arena": "Sports Arena/Stadium",
     "basketball court/sports arena": "Basketball Court",
-    "rope frame": "Rope Frame", "rope border": "Rope Frame",
+    "rope frame": None, "rope border": None,
     "stairs": "Stairs/Steps", "steps": "Stairs/Steps", "staircase": "Stairs/Steps",
-    "stars": "Stars/Planets", "planets": "Stars/Planets", "stars and planets": "Stars/Planets",
+    "stars": "Stars", "planets": "Planets", "stars and planets": "Stars",
+    "stars/planets": "Stars",
     "slot machines": "Casino Interior", "casino equipment": "Casino Interior",
     "slot machines/casino equipment": "Casino Interior",
     "banners": "Banners/Flags", "flags": "Banners/Flags",
     "banners/flags/ribbons": "Banners/Flags",
     "office items": "Office Items", "office items (desk, pencils, mugs)": "Office Items",
     "bank": "Bank/Vault Building", "vault building": "Bank/Vault Building",
-    "viking ship": "Ships/Boats", "viking village": "Viking Ship/Village",
+    "viking ship": "Viking Ship", "viking village": "Viking Village",
+    "viking ship/village": "Viking Ship",
     "weapons": "Weapons (swords/shields)",
-    "asian lanterns": "Asian Lanterns/Decorations",
-    "asian decorations": "Asian Lanterns/Decorations",
+    "asian lanterns": "Asian Lanterns",
+    "asian decorations": "Asian Decorations",
+    "asian lanterns/decorations": "Asian Lanterns",
     "fighting cage": "Fighting Ring/Cage", "fighting ring": "Fighting Ring/Cage",
-    "kitchen": "Kitchen/Appliances", "fridge": "Kitchen/Appliances",
+    "kitchen": "Kitchen", "fridge": "Kitchen", "appliances": "Appliances",
+    "kitchen/appliances": "Kitchen",
     "victorian buildings": "Victorian Buildings", "victorian scenery": "Victorian Buildings",
-    "japanese garden": "Japanese Garden/Trees", "japanese trees": "Japanese Garden/Trees",
+    "japanese garden": "Japanese Garden", "japanese trees": "Trees",
+    "japanese garden/trees": "Japanese Garden",
     "arab architecture": "Arab/Middle Eastern Architecture",
     "middle eastern architecture": "Arab/Middle Eastern Architecture",
     "stone arch": "Stone Arch/Gateway", "gateway": "Stone Arch/Gateway",
@@ -862,13 +928,15 @@ ELEMENT_ALIASES = {
     "shimmer": None, "metallic shine": None, "shimmer/metallic shine": None,
     "floating particles": None, "particles": None,
     "ornate scrollwork": None, "filigree": None, "ornate scrollwork/filigree": None,
-    "coins": None, "gold coins": None, "coins/gold piles": None,
+    "coins": "Gold Coins/Treasure", "gold coins": "Gold Coins/Treasure",
+    "coins/gold piles": "Gold Coins/Treasure", "treasure": "Gold Coins/Treasure",
     "gems": None, "jewels": None, "gems/jewels": None,
     "dust": None, "sand": None, "dust/sand": None,
     "wind": None, "motion lines": None, "wind/motion lines": None,
-    "city landmarks": "City Landmarks/Skyline", "skyline": "City Landmarks/Skyline",
-    "landmarks": "City Landmarks/Skyline", "eiffel tower": "City Landmarks/Skyline",
-    "statue of liberty": "City Landmarks/Skyline", "city skyline": "City Landmarks/Skyline",
+    "city landmarks": "City Landmarks", "skyline": "Skyline",
+    "landmarks": "City Landmarks", "eiffel tower": "City Landmarks",
+    "statue of liberty": "City Landmarks", "city skyline": "Skyline",
+    "city landmarks/skyline": "City Landmarks",
     "train": "Train/Railway Station", "train station": "Train/Railway Station",
     "railway": "Train/Railway Station", "railway station": "Train/Railway Station",
     "tube station": "Train/Railway Station",
@@ -876,6 +944,19 @@ ELEMENT_ALIASES = {
     "presents": "Gifts/Wrapped Presents", "gift boxes": "Gifts/Wrapped Presents",
     "coin stacks": "Coin Stacks", "stacked coins": "Coin Stacks",
     "coin piles": "Coin Stacks", "treasure coins": "Coin Stacks",
+    "masks": "Masks", "tribal art": "Tribal Art", "masks/tribal art": "Masks",
+    "books": "Books/Scrolls", "scrolls": "Books/Scrolls", "maps": "Maps",
+    "books/scrolls/maps": "Books/Scrolls", "books/scrolls": "Books/Scrolls",
+    "food": "Food", "drinks": "Drinks", "food/drinks": "Food",
+    "crowns": "Crowns", "royal jewelry": "Royal Jewelry",
+    "crowns/royal jewelry": "Crowns",
+    "speakers": "Speakers", "dj equipment": "DJ Equipment",
+    "speakers/dj equipment": "Speakers",
+    "safe": "Safe/Vault", "vault": "Safe/Vault", "chest": "Chest",
+    "safe/vault/chest": "Safe/Vault", "safe/vault": "Safe/Vault",
+    "graffiti": "Graffiti", "street art": "Graffiti",
+    "sky": "Sky/Clouds", "clouds": "Sky/Clouds", "sky and clouds": "Sky/Clouds",
+    "sky/clouds": "Sky/Clouds",
 }
 
 
@@ -898,8 +979,11 @@ NOISE_ELEMENTS = {
     "Sparkles/Glitter", "Glow/Aura", "Light Rays/Beams",
     "Shimmer/Metallic Shine", "Floating Particles", "Dust/Sand",
     "Wind/Motion Lines", "Ornate Scrollwork/Filigree",
-    "Coins/Gold Piles", "Gems/Jewels",
-    "Gold Frame",
+    "Gems/Jewels",
+    "Gold Frame", "Stone Frame", "Wood Frame", "Crystal/Glass Frame",
+    "Metal Frame", "Marble Frame", "Bamboo Frame", "Neon/LED Frame",
+    "Colored Frame", "Rope Frame", "Caution Tape/Crime Scene Frame",
+    "Minimal/No Frame",
 }
 
 
@@ -925,35 +1009,35 @@ def normalize_element(e):
 
 THEME_ELEMENT_HINTS = {
     'Egyptian/Pharaoh': [
-        'Pyramids/Temples', 'Hieroglyphs/Ancient Writing',
+        'Pyramids', 'Temples', 'Hieroglyphs/Ancient Writing',
         'Torches', 'Columns/Pillars',
         'Statues/Sculptures',
     ],
     'Asian Temple/Garden': [
-        'Asian Lanterns/Decorations', 'Bamboo/Tropical Plants',
+        'Asian Lanterns', 'Asian Decorations', 'Bamboo',
         'Asian Architecture',
     ],
     'Norse/Viking Realm': [
-        'Viking Ship/Village', 'Weapons (swords/shields)',
+        'Viking Ship', 'Viking Village', 'Weapons (swords/shields)',
         'Ancient Stone Carvings',
     ],
     'Irish/Celtic Highlands': [
-        'Fields/Grassland', 'Trees/Forest',
+        'Fields/Grassland', 'Trees',
     ],
     'Underwater Kingdom': [
         'Coral Reef/Underwater', 'Bubbles',
     ],
     'Ancient Greece/Rome': [
-        'Columns/Pillars', 'Stone Frame',
+        'Columns/Pillars',
     ],
     'Haunted Manor/Graveyard': [
         'Skulls/Bones', 'Candles', 'Torches',
     ],
     'Farm/Countryside': [
-        'Farmhouse/Barn', 'Fields/Grassland', 'Trees/Forest',
+        'Farmhouse/Barn', 'Fields/Grassland', 'Trees',
     ],
     'Casino Floor': [
-        'Casino Interior', 'City Landmarks/Skyline',
+        'Casino Interior', 'City Landmarks',
     ],
     'Classic Slots': [
         'Casino Interior',
@@ -965,14 +1049,14 @@ THEME_ELEMENT_HINTS = {
         'Clocks/Gears/Mechanical', 'Victorian Buildings',
     ],
     'Aztec/Mayan': [
-        'Pyramids/Temples', 'Ancient Stone Carvings',
+        'Pyramids', 'Temples', 'Ancient Stone Carvings',
         'Torches',
     ],
     'Arabian Palace/Bazaar': [
         'Arab/Middle Eastern Architecture', 'Lanterns',
     ],
     'Forest/Woodland': [
-        'Trees/Forest', 'Vines/Ivy/Plants',
+        'Trees', 'Forest', 'Vines/Ivy/Plants',
     ],
     'Prairie/Plains/Grassland': [
         'Fields/Grassland',
@@ -981,14 +1065,14 @@ THEME_ELEMENT_HINTS = {
         'Ships/Boats', 'Skulls/Bones',
     ],
     'Jungle/Rainforest': [
-        'Trees/Forest', 'Vines/Ivy/Plants', 'Ancient Stone Carvings',
+        'Trees', 'Vines/Ivy/Plants', 'Ancient Stone Carvings',
         'Statues/Sculptures',
     ],
     'Festive/Holiday': [
         'Christmas Decorations', 'Snowflakes/Snow', 'Gifts/Wrapped Presents',
     ],
     'Treasure Cave/Mine': [
-        'Coin Stacks', 'Safe/Vault/Chest', 'Torches',
+        'Coin Stacks', 'Safe/Vault', 'Chest', 'Torches',
     ],
     'Luxury/VIP': [
         'Coin Stacks',
@@ -997,31 +1081,38 @@ THEME_ELEMENT_HINTS = {
         'Coin Stacks',
     ],
     'Outer Space': [
-        'Stars/Planets', 'Neon Glow',
+        'Stars', 'Planets', 'Neon Glow',
     ],
     'Royal Palace/Court': [
         'Candles', 'Chandeliers', 'Columns/Pillars',
     ],
     'Laboratory/Workshop': [
-        'Candles', 'Books/Scrolls/Maps',
+        'Candles', 'Books/Scrolls', 'Maps',
     ],
     'Deep Ocean/Underwater': [
         'Coral Reef/Underwater', 'Underwater Structures', 'Bubbles',
     ],
     'Medieval Castle': [
-        'Castle/Fortress/Tower', 'Torches', 'Banners/Flags',
+        'Castle', 'Torches', 'Banners/Flags',
     ],
     'Pirate Ship/Port': [
-        'Ships/Boats', 'Skulls/Bones', 'Wood Frame',
+        'Ships/Boats', 'Skulls/Bones',
+    ],
+    'Candy/Sweet World': [
+        'Candy/Sweets/Lollipops',
+    ],
+    'Inferno/Fire': [
+        'Fire/Flames',
     ],
 }
 
 DESC_ELEMENT_KEYWORDS = {
     r'\bunderwater\b|\bocean\b|\bsea\b|\baquatic\b': 'Coral Reef/Underwater',
-    r'\bpyramid\b|\bpharaoh\b|\begypt\b': 'Pyramids/Temples',
+    r'\bpyramid\b|\bpharaoh\b|\begypt\b': 'Pyramids',
     r'\bhieroglyphs?\b': 'Hieroglyphs/Ancient Writing',
-    r'\bviking\b|\bnorse\b|\bvalhalla\b': 'Viking Ship/Village',
-    r'\bbamboo\b': 'Bamboo/Tropical Plants',
+    r'\bviking\b|\bnorse\b|\bvalhalla\b': 'Viking Ship',
+    r'\bbamboo\b': 'Bamboo',
+    r'\btropical\s+plants?\b': 'Tropical Plants',
     r'\bfarm\b|\bbarn\b': 'Farmhouse/Barn',
     r'\bstadium\b|\barena\b|\bfight(?:er|ing)\b|\bbox(?:er|ing)\b|\bwrestl': 'Sports Arena/Stadium',
     r'\bcasino\b|\bslot\s*machine': 'Casino Interior',
@@ -1030,13 +1121,12 @@ DESC_ELEMENT_KEYWORDS = {
     r'\blazer\b|\bneon\b(?!.*frame)': 'Neon Glow',
     r'\bcoral\s*reef\b': 'Coral Reef/Underwater',
     r'\btrain\b|\btube\b|\brailway\b|\bunderground\b': 'Train/Railway Station',
-    r'\bvegas\b|\blas\s*vegas\b': 'City Landmarks/Skyline',
+    r'\bvegas\b|\blas\s*vegas\b': 'City Landmarks',
     r'\bgifts?\b|\bpresents?\b|\bwrapped\b': 'Gifts/Wrapped Presents',
     r'\bbasketball\b': 'Basketball Court',
     r'\bstair(s|case)?\b|\bsteps?\b': 'Stairs/Steps',
-    r'\bplanet(s|ary)?\b|\bcomet\b|\bconstellation': 'Stars/Planets',
-    r'\brope\s*(frame|border)\b': 'Rope Frame',
-    r'\bpanda\b|\bchinese\b|\basian\b(?!.*slot)': 'Asian Lanterns/Decorations',
+    r'\bplanet(s|ary)?\b|\bcomet\b|\bconstellation': 'Planets',
+    r'\bpanda\b|\bchinese\b|\basian\b(?!.*slot)': 'Asian Decorations',
 }
 
 
@@ -1087,15 +1177,20 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
         if ne and ne not in seen_elems:
             normalized_elems.append(ne)
             seen_elems.add(ne)
+    normalized_elems = [e for e in normalized_elems if e not in FRAME_ELEMENTS]
     result['art_elements'] = normalized_elems
 
     # Fix 4b: Remove elements that are actually reel symbols (not background)
     ELEM_SYMBOL_EXCLUSIONS = {
         'Mountains/Landscape Background': [r'\bmountain\b', r'\bmt\.?\b'],
-        'Pyramids/Temples/Ancient Structures': [r'\bpyramid\b'],
-        'Castle/Fortress/Tower': [r'\bcastle\b', r'\btower\b', r'\bfortress\b'],
+        'Pyramids': [r'\bpyramid\b'],
+        'Temples': [r'\btemple\b'],
+        'Castle': [r'\bcastle\b'],
+        'Fortress': [r'\bfortress\b'],
+        'Tower': [r'\btower\b'],
         'Waterfall': [r'\bwaterfall\b'],
         'Ships/Boats': [r'\bship\b', r'\bboat\b', r'\bgalleon\b', r'\bvessel\b'],
+        'Statues/Sculptures': [r'\bstatue\b', r'\bsculpture\b', r'\bsphinx\b', r'\bidol\b'],
     }
     sym_text = ' '.join(symbol_names).lower()
     elems_before = len(result['art_elements'])
@@ -1405,16 +1500,17 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
 # ═══════════════════════════════════════════════════════════════════
 
 def classify_game(client, system_prompt, fname, use_vision=True, symbol_names=None,
-                   game_corrections=None, game_description=""):
+                   game_corrections=None, game_description="",
+                   use_masked=True, use_cache=True):
     name, review = extract_review(fname)
     if not review or len(review) < 50:
-        return None, name, 'no review'
+        return None, name, 'no review', {}
 
     screenshot_b64, media_type = None, None
     masked_b64 = None
     if use_vision:
         screenshot_b64, media_type = load_screenshot(fname)
-        if screenshot_b64:
+        if screenshot_b64 and use_masked:
             masked_b64 = create_masked_screenshot(fname)
 
     user_content = build_user_message(name, review, screenshot_b64, media_type,
@@ -1422,14 +1518,25 @@ def classify_game(client, system_prompt, fname, use_vision=True, symbol_names=No
                                       description_text=game_description)
     has_image = screenshot_b64 is not None
 
+    sys_content = system_prompt
+    if use_cache:
+        sys_content = [{"type": "text", "text": system_prompt, "cache_control": {"type": "ephemeral"}}]
+
+    usage_data = {}
     max_retries = 3
     for attempt in range(max_retries):
         resp = client.messages.create(
             model=MODEL,
             max_tokens=1000,
-            system=system_prompt,
+            system=sys_content,
             messages=[{"role": "user", "content": user_content}],
         )
+        usage_data = {
+            'input_tokens': resp.usage.input_tokens,
+            'output_tokens': resp.usage.output_tokens,
+            'cache_creation_input_tokens': getattr(resp.usage, 'cache_creation_input_tokens', 0),
+            'cache_read_input_tokens': getattr(resp.usage, 'cache_read_input_tokens', 0),
+        }
         raw = resp.content[0].text.strip()
         raw = re.sub(r'^```\w*\n?', '', raw)
         raw = re.sub(r'\n?```$', '', raw)
@@ -1453,7 +1560,7 @@ def classify_game(client, system_prompt, fname, use_vision=True, symbol_names=No
     result, fixes = post_process(result, name, symbol_names, game_corrections, game_description)
     result['_has_screenshot'] = has_image
 
-    return result, name, fixes
+    return result, name, fixes, usage_data
 
 
 def load_game_descriptions():
@@ -1492,7 +1599,7 @@ def find_description_for_game(desc_index, name_preview):
     return best_match
 
 
-def run_batch(files, use_vision=True, output_path=None):
+def run_batch(files, use_vision=True, output_path=None, use_masked=True, use_cache=True):
     import anthropic
 
     api_key = load_api_key()
@@ -1520,8 +1627,9 @@ def run_batch(files, use_vision=True, output_path=None):
                 print(f"  Symbols: {[s for s in sym_names if s and len(s) > 1][:8]}", flush=True)
 
             game_desc = find_description_for_game(desc_index, name_preview)
-            result, name, fixes = classify_game(client, system_prompt, fname, use_vision,
-                                                sym_names, game_corrections, game_desc)
+            result, name, fixes, usage = classify_game(client, system_prompt, fname, use_vision,
+                                                       sym_names, game_corrections, game_desc,
+                                                       use_masked=use_masked, use_cache=use_cache)
             if result is None:
                 print(f"  SKIP: {fixes}", flush=True)
                 continue
@@ -1530,9 +1638,11 @@ def run_batch(files, use_vision=True, output_path=None):
                 for fix in fixes:
                     print(f"  FIX: {fix}", flush=True)
 
+            ss_quality = result.get('screenshot_quality', 'unknown')
             entry = {
                 'file': fname,
                 'name': name,
+                'screenshot_quality': ss_quality,
                 'art_theme': result['art_theme'],
                 'art_theme_secondary': result.get('art_theme_secondary'),
                 'art_color_tone': result.get('art_color_tone', []),
@@ -1546,6 +1656,7 @@ def run_batch(files, use_vision=True, output_path=None):
             }
             results.append(entry)
 
+            ss_warn = f"  ⚠ SCREENSHOT: {ss_quality}" if ss_quality != 'gameplay' else ""
             print(f"  Theme:    {entry['art_theme']}", flush=True)
             if entry['art_theme_secondary']:
                 print(f"  Theme2:   {entry['art_theme_secondary']}", flush=True)
@@ -1555,6 +1666,8 @@ def run_batch(files, use_vision=True, output_path=None):
                 print(f"  CharCats: {entry['art_character_categories']}", flush=True)
             print(f"  Elements: {entry['art_elements'][:5]}{'...' if len(entry.get('art_elements', [])) > 5 else ''}", flush=True)
             print(f"  Vision:   {'Yes' if entry['_has_screenshot'] else 'No'}", flush=True)
+            if ss_warn:
+                print(ss_warn, flush=True)
 
         except Exception as e:
             errors += 1
@@ -1615,7 +1728,7 @@ def run_batch_api(files, use_vision=True):
             "params": {
                 "model": MODEL,
                 "max_tokens": 1000,
-                "system": [{"type": "text", "text": system_prompt}],
+                "system": [{"type": "text", "text": system_prompt, "cache_control": {"type": "ephemeral"}}],
                 "messages": [{"role": "user", "content": user_content}],
             }
         })
@@ -1674,9 +1787,11 @@ def run_batch_api(files, use_vision=True):
                     game_desc or "",
                 )
 
+                ss_quality = processed.get('screenshot_quality', 'unknown')
                 entry = {
                     'file': fname,
                     'name': name_preview,
+                    'screenshot_quality': ss_quality,
                     'art_theme': processed['art_theme'],
                     'art_theme_secondary': processed.get('art_theme_secondary'),
                     'art_color_tone': processed.get('art_color_tone', []),
@@ -1689,7 +1804,8 @@ def run_batch_api(files, use_vision=True):
                     '_has_screenshot': use_vision,
                 }
                 results.append(entry)
-                print(f"  OK: {fname} → {entry['art_theme']}", flush=True)
+                ss_flag = f" ⚠ SS:{ss_quality}" if ss_quality != 'gameplay' else ""
+                print(f"  OK: {fname} → {entry['art_theme']}{ss_flag}", flush=True)
             except Exception as e:
                 errors += 1
                 print(f"  PARSE ERROR: {fname}: {e}", flush=True)
@@ -1753,6 +1869,10 @@ def save_batch_to_pipeline(results, errors, files):
     with open(RUN_LOG_PATH, 'w') as f:
         json.dump(log, f, indent=2)
 
+    if len(results) > 5:
+        batch_num = len(log.get('runs', []))
+        close_batch_gate(batch_num, len(results))
+
 
 def load_user_reviews():
     """Return set of filenames the user has already reviewed."""
@@ -1781,6 +1901,104 @@ def save_user_reviews(reviews_dict):
     with open(USER_REVIEWS_PATH, 'w') as f:
         json.dump(data, f, indent=2)
     return len(existing)
+
+
+def check_batch_gate(batch_size):
+    """Check the batch gate before allowing classification runs.
+
+    Returns True if gate is open, False if closed.
+    Batches of <=10 games bypass for re-verification/spot-check fixes only.
+    Gate file missing = CLOSED (fail-safe). No --force-gate override exists.
+    """
+    if batch_size <= 10:
+        print(f"  [gate] Small batch ({batch_size} games) — bypassing gate for re-verification.", flush=True)
+        return True
+    if not os.path.exists(BATCH_GATE_PATH):
+        print(f"\n{'=' * 60}")
+        print("BATCH GATE CLOSED — gate file missing (fail-safe)")
+        print(f"{'=' * 60}")
+        print(f"  {BATCH_GATE_PATH} does not exist.")
+        print(f"  Create it with gate_open: true to proceed.\n")
+        return False
+    with open(BATCH_GATE_PATH) as f:
+        gate = json.load(f)
+    if gate.get('gate_open', False):
+        return True
+    last = gate.get('last_spot_check', {})
+    print(f"\n{'=' * 60}")
+    print("BATCH GATE CLOSED — cannot start new batch")
+    print(f"{'=' * 60}")
+    print(f"  Last spot-check: Batch {last.get('batch', '?')}")
+    print(f"  Accuracy: {last.get('accuracy_pct', '?')}% ({last.get('ok', '?')} OK / {last.get('fix', '?')} Fix)")
+    print(f"  Fixes applied: {last.get('fixes_applied', False)}")
+    print(f"  Post-fix regression: {last.get('regression_post_fix', 'not run')}")
+    reason = gate.get('reason', 'Spot-check issues not yet resolved')
+    print(f"  Reason: {reason}")
+    print(f"\nTo open the gate: fix issues, run --regression-full (auto-opens if theme ≥97%).")
+    print(f"There is no bypass flag. The gate is enforced.\n")
+    return False
+
+
+def close_batch_gate(batch_num, game_count):
+    """Auto-close the gate after a batch completes. Forces spot-check before next batch."""
+    from datetime import datetime
+    gate = {}
+    if os.path.exists(BATCH_GATE_PATH):
+        with open(BATCH_GATE_PATH) as f:
+            gate = json.load(f)
+    gate['gate_open'] = False
+    gate['last_batch'] = {
+        'batch': batch_num,
+        'games_classified': game_count,
+        'completed_at': datetime.utcnow().isoformat() + 'Z',
+    }
+    gate['reason'] = f'Batch {batch_num} ({game_count} games) completed. Spot-check required before next batch.'
+    gate['updated_at'] = datetime.utcnow().strftime('%Y-%m-%d')
+    with open(BATCH_GATE_PATH, 'w') as f:
+        json.dump(gate, f, indent=2)
+    print(f"\n  [gate] CLOSED — spot-check batch {batch_num} before starting the next one.", flush=True)
+
+
+def update_gate_from_regression(theme_adj_pct, overall_adj_pct=None):
+    """Called by --regression-full. Opens gate if theme ≥97% AND overall ≥95%, otherwise keeps closed."""
+    from datetime import datetime
+    if not os.path.exists(BATCH_GATE_PATH):
+        return
+    with open(BATCH_GATE_PATH) as f:
+        gate = json.load(f)
+    if gate.get('gate_open', False):
+        return
+    last_sc = gate.get('last_spot_check', {})
+    last_sc['regression_post_fix'] = f"{theme_adj_pct:.1f}%"
+    if overall_adj_pct is not None:
+        last_sc['overall_adj_pct'] = f"{overall_adj_pct:.1f}%"
+    gate['last_spot_check'] = last_sc
+    gate['updated_at'] = datetime.utcnow().strftime('%Y-%m-%d')
+
+    theme_passes = theme_adj_pct >= 97.0
+    overall_passes = overall_adj_pct is None or overall_adj_pct >= 95.0
+    fixes_applied = last_sc.get('fixes_applied', False)
+
+    if theme_passes and overall_passes:
+        if fixes_applied:
+            gate['gate_open'] = True
+            overall_str = f", overall {overall_adj_pct:.1f}%" if overall_adj_pct is not None else ""
+            gate['reason'] = f'Regression passes: theme {theme_adj_pct:.1f}% (≥97%){overall_str} (≥95%). Gate opened.'
+            print(f"\n  [gate] OPENED — theme {theme_adj_pct:.1f}%{overall_str} passes thresholds.", flush=True)
+        else:
+            gate['reason'] = f'Regression passes but fixes_applied is false. Apply fixes first.'
+            print(f"\n  [gate] Still closed — regression passes but fixes_applied=false.", flush=True)
+    else:
+        reasons = []
+        if not theme_passes:
+            reasons.append(f"theme {theme_adj_pct:.1f}% < 97%")
+        if not overall_passes:
+            reasons.append(f"overall {overall_adj_pct:.1f}% < 95%")
+        gate['reason'] = f'Regression below threshold: {", ".join(reasons)}. Fix issues and re-run.'
+        print(f"\n  [gate] Still closed — {', '.join(reasons)}.", flush=True)
+
+    with open(BATCH_GATE_PATH, 'w') as f:
+        json.dump(gate, f, indent=2)
 
 
 def select_new_batch(n, require_screenshot=True):
@@ -1921,12 +2139,110 @@ def _fix_note_matches_theme(note, result_theme, result_secondary):
     return False
 
 
+def _fix_resolved_characters(note, result_chars, corrections_entry):
+    """Check if a character fix verdict has been resolved by current result + corrections."""
+    import re
+    note_lower = note.lower().strip()
+    result_set = set(result_chars) if isinstance(result_chars, list) else set()
+    no_chars = 'No Characters (symbol-only game)' in result_set
+
+    override = corrections_entry.get('override_characters')
+    if override and set(override) == result_set:
+        return True
+
+    no_char_phrases = ['no char', 'just symbol', 'only symbol', 'they are symbol',
+                       'all symbol', 'just on symbol', 'all are symbol',
+                       'only in the symbol', 'part of the logo', 'not a real char']
+    if any(p in note_lower for p in no_char_phrases) and no_chars:
+        return True
+
+    note_tokens = set(re.split(r'[^a-z]+', note_lower)) - {'', 'correct', 'but', 'should',
+        'say', 'more', 'like', 'a', 'an', 'the', 'its', 'is', 'not', 'really', 'yes'}
+    result_lower = {c.lower() for c in result_set}
+    for rt in result_lower:
+        rt_tokens = set(re.split(r'[^a-z]+', rt)) - {''}
+        if rt_tokens & note_tokens and len(rt_tokens & note_tokens) >= 1:
+            return True
+
+    return False
+
+
+def _fix_resolved_elements(note, result_elems, corrections_entry):
+    """Check if an element fix verdict has been resolved by current result + corrections."""
+    import re
+    note_lower = note.lower().strip()
+    result_set = set(result_elems) if isinstance(result_elems, list) else set()
+
+    override = corrections_entry.get('override_elements')
+    if override is not None and set(override) == result_set:
+        return True
+
+    must_not = corrections_entry.get('must_not_elements', [])
+    must_have = corrections_entry.get('must_have_elements', [])
+    if must_not or must_have:
+        must_not_ok = all(e not in result_set for e in must_not)
+        must_have_ok = all(e in result_set for e in must_have)
+        if must_not_ok and must_have_ok:
+            return True
+
+    frame_words = ['frame', 'rope frame', 'wood frame', 'stone frame', 'metal frame',
+                   'neon frame', 'colored frame', 'minimal/no frame']
+    if any(fw in note_lower for fw in frame_words):
+        has_frames = any('Frame' in e for e in result_set) or any('Minimal' in e for e in result_set)
+        if not has_frames:
+            return True
+
+    sep_words = ['separate', 'split', 'combined', 'too broad']
+    if any(sw in note_lower for sw in sep_words):
+        old_combos = ['Asian Lanterns/Decorations', 'Pyramids/Temples', 'Books/Scrolls/Maps',
+                      'Masks/Tribal Art', 'Stars/Planets', 'Safe/Vault/Chest',
+                      'Speakers/DJ Equipment', 'City Landmarks/Skyline',
+                      'Japanese Garden/Trees', 'Viking Ship/Village',
+                      'Crowns/Royal Jewelry', 'Kitchen/Appliances', 'Food/Drinks',
+                      'Trees/Forest', 'Castle/Fortress/Tower', 'Bamboo/Tropical Plants']
+        stale = any(combo in result_set for combo in old_combos)
+        if not stale:
+            return True
+
+    bloat_words = ['redundant', 'bloat', 'remove redundant']
+    if any(bw in note_lower for bw in bloat_words):
+        noise_in_result = any('Frame' in e or 'Scrollwork' in e or 'Glitter' in e
+                              for e in result_set)
+        if not noise_in_result:
+            return True
+
+    return False
+
+
+def _fix_resolved_color(note, result_colors, corrections_entry):
+    """Check if a color fix verdict has been resolved by current result + corrections."""
+    import re
+    note_lower = note.lower().strip()
+    result_set = set(c.lower() for c in result_colors) if isinstance(result_colors, list) else set()
+
+    color_names = ['red', 'blue', 'green', 'gold', 'purple', 'orange', 'yellow',
+                   'pink', 'silver', 'bronze', 'brown', 'black', 'white', 'gray',
+                   'teal', 'light blue', 'neon']
+
+    also_pattern = re.findall(r'also\s+(\w+)', note_lower)
+    for color in also_pattern:
+        if color in result_set:
+            return True
+
+    for cn in color_names:
+        if cn in note_lower and cn in result_set:
+            return True
+
+    return False
+
+
 def run_expanded_regression():
-    """Score current results.json against all 192 human-reviewed games.
+    """Score current results.json against all human-reviewed games.
 
     No API calls — purely offline comparison of stored results vs stored verdicts.
     OK verdicts (empty note) = dimension was correct at review time.
     Fix verdicts (non-empty note) = dimension was wrong, check if corrections fixed it.
+    Resolution logic runs for ALL dimensions (theme, characters, elements, colors).
     """
     if not os.path.exists(USER_REVIEWS_PATH):
         print("No user_reviews.json found.")
@@ -1943,6 +2259,11 @@ def run_expanded_regression():
     auto_rounds = {'auto_v11_5', 'auto_text_v11_5'}
     r_games = results.get('games', {})
     rev_games = reviews.get('games', {})
+
+    corrections = {}
+    if os.path.exists(CORRECTIONS_PATH):
+        with open(CORRECTIONS_PATH) as f:
+            corrections = json.load(f).get('corrections', {})
 
     dims = ['art_theme', 'art_characters', 'art_elements', 'art_color_tone']
     dim_ok = {d: 0 for d in dims}
@@ -1971,20 +2292,48 @@ def run_expanded_regression():
             note = (v.get('note') or '').strip()
             dim_total[d] += 1
 
+            note_lower = note.lower()
+            is_bad_ss = any(kw in note_lower for kw in ['not a game screenshot', 'not an ingame screenshot',
+                                                         'bad screenshot', 'not a game screesnhot'])
             if not note:
                 dim_ok[d] += 1
             elif note.upper().startswith('INVALID'):
                 dim_fix_total[d] += 1
                 dim_fix_resolved[d] += 1
+            elif is_bad_ss and (r.get('screenshot_quality') == 'gameplay'
+                                or corrections.get(fname, {}).get('bad_screenshot_unfixable')):
+                dim_fix_total[d] += 1
+                dim_fix_resolved[d] += 1
             else:
                 dim_fix_total[d] += 1
+                corr_entry = corrections.get(fname, {})
+                resolved = False
+
                 if d == 'art_theme':
                     result_theme = r.get('art_theme', '')
                     result_secondary = r.get('art_theme_secondary', '')
-                    if _fix_note_matches_theme(note, result_theme, result_secondary):
-                        dim_fix_resolved[d] += 1
-                    else:
-                        per_game_issues.append((fname, d, note[:60], result_theme, result_secondary))
+                    resolved = _fix_note_matches_theme(note, result_theme, result_secondary)
+                    got_str = result_theme + (f" / {result_secondary}" if result_secondary else "")
+                elif d == 'art_characters':
+                    result_chars = r.get('art_characters', [])
+                    resolved = _fix_resolved_characters(note, result_chars, corr_entry)
+                    got_str = ', '.join(str(x) for x in result_chars) if result_chars else '(empty)'
+                elif d == 'art_elements':
+                    result_elems = r.get('art_elements', [])
+                    resolved = _fix_resolved_elements(note, result_elems, corr_entry)
+                    got_str = ', '.join(str(x) for x in result_elems) if result_elems else '(empty)'
+                elif d == 'art_color_tone':
+                    result_colors = r.get('art_color_tone', [])
+                    resolved = _fix_resolved_color(note, result_colors, corr_entry)
+                    got_str = ', '.join(str(x) for x in result_colors) if result_colors else '(empty)'
+                else:
+                    got_val = r.get(d, '')
+                    got_str = str(got_val) if got_val else '(empty)'
+
+                if resolved:
+                    dim_fix_resolved[d] += 1
+                else:
+                    per_game_issues.append((fname, d, note[:80], got_str))
 
     total_verdicts = sum(dim_total.values())
     total_ok = sum(dim_ok.values())
@@ -2018,14 +2367,44 @@ def run_expanded_regression():
     print(f"\n  Base% = OK verdicts only; Adj% = OK + resolved Fix verdicts")
 
     if per_game_issues:
-        print(f"\n{'─' * 60}")
-        print(f"Theme fix verdicts still unresolved ({len(per_game_issues)}):")
-        for item in per_game_issues:
-            fname, d, note = item[0], item[1], item[2]
-            got = item[3] if len(item) > 3 else '?'
-            secondary = item[4] if len(item) > 4 else ''
-            print(f"  {fname:40s} note: {note}")
-            print(f"  {'':40s} got:  {got}" + (f" / {secondary}" if secondary else ""))
+        dim_labels = {'art_theme': 'THEME', 'art_characters': 'CHARACTERS',
+                      'art_elements': 'ELEMENTS', 'art_color_tone': 'COLOR'}
+        for d in dims:
+            d_issues = [(f, dim, n, g) for f, dim, n, g in per_game_issues if dim == d]
+            if not d_issues:
+                continue
+            label = dim_labels.get(d, d)
+            print(f"\n{'─' * 60}")
+            print(f"{label} — unresolved fix verdicts ({len(d_issues)}):")
+            for fname, _, note, got in sorted(d_issues):
+                print(f"  {fname:40s} note: {note}")
+                print(f"  {'':40s} got:  {got}")
+
+    # Metric sanity check: flag dimensions where fix-resolution logic may be broken.
+    # If a dimension has many fixes but almost none resolved, the resolution code
+    # is likely not covering that dimension — exactly the Incident-2 blind spot.
+    sanity_failures = []
+    for d in dims:
+        ft = dim_fix_total[d]
+        fr = dim_fix_resolved[d]
+        if ft > 10 and fr < 3:
+            label = d.replace('art_', '')
+            sanity_failures.append(f"{label}: {ft} fixes, only {fr} resolved")
+    if sanity_failures:
+        print(f"\n{'!' * 60}")
+        print("METRIC SANITY CHECK FAILED")
+        print(f"{'!' * 60}")
+        for sf in sanity_failures:
+            print(f"  {sf}")
+        print("\nThis likely means fix-resolution logic is missing or broken for")
+        print("these dimensions. DO NOT proceed until investigated.")
+        print(f"{'!' * 60}\n")
+
+    theme_total = dim_total.get('art_theme', 0)
+    overall_adj = (total_ok + total_fix_resolved) / total_verdicts * 100 if total_verdicts > 0 else 0
+    if theme_total > 0:
+        theme_adj = (dim_ok.get('art_theme', 0) + dim_fix_resolved.get('art_theme', 0)) / theme_total * 100
+        update_gate_from_regression(theme_adj, overall_adj)
 
     return dim_ok, dim_total
 
@@ -2055,6 +2434,371 @@ def preflight_screenshot_check(files):
     return has_ss, missing_ss, pct
 
 
+def repair_screenshots():
+    """Find games with non-gameplay screenshots, try alternative SC images, report."""
+    import urllib.request
+
+    if not os.path.exists(RESULTS_PATH):
+        print("No results.json found.")
+        return
+
+    with open(RESULTS_PATH) as f:
+        results = json.load(f)
+
+    bad_games = []
+    for fname, r in results.get('games', {}).items():
+        sq = r.get('screenshot_quality', 'unknown')
+        if sq in ('promotional', 'rules_page'):
+            bad_games.append((fname, sq))
+
+    if not bad_games:
+        print("No non-gameplay screenshots found in results.")
+        return
+
+    print(f"\nFound {len(bad_games)} games with non-gameplay screenshots:")
+    for fname, sq in bad_games:
+        print(f"  {fname:50s} {sq}")
+
+    sc_dir = os.path.join(SCRIPT_DIR, '_legacy', 'sc_cache')
+    base_url = 'https://slotcatalog.com'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'Referer': base_url + '/',
+        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+    }
+
+    repaired = 0
+    no_alternative = 0
+
+    for fname, sq in bad_games:
+        base = fname.replace('.html', '')
+        sc_path = os.path.join(sc_dir, fname)
+        if not os.path.exists(sc_path):
+            print(f"  {base}: no SC cache, skipping")
+            no_alternative += 1
+            continue
+
+        with open(sc_path) as f:
+            html = f.read()
+
+        urls = []
+        for m in re.finditer(r'userfiles/image/games/[^"\'>\s]+', html):
+            u = m.group()
+            if u not in urls and not re.search(r'_s\.\w+$', u):
+                urls.append(u)
+
+        if len(urls) <= 2:
+            print(f"  {base}: only {len(urls)} images, no better option")
+            no_alternative += 1
+            continue
+
+        # Try images starting from #3 (index 2), since #1 and #2 were already tried
+        downloaded = False
+        for try_idx in range(2, min(len(urls), 6)):
+            img_url = urls[try_idx]
+            ext = os.path.splitext(img_url)[1] or '.jpg'
+            dest = os.path.join(SCREENSHOT_DIR, base + ext)
+            full_url = base_url + '/' + img_url
+
+            try:
+                req = urllib.request.Request(full_url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    data = resp.read()
+                if len(data) < 1000:
+                    continue
+
+                # Remove old screenshot
+                for old_ext in ['.png', '.jpg', '.jpeg', '.webp']:
+                    old_path = os.path.join(SCREENSHOT_DIR, base + old_ext)
+                    if old_path != dest and os.path.exists(old_path):
+                        os.remove(old_path)
+
+                with open(dest, 'wb') as f:
+                    f.write(data)
+                print(f"  {base}: replaced with image #{try_idx + 1} ({len(data)//1024}KB)")
+                downloaded = True
+                repaired += 1
+                break
+            except Exception as e:
+                continue
+
+        if not downloaded:
+            print(f"  {base}: all alternatives failed")
+            no_alternative += 1
+
+    print(f"\nRepair summary: {repaired} re-downloaded, {no_alternative} no alternative")
+    if repaired > 0:
+        print(f"\nRe-classify the repaired games:")
+        repair_files = [fname for fname, sq in bad_games
+                        if os.path.exists(os.path.join(SCREENSHOT_DIR,
+                            fname.replace('.html', '') + '.jpg')) or
+                           os.path.exists(os.path.join(SCREENSHOT_DIR,
+                            fname.replace('.html', '') + '.png')) or
+                           os.path.exists(os.path.join(SCREENSHOT_DIR,
+                            fname.replace('.html', '') + '.webp'))]
+        for rf in repair_files:
+            print(f"  {rf}")
+        print(f"\nRun: python3 classify_art_v2.py --batch-api {' '.join(repair_files)}")
+
+
+def calculate_cost(usage, is_batch=False, cache_ttl='5m'):
+    """Calculate USD cost from token usage using Sonnet 4 pricing."""
+    input_rate = 1.5 if is_batch else 3.0
+    output_rate = 7.5 if is_batch else 15.0
+    write_mult = 2.0 if cache_ttl == '1h' else 1.25
+
+    uncached = (usage.get('input_tokens', 0) / 1e6) * input_rate
+    cache_write = (usage.get('cache_creation_input_tokens', 0) / 1e6) * input_rate * write_mult
+    cache_read = (usage.get('cache_read_input_tokens', 0) / 1e6) * input_rate * 0.1
+    output = (usage.get('output_tokens', 0) / 1e6) * output_rate
+    return uncached + cache_write + cache_read + output
+
+
+def run_cost_experiment():
+    """Run 4-config cost experiment on 20 human-reviewed games."""
+    import anthropic
+    from datetime import datetime
+
+    api_key = load_api_key()
+    client = anthropic.Anthropic(api_key=api_key)
+    gt_games = load_ground_truth()
+    training_ref = build_training_examples(gt_games)
+    system_prompt = build_system_prompt(training_ref)
+    symbol_index = load_game_symbols()
+    corrections_db = load_corrections()
+    desc_index = load_game_descriptions()
+
+    with open(USER_REVIEWS_PATH) as f:
+        reviews_data = json.load(f)
+    reviewed_games = reviews_data.get('games', {})
+
+    if os.path.exists(RESULTS_PATH):
+        with open(RESULTS_PATH) as f:
+            results_data = json.load(f)
+        results_games = results_data.get('games', {})
+    else:
+        results_games = {}
+
+    auto_rounds = {'auto_v11_5', 'auto_text_v11_5'}
+    candidates = []
+    for fname, rev in sorted(reviewed_games.items()):
+        if rev.get('round', '') in auto_rounds:
+            continue
+        if fname in results_games:
+            candidates.append(fname)
+    test_games = candidates[:20]
+    print(f"Selected {len(test_games)} games for cost experiment")
+
+    tests = {
+        'T1_baseline': {'cache': False, 'masked': True, 'api': 'sync', 'cache_ttl': '5m'},
+        'T2_cached': {'cache': True, 'masked': True, 'api': 'sync', 'cache_ttl': '5m'},
+        'T3_no_masked': {'cache': True, 'masked': False, 'api': 'sync', 'cache_ttl': '5m'},
+        'T4_batch_cached': {'cache': True, 'masked': True, 'api': 'batch', 'cache_ttl': '1h'},
+    }
+
+    all_results = {}
+
+    for test_name, config in tests.items():
+        print(f"\n{'=' * 60}")
+        print(f"Running {test_name}: cache={config['cache']}, masked={config['masked']}, api={config['api']}")
+        print(f"{'=' * 60}")
+
+        test_start = time.time()
+        per_game = []
+        total_usage = {'input_tokens': 0, 'output_tokens': 0,
+                       'cache_creation_input_tokens': 0, 'cache_read_input_tokens': 0}
+
+        if config['api'] == 'batch':
+            batch_requests = []
+            batch_valid = []
+            for fname in test_games:
+                name, review = extract_review(fname)
+                if not review or len(review) < 50:
+                    continue
+                game_corrections = corrections_db.get(fname)
+                name_preview = fname.replace('.html', '').replace('-', ' ')
+                sym_names = find_symbols_for_game(symbol_index, name_preview)
+                game_desc = find_description_for_game(desc_index, name_preview)
+                screenshot_b64, media_type = load_screenshot(fname)
+                masked_b64 = None
+                if screenshot_b64 and config['masked']:
+                    masked_b64 = create_masked_screenshot(fname)
+                user_content = build_user_message(name, review, screenshot_b64, media_type,
+                                                  sym_names, game_corrections, masked_b64,
+                                                  description_text=game_desc)
+                custom_id = fname.replace('.html', '').replace('.', '_')
+                sys_block = [{"type": "text", "text": system_prompt}]
+                if config['cache']:
+                    sys_block = [{"type": "text", "text": system_prompt,
+                                  "cache_control": {"type": "ephemeral"}}]
+                batch_requests.append({
+                    "custom_id": custom_id,
+                    "params": {
+                        "model": MODEL,
+                        "max_tokens": 1000,
+                        "system": sys_block,
+                        "messages": [{"role": "user", "content": user_content}],
+                    }
+                })
+                batch_valid.append(fname)
+
+            print(f"Submitting batch of {len(batch_requests)} games...", flush=True)
+            batch = client.messages.batches.create(requests=batch_requests)
+            batch_id = batch.id
+            print(f"Batch ID: {batch_id}", flush=True)
+
+            poll_interval = 10
+            while True:
+                batch = client.messages.batches.retrieve(batch_id)
+                status = batch.processing_status
+                counts = batch.request_counts
+                print(f"  {status} | ok={counts.succeeded} err={counts.errored}", flush=True)
+                if status == "ended":
+                    break
+                time.sleep(poll_interval)
+                poll_interval = min(poll_interval * 1.5, 60)
+
+            id_to_fname = {f.replace('.html', '').replace('.', '_'): f for f in batch_valid}
+            for r in client.messages.batches.results(batch_id):
+                fname = id_to_fname.get(r.custom_id, r.custom_id + '.html')
+                if r.result.type == "succeeded":
+                    msg = r.result.message
+                    u = {
+                        'input_tokens': msg.usage.input_tokens,
+                        'output_tokens': msg.usage.output_tokens,
+                        'cache_creation_input_tokens': getattr(msg.usage, 'cache_creation_input_tokens', 0),
+                        'cache_read_input_tokens': getattr(msg.usage, 'cache_read_input_tokens', 0),
+                    }
+                    for k in total_usage:
+                        total_usage[k] += u.get(k, 0)
+                    raw = msg.content[0].text.strip()
+                    raw = re.sub(r'^```\w*\n?', '', raw)
+                    raw = re.sub(r'\n?```$', '', raw)
+                    try:
+                        parsed = json.loads(raw)
+                    except json.JSONDecodeError:
+                        m = re.search(r'\{[\s\S]*\}', raw)
+                        parsed = json.loads(m.group()) if m else {}
+                    name_preview = fname.replace('.html', '').replace('-', ' ')
+                    sym_names = find_symbols_for_game(symbol_index, name_preview)
+                    game_desc = find_description_for_game(desc_index, name_preview)
+                    processed, _ = post_process(parsed, name_preview, sym_names,
+                                                corrections_db.get(fname), game_desc)
+                    per_game.append({
+                        'file': fname, 'usage': u,
+                        'theme': processed.get('art_theme', ''),
+                        'theme_secondary': processed.get('art_theme_secondary', ''),
+                        'characters': processed.get('art_characters', []),
+                        'elements': processed.get('art_elements', []),
+                        'colors': processed.get('art_color_tone', []),
+                    })
+        else:
+            for i, fname in enumerate(test_games):
+                print(f"  [{i+1}/{len(test_games)}] {fname}", flush=True)
+                game_corrections = corrections_db.get(fname)
+                name_preview = fname.replace('.html', '').replace('-', ' ')
+                sym_names = find_symbols_for_game(symbol_index, name_preview)
+                game_desc = find_description_for_game(desc_index, name_preview)
+                try:
+                    result, name, fixes, usage = classify_game(
+                        client, system_prompt, fname, use_vision=True,
+                        symbol_names=sym_names, game_corrections=game_corrections,
+                        game_description=game_desc,
+                        use_masked=config['masked'], use_cache=config['cache'])
+                    if result is None:
+                        continue
+                    for k in total_usage:
+                        total_usage[k] += usage.get(k, 0)
+                    per_game.append({
+                        'file': fname, 'usage': usage,
+                        'theme': result.get('art_theme', ''),
+                        'theme_secondary': result.get('art_theme_secondary', ''),
+                        'characters': result.get('art_characters', []),
+                        'elements': result.get('art_elements', []),
+                        'colors': result.get('art_color_tone', []),
+                    })
+                except Exception as e:
+                    print(f"    ERROR: {e}", flush=True)
+                time.sleep(0.3)
+
+        wall_clock = time.time() - test_start
+        cost = calculate_cost(total_usage, is_batch=(config['api'] == 'batch'),
+                              cache_ttl=config['cache_ttl'])
+
+        accuracy = {'theme': 0, 'characters': 0, 'elements': 0, 'colors': 0}
+        scored = 0
+        for pg in per_game:
+            rev = reviewed_games.get(pg['file'], {})
+            verdicts = rev.get('verdicts', {})
+            if not verdicts:
+                continue
+            scored += 1
+            for dim_key, acc_key in [('art_theme', 'theme'), ('art_characters', 'characters'),
+                                      ('art_elements', 'elements'), ('art_color_tone', 'colors')]:
+                dv = verdicts.get(dim_key, {})
+                v = dv.get('verdict') or dv.get('status', '')
+                if v == 'ok' or not dv:
+                    accuracy[acc_key] += 1
+
+        acc_pct = {}
+        for dim in accuracy:
+            acc_pct[dim] = (accuracy[dim] / scored * 100) if scored > 0 else 0.0
+
+        all_results[test_name] = {
+            'config': config,
+            'total_input_tokens': total_usage['input_tokens'],
+            'total_output_tokens': total_usage['output_tokens'],
+            'total_cache_creation_tokens': total_usage['cache_creation_input_tokens'],
+            'total_cache_read_tokens': total_usage['cache_read_input_tokens'],
+            'wall_clock_seconds': round(wall_clock, 1),
+            'estimated_cost_usd': round(cost, 4),
+            'accuracy': acc_pct,
+            'games_scored': scored,
+            'per_game': per_game,
+        }
+
+        print(f"\n  Tokens: in={total_usage['input_tokens']:,} out={total_usage['output_tokens']:,} "
+              f"cache_create={total_usage['cache_creation_input_tokens']:,} "
+              f"cache_read={total_usage['cache_read_input_tokens']:,}")
+        print(f"  Cost: ${cost:.4f}  Time: {wall_clock:.0f}s")
+        print(f"  Accuracy: theme={acc_pct['theme']:.1f}% chars={acc_pct['characters']:.1f}% "
+              f"elem={acc_pct['elements']:.1f}% colors={acc_pct['colors']:.1f}%")
+
+    experiment = {
+        'timestamp': datetime.now().isoformat(),
+        'games_tested': len(test_games),
+        'game_files': test_games,
+        'tests': all_results,
+    }
+
+    if 'T1_baseline' in all_results and 'T2_cached' in all_results:
+        t1_cost = all_results['T1_baseline']['estimated_cost_usd']
+        t2_cost = all_results['T2_cached']['estimated_cost_usd']
+        savings = ((t1_cost - t2_cost) / t1_cost * 100) if t1_cost > 0 else 0
+        experiment['comparison'] = {
+            'caching_savings_pct': round(savings, 1),
+        }
+
+    exp_path = os.path.join(os.path.dirname(RESULTS_PATH), 'cost_experiment_results.json')
+    with open(exp_path, 'w') as f:
+        json.dump(experiment, f, indent=2)
+    print(f"\nSaved experiment data to {exp_path}")
+
+    print(f"\n{'=' * 100}")
+    print(f"{'COST EXPERIMENT RESULTS':^100}")
+    print(f"{'=' * 100}")
+    print(f"{'Test':<14} | {'Input Tok':>10} | {'Cache Read':>10} | {'Cost':>8} | {'Time':>6} | "
+          f"{'Theme':>6} | {'Chars':>6} | {'Elem':>6} | {'Colors':>6}")
+    print('-' * 100)
+    for tn, tr in all_results.items():
+        label = tn.replace('_', ' ')
+        a = tr['accuracy']
+        print(f"{label:<14} | {tr['total_input_tokens']:>10,} | {tr['total_cache_read_tokens']:>10,} | "
+              f"${tr['estimated_cost_usd']:>6.4f} | {tr['wall_clock_seconds']:>5.0f}s | "
+              f"{a['theme']:>5.1f}% | {a['characters']:>5.1f}% | {a['elements']:>5.1f}% | {a['colors']:>5.1f}%")
+    print(f"{'=' * 100}")
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='Art classification v2')
@@ -2067,29 +2811,51 @@ def main():
     parser.add_argument('--select-batch', type=int, metavar='N', help='Select N new unreviewed games')
     parser.add_argument('--no-screenshot', action='store_true', help='Include games without screenshots in batch')
     parser.add_argument('--stats', action='store_true', help='Show pipeline stats')
-    parser.add_argument('--batch-api', action='store_true', help='Use Anthropic Batch API (50% cheaper, async)')
-    parser.add_argument('--allow-text-only', action='store_true', help='Allow batch to proceed even if <80%% have screenshots')
+    parser.add_argument('--batch-api', action='store_true', help='Use Anthropic Batch API (50%% cheaper, async)')
+    parser.add_argument('--allow-text-only', action='store_true', help='Allow batch to proceed even if under 80 pct have screenshots')
+    parser.add_argument('--repair-screenshots', action='store_true',
+                        help='Find non-gameplay screenshots in results, try alternative SC images, re-classify')
+    parser.add_argument('--no-masked', action='store_true', help='Skip masked screenshot (send only original)')
+    parser.add_argument('--no-cache', action='store_true', help='Disable prompt caching')
+    parser.add_argument('--cost-experiment', action='store_true',
+                        help='Run 4-config cost experiment on 20 games (caching, masked, batch)')
+    # --force-gate intentionally removed — gate cannot be bypassed
     args = parser.parse_args()
 
     if args.stats:
         reviewed = load_user_reviews()
         results_count = 0
+        ss_counts = {}
         if os.path.exists(RESULTS_PATH):
             with open(RESULTS_PATH) as f:
-                results_count = json.load(f).get('total_games', 0)
+                data = json.load(f)
+                results_count = data.get('total_games', 0)
+                for g in data.get('games', {}).values():
+                    q = g.get('screenshot_quality', 'unknown')
+                    ss_counts[q] = ss_counts.get(q, 0) + 1
         gt_count = len(load_ground_truth())
         print(f"Pipeline Stats:")
         print(f"  Results:    {results_count} games classified")
         print(f"  Reviewed:   {len(reviewed)} games user-reviewed")
         print(f"  GT:         {gt_count} games in ground truth")
         print(f"  Corrections: {len(load_corrections())} game overrides")
+        if ss_counts:
+            print(f"  Screenshot quality:")
+            for q, c in sorted(ss_counts.items(), key=lambda x: -x[1]):
+                print(f"    {q}: {c}")
         return
 
     if args.select_batch:
+        if not check_batch_gate(args.select_batch):
+            sys.exit(1)
         selected = select_new_batch(args.select_batch, require_screenshot=not args.no_screenshot)
         print(f"Selected {len(selected)} new games:")
         for s in selected:
             print(f"  {s}")
+        return
+
+    if args.repair_screenshots:
+        repair_screenshots()
         return
 
     if args.regression:
@@ -2100,12 +2866,19 @@ def main():
         run_expanded_regression()
         return
 
+    if args.cost_experiment:
+        run_cost_experiment()
+        return
+
     if not args.files:
         print("Usage:")
         print("  python3 classify_art_v2.py file1.html file2.html  # classify specific games")
         print("  python3 classify_art_v2.py --select-batch 50       # pick 50 unreviewed games")
         print("  python3 classify_art_v2.py --regression            # run GT regression test")
         print("  python3 classify_art_v2.py --stats                 # show pipeline stats")
+        sys.exit(1)
+
+    if args.files and not check_batch_gate(len(args.files)):
         sys.exit(1)
 
     if not args.no_vision and args.files:
@@ -2130,6 +2903,8 @@ def main():
             args.files,
             use_vision=not args.no_vision,
             output_path=args.output,
+            use_masked=not args.no_masked,
+            use_cache=not args.no_cache,
         )
 
     if args.gt_compare and os.path.exists(GT_V2_PATH):

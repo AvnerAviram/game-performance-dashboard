@@ -1,3 +1,4 @@
+const express = require('express');
 const { Router } = require('express');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
@@ -171,7 +172,7 @@ Rules:
 Return ONLY a JSON array of 10 name strings. Example: ["Name One", "Name Two"]`;
 
     try {
-        const stage1Text = await callClaude([{ role: 'user', content: stage1Prompt }], 300);
+        const stage1Text = await callClaude([{ role: 'user', content: stage1Prompt }], 150);
         const candidateNames = validateNameResponse(stage1Text);
 
         if (candidateNames.length === 0) {
@@ -190,7 +191,7 @@ Improve them:
 
 Return ONLY a JSON array of 10 refined name strings.`;
 
-        const stage2Text = await callClaude([{ role: 'user', content: stage2Prompt }], 300);
+        const stage2Text = await callClaude([{ role: 'user', content: stage2Prompt }], 150);
         const refinedNames = validateNameResponse(stage2Text);
 
         const finalNames = refinedNames.length >= 5 ? refinedNames : candidateNames;
@@ -204,6 +205,107 @@ Return ONLY a JSON array of 10 refined name strings.`;
 
 // Apply AI rate limiter to the AI name endpoint
 router.use('/api/generate-names', aiRateLimiter);
+
+// =====================================================================
+// POST /api/generate-names-vision — Vision-based name generation
+// =====================================================================
+const jsonLimit2mb = express.json({ limit: '2mb' });
+
+router.post('/api/generate-names-vision', jsonLimit2mb, requireAuth, aiRateLimiter, async (req, res) => {
+    const { imageB64, mediaType, keywords, code } = req.body;
+    let { features, style, totalGames, avgWordCount } = req.body;
+
+    if (!imageB64 || typeof imageB64 !== 'string') {
+        return res.status(400).json({ error: 'Image is required' });
+    }
+    const VALID_MEDIA = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!VALID_MEDIA.includes(mediaType)) {
+        return res.status(400).json({ error: 'Invalid image format. Use JPEG, PNG, or WebP.' });
+    }
+    const estimatedBytes = imageB64.length * 0.75;
+    if (estimatedBytes > 2 * 1024 * 1024) {
+        return res.status(400).json({ error: 'Image too large. Max 2MB.' });
+    }
+
+    if (!CLAUDE_API_KEY) return res.status(501).json({ error: 'Claude API key not configured.' });
+    if (!AI_NAME_CODE) return res.status(501).json({ error: 'AI name generation not enabled.' });
+    if (!checkCodeAttempts(req.session)) return res.status(429).json({ error: 'Too many invalid code attempts.' });
+    if (!validateCode(code, req.session)) return res.status(403).json({ error: 'Invalid access code.' });
+    if (!checkAndIncrementDailyCap()) return res.status(429).json({ error: 'Daily AI limit reached.' });
+
+    style = ['modern', 'classic', 'playful', 'premium'].includes(style) ? style : 'modern';
+    features = Array.isArray(features) ? features.map(String).slice(0, 20) : [];
+    totalGames = typeof totalGames === 'number' && totalGames > 0 ? Math.min(totalGames, 10000) : 600;
+    avgWordCount = typeof avgWordCount === 'number' && avgWordCount > 0 ? Math.min(avgWordCount, 10) : 3;
+
+    const user = req.session.user?.username || 'unknown';
+    console.log(`[AI-AUDIT] vision-name-gen | user=${user} | style=${style} | daily=${dailyAICalls}/${AI_DAILY_CAP}`);
+
+    const prompt = `You are a creative slot game naming expert. Analyze this game screenshot or concept art image carefully.
+
+Based on what you see — the theme, visual style, colors, characters, mood, and art elements — generate 10 unique, compelling slot game names.
+
+Context: This is for a ${style}-style slot game. Average slot game name is ${avgWordCount} words.
+${features.length ? `Game mechanics: ${features.join(', ')}` : ''}
+${keywords ? `Additional keywords to consider: ${keywords}` : ''}
+
+Rules:
+1. Names should be 2-4 words long
+2. Names must capture the visual mood and theme you see in the image
+3. Match the "${style}" naming style
+4. Names should be original and marketable
+5. Include at least 2 names that reference specific visual elements you notice
+
+Return ONLY a JSON array of 10 name strings. Example: ["Name One", "Name Two"]`;
+
+    try {
+        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': CLAUDE_API_KEY,
+                'anthropic-version': '2023-06-01',
+            },
+            body: JSON.stringify({
+                model: HAIKU_MODEL,
+                max_tokens: 250,
+                messages: [
+                    {
+                        role: 'user',
+                        content: [
+                            {
+                                type: 'image',
+                                source: { type: 'base64', media_type: mediaType, data: imageB64 },
+                            },
+                            { type: 'text', text: prompt },
+                        ],
+                    },
+                ],
+            }),
+        });
+
+        if (!resp.ok) {
+            const err = await resp.text();
+            console.error('Claude Vision API error:', resp.status, err);
+            throw new Error('AI service error');
+        }
+
+        const data = await resp.json();
+        const text = data.content?.[0]?.text || '';
+        const names = validateNameResponse(text);
+
+        if (names.length === 0) {
+            return res
+                .status(502)
+                .json({ error: 'AI could not generate names from this image. Try a different image.' });
+        }
+
+        res.json({ names, source: 'claude-vision' });
+    } catch (e) {
+        console.error('Claude Vision request failed:', e.message);
+        res.status(502).json({ error: 'AI vision service unavailable' });
+    }
+});
 
 // =====================================================================
 // POST /api/ai-chat — AI Game Consultant chat

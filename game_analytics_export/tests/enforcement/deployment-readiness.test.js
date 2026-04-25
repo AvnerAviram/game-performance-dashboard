@@ -80,9 +80,9 @@ describe('Build pipeline completeness', () => {
         expect(build).toContain('games_processed.json');
     });
 
-    test('build script copies sw.js to dist', () => {
+    test('build script writes versioned sw.js to dist', () => {
         const build = packageJson.scripts?.build || '';
-        expect(build).toContain('cp sw.js dist/');
+        expect(build).toContain('dist/sw.js');
     });
 
     test('postinstall copies DuckDB WASM files', () => {

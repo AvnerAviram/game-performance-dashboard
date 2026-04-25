@@ -5,7 +5,7 @@
  */
 import { gameData } from '../lib/data.js';
 import { log } from '../lib/env.js';
-import { apiPost, apiFetch } from '../lib/api-client.js';
+import { apiPost, apiFetch, ApiError } from '../lib/api-client.js';
 import { escapeHtml, escapeAttr } from '../lib/sanitize.js';
 import { CANONICAL_FEATURES } from '../lib/features.js';
 import { parseFeatures } from '../lib/parse-features.js';
@@ -13,6 +13,24 @@ import { parseFeatures } from '../lib/parse-features.js';
 let namePatterns = null;
 let selectedFeatures = new Set();
 let selectedStyle = 'modern';
+
+function getUploadedImage() {
+    const el = document.getElementById('ng-image-upload');
+    if (!el || !el._imageB64) return null;
+    return { b64: el._imageB64, mediaType: el._mediaType };
+}
+
+function setUploadedImage(b64, mediaType) {
+    const el = document.getElementById('ng-image-upload');
+    if (el) {
+        el._imageB64 = b64 || null;
+        el._mediaType = mediaType || null;
+    }
+}
+
+function clearUploadedImage() {
+    setUploadedImage(null, null);
+}
 
 // Theme-associated naming vocabulary (extracted from real game data analysis)
 const THEME_VOCAB = {
@@ -635,6 +653,52 @@ async function generateWithClaude(theme, features, style, keywords, code) {
     return data.names || [];
 }
 
+function resizeImage(file, maxDim = 512) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+                let { width, height } = img;
+                if (width > maxDim || height > maxDim) {
+                    const ratio = Math.min(maxDim / width, maxDim / height);
+                    width = Math.round(width * ratio);
+                    height = Math.round(height * ratio);
+                }
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+                const b64 = dataUrl.split(',')[1];
+                resolve({ b64, mediaType: 'image/jpeg', width, height });
+            };
+            img.onerror = () => reject(new Error('Failed to load image'));
+            img.src = reader.result;
+        };
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+    });
+}
+
+async function generateWithVision(style, features, keywords, code) {
+    const imgData = getUploadedImage();
+    if (!imgData) throw new Error('No image uploaded');
+    const patterns = analyzeNames();
+    const data = await apiPost('/api/generate-names-vision', {
+        imageB64: imgData.b64,
+        mediaType: imgData.mediaType,
+        style,
+        features: [...features],
+        keywords,
+        code,
+        useAI: true,
+        totalGames: patterns.totalGames,
+        avgWordCount: Math.round(patterns.avgWordCount * 10) / 10,
+    });
+    return data.names || [];
+}
+
 function getThemePatternStats(theme) {
     const patterns = analyzeNames();
     const themeNames = patterns.namesByTheme[theme] || [];
@@ -723,6 +787,77 @@ export function setupNameGenerator() {
         featuresDiv.appendChild(btn);
     });
 
+    // Image upload
+    const dropZone = document.getElementById('ng-image-upload');
+    const fileInput = document.getElementById('ng-image-file');
+    const imgPreview = document.getElementById('ng-image-preview');
+    const imgPlaceholder = document.getElementById('ng-image-placeholder');
+
+    if (dropZone && fileInput) {
+        dropZone.addEventListener('click', e => {
+            if (e.target.closest('#ng-image-preview')) return;
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files?.[0]) processImageFile(fileInput.files[0]);
+        });
+
+        dropZone.addEventListener('dragover', e => {
+            e.preventDefault();
+            dropZone.classList.add('border-indigo-400', 'dark:border-indigo-500');
+        });
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-indigo-400', 'dark:border-indigo-500');
+        });
+        dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            dropZone.classList.remove('border-indigo-400', 'dark:border-indigo-500');
+            const file = e.dataTransfer?.files?.[0];
+            if (file) processImageFile(file);
+        });
+    }
+
+    async function processImageFile(file) {
+        const VALID_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!VALID_TYPES.includes(file.type)) {
+            alert('Please upload a JPEG, PNG, or WebP image.');
+            return;
+        }
+        try {
+            const { b64, mediaType } = await resizeImage(file);
+            setUploadedImage(b64, mediaType);
+            showImagePreview(b64);
+        } catch {
+            alert('Failed to process image. Try another file.');
+        }
+    }
+
+    function showImagePreview(b64) {
+        if (!imgPreview || !imgPlaceholder) return;
+        imgPlaceholder.classList.add('hidden');
+        imgPreview.classList.remove('hidden');
+        imgPreview.innerHTML = `
+            <div class="relative inline-block">
+                <img src="data:image/jpeg;base64,${b64}" class="max-h-24 rounded-lg mx-auto" alt="Uploaded game image" />
+                <button id="ng-image-remove" type="button" class="absolute -top-2 -right-2 w-5 h-5 bg-red-500 hover:bg-red-600 text-white rounded-full text-xs flex items-center justify-center shadow-sm transition-colors" title="Remove image">&times;</button>
+            </div>`;
+        document.getElementById('ng-image-remove')?.addEventListener('click', e => {
+            e.stopPropagation();
+            clearImage();
+        });
+    }
+
+    function clearImage() {
+        clearUploadedImage();
+        if (fileInput) fileInput.value = '';
+        if (imgPreview) {
+            imgPreview.classList.add('hidden');
+            imgPreview.innerHTML = '';
+        }
+        if (imgPlaceholder) imgPlaceholder.classList.remove('hidden');
+    }
+
     // Style buttons
     document.querySelectorAll('.ng-style-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -765,8 +900,27 @@ export function setupNameGenerator() {
         }
     });
 
-    // Generate button — always pattern-based (free)
+    // Generate button — pattern-based (free), but delegates to AI when image is uploaded
     generateBtn.addEventListener('click', async () => {
+        const imgData = getUploadedImage();
+        if (imgData) {
+            const code = document.getElementById('ng-ai-code')?.value?.trim();
+            if (code && aiBtn) {
+                aiBtn.click();
+                return;
+            }
+            const codeInput = document.getElementById('ng-ai-code');
+            if (codeInput) {
+                blinkField(codeInput);
+                const statusEl = document.getElementById('ng-ai-status');
+                if (statusEl) {
+                    statusEl.textContent = 'Enter AI code to generate names from your image';
+                    statusEl.className = 'text-xs text-amber-500 mt-1';
+                }
+            }
+            return;
+        }
+
         const theme = themeSelect.value;
         if (!theme) {
             blinkField(themeSelect);
@@ -788,7 +942,9 @@ export function setupNameGenerator() {
     if (aiBtn) {
         aiBtn.addEventListener('click', async () => {
             const theme = themeSelect.value;
-            if (!theme) {
+            const imgData = getUploadedImage();
+            const hasImage = !!imgData;
+            if (!theme && !hasImage) {
                 blinkField(themeSelect);
                 return;
             }
@@ -803,21 +959,37 @@ export function setupNameGenerator() {
             const resultsDiv = document.getElementById('ng-results');
             const statusEl = document.getElementById('ng-ai-status');
 
-            resultsDiv.innerHTML =
-                '<div class="flex items-center justify-center h-[200px] gap-3 text-gray-400"><div class="animate-spin w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full"></div>AI is generating names (2-stage refinement)...</div>';
+            const loadingLabel = hasImage
+                ? 'AI is analyzing your image...'
+                : 'AI is generating names (2-stage refinement)...';
+            resultsDiv.innerHTML = `<div class="flex items-center justify-center h-[200px] gap-3 text-gray-400"><div class="animate-spin w-5 h-5 border-2 border-indigo-500 border-t-transparent rounded-full"></div>${loadingLabel}</div>`;
             aiBtn.disabled = true;
 
             try {
-                const names = await generateWithClaude(theme, selectedFeatures, selectedStyle, keywords, code);
+                let names;
+                let source;
+                if (hasImage) {
+                    names = await generateWithVision(selectedStyle, selectedFeatures, keywords, code);
+                    source = 'vision';
+                } else {
+                    names = await generateWithClaude(theme, selectedFeatures, selectedStyle, keywords, code);
+                    source = 'ai';
+                }
                 if (names && names.length > 0) {
-                    renderResults(names, theme, true);
+                    renderResults(names, theme || 'Image', source);
                     if (statusEl) {
                         statusEl.textContent = '';
                         statusEl.className = '';
                     }
                 } else {
-                    const fallback = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
-                    renderResults(fallback, theme, false);
+                    const fallback = generatePatternNames(
+                        theme || 'Classic',
+                        selectedFeatures,
+                        selectedStyle,
+                        keywords,
+                        10
+                    );
+                    renderResults(fallback, theme || 'Classic', 'pattern');
                     if (statusEl) {
                         statusEl.textContent = 'AI unavailable — showing pattern results';
                         statusEl.className = 'text-xs text-amber-600 mt-1';
@@ -825,12 +997,28 @@ export function setupNameGenerator() {
                 }
             } catch (e) {
                 const msg = e.message || 'AI generation failed';
+                const isAuthError = e instanceof ApiError && (e.status === 403 || e.status === 429);
                 if (statusEl) {
                     statusEl.textContent = msg;
-                    statusEl.className = 'text-xs text-red-500 mt-1';
+                    statusEl.className = isAuthError
+                        ? 'text-sm font-medium text-red-500 mt-1'
+                        : 'text-xs text-red-500 mt-1';
                 }
-                const fallback = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
-                renderResults(fallback, theme, false);
+                if (isAuthError) {
+                    resultsDiv.innerHTML =
+                        '<div class="flex items-center justify-center h-[200px] text-red-400 text-sm">' +
+                        escapeHtml(msg) +
+                        '</div>';
+                } else {
+                    const fallback = generatePatternNames(
+                        theme || 'Classic',
+                        selectedFeatures,
+                        selectedStyle,
+                        keywords,
+                        10
+                    );
+                    renderResults(fallback, theme || 'Classic', 'pattern');
+                }
             } finally {
                 aiBtn.disabled = false;
             }
@@ -843,6 +1031,7 @@ export function setupNameGenerator() {
         resetBtn.addEventListener('click', () => {
             themeSelect.value = '';
             selectedFeatures.clear();
+            clearImage();
             document.querySelectorAll('#ng-features button').forEach(b => {
                 b.classList.remove(
                     'bg-indigo-100',
@@ -878,7 +1067,7 @@ export function setupNameGenerator() {
             const resultsDiv = document.getElementById('ng-results');
             if (resultsDiv)
                 resultsDiv.innerHTML =
-                    '<div class="flex items-center justify-center h-[200px] text-gray-400 dark:text-gray-500 text-sm">Select a theme and click "Generate Names" to get started</div>';
+                    '<div class="flex items-center justify-center h-[200px] text-gray-400 dark:text-gray-500 text-sm">Upload an image or select a theme to get started</div>';
             const patternsDiv = document.getElementById('ng-patterns');
             if (patternsDiv)
                 patternsDiv.innerHTML =
@@ -887,7 +1076,7 @@ export function setupNameGenerator() {
     }
 
     const label = document.getElementById('ng-mode-label');
-    if (label) label.textContent = 'Pattern-based generation (free) · Enter AI code for Claude-powered names';
+    if (label) label.textContent = 'Pattern-based (free) · AI code + image = Vision AI · AI code + theme = Claude AI';
 }
 
 function findSimilarGame(name) {
@@ -997,9 +1186,11 @@ function renderTMResults(container, data) {
     container.innerHTML = html;
 }
 
-function renderResults(names, theme, isAI) {
+function renderResults(names, theme, source) {
     const div = document.getElementById('ng-results');
     if (!div) return;
+
+    const isAI = source === 'ai' || source === 'vision' || source === true;
 
     const normalized = names.map(entry => {
         if (typeof entry === 'object' && entry.name) return entry;
@@ -1011,9 +1202,17 @@ function renderResults(names, theme, isAI) {
         return similar ? { name: entry, similarTo: similar } : { name: entry, similarTo: null };
     });
 
-    const badge = isAI
-        ? '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 font-semibold">AI Generated</span>'
-        : '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">Pattern Based</span>';
+    let badge;
+    if (source === 'vision') {
+        badge =
+            '<span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300 font-semibold">Vision AI</span>';
+    } else if (isAI) {
+        badge =
+            '<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 font-semibold">AI Generated</span>';
+    } else {
+        badge =
+            '<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 font-semibold">Pattern Based</span>';
+    }
 
     let html = `<div class="flex items-center gap-2 mb-4">${badge}<span class="text-xs text-gray-400">${normalized.length} names for "${escapeHtml(theme)}" theme</span><button id="ng-refresh" class="ml-auto text-[10px] font-medium px-2.5 py-1 rounded-full border border-indigo-200 dark:border-indigo-700 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors flex items-center gap-1" title="Generate new names with the same setup"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>Refresh</button></div>`;
     html += '<div class="space-y-2">';

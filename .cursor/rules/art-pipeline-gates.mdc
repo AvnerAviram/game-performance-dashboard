@@ -1,0 +1,80 @@
+---
+description: Art pipeline batch gates — enforces stop-fix-verify cycle between batches. NEVER skip these gates. Hardened — no bypass flags exist.
+alwaysApply: true
+---
+
+# Art Pipeline Batch Gates
+
+## The Golden Rule
+
+**NEVER start a new classification batch until the gate is OPEN.**
+
+There is **no `--force-gate` flag**. There is no bypass. The gate is enforced in code.
+
+## How the Gate Works (automated)
+
+### After every batch (>5 games):
+- `save_batch_to_pipeline()` auto-calls `close_batch_gate()`
+- Sets `gate_open: false` in `batch_gate.json`
+- **You cannot start a new batch until the gate reopens**
+
+### After `--regression-full`:
+- `run_expanded_regression()` auto-calls `update_gate_from_regression()`
+- If theme adjusted ≥97% AND overall adjusted ≥95% AND `fixes_applied: true` → gate OPENS
+- If theme <97% OR overall <95% OR fixes not applied → gate stays CLOSED
+
+### Gate file missing:
+- Treated as **CLOSED** (fail-safe)
+- Must create `batch_gate.json` with `gate_open: true` explicitly
+
+### Small batches (≤5 games):
+- Bypass the gate — allowed for re-verification of spot-check fixes only
+- Logged to stdout
+
+## Gate Protocol (after every spot-check)
+
+1. **RECEIVE** spot-check feedback from user
+2. **SAVE** verdicts to `user_reviews.json` immediately
+3. **ANALYZE** fixes — identify patterns (vocab gaps, false positives, prompt issues)
+4. **FIX** prompt/vocab/corrections for all systematic issues found
+5. **UPDATE** `batch_gate.json` → set `last_spot_check.fixes_applied: true`
+6. **RE-CLASSIFY** the affected spot-check games to verify fixes work (≤5 games, bypasses gate)
+7. **RUN** `--regression-full` — if theme ≥97% adjusted, gate auto-opens
+8. **Only then** proceed to next batch
+
+## Gate File: `art_pipeline/batch_gate.json`
+
+```json
+{
+  "gate_open": false,
+  "last_batch": {
+    "batch": 7,
+    "games_classified": 420,
+    "completed_at": "2026-04-23T..."
+  },
+  "last_spot_check": {
+    "batch": 7,
+    "accuracy_pct": 85.0,
+    "ok": 34,
+    "fix": 6,
+    "total": 40,
+    "fixes_applied": true,
+    "regression_post_fix": "98.0%"
+  },
+  "reason": "...",
+  "updated_at": "2026-04-23"
+}
+```
+
+## Accuracy Thresholds
+
+- **Spot-check ≥ 85%**: Gate auto-opens after fixes + regression pass ≥97%
+- **Spot-check 75-84%**: Gate stays CLOSED until fixes verified AND regression passes
+- **Spot-check < 75%**: Gate stays CLOSED — escalate to user before proceeding
+
+## What Agents CANNOT Do
+
+- There is no `--force-gate` flag
+- Deleting `batch_gate.json` does NOT open the gate (missing file = closed)
+- Setting `gate_open` without `fixes_applied: true` will not auto-open via regression
+- Running batches of 6+ games without an open gate will `sys.exit(1)`

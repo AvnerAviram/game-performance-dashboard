@@ -301,6 +301,472 @@
         "Snowflakes/Snow"
       ],
       "notes": "User: christmas trees, snowflakes"
+    },
+    "Star-Candy.html": {
+      "override_theme": "Candy/Sweet World",
+      "override_theme_secondary": "",
+      "must_have_elements": [
+        "Candy/Sweets/Lollipops"
+      ],
+      "notes": "Theme is Candy/Sweet World only, NOT Outer Space. Missing candy/lollipop/cake/frosting elements."
+    },
+    "magnificent-power-wolf-fire-spirit.html": {
+      "override_theme": "Inferno/Fire",
+      "notes": "Theme is purely fire/inferno, not Forest/Woodland. Fire dominates the visual."
+    },
+    "j-mania-maniac.html": {
+      "must_not_elements": [
+        "Rope Frame"
+      ],
+      "must_have_elements": [
+        "Caution Tape/Crime Scene Frame"
+      ],
+      "notes": "Frame is crime scene / caution tape, not rope."
+    },
+    "Fire-Blaze-Fire-Fighter.html": {
+      "override_theme": "Fire Station/Emergency",
+      "must_not_elements": [
+        "Speakers/DJ Equipment"
+      ],
+      "notes": "Fire station theme, not generic. Has firefighter gear and pipes, not speakers."
+    },
+    "golden-roar-boom.html": {
+      "must_not_elements": [
+        "Gold Coins/Treasure"
+      ],
+      "notes": "No coins visible. Character is Asian Lady specifically."
+    },
+    "turtle-paradise.html": {
+      "must_not_elements": [
+        "Rope Frame"
+      ],
+      "notes": "No rope frame. Stop suggesting Rope Frame for tropical/ocean themes."
+    },
+    "gold-gobblers.html": {
+      "must_not_elements": [
+        "Safe/Vault/Chest"
+      ],
+      "must_have_elements": [
+        "Mountains"
+      ],
+      "notes": "No chest visible, but mountains are in background."
+    },
+    "Indiana-Bones.html": {
+      "must_not_elements": [
+        "Safe/Vault/Chest",
+        "Torches"
+      ]
+    },
+    "4-Fantastic-Lobsters.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "5-Dragons.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Baccarat.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Buffalo-Chief.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Deuces-Wild.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jackpot-Hitz.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Golden-Toad.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Tree.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Mega-Money-Catch.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Roulette-Classic.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Lines-American-Eagle.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "bao-zhu-zhao-fu-red-festival.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "buffalo-and-friends.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-cleopatra.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-elephant.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-sevens.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "high-seas-jackpots.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "hot-rockin-super-7s.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "infinite-fun-fun-21-blackjack.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "majestic-fury-megaways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "mo-mummy-valley-of-riches.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "shrimp-on-the-barbie.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "star-hit-jackpots.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-charming-lady.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-golden-book-of-ra.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "timber-wolf-gold.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "timber-wolf-triple-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "triple-pop-fireworks-festival.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "white-tiger-palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "winfall-wishes.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "300-Shields-Extreme.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Aesir-Treasures.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Age-Of-The-Gods-Wonder-Warriors.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Agent-Jane-Blonde-Max-Volume.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Angels-Touch.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Ariana.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Arthur-Pendragon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Bankin-Bacon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Case-Closed.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cash-Cave.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Catch-Of-The-Day.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Chicago-Gold.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Coin-Quest.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Crystal-Mirror.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Dragon-Palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Flaming-Reels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Football-Champions-Cup.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Foxin-Wins-Football-Fever.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "From-Dusk-Till-Dawn.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Frozen-Inferno.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gem-Heat.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Genie-Nights.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gold-Megaways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Great-Blue.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Hot-Gems.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Iron-Bank.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jade-Emperor.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jingle-Bells-Power-Reels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jumpin-Jack-First-Strike.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jungle-Giants.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Keystone-Kops.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lion-Safari.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-88.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Muerto-En-Mictlan.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Pearl-River.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Pearls-Pearls-Pearls.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Primate-King.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Prosperity-Palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Respin-Rhino.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Rio-Fever.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Slingo-Piggy-Bank.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Stacked-Valentine-Hearts.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Star-Jewels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Starmania.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Super-Flip.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Temple-Quest-Spinfinity.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "The-Sand-Princess.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Thors-Lightning.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Voodoo-Temple.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wedding-Party.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wolf-Run.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "buffalo-gold-max-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "coin-trio-piggy-burst.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cyber-dragon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-santa-boarded-up.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-sevens-win-ways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-sizzling-hot.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-voodoo-magic.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "ultimate-pong-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "zeus-gold-blitz-fortune-tower.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gold-Cash.html": {
+      "override_elements": [
+        "Minimal/No Frame"
+      ]
+    },
+    "Mystical-Forest.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_not_elements": [
+        "Statues/Sculptures"
+      ]
+    },
+    "Fu-Bao-Chang.html": {
+      "must_not_elements": [
+        "Asian Architecture"
+      ]
+    },
+    "vip.html": {
+      "override_theme_secondary": "Luxury/VIP"
+    },
+    "queens-of-ra-coin-collect.html": {
+      "must_not_elements": [
+        "Statues/Sculptures"
+      ]
+    },
+    "Aladdins-Legacy.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "American-Roulette.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cabaret-Royale.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cherries-Gone-Rich.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Emerald-Isle.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jollys-Gifts.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Link-Beats.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Mystery-Fox-Christmas-Party.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Olympus-4.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Sweet-Alchemy.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "The-Great-Albini.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Top-Strike-Championship.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Dodo.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Water.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wolf-Howl.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cash-express-luxury-line-pelican-pete.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cash-express-luxury-line-timber-wolf.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-buffalo.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "dubble-bubble-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "gold-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "gridiron-goal.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "race-track.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "the-jungle-house-win-ways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "wealthy-pig-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Oink-Oink-Oink.html": {
+      "override_characters": [
+        "Piggy Bank"
+      ],
+      "override_elements": [
+        "Safe/Vault"
+      ],
+      "note": "Character is a piggy bank; coins are pick-bonus symbols not elements"
+    },
+    "Tokens-Of-Fortune.html": {
+      "must_not_elements": [
+        "Asian Lanterns"
+      ],
+      "note": "Has Asian decorations but no lanterns specifically"
+    },
+    "Jade-Tiger.html": {
+      "override_elements": [
+        "Wallpaper/Decorative Pattern",
+        "Asian Architecture"
+      ],
+      "note": "Just an Asian pattern/wallpaper, not distinct architectural/lantern elements"
+    },
+    "Kronos.html": {
+      "must_have_elements": [
+        "Sky/Clouds"
+      ],
+      "note": "Sky and clouds visible in background"
+    },
+    "crystal-hall.html": {
+      "must_not_elements": [
+        "Casino Interior",
+        "Disco Ball"
+      ],
+      "note": "No Casino Interior setting nor actual Disco Ball"
+    },
+    "Chaos-Crew-2.html": {
+      "override_theme": "Crime/Heist",
+      "override_theme_secondary": "Cartoon/Animated World",
+      "must_have_elements": [
+        "Graffiti"
+      ],
+      "note": "Cartoony crime theme with graffiti on walls"
     }
   }
 }

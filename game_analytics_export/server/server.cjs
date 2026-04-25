@@ -59,7 +59,11 @@ app.use(
 );
 
 // --- Body parsing ---
-app.use(express.json({ limit: '100kb' }));
+// Vision endpoint uses its own route-specific 2MB parser (in ai.cjs)
+app.use((req, res, next) => {
+    if (req.path === '/api/generate-names-vision') return next();
+    express.json({ limit: '100kb' })(req, res, next);
+});
 app.use(express.urlencoded({ extended: false, limit: '100kb' }));
 
 // --- Session ---
@@ -142,6 +146,26 @@ function isPublicPath(url) {
     return PUBLIC_PATHS.some(p => pathname === p || pathname.startsWith(p));
 }
 
+// In development, serve a no-op SW that tears down caches from previous sessions.
+// Active when NOT production — covers NODE_ENV unset (local dev), "development", "test".
+// Production Windows servers have NODE_ENV=production via web.config and deploy/install.ps1.
+if (!IS_PROD) {
+    app.get('/sw.js', (req, res) => {
+        res.set('Content-Type', 'application/javascript');
+        res.set('Cache-Control', 'no-store');
+        res.send(`
+self.addEventListener('install', e => { self.skipWaiting(); });
+self.addEventListener('activate', e => {
+    e.waitUntil(
+        caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k))))
+              .then(() => self.clients.claim())
+              .then(() => self.registration.unregister())
+    );
+});
+`);
+    });
+}
+
 app.use((req, res, next) => {
     if (req.path.startsWith('/api/')) return next();
     if (isPublicPath(req.path)) return next();
@@ -179,8 +203,9 @@ app.get('/{*splat}', (req, res) => {
 
 // --- Error handler ---
 app.use((err, req, res, _next) => {
+    const status = err.status || err.statusCode || 500;
     console.error(`[ERROR] ${req.method} ${req.path}:`, err.message);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(status).json({ error: err.expose ? err.message : 'Internal server error' });
 });
 
 // --- Start server ---
@@ -192,6 +217,9 @@ const server = app.listen(PORT, () => {
     console.log(`  \x1b[2m➜\x1b[0m  Local:   \x1b[36mhttp://localhost:${PORT}/\x1b[0m`);
     console.log(`  \x1b[2m➜\x1b[0m  Users:   ${users.length} loaded`);
     console.log(`  \x1b[2m➜\x1b[0m  Serving: ${DIST_DIR}`);
+    console.log(
+        `  \x1b[2m➜\x1b[0m  Mode:    ${IS_PROD ? 'production' : `development (NODE_ENV=${process.env.NODE_ENV || 'unset'})${' — SW disabled'}`}`
+    );
     if (users.length === 0) {
         console.log('  \x1b[33m⚠  No users configured! Run: node server/manage-users.cjs add <username>\x1b[0m');
     }

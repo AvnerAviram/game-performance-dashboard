@@ -1,0 +1,2105 @@
+{
+  "timestamp": "2026-04-20T19:46:51.302898",
+  "games_tested": 20,
+  "game_files": [
+    "10001-Nights.html",
+    "10x-cash.html",
+    "15-Armadillos.html",
+    "2x-spin-cycle.html",
+    "2x3x-rush.html",
+    "3-Clown-Monty.html",
+    "3-Lucky-Leprechauns.html",
+    "3-crazy-tikis.html",
+    "3x-ultra-diamond.html",
+    "5-flaming-dollars.html",
+    "88-Fortunes-Jackpot-Festival.html",
+    "88-Fortunes.html",
+    "888-Panda.html",
+    "8x-Crystal-Bells.html",
+    "9-Coins.html",
+    "Acorn-Pixie.html",
+    "Action-Jack.html",
+    "Age-Of-The-Gods-Maze-Keeper.html",
+    "Agent-Blitz-Mission-Moneymaker.html",
+    "Aliyas-Wishes.html"
+  ],
+  "tests": {
+    "T1_baseline": {
+      "config": {
+        "cache": false,
+        "masked": true,
+        "api": "sync",
+        "cache_ttl": "5m"
+      },
+      "total_input_tokens": 184445,
+      "total_output_tokens": 3961,
+      "total_cache_creation_tokens": 0,
+      "total_cache_read_tokens": 0,
+      "wall_clock_seconds": 110.1,
+      "estimated_cost_usd": 0.6128,
+      "accuracy": {
+        "theme": 85.0,
+        "characters": 90.0,
+        "elements": 75.0,
+        "colors": 70.0
+      },
+      "games_scored": 20,
+      "per_game": [
+        {
+          "file": "10001-Nights.html",
+          "usage": {
+            "input_tokens": 8753,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Arab/Middle Eastern Architecture",
+            "Lanterns",
+            "Curtains/Drapes"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "10x-cash.html",
+          "usage": {
+            "input_tokens": 10234,
+            "output_tokens": 180,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Gray"
+          ]
+        },
+        {
+          "file": "15-Armadillos.html",
+          "usage": {
+            "input_tokens": 9184,
+            "output_tokens": 197,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Wild West/Frontier",
+          "theme_secondary": "Prairie/Plains/Grassland",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Coin Stacks"
+          ],
+          "colors": [
+            "Light Blue",
+            "Gold",
+            "Brown"
+          ]
+        },
+        {
+          "file": "2x-spin-cycle.html",
+          "usage": {
+            "input_tokens": 9207,
+            "output_tokens": 177,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stars/Planets"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "2x3x-rush.html",
+          "usage": {
+            "input_tokens": 9134,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Neon Glow",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Clown-Monty.html",
+          "usage": {
+            "input_tokens": 8819,
+            "output_tokens": 211,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Circus/Carnival",
+          "theme_secondary": "Haunted Manor/Graveyard",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stage Lights",
+            "Curtains/Drapes",
+            "Wood Frame",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Lucky-Leprechauns.html",
+          "usage": {
+            "input_tokens": 7695,
+            "output_tokens": 208,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Irish/Celtic Highlands",
+          "theme_secondary": "Fantasy/Fairy Tale",
+          "characters": [
+            "Leprechaun"
+          ],
+          "elements": [
+            "Trees",
+            "Forest",
+            "Gold Coins/Treasure",
+            "Colored Frame",
+            "Fields/Grassland"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "3-crazy-tikis.html",
+          "usage": {
+            "input_tokens": 10282,
+            "output_tokens": 224,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Tropical Island/Beach",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Palm Trees",
+            "Beach/Shoreline",
+            "Torches",
+            "Wood Frame",
+            "Water Effects",
+            "Masks/Tribal Art",
+            "Vines/Ivy/Plants"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Teal"
+          ]
+        },
+        {
+          "file": "3x-ultra-diamond.html",
+          "usage": {
+            "input_tokens": 10323,
+            "output_tokens": 181,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stars/Planets",
+            "Neon/LED Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "5-flaming-dollars.html",
+          "usage": {
+            "input_tokens": 10573,
+            "output_tokens": 185,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "88-Fortunes-Jackpot-Festival.html",
+          "usage": {
+            "input_tokens": 10421,
+            "output_tokens": 199,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Asian Lanterns/Decorations",
+            "Colored Frame",
+            "Ancient Stone Carvings",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "88-Fortunes.html",
+          "usage": {
+            "input_tokens": 10114,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Boy",
+            "Girl"
+          ],
+          "elements": [
+            "Asian Lanterns/Decorations",
+            "Gold Coins/Treasure",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "888-Panda.html",
+          "usage": {
+            "input_tokens": 8999,
+            "output_tokens": 197,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Panda"
+          ],
+          "elements": [
+            "Mountains",
+            "Trees",
+            "Bamboo/Tropical Plants",
+            "Minimal/No Frame",
+            "Asian Lanterns/Decorations",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Green",
+            "Black",
+            "Brown"
+          ]
+        },
+        {
+          "file": "8x-Crystal-Bells.html",
+          "usage": {
+            "input_tokens": 8797,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Crystal/Glass Frame",
+            "Lightning/Electricity",
+            "Fog/Mist/Smoke"
+          ],
+          "colors": [
+            "Blue",
+            "Gold",
+            "Purple"
+          ]
+        },
+        {
+          "file": "9-Coins.html",
+          "usage": {
+            "input_tokens": 8410,
+            "output_tokens": 193,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Neon Glow",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Gold",
+            "Purple",
+            "Red"
+          ]
+        },
+        {
+          "file": "Acorn-Pixie.html",
+          "usage": {
+            "input_tokens": 9191,
+            "output_tokens": 234,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Fantasy/Fairy Tale",
+          "theme_secondary": "Forest/Woodland",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Forest",
+            "Trees",
+            "Wood Frame",
+            "Magic Energy/Spell Effects"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Brown"
+          ]
+        },
+        {
+          "file": "Action-Jack.html",
+          "usage": {
+            "input_tokens": 8437,
+            "output_tokens": 199,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Jungle/Rainforest",
+          "theme_secondary": "Aztec/Mayan",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Bamboo/Tropical Plants",
+            "Stone Frame",
+            "Vines/Ivy/Plants",
+            "Ancient Stone Carvings",
+            "Statues/Sculptures"
+          ],
+          "colors": [
+            "Green",
+            "Blue",
+            "Orange"
+          ]
+        },
+        {
+          "file": "Age-Of-The-Gods-Maze-Keeper.html",
+          "usage": {
+            "input_tokens": 8795,
+            "output_tokens": 187,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Ancient Greece/Rome",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Mountains",
+            "Fire/Flames",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Orange"
+          ]
+        },
+        {
+          "file": "Agent-Blitz-Mission-Moneymaker.html",
+          "usage": {
+            "input_tokens": 7743,
+            "output_tokens": 198,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Crime/Heist",
+          "theme_secondary": "Casino Floor",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Casino Interior",
+            "Neon/LED Frame",
+            "Speakers/DJ Equipment",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Black",
+            "Gold",
+            "Silver"
+          ]
+        },
+        {
+          "file": "Aliyas-Wishes.html",
+          "usage": {
+            "input_tokens": 9334,
+            "output_tokens": 213,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stone Frame",
+            "Columns/Pillars",
+            "Arab/Middle Eastern Architecture",
+            "Vines/Ivy/Plants",
+            "Candles",
+            "Curtains/Drapes",
+            "Lanterns"
+          ],
+          "colors": [
+            "Orange",
+            "Gold",
+            "Blue"
+          ]
+        }
+      ]
+    },
+    "T2_cached": {
+      "config": {
+        "cache": true,
+        "masked": true,
+        "api": "sync",
+        "cache_ttl": "5m"
+      },
+      "total_input_tokens": 50305,
+      "total_output_tokens": 4165,
+      "total_cache_creation_tokens": 6707,
+      "total_cache_read_tokens": 127433,
+      "wall_clock_seconds": 105.2,
+      "estimated_cost_usd": 0.2768,
+      "accuracy": {
+        "theme": 85.0,
+        "characters": 90.0,
+        "elements": 75.0,
+        "colors": 70.0
+      },
+      "games_scored": 20,
+      "per_game": [
+        {
+          "file": "10001-Nights.html",
+          "usage": {
+            "input_tokens": 2046,
+            "output_tokens": 205,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Lanterns",
+            "Columns/Pillars",
+            "Curtains/Drapes",
+            "Colored Frame",
+            "Arab/Middle Eastern Architecture"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "10x-cash.html",
+          "usage": {
+            "input_tokens": 3527,
+            "output_tokens": 180,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Silver"
+          ]
+        },
+        {
+          "file": "15-Armadillos.html",
+          "usage": {
+            "input_tokens": 2477,
+            "output_tokens": 186,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Prairie/Plains/Grassland",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fields/Grassland",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Brown",
+            "Gold",
+            "Light Blue"
+          ]
+        },
+        {
+          "file": "2x-spin-cycle.html",
+          "usage": {
+            "input_tokens": 2500,
+            "output_tokens": 177,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stars/Planets"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "2x3x-rush.html",
+          "usage": {
+            "input_tokens": 2427,
+            "output_tokens": 196,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Neon Glow",
+            "Lightning/Electricity",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Clown-Monty.html",
+          "usage": {
+            "input_tokens": 2112,
+            "output_tokens": 208,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Circus/Carnival",
+          "theme_secondary": "Haunted Manor/Graveyard",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Stage Lights",
+            "Curtains/Drapes",
+            "Banners/Flags"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Lucky-Leprechauns.html",
+          "usage": {
+            "input_tokens": 988,
+            "output_tokens": 449,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Irish/Celtic Highlands",
+          "theme_secondary": "Fantasy/Fairy Tale",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Forest",
+            "Gold Coins/Treasure",
+            "Minimal/No Frame",
+            "Fields/Grassland"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "3-crazy-tikis.html",
+          "usage": {
+            "input_tokens": 3575,
+            "output_tokens": 197,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Tropical Island/Beach",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Palm Trees",
+            "Beach/Shoreline",
+            "Wood Frame",
+            "Torches",
+            "Masks/Tribal Art",
+            "Water Effects"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3x-ultra-diamond.html",
+          "usage": {
+            "input_tokens": 3616,
+            "output_tokens": 192,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stars/Planets",
+            "Neon Glow",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Black"
+          ]
+        },
+        {
+          "file": "5-flaming-dollars.html",
+          "usage": {
+            "input_tokens": 3866,
+            "output_tokens": 193,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Stars/Planets",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "88-Fortunes-Jackpot-Festival.html",
+          "usage": {
+            "input_tokens": 3714,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Asian Lanterns/Decorations",
+            "Gold Coins/Treasure",
+            "Colored Frame",
+            "Asian Architecture",
+            "Bamboo/Tropical Plants"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "88-Fortunes.html",
+          "usage": {
+            "input_tokens": 3407,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Boy",
+            "Girl"
+          ],
+          "elements": [
+            "Asian Lanterns/Decorations",
+            "Gold Coins/Treasure",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "888-Panda.html",
+          "usage": {
+            "input_tokens": 2292,
+            "output_tokens": 200,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Panda"
+          ],
+          "elements": [
+            "Mountains",
+            "Trees",
+            "Bamboo/Tropical Plants",
+            "Forest",
+            "Minimal/No Frame",
+            "Asian Lanterns/Decorations",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Green",
+            "Purple",
+            "Pink"
+          ]
+        },
+        {
+          "file": "8x-Crystal-Bells.html",
+          "usage": {
+            "input_tokens": 2090,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Crystal/Glass Frame",
+            "Lightning/Electricity",
+            "Fog/Mist/Smoke"
+          ],
+          "colors": [
+            "Blue",
+            "Gold",
+            "White"
+          ]
+        },
+        {
+          "file": "9-Coins.html",
+          "usage": {
+            "input_tokens": 1703,
+            "output_tokens": 193,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Neon Glow",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Gold",
+            "Purple",
+            "Red"
+          ]
+        },
+        {
+          "file": "Acorn-Pixie.html",
+          "usage": {
+            "input_tokens": 2484,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Fantasy/Fairy Tale",
+          "theme_secondary": "Forest/Woodland",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Forest",
+            "Vines/Ivy/Plants",
+            "Magic Energy/Spell Effects"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Brown"
+          ]
+        },
+        {
+          "file": "Action-Jack.html",
+          "usage": {
+            "input_tokens": 1730,
+            "output_tokens": 201,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Aztec/Mayan",
+          "theme_secondary": "Jungle/Rainforest",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Palm Trees",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Blue",
+            "Green",
+            "Orange"
+          ]
+        },
+        {
+          "file": "Age-Of-The-Gods-Maze-Keeper.html",
+          "usage": {
+            "input_tokens": 2088,
+            "output_tokens": 183,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Ancient Greece/Rome",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Mountains",
+            "Neon/LED Frame",
+            "Fire/Flames"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Orange"
+          ]
+        },
+        {
+          "file": "Agent-Blitz-Mission-Moneymaker.html",
+          "usage": {
+            "input_tokens": 1036,
+            "output_tokens": 206,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Crime/Heist",
+          "theme_secondary": "Luxury/VIP",
+          "characters": [
+            "Agent Blitz"
+          ],
+          "elements": [
+            "Casino Interior",
+            "Neon/LED Frame",
+            "Gold Coins/Treasure",
+            "Speakers/DJ Equipment"
+          ],
+          "colors": [
+            "Black",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "Aliyas-Wishes.html",
+          "usage": {
+            "input_tokens": 2627,
+            "output_tokens": 208,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stone Frame",
+            "Columns/Pillars",
+            "Arab/Middle Eastern Architecture",
+            "Vines/Ivy/Plants",
+            "Curtains/Drapes",
+            "Lanterns"
+          ],
+          "colors": [
+            "Orange",
+            "Gold",
+            "Blue"
+          ]
+        }
+      ]
+    },
+    "T3_no_masked": {
+      "config": {
+        "cache": true,
+        "masked": false,
+        "api": "sync",
+        "cache_ttl": "5m"
+      },
+      "total_input_tokens": 31018,
+      "total_output_tokens": 3884,
+      "total_cache_creation_tokens": 0,
+      "total_cache_read_tokens": 134140,
+      "wall_clock_seconds": 88.3,
+      "estimated_cost_usd": 0.1916,
+      "accuracy": {
+        "theme": 85.0,
+        "characters": 90.0,
+        "elements": 75.0,
+        "colors": 70.0
+      },
+      "games_scored": 20,
+      "per_game": [
+        {
+          "file": "10001-Nights.html",
+          "usage": {
+            "input_tokens": 1479,
+            "output_tokens": 199,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Lanterns",
+            "Columns/Pillars",
+            "Curtains/Drapes",
+            "Arab/Middle Eastern Architecture"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "10x-cash.html",
+          "usage": {
+            "input_tokens": 1962,
+            "output_tokens": 180,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Silver"
+          ]
+        },
+        {
+          "file": "15-Armadillos.html",
+          "usage": {
+            "input_tokens": 1448,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Prairie/Plains/Grassland",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fields/Grassland",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Brown",
+            "Gold",
+            "Green"
+          ]
+        },
+        {
+          "file": "2x-spin-cycle.html",
+          "usage": {
+            "input_tokens": 1435,
+            "output_tokens": 188,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon Glow",
+            "Stars/Planets",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "2x3x-rush.html",
+          "usage": {
+            "input_tokens": 1427,
+            "output_tokens": 189,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Lightning/Electricity",
+            "Neon Glow"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "3-Clown-Monty.html",
+          "usage": {
+            "input_tokens": 1545,
+            "output_tokens": 205,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Circus/Carnival",
+          "theme_secondary": "Haunted Manor/Graveyard",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Stage Lights",
+            "Curtains/Drapes",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Lucky-Leprechauns.html",
+          "usage": {
+            "input_tokens": 988,
+            "output_tokens": 208,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Irish/Celtic Highlands",
+          "theme_secondary": "Fantasy/Fairy Tale",
+          "characters": [
+            "Leprechaun"
+          ],
+          "elements": [
+            "Trees",
+            "Forest",
+            "Gold Coins/Treasure",
+            "Colored Frame",
+            "Fields/Grassland"
+          ],
+          "colors": [
+            "Green",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-crazy-tikis.html",
+          "usage": {
+            "input_tokens": 1981,
+            "output_tokens": 199,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Tropical Island/Beach",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Palm Trees",
+            "Beach/Shoreline",
+            "Bamboo/Tropical Plants",
+            "Wood Frame",
+            "Stars/Planets"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3x-ultra-diamond.html",
+          "usage": {
+            "input_tokens": 2022,
+            "output_tokens": 188,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon Glow",
+            "Stars/Planets",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "5-flaming-dollars.html",
+          "usage": {
+            "input_tokens": 2243,
+            "output_tokens": 185,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Gold Coins/Treasure"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "88-Fortunes-Jackpot-Festival.html",
+          "usage": {
+            "input_tokens": 2120,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Asian Lanterns/Decorations",
+            "Gold Coins/Treasure",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "88-Fortunes.html",
+          "usage": {
+            "input_tokens": 2189,
+            "output_tokens": 204,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Boy",
+            "Girl"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Asian Lanterns/Decorations",
+            "Colored Frame",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "888-Panda.html",
+          "usage": {
+            "input_tokens": 1332,
+            "output_tokens": 194,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Panda"
+          ],
+          "elements": [
+            "Trees",
+            "Mountains",
+            "Bamboo/Tropical Plants",
+            "Asian Lanterns/Decorations",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Green",
+            "Gray",
+            "White"
+          ]
+        },
+        {
+          "file": "8x-Crystal-Bells.html",
+          "usage": {
+            "input_tokens": 1235,
+            "output_tokens": 187,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Lightning/Electricity",
+            "Crystal/Glass Frame",
+            "Neon Glow"
+          ],
+          "colors": [
+            "Blue",
+            "Gold",
+            "White"
+          ]
+        },
+        {
+          "file": "9-Coins.html",
+          "usage": {
+            "input_tokens": 1136,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Fire/Flames",
+            "Neon/LED Frame",
+            "Stars/Planets"
+          ],
+          "colors": [
+            "Gold",
+            "Red",
+            "Purple"
+          ]
+        },
+        {
+          "file": "Acorn-Pixie.html",
+          "usage": {
+            "input_tokens": 1391,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Fantasy/Fairy Tale",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Forest",
+            "Trees"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Brown"
+          ]
+        },
+        {
+          "file": "Action-Jack.html",
+          "usage": {
+            "input_tokens": 1033,
+            "output_tokens": 204,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Aztec/Mayan",
+          "theme_secondary": "Jungle/Rainforest",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Palm Trees",
+            "Stone Frame",
+            "Vines/Ivy/Plants"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Blue"
+          ]
+        },
+        {
+          "file": "Age-Of-The-Gods-Maze-Keeper.html",
+          "usage": {
+            "input_tokens": 1521,
+            "output_tokens": 184,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Ancient Greece/Rome",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Mountains",
+            "Neon/LED Frame",
+            "Lightning/Electricity"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "Agent-Blitz-Mission-Moneymaker.html",
+          "usage": {
+            "input_tokens": 1036,
+            "output_tokens": 201,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Crime/Heist",
+          "theme_secondary": "Luxury/VIP",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Casino Interior",
+            "Minimal/No Frame",
+            "Safe/Vault/Chest",
+            "Speakers/DJ Equipment"
+          ],
+          "colors": [
+            "Black",
+            "Gold",
+            "Silver"
+          ]
+        },
+        {
+          "file": "Aliyas-Wishes.html",
+          "usage": {
+            "input_tokens": 1495,
+            "output_tokens": 204,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Arab/Middle Eastern Architecture",
+            "Stone Frame",
+            "Columns/Pillars",
+            "Palm Trees",
+            "Vines/Ivy/Plants",
+            "Lanterns"
+          ],
+          "colors": [
+            "Orange",
+            "Gold",
+            "Brown"
+          ]
+        }
+      ]
+    },
+    "T4_batch_cached": {
+      "config": {
+        "cache": true,
+        "masked": true,
+        "api": "batch",
+        "cache_ttl": "1h"
+      },
+      "total_input_tokens": 50305,
+      "total_output_tokens": 3885,
+      "total_cache_creation_tokens": 87191,
+      "total_cache_read_tokens": 46949,
+      "wall_clock_seconds": 197.7,
+      "estimated_cost_usd": 0.3732,
+      "accuracy": {
+        "theme": 85.0,
+        "characters": 90.0,
+        "elements": 75.0,
+        "colors": 70.0
+      },
+      "games_scored": 20,
+      "per_game": [
+        {
+          "file": "10001-Nights.html",
+          "usage": {
+            "input_tokens": 2046,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Arab/Middle Eastern Architecture",
+            "Lanterns",
+            "Curtains/Drapes"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "10x-cash.html",
+          "usage": {
+            "input_tokens": 3527,
+            "output_tokens": 180,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Colored Frame"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "White"
+          ]
+        },
+        {
+          "file": "15-Armadillos.html",
+          "usage": {
+            "input_tokens": 2477,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Wild West/Frontier",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Metal Frame",
+            "Fields/Grassland"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Light Blue"
+          ]
+        },
+        {
+          "file": "2x-spin-cycle.html",
+          "usage": {
+            "input_tokens": 2500,
+            "output_tokens": 181,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Stars/Planets"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "2x3x-rush.html",
+          "usage": {
+            "input_tokens": 2427,
+            "output_tokens": 183,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Neon/LED Frame",
+            "Neon Glow"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-Clown-Monty.html",
+          "usage": {
+            "input_tokens": 2112,
+            "output_tokens": 225,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Circus/Carnival",
+          "theme_secondary": "Haunted Manor/Graveyard",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Curtains/Drapes",
+            "Stage Lights",
+            "Wood Frame",
+            "Banners/Flags",
+            "Fog/Mist/Smoke"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Brown"
+          ]
+        },
+        {
+          "file": "3-Lucky-Leprechauns.html",
+          "usage": {
+            "input_tokens": 988,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Irish/Celtic Highlands",
+          "theme_secondary": "Fantasy/Fairy Tale",
+          "characters": [
+            "Leprechaun"
+          ],
+          "elements": [
+            "Trees",
+            "Gold Coins/Treasure",
+            "Colored Frame",
+            "Forest",
+            "Fields/Grassland"
+          ],
+          "colors": [
+            "Green",
+            "Gold"
+          ]
+        },
+        {
+          "file": "3-crazy-tikis.html",
+          "usage": {
+            "input_tokens": 3575,
+            "output_tokens": 210,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Tropical Island/Beach",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Palm Trees",
+            "Beach/Shoreline",
+            "Wood Frame",
+            "Torches",
+            "Vines/Ivy/Plants",
+            "Bamboo/Tropical Plants"
+          ],
+          "colors": [
+            "Purple",
+            "Blue",
+            "Teal"
+          ]
+        },
+        {
+          "file": "3x-ultra-diamond.html",
+          "usage": {
+            "input_tokens": 3616,
+            "output_tokens": 180,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Stars/Planets",
+            "Minimal/No Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Silver"
+          ]
+        },
+        {
+          "file": "5-flaming-dollars.html",
+          "usage": {
+            "input_tokens": 3866,
+            "output_tokens": 184,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Coin Stacks"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Purple"
+          ]
+        },
+        {
+          "file": "88-Fortunes-Jackpot-Festival.html",
+          "usage": {
+            "input_tokens": 3714,
+            "output_tokens": 190,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Asian Lanterns/Decorations",
+            "Ancient Stone Carvings",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "88-Fortunes.html",
+          "usage": {
+            "input_tokens": 3407,
+            "output_tokens": 204,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Boy",
+            "Girl"
+          ],
+          "elements": [
+            "Gold Coins/Treasure",
+            "Asian Lanterns/Decorations",
+            "Colored Frame",
+            "Bamboo/Tropical Plants",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Red",
+            "Gold",
+            "Orange"
+          ]
+        },
+        {
+          "file": "888-Panda.html",
+          "usage": {
+            "input_tokens": 2292,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Asian Temple/Garden",
+          "theme_secondary": null,
+          "characters": [
+            "Panda"
+          ],
+          "elements": [
+            "Mountains",
+            "Trees",
+            "Bamboo/Tropical Plants",
+            "Colored Frame",
+            "Asian Lanterns/Decorations",
+            "Asian Architecture"
+          ],
+          "colors": [
+            "Green",
+            "Purple",
+            "Brown"
+          ]
+        },
+        {
+          "file": "8x-Crystal-Bells.html",
+          "usage": {
+            "input_tokens": 2090,
+            "output_tokens": 179,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Crystal/Glass Frame",
+            "Lightning/Electricity"
+          ],
+          "colors": [
+            "Blue",
+            "Gold",
+            "Purple"
+          ]
+        },
+        {
+          "file": "9-Coins.html",
+          "usage": {
+            "input_tokens": 1703,
+            "output_tokens": 185,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 6707
+          },
+          "theme": "Classic Slots",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Fire/Flames",
+            "Neon Glow"
+          ],
+          "colors": [
+            "Purple",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "Acorn-Pixie.html",
+          "usage": {
+            "input_tokens": 2484,
+            "output_tokens": 203,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Fantasy/Fairy Tale",
+          "theme_secondary": "Forest/Woodland",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Forest",
+            "Trees",
+            "Vines/Ivy/Plants",
+            "Magic Energy/Spell Effects"
+          ],
+          "colors": [
+            "Green",
+            "Gold",
+            "Brown"
+          ]
+        },
+        {
+          "file": "Action-Jack.html",
+          "usage": {
+            "input_tokens": 1730,
+            "output_tokens": 195,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Jungle/Rainforest",
+          "theme_secondary": "Aztec/Mayan",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Trees",
+            "Palm Trees",
+            "Stone Frame",
+            "Vines/Ivy/Plants",
+            "Ancient Stone Carvings",
+            "Statues/Sculptures"
+          ],
+          "colors": [
+            "Green",
+            "Blue",
+            "Brown"
+          ]
+        },
+        {
+          "file": "Age-Of-The-Gods-Maze-Keeper.html",
+          "usage": {
+            "input_tokens": 2088,
+            "output_tokens": 188,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Ancient Greece/Rome",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Mountains",
+            "Fire/Flames",
+            "Neon/LED Frame"
+          ],
+          "colors": [
+            "Purple",
+            "Red",
+            "Orange"
+          ]
+        },
+        {
+          "file": "Agent-Blitz-Mission-Moneymaker.html",
+          "usage": {
+            "input_tokens": 1036,
+            "output_tokens": 205,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Crime/Heist",
+          "theme_secondary": "Casino Floor",
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Casino Interior",
+            "Neon/LED Frame",
+            "Speakers/DJ Equipment",
+            "Chandeliers",
+            "Safe/Vault/Chest"
+          ],
+          "colors": [
+            "Black",
+            "Gold",
+            "Red"
+          ]
+        },
+        {
+          "file": "Aliyas-Wishes.html",
+          "usage": {
+            "input_tokens": 2627,
+            "output_tokens": 210,
+            "cache_creation_input_tokens": 6707,
+            "cache_read_input_tokens": 0
+          },
+          "theme": "Arabian Palace/Bazaar",
+          "theme_secondary": null,
+          "characters": [
+            "No Characters (symbol-only game)"
+          ],
+          "elements": [
+            "Arab/Middle Eastern Architecture",
+            "Stone Frame",
+            "Columns/Pillars",
+            "Banners/Flags",
+            "Palm Trees",
+            "Lanterns"
+          ],
+          "colors": [
+            "Orange",
+            "Blue",
+            "Gold"
+          ]
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "caching_savings_pct": 54.8
+  }
+}

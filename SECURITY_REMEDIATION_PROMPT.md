@@ -183,9 +183,9 @@ WITHOUT THIS, ALL EXISTING POST TESTS GET 403 AND THE ENTIRE SUITE FAILS.
 
 **File 1:** `tests/integration/server-security.test.js`
 
-The `httpReq()` function at line 24. Currently builds headers as `{ ...headers }`. For non-GET methods that send a payload, it adds `Content-Type` and `Content-Length`. You must also add `'X-Requested-With': 'XMLHttpRequest'` when the method is not GET/HEAD/OPTIONS.
+TWO helper functions need updating in this file:
 
-Change the function so that for methods other than GET, the headers include `'X-Requested-With': 'XMLHttpRequest'`. The simplest approach: after line 32 (`headers: { ...headers },`), add logic to include the CSRF header for non-GET methods. For example, change line 32 from:
+**`httpReq()` (line 24):** Currently builds headers as `{ ...headers }`. Change line 32 from:
 ```js
         headers: { ...headers },
 ```
@@ -196,6 +196,20 @@ to:
             ...headers,
         },
 ```
+
+**`httpRaw()` (line 60):** Also makes POST requests (2 calls: malformed JSON body test and empty body test). Same fix needed. Change line 67 from:
+```js
+        headers: { ...headers },
+```
+to:
+```js
+        headers: {
+            ...(!['GET', 'HEAD', 'OPTIONS'].includes(method) && { 'X-Requested-With': 'XMLHttpRequest' }),
+            ...headers,
+        },
+```
+
+If you only fix `httpReq()` and forget `httpRaw()`, the malformed-body tests will get 403 instead of their expected error codes.
 
 **File 2:** `tests/integration/api-endpoints.test.js`
 
@@ -402,23 +416,28 @@ export function removeTestUser(username) {
 ```
 
 **Then update each E2E spec** to:
-1. Import `ensureTestUser` / `removeTestUser` from the helper
-2. Use a unique prefixed username (e.g., `__e2e_smoke__`)
-3. Call `ensureTestUser` in `beforeAll`, `removeTestUser` in `afterAll`
-4. Remove the inline `bcryptjs`, `fs`, and `USERS_FILE` imports and user creation code
+1. Import `ensureTestUser` from the helper
+2. Keep the existing username (e.g., `e2e_test_user`) -- do NOT invent new unique names per spec (see concurrency note below)
+3. Call `ensureTestUser` in `test.beforeAll()` (or at script start for raw scripts)
+4. Do NOT add `afterAll` cleanup (see concurrency note below)
+5. Remove the inline `bcryptjs`, `fs`, and `USERS_FILE` imports and user creation code
 
 ### E2E spec files to update (12 files):
 
-**Group A -- Playwright specs with inline user creation (already have beforeAll pattern):**
-1. `tests/e2e/smoke-e2e.spec.mjs` -- `e2e_test_user` (no beforeAll user creation -- just uses hardcoded CREDS)
-2. `tests/e2e/xray-drilldown.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
-3. `tests/e2e/xray-all-pages.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
-4. `tests/e2e/xray-click-everything.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
-5. `tests/e2e/xray-click-surface.spec.mjs` -- `e2e_xray_surface` (has beforeAll user creation)
-6. `tests/e2e/xray-data-driven.spec.mjs` -- `e2e_data_driven` (has beforeAll user creation)
-7. `tests/e2e/verify-all-features.spec.mjs` -- `e2e_test_user` (no beforeAll -- just uses CREDS)
-8. `tests/e2e/verify-ui-placement.spec.mjs` -- `e2e_test_user` (no beforeAll)
-9. `tests/e2e/data-integrity.spec.mjs` -- `e2e_test_user` (no beforeAll)
+**Group A -- Playwright specs that ALREADY have beforeAll user creation (just replace with helper):**
+1. `tests/e2e/xray-drilldown.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
+2. `tests/e2e/xray-all-pages.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
+3. `tests/e2e/xray-click-everything.spec.mjs` -- `e2e_test_user` (has beforeAll user creation)
+4. `tests/e2e/xray-click-surface.spec.mjs` -- `e2e_xray_surface` (has beforeAll user creation)
+5. `tests/e2e/xray-data-driven.spec.mjs` -- `e2e_data_driven` (has beforeAll user creation)
+
+**Group B -- Playwright specs with NO user creation (MUST ADD beforeAll, or they break when e2e_* users are removed from users.json):**
+6. `tests/e2e/smoke-e2e.spec.mjs` -- `e2e_test_user` (NO beforeAll -- purely relies on pre-existing user)
+7. `tests/e2e/verify-all-features.spec.mjs` -- `e2e_test_user` (NO beforeAll)
+8. `tests/e2e/verify-ui-placement.spec.mjs` -- `e2e_test_user` (NO beforeAll)
+9. `tests/e2e/data-integrity.spec.mjs` -- `e2e_test_user` (NO beforeAll)
+
+CRITICAL: Group B files currently rely on `e2e_test_user` already existing in `server/users.json`. After removing the `e2e_*` entries, these specs WILL FAIL unless you add `ensureTestUser()` in a `test.beforeAll()` block to each one.
 
 **Group B -- Raw scripts (not Playwright test runner), NO beforeAll user creation:**
 10. `tests/e2e/take-screenshots.mjs` -- `e2e_test_user` (hardcoded inline strings, no CREDS object, no beforeAll)
@@ -429,7 +448,14 @@ export function removeTestUser(username) {
 - File 10: Replace inline `e2e_test_user` strings with the helper pattern (call `ensureTestUser` at the start of the script, `removeTestUser` at the end).
 - Files 11-12: These use the `avner` account. Leave these as-is since they need the real admin user. Just ensure they don't hardcode the password if it can be read from env (e.g., `process.env.E2E_PASS || 'avner'`).
 
-**After updating:** Remove the `e2e_*` entries from `server/users.json` (keep only `avner`).
+**Concurrency note:** `playwright.config.js` sets `workers: 1` only in CI. Locally, Playwright uses its default (multiple workers), so multiple spec files can run `beforeAll` in parallel and race on `users.json` writes. The `ensureTestUser` helper mitigates this with its check-before-write pattern (idempotent), but two specs writing different users simultaneously could still lose one write. Mitigations:
+- Option A (simplest): All specs that share the same username (`e2e_test_user`) can safely share it -- the helper is idempotent, so concurrent create-if-missing calls for the same user are safe.
+- Option B (safest): Keep all E2E specs using the SAME shared username/password. Only specs with unique usernames (`e2e_xray_surface`, `e2e_data_driven`) need distinct names.
+- The existing pattern already has this concurrency risk (multiple specs write to users.json in beforeAll today), so we are not introducing a new problem.
+
+**After updating:** Remove the `e2e_*` entries from `server/users.json` (keep only `avner`). The `ensureTestUser()` calls in each spec's `beforeAll` will recreate them on demand.
+
+**Do NOT add afterAll cleanup** that removes users. The existing pattern (no afterAll cleanup in any E2E spec) is intentional -- it avoids race conditions where one spec deletes a user that another parallel spec is about to use.
 
 ### Verify
 ```bash
@@ -483,7 +509,7 @@ If Playwright fails, diagnose and fix. You have full authority to add/modify tes
 | `server/routes/auth.cjs` | Login/logout/session routes (50 lines) | Fix 2 |
 | `src/lib/api-client.js` | Centralized fetch wrapper (84 lines) | Fix 3 |
 | `src/lib/auth.js` | Client auth with raw fetch (111 lines) | Fix 3 |
-| `tests/integration/server-security.test.js` | Integration tests + server spawn | Fix 3 (httpReq helper), Fix 4 (env), new tests |
+| `tests/integration/server-security.test.js` | Integration tests + server spawn | Fix 3 (httpReq AND httpRaw helpers), Fix 4 (env), new tests |
 | `tests/integration/api-endpoints.test.js` | API integration tests + server spawn | Fix 3 (httpPost helper), Fix 4 (env) |
 | `tests/unit/api-client.test.js` | Unit tests for api-client | Fix 3 (add header assertion) |
 | `tests/unit/auth-client.test.js` | Unit tests for auth.js | Fix 3 (add header assertion) |

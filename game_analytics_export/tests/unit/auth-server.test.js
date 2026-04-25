@@ -155,7 +155,7 @@ describe('Web.config - IIS Configuration', () => {
 
     it('should set NODE_ENV to production', () => {
         const xml = readFileSync(configPath, 'utf-8');
-        expect(xml).toContain('production');
+        expect(xml).toContain('name="NODE_ENV" value="production"');
     });
 
     it('should have security headers', () => {

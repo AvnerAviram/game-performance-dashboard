@@ -1,0 +1,14 @@
+{
+  "gate_open": true,
+  "last_spot_check": {
+    "batch": 6,
+    "accuracy_pct": 76.9,
+    "total": 39,
+    "ok": 30,
+    "fix": 9,
+    "fixes_applied": true,
+    "regression_post_fix": "98.1%"
+  },
+  "reason": "Batch 6 fixes applied. Vocab overhaul: split 13 slash-groups, removed frames, added Sky/Clouds + Graffiti. Regression at 98.1% theme adjusted. Gate open for Batch 7.",
+  "updated_at": "2026-04-23"
+}
