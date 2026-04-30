@@ -42,7 +42,7 @@ test.describe('Consolidated: Load, Visual, Alignment, E2E', () => {
         await gotoDashboard(page);
 
         // E2E: initial load checks (we're on overview)
-        await expect(page).toHaveTitle(/Game Analytics Dashboard/);
+        await expect(page).toHaveTitle(/Games Analytics Tool/);
         await expect(page.locator('[data-page="overview"]')).toBeVisible();
         await expect(page.locator('[data-page="themes"]')).toBeVisible();
         await expect(page.locator('[data-page="mechanics"]')).toBeVisible();

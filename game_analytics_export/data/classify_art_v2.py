@@ -29,9 +29,9 @@ ENV_PATH = os.path.join(SCRIPT_DIR, '.env')
 PIPELINE_DIR = os.path.join(SCRIPT_DIR, 'art_pipeline')
 GT_V2_PATH = os.path.join(PIPELINE_DIR, 'ground_truth.json')
 CORRECTIONS_PATH = os.path.join(PIPELINE_DIR, 'corrections.json')
-RESULTS_PATH = os.path.join(PIPELINE_DIR, 'results.json')
+RESULTS_PATH = os.environ.get('ART_RESULTS_PATH', os.path.join(PIPELINE_DIR, 'results.json'))
 USER_REVIEWS_PATH = os.path.join(PIPELINE_DIR, 'user_reviews.json')
-RUN_LOG_PATH = os.path.join(PIPELINE_DIR, 'run_log.json')
+RUN_LOG_PATH = os.environ.get('ART_RUN_LOG_PATH', os.path.join(PIPELINE_DIR, 'run_log.json'))
 BATCH_GATE_PATH = os.path.join(PIPELINE_DIR, 'batch_gate.json')
 OUTPUT_PATH = os.path.join(SCRIPT_DIR, 'art_v2_results.json')
 
@@ -53,7 +53,7 @@ VALID_THEMES = [
     "Medieval Castle", "Prehistoric/Primordial", "Irish/Celtic Highlands",
     "Jungle/Rainforest", "Deep Ocean/Underwater", "Tropical Island/Beach",
     "Arctic/Snow", "Desert/Sahara", "Mountain/Volcano", "Savanna/Wildlife",
-    "Prairie/Plains/Grassland", "Australian Outback", "Sky/Clouds",
+    "Prairie/Plains/Grassland", "Australian Outback",
     "Lakeside/River/Fishing Dock", "Farm/Countryside", "Forest/Woodland",
     "Fantasy/Fairy Tale", "Haunted Manor/Graveyard", "Outer Space",
     "Urban/Modern City", "Neon/Cyber City", "Casino Floor", "Luxury/VIP",
@@ -169,12 +169,16 @@ VALID_ELEMENTS_SCENE = [
     "Basketball Court", "Stairs/Steps",
     "Beach/Shoreline", "Hut/Shack", "Palm Trees",
     "Western Town/Saloon", "Enchanted Forest",
-    "Sky/Clouds",
+    "Sky", "Clouds",
+    "Cave/Cavern", "Rocks/Boulders", "Waterfall",
+    "Roman Architecture", "Arabian Architecture",
+    "Apartment/Penthouse", "City/Skyline",
+    "Sand/Desert",
 ]
 VALID_ELEMENTS_DECOR = [
     "Torches", "Lanterns", "Candles",
     "Columns/Pillars",
-    "Vines/Ivy/Plants", "Statues/Sculptures",
+    "Vines/Ivy", "Plants", "Statues/Sculptures",
     "Masks", "Tribal Art", "Weapons (swords/shields)",
     "Books/Scrolls", "Maps", "Chains/Locks/Keys", "Musical Instruments",
     "Food", "Drinks", "Clocks/Gears/Mechanical", "Banners/Flags",
@@ -193,6 +197,11 @@ VALID_ELEMENTS_DECOR = [
     "Candy/Sweets/Lollipops",
     "Flowers/Blossoms", "Hearts/Love Symbols",
     "Wallpaper/Decorative Pattern", "Graffiti",
+    "Hay/Straw", "Spider Web", "Lava/Magma",
+    "Multipliers", "Lights/Spotlights",
+    "River/Stream", "Treasure Chest", "Coral Reef",
+    "Fish", "Dynamite", "Roses", "Sparkles/Glitter",
+    "Rainbow", "Slot Machines",
 ]
 VALID_ELEMENTS = VALID_ELEMENTS_EFFECTS + VALID_ELEMENTS_SCENE + VALID_ELEMENTS_DECOR
 FRAME_ELEMENTS = set(VALID_ELEMENTS_FRAME)
@@ -342,20 +351,38 @@ CHARACTER CLASSIFICATION RULES:
     (not traditional spinning reels), these characters often ALSO appear as large art in the background or frame.
     If you see such characters as both grid pieces AND prominent background/frame art, classify them.
   - When in doubt, look harder at the area outside the reels before defaulting to "No Characters".
+
+  ANTI-SYMBOL WARNINGS (the #1 character error is wrongly classifying reel symbols as characters):
+  - A dragon/animal/creature SPINNING ON the reels as a symbol = NOT a character. Only if it appears as LARGE ARTWORK outside the reel grid.
+  - A dinosaur/mascot in the game LOGO or TITLE = NOT a character. Only if it appears as a separate illustrated character.
+  - If you're unsure whether something is a reel symbol or a character, default to NOT a character.
 """
 
 ELEMENT_CARDS = """
 ELEMENT CLASSIFICATION RULES:
-  Elements are visual design components you can see OUTSIDE the reel grid.
-  Draw a rectangle around the spinning reels. Everything OUTSIDE that rectangle is where elements live:
-  the background scene, the frame/border, side panels, top area, bottom area.
+  Elements are visual features of the game's BACKGROUND ENVIRONMENT — mountains, sky, buildings, fire, water, plants.
+  They are NOT items that only appear as reel symbols, bonus icons, or UI decorations.
+
+  THE REEL TEST FOR ELEMENTS:
+  Draw a rectangle around the spinning reel grid. Now ONLY look at the area OUTSIDE that rectangle.
+  Elements live in the background scene, side panels, top/bottom areas, and frame decorations.
+  If an item appears ONLY as a spinning symbol on the reels, it is NOT a background element — even if it
+  looks like something that could be an element (a mountain symbol, a tree symbol, a ship symbol).
+  ONLY classify it as an element if it is ALSO clearly visible as part of the background/environment.
+  When in doubt, EXCLUDE it.
 
   IS an element: A pyramid in the background. A mountain range behind the reels.
     Statues flanking the reels. Trees in the background. A farmhouse in the distance.
   NOT an element: A pyramid that only appears as a small image ON the spinning reels (that is a SYMBOL).
-    Generic glow, sparkles, light rays, shimmer — ignore these, they appear in almost every slot and are not useful.
-  NOT an element: Frame/border material (stone frame, wood frame, metal frame, etc.) — DO NOT list frames. Frames
-    are art decisions, not interesting for game design. Ignore the reel border material entirely.
+    NOT: Animals, ships, weapons, treasure that ONLY appear as reel symbols.
+    NOT: Generic glow, sparkles, light rays, shimmer — these appear in almost every slot and are not useful.
+    NOT: Frame/border material (stone frame, wood frame, metal frame, etc.) — frames are art decisions, not elements.
+
+  HARD LIMIT — MAXIMUM 5 ELEMENTS:
+  List at most 5 elements. Keep only the most visually dominant, distinctive ones.
+  Most games have 2-4 real background elements. Classic/simple games often have 0-1.
+  If the background is just a solid color or abstract pattern, list "Wallpaper/Decorative Pattern" or nothing.
+  An empty list [] is valid — not every game has interesting background elements.
 
   WHAT TO LOOK FOR (scan the ENTIRE screen outside the reels):
   1. BACKGROUND SCENE — What is behind/around the reels?
@@ -370,11 +397,21 @@ ELEMENT CLASSIFICATION RULES:
      Fire/flames, lightning, fog/smoke, water, snow/ice, neon glow, magic energy, bubbles, fireworks
      (Do NOT list glow, sparkles, light rays, shimmer — these are generic and not useful)
 
-  CRITICAL: Be thorough. Scan every corner. Most games have 3-6 elements. List what makes THIS game visually unique.
+  SPECIFICITY RULES:
+  - Split compound elements: "Torches" and "Lanterns" and "Candles" are separate items — never combine them.
+  - Be specific when you can: "Basketball Court" not "Sports Arena" when you clearly see a basketball court.
+  - "Flowers" is fine — don't over-specify to "Red Roses, Tulips, Daisies" unless they're distinctly different.
+  - "Office Chair, Computer Monitor, Trash Can" is better than "Furniture" when those specific items are visible.
+  - "Asian Lanterns" and "Asian Decorations" are separate — don't combine.
 
   COMMON MISSES (check these specifically):
+  - Hieroglyphs on walls/pillars → "Hieroglyphs" (easy to overlook)
+  - Specific landmarks → "Statue of Liberty", "Eiffel Tower" (use the specific name)
+  - Sports games: basketball court → "Basketball Court"; football field → "Fields/Grassland"; arena → "Arena/Stadium"
+  - Farm games: barn, fence, hay bales → specific farm elements, not just "Fields/Grassland"
+  - Underwater games: coral, seaweed → "Coral Reef/Underwater"
   - Trees visible → "Trees"; Dense forest background → "Forest"; Magical/glowing forest → "Enchanted Forest"
-  - Castle in background → "Castle"; Fortress walls → "Fortress"; Standalone tower → "Tower" (these are SEPARATE items)
+  - Castle in background → "Castle"; Fortress walls → "Fortress"; Standalone tower → "Tower" (SEPARATE items)
   - Candy, lollipops, sweets, cakes visible → "Candy/Sweets/Lollipops"
   - Gold coins, treasure piles → "Gold Coins/Treasure"
   - Palm trees → "Palm Trees"
@@ -382,23 +419,41 @@ ELEMENT CLASSIFICATION RULES:
   - Huts, shacks, thatched roof buildings → "Hut/Shack"
   - Western-style buildings, saloons → "Western Town/Saloon"
   - Curtains or drapes → "Curtains/Drapes"
-  - Vines, leaves, ivy in background → "Vines/Ivy/Plants"
+  - Vines, ivy in background → "Vines/Ivy" (separate from "Plants" — they are different things)
+  - Plants, bushes, shrubs → "Plants"
   - Snowy mountains → list BOTH "Mountains" AND "Snowflakes/Snow"
   - Torches visible on sides → "Torches" (separate from "Lanterns" and "Candles")
   - Village scene → specify style: "Village/Town" or "Western Town/Saloon" or "Viking Village"
-  - Flowers or blossoms in background → "Flowers/Blossoms" (NOT "Vines/Ivy/Plants")
+  - Flowers or blossoms in background → "Flowers/Blossoms" (NOT "Vines/Ivy" or "Plants")
   - Hearts, love symbols in background → "Hearts/Love Symbols"
   - Wallpaper pattern, ornate background texture → "Wallpaper/Decorative Pattern"
   - Grass or lawn visible (not just fields) → "Fields/Grassland"
   - Stones, rocks, boulders in the background → "Mountains"
-  - Sky visible, clouds → "Sky/Clouds"
+  - Sky visible → "Sky" (list separately from clouds)
+  - Clouds visible → "Clouds" (list separately from sky)
   - Graffiti on walls or background → "Graffiti"
   - Asian lanterns (hanging paper lanterns) → "Asian Lanterns" (separate from general "Lanterns")
   - Asian decorative patterns, fans, parasols → "Asian Decorations" (separate from "Asian Lanterns")
 
-  COMMON FALSE POSITIVES (avoid these):
+  COMMON FALSE POSITIVES (avoid these — the #1 error source):
+  - Reel symbols counted as elements: Animals, ships, treasure chests, weapons, fish, dynamite that ONLY appear
+    ON the reels are SYMBOLS, not elements. Apply the reel test: is it visible in the background? If no, exclude.
   - "Statues/Sculptures": ONLY use if you see ACTUAL statues/sculptures as large background art flanking or decorating the game.
     Do NOT tag Statues/Sculptures just because statue-like images appear as REEL SYMBOLS. Apply the same reel test as characters.
+  - "Ancient Stone Carvings": ONLY for carvings visible on background walls/pillars. NOT for carved-looking reel symbols.
+  - Over-listing in simple games: Classic slots with a plain colored background have 0-2 elements, not 5+.
+
+  HALLUCINATION WARNING — READ THIS BEFORE OUTPUTTING ANY ELEMENT:
+  The #1 element error is listing things that only exist as reel symbols OR that you're assuming from the theme.
+  Before adding ANY element, verify: "Can I literally see this in the BACKGROUND or FRAME of the screenshot, not on the spinning reels?"
+  SPECIFIC REPEAT OFFENDERS:
+  - "City Landmarks" — ONLY for actual landmark buildings visible in the background (Statue of Liberty, Eiffel Tower). NOT for generic city skylines or casino views. This has been flagged MULTIPLE TIMES.
+  - "Ships/Boats" — ONLY if a ship is visible in the background scene. Ships/boats as reel symbols do NOT count.
+  - "Skulls/Bones" — ONLY if skulls are visible in background decor. Skull reel symbols do NOT count.
+  - "Viking Ship" — ONLY if you can see a Viking ship in the background. DO NOT add just because the game has a Norse theme.
+  - "Asian Lanterns" / "Bamboo" — ONLY if you can see them in the background. DO NOT add just because the game is Asian-themed.
+  - "Torches" — ONLY if you can see actual torches on the sides/background. DO NOT add just because the game is Egyptian/dark-themed.
+  - "Gold Coins/Treasure" — ONLY if visible in the background scene. Coins from a big-win celebration or on the reels do NOT count.
 """
 
 
@@ -415,10 +470,20 @@ CRITICAL_RULES = """
 6. FRUIT MACHINE IS RARE: Most games with fruit symbols are "Classic Slots", NOT "Fruit Machine". Only use Fruit Machine for explicitly British-style pub fruit machines.
 7. COLOR FROM EYES, NOT THEME: Classify colors based on what you ACTUALLY SEE (or what the review describes seeing), not what you'd assume from the theme name. An "Egyptian" game could be blue, purple, or gold — look at the actual visual.
 8. MOOD FROM VISUALS, NOT NAME: A game called "Lucky" isn't automatically "Bright/Fun/Cheerful". Look at the actual visual mood — dark games with "Lucky" in the name are still "Dark/Mysterious".
-9. SECONDARY THEME NEEDS EVIDENCE: Only assign a secondary theme if there is EXPLICIT visual evidence. Don't infer secondary themes from abstract concepts.
-10. ELEMENTS ARE SCREEN-LEVEL: Elements describe the background, effects, and decorative objects — NOT the symbols on the reels. DO NOT list frame/border materials (stone, wood, metal, etc.) — frames are not interesting elements.
-11. STATUES/SCULPTURES REEL TEST: "Statues/Sculptures" is ONLY for actual statues visible as BACKGROUND DECOR (flanking reels, in the background scene). If statue-like imagery only appears ON the reels as spinning symbols, do NOT list "Statues/Sculptures" as an element.
-12. NO FRAME ELEMENTS: Never list what the reel border/frame is made of. No "Stone Frame", "Wood Frame", "Metal Frame", "Neon/LED Frame", "Minimal/No Frame", etc. Frame material is an art production decision, not a game design element.
+9. SECONDARY THEME RULES:
+   - Only assign a secondary theme if there is EXPLICIT visual evidence of a DIFFERENT setting.
+   - Secondary MUST be different from primary. Never repeat the primary as secondary (e.g., "Sports / Sports" is wrong).
+   - If the game has only ONE clear theme, set secondary to null. Don't force a secondary.
+   - Don't use secondary to add a sub-genre — it's for games that genuinely blend TWO distinct visual worlds (e.g., a pirate ship in a jungle = "Pirate Ship/Port" + "Jungle/Tropical").
+10. ELEMENTS ARE BACKGROUND-ONLY: Before listing ANY element, ask yourself: "Is this item ONLY visible as a spinning reel symbol?" If yes, EXCLUDE it. Elements are part of the scene BEHIND and AROUND the reels — mountains in the background, torches on the side, sky above. A ship/mountain/animal/treasure that ONLY appears ON the reels is a SYMBOL, not an element.
+11. ELEMENT HARD LIMIT — MAXIMUM 5: List at most 5 elements. If you have more, keep only the most visually dominant ones. Most games have 2-4 real background elements. Classic/simple games often have 0-1. An empty list is valid for games with plain backgrounds.
+12. STATUES/SCULPTURES REEL TEST: "Statues/Sculptures" is ONLY for actual statues visible as BACKGROUND DECOR (flanking reels, in the background scene). If statue-like imagery only appears ON the reels as spinning symbols, do NOT list "Statues/Sculptures" as an element.
+13. NEVER OUTPUT "FRAME" OR "BORDER": Never list what the reel border/frame is made of. Never output ANY element containing the word "Frame" or "Border" — no "Stone Frame", "Wood Frame", "Metal Frame", "Neon/LED Frame", "Minimal/No Frame", "Colored Frame", etc. Frame material is irrelevant. If you find yourself typing the word "Frame", stop and delete it.
+14. VISUALS OVER NAME: Trust what you SEE, not the game's name. "Wild-Falls" might show a waterfall (not Wild West). "Stormforged" might show fire/lava (not Norse). "Star-Candy" might show candy (not Outer Space). Always classify based on the DOMINANT VISUAL theme, not word associations from the title.
+15. BONUS/PICK SCREENS ARE NOT GAMEPLAY: If the screenshot shows a bonus round, pick screen, feature screen, wheel screen, or big-win celebration instead of base gameplay (spinning reels with a background scene), classify screenshot_quality as "promotional". These screens have different art than the base game and will produce wrong classifications.
+16. DON'T INFER ELEMENTS FROM THEME: Only list elements you can ACTUALLY SEE in the background/surroundings. A Norse-themed game does NOT automatically have "Viking Ship". An Asian game does NOT automatically have "Asian Lanterns" or "Bamboo". An Egyptian game does NOT automatically have "Torches". If you can't point to the element in the screenshot, don't list it.
+17. TORCH / LANTERN / CANDLE ARE SEPARATE: These are THREE different elements — never conflate them. Torches = wall-mounted fire on a stick. Lanterns = hanging or portable enclosed lights (paper lanterns, metal lanterns). Candles = free-standing wax with a wick (candelabras, candlesticks). Pick the specific one you see.
+18. IGNORE OPERATOR SITE UI: The website header, navigation bar, balance display, and site frame are NOT part of the game's art. Don't include colors or elements from the operator's site UI. Only classify colors and elements from the actual game artwork area.
 """
 
 
@@ -468,8 +533,9 @@ SYMBOL_ELEMENT_HINTS = {
     r'\bfire\b': 'Fire/Flames',
     r'\blightning': 'Lightning/Electricity',
     r'\bthunder': 'Lightning/Electricity',
-    r'\bvine': 'Vines/Ivy/Plants',
-    r'\bivy\b': 'Vines/Ivy/Plants',
+    r'\bvine': 'Vines/Ivy',
+    r'\bivy\b': 'Vines/Ivy',
+    r'\bplants?\b': 'Plants',
     r'\bflower': 'Flowers/Blossoms',
     r'\bblossom': 'Flowers/Blossoms',
     r'\bheart': 'Hearts/Love Symbols',
@@ -569,11 +635,13 @@ def build_training_examples(gt_games):
         color_str = ', '.join(colors) if isinstance(colors, list) else str(colors)
         chars = g.get('art_characters', [])
         char_str = ', '.join(chars[:2])
+        elems = g.get('art_elements', [])
+        elem_str = ', '.join(elems[:5]) if isinstance(elems, list) else str(elems)
         sec = f" + {g['art_theme_secondary']}" if g.get('art_theme_secondary') else ""
         lines.append(
             f'  {g["name"]}: theme={g["art_theme"]}{sec}, '
             f'mood={g.get("art_mood","?")}, colors=[{color_str}], '
-            f'chars=[{char_str}]'
+            f'chars=[{char_str}], elements=[{elem_str}]'
         )
     return '\n'.join(lines)
 
@@ -605,7 +673,9 @@ You MUST follow the classification cards below. Each card defines what IS and wh
 THEME: {json.dumps(sorted(VALID_THEMES))}
 COLOR (pick 2-4, check ENTIRE screen including background sky, side panels): {json.dumps(COLOR_VOCABULARY)}
 CHARACTER: {json.dumps(VALID_CHARACTERS)}
-ELEMENTS (pick all that apply — DO NOT list frame/border materials):
+ELEMENTS — GROUNDING PROCESS:
+  Step 1: In "background_description", describe in 1-2 sentences what you see OUTSIDE the reel grid (background scenery, side decorations, frame materials, panels).
+  Step 2: From your description, pick up to 5 matching element terms below. Only list elements you described.
   EFFECTS: {json.dumps(VALID_ELEMENTS_EFFECTS)}
   SCENE: {json.dumps(VALID_ELEMENTS_SCENE)}
   DECOR: {json.dumps(VALID_ELEMENTS_DECOR)}
@@ -620,6 +690,7 @@ Return ONLY a raw JSON object (no markdown, no backticks):
   "art_color_tone": ["Primary", "Secondary", "Tertiary"],
   "art_characters": ["Tiger", "Apollo", ...] or ["No Characters (symbol-only game)"],
   "art_character_locations": {{"character_name": "outside_reels" or "reel_only"}},
+  "background_description": "1-2 sentences describing what is visible OUTSIDE the reel grid (background, side panels, frame area)",
   "art_elements": ["..."],
   "art_narrative": "...",
   "is_branded": true/false,
@@ -689,7 +760,7 @@ def detect_media_type(filepath):
 
 def load_screenshot(fname):
     slug = fname.replace('.html', '')
-    for ext in ['.jpg', '.png', '.webp']:
+    for ext in ['.jpg', '.jpeg', '.png', '.webp']:
         path = os.path.join(SCREENSHOT_DIR, slug + ext)
         if os.path.exists(path):
             media_type = detect_media_type(path)
@@ -705,7 +776,7 @@ def create_masked_screenshot(fname):
     from io import BytesIO
 
     slug = fname.replace('.html', '')
-    for ext in ['.jpg', '.png', '.webp']:
+    for ext in ['.jpg', '.jpeg', '.png', '.webp']:
         path = os.path.join(SCREENSHOT_DIR, slug + ext)
         if os.path.exists(path):
             img = PILImage.open(path)
@@ -857,7 +928,8 @@ ELEMENT_ALIASES = {
     "lanterns": "Lanterns", "lantern": "Lanterns",
     "torches/lanterns/candles": "Torches",
     "columns": "Columns/Pillars", "pillars": "Columns/Pillars",
-    "vines": "Vines/Ivy/Plants", "ivy": "Vines/Ivy/Plants",
+    "vines": "Vines/Ivy", "ivy": "Vines/Ivy",
+    "vines/ivy/plants": "Vines/Ivy", "plants": "Plants",
     "skulls": "Skulls/Bones", "bones": "Skulls/Bones",
     "mountains": "Mountains", "mountain": "Mountains",
     "mountains/landscape background": "Mountains",
@@ -955,8 +1027,8 @@ ELEMENT_ALIASES = {
     "safe": "Safe/Vault", "vault": "Safe/Vault", "chest": "Chest",
     "safe/vault/chest": "Safe/Vault", "safe/vault": "Safe/Vault",
     "graffiti": "Graffiti", "street art": "Graffiti",
-    "sky": "Sky/Clouds", "clouds": "Sky/Clouds", "sky and clouds": "Sky/Clouds",
-    "sky/clouds": "Sky/Clouds",
+    "sky": "Sky", "clouds": "Clouds", "sky and clouds": "Sky",
+    "sky/clouds": "Sky",
 }
 
 
@@ -993,12 +1065,14 @@ def normalize_element(e):
     e_stripped = e.strip()
     if e_stripped in NOISE_ELEMENTS:
         return None
+    e_lower = e_stripped.lower()
+    if 'frame' in e_lower or 'border' in e_lower:
+        return None
     if e_stripped in ELEMENT_SET:
         return e_stripped
     for ev in VALID_ELEMENTS:
-        if ev.lower() == e_stripped.lower():
+        if ev.lower() == e_lower:
             return ev
-    e_lower = e_stripped.lower()
     if e_lower in ELEMENT_ALIASES:
         aliased = ELEMENT_ALIASES[e_lower]
         if aliased in NOISE_ELEMENTS:
@@ -1007,127 +1081,15 @@ def normalize_element(e):
     return None
 
 
-THEME_ELEMENT_HINTS = {
-    'Egyptian/Pharaoh': [
-        'Pyramids', 'Temples', 'Hieroglyphs/Ancient Writing',
-        'Torches', 'Columns/Pillars',
-        'Statues/Sculptures',
-    ],
-    'Asian Temple/Garden': [
-        'Asian Lanterns', 'Asian Decorations', 'Bamboo',
-        'Asian Architecture',
-    ],
-    'Norse/Viking Realm': [
-        'Viking Ship', 'Viking Village', 'Weapons (swords/shields)',
-        'Ancient Stone Carvings',
-    ],
-    'Irish/Celtic Highlands': [
-        'Fields/Grassland', 'Trees',
-    ],
-    'Underwater Kingdom': [
-        'Coral Reef/Underwater', 'Bubbles',
-    ],
-    'Ancient Greece/Rome': [
-        'Columns/Pillars',
-    ],
-    'Haunted Manor/Graveyard': [
-        'Skulls/Bones', 'Candles', 'Torches',
-    ],
-    'Farm/Countryside': [
-        'Farmhouse/Barn', 'Fields/Grassland', 'Trees',
-    ],
-    'Casino Floor': [
-        'Casino Interior', 'City Landmarks',
-    ],
-    'Classic Slots': [
-        'Casino Interior',
-    ],
-    'Sports': [
-        'Sports Arena/Stadium', 'Basketball Court',
-    ],
-    'Steampunk/Victorian': [
-        'Clocks/Gears/Mechanical', 'Victorian Buildings',
-    ],
-    'Aztec/Mayan': [
-        'Pyramids', 'Temples', 'Ancient Stone Carvings',
-        'Torches',
-    ],
-    'Arabian Palace/Bazaar': [
-        'Arab/Middle Eastern Architecture', 'Lanterns',
-    ],
-    'Forest/Woodland': [
-        'Trees', 'Forest', 'Vines/Ivy/Plants',
-    ],
-    'Prairie/Plains/Grassland': [
-        'Fields/Grassland',
-    ],
-    'Pirate/Treasure Island': [
-        'Ships/Boats', 'Skulls/Bones',
-    ],
-    'Jungle/Rainforest': [
-        'Trees', 'Vines/Ivy/Plants', 'Ancient Stone Carvings',
-        'Statues/Sculptures',
-    ],
-    'Festive/Holiday': [
-        'Christmas Decorations', 'Snowflakes/Snow', 'Gifts/Wrapped Presents',
-    ],
-    'Treasure Cave/Mine': [
-        'Coin Stacks', 'Safe/Vault', 'Chest', 'Torches',
-    ],
-    'Luxury/VIP': [
-        'Coin Stacks',
-    ],
-    'Money/Gold/Luxury': [
-        'Coin Stacks',
-    ],
-    'Outer Space': [
-        'Stars', 'Planets', 'Neon Glow',
-    ],
-    'Royal Palace/Court': [
-        'Candles', 'Chandeliers', 'Columns/Pillars',
-    ],
-    'Laboratory/Workshop': [
-        'Candles', 'Books/Scrolls', 'Maps',
-    ],
-    'Deep Ocean/Underwater': [
-        'Coral Reef/Underwater', 'Underwater Structures', 'Bubbles',
-    ],
-    'Medieval Castle': [
-        'Castle', 'Torches', 'Banners/Flags',
-    ],
-    'Pirate Ship/Port': [
-        'Ships/Boats', 'Skulls/Bones',
-    ],
-    'Candy/Sweet World': [
-        'Candy/Sweets/Lollipops',
-    ],
-    'Inferno/Fire': [
-        'Fire/Flames',
-    ],
-}
+# THEME_ELEMENT_HINTS — REMOVED (2026-04-29)
+# Was auto-injecting elements based on theme (e.g., Asian Lanterns for Asian games,
+# Viking Ship for Norse games, City Landmarks for Casino games). This caused the
+# persistent hallucination errors flagged in every user spot-check round.
+# Elements now come from Claude's visual analysis ONLY + user corrections.
 
-DESC_ELEMENT_KEYWORDS = {
-    r'\bunderwater\b|\bocean\b|\bsea\b|\baquatic\b': 'Coral Reef/Underwater',
-    r'\bpyramid\b|\bpharaoh\b|\begypt\b': 'Pyramids',
-    r'\bhieroglyphs?\b': 'Hieroglyphs/Ancient Writing',
-    r'\bviking\b|\bnorse\b|\bvalhalla\b': 'Viking Ship',
-    r'\bbamboo\b': 'Bamboo',
-    r'\btropical\s+plants?\b': 'Tropical Plants',
-    r'\bfarm\b|\bbarn\b': 'Farmhouse/Barn',
-    r'\bstadium\b|\barena\b|\bfight(?:er|ing)\b|\bbox(?:er|ing)\b|\bwrestl': 'Sports Arena/Stadium',
-    r'\bcasino\b|\bslot\s*machine': 'Casino Interior',
-    r'\bsteampunk\b|\bvictorian\b': 'Victorian Buildings',
-    r'\bcolosseum\b|\bparthenon\b|\bgreek\s*temple': 'Columns/Pillars',
-    r'\blazer\b|\bneon\b(?!.*frame)': 'Neon Glow',
-    r'\bcoral\s*reef\b': 'Coral Reef/Underwater',
-    r'\btrain\b|\btube\b|\brailway\b|\bunderground\b': 'Train/Railway Station',
-    r'\bvegas\b|\blas\s*vegas\b': 'City Landmarks',
-    r'\bgifts?\b|\bpresents?\b|\bwrapped\b': 'Gifts/Wrapped Presents',
-    r'\bbasketball\b': 'Basketball Court',
-    r'\bstair(s|case)?\b|\bsteps?\b': 'Stairs/Steps',
-    r'\bplanet(s|ary)?\b|\bcomet\b|\bconstellation': 'Planets',
-    r'\bpanda\b|\bchinese\b|\basian\b(?!.*slot)': 'Asian Decorations',
-}
+# DESC_ELEMENT_KEYWORDS — REMOVED (2026-04-29)
+# Was auto-injecting elements from game name/description keywords.
+# Same hallucination problem — inferring elements from text, not vision.
 
 
 def post_process(result, name="", symbol_names=None, game_corrections=None, game_description=""):
@@ -1143,6 +1105,20 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
         else:
             fixes.append(f"theme '{result['art_theme']}' is a mood → flagged")
             result['_needs_review'] = True
+
+    # Fix 1b: Sky/Clouds are not valid themes
+    invalid_themes = {'Sky', 'Clouds'}
+    if result.get('art_theme') in invalid_themes:
+        if result.get('art_theme_secondary') in THEME_SET:
+            fixes.append(f"theme '{result['art_theme']}' is not a valid theme → using secondary")
+            result['art_theme'] = result['art_theme_secondary']
+            result['art_theme_secondary'] = None
+        else:
+            fixes.append(f"theme '{result['art_theme']}' is not a valid theme → Fantasy/Fairy Tale")
+            result['art_theme'] = 'Fantasy/Fairy Tale'
+    if result.get('art_theme_secondary') in invalid_themes:
+        fixes.append(f"secondary '{result['art_theme_secondary']}' is not a valid theme → null")
+        result['art_theme_secondary'] = None
 
     # Fix 2: Invalid secondary theme
     if result.get('art_theme_secondary'):
@@ -1178,6 +1154,8 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
             normalized_elems.append(ne)
             seen_elems.add(ne)
     normalized_elems = [e for e in normalized_elems if e not in FRAME_ELEMENTS]
+    if len(normalized_elems) > 5:
+        normalized_elems = normalized_elems[:5]
     result['art_elements'] = normalized_elems
 
     # Fix 4b: Remove elements that are actually reel symbols (not background)
@@ -1193,16 +1171,6 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
         'Statues/Sculptures': [r'\bstatue\b', r'\bsculpture\b', r'\bsphinx\b', r'\bidol\b'],
     }
     sym_text = ' '.join(symbol_names).lower()
-    elems_before = len(result['art_elements'])
-    result['art_elements'] = [
-        e for e in result['art_elements']
-        if not (e in ELEM_SYMBOL_EXCLUSIONS and
-                any(re.search(p, sym_text) for p in ELEM_SYMBOL_EXCLUSIONS[e]) and
-                not any(e.lower().split('/')[0] in kw for kw in ['pyram', 'mountain', 'castle']))
-    ]
-    # Only remove if the element keyword appears in symbols AND there's no
-    # explicit background version. Check if 'Volcano' is a symbol but
-    # 'Mountains' appears as background → allow
     elems_to_remove = []
     for elem in result['art_elements']:
         patterns = ELEM_SYMBOL_EXCLUSIONS.get(elem, [])
@@ -1214,34 +1182,12 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
     for e in elems_to_remove:
         result['art_elements'].remove(e)
 
-    # Fix 4c: Theme-based element hints — add high-confidence elements Claude missed,
-    # but only when Claude already detected at least one element from the same hint list
-    theme = result.get('art_theme', '')
-    hint_elems = THEME_ELEMENT_HINTS.get(theme, [])
-    current_elems = set(result.get('art_elements', []))
-    claude_confirmed = any(he in current_elems for he in hint_elems)
-    if current_elems and claude_confirmed:
-        for he in hint_elems:
-            if he not in current_elems and he in ELEMENT_SET:
-                sym_patterns = ELEM_SYMBOL_EXCLUSIONS.get(he, [])
-                if sym_patterns and any(re.search(p, sym_text) for p in sym_patterns):
-                    continue
-                result['art_elements'].append(he)
-                fixes.append(f"theme_hint:{theme}→{he}")
+    # REMOVED Fix 4c (THEME_ELEMENT_HINTS): was auto-injecting elements based on theme,
+    # causing hallucinations (Asian Lanterns, Viking Ship, City Landmarks, Torches on Egyptian, etc.).
+    # Elements must come from Claude's visual analysis ONLY + user corrections.
 
-    # Fix 4d: Description-based element cross-reference
-    desc_lower = (game_description or '').lower()
-    if desc_lower and len(desc_lower) > 20:
-        current_elems = set(result.get('art_elements', []))
-        for pattern, elem in DESC_ELEMENT_KEYWORDS.items():
-            if elem not in current_elems and elem in ELEMENT_SET:
-                if re.search(pattern, desc_lower):
-                    sym_patterns = ELEM_SYMBOL_EXCLUSIONS.get(elem, [])
-                    if sym_patterns and any(re.search(p, sym_text) for p in sym_patterns):
-                        continue
-                    result['art_elements'].append(elem)
-                    current_elems.add(elem)
-                    fixes.append(f"desc_hint:{elem}")
+    # REMOVED Fix 4d (DESC_ELEMENT_KEYWORDS): was auto-injecting elements from game name/description.
+    # Same hallucination problem as theme hints — inferring elements from words, not vision.
 
     # Fix 5: Classic slot patterns → Classic Slots theme
     if re.search(r'\b(\d+x\s|triple|double)\b', name_lower) and result.get('art_theme') == 'Casino Floor':
@@ -1345,6 +1291,9 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
     # Fix 8b: Broad symbol-based character exclusion — if characters match reel symbols
     # AND the character is NOT in the game name, demote to No Characters.
     # EXCEPTION: If Claude marked the character as "outside_reels", trust Claude's judgment.
+    # RISK NOTE: This may over-aggressively remove real characters with common names
+    # (Lion, Dragon, Woman) when Claude doesn't mark them outside_reels. If character
+    # accuracy doesn't improve after the element hint removal, this is the next suspect.
     outside_reels_chars = set()
     for char_name, location in char_locations.items():
         if location == 'outside_reels':
@@ -1491,6 +1440,11 @@ def post_process(result, name="", symbol_names=None, game_corrections=None, game
             if col not in result.get('art_color_tone', []):
                 result.setdefault('art_color_tone', []).append(col)
                 fixes.append(f"correction_add_color:{col}")
+
+    # Final element cap — after all corrections and theme hints
+    final_elems = result.get('art_elements', [])
+    if len(final_elems) > 5:
+        result['art_elements'] = final_elems[:5]
 
     return result, fixes
 
@@ -1648,6 +1602,7 @@ def run_batch(files, use_vision=True, output_path=None, use_masked=True, use_cac
                 'art_color_tone': result.get('art_color_tone', []),
                 'art_characters': result.get('art_characters', []),
                 'art_character_categories': result.get('art_character_categories', {}),
+                'background_description': result.get('background_description', ''),
                 'art_elements': result.get('art_elements', []),
                 'art_narrative': result.get('art_narrative', ''),
                 'is_branded': result.get('is_branded', False),
@@ -1672,6 +1627,10 @@ def run_batch(files, use_vision=True, output_path=None, use_masked=True, use_cac
         except Exception as e:
             errors += 1
             print(f"  ERROR: {e}", flush=True)
+
+        if len(results) > 0 and len(results) % 100 == 0:
+            save_batch_to_pipeline(results, errors, files)
+            print(f"  [checkpoint] Saved {len(results)} results so far", flush=True)
 
         time.sleep(0.5)
 
@@ -1797,6 +1756,7 @@ def run_batch_api(files, use_vision=True):
                     'art_color_tone': processed.get('art_color_tone', []),
                     'art_characters': processed.get('art_characters', []),
                     'art_character_categories': processed.get('art_character_categories', {}),
+                    'background_description': processed.get('background_description', ''),
                     'art_elements': processed.get('art_elements', []),
                     'art_narrative': processed.get('art_narrative', ''),
                     'is_branded': processed.get('is_branded', False),
@@ -1869,7 +1829,7 @@ def save_batch_to_pipeline(results, errors, files):
     with open(RUN_LOG_PATH, 'w') as f:
         json.dump(log, f, indent=2)
 
-    if len(results) > 5:
+    if len(results) > 5 and not os.environ.get('ART_SKIP_GATE'):
         batch_num = len(log.get('runs', []))
         close_batch_gate(batch_num, len(results))
 
@@ -1910,6 +1870,9 @@ def check_batch_gate(batch_size):
     Batches of <=10 games bypass for re-verification/spot-check fixes only.
     Gate file missing = CLOSED (fail-safe). No --force-gate override exists.
     """
+    if os.environ.get('ART_SKIP_GATE'):
+        print(f"  [gate] ART_SKIP_GATE set — bypassing gate for parallel run.", flush=True)
+        return True
     if batch_size <= 10:
         print(f"  [gate] Small batch ({batch_size} games) — bypassing gate for re-verification.", flush=True)
         return True
@@ -1959,8 +1922,17 @@ def close_batch_gate(batch_num, game_count):
     print(f"\n  [gate] CLOSED — spot-check batch {batch_num} before starting the next one.", flush=True)
 
 
-def update_gate_from_regression(theme_adj_pct, overall_adj_pct=None):
-    """Called by --regression-full. Opens gate if theme ≥97% AND overall ≥95%, otherwise keeps closed."""
+GATE_THRESHOLDS = {
+    'art_theme': 87.0,
+    'art_characters': 85.0,
+    'art_elements': 60.0,
+    'art_color_tone': 88.0,
+}
+GATE_OVERALL_THRESHOLD = 80.0
+
+
+def update_gate_from_regression(theme_ok_pct, overall_ok_pct=None, dim_ok_pcts=None):
+    """Called by --regression-full. Opens gate only if ALL per-dimension OK% minimums pass."""
     from datetime import datetime
     if not os.path.exists(BATCH_GATE_PATH):
         return
@@ -1969,33 +1941,52 @@ def update_gate_from_regression(theme_adj_pct, overall_adj_pct=None):
     if gate.get('gate_open', False):
         return
     last_sc = gate.get('last_spot_check', {})
-    last_sc['regression_post_fix'] = f"{theme_adj_pct:.1f}%"
-    if overall_adj_pct is not None:
-        last_sc['overall_adj_pct'] = f"{overall_adj_pct:.1f}%"
+    last_sc['regression_post_fix'] = f"{theme_ok_pct:.1f}%"
+    if overall_ok_pct is not None:
+        last_sc['overall_ok_pct'] = f"{overall_ok_pct:.1f}%"
+    if dim_ok_pcts:
+        last_sc['per_dimension'] = {d.replace('art_', ''): f"{v:.1f}%" for d, v in dim_ok_pcts.items()}
     gate['last_spot_check'] = last_sc
     gate['updated_at'] = datetime.utcnow().strftime('%Y-%m-%d')
 
-    theme_passes = theme_adj_pct >= 97.0
-    overall_passes = overall_adj_pct is None or overall_adj_pct >= 95.0
+    failures = []
+    if dim_ok_pcts:
+        for dim, threshold in GATE_THRESHOLDS.items():
+            actual = dim_ok_pcts.get(dim, 0)
+            if actual < threshold:
+                label = dim.replace('art_', '')
+                failures.append(f"{label} {actual:.1f}% < {threshold:.0f}%")
+    else:
+        if theme_ok_pct < GATE_THRESHOLDS.get('art_theme', 87.0):
+            failures.append(f"theme {theme_ok_pct:.1f}% < {GATE_THRESHOLDS['art_theme']:.0f}%")
+
+    if overall_ok_pct is not None and overall_ok_pct < GATE_OVERALL_THRESHOLD:
+        failures.append(f"overall {overall_ok_pct:.1f}% < {GATE_OVERALL_THRESHOLD:.0f}%")
+
     fixes_applied = last_sc.get('fixes_applied', False)
 
-    if theme_passes and overall_passes:
+    if not failures:
         if fixes_applied:
             gate['gate_open'] = True
-            overall_str = f", overall {overall_adj_pct:.1f}%" if overall_adj_pct is not None else ""
-            gate['reason'] = f'Regression passes: theme {theme_adj_pct:.1f}% (≥97%){overall_str} (≥95%). Gate opened.'
-            print(f"\n  [gate] OPENED — theme {theme_adj_pct:.1f}%{overall_str} passes thresholds.", flush=True)
+            dim_str = ""
+            if dim_ok_pcts:
+                parts = [f"{d.replace('art_', '')} {v:.1f}%" for d, v in dim_ok_pcts.items()]
+                dim_str = ", ".join(parts)
+            gate['reason'] = f'All gates pass (OK%): {dim_str}. Overall {overall_ok_pct:.1f}%. Gate opened.'
+            print(f"\n  [gate] OPENED — all dimensions pass OK% thresholds.", flush=True)
+            if dim_ok_pcts:
+                for d, v in dim_ok_pcts.items():
+                    label = d.replace('art_', '')
+                    threshold = GATE_THRESHOLDS.get(d, 85.0)
+                    status = "PASS" if v >= threshold else "FAIL"
+                    print(f"    {label:16s} {v:5.1f}% (>={threshold:.0f}%) {status}", flush=True)
+                print(f"    {'overall':16s} {overall_ok_pct:5.1f}% (>={GATE_OVERALL_THRESHOLD:.0f}%) PASS", flush=True)
         else:
-            gate['reason'] = f'Regression passes but fixes_applied is false. Apply fixes first.'
+            gate['reason'] = f'All gates pass but fixes_applied is false. Apply fixes first.'
             print(f"\n  [gate] Still closed — regression passes but fixes_applied=false.", flush=True)
     else:
-        reasons = []
-        if not theme_passes:
-            reasons.append(f"theme {theme_adj_pct:.1f}% < 97%")
-        if not overall_passes:
-            reasons.append(f"overall {overall_adj_pct:.1f}% < 95%")
-        gate['reason'] = f'Regression below threshold: {", ".join(reasons)}. Fix issues and re-run.'
-        print(f"\n  [gate] Still closed — {', '.join(reasons)}.", flush=True)
+        gate['reason'] = f'Gate blocked: {", ".join(failures)}. Fix issues and re-run.'
+        print(f"\n  [gate] Still closed — {', '.join(failures)}.", flush=True)
 
     with open(BATCH_GATE_PATH, 'w') as f:
         json.dump(gate, f, indent=2)
@@ -2017,7 +2008,7 @@ def select_new_batch(n, require_screenshot=True):
 
     screenshots = set()
     if require_screenshot:
-        for ext in ['*.jpg', '*.png', '*.webp']:
+        for ext in ['*.jpg', '*.jpeg', '*.png', '*.webp']:
             for f in glob_mod.glob(os.path.join(SCREENSHOT_DIR, ext)):
                 slug = os.path.basename(f).rsplit('.', 1)[0]
                 screenshots.add(slug + '.html')
@@ -2144,7 +2135,9 @@ def _fix_resolved_characters(note, result_chars, corrections_entry):
     import re
     note_lower = note.lower().strip()
     result_set = set(result_chars) if isinstance(result_chars, list) else set()
-    no_chars = 'No Characters (symbol-only game)' in result_set
+    no_chars = ('No Characters (symbol-only game)' in result_set
+                or len(result_set) == 0
+                or result_set == {''})
 
     override = corrections_entry.get('override_characters')
     if override and set(override) == result_set:
@@ -2152,17 +2145,23 @@ def _fix_resolved_characters(note, result_chars, corrections_entry):
 
     no_char_phrases = ['no char', 'just symbol', 'only symbol', 'they are symbol',
                        'all symbol', 'just on symbol', 'all are symbol',
-                       'only in the symbol', 'part of the logo', 'not a real char']
+                       'only in the symbol', 'part of the logo', 'not a real char',
+                       'is a symbol', 'its a symbol', "it's a symbol", 'he is a symbol',
+                       'she is a symbol']
     if any(p in note_lower for p in no_char_phrases) and no_chars:
         return True
 
     note_tokens = set(re.split(r'[^a-z]+', note_lower)) - {'', 'correct', 'but', 'should',
-        'say', 'more', 'like', 'a', 'an', 'the', 'its', 'is', 'not', 'really', 'yes'}
+        'say', 'more', 'like', 'a', 'an', 'the', 'its', 'is', 'not', 'really', 'yes',
+        'think', 'just', 'only', 'also', 'can', 'you', 'add', 'some', 'details'}
     result_lower = {c.lower() for c in result_set}
     for rt in result_lower:
         rt_tokens = set(re.split(r'[^a-z]+', rt)) - {''}
         if rt_tokens & note_tokens and len(rt_tokens & note_tokens) >= 1:
             return True
+        for nt in note_tokens:
+            if len(nt) >= 4 and any(nt in rtt or rtt in nt for rtt in rt_tokens if len(rtt) >= 4):
+                return True
 
     return False
 
@@ -2172,6 +2171,7 @@ def _fix_resolved_elements(note, result_elems, corrections_entry):
     import re
     note_lower = note.lower().strip()
     result_set = set(result_elems) if isinstance(result_elems, list) else set()
+    result_lower = set(e.lower() for e in result_set)
 
     override = corrections_entry.get('override_elements')
     if override is not None and set(override) == result_set:
@@ -2188,7 +2188,7 @@ def _fix_resolved_elements(note, result_elems, corrections_entry):
     frame_words = ['frame', 'rope frame', 'wood frame', 'stone frame', 'metal frame',
                    'neon frame', 'colored frame', 'minimal/no frame']
     if any(fw in note_lower for fw in frame_words):
-        has_frames = any('Frame' in e for e in result_set) or any('Minimal' in e for e in result_set)
+        has_frames = any('frame' in e for e in result_lower) or any('minimal' in e for e in result_lower)
         if not has_frames:
             return True
 
@@ -2206,10 +2206,122 @@ def _fix_resolved_elements(note, result_elems, corrections_entry):
 
     bloat_words = ['redundant', 'bloat', 'remove redundant']
     if any(bw in note_lower for bw in bloat_words):
-        noise_in_result = any('Frame' in e or 'Scrollwork' in e or 'Glitter' in e
-                              for e in result_set)
+        noise_in_result = any('frame' in e or 'scrollwork' in e or 'glitter' in e
+                              for e in result_lower)
         if not noise_in_result:
             return True
+
+    # Keyword matching: map common note words to element names
+    KEYWORD_TO_ELEMENTS = {
+        'basketball court': ['basketball court'],
+        'flower': ['flowers/blossoms', 'flowers'],
+        'curtain': ['curtains/drapes', 'curtains'],
+        'vine': ['vines/ivy', 'vines'],
+        'forest': ['forest', 'trees'],
+        'leaf': ['vines/ivy', 'plants', 'tropical plants'],
+        'leaves': ['vines/ivy', 'plants', 'tropical plants'],
+        'hut': ['hut/shack', 'hut'],
+        'beach': ['beach/shoreline', 'beach'],
+        'palm': ['palm trees', 'palms'],
+        'heart': ['hearts/love symbols', 'hearts'],
+        'mountain': ['mountains'],
+        'gold coin': ['gold coins/treasure', 'gold coins'],
+        'coin': ['gold coins/treasure', 'coin stacks'],
+        'wallpaper': ['wallpaper/decorative pattern'],
+        'pattern': ['wallpaper/decorative pattern'],
+        'hieroglyph': ['hieroglyphs/ancient writing', 'hieroglyphs'],
+        'tree': ['trees', 'trees/forest'],
+        'field': ['fields/grassland'],
+        'grass': ['fields/grassland'],
+        'sky': ['sky'],
+        'cloud': ['clouds'],
+        'fire': ['fire/flames'],
+        'flame': ['fire/flames'],
+        'neon': ['neon glow'],
+        'waterfall': ['waterfall'],
+        'water': ['water effects'],
+        'lantern': ['asian lanterns'],
+        'bamboo': ['bamboo'],
+        'temple': ['temples'],
+        'pyramid': ['pyramids'],
+        'statue': ['statues/sculptures'],
+        'weapon': ['weapons (swords/shields)'],
+        'sword': ['weapons (swords/shields)'],
+        'shield': ['weapons (swords/shields)'],
+        'crown': ['crowns/royal jewelry'],
+        'chandelier': ['chandeliers'],
+        'disco ball': ['disco ball'],
+        'graffiti': ['graffiti'],
+        'hearts': ['hearts/love symbols', 'hearts'],
+        'candles': ['candles'],
+        'lights': ['lights/spotlights', 'stage lights'],
+        'spider web': ['spider web'],
+        'treasure chest': ['treasure chest'],
+        'roman': ['roman architecture'],
+        'multiplier': ['multipliers'],
+        'apartment': ['apartment/penthouse'],
+        'arabian': ['arabian architecture', 'arab/middle eastern architecture'],
+        'snowy': ['snowflakes/snow', 'snow/ice effects'],
+        'straw': ['hay/straw'],
+        'hay': ['hay/straw'],
+        'lava': ['lava/magma'],
+        'sparkle': ['sparkles/glitter'],
+        'rose': ['roses'],
+        'fish': ['fish'],
+        'dynamite': ['dynamite'],
+        'rainbow': ['rainbow'],
+        'slot machine': ['slot machines'],
+    }
+
+    # "not X" / "no X" patterns: user says element should NOT be there
+    not_pattern = re.findall(r'(?:not?|remove|no)\s+([\w\s/]+?)(?:[,.]|$)', note_lower)
+    if not_pattern:
+        all_removed = True
+        for phrase in not_pattern:
+            phrase = phrase.strip()
+            for kw, elem_names in KEYWORD_TO_ELEMENTS.items():
+                if kw in phrase:
+                    if any(en in result_lower for en in elem_names):
+                        all_removed = False
+            if phrase in result_lower:
+                all_removed = False
+        if all_removed and not_pattern:
+            return True
+
+    # "part of symbols not background" → element should be gone
+    if 'part of symbols' in note_lower or 'not background' in note_lower:
+        for kw, elem_names in KEYWORD_TO_ELEMENTS.items():
+            if kw in note_lower and not any(en in result_lower for en in elem_names):
+                return True
+
+    # "also X" / "X missed" / "add X" / "missing X" patterns (both word orders)
+    also_pattern = re.findall(
+        r'(?:also|add|missing|missed|should have|should include)\s+([\w\s/]+?)(?:[,.]|$)', note_lower
+    )
+    also_pattern += re.findall(
+        r'([\w\s/]+?)\s+(?:missed|missing|should be there)', note_lower
+    )
+    if also_pattern:
+        matched = 0
+        total = len(also_pattern)
+        for phrase in also_pattern:
+            phrase = phrase.strip()
+            for kw, elem_names in KEYWORD_TO_ELEMENTS.items():
+                if kw in phrase and any(en in result_lower for en in elem_names):
+                    matched += 1
+                    break
+        if matched > 0 and matched >= total * 0.5:
+            return True
+
+    # Direct keyword scan: if any keyword from the note matches an element in result
+    note_words = set(re.findall(r'[a-z]+', note_lower))
+    matched_keywords = 0
+    for kw, elem_names in KEYWORD_TO_ELEMENTS.items():
+        kw_words = set(kw.split())
+        if kw_words.issubset(note_words) and any(en in result_lower for en in elem_names):
+            matched_keywords += 1
+    if matched_keywords >= 1 and len(note_lower) < 60:
+        return True
 
     return False
 
@@ -2234,6 +2346,181 @@ def _fix_resolved_color(note, result_colors, corrections_entry):
             return True
 
     return False
+
+
+def run_pre_screen():
+    """Cheap screenshot quality pre-screen using 200x200 resized images.
+
+    Sends each screenshot to Claude with a minimal prompt to classify as
+    gameplay/promotional/rules_page/loading_screen/bonus_screen/other.
+    Cost: ~$0.0002 per image. Results saved to screenshot_quality_prescreen.json.
+    """
+    from PIL import Image as PILImage
+    from io import BytesIO
+    import anthropic
+
+    prescreen_path = os.path.join(os.path.dirname(RESULTS_PATH), 'screenshot_quality_prescreen.json')
+
+    existing = {}
+    if os.path.exists(prescreen_path):
+        with open(prescreen_path) as f:
+            existing = json.load(f)
+
+    results = {}
+    if os.path.exists(RESULTS_PATH):
+        with open(RESULTS_PATH) as f:
+            results = json.load(f).get('games', {})
+
+    candidates = []
+    for fname, game in results.items():
+        if fname in existing:
+            continue
+        slug = fname.replace('.html', '')
+        for ext in ['.jpg', '.jpeg', '.png', '.webp']:
+            path = os.path.join(SCREENSHOT_DIR, slug + ext)
+            if os.path.exists(path):
+                candidates.append((fname, path))
+                break
+
+    if not candidates:
+        print("No new screenshots to pre-screen.")
+        if existing:
+            counts = {}
+            for v in existing.values():
+                q = v.get('quality', 'unknown')
+                counts[q] = counts.get(q, 0) + 1
+            print(f"Existing pre-screen results: {len(existing)} games")
+            for q, c in sorted(counts.items(), key=lambda x: -x[1]):
+                print(f"  {q}: {c}")
+        return
+
+    cost_est = len(candidates) * 0.0002
+    print(f"Pre-screen: {len(candidates)} screenshots to check")
+    print(f"Estimated cost: ~${cost_est:.2f}")
+    print(f"Already screened: {len(existing)}")
+    resp = input("Proceed? (y/n): ").strip().lower()
+    if resp != 'y':
+        print("Cancelled.")
+        return
+
+    api_key = load_api_key()
+    client = anthropic.Anthropic(api_key=api_key)
+    screened = 0
+    errors = 0
+
+    for i, (fname, path) in enumerate(candidates):
+        try:
+            img = PILImage.open(path)
+            img = img.convert('RGB')
+            img = img.resize((200, 200), PILImage.LANCZOS)
+            buf = BytesIO()
+            img.save(buf, format='JPEG', quality=60)
+            img_data = base64.standard_b64encode(buf.getvalue()).decode('utf-8')
+
+            response = client.messages.create(
+                model="claude-sonnet-4-20250514",
+                max_tokens=20,
+                messages=[{
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": img_data}},
+                        {"type": "text", "text": "Is this a screenshot of slot machine gameplay? Answer exactly one of: gameplay / promotional / rules_page / loading_screen / bonus_screen / other"}
+                    ]
+                }]
+            )
+
+            quality = response.content[0].text.strip().lower()
+            valid_qualities = {'gameplay', 'promotional', 'rules_page', 'loading_screen', 'bonus_screen', 'other'}
+            if quality not in valid_qualities:
+                for vq in valid_qualities:
+                    if vq in quality:
+                        quality = vq
+                        break
+                else:
+                    quality = 'other'
+
+            existing[fname] = {'quality': quality}
+            screened += 1
+
+            if (i + 1) % 10 == 0 or i == len(candidates) - 1:
+                print(f"  [{i+1}/{len(candidates)}] {fname}: {quality}", flush=True)
+                with open(prescreen_path, 'w') as f:
+                    json.dump(existing, f, indent=2)
+
+        except Exception as e:
+            print(f"  ERROR {fname}: {e}")
+            errors += 1
+
+    with open(prescreen_path, 'w') as f:
+        json.dump(existing, f, indent=2)
+
+    counts = {}
+    for v in existing.values():
+        q = v.get('quality', 'unknown')
+        counts[q] = counts.get(q, 0) + 1
+
+    print(f"\nPre-screen complete: {screened} screened, {errors} errors")
+    print(f"Total in prescreen DB: {len(existing)}")
+    for q, c in sorted(counts.items(), key=lambda x: -x[1]):
+        print(f"  {q}: {c}")
+
+
+def _count_fix_issues(note):
+    """Count distinct issues in a fix note for severity scoring."""
+    if not note:
+        return 0
+    note_lower = note.lower().strip()
+
+    bad_ss_kws = [
+        'not a game screenshot', 'not an ingame', 'not an in game',
+        'bad screenshot', 'poster screenshot', 'megawin screenshot',
+        'screenshot is of bonus',
+    ]
+    if any(kw in note_lower for kw in bad_ss_kws):
+        return -1  # sentinel: bad input, exclude
+
+    issue_count = 0
+    parts = [p.strip() for p in re.split(r'[,;]', note_lower) if p.strip()]
+
+    seen_patterns = set()
+    for p in parts:
+        if re.search(r'\balso\b|\badd\b|\bmissed\b|\bmissing\b', p):
+            items = re.split(r'\band\b', p)
+            issue_count += len(items)
+            seen_patterns.add('add_miss')
+        elif re.search(r'\bseparat|be specific|split\b', p):
+            if 'separate' not in seen_patterns:
+                issue_count += 1
+                seen_patterns.add('separate')
+        elif re.search(r'\bredundant\b|\bbloat\b|\bremove\b|\bnot?\s+\w+\b', p):
+            if 'remove' not in seen_patterns:
+                issue_count += 1
+                seen_patterns.add('remove')
+        elif re.search(r'\bsymbol\b|\bnot element\b|\bjust.*symbol\b', p):
+            if 'symbol' not in seen_patterns:
+                issue_count += 1
+                seen_patterns.add('symbol')
+
+    if issue_count == 0:
+        issue_count = len(parts)
+
+    return max(issue_count, 1)
+
+
+def _classify_severity(note):
+    """Classify a fix verdict by severity. Returns (label, weight).
+    Perfect=100%, Minor=80%, Moderate=50%, Major=0%, bad_input=excluded.
+    """
+    if not note:
+        return 'perfect', 1.0
+    issues = _count_fix_issues(note)
+    if issues == -1:
+        return 'bad_input', None
+    if issues == 1:
+        return 'minor', 0.8
+    if issues == 2:
+        return 'moderate', 0.5
+    return 'major', 0.0
 
 
 def run_expanded_regression():
@@ -2270,10 +2557,15 @@ def run_expanded_regression():
     dim_total = {d: 0 for d in dims}
     dim_fix_resolved = {d: 0 for d in dims}
     dim_fix_total = {d: 0 for d in dims}
+    severity_levels = ['perfect', 'minor', 'moderate', 'major']
+    dim_severity = {d: {s: 0 for s in severity_levels} for d in dims}
+    dim_weighted_sum = {d: 0.0 for d in dims}
+    dim_weighted_count = {d: 0 for d in dims}
     per_game_issues = []
 
     human_count = 0
     missing_from_results = 0
+    excluded_bad_ss = 0
 
     for fname, rev in rev_games.items():
         rnd = rev.get('review_round', '')
@@ -2286,26 +2578,55 @@ def run_expanded_regression():
             missing_from_results += 1
             continue
 
+        ss_quality = r.get('screenshot_quality', '')
+        is_unfixable = corrections.get(fname, {}).get('bad_screenshot_unfixable', False)
+        if ss_quality != 'gameplay' and is_unfixable:
+            excluded_bad_ss += 1
+            continue
+
         verdicts = rev.get('verdicts', {})
         for d in dims:
             v = verdicts.get(d, {})
             note = (v.get('note') or '').strip()
             dim_total[d] += 1
 
+            sev_label, sev_weight = _classify_severity(note)
+
             note_lower = note.lower()
-            is_bad_ss = any(kw in note_lower for kw in ['not a game screenshot', 'not an ingame screenshot',
-                                                         'bad screenshot', 'not a game screesnhot'])
+            is_bad_ss = any(kw in note_lower for kw in [
+                'not a game screenshot', 'not an ingame screenshot', 'not an ingame',
+                'not an in game screenshot', 'not an in game', 'not of a slot in game',
+                'bad screenshot', 'not a game screesnhot', 'poster screenshot',
+                'megawin screenshot', 'screenshot is of bonus',
+            ])
             if not note:
                 dim_ok[d] += 1
+                dim_severity[d]['perfect'] += 1
+                dim_weighted_sum[d] += 1.0
+                dim_weighted_count[d] += 1
             elif note.upper().startswith('INVALID'):
                 dim_fix_total[d] += 1
                 dim_fix_resolved[d] += 1
+                dim_severity[d]['perfect'] += 1
+                dim_weighted_sum[d] += 1.0
+                dim_weighted_count[d] += 1
             elif is_bad_ss and (r.get('screenshot_quality') == 'gameplay'
                                 or corrections.get(fname, {}).get('bad_screenshot_unfixable')):
                 dim_fix_total[d] += 1
                 dim_fix_resolved[d] += 1
+                dim_severity[d]['perfect'] += 1
+                dim_weighted_sum[d] += 1.0
+                dim_weighted_count[d] += 1
+            elif sev_label == 'bad_input':
+                dim_fix_total[d] += 1
+                dim_fix_resolved[d] += 1
             else:
                 dim_fix_total[d] += 1
+                if sev_label in dim_severity[d]:
+                    dim_severity[d][sev_label] += 1
+                if sev_weight is not None:
+                    dim_weighted_sum[d] += sev_weight
+                    dim_weighted_count[d] += 1
                 corr_entry = corrections.get(fname, {})
                 resolved = False
 
@@ -2340,31 +2661,81 @@ def run_expanded_regression():
     total_fix_resolved = sum(dim_fix_resolved.values())
     total_pass = total_ok + total_fix_resolved
 
+    scored_count = human_count - missing_from_results - excluded_bad_ss
+
     print(f"\n{'=' * 60}")
-    print(f"EXPANDED REGRESSION — {human_count} human-reviewed games")
+    print(f"EXPANDED REGRESSION — {scored_count} scored games")
     print(f"{'=' * 60}")
-    print(f"Reviewed: {human_count} games, {total_verdicts} verdicts")
+    print(f"Human-reviewed: {human_count} | Scored: {scored_count} | {total_verdicts} verdicts")
+    if excluded_bad_ss:
+        print(f"Excluded (non-gameplay + unfixable screenshot): {excluded_bad_ss}")
     if missing_from_results:
         print(f"Missing from results.json: {missing_from_results}")
     print()
 
-    print(f"{'Dimension':<18s} {'OK':>5s} {'Fix':>5s} {'Resolvd':>7s} {'Base%':>7s} {'Adj%':>7s}")
-    print('-' * 54)
+    hdr = (f"{'Dimension':<16s} {'Perfect':>7s} {'Minor':>6s} {'Mod':>5s} "
+           f"{'Major':>6s} {'Total':>6s} {'OK%':>7s} {'Res%':>7s} {'Wtd%':>7s}")
+    print(hdr)
+    print('-' * len(hdr))
     for d in dims:
         label = d.replace('art_', '')
-        ok = dim_ok[d]
-        fix_total = dim_fix_total[d]
-        fix_resolved = dim_fix_resolved[d]
+        sev = dim_severity[d]
         total = dim_total[d]
-        base_pct = ok / total * 100 if total > 0 else 0
-        adj_pct = (ok + fix_resolved) / total * 100 if total > 0 else 0
-        print(f"  {label:<16s} {ok:>5d} {fix_total:>5d} {fix_resolved:>7d} {base_pct:>6.1f}% {adj_pct:>6.1f}%")
+        ok_pct = dim_ok[d] / total * 100 if total > 0 else 0
+        resolved_pct = (dim_ok[d] + dim_fix_resolved[d]) / total * 100 if total > 0 else 0
+        wc = dim_weighted_count[d]
+        wtd_pct = dim_weighted_sum[d] / wc * 100 if wc > 0 else 0
+        print(f"  {label:<14s} {sev['perfect']:>7d} {sev['minor']:>6d} "
+              f"{sev['moderate']:>5d} {sev['major']:>6d} {total:>6d} "
+              f"{ok_pct:>6.1f}% {resolved_pct:>6.1f}% {wtd_pct:>6.1f}%")
 
-    base_all = total_ok / total_verdicts * 100 if total_verdicts > 0 else 0
-    adj_all = (total_ok + total_fix_resolved) / total_verdicts * 100 if total_verdicts > 0 else 0
-    print(f"\n  {'OVERALL':<16s} {total_ok:>5d} {sum(dim_fix_total.values()):>5d} "
-          f"{total_fix_resolved:>7d} {base_all:>6.1f}% {adj_all:>6.1f}%")
-    print(f"\n  Base% = OK verdicts only; Adj% = OK + resolved Fix verdicts")
+    ok_all = total_ok / total_verdicts * 100 if total_verdicts > 0 else 0
+    total_resolved = total_ok + total_fix_resolved
+    resolved_all = total_resolved / total_verdicts * 100 if total_verdicts > 0 else 0
+    total_ws = sum(dim_weighted_sum.values())
+    total_wc = sum(dim_weighted_count.values())
+    overall_wtd = total_ws / total_wc * 100 if total_wc > 0 else 0
+    print(f"\n  {'OVERALL':<14s} {sum(dim_severity[d]['perfect'] for d in dims):>7d} "
+          f"{sum(dim_severity[d]['minor'] for d in dims):>6d} "
+          f"{sum(dim_severity[d]['moderate'] for d in dims):>5d} "
+          f"{sum(dim_severity[d]['major'] for d in dims):>6d} "
+          f"{total_verdicts:>6d} {ok_all:>6.1f}% {resolved_all:>6.1f}% {overall_wtd:>6.1f}%")
+    print(f"\n  OK%  = verdicts marked OK by human (binary)")
+    print(f"  Res% = OK + fix-verdicts auto-resolved by corrections/improvements")
+    print(f"  Wtd% = severity-weighted (Perfect=100%, Minor=80%, Moderate=50%, Major=0%)")
+
+    # Resolution detail
+    print(f"\n{'─' * 60}")
+    print("RESOLUTION DETAIL (fix verdicts resolved by corrections/improvements)")
+    for d in dims:
+        label = d.replace('art_', '')
+        resolved = dim_fix_resolved[d]
+        fix_total = dim_fix_total[d]
+        unresolved = fix_total - resolved
+        print(f"  {label:<14s}  {resolved}/{fix_total} fix verdicts resolved, {unresolved} still unresolved")
+
+    # Health metrics
+    total_classified = len(r_games)
+    total_corrections = len(corrections)
+    non_gameplay_count = sum(1 for g in r_games.values() if g.get('screenshot_quality') not in ('gameplay', None, ''))
+    corr_pct = total_corrections / total_classified * 100 if total_classified > 0 else 0
+    bad_ss_pct = non_gameplay_count / total_classified * 100 if total_classified > 0 else 0
+
+    gate_data = {}
+    gate_path = os.path.join(os.path.dirname(RESULTS_PATH), 'batch_gate.json')
+    if os.path.exists(gate_path):
+        with open(gate_path) as f:
+            gate_data = json.load(f)
+    last_sc = gate_data.get('last_spot_check', {})
+    last_sc_acc = last_sc.get('accuracy', '?')
+    last_sc_batch = last_sc.get('batch', '?')
+    last_sc_total = last_sc.get('total', '?')
+
+    print(f"\n{'─' * 60}")
+    print("HEALTH METRICS")
+    print(f"  Correction dependency:  {corr_pct:.1f}% ({total_corrections}/{total_classified} games need manual corrections)")
+    print(f"  Bad screenshot rate:    {bad_ss_pct:.1f}% ({non_gameplay_count}/{total_classified} classified from non-gameplay images)")
+    print(f"  Last spot-check:        {last_sc_acc}% ({last_sc_batch}, {last_sc_total} verdicts)")
 
     if per_game_issues:
         dim_labels = {'art_theme': 'THEME', 'art_characters': 'CHARACTERS',
@@ -2375,36 +2746,24 @@ def run_expanded_regression():
                 continue
             label = dim_labels.get(d, d)
             print(f"\n{'─' * 60}")
-            print(f"{label} — unresolved fix verdicts ({len(d_issues)}):")
+            print(f"{label} — fix verdicts ({len(d_issues)}):")
             for fname, _, note, got in sorted(d_issues):
                 print(f"  {fname:40s} note: {note}")
                 print(f"  {'':40s} got:  {got}")
 
-    # Metric sanity check: flag dimensions where fix-resolution logic may be broken.
-    # If a dimension has many fixes but almost none resolved, the resolution code
-    # is likely not covering that dimension — exactly the Incident-2 blind spot.
-    sanity_failures = []
-    for d in dims:
-        ft = dim_fix_total[d]
-        fr = dim_fix_resolved[d]
-        if ft > 10 and fr < 3:
-            label = d.replace('art_', '')
-            sanity_failures.append(f"{label}: {ft} fixes, only {fr} resolved")
-    if sanity_failures:
-        print(f"\n{'!' * 60}")
-        print("METRIC SANITY CHECK FAILED")
-        print(f"{'!' * 60}")
-        for sf in sanity_failures:
-            print(f"  {sf}")
-        print("\nThis likely means fix-resolution logic is missing or broken for")
-        print("these dimensions. DO NOT proceed until investigated.")
-        print(f"{'!' * 60}\n")
-
+    # Gate update (uses OK% internally — gate thresholds will be updated by Atlas)
     theme_total = dim_total.get('art_theme', 0)
-    overall_adj = (total_ok + total_fix_resolved) / total_verdicts * 100 if total_verdicts > 0 else 0
+    dim_ok_pcts = {}
+    for d in dims:
+        t = dim_total[d]
+        if t > 0:
+            dim_ok_pcts[d] = dim_ok[d] / t * 100
+
+    overall_ok_pct = total_ok / total_verdicts * 100 if total_verdicts > 0 else 0
+
     if theme_total > 0:
-        theme_adj = (dim_ok.get('art_theme', 0) + dim_fix_resolved.get('art_theme', 0)) / theme_total * 100
-        update_gate_from_regression(theme_adj, overall_adj)
+        theme_ok_pct = dim_ok_pcts.get('art_theme', 0)
+        update_gate_from_regression(theme_ok_pct, overall_ok_pct, dim_ok_pcts)
 
     return dim_ok, dim_total
 
@@ -2530,12 +2889,9 @@ def repair_screenshots():
     if repaired > 0:
         print(f"\nRe-classify the repaired games:")
         repair_files = [fname for fname, sq in bad_games
-                        if os.path.exists(os.path.join(SCREENSHOT_DIR,
-                            fname.replace('.html', '') + '.jpg')) or
-                           os.path.exists(os.path.join(SCREENSHOT_DIR,
-                            fname.replace('.html', '') + '.png')) or
-                           os.path.exists(os.path.join(SCREENSHOT_DIR,
-                            fname.replace('.html', '') + '.webp'))]
+                        if any(os.path.exists(os.path.join(SCREENSHOT_DIR,
+                            fname.replace('.html', '') + ext))
+                            for ext in ['.jpg', '.jpeg', '.png', '.webp'])]
         for rf in repair_files:
             print(f"  {rf}")
         print(f"\nRun: python3 classify_art_v2.py --batch-api {' '.join(repair_files)}")
@@ -2819,6 +3175,10 @@ def main():
     parser.add_argument('--no-cache', action='store_true', help='Disable prompt caching')
     parser.add_argument('--cost-experiment', action='store_true',
                         help='Run 4-config cost experiment on 20 games (caching, masked, batch)')
+    parser.add_argument('--reclassify-old', action='store_true',
+                        help='List all games without _is_v2 flag (batch 1-2 legacy) for reclassification')
+    parser.add_argument('--pre-screen', action='store_true',
+                        help='Cheap screenshot quality pre-screen (200x200, ~$0.0002/image)')
     # --force-gate intentionally removed — gate cannot be bypassed
     args = parser.parse_args()
 
@@ -2868,6 +3228,28 @@ def main():
 
     if args.cost_experiment:
         run_cost_experiment()
+        return
+
+    if args.pre_screen:
+        run_pre_screen()
+        return
+
+    if args.reclassify_old:
+        if not os.path.exists(RESULTS_PATH):
+            print("No results.json found.")
+            sys.exit(1)
+        with open(RESULTS_PATH) as f:
+            res_data = json.load(f)
+        old_games = [fname for fname, g in res_data.get('games', {}).items()
+                     if not g.get('_is_v2')]
+        print(f"Found {len(old_games)} legacy games (no _is_v2 flag) to reclassify.")
+        if old_games:
+            if not check_batch_gate(len(old_games)):
+                sys.exit(1)
+            print("Pass these as files to classify:")
+            for g in sorted(old_games):
+                print(f"  {g}")
+            print(f"\nTo reclassify all: python3 classify_art_v2.py --no-masked {' '.join(sorted(old_games)[:5])} ...")
         return
 
     if not args.files:

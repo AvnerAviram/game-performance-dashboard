@@ -630,7 +630,7 @@ function analyzeGameConcept() {
         const matchLabel =
             exactMatches.length >= 2
                 ? `Games with exact recipe (${exactMatches.length})`
-                : `Similar games in ${primaryTheme} (${matchingGames.length})`;
+                : `Similar games in ${escapeHtml(primaryTheme)} (${matchingGames.length})`;
         html += `
         <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
             <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
@@ -646,7 +646,7 @@ function analyzeGameConcept() {
                         const theo = g.performance_theo_win || 0;
                         const isAbove = theo >= globalAvg;
                         return `<div class="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/10 transition-colors cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ game: g.name, field: 'name' }))}' onclick="${safeOnclick('window.showGameDetails', g.name)}">
-                        <div class="flex-1 min-w-0"><div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${escapeHtml(g.name)}</div><div class="text-[10px] text-gray-400">${escapeHtml(F.provider(g))} · ${gFeats.slice(0, 2).join(', ')}${gFeats.length > 2 ? ' +' + (gFeats.length - 2) : ''}</div></div>
+                        <div class="flex-1 min-w-0"><div class="text-sm font-semibold text-gray-900 dark:text-white truncate">${escapeHtml(g.name)}</div><div class="text-[10px] text-gray-400">${escapeHtml(F.provider(g))} · ${escapeHtml(gFeats.slice(0, 2).join(', '))}${gFeats.length > 2 ? ' +' + (gFeats.length - 2) : ''}</div></div>
                         <div class="text-right shrink-0"><div class="text-sm font-bold ${isAbove ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-500'}">${theo.toFixed(2)}</div><div class="text-[9px] text-gray-400">theo</div></div>
                     </div>`;
                     })
@@ -716,7 +716,6 @@ function analyzeGameConcept() {
                     .slice(0, 5);
             };
             const artThemes = artTally(g => F.artTheme(g));
-            const artMoods = artTally(g => F.artMood(g));
             const artChars = artTally(g => F.artCharacters(g));
             const artElem = artTally(g => F.artElements(g));
             const artPill = ([n, c]) =>
@@ -728,9 +727,8 @@ function analyzeGameConcept() {
                         <h3 class="text-sm font-bold text-gray-900 dark:text-white">🎨 Art Direction for ${escapeHtml(primaryTheme)}</h3>
                         <p class="text-[10px] text-gray-400 mt-0.5">Based on ${artGames.length} games with art characterization</p>
                     </div>
-                    <div class="p-4 space-y-2">
+                        <div class="p-4 space-y-2">
                         <div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Themes</div><div class="flex flex-wrap gap-1">${artThemes.map(artPill).join('')}</div></div>
-                        ${artMoods.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Mood</div><div class="flex flex-wrap gap-1">${artMoods.map(artPill).join('')}</div></div>` : ''}
                         ${artChars.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Characters</div><div class="flex flex-wrap gap-1">${artChars.map(artPill).join('')}</div></div>` : ''}
                         ${artElem.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Visual Elements</div><div class="flex flex-wrap gap-1">${artElem.map(artPill).join('')}</div></div>` : ''}
                     </div>
@@ -748,7 +746,7 @@ function analyzeGameConcept() {
         suggestions.push('Games with 2-3 features tend to perform better — consider adding another mechanic');
     if (matchingGames.length > 40)
         suggestions.push(
-            `${primaryTheme} is a crowded market with ${matchingGames.length} existing games — consider a less saturated theme`
+            `${escapeHtml(primaryTheme)} is a crowded market with ${matchingGames.length} existing games — consider a less saturated theme`
         );
     if (predictedTheo > 0 && predictedTheo < globalAvg)
         suggestions.push(
@@ -778,7 +776,7 @@ function analyzeGameConcept() {
         });
         if (bestUnselected && bestLift > 0) {
             suggestions.push(
-                `Consider adding <strong>${shortF[bestUnselected] || bestUnselected}</strong> — it boosts ${primaryTheme} performance by +${bestLift.toFixed(0)}%`
+                `Consider adding <strong>${escapeHtml(shortF[bestUnselected] || bestUnselected)}</strong> — it boosts ${escapeHtml(primaryTheme)} performance by +${bestLift.toFixed(0)}%`
             );
         }
     }

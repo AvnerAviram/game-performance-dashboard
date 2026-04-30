@@ -216,7 +216,6 @@ describe('Data X-Ray – universal click interception', () => {
             const ctx = canvasId + ' ' + datasetLabel;
             if (/trend/i.test(ctx)) return 'year';
             if (/art-opportunity|art-themes-chart|chart-art-themes/i.test(canvasId)) return 'art_theme';
-            if (canvasId === 'art-mood-chart') return 'art_mood';
             if (canvasId === 'art-characters-chart') return 'art_characters';
             if (canvasId === 'art-elements-chart') return 'art_elements';
             if (canvasId === 'art-narrative-chart') return 'art_narrative';
@@ -278,7 +277,6 @@ describe('Data X-Ray – universal click interception', () => {
             expect(getChartDimension('art-opportunity-chart', '')).toBe('art_theme');
             expect(getChartDimension('art-themes-chart', '')).toBe('art_theme');
             expect(getChartDimension('chart-art-themes', '')).toBe('art_theme');
-            expect(getChartDimension('art-mood-chart', '')).toBe('art_mood');
             expect(getChartDimension('art-characters-chart', '')).toBe('art_characters');
             expect(getChartDimension('art-elements-chart', '')).toBe('art_elements');
             expect(getChartDimension('art-narrative-chart', '')).toBe('art_narrative');
@@ -602,7 +600,6 @@ describe('Data X-Ray – universal click interception', () => {
                 performance_theo_win: 5.2,
                 release_year: 2022,
                 art_theme: 'Temple',
-                art_mood: 'Mystical',
                 art_characters: ['Dragon', 'Emperor'],
                 art_elements: ['Gold', 'Fire'],
                 art_narrative: 'Quest',
@@ -617,7 +614,6 @@ describe('Data X-Ray – universal click interception', () => {
                 performance_theo_win: 2.1,
                 release_year: 2023,
                 art_theme: 'Forest',
-                art_mood: 'Calm',
             },
             {
                 name: 'Aztec Gold',
@@ -647,8 +643,6 @@ describe('Data X-Ray – universal click interception', () => {
                         return (g.specs_volatility || '').toLowerCase() === vl;
                     case 'art_theme':
                         return (g.art_theme || '').toLowerCase() === vl;
-                    case 'art_mood':
-                        return (g.art_mood || '').toLowerCase() === vl;
                     case 'art_characters': {
                         const chars = g.art_characters || [];
                         return Array.isArray(chars) ? chars.some(c => c.toLowerCase() === vl) : false;
@@ -685,12 +679,6 @@ describe('Data X-Ray – universal click interception', () => {
             const result = filterByDimension(games, 'art_theme', 'Temple');
             expect(result).toHaveLength(1);
             expect(result[0].name).toBe('Dragon Emperor');
-        });
-
-        it('filters by art_mood', () => {
-            const result = filterByDimension(games, 'art_mood', 'Calm');
-            expect(result).toHaveLength(1);
-            expect(result[0].name).toBe('Lucky Panda');
         });
 
         it('filters by art_characters (array)', () => {

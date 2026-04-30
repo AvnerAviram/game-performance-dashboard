@@ -10,9 +10,10 @@ function readSrc(rel) {
 
 describe('Theme Clickability – source-level enforcement', () => {
     describe('All theme rendering locations use proper click handlers', () => {
-        test('unified themes in themes-renderer.js use row.onclick for click delegation', () => {
+        test('unified themes in themes-renderer.js use row addEventListener for click delegation', () => {
             const src = readSrc('ui/renderers/themes-renderer.js');
-            expect(src).toContain('row.onclick');
+            expect(src).toMatch(/row\.addEventListener\(['"]click['"]/);
+            expect(src).toContain('.expand-toggle');
             expect(src).toContain('showThemeDetails');
         });
 

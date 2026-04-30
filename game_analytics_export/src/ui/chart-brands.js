@@ -102,11 +102,33 @@ function showClusterPopup(items, anchorX, anchorY, canvas) {
     setTimeout(() => document.addEventListener('mousedown', dismiss), 50);
 }
 
-function getFranchiseBubbles(allGames, minGames = 1) {
+const FRANCHISE_BLOCKLIST = new Set([
+    'BOOK',
+    'KING',
+    'SECRETS',
+    'GOLD',
+    'CASH',
+    'WILD',
+    'FIRE',
+    'DRAGON',
+    'DIAMOND',
+    'LUCKY',
+    'MAGIC',
+    'POWER',
+    'STAR',
+    'HOT',
+    'SUPER',
+    'MEGA',
+    'FRUIT',
+    'QUEEN',
+]);
+
+function getFranchiseBubbles(allGames, minGames = 2) {
     const buckets = {};
     for (const g of allGames) {
         const fname = F.franchise(g);
         if (!fname) continue;
+        if (FRANCHISE_BLOCKLIST.has(fname.toUpperCase())) continue;
         if (!buckets[fname]) buckets[fname] = [];
         buckets[fname].push(g);
     }
@@ -198,8 +220,8 @@ export function createBrandsChart() {
             datasets.push({
                 label: `${minors.length} other brands`,
                 data: clusterData,
-                backgroundColor: 'rgba(148,163,184,0.15)',
-                borderColor: 'rgba(148,163,184,0.4)',
+                backgroundColor: 'rgba(148,163,184,0.3)',
+                borderColor: 'rgba(148,163,184,0.6)',
                 borderWidth: 1,
                 borderDash: [3, 2],
                 hoverRadius: 4,
@@ -217,7 +239,7 @@ export function createBrandsChart() {
                 c.font = 'bold 11px Inter, system-ui, sans-serif';
                 c.textAlign = 'center';
                 c.textBaseline = 'middle';
-                c.fillStyle = 'rgba(100,116,139,0.7)';
+                c.fillStyle = 'rgba(71,85,105,0.85)';
                 meta1.data.forEach((pt, i) => {
                     c.fillText(clusterLabelsOv[i], pt.x, pt.y);
                 });
@@ -389,8 +411,8 @@ export function createBrandLandscapeChart() {
             datasets.push({
                 label: `${minors.length} other brands`,
                 data: clusterData,
-                backgroundColor: 'rgba(148,163,184,0.15)',
-                borderColor: 'rgba(148,163,184,0.4)',
+                backgroundColor: 'rgba(148,163,184,0.3)',
+                borderColor: 'rgba(148,163,184,0.6)',
                 borderWidth: 1,
                 borderDash: [3, 2],
                 hoverRadius: 4,
@@ -409,7 +431,7 @@ export function createBrandLandscapeChart() {
                 c.font = 'bold 11px Inter, system-ui, sans-serif';
                 c.textAlign = 'center';
                 c.textBaseline = 'middle';
-                c.fillStyle = 'rgba(100,116,139,0.7)';
+                c.fillStyle = 'rgba(71,85,105,0.85)';
                 meta1.data.forEach((pt, i) => {
                     c.fillText(clusterLabels[i], pt.x, pt.y);
                 });
@@ -461,11 +483,11 @@ export function createBrandLandscapeChart() {
                     if (!chart) return;
                     const native = evt.native;
                     if (!native) return;
+                    const rect = chart.canvas.getBoundingClientRect();
+                    const cx = native.clientX - rect.left;
+                    const cy = native.clientY - rect.top;
                     const isCluster = elements.length && elements[0].datasetIndex === 1;
-                    canvas.style.cursor =
-                        elements.length || chart._saFindLabel?.(native.offsetX, native.offsetY) >= 0
-                            ? 'pointer'
-                            : 'default';
+                    canvas.style.cursor = elements.length || chart._saFindLabel?.(cx, cy) >= 0 ? 'pointer' : 'default';
                     const hoveringOtherElement = !isCluster && elements.length > 0;
                     if (hoveringOtherElement && _clusterPopup && !_popupHovered) {
                         removeClusterPopup();
@@ -476,8 +498,7 @@ export function createBrandLandscapeChart() {
                         if (cm) {
                             const meta1 = chart.getDatasetMeta(1);
                             const pt = meta1.data[idx];
-                            const cRect = canvas.getBoundingClientRect();
-                            showClusterPopup(cm, cRect.left + pt.x, cRect.top + pt.y, canvas);
+                            showClusterPopup(cm, rect.left + pt.x, rect.top + pt.y, canvas);
                         }
                     }
                     if (elements.length && elements[0].datasetIndex === 0) {
@@ -487,8 +508,7 @@ export function createBrandLandscapeChart() {
                         return;
                     }
                     if (!elements.length && chart._saFindLabel) {
-                        const rect = chart.canvas.getBoundingClientRect();
-                        const li = chart._saFindLabel(native.clientX - rect.left, native.clientY - rect.top);
+                        const li = chart._saFindLabel(cx, cy);
                         if (li >= 0) {
                             chart._saSetHovered?.(li);
                             chart.setActiveElements([{ datasetIndex: 0, index: li }]);

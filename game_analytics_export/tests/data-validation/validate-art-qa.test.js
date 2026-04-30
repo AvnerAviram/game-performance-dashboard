@@ -12,10 +12,10 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
 import {
     getArtThemeMetrics,
-    getArtMoodMetrics,
     getArtNarrativeMetrics,
     getArtCharacterMetrics,
     getArtElementMetrics,
+    getArtColorToneMetrics,
 } from '../../src/lib/metrics.js';
 import { F } from '../../src/lib/game-fields.js';
 import { matchGameToDimension } from '../../server/helpers/dimension-filter.cjs';
@@ -63,15 +63,16 @@ describe('Art Theme QA', () => {
     });
 });
 
-describe('Art Mood QA', () => {
-    it('art mood counts match F.artMood grouping', () => {
+describe('Art Color Tone QA', () => {
+    it('color tone metrics return valid entries', () => {
         const findings = [];
-        const rows = getArtMoodMetrics(allGames);
+        const rows = getArtColorToneMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
-            const manual = allGames.filter(g => F.artMood(g) === r.mood).length;
-            if (manual !== r.count) {
+            if (!r.colorTone || r.count <= 0) {
                 findings.push(
-                    scoreFinding('DEFINITE', 'art_mood', `${r.mood}: ${r.count} vs ${manual}`, { mood: r.mood })
+                    scoreFinding('DEFINITE', 'art_color_tone', `Invalid entry: ${r.colorTone} count=${r.count}`, {
+                        colorTone: r.colorTone,
+                    })
                 );
             }
         }
@@ -166,7 +167,6 @@ describe('Art Coverage QA', () => {
         const findings = [];
         const dims = [
             { name: 'art_theme', fn: g => F.artTheme(g) },
-            { name: 'art_mood', fn: g => F.artMood(g) },
             { name: 'art_narrative', fn: g => F.artNarrative(g) },
             { name: 'art_characters', fn: g => F.artCharacters(g).length > 0 },
             { name: 'art_elements', fn: g => F.artElements(g).length > 0 },

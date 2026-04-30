@@ -129,7 +129,7 @@ router.get('/api/data/games', requireAuth, (req, res) => {
         res.send(json);
     } catch (err) {
         console.error('[ERROR] Slim games failed:', err.message);
-        serveDataFile(path.join(DATA_DIR, 'game_data_master.json'), res);
+        res.status(500).json({ error: 'Failed to load game data' });
     }
 });
 
@@ -257,7 +257,7 @@ const PROVENANCE_FIELDS = [
     'provider',
 ];
 
-const ART_FIELDS = ['art_style', 'art_color_tone', 'art_theme', 'art_characters', 'art_mood'];
+const ART_FIELDS = ['art_color_tone', 'art_theme', 'art_characters', 'art_elements', 'art_narrative'];
 
 const FIELD_ALIASES = {
     market_share: 'market_share_pct',
@@ -304,11 +304,8 @@ function buildRanking(rows, dimension, value) {
         feature: 'feature',
         rtp: 'label',
         volatility: 'volatility',
-        volatility: 'volatility',
-        rtp: 'label',
         franchise: 'name',
         art_theme: 'theme',
-        art_mood: 'mood',
         art_characters: 'character',
         art_elements: 'element',
         art_narrative: 'narrative',
@@ -377,7 +374,6 @@ router.get('/api/data/provenance/top-game', requireAuth, async (req, res) => {
                 volatility: m.getVolatilityMetrics,
                 rtp: m.getRtpBandMetrics,
                 art_theme: m.getArtThemeMetrics,
-                art_mood: m.getArtMoodMetrics,
                 art_characters: m.getArtCharacterMetrics,
                 art_elements: m.getArtElementMetrics,
                 art_narrative: m.getArtNarrativeMetrics,

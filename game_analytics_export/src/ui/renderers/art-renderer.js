@@ -4,11 +4,9 @@ import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
 import {
     getArtThemeMetrics,
-    getArtMoodMetrics,
     getArtNarrativeMetrics,
     getArtCharacterMetrics,
     getArtElementMetrics,
-    getArtStyleMetrics,
     getArtColorToneMetrics,
     getArtRecipeMetrics,
     getArtComboMetrics,
@@ -26,6 +24,12 @@ import {
     generateModernColors,
     needsLeaderLine,
     snapLabelToBubble,
+    createXWarp,
+    createQuadrantPlugin,
+    bubbleScaleOptionsWarped,
+    quadrantBgColor,
+    quadrantBorderColor,
+    quadrantLabel,
 } from '../chart-utils.js';
 import { saLabelSolver } from '../../lib/sa-label-solver.js';
 import {
@@ -70,22 +74,6 @@ const THEME_PALETTE = [
     '#e11d48',
     '#7c3aed',
     '#0891b2',
-];
-
-const MOOD_PALETTE = [
-    '#8b5cf6',
-    '#0ea5e9',
-    '#ec4899',
-    '#ef4444',
-    '#f59e0b',
-    '#14b8a6',
-    '#eab308',
-    '#3b82f6',
-    '#f472b6',
-    '#6b7280',
-    '#22c55e',
-    '#7c3aed',
-    '#f97316',
 ];
 
 function hashColor(name, palette) {
@@ -138,18 +126,6 @@ function buildArtBreakdown(games, excludeDimension) {
             .slice(0, 6);
         if (sorted.length)
             dims.push({ label: 'Themes', items: sorted, clickFn: 'window.showArtTheme', dim: 'art_theme' });
-    }
-
-    if (excludeDimension !== 'mood') {
-        const map = {};
-        games.forEach(g => {
-            const v = F.artMood(g);
-            if (v) map[v] = (map[v] || 0) + 1;
-        });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
-        if (sorted.length) dims.push({ label: 'Moods', items: sorted, clickFn: 'window.showArtMood', dim: 'art_mood' });
     }
 
     if (excludeDimension !== 'character') {
@@ -207,24 +183,15 @@ function buildArtBreakdown(games, excludeDimension) {
             });
     }
 
-    if (excludeDimension !== 'style') {
-        const map = {};
-        games.forEach(g => {
-            const v = F.artStyle(g);
-            if (v) map[v] = (map[v] || 0) + 1;
-        });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
-        if (sorted.length)
-            dims.push({ label: 'Styles', items: sorted, clickFn: 'window.showArtStyle', dim: 'art_style' });
-    }
-
     if (excludeDimension !== 'colorTone') {
         const map = {};
         games.forEach(g => {
             const v = F.artColorTone(g);
-            if (v) map[v] = (map[v] || 0) + 1;
+            if (Array.isArray(v))
+                v.forEach(t => {
+                    if (t) map[t] = (map[t] || 0) + 1;
+                });
+            else if (v) map[v] = (map[v] || 0) + 1;
         });
         const sorted = Object.entries(map)
             .sort((a, b) => b[1] - a[1])
@@ -380,9 +347,6 @@ function showArtFilteredGames(title, filterFn, opts) {
 window.showArtTheme = function (setting) {
     showArtFilteredGames(`Theme: ${setting}`, g => F.artTheme(g) === setting, { excludeDimension: 'theme' });
 };
-window.showArtMood = function (mood) {
-    showArtFilteredGames(`Mood: ${mood}`, g => F.artMood(g) === mood, { excludeDimension: 'mood' });
-};
 window.showArtCharacter = function (character) {
     showArtFilteredGames(`Character: ${character}`, g => F.artCharacters(g).includes(character), {
         excludeDimension: 'character',
@@ -398,16 +362,21 @@ window.showArtNarrative = function (narrative) {
         excludeDimension: 'narrative',
     });
 };
-window.showArtStyle = function (style) {
-    showArtFilteredGames(`Style: ${style}`, g => F.artStyle(g) === style, { excludeDimension: 'style' });
-};
-window.showArtColorTone = function (tone) {
-    showArtFilteredGames(`Color tone: ${tone}`, g => F.artColorTone(g) === tone, {
+window.showArtColor = function (tone) {
+    showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
         excludeDimension: 'colorTone',
     });
 };
-window.showArtRecipe = function (setting, mood) {
-    showArtFilteredGames(`${setting} + ${mood}`, g => F.artTheme(g) === setting && F.artMood(g) === mood);
+window.showArtColorTone = function (tone) {
+    showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
+        excludeDimension: 'colorTone',
+    });
+};
+window.showArtRecipe = function (theme) {
+    showArtFilteredGames(`Theme: ${theme}`, g => F.artTheme(g) === theme);
+};
+window.showArtCombo = function (dimA, dimB) {
+    showArtFilteredGames(`${dimA} + ${dimB}`, g => F.artTheme(g) === dimA || F.artTheme(g) === dimB);
 };
 
 export function renderArt() {
@@ -415,33 +384,61 @@ export function renderArt() {
     const artGames = allGames.filter(g => F.artTheme(g));
 
     const themes = getArtThemeMetrics(artGames);
-    const moods = getArtMoodMetrics(artGames);
     const narratives = getArtNarrativeMetrics(artGames);
     const characters = getArtCharacterMetrics(artGames);
     const elements = getArtElementMetrics(artGames);
-    const styles = getArtStyleMetrics(artGames);
     const colorTones = getArtColorToneMetrics(artGames);
     const recipes = getArtRecipeMetrics(artGames, { minGames: 3 });
     const globalAvg = getGlobalAvgTheo(allGames);
 
-    renderStats(allGames, artGames, themes, moods, styles, colorTones);
+    renderStats(allGames, artGames, themes, characters, elements, colorTones);
     renderThemeLandscape(themes, globalAvg);
-    wireMoodDropdown(artGames, moods, globalAvg);
+    renderDimensionLandscape(
+        'characters',
+        'art-characters-landscape',
+        characters.filter(c => c.character !== 'No Characters (symbol-only game)').slice(0, 25),
+        'character',
+        c => c.character,
+        'showArtCharacter'
+    );
+    renderDimensionLandscape(
+        'elements',
+        'art-elements-landscape',
+        elements.slice(0, 25),
+        'element',
+        c => c.element,
+        'showArtElement'
+    );
+    renderDimensionLandscape(
+        'colors',
+        'art-colors-landscape',
+        colorTones,
+        'colorTone',
+        c => c.colorTone,
+        'showArtColor'
+    );
+    renderDimensionLandscape(
+        'narratives',
+        'art-narrative-landscape',
+        narratives,
+        'narrative',
+        c => c.narrative,
+        'showArtNarrative'
+    );
     renderThemesChart(themes, artGames);
-    renderMoodChart(moods);
-    renderArtStylesChart(styles);
     renderArtColorToneChart(colorTones);
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
     renderArtTrends(artGames);
-    renderBlueOcean(artGames, globalAvg);
+    renderComboHeatmap(artGames);
     renderArtRecipes(recipes, globalAvg, artGames);
     renderProviderArtCards(artGames, globalAvg);
-    renderArtStrategicCards(artGames, globalAvg);
+    renderOpportunityGaps(artGames, globalAvg);
+    renderTopCombos(artGames, globalAvg);
 }
 
-function renderStats(allGames, artGames, themes, moods, styles, colorTones) {
+function renderStats(allGames, artGames, themes, characters, elements, colorTones) {
     const pct = allGames.length > 0 ? ((artGames.length / allGames.length) * 100).toFixed(1) : '0';
     const avgTheo = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : 0;
 
@@ -453,15 +450,103 @@ function renderStats(allGames, artGames, themes, moods, styles, colorTones) {
 
     set('art-stat-coverage', `${artGames.length} (${pct}%)`);
     set('art-stat-themes', themes.length);
-    set('art-stat-moods', moods.length);
+    set('art-stat-characters', characters.length);
     set('art-stat-avg-theo', avgTheo.toFixed(2));
-    set('art-stat-styles', styles.length);
+    set('art-stat-elements', elements.length);
     set('art-stat-color-tones', colorTones.length);
 
     const sub = el('art-subtitle');
     if (sub) {
-        sub.textContent = `Visual design analysis across ${artGames.length} classified games — ${themes.length} themes, ${moods.length} moods, ${styles.length} styles, ${colorTones.length} color tones`;
+        sub.textContent = `Visual design analysis across ${artGames.length} classified games — ${themes.length} themes, ${characters.length} characters, ${elements.length} elements, ${colorTones.length} color tones`;
     }
+}
+
+function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, clickHandler) {
+    destroyChart(key + 'Landscape');
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    if (!metrics.length) return;
+
+    const ctx = canvas.getContext('2d');
+    const chartColors = getChartColors();
+
+    const xVals = metrics.map(m => m.count);
+    const yVals = metrics.map(m => m.avgTheo);
+    const xWarp = createXWarp(xVals);
+    const rawMedX = [...xVals].sort((a, b) => a - b)[Math.floor(xVals.length / 2)] || 10;
+    const medX = xWarp.warpVal(rawMedX);
+    const medY = [...yVals].sort((a, b) => a - b)[Math.floor(yVals.length / 2)] || 1;
+
+    const maxCount = Math.max(...xVals, 1);
+    const bubbleData = metrics.map(m => ({
+        x: xWarp.warpVal(m.count),
+        y: m.avgTheo,
+        r: Math.max(5, Math.min(16, Math.sqrt(m.count / maxCount) * 14 + 3)),
+    }));
+
+    chartInstances[key + 'Landscape'] = new Chart(ctx, {
+        type: 'bubble',
+        data: {
+            datasets: [
+                {
+                    data: bubbleData,
+                    backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
+                    borderColor: bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
+                    borderWidth: 1.5,
+                    hoverRadius: 4,
+                },
+            ],
+        },
+        plugins: [createQuadrantPlugin(key + 'Quad', medX, medY, chartColors)],
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 600 },
+            onClick: (e, elements) => {
+                if (window.xrayActive) return;
+                if (elements.length && window[clickHandler]) {
+                    const m = metrics[elements[0].index];
+                    if (m) window[clickHandler](nameAccessor(m));
+                }
+            },
+            onHover: (e, elements) => {
+                e.native.target.style.cursor = elements.length ? 'pointer' : 'default';
+            },
+            layout: { padding: { top: 24, right: 16, bottom: 16, left: 16 } },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    ...getModernTooltipConfig(),
+                    callbacks: {
+                        title: items => nameAccessor(metrics[items[0].dataIndex]),
+                        label: item => {
+                            const m = metrics[item.dataIndex];
+                            const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
+                            return `Games: ${m.count}  |  Avg PI: ${m.avgTheo.toFixed(2)}  |  ${q}`;
+                        },
+                    },
+                },
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grace: '10%',
+                    title: {
+                        display: true,
+                        text: 'Avg Performance Index',
+                        color: chartColors.textColor,
+                        font: { size: 10, weight: 'bold' },
+                    },
+                    ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
+                    grid: getModernGridConfig(),
+                },
+                x: {
+                    ...bubbleScaleOptionsWarped(chartColors, xWarp, 'Number of Games').x,
+                    min: -0.15,
+                },
+            },
+        },
+    });
 }
 
 // ── Art Landscape bubble chart (mirrors Theme Landscape pattern) ──
@@ -975,6 +1060,115 @@ function renderThemeLandscape(themes, globalAvg) {
 
 // ── Blue Ocean Opportunities bubble chart (recipe-level: Theme × Mood) ──
 
+// ── Combo Heatmap ──
+
+const COMBO_DIM_MAP = {
+    theme_elements: { dimA: 'theme', dimB: 'elements' },
+    theme_characters: { dimA: 'theme', dimB: 'characters' },
+    theme_colors: { dimA: 'theme', dimB: 'colorTone' },
+    characters_elements: { dimA: 'characters', dimB: 'elements' },
+};
+
+let _comboArtGames = null;
+
+function renderComboHeatmap(artGames) {
+    _comboArtGames = artGames;
+    const picker = document.getElementById('art-combo-dim-picker');
+    if (!picker) return;
+    buildComboHeatmap(artGames, picker.value);
+    picker.addEventListener('change', () => buildComboHeatmap(_comboArtGames, picker.value));
+}
+
+function buildComboHeatmap(artGames, comboKey) {
+    const container = document.getElementById('art-combo-heatmap');
+    if (!container) return;
+
+    const dims = COMBO_DIM_MAP[comboKey] || COMBO_DIM_MAP.theme_elements;
+    const combos = getArtComboMetrics(artGames, { dimA: dims.dimA, dimB: dims.dimB, minGames: 2 });
+    if (!combos.length) {
+        container.innerHTML = '<div class="text-center text-gray-400 dark:text-gray-500 py-8">No combos found</div>';
+        return;
+    }
+
+    const dimACounts = {};
+    const dimBCounts = {};
+    combos.forEach(c => {
+        dimACounts[c.dimA] = (dimACounts[c.dimA] || 0) + c.count;
+        dimBCounts[c.dimB] = (dimBCounts[c.dimB] || 0) + c.count;
+    });
+    const topA = Object.entries(dimACounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 15)
+        .map(e => e[0]);
+    const topB = Object.entries(dimBCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 15)
+        .map(e => e[0]);
+
+    const matrix = {};
+    const allPI = [];
+    combos.forEach(c => {
+        if (topA.includes(c.dimA) && topB.includes(c.dimB)) {
+            const key = `${c.dimA}|||${c.dimB}`;
+            matrix[key] = c;
+            allPI.push(c.avgTheo);
+        }
+    });
+
+    if (!allPI.length) {
+        container.innerHTML = '<div class="text-center text-gray-400 dark:text-gray-500 py-8">No combos found</div>';
+        return;
+    }
+
+    allPI.sort((a, b) => a - b);
+    const p20 = allPI[Math.floor(allPI.length * 0.2)] || 0;
+    const p40 = allPI[Math.floor(allPI.length * 0.4)] || 0;
+    const p60 = allPI[Math.floor(allPI.length * 0.6)] || 0;
+    const p80 = allPI[Math.floor(allPI.length * 0.8)] || 0;
+
+    const isDark = document.documentElement.classList.contains('dark');
+    const piColor = v => {
+        if (v >= p80) return isDark ? 'background:rgba(16,185,129,0.45)' : 'background:rgba(16,185,129,0.25)';
+        if (v >= p60) return isDark ? 'background:rgba(59,130,246,0.35)' : 'background:rgba(59,130,246,0.18)';
+        if (v >= p40) return isDark ? 'background:rgba(148,163,184,0.25)' : 'background:rgba(148,163,184,0.15)';
+        if (v >= p20) return isDark ? 'background:rgba(251,146,60,0.3)' : 'background:rgba(251,146,60,0.18)';
+        return isDark ? 'background:rgba(239,68,68,0.3)' : 'background:rgba(239,68,68,0.15)';
+    };
+
+    let html = '<table class="w-full border-collapse text-[10px]">';
+    html +=
+        '<thead><tr><th class="p-1 text-left text-gray-500 dark:text-gray-400 font-semibold sticky left-0 bg-white dark:bg-gray-800 z-10"></th>';
+    topB.forEach(b => {
+        html += `<th class="p-1 text-center text-gray-600 dark:text-gray-300 font-medium max-w-[80px] truncate" title="${escapeAttr(b)}">${escapeHtml(shortLabel(b))}</th>`;
+    });
+    html += '</tr></thead><tbody>';
+
+    topA.forEach(a => {
+        html += `<tr><td class="p-1.5 font-semibold text-gray-700 dark:text-gray-200 whitespace-nowrap sticky left-0 bg-white dark:bg-gray-800 z-10 max-w-[120px] truncate" title="${escapeAttr(a)}">${escapeHtml(shortLabel(a))}</td>`;
+        topB.forEach(b => {
+            const key = `${a}|||${b}`;
+            const c = matrix[key];
+            if (c) {
+                html += `<td class="p-1 text-center cursor-pointer hover:ring-2 hover:ring-indigo-500 rounded transition-all" style="${piColor(c.avgTheo)}" title="${escapeAttr(a)} × ${escapeAttr(b)}: ${c.count} games, PI ${c.avgTheo.toFixed(2)}" onclick="${safeOnclick('window.showArtCombo', a, b)}"><span class="font-bold text-gray-800 dark:text-gray-100">${c.count}</span></td>`;
+            } else {
+                html += '<td class="p-1"></td>';
+            }
+        });
+        html += '</tr>';
+    });
+
+    html += '</tbody></table>';
+
+    html += `<div class="flex items-center gap-2 mt-3 text-[9px] text-gray-500 dark:text-gray-400">
+        <span>Performance:</span>
+        <span class="px-1.5 py-0.5 rounded" style="${isDark ? 'background:rgba(239,68,68,0.3)' : 'background:rgba(239,68,68,0.15)'}">Low</span>
+        <span class="px-1.5 py-0.5 rounded" style="${isDark ? 'background:rgba(148,163,184,0.25)' : 'background:rgba(148,163,184,0.15)'}">Mid</span>
+        <span class="px-1.5 py-0.5 rounded" style="${isDark ? 'background:rgba(16,185,129,0.45)' : 'background:rgba(16,185,129,0.25)'}">High</span>
+    </div>`;
+
+    container.innerHTML = html;
+}
+
 function renderBlueOcean(artGames, globalAvg) {
     destroyChart('blueOcean');
     const canvas = document.getElementById('art-blue-ocean-chart');
@@ -1017,12 +1211,12 @@ function renderBlueOcean(artGames, globalAvg) {
             x: wx,
             y: wy,
             r: rMin + Math.sqrt(c.mktShare / Math.max(...combos.map(cc => cc.mktShare), 0.001)) * (rMax - rMin),
-            theme: c.theme,
-            mood: c.mood,
+            dimA: c.dimA,
+            dimB: c.dimB,
             count: c.count,
             avgTheo: c.avgTheo,
             mktShare: c.mktShare,
-            _label: `${shortLabel(c.theme)} + ${shortLabel(c.mood)}`,
+            _label: `${shortLabel(c.dimA)} + ${shortLabel(c.dimB)}`,
         };
     });
 
@@ -1179,7 +1373,7 @@ function renderBlueOcean(artGames, globalAvg) {
                     callbacks: {
                         title: ctx => {
                             const d = ctx[0]?.raw;
-                            return d ? `${d.theme} + ${d.mood}` : '';
+                            return d ? `${d.dimA} + ${d.dimB}` : '';
                         },
                         label: ctx => {
                             const d = ctx.raw;
@@ -1241,7 +1435,7 @@ function renderBlueOcean(artGames, globalAvg) {
         const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
         if (points.length > 0) {
             const d = bubbleData[points[0].index];
-            if (d) window.showArtRecipe(d.theme, d.mood);
+            if (d) window.showArtCombo(d.dimA, d.dimB);
             return;
         }
 
@@ -1252,7 +1446,7 @@ function renderBlueOcean(artGames, globalAvg) {
             for (const lb of resolvedLabels) {
                 if (cx >= lb.x && cx <= lb.x + lb.w && cy >= lb.y && cy <= lb.y + lb.h) {
                     const d = bubbleData[lb.index];
-                    if (d) window.showArtRecipe(d.theme, d.mood);
+                    if (d) window.showArtCombo(d.dimA, d.dimB);
                     return;
                 }
             }
@@ -1260,76 +1454,7 @@ function renderBlueOcean(artGames, globalAvg) {
     });
 }
 
-// ── Mood filter for Art Landscape ──
-
-function wireMoodDropdown(artGames, moods, globalAvg) {
-    const select = document.getElementById('art-landscape-mood-filter');
-    if (!select) return;
-
-    const sortedMoods = [...moods].sort((a, b) => b.count - a.count);
-
-    select.innerHTML =
-        '<option value="">All Moods</option>' +
-        sortedMoods
-            .map(m => `<option value="${escapeAttr(m.mood)}">${escapeHtml(m.mood)} (${m.count})</option>`)
-            .join('');
-
-    select.addEventListener('change', () => {
-        const mood = select.value;
-        const filtered = mood ? artGames.filter(g => F.artMood(g) === mood) : artGames;
-        if (filtered.length < 2) {
-            const canvas = document.getElementById('art-opportunity-chart');
-            if (canvas) {
-                destroyChart('opportunity');
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.font = '13px Inter, system-ui, sans-serif';
-                ctx.fillStyle = '#94a3b8';
-                ctx.textAlign = 'center';
-                ctx.fillText('Not enough art data for this mood', canvas.width / 2, canvas.height / 2);
-            }
-            return;
-        }
-        const minGames = mood ? 2 : 1;
-        const filteredThemes = getArtThemeMetrics(filtered).filter(s => s.count >= minGames);
-        renderThemeLandscape(filteredThemes, globalAvg);
-    });
-}
-
 // ── Art Trends ──
-
-function computeArtMoodTrends(artGames) {
-    const now = new Date().getFullYear();
-    const recentCutoff = now - 2;
-    const byMood = {};
-    for (const g of artGames) {
-        const mood = F.artMood(g);
-        const yr = F.releaseYear(g);
-        if (!mood || !yr || yr < 2000) continue;
-        if (!byMood[mood]) byMood[mood] = { recent: 0, older: 0, total: 0 };
-        byMood[mood].total++;
-        if (yr >= recentCutoff) byMood[mood].recent++;
-        else byMood[mood].older++;
-    }
-    const totalRecent = Object.values(byMood).reduce((s, e) => s + e.recent, 0) || 1;
-    const totalOlder = Object.values(byMood).reduce((s, e) => s + e.older, 0) || 1;
-    const result = {};
-    for (const [mood, d] of Object.entries(byMood)) {
-        if (d.total < 5) {
-            result[mood] = { direction: 'insufficient', recentPct: 0, olderPct: 0, change: 0, total: d.total };
-            continue;
-        }
-        const recentPct = d.recent / totalRecent;
-        const olderPct = d.older / totalOlder;
-        const ratio = olderPct > 0 ? recentPct / olderPct : recentPct > 0 ? 2 : 1;
-        const change = (ratio - 1) * 100;
-        let direction = 'stable';
-        if (ratio >= 1.2) direction = 'rising';
-        else if (ratio <= 0.8) direction = 'declining';
-        result[mood] = { direction, recentPct, olderPct, change, total: d.total };
-    }
-    return result;
-}
 
 function renderArtTrends(artGames) {
     const canvas = document.getElementById('art-trend-chart');
@@ -1337,9 +1462,9 @@ function renderArtTrends(artGames) {
 
     const DIMENSION_CONFIG = {
         environment: { accessor: g => [F.artTheme(g)].filter(Boolean), label: 'Themes' },
-        mood: { accessor: g => [F.artMood(g)].filter(Boolean), label: 'Moods' },
         elements: { accessor: g => F.artElements(g) || [], label: 'Elements' },
         characters: { accessor: g => F.artCharacters(g) || [], label: 'Characters' },
+        colors: { accessor: g => F.artColorTone(g) || [], label: 'Colors' },
         narrative: { accessor: g => [F.artNarrative(g)].filter(Boolean), label: 'Narratives' },
     };
 
@@ -1645,34 +1770,6 @@ function renderThemesChart(themes, artGames) {
     }
 }
 
-function renderMoodChart(moods) {
-    createHorizontalBar(
-        'art-mood-chart',
-        moods.map(m => m.mood),
-        moods.map(m => m.avgTheo),
-        'Avg Performance Index',
-        'moods',
-        '#a855f7',
-        name => window.showArtMood(name)
-    );
-}
-
-function renderArtStylesChart(styles) {
-    if (!styles.length) {
-        destroyChart('styles');
-        return;
-    }
-    createHorizontalBar(
-        'art-styles-chart',
-        styles.map(s => s.style),
-        styles.map(s => s.count),
-        'Games',
-        'styles',
-        '#ec4899',
-        name => window.showArtStyle(name)
-    );
-}
-
 function renderArtColorToneChart(colorTones) {
     if (!colorTones.length) {
         destroyChart('colorTones');
@@ -1751,7 +1848,7 @@ function sortRecipes(recipes, avg, mode) {
             sorted.sort((a, b) => b.count - a.count || b.avgTheo - a.avgTheo);
             break;
         case 'name-az':
-            sorted.sort((a, b) => (a.theme + a.mood).localeCompare(b.theme + b.mood));
+            sorted.sort((a, b) => (a.theme || '').localeCompare(b.theme || ''));
             break;
         case 'opportunity':
         default:
@@ -1830,9 +1927,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                         : `<span class="text-[9px] font-medium text-red-500 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-1.5 py-0.5 rounded-full">▼ Declining</span>`
                     : '';
 
-            const recipeGames = artGames
-                ? artGames.filter(g => F.artTheme(g) === r.theme && F.artMood(g) === r.mood)
-                : [];
+            const recipeGames = artGames ? artGames.filter(g => F.artTheme(g) === r.theme) : [];
             const domVol = recipeGames.length ? getDominantVolatility(recipeGames) : '';
             const domLayout = recipeGames.length ? getDominantLayout(recipeGames) : '';
             const avgRtp = recipeGames.length ? getAvgRtp(recipeGames) : 0;
@@ -1933,7 +2028,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                     </div>`
                     : '';
 
-            return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: r.theme }))}' onclick="${safeOnclick('window.showArtRecipe', r.theme, r.mood)}">
+            return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: r.theme }))}' onclick="${safeOnclick('window.showArtRecipe', r.theme)}">
             <div class="px-4 py-4">
                 <div class="flex items-center gap-3">
                     <div class="w-8 text-center shrink-0">${rank}</div>
@@ -1942,9 +2037,6 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
                         <div class="flex flex-wrap items-center gap-1.5 mb-2">
                             <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Theme</span>
                             ${multiPill(r.theme, THEME_PALETTE)}
-                            <span class="text-gray-300 dark:text-gray-600 text-xs mx-0.5">×</span>
-                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Mood</span>
-                            ${multiPill(r.mood, MOOD_PALETTE)}
                             ${trendBadge}
                             ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
                             <span class="text-[9px] font-medium ${riskColor} px-1.5 py-0.5 rounded-full">${riskLevel} Risk</span>
@@ -2079,6 +2171,126 @@ function computeArtThemeTrends(artGames) {
 
 // ── Provider Art Specialization ──
 
+// ── Opportunity Gaps ──
+
+function renderOpportunityGaps(artGames, globalAvg) {
+    const container = document.getElementById('art-opportunity-gaps');
+    if (!container) return;
+
+    const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
+
+    const dimSources = [
+        { label: 'Theme', metrics: getArtThemeMetrics(artGames), nameKey: 'theme', handler: 'showArtTheme' },
+        {
+            label: 'Character',
+            metrics: getArtCharacterMetrics(artGames).filter(c => c.character !== 'No Characters (symbol-only game)'),
+            nameKey: 'character',
+            handler: 'showArtCharacter',
+        },
+        { label: 'Element', metrics: getArtElementMetrics(artGames), nameKey: 'element', handler: 'showArtElement' },
+        { label: 'Color', metrics: getArtColorToneMetrics(artGames), nameKey: 'colorTone', handler: 'showArtColor' },
+        {
+            label: 'Narrative',
+            metrics: getArtNarrativeMetrics(artGames),
+            nameKey: 'narrative',
+            handler: 'showArtNarrative',
+        },
+    ];
+
+    const gaps = [];
+    for (const dim of dimSources) {
+        for (const m of dim.metrics) {
+            if (m.count < 5 && m.avgTheo > artAvg) {
+                gaps.push({
+                    dimension: dim.label,
+                    value: m[dim.nameKey],
+                    count: m.count,
+                    avgTheo: m.avgTheo,
+                    handler: dim.handler,
+                    lift: (m.avgTheo / artAvg - 1) * 100,
+                });
+            }
+        }
+    }
+
+    gaps.sort((a, b) => b.lift - a.lift);
+    const top = gaps.slice(0, 20);
+
+    if (!top.length) {
+        container.innerHTML = '<p class="text-xs text-gray-400">No opportunity gaps detected</p>';
+        return;
+    }
+
+    const byDim = {};
+    top.forEach(g => {
+        if (!byDim[g.dimension]) byDim[g.dimension] = [];
+        byDim[g.dimension].push(g);
+    });
+
+    let html = '';
+    for (const [dim, items] of Object.entries(byDim)) {
+        html += `<div class="mb-4 last:mb-0">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-2">${escapeHtml(dim)}</div>
+            <div class="flex flex-wrap gap-2">`;
+        for (const g of items) {
+            const liftSign = g.lift > 0 ? '+' : '';
+            html += `<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 cursor-pointer hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors" onclick="${safeOnclick('window.' + g.handler, g.value)}">
+                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(g.value))}</span>
+                <span class="text-[9px] text-gray-500 dark:text-gray-400">${g.count} games</span>
+                <span class="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">${liftSign}${g.lift.toFixed(0)}%</span>
+                <span class="text-[9px] px-1 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 font-medium">💎</span>
+            </div>`;
+        }
+        html += '</div></div>';
+    }
+
+    container.innerHTML = html;
+}
+
+// ── Top Performing Combos ──
+
+function renderTopCombos(artGames, globalAvg) {
+    const container = document.getElementById('art-top-combos');
+    if (!container) return;
+
+    const combos = getArtComboMetrics(artGames, { dimA: 'theme', dimB: 'elements', minGames: 3 });
+    const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
+
+    const sorted = [...combos].sort((a, b) => b.avgTheo - a.avgTheo).slice(0, 10);
+
+    if (!sorted.length) {
+        container.innerHTML = '<p class="text-xs text-gray-400">Not enough data</p>';
+        return;
+    }
+
+    let html = '<table class="w-full text-xs">';
+    html += '<thead><tr class="border-b border-gray-200 dark:border-gray-700">';
+    html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">#</th>';
+    html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Theme</th>';
+    html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Element</th>';
+    html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Games</th>';
+    html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Avg PI</th>';
+    html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Lift vs avg</th>';
+    html += '</tr></thead><tbody>';
+
+    sorted.forEach((c, i) => {
+        const lift = artAvg > 0 ? (c.avgTheo / artAvg - 1) * 100 : 0;
+        const liftColor = lift >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400';
+        const liftSign = lift >= 0 ? '+' : '';
+        html += `<tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer" onclick="${safeOnclick('window.showArtCombo', c.dimA, c.dimB)}">
+            <td class="py-2 px-2 text-gray-400 dark:text-gray-500 font-bold">${i + 1}</td>
+            <td class="py-2 px-2 font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(c.dimA))}</td>
+            <td class="py-2 px-2 text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.dimB))}</td>
+            <td class="py-2 px-2 text-right tabular-nums text-gray-700 dark:text-gray-300">${c.count}</td>
+            <td class="py-2 px-2 text-right font-bold tabular-nums text-gray-900 dark:text-white">${c.avgTheo.toFixed(2)}</td>
+            <td class="py-2 px-2 text-right font-bold tabular-nums ${liftColor}">${liftSign}${lift.toFixed(0)}%</td>
+        </tr>`;
+    });
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
 function renderProviderArtCards(artGames, globalAvg) {
     const container = document.getElementById('art-provider-cards');
     if (!container) return;
@@ -2094,28 +2306,34 @@ function renderProviderArtCards(artGames, globalAvg) {
     const cards = providers.map(p => {
         const provGames = artGames.filter(g => F.provider(g) === p.name);
         const envMap = {};
-        const moodMap = {};
+        const colorMap = {};
         for (const g of provGames) {
             const env = F.artTheme(g);
-            const mood = F.artMood(g);
             if (env) {
                 if (!envMap[env]) envMap[env] = { count: 0, theoSum: 0 };
                 envMap[env].count++;
                 envMap[env].theoSum += F.theoWin(g);
             }
-            if (mood) moodMap[mood] = (moodMap[mood] || 0) + 1;
+            const tones = F.artColorTone(g);
+            if (Array.isArray(tones))
+                tones.forEach(t => {
+                    if (t) colorMap[t] = (colorMap[t] || 0) + 1;
+                });
+            else if (tones) colorMap[tones] = (colorMap[tones] || 0) + 1;
         }
         const bestEnv = Object.entries(envMap)
             .filter(([, d]) => d.count >= 2)
             .sort((a, b) => b[1].theoSum / b[1].count - a[1].theoSum / a[1].count)[0];
-        const topMood = Object.entries(moodMap).sort((a, b) => b[1] - a[1])[0];
+        const topColors = Object.entries(colorMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3);
         const avgTheo = p.avgTheo;
         const lift = artAvg > 0 ? ((avgTheo / artAvg - 1) * 100).toFixed(0) : '0';
         const liftNum = Number(lift);
         const topGame = [...provGames].sort((a, b) => F.theoWin(b) - F.theoWin(a))[0];
         const envCount = Object.keys(envMap).length;
 
-        return { name: p.name, count: p.count, avgTheo, lift: liftNum, bestEnv, topMood, topGame, envCount };
+        return { name: p.name, count: p.count, avgTheo, lift: liftNum, bestEnv, topColors, topGame, envCount };
     });
 
     const html = cards
@@ -2129,8 +2347,13 @@ function renderProviderArtCards(artGames, globalAvg) {
             const liftSign = c.lift > 0 ? '+' : '';
             const bestEnvName = c.bestEnv ? c.bestEnv[0] : '—';
             const bestEnvTheo = c.bestEnv ? (c.bestEnv[1].theoSum / c.bestEnv[1].count).toFixed(1) : '—';
-            const topMoodName = c.topMood ? c.topMood[0] : '—';
             const topGameName = c.topGame?.name || '—';
+            const colorsPills = c.topColors
+                .map(
+                    ([name]) =>
+                        `<span class="text-[9px] px-1 py-0.5 rounded bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300">${escapeHtml(shortLabel(name))}</span>`
+                )
+                .join(' ');
 
             return `<div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: bestEnvName }))}' onclick="${safeOnclick('window.showArtTheme', bestEnvName)}">
                 <div class="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 px-4 py-3 border-b border-gray-100 dark:border-gray-700">
@@ -2151,10 +2374,7 @@ function renderProviderArtCards(artGames, globalAvg) {
                         <span class="text-[10px] text-gray-400 dark:text-gray-500">Best Env</span>
                         <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium truncate max-w-[120px]">${escapeHtml(shortLabel(bestEnvName))} <span class="text-gray-400">(${bestEnvTheo})</span></span>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-gray-400 dark:text-gray-500">Mood</span>
-                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 font-medium truncate max-w-[120px]">${escapeHtml(shortLabel(topMoodName))}</span>
-                    </div>
+                    ${colorsPills ? `<div class="flex items-center justify-between"><span class="text-[10px] text-gray-400 dark:text-gray-500">Colors</span><div class="flex flex-wrap gap-0.5">${colorsPills}</div></div>` : ''}
                     <div class="flex items-center justify-between">
                         <span class="text-[10px] text-gray-400 dark:text-gray-500">Diversity</span>
                         <span class="text-[10px] text-gray-600 dark:text-gray-400 font-medium">${c.envCount} themes</span>
@@ -2173,7 +2393,7 @@ function renderProviderArtCards(artGames, globalAvg) {
 // ── Strategic Art Recommendations (Build Next / Avoid / Watch) ──
 
 function enrichRecipe(r, artGames, avg) {
-    const games = artGames.filter(g => F.artTheme(g) === r.theme && F.artMood(g) === r.mood);
+    const games = artGames.filter(g => F.artTheme(g) === r.theme);
     const provArr = Object.entries(
         games.reduce((m, g) => {
             const p = F.provider(g);
@@ -2228,7 +2448,7 @@ function renderCardItem(c, color, clickAction) {
 
     return `<div class="space-y-0.5 cursor-pointer ${s.hover} rounded-lg px-2 py-1.5 -mx-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: c.theme }))}' onclick="${clickAction}">
         <div class="flex items-center justify-between gap-2">
-            <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="${s.title1}">${escapeHtml(shortLabel(c.theme))}</span> <span class="text-[8px] text-gray-400 font-normal">theme</span> + <span class="${s.title2}">${escapeHtml(shortLabel(c.mood))}</span> <span class="text-[8px] text-gray-400 font-normal">mood</span></div></div>
+            <div class="min-w-0"><div class="text-xs font-semibold text-gray-900 dark:text-white truncate"><span class="${s.title1}">${escapeHtml(shortLabel(c.theme))}</span></div></div>
             <div class="flex items-center gap-1.5 shrink-0">
                 <span class="text-[10px] px-1.5 py-0.5 rounded ${s.badge} font-medium">${c.count} games</span>
                 <span class="text-[10px] font-bold ${s.theo}">${c.avgTheo.toFixed(1)} avg theo</span>
@@ -2264,7 +2484,7 @@ function renderArtStrategicCards(artGames, globalAvg) {
             .slice(0, 5);
 
         buildNextDiv.innerHTML = opps.length
-            ? opps.map(c => renderCardItem(c, 'emerald', safeOnclick('window.showArtRecipe', c.theme, c.mood))).join('')
+            ? opps.map(c => renderCardItem(c, 'emerald', safeOnclick('window.showArtTheme', c.theme))).join('')
             : '<p class="text-xs text-gray-400">No opportunities detected</p>';
     }
 
@@ -2276,7 +2496,7 @@ function renderArtStrategicCards(artGames, globalAvg) {
             .slice(0, 5);
 
         avoidDiv.innerHTML = avoid.length
-            ? avoid.map(c => renderCardItem(c, 'red', safeOnclick('window.showArtRecipe', c.theme, c.mood))).join('')
+            ? avoid.map(c => renderCardItem(c, 'red', safeOnclick('window.showArtTheme', c.theme))).join('')
             : '<p class="text-xs text-gray-400">No underperformers</p>';
     }
 
@@ -2295,17 +2515,8 @@ function renderArtStrategicCards(artGames, globalAvg) {
                 ).sort((a, b) => b[1] - a[1]);
                 const topGame = [...themeGames].sort((a, b) => F.theoWin(b) - F.theoWin(a))[0];
                 const lift = ((s.avgTheo / avg - 1) * 100).toFixed(0);
-                const dominantMood = (() => {
-                    const moodMap = {};
-                    themeGames.forEach(g => {
-                        const m = F.artMood(g);
-                        if (m) moodMap[m] = (moodMap[m] || 0) + 1;
-                    });
-                    return Object.entries(moodMap).sort((a, b) => b[1] - a[1])[0]?.[0] || '';
-                })();
                 return {
                     theme: s.theme,
-                    mood: dominantMood,
                     count: s.count,
                     avgTheo: s.avgTheo,
                     narrative: '',

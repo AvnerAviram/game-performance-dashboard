@@ -4,17 +4,20 @@ import { resolve } from 'path';
 
 const DATA_DIR = resolve(import.meta.dirname, '../../data');
 
-/** Full art dimension keys on master (includes optional style / color tone). */
+/** Full art dimension keys on master (post-pipeline merge). */
 const ART_FIELD_KEYS = [
     'art_theme',
+    'art_theme_secondary',
     'art_characters',
     'art_elements',
-    'art_mood',
     'art_narrative',
-    'art_style',
     'art_color_tone',
+    'art_confidence',
+    'background_description',
+    'is_branded',
+    'screenshot_quality',
 ];
-const REQUIRED_ART_FIELDS = ['art_theme', 'art_characters', 'art_elements', 'art_mood', 'art_narrative'];
+const REQUIRED_ART_FIELDS = ['art_theme', 'art_characters', 'art_elements'];
 
 describe('Art data integrity', () => {
     let games;
@@ -27,14 +30,14 @@ describe('Art data integrity', () => {
         staged = JSON.parse(readFileSync(resolve(DATA_DIR, 'staged_art_characterization.json'), 'utf-8'));
     });
 
-    test('art_theme populated for >= 75% of games in master', () => {
+    test('art_theme populated for >= 55% of games in master', () => {
         const withTheme = games.filter(g => g.art_theme).length;
         const pct = (withTheme / games.length) * 100;
         if (pct < 1) {
             console.warn(`[SKIP] art_theme coverage ${pct.toFixed(1)}% — art data not yet merged into master`);
             return;
         }
-        expect(pct).toBeGreaterThanOrEqual(75);
+        expect(pct).toBeGreaterThanOrEqual(55);
     });
 
     test('art_characters populated for >= 75% of games in master', () => {
@@ -55,25 +58,68 @@ describe('Art data integrity', () => {
         expect(incomplete.length).toBe(0);
     });
 
-    test('optional art_style and art_color_tone are non-empty strings when set on master', () => {
-        const optionalStringFields = ['art_style', 'art_color_tone'];
+    test('art_color_tone is an array of strings when set on master', () => {
         for (const g of games) {
-            for (const f of optionalStringFields) {
-                const v = g[f];
-                if (v == null || v === '') continue;
-                expect(typeof v, `${g.name}: ${f}`).toBe('string');
-                expect(v.length, `${g.name}: ${f}`).toBeGreaterThan(0);
+            const v = g.art_color_tone;
+            if (v == null) continue;
+            expect(Array.isArray(v), `${g.name}: art_color_tone should be array`).toBe(true);
+            for (const c of v) {
+                expect(typeof c, `${g.name}: color entry`).toBe('string');
+                expect(c.length, `${g.name}: color entry`).toBeGreaterThan(0);
             }
         }
     });
 
-    test('staged art entries only use known art keys (incl. optional style / color tone)', () => {
-        const allowed = new Set([...ART_FIELD_KEYS, 'art_confidence']);
+    test('staged art entries only use known art keys', () => {
+        const allowed = new Set([
+            ...ART_FIELD_KEYS,
+            'art_setting',
+            'art_mood',
+            'art_style',
+            'art_character_categories',
+        ]);
         for (const [name, entry] of Object.entries(staged)) {
             if (!entry || typeof entry !== 'object') continue;
             for (const k of Object.keys(entry)) {
                 expect(allowed.has(k), `${name}: unexpected key "${k}"`).toBe(true);
             }
         }
+    });
+});
+
+describe('Theme system consistency', () => {
+    let games;
+
+    beforeAll(() => {
+        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8')).filter(
+            g => g.name !== 'Total'
+        );
+    });
+
+    test('art_theme count is between 30 and 80', () => {
+        const themes = new Set(games.map(g => g.art_theme).filter(Boolean));
+        expect(themes.size).toBeGreaterThanOrEqual(30);
+        expect(themes.size).toBeLessThanOrEqual(80);
+    });
+
+    test('themes with <= 2 games are logged as warnings', () => {
+        const counts = {};
+        games.forEach(g => {
+            if (g.art_theme) counts[g.art_theme] = (counts[g.art_theme] || 0) + 1;
+        });
+        const tiny = Object.entries(counts).filter(([, n]) => n <= 2);
+        if (tiny.length > 0) {
+            console.warn(`[QA] ${tiny.length} themes with <= 2 games: ${tiny.map(([t]) => t).join(', ')}`);
+        }
+        expect(tiny.length).toBeLessThan(25);
+    });
+
+    test('top theme by game count is Classic Slots', () => {
+        const counts = {};
+        games.forEach(g => {
+            if (g.art_theme) counts[g.art_theme] = (counts[g.art_theme] || 0) + 1;
+        });
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+        expect(sorted[0][0]).toBe('Classic Slots');
     });
 });

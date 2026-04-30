@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "description": "User review verdicts per game per dimension. If a game is here, do NOT ask the user to review it again.",
-  "total_reviewed": 326,
+  "total_reviewed": 365,
   "review_rounds": {
     "ags_v4": {
       "date": "2026-04-13",
@@ -37,20 +37,19 @@
   "games": {
     "10001-Nights.html": {
       "reviewed_at": "2026-04-19",
-      "review_round": "fresh_batch_v11",
+      "review_round": "screenshot_fix_check_v1",
       "verdicts": {
         "art_theme": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_color_tone": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_characters": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_elements": {
-          "status": "fix",
-          "note": "Remove redundant bloat elements: Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Glow/Aura"
+          "verdict": "ok"
         }
       }
     },
@@ -831,8 +830,8 @@
       }
     },
     "Break-Da-Bank-Again-Respin.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
           "status": "ok"
@@ -844,7 +843,8 @@
           "status": "ok"
         },
         "art_elements": {
-          "status": "ok"
+          "status": "fix",
+          "note": "its symbols - no elements really other than a pattern bg"
         }
       }
     },
@@ -1695,20 +1695,20 @@
     },
     "Fire-Joker.html": {
       "reviewed_at": "2026-04-19",
-      "review_round": "fresh_batch_v11",
+      "review_round": "screenshot_fix_check_v1",
       "verdicts": {
         "art_theme": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_color_tone": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_characters": {
-          "status": "ok"
+          "verdict": "ok"
         },
         "art_elements": {
-          "status": "fix",
-          "note": "Remove redundant bloat elements (same pattern as g0)"
+          "verdict": "fix",
+          "note": "just a patterned bg"
         }
       }
     },
@@ -2119,8 +2119,8 @@
       }
     },
     "Golden-Wins.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
       "verdicts": {
         "art_theme": {
           "status": "ok"
@@ -2132,7 +2132,8 @@
           "status": "ok"
         },
         "art_elements": {
-          "status": "ok"
+          "status": "fix",
+          "note": "Asian Decoration / asian pattern + fireworks"
         }
       }
     },
@@ -2701,8 +2702,8 @@
       }
     },
     "Longhorn-Jackpots.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
           "status": "ok"
@@ -3256,8 +3257,8 @@
       "auto_verified": true
     },
     "Rakin-Bacon.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
           "status": "ok"
@@ -3742,8 +3743,8 @@
       "auto_verified": true
     },
     "Ultra-Rush-Sky-Fire.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
           "status": "ok"
@@ -3755,7 +3756,8 @@
           "status": "ok"
         },
         "art_elements": {
-          "status": "ok"
+          "status": "fix",
+          "note": "only Asian Decorations, Fire/Flames"
         }
       }
     },
@@ -3963,11 +3965,12 @@
       }
     },
     "cash-can-ultratap.html": {
-      "reviewed_at": "2026-04-13",
-      "review_round": "ags_v4",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
-          "status": "ok"
+          "status": "fix",
+          "note": "too much for 1 theme. should be Office/Urban/Modern City"
         },
         "art_color_tone": {
           "status": "ok"
@@ -3976,7 +3979,8 @@
           "status": "ok"
         },
         "art_elements": {
-          "status": "ok"
+          "status": "fix",
+          "note": "yes but be specific - office chair, trash can, computer monitor"
         }
       }
     },
@@ -4868,24 +4872,21 @@
       }
     },
     "Gorilla-Riches.html": {
-      "reviewed_at": "2026-04-20T15:54:58.194272",
-      "review_round": "batch1v2_spot",
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase5_stale_ok_recheck",
       "verdicts": {
         "art_theme": {
-          "verdict": null,
-          "note": ""
+          "status": "ok"
         },
         "art_color_tone": {
-          "verdict": null,
-          "note": ""
+          "status": "ok"
         },
         "art_characters": {
-          "verdict": null,
-          "note": "those are symbols not characters - character names need to be exact animal names"
+          "status": "ok"
         },
         "art_elements": {
-          "verdict": null,
-          "note": "vines, leaves, forest missed"
+          "status": "fix",
+          "note": "correct but no Statues/Sculptures"
         }
       }
     },
@@ -6139,6 +6140,3056 @@
         },
         "art_elements": {
           "verdict": "ok"
+        }
+      }
+    },
+    "temple-of-tollan.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "correct - but its an aztec warrior (i think..)"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "you missed the coin piles - which are a big part here"
+        }
+      }
+    },
+    "Bison-Moon.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "tree"
+        }
+      }
+    },
+    "Cluster-Tumble.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "screenshot is of bonus - not good, need regular in-game"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "fortune teller woman or something like that"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        }
+      }
+    },
+    "return-of-ahmun-ra.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no torches no pillars no statues. it has sand, pyramids, some mountains and sky."
+        }
+      }
+    },
+    "Fire-Blaze-Green-Wizard.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "no wizard"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Valkyrie-Returns.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "this is a megawin screenshot - we need a regular in game"
+        }
+      }
+    },
+    "merlwins-matchup.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a poster screenshot - not an ingame"
+        }
+      }
+    },
+    "Slingo-Racing.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "thats not a basketball court. thats a grass field or something similar."
+        }
+      }
+    },
+    "Mammoth-Mayhem.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this screenshot is not of a slot in game"
+        }
+      }
+    },
+    "gold-boom.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "thats correct - but can you add some details? like miner (older man)"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "there is nothing of that. (those are symbols). there is rocks, wood bars/pillars, cave"
+        }
+      }
+    },
+    "dynamite-fishing.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "add: fish, dynamite sticks"
+        }
+      }
+    },
+    "Reel-Joke.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "top-multiplier.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "nope, there is nothing here - just a pattern"
+        }
+      }
+    },
+    "power-fortune.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dynamite-Riches-Megaways.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "no character"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Lanterns, Gold Coins/Treasure + gold nuggets + wooden bars/pillars/mine"
+        }
+      }
+    },
+    "Golden-Macaque.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is not an in game screenshot"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "this is not an in game screenshot"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "this is not an in game screenshot"
+        },
+        "art_color_tone": {
+          "status": "fix",
+          "note": "this is not an in game screenshot"
+        }
+      }
+    },
+    "Full-Force-Link-Mystical-Owl.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "Sky + moon + stars (no clouds - separate those)"
+        }
+      }
+    },
+    "Reel-Star.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Mustang-Spirit-Cash-Stacks-Gold.html": {
+      "reviewed_at": "2026-04-26",
+      "review_round": "phase4_reclass_spotcheck",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Ozzy-Osbourne.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is not an ingame screenshot - its a screen you need to press continue to get into the game"
+        }
+      }
+    },
+    "rodeo-grand.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Lavish-Lifestyles.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "apartment"
+        }
+      }
+    },
+    "boitata-the-fire-guardian.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "fix",
+          "note": "correct - but baby dragon"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "there is no Ancient Stone Carvings, Statues/Sculptures"
+        }
+      }
+    },
+    "dangerous-beauty-power-bet.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "there is no Asian Lanterns or bamboo"
+        }
+      }
+    },
+    "spinberry-stepper.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Da-Vinci-Extreme.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no elements really - its the reels frame"
+        }
+      }
+    },
+    "Shifting-Hearts.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Double-Fancy-7s.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Winstones.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "correct - but no Mountains"
+        }
+      }
+    },
+    "Shamrock.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "just a pattern bg"
+        }
+      }
+    },
+    "Diamond-Hearts.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Dragon-Power.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "only Asian Decorations / pattern-wallpaper"
+        }
+      }
+    },
+    "Roaming-Reels.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Classic-Fortunes.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a poster, not ingame screenshot"
+        }
+      }
+    },
+    "Respin-7s.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        }
+      }
+    },
+    "Grand-Emperor.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "only Asian Decorations"
+        }
+      }
+    },
+    "Manic-Millions.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is the rules, not ingame screenshot"
+        }
+      }
+    },
+    "Queen-Of-The-Castle.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is the rules, not ingame screenshot"
+        }
+      }
+    },
+    "lure-of-the-lamp-megaways.html": {
+      "reviewed_at": "2026-04-27",
+      "review_round": "batch7_spot",
+      "verdicts": {
+        "art_theme": {
+          "status": "ok"
+        },
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "arabian buildings/structures"
+        }
+      }
+    },
+    "3-leprechaun-charms.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no Vines/Ivy/ - separate from plants - there are: plants, flowers, rainbow, sky"
+        }
+      }
+    },
+    "3x-2x-fire-and-roses-joker.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "just a curtain bg"
+        }
+      }
+    },
+    "4-wild-wolves.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Big-Size-Fishin.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no mountains no trees, rest are ok"
+        }
+      }
+    },
+    "Blackjack-Players-Choice.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "thats a blackjack table - thats it"
+        }
+      }
+    },
+    "Blood-Suckers-Megaways.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no Skulls/Bones, Candles, Torches"
+        }
+      }
+    },
+    "Boss-Level.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "city bg - thats not a slot game though"
+        }
+      }
+    },
+    "Choco-Reels.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Fire-Blaze-Toltec-Blocks.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no pyramids, Torches"
+        }
+      }
+    },
+    "Foxpot.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "this isnt an ingame screenshot"
+        }
+      }
+    },
+    "Golden-Harvest.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "Trees, Fields/Grassland correct, rest are not"
+        }
+      }
+    },
+    "Mystic-Fortune-Deluxe.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no bamboo, candle paper light (almost torches)"
+        }
+      }
+    },
+    "Smokin-Triples.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "just a bg"
+        }
+      }
+    },
+    "The-Haunted-Horseman.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Ultra-Stack-Feature-Rose.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "rose + sparkles"
+        }
+      }
+    },
+    "Wild-Whopper.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "fish is missing, no Underwater Structures"
+        }
+      }
+    },
+    "celestial-moon-riches.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "cherry-power-boost.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "chicks-in-vegas.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "ramosis-treasures.html": {
+      "review_round": "element_spot_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "you missed the torches"
+        }
+      }
+    },
+    "Big-Prize-Bubblegum-Deluxe.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Big-Wheel-Bonus.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "only stars. no casino interior"
+        }
+      }
+    },
+    "Eagle-Rider.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Excalibur.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "its candles not torches, no banners"
+        }
+      }
+    },
+    "Flowers.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "its all symbols, just a wooden frame and some leaves"
+        }
+      }
+    },
+    "Fuzanglong-Fire-Wilds.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Lucky-Otter.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no underwater structures, missed treasure chest, separate Coral Reef/Underwater"
+        }
+      }
+    },
+    "Magic-Stars-5.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Majestic-Cats.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "also hay/dry straw"
+        }
+      }
+    },
+    "Mayan-Eagle.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no torches, missing plants and waterfall"
+        }
+      }
+    },
+    "Neon-Staxx.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "good but also city"
+        }
+      }
+    },
+    "Slingo-Hot-Roll.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "multipliers in the bg"
+        }
+      }
+    },
+    "Trial-By-Fire.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "also spider web, skull, ancient structure/stones and lava"
+        }
+      }
+    },
+    "Twin-Spin-Megaways.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Wild-Fruit-Super-Wheel.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "Zodiac-Lantern-Tiger.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no Bamboo, there is a dragon character"
+        }
+      }
+    },
+    "centurion-big-money.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "also roman structure, separate Vines/Ivy from Plants"
+        }
+      }
+    },
+    "firerush-77-sevens.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "ok",
+          "note": ""
+        }
+      }
+    },
+    "myth-of-dead.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "no torches, columns/pillars, statues/sculptures, missed the river"
+        }
+      }
+    },
+    "slingo-day-of-the-dab.html": {
+      "review_round": "element_proof_check_v1",
+      "reviewed_at": "2026-04-27",
+      "verdicts": {
+        "art_elements": {
+          "status": "fix",
+          "note": "also candles and lights"
+        }
+      }
+    },
+    "10x-minimum-side-bet.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no City Landmarks. also this isnt a slot game really"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Donny-Dough.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Fu-Dao-Le.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Bamboo, no Asian Architecture"
+        }
+      }
+    },
+    "Goldstruck-Blasts.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "gold nuggets also. Train/Railway Station not so much, more like a cart train"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Hit-Bar-Gold.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Noble-7s.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Pigeons-From-Space.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Slingo-Reel-King.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "the king is in the logo here, confusing though"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Super-Lucky-Frog.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Testament.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "is this really branded? don't think so"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "The-Trolls-Treasure.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Triple-Topaz.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Wild-Fortunes.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "there is no forest"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "buffalo-collector.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "Animals - buffalos specifically"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "carnaval-drums.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no gold coins"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "go-high-olympus.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "Good, also rocks"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "graveyard-gang.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "tree also"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "halloween-wins-3.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Torches"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "slingo-candy-machine-bl4st.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "xmas-bells.html": {
+      "review_round": "improved_element_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "20-coins-grand-gold-edition.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Bass-Boss.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "fisher man"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "fisherman, boats"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Cosmic-Jewels.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "First-Person-Craps.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no City Landmarks, this is always returning"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Golden-Grimoire.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Holiday-Spirits.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Wrapped Presents"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Jesters-Wilds.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Jingle-Spin.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no snow, no presents"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Jingle-Winner.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no gifts/Wrapped Presents"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Jungle-Monkeys.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Lockdown-Loot.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no city"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Pirots.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "no, carrot is a symbol"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Ships/Boats, Skulls/Bones. missed the sea"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Twin-Spin.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Vault-Cracker.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Very-Fruity.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Wolf-Cub.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not an ingame screenshot"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "fortune-reveal-money-card.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "nothing really here"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "fu-dai-lian-lian-dragon.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not an ingame screenshot"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "slingo-lucky-mcgold.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "sea/river also"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "starburst-galaxy.html": {
+      "review_round": "reclass_batch1_spot",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Augustus.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Chaos-Crew.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not an ingame screenshot"
+        }
+      }
+    },
+    "Christmas-Cash-Pots.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not an ingame screenshot"
+        }
+      }
+    },
+    "Cleopatra-Grand.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Fairytale-Beauties.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "Snow White, Alice, Little Red Riding Hood, Little Mermaid are all symbols inside the reels, not characters"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no gold coins outside the reels"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Jingle-Ways-Megaways.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Majestic-King.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "lion is a high symbol in the reels, not a character"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Net-Gains.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Outlaw-Saloon.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "cowboy is a symbol in the reels, not a character"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "torches should be lantern"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Texas-Tea.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "correct but also armadillo"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "also cactus and mountains"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Thunderstruck-Wild-Lightning.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Viking Ship"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Tombstone.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not an ingame screenshot"
+        }
+      }
+    },
+    "duel-at-dawn.html": {
+      "review_round": "screenshot_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "cactus also"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "3-plucky-hens.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "good but also water tower"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "5-Doggy-Dollars.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "pick game screen, not regular ingame screen"
+        },
+        "art_characters": {
+          "verdict": "fix"
+        },
+        "art_elements": {
+          "verdict": "fix"
+        },
+        "art_color_tone": {
+          "verdict": "fix"
+        }
+      }
+    },
+    "5-Treasures.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "pick game screen, not regular ingame screen"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Black-Diamond.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Blazing-Mammoth.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "wheel feature screen, not regular gameplay"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Bonanza.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no torches, coins from big win, no safe/vault"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Buffalo-Magic.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "she is a symbol, not a character"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Cloud-Corsairs.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "Sky is not a valid theme"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Five-Pirates.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "skull is a symbol, rest ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Geese-With-Attitude.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Great-Balloon-Adventure.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "Sky is not a theme"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Patricks-Jackpot.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "correct but also Irish lady"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Stormforged.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "its inferno/fire, not Norse/Viking at all"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "its satan, not Surtur"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Viking Ship"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Top-O-The-Bonus.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Wild-Falls.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "fix",
+          "note": "not wild west, its waterfall/nature theme"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "balls-of-fire.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "fix",
+          "note": "soccer player"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "soccer field, not basketball"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "dragon-unleashed-prosperity-packets.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "no Asian Lanterns, no Bamboo"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "dragons-playground.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "ok"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "dreamy-divas.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "also pool"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "the-goonies-megaways.html": {
+      "review_round": "theme_fix_check_v1",
+      "verdicts": {
+        "art_theme": {
+          "verdict": "ok"
+        },
+        "art_characters": {
+          "verdict": "ok"
+        },
+        "art_elements": {
+          "verdict": "fix",
+          "note": "also skeleton"
+        },
+        "art_color_tone": {
+          "verdict": "ok"
+        }
+      }
+    },
+    "Black-Mamba.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "correct - but she is a guitar player"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Blazing-7s-Blackjack.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "this is a clack jack table"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a clack jack table"
+        }
+      }
+    },
+    "Cirque-Du-Soleil-Amaluna.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "i think she is a warrior lady or something like that"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Double-Jackpot-Bullseye.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Enchanted-Manor.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also moon"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fox-Mayhem.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gladiatoro.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Gold-Blitz-Extreme.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a weird screesnhto - look like a win animation"
+        }
+      }
+    },
+    "Mighty-Medusa.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also greek/roman ruins"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Million-Vegas.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no  City Landmarks"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "this looks like a show/ concert hall or something - maybe in a casino.."
+        }
+      }
+    },
+    "Nemos-Voyage.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no Underwater Structures, Bubbles it looks like a ship intrior engine room or something"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Shamrock-Miner.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also rocks"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Split-Dragon.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no , Asian Lanterns"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Stolen-Treasures.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Twice-The-Money.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no Dynamite and there is a gold cart - that take gold in a mine"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "What-The-Fox-Megaways.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a wheel bonus game - not a regular in gamae"
+        }
+      }
+    },
+    "bruce-lee-kung-fu-wilds.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "championship-fortunes.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "thise are a man and a women basketball playrs"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "YEs - but specifically Sports / basket ball"
+        }
+      }
+    },
+    "dragon-unleashed-three-legends.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no Bamboo, no Asian Lanterns, no Magic Energy/Spell Effects"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "golden-knight-infinity.html": {
+      "review_round": "full_sweep_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "3-porky-banks-christmas.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also snowman"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "5-Lion-Festival.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no Magic Energy/Spell Effects"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "5-star-coins-hold-and-win.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Blazin-Gems.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Blood-And-Gold.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Bounty-Raid.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "cowboys"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Cai-Fu-Emperor-Ways.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "no Columns/Pillars, Gold Coins/Treasure"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Cool-Jewels.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Fortune-Pai-Gow-Poker.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "this is a blackjack game"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "this is a blackjack game"
+        }
+      }
+    },
+    "Gladiator-Legends.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "he is a symbol"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "fix",
+          "note": "seems more like midevil to me - but not sure the name is gladiator"
+        }
+      }
+    },
+    "Halloween-Jack.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also skelaton/somekind of evil skelaton"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Piggy-Riches-Megaways.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "the pig fountain here is actually just a background"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "+ fountain"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Sweet-Spotz.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "its a symbol"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also moon, grass/plants"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Trojan-Treasure.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "Wolf-Guardian.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "also tents / indian tents"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "buffalo-gold-revolution.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "fruit-lightning.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "ok"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "get-the-cheese.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "only Mouse"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "fix",
+          "note": "yes - specifically cheese"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "getaway-gangsters.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_characters": {
+          "status": "fix",
+          "note": "gangsters/mob more accurately"
+        },
+        "art_color_tone": {
+          "status": "ok"
+        },
+        "art_elements": {
+          "status": "ok"
+        },
+        "art_theme": {
+          "status": "ok"
+        }
+      }
+    },
+    "upshot-brilliant-7s.html": {
+      "review_round": "post_process_fix_check_v1",
+      "dims": {
+        "art_theme": {
+          "status": "fix",
+          "note": "this is not an ingame screenshot - its a poster"
         }
       }
     }

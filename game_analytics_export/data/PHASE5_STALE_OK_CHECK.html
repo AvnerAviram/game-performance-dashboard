@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Phase 5 — Re-validate Stale OK Verdicts</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #00d2ff; text-align: center; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.dims { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.dim { background: #0f3460; padding: 12px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #e94560; margin-bottom: 4px; }
+.dim-value { color: #fff; }
+.btns { margin-top: 8px; }
+.btn-ok, .btn-fix { padding: 4px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-right: 6px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; }
+.fix-note { display: none; margin-top: 6px; }
+.fix-note textarea { width: 90%; height: 40px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 4px; }
+.export-btn { display: block; margin: 30px auto; padding: 12px 40px; background: #00d2ff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+#export-area { width: 90%; height: 200px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; }
+.badge-stale { background: #f39c12; color: #000; }
+</style></head><body>
+<h1>Phase 5 — Re-validate Stale OK Verdicts (Batch 1-2)</h1>
+<p class="summary">These 20 games were previously marked ALL-OK but have been reclassified with the new prompt. Checking for silent regressions.</p>
+<p class="summary">Review each dimension. Click OK or Fix. Then click Export at bottom.</p>
+
+<div class="game" id="g0">
+<div class="game-title">#0: Play Longhorn Jackpots Slot <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/Longhorn-Jackpots.jpg" alt="Play Longhorn Jackpots Slot">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Wild West/Frontier</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Orange, Red, Brown</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Bull</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Mountains, Sky/Clouds</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<div class="game" id="g1">
+<div class="game-title">#1: Ultra Rush Sky Fire Slot by Incredible Technologies 🎰 Free Demo and Review <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/Ultra-Rush-Sky-Fire.jpg" alt="Ultra Rush Sky Fire Slot by Incredible Technologies 🎰 Free Demo and Review">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Asian Temple/Garden</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Gold, Red</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Dragon</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Asian Architecture, Asian Decorations, Fire/Flames, Asian Lanterns, Bamboo</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<div class="game" id="g2">
+<div class="game-title">#2: Play Break Da Bank Again Respin Slot <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/Break-Da-Bank-Again-Respin.jpg" alt="Play Break Da Bank Again Respin Slot">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Crime/Heist</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Purple, Gold, Silver</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Safe/Vault, Gold Coins/Treasure</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<div class="game" id="g3">
+<div class="game-title">#3: Cash Can UltraTap Demo & Game Review <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/cash-can-ultratap.webp" alt="Cash Can UltraTap Demo & Game Review">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Laboratory/Workshop / Urban/Modern City</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Brown, Light Blue</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Office Items, Skyline, City Landmarks</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<div class="game" id="g4">
+<div class="game-title">#4: Play Gorilla Riches Slot <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/Gorilla-Riches.jpg" alt="Play Gorilla Riches Slot">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Jungle/Rainforest</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Brown, Teal</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Trees, Forest, Vines/Ivy/Plants, Temples, Columns/Pillars, Ancient Stone Carvings, Statues/Sculptures</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<div class="game" id="g5">
+<div class="game-title">#5: Play Rakin Bacon Slot <span class="badge badge-stale">stale-OK recheck</span></div>
+<img class="screenshot" src="screenshots/Rakin-Bacon.jpg" alt="Play Rakin Bacon Slot">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Luxury/VIP</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_theme-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Purple, Gold, Orange</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_color_tone-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Pig</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_characters-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Gold Coins/Treasure, Neon Glow</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_elements-note"><textarea placeholder="What's wrong?"></textarea></div>
+</div>
+</div></div>
+
+<button class="export-btn" onclick="exportResults()">Export Results</button>
+<textarea id="export-area"></textarea>
+
+<script>
+const verdicts = {};
+function mark(btn, gid, dim, verdict) {
+  const key = gid + '-' + dim;
+  verdicts[key] = verdict;
+  const btns = btn.parentElement.querySelectorAll('button');
+  btns.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const noteDiv = document.getElementById(key + '-note');
+  if (verdict === 'fix') { noteDiv.style.display = 'block'; }
+  else { noteDiv.style.display = 'none'; }
+  updateSummary();
+}
+
+function updateSummary() {
+  const total = Object.keys(verdicts).length;
+  const ok = Object.values(verdicts).filter(v => v === 'ok').length;
+  const fix = Object.values(verdicts).filter(v => v === 'fix').length;
+  document.querySelector('.summary').textContent =
+    `Total: ${total} | OK: ${ok} | Fix: ${fix} | Accuracy: ${total ? ((ok/(ok+fix))*100).toFixed(1) : 0}%`;
+}
+
+function exportResults() {
+  const lines = [];
+  const fileMap = {
+    'g0': 'Longhorn-Jackpots.html',
+    'g1': 'Ultra-Rush-Sky-Fire.html',
+    'g2': 'Break-Da-Bank-Again-Respin.html',
+    'g3': 'cash-can-ultratap.html',
+    'g4': 'Gorilla-Riches.html',
+    'g5': 'Rakin-Bacon.html',
+  };
+
+  for (const [key, verdict] of Object.entries(verdicts)) {
+    const [gid, ...dimParts] = key.split('-');
+    const dim = dimParts.join('-');
+    const fname = fileMap[gid] || gid;
+    let note = '';
+    if (verdict === 'fix') {
+      const ta = document.querySelector('#' + key + '-note textarea');
+      note = ta ? ta.value : '';
+    }
+    lines.push(`${fname}: ${dim}: ${verdict}${note ? ' - ' + note : ''}`);
+  }
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = lines.join('\n');
+  area.select();
+}
+</script>
+</body></html>

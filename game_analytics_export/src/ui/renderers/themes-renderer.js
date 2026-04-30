@@ -1,5 +1,6 @@
 // Themes page renderer
-import { gameData, getActiveThemes } from '../../lib/data.js';
+import { gameData, getActiveThemes, getActiveGames } from '../../lib/data.js';
+import { F } from '../../lib/game-fields.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { renderOverview } from './overview-renderer.js';
@@ -121,22 +122,32 @@ export function renderThemes(themesToRender = null) {
                     : '';
         const rankBg = globalIndex < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
 
-        const isUnified = theme._isUnified && theme._subthemes && Object.keys(theme._subthemes).length > 0;
-        const expandIcon = isUnified ? '<span class="expand-icon">▶</span> ' : '';
         const themeName = theme.Theme;
-        const themeNameEscaped = escapeAttr(themeName);
 
         const row = tbody.insertRow();
         row.className = `theme-row group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 cursor-pointer ${rankBg}`;
         row.dataset.themeIndex = globalIndex;
-        row.onclick = () => window.showThemeDetails(themeName);
+
+        row.addEventListener('click', e => {
+            const onExpand = e.target.closest('.expand-toggle');
+            if (onExpand) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.toggleArtDrill(globalIndex, themeName);
+                return;
+            }
+            window.showThemeDetails(themeName);
+        });
 
         const xDim = (metric, dv) =>
             escapeAttr(JSON.stringify({ metric, dimension: 'theme', value: themeName, displayValue: dv }));
         row.innerHTML = `
             <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16">${medal}${globalIndex + 1}</td>
             <td class="px-4 py-3.5" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: themeName, rank: globalIndex + 1 }))}'>
-                ${isUnified ? `<span class="inline-flex items-center gap-1"><span class="expand-toggle cursor-pointer text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 select-none" onclick="event.stopPropagation();toggleSubThemes(${globalIndex})">${expandIcon}</span><span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(themeName)}</span></span>` : `<span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(themeName)}</span>`}
+                <span class="inline-flex items-center gap-1">
+                    <span class="expand-toggle inline-flex min-h-[28px] min-w-[28px] items-center justify-center cursor-pointer rounded text-gray-400 hover:bg-gray-200/70 hover:text-gray-700 dark:hover:bg-gray-700/70 dark:hover:text-gray-200 select-none text-xs shrink-0" role="button" tabindex="0" aria-label="${escapeAttr(`Expand art drill-down for ${themeName}`)}" aria-expanded="false"><span class="expand-icon pointer-events-none">▶</span></span>
+                    <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${escapeHtml(themeName)}</span>
+                </span>
             </td>
             <td class="px-4 py-3.5 w-36" data-xray='${xDim('game_count', String(gc))}'>
                 <div class="flex items-center gap-2">
@@ -158,54 +169,6 @@ export function renderThemes(themesToRender = null) {
                 </div>
             </td>
         `;
-
-        if (isUnified) {
-            const subThemes = Object.values(theme._subthemes);
-            const parentThemeName = theme.Theme;
-            subThemes.forEach(subTheme => {
-                const subRow = tbody.insertRow();
-                subRow.className = `sub-theme-row sub-theme-${index} hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors cursor-pointer`;
-                subRow.style.display = 'none';
-                const subThemeName = subTheme.Theme;
-                const subThemeNameEscaped = escapeAttr(subThemeName);
-                subRow.onclick = e => {
-                    e.stopPropagation();
-                    window.showThemeDetails(subThemeName);
-                };
-
-                let displayName = subThemeName;
-                if (parentThemeName === 'Asian' && !subThemeName.startsWith('Asian')) {
-                    displayName = `Asian/${subThemeName}`;
-                } else if (parentThemeName === 'Ancient Civilizations' && !subThemeName.includes('Ancient')) {
-                    displayName = subThemeName.replace('Greek/', 'Ancient/Greek ');
-                }
-
-                const subSI = subTheme['Smart Index'] || 0;
-                const subIsAbove = subSI >= avgSI;
-                const subBarW = Math.max(4, (subSI / maxSI) * 100);
-                const subMS = subTheme['Market Share %'] ?? 0;
-                const subGC = subTheme['Game Count'];
-                const subXDim = (metric, dv) =>
-                    escapeAttr(JSON.stringify({ metric, dimension: 'theme', value: subThemeName, displayValue: dv }));
-
-                subRow.innerHTML = `
-                    <td class="px-4 py-2.5"></td>
-                    <td class="px-4 py-2.5 pl-12" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: subThemeName }))}'>
-                        <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                            └ ${escapeHtml(displayName)}
-                        </span>
-                    </td>
-                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400" data-xray='${subXDim('game_count', String(subGC))}'>${subGC}</td>
-                    <td class="px-4 py-2.5" data-xray='${subXDim('smart_index', subSI.toFixed(2))}'>
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm tabular-nums ${subIsAbove ? 'text-emerald-500 dark:text-emerald-400' : 'text-gray-500 dark:text-gray-400'}">${subSI.toFixed(2)}</span>
-                            <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${subIsAbove ? 'bg-emerald-400' : 'bg-gray-300 dark:bg-gray-600'}" style="width:${subBarW}%"></div></div>
-                        </div>
-                    </td>
-                    <td class="px-4 py-2.5 text-sm text-gray-500 dark:text-gray-400" data-xray='${subXDim('market_share', subMS.toFixed(2) + '%')}'>${subMS.toFixed(2)}%</td>
-                `;
-            });
-        }
     });
 
     const countSpan = document.getElementById('themes-count');
@@ -223,19 +186,125 @@ export function renderThemes(themesToRender = null) {
     });
 }
 
-window.toggleSubThemes = function (index) {
-    const subRows = document.querySelectorAll(`.sub-theme-${index}`);
+window.toggleArtDrill = function (index, themeName) {
+    const existingDrill = document.getElementById(`art-drill-${index}`);
     const expandIcon = document.querySelector(`[data-theme-index="${index}"] .expand-icon`);
 
-    const isExpanded = subRows[0]?.style.display !== 'none';
-
-    subRows.forEach(row => {
-        row.style.display = isExpanded ? 'none' : 'table-row';
-    });
-
-    if (expandIcon) {
-        expandIcon.textContent = isExpanded ? '▶' : '▼';
+    if (existingDrill) {
+        const isHidden = existingDrill.style.display === 'none';
+        existingDrill.style.display = isHidden ? 'table-row' : 'none';
+        if (expandIcon) expandIcon.textContent = isHidden ? '▼' : '▶';
+        return;
     }
+
+    const allGames = getActiveGames();
+    const themeGames = allGames.filter(g => {
+        if (F.themeConsolidated(g) !== themeName) return false;
+        return !!(
+            F.artTheme(g) ||
+            F.artCharacters(g).length > 0 ||
+            F.artElements(g).length > 0 ||
+            F.artColorTone(g).length > 0 ||
+            F.artThemeSecondary(g)
+        );
+    });
+    if (themeGames.length === 0) return;
+
+    const characterCounts = {};
+    const elementCounts = {};
+    const colorCounts = {};
+    const secondaryCounts = {};
+    for (const g of themeGames) {
+        const chars = F.artCharacters(g);
+        if (Array.isArray(chars))
+            chars.forEach(c => {
+                if (c && c !== 'No Characters (symbol-only game)') characterCounts[c] = (characterCounts[c] || 0) + 1;
+            });
+        const elems = F.artElements(g);
+        if (Array.isArray(elems))
+            elems.forEach(e => {
+                if (e) elementCounts[e] = (elementCounts[e] || 0) + 1;
+            });
+        const colors = F.artColorTone(g);
+        if (Array.isArray(colors))
+            colors.forEach(c => {
+                if (c) colorCounts[c] = (colorCounts[c] || 0) + 1;
+            });
+        const sec = F.artThemeSecondary(g);
+        if (sec) secondaryCounts[sec] = (secondaryCounts[sec] || 0) + 1;
+    }
+
+    const sortAndLimit = (obj, min, limit) =>
+        Object.entries(obj)
+            .filter(([, n]) => n >= min)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, limit);
+
+    const topChars = sortAndLimit(characterCounts, 1, 8);
+    const topElems = sortAndLimit(elementCounts, 2, 8);
+    const topColors = sortAndLimit(colorCounts, 1, 10);
+    const topSec = sortAndLimit(secondaryCounts, 1, 5);
+    const total = themeGames.length;
+
+    const pill = (label, count, bgClass, textClass) =>
+        `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${bgClass} ${textClass}"><span>${escapeHtml(label)}</span><span class="font-semibold">${count}</span></span>`;
+
+    const cardSection = (title, items, borderColor, pillBg, pillText) => {
+        const pills = items.length
+            ? `<div class="flex flex-wrap gap-1.5">${items.map(([l, c]) => pill(l, c, pillBg, pillText)).join('')}</div>`
+            : `<span class="text-xs text-gray-400 dark:text-gray-500 italic">None found</span>`;
+        return `<div class="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
+            <div class="border-l-4 ${borderColor} pl-2 mb-2 text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">${escapeHtml(title)}</div>
+            ${pills}
+        </div>`;
+    };
+
+    const content =
+        cardSection(
+            'Characters',
+            topChars,
+            'border-blue-400',
+            'bg-blue-100 dark:bg-blue-900/40',
+            'text-blue-700 dark:text-blue-300'
+        ) +
+        cardSection(
+            'Elements',
+            topElems,
+            'border-green-400',
+            'bg-green-100 dark:bg-green-900/40',
+            'text-green-700 dark:text-green-300'
+        ) +
+        cardSection(
+            'Color Tones',
+            topColors,
+            'border-amber-400',
+            'bg-amber-100 dark:bg-amber-900/40',
+            'text-amber-700 dark:text-amber-300'
+        ) +
+        cardSection(
+            'Secondary Themes',
+            topSec,
+            'border-purple-400',
+            'bg-purple-100 dark:bg-purple-900/40',
+            'text-purple-700 dark:text-purple-300'
+        );
+
+    const parentRow = document.querySelector(`[data-theme-index="${index}"]`);
+    const drillRow = document.createElement('tr');
+    drillRow.id = `art-drill-${index}`;
+    drillRow.className = 'bg-gray-50/80 dark:bg-gray-800/50';
+    drillRow.innerHTML = `<td></td><td colspan="4" class="px-4 py-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">${content}</div>
+        <div class="text-[10px] text-gray-400 dark:text-gray-500 mt-2">${total} games with art data</div>
+    </td>`;
+
+    if (parentRow && parentRow.nextSibling) {
+        parentRow.parentNode.insertBefore(drillRow, parentRow.nextSibling);
+    } else {
+        parentRow?.parentNode?.appendChild(drillRow);
+    }
+
+    if (expandIcon) expandIcon.textContent = '▼';
 };
 
 window.switchRankingFormula = function (formulaType) {
@@ -248,13 +317,7 @@ window.switchRankingFormula = function (formulaType) {
     });
 
     gameData.themes.forEach(theme => {
-        theme['Smart Index'] = theme._formulas[formulaType];
-
-        if (theme._subthemes) {
-            Object.values(theme._subthemes).forEach(subTheme => {
-                subTheme['Smart Index'] = subTheme._formulas[formulaType];
-            });
-        }
+        theme['Smart Index'] = theme._formulas?.[formulaType] ?? theme['Smart Index'] ?? 0;
     });
 
     gameData.themes.sort((a, b) => b['Smart Index'] - a['Smart Index']);

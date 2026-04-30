@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * User management CLI for the Game Analytics Dashboard.
+ * User management CLI for the Games Analytics Tool.
  *
  * Usage:
  *   node server/manage-users.cjs add <username> [--admin]   # prompts for password
@@ -141,7 +141,7 @@ switch (command) {
         setRole(username, roleArg);
         break;
     default:
-        console.log('Game Analytics Dashboard - User Management');
+        console.log('Games Analytics Tool - User Management');
         console.log('');
         console.log('Commands:');
         console.log('  add <username> [--admin]          Add a new user (prompts for password)');

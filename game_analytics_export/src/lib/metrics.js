@@ -476,11 +476,14 @@ export function getArtStyleMetrics(games) {
 export function getArtColorToneMetrics(games) {
     const map = {};
     for (const g of games) {
-        const ct = F.artColorTone(g);
-        if (!ct) continue;
-        if (!map[ct]) map[ct] = { colorTone: ct, count: 0, totalTheo: 0 };
-        map[ct].count++;
-        map[ct].totalTheo += F.theoWin(g);
+        const colors = F.artColorTone(g);
+        const theo = F.theoWin(g);
+        for (const ct of colors) {
+            if (!ct) continue;
+            if (!map[ct]) map[ct] = { colorTone: ct, count: 0, totalTheo: 0 };
+            map[ct].count++;
+            map[ct].totalTheo += theo;
+        }
     }
     return Object.values(map)
         .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
@@ -488,25 +491,55 @@ export function getArtColorToneMetrics(games) {
 }
 
 /**
- * Cross-dimensional art combo analysis: setting × mood.
- * Returns combos with count >= minGames, sorted by avgTheo descending.
+ * Flexible cross-dimensional art combo analysis.
+ * Default: theme x elements. Use opts.dimA / opts.dimB to pick any two.
+ * Multi-value dims (characters, elements, colors) are exploded per entry.
+ *
  * @param {Object[]} games
  * @param {Object} [opts]
- * @param {number} [opts.minGames] — minimum games per combo (default 3)
- * @returns {{ theme, mood, count, avgTheo, totalTheo, mktShare }[]}
+ * @param {number} [opts.minGames] — minimum games per combo (default 2)
+ * @param {'theme'|'characters'|'elements'|'colors'|'narrative'} [opts.dimA] — row axis (default 'theme')
+ * @param {'theme'|'characters'|'elements'|'colors'|'narrative'} [opts.dimB] — col axis (default 'elements')
+ * @returns {{ dimA: string, dimB: string, count: number, avgTheo: number, totalTheo: number, mktShare: number }[]}
  */
 export function getArtComboMetrics(games, opts = {}) {
-    const minGames = opts.minGames ?? 3;
+    const minGames = opts.minGames ?? 2;
+    const dimA = opts.dimA ?? 'theme';
+    const dimB = opts.dimB ?? 'elements';
+
+    const DIM_ACCESSOR = {
+        theme: g => {
+            const v = F.artTheme(g);
+            return v ? [v] : [];
+        },
+        characters: g => F.artCharacters(g).filter(Boolean),
+        elements: g => F.artElements(g).filter(Boolean),
+        colors: g => F.artColorTone(g).filter(Boolean),
+        narrative: g => {
+            const v = F.artNarrative(g);
+            return v ? [v] : [];
+        },
+    };
+
+    const getA = DIM_ACCESSOR[dimA] || DIM_ACCESSOR.theme;
+    const getB = DIM_ACCESSOR[dimB] || DIM_ACCESSOR.elements;
+
     const map = {};
     for (const g of games) {
-        const theme = F.artTheme(g);
-        const mood = F.artMood(g);
-        if (!theme || !mood) continue;
-        const key = `${theme}|||${mood}`;
-        if (!map[key]) map[key] = { theme, mood, count: 0, totalTheo: 0, mktShare: 0 };
-        map[key].count++;
-        map[key].totalTheo += F.theoWin(g);
-        map[key].mktShare += F.marketShare(g);
+        const aVals = getA(g);
+        const bVals = getB(g);
+        if (!aVals.length || !bVals.length) continue;
+        const theo = F.theoWin(g);
+        const mkt = F.marketShare(g);
+        for (const a of aVals) {
+            for (const b of bVals) {
+                const key = `${a}|||${b}`;
+                if (!map[key]) map[key] = { dimA: a, dimB: b, count: 0, totalTheo: 0, mktShare: 0 };
+                map[key].count++;
+                map[key].totalTheo += theo;
+                map[key].mktShare += mkt;
+            }
+        }
     }
     return Object.values(map)
         .filter(c => c.count >= minGames)
@@ -515,12 +548,12 @@ export function getArtComboMetrics(games, opts = {}) {
 }
 
 /**
- * Enriched art recipes: theme × mood combos with top characters, elements, and dominant narrative.
+ * Enriched art recipes: theme-based combos with top characters, elements, colors, and dominant narrative.
  * @param {Object[]} games
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum games per combo (default 3)
  * @param {number} [opts.topN] — max items per sub-dimension (default 5)
- * @returns {{ theme, mood, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], narrative: string }[]}
+ * @returns {{ theme, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], topColors: string[], narrative: string }[]}
  */
 export function getArtRecipeMetrics(games, opts = {}) {
     const minGames = opts.minGames ?? 3;
@@ -528,13 +561,20 @@ export function getArtRecipeMetrics(games, opts = {}) {
     const map = {};
     for (const g of games) {
         const theme = F.artTheme(g);
-        const mood = F.artMood(g);
-        if (!theme || !mood) continue;
-        const key = `${theme}|||${mood}`;
-        if (!map[key]) {
-            map[key] = { theme, mood, count: 0, totalTheo: 0, mktShare: 0, charFreq: {}, elemFreq: {}, narrFreq: {} };
+        if (!theme) continue;
+        if (!map[theme]) {
+            map[theme] = {
+                theme,
+                count: 0,
+                totalTheo: 0,
+                mktShare: 0,
+                charFreq: {},
+                elemFreq: {},
+                colorFreq: {},
+                narrFreq: {},
+            };
         }
-        const entry = map[key];
+        const entry = map[theme];
         entry.count++;
         entry.totalTheo += F.theoWin(g);
         entry.mktShare += F.marketShare(g);
@@ -543,6 +583,9 @@ export function getArtRecipeMetrics(games, opts = {}) {
         }
         for (const el of F.artElements(g)) {
             if (el) entry.elemFreq[el] = (entry.elemFreq[el] || 0) + 1;
+        }
+        for (const ct of F.artColorTone(g)) {
+            if (ct) entry.colorFreq[ct] = (entry.colorFreq[ct] || 0) + 1;
         }
         const narr = F.artNarrative(g);
         if (narr) entry.narrFreq[narr] = (entry.narrFreq[narr] || 0) + 1;
@@ -569,13 +612,13 @@ export function getArtRecipeMetrics(games, opts = {}) {
         .filter(c => c.count >= minGames)
         .map(c => ({
             theme: c.theme,
-            mood: c.mood,
             count: c.count,
             avgTheo: c.totalTheo / c.count,
             totalTheo: c.totalTheo,
             mktShare: c.mktShare,
             topCharacters: topByFreq(c.charFreq, topN),
             topElements: topByFreq(c.elemFreq, topN),
+            topColors: topByFreq(c.colorFreq, topN),
             narrative: dominantKey(c.narrFreq),
         }))
         .sort((a, b) => b.avgTheo - a.avgTheo);

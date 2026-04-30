@@ -1,7 +1,7 @@
 /**
  * Blueprint advisor — Art Direction tab.
  * Shows art characterization breakdown for selected theme games:
- * settings, moods, characters, visual elements, narrative, and performance correlation.
+ * characters, visual elements, narrative, color tones, and performance correlation.
  */
 import { escapeHtml } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
@@ -43,7 +43,6 @@ export function renderArtPills(container, themeGames, selectedArt, renderBluepri
     }
 
     const settings = tallyWithTheo(artGames, g => F.artTheme(g)).slice(0, 6);
-    const moods = tallyWithTheo(artGames, g => F.artMood(g)).slice(0, 5);
     const characters = tallyWithTheo(artGames, g => F.artCharacters(g)).slice(0, 6);
 
     const pillHtml = (value, isSelected, dimType, colorBg, colorText) => {
@@ -74,7 +73,6 @@ export function renderArtPills(container, themeGames, selectedArt, renderBluepri
             'text-purple-700 dark:text-purple-300',
             true
         ),
-        group('Mood', moods, 'mood', 'bg-pink-100 dark:bg-pink-900/40', 'text-pink-700 dark:text-pink-300', true),
         group(
             'Characters',
             characters,
@@ -89,7 +87,7 @@ export function renderArtPills(container, themeGames, selectedArt, renderBluepri
         pill.addEventListener('click', () => {
             const dim = pill.dataset.dim;
             const val = pill.dataset.val;
-            if (dim === 'theme' || dim === 'mood' || dim === 'narrative') {
+            if (dim === 'theme' || dim === 'narrative') {
                 selectedArt[dim] = selectedArt[dim] === val ? null : val;
             } else if (selectedArt[dim]?.has?.(val)) {
                 selectedArt[dim].delete(val);
@@ -118,7 +116,6 @@ export function renderArtTab(container, ctx) {
     const coverage = ((artGames.length / themeGames.length) * 100).toFixed(0);
 
     const settings = tallyWithTheo(artGames, g => F.artTheme(g));
-    const moods = tallyWithTheo(artGames, g => F.artMood(g));
     const characters = tallyWithTheo(artGames, g => F.artCharacters(g));
     const elements = tallyWithTheo(artGames, g => F.artElements(g));
     const narratives = tallyWithTheo(artGames, g => F.artNarrative(g));
@@ -164,25 +161,21 @@ export function renderArtTab(container, ctx) {
 
     const topArtGame = [...artGames].sort((a, b) => (F.theoWin(b) || 0) - (F.theoWin(a) || 0))[0];
     const topSetting = settings[0];
-    const topMood = moods[0];
 
     let recommendationHtml = '';
-    if (topSetting && topMood) {
+    if (topSetting) {
         const highPerf = artGames.filter(g => (F.theoWin(g) || 0) > themeAvg);
         const hpSettings = tally(highPerf, g => F.artTheme(g));
-        const hpMoods = tally(highPerf, g => F.artMood(g));
         const bestSetting = hpSettings[0]?.[0] || topSetting.name;
-        const bestMood = hpMoods[0]?.[0] || topMood.name;
 
         recommendationHtml = `<div class="mb-6 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 border border-purple-200 dark:border-purple-800">
             <div class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">💡 Art Recommendation</div>
             <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 For a <strong>${escapeHtml(themeName)}</strong> game, consider a
-                <strong>${escapeHtml(bestSetting)}</strong> environment with a
-                <strong>${escapeHtml(bestMood)}</strong> mood.
+                <strong>${escapeHtml(bestSetting)}</strong> environment.
                 ${highPerf.length > 3 ? `Top-performing games in this theme (${highPerf.length} above avg) gravitate toward this art direction.` : ''}
             </p>
-            ${topArtGame ? `<div class="mt-2 text-xs text-gray-500">Top performer: <span class="font-semibold text-gray-700 dark:text-gray-300">${escapeHtml(F.name(topArtGame))}</span> — ${escapeHtml(F.artTheme(topArtGame) || '?')} / ${escapeHtml(F.artMood(topArtGame) || '?')} (${(F.theoWin(topArtGame) || 0).toFixed(2)} theo)</div>` : ''}
+            ${topArtGame ? `<div class="mt-2 text-xs text-gray-500">Top performer: <span class="font-semibold text-gray-700 dark:text-gray-300">${escapeHtml(F.name(topArtGame))}</span> — ${escapeHtml(F.artTheme(topArtGame) || '?')} (${(F.theoWin(topArtGame) || 0).toFixed(2)} theo)</div>` : ''}
         </div>`;
     }
 
@@ -196,13 +189,12 @@ export function renderArtTab(container, ctx) {
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
             <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3.5 text-center"><div class="text-2xl font-bold text-purple-600 dark:text-purple-400">${settings.length}</div><div class="text-xs text-gray-500">Environments</div></div>
-            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3.5 text-center"><div class="text-2xl font-bold text-pink-600 dark:text-pink-400">${moods.length}</div><div class="text-xs text-gray-500">Moods</div></div>
+            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3.5 text-center"><div class="text-2xl font-bold text-pink-600 dark:text-pink-400">${narratives.length}</div><div class="text-xs text-gray-500">Narratives</div></div>
             <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3.5 text-center"><div class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">${characters.length}</div><div class="text-xs text-gray-500">Characters</div></div>
             <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-3.5 text-center"><div class="text-2xl font-bold text-amber-600 dark:text-amber-400">${elements.length}</div><div class="text-xs text-gray-500">Elements</div></div>
         </div>
         ${recommendationHtml}
         ${barSection('Environments', settings, 8, 'bg-purple-400 dark:bg-purple-500', 'text-purple-700', 'border-purple-200')}
-        ${barSection('Mood / Tone', moods, 6, 'bg-pink-400 dark:bg-pink-500', 'text-pink-700', 'border-pink-200')}
         ${barSection('Characters', characters, 8, 'bg-indigo-400 dark:bg-indigo-500', 'text-indigo-700', 'border-indigo-200')}
         ${barSection('Visual Elements', elements, 10, 'bg-amber-400 dark:bg-amber-500', 'text-amber-700', 'border-amber-200')}
         ${barSection('Narrative Theme', narratives, 5, 'bg-teal-400 dark:bg-teal-500', 'text-teal-700', 'border-teal-200')}

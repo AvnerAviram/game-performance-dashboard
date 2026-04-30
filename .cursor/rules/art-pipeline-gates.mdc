@@ -20,14 +20,19 @@ There is **no `--force-gate` flag**. There is no bypass. The gate is enforced in
 
 ### After `--regression-full`:
 - `run_expanded_regression()` auto-calls `update_gate_from_regression()`
-- If theme adjusted ≥97% AND overall adjusted ≥95% AND `fixes_applied: true` → gate OPENS
-- If theme <97% OR overall <95% OR fixes not applied → gate stays CLOSED
+- Gate OPENS only if ALL of these pass AND `fixes_applied: true`:
+  - theme ≥97% adjusted
+  - characters ≥95% adjusted
+  - elements ≥95% adjusted
+  - color_tone ≥95% adjusted
+  - overall ≥95% adjusted
+- If ANY dimension fails → gate stays CLOSED
 
 ### Gate file missing:
 - Treated as **CLOSED** (fail-safe)
 - Must create `batch_gate.json` with `gate_open: true` explicitly
 
-### Small batches (≤5 games):
+### Small batches (≤10 games):
 - Bypass the gate — allowed for re-verification of spot-check fixes only
 - Logged to stdout
 
@@ -35,12 +40,16 @@ There is **no `--force-gate` flag**. There is no bypass. The gate is enforced in
 
 1. **RECEIVE** spot-check feedback from user
 2. **SAVE** verdicts to `user_reviews.json` immediately
-3. **ANALYZE** fixes — identify patterns (vocab gaps, false positives, prompt issues)
-4. **FIX** prompt/vocab/corrections for all systematic issues found
-5. **UPDATE** `batch_gate.json` → set `last_spot_check.fixes_applied: true`
-6. **RE-CLASSIFY** the affected spot-check games to verify fixes work (≤5 games, bypasses gate)
-7. **RUN** `--regression-full` — if theme ≥97% adjusted, gate auto-opens
-8. **Only then** proceed to next batch
+3. **ANALYZE** fixes — identify ALL patterns (vocab gaps, false positives, prompt issues)
+4. **FIX** prompt/vocab/corrections for ALL systematic issues found — not just one or two
+5. **VERIFY FIXES WORK** — reclassify the games that had errors and check each one:
+   - Does the new output match what the user wanted? → FIXED
+   - Same error persists? → STILL WRONG — fix the rule, try again
+   - Was OK before, now broken? → REGRESSED — STOP, fix regression first
+   - **Do NOT proceed until fixable errors are resolved. If the rules can't fix known errors, they won't fix unknown ones.**
+6. **UPDATE** `batch_gate.json` → set `last_spot_check.fixes_applied: true`
+7. **RUN** `--regression-full` — if ALL per-dimension gates pass, gate auto-opens
+8. **Only then** proceed to next batch or fresh spot-check
 
 ## Gate File: `art_pipeline/batch_gate.json`
 
@@ -68,13 +77,29 @@ There is **no `--force-gate` flag**. There is no bypass. The gate is enforced in
 
 ## Accuracy Thresholds
 
-- **Spot-check ≥ 85%**: Gate auto-opens after fixes + regression pass ≥97%
+### Primary metric: SPOT-CHECK accuracy (the real number)
+- **Spot-check ≥ 85%**: Gate auto-opens after fixes + regression passes
 - **Spot-check 75-84%**: Gate stays CLOSED until fixes verified AND regression passes
 - **Spot-check < 75%**: Gate stays CLOSED — escalate to user before proceeding
+- **Spot-check size**: 20 games per batch (minimum)
+- **Aspiration**: >90% spot-check accuracy on all dimensions
+
+### Secondary metric: regression adjusted% (heuristic estimate, not ground truth)
+- **theme**: ≥97% adjusted
+- **characters**: ≥95% adjusted
+- **elements**: ≥95% adjusted
+- **color_tone**: ≥95% adjusted
+- **overall**: ≥95% adjusted
+- ⚠ Adjusted% uses heuristic keyword matching — it overestimates real accuracy. Never report adjusted% as "accuracy" without the spot-check number alongside it.
+
+### Health metrics (must be reported):
+- **Correction dependency**: % of games needing manual corrections (target: <5%)
+- **Bad screenshot rate**: % of games classified from non-gameplay images (target: <3%)
+- Games with non-gameplay screenshots + `bad_screenshot_unfixable` are excluded from regression
 
 ## What Agents CANNOT Do
 
 - There is no `--force-gate` flag
 - Deleting `batch_gate.json` does NOT open the gate (missing file = closed)
 - Setting `gate_open` without `fixes_applied: true` will not auto-open via regression
-- Running batches of 6+ games without an open gate will `sys.exit(1)`
+- Running batches of 11+ games without an open gate will `sys.exit(1)`

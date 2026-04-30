@@ -25,7 +25,12 @@ export const F = {
 
     theme: g => g.theme_primary || g.theme?.primary || 'Unknown',
     themeConsolidated: g =>
-        g.theme_consolidated || g.theme?.consolidated || g.theme_primary || g.theme?.primary || 'Unknown',
+        g.art_theme ||
+        g.theme_consolidated ||
+        g.theme?.consolidated ||
+        g.theme_primary ||
+        g.theme?.primary ||
+        'Unknown',
     themeSecondary: g => g.theme_secondary || g.theme?.secondary || '',
     themesAll: g => {
         const v = g.themes_all;
@@ -149,10 +154,25 @@ export const F = {
         return [];
     },
     artMood: g => g.art_mood || null,
-    artNarrative: g => g.art_narrative || null,
     artStyle: g => g.art_style || null,
-    artColorTone: g => g.art_color_tone || null,
+    artNarrative: g => g.art_narrative || null,
+    artColorTone: g => {
+        const v = g.art_color_tone;
+        if (Array.isArray(v)) return v;
+        if (typeof v === 'string' && v.startsWith('[')) {
+            try {
+                return JSON.parse(v);
+            } catch {
+                return [];
+            }
+        }
+        if (typeof v === 'string' && v) return [v];
+        return [];
+    },
+    artThemeSecondary: g => g.art_theme_secondary || null,
     artConfidence: g => g.art_confidence || null,
+    screenshotQuality: g => g.screenshot_quality || null,
+    isBranded: g => g.is_branded || false,
 };
 
 /**

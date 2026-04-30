@@ -97,10 +97,9 @@ function _renderArtSubSection(title, icon, rows, total, initialShow) {
 </div>`;
 }
 
-function _renderArtProfileContent(settings, moods, characters, total) {
+function _renderArtProfileContent(settings, characters, total) {
     let html = '';
     html += _renderArtSubSection('Environments', '🌍', settings, total, 5);
-    html += _renderArtSubSection('Moods', '🎭', moods, total, 5);
     if (characters.length) {
         html += _renderArtSubSection('Characters', '🧙', characters, total, 5);
     }
@@ -458,51 +457,53 @@ window.showThemeDetails = function (themeName, opts) {
         topGamesHtml = EmptyState('No games found for this theme');
     }
 
-    // --- Sub-themes: breakdown categories that belong to this consolidated theme ---
-    const sortedSubThemes = [];
-    if (themeBreakdowns) {
-        const lowerTheme = themeName.toLowerCase();
-        const SKIP_SUFFIXES = new Set(['general', 'other', 'misc', 'miscellaneous']);
-        for (const [key, val] of Object.entries(themeBreakdowns)) {
-            const lowerKey = key.toLowerCase();
-            if (lowerKey === lowerTheme) continue;
-            const isPrefix = lowerKey.startsWith(lowerTheme + ' ') || lowerKey.startsWith(lowerTheme + '/');
-            if (!isPrefix) continue;
-            // Strip parent prefix: "Animals - Wolves" → "Wolves", "Fire/Volcanic" → "Volcanic"
-            const displayName = key
-                .replace(new RegExp('^' + themeName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[\\s/\\-]+', 'i'), '')
-                .trim();
-            if (!displayName || SKIP_SUFFIXES.has(displayName.toLowerCase())) continue;
-            sortedSubThemes.push([displayName, val.game_count || 0]);
+    // --- Art drill-down: real characters, elements, colors, secondary themes ---
+    const artDrillGames = themeGames.filter(g => F.artTheme(g));
+    let artDrillHtml = '';
+    if (artDrillGames.length > 0) {
+        const characterCounts = {};
+        const elementCounts = {};
+        const colorCounts = {};
+        const secondaryCounts = {};
+        for (const g of artDrillGames) {
+            const chars = F.artCharacters(g);
+            if (Array.isArray(chars)) {
+                chars.forEach(c => {
+                    if (c && c !== 'No Characters (symbol-only game)')
+                        characterCounts[c] = (characterCounts[c] || 0) + 1;
+                });
+            }
+            const elems = F.artElements(g);
+            if (Array.isArray(elems)) {
+                elems.forEach(e => {
+                    if (e) elementCounts[e] = (elementCounts[e] || 0) + 1;
+                });
+            }
+            const colors = F.artColorTone(g);
+            if (Array.isArray(colors)) {
+                colors.forEach(c => {
+                    if (c) colorCounts[c] = (colorCounts[c] || 0) + 1;
+                });
+            }
+            const sec = g.art_theme_secondary;
+            if (sec) secondaryCounts[sec] = (secondaryCounts[sec] || 0) + 1;
         }
-        sortedSubThemes.sort((a, b) => b[1] - a[1]);
-    }
+        const sortedChars = Object.entries(characterCounts)
+            .filter(([, n]) => n >= 2)
+            .sort((a, b) => b[1] - a[1]);
+        const sortedElems = Object.entries(elementCounts)
+            .filter(([, n]) => n >= 2)
+            .sort((a, b) => b[1] - a[1]);
+        const sortedColors = Object.entries(colorCounts).sort((a, b) => b[1] - a[1]);
+        const sortedSecondary = Object.entries(secondaryCounts).sort((a, b) => b[1] - a[1]);
 
-    const SUB_INITIAL = 8;
-    let subThemesHtml = '';
-    if (sortedSubThemes.length > 0) {
-        const subTotal = sortedSubThemes.reduce((s, [, c]) => s + c, 0);
-        const subItems = sortedSubThemes
-            .map(([name, count], i) => {
-                const pct = subTotal > 0 ? (count / subTotal) * 100 : 0;
-                const pctStr = pct >= 10 || pct === Math.round(pct) ? `${Math.round(pct)}` : pct.toFixed(1);
-                const barW = Math.min(100, Math.max(2, Math.round(pct)));
-                const hidden = i >= SUB_INITIAL ? ' style="display:none"' : '';
-                return `<div data-cl-item${hidden} class="py-1">
-                    <div class="flex items-baseline justify-between mb-0.5">
-                        <span class="text-[11px] font-medium text-gray-800 dark:text-gray-200">${escapeHtml(name)}</span>
-                        <span class="text-[10px] text-gray-500 dark:text-gray-400 ml-2 shrink-0">${count} (${pctStr}%)</span>
-                    </div>
-                    <div class="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-emerald-400 dark:bg-emerald-500 rounded-full" style="width:${barW}%"></div>
-                    </div>
-                </div>`;
-            })
-            .join('');
-        subThemesHtml =
-            sortedSubThemes.length > SUB_INITIAL
-                ? collapsibleList(subItems, sortedSubThemes.length, SUB_INITIAL, 'theme-subs')
-                : subItems;
+        const total = artDrillGames.length;
+        artDrillHtml += _renderArtSubSection('Characters', '🧙', sortedChars, total, 8);
+        artDrillHtml += _renderArtSubSection('Elements', '🏔️', sortedElems, total, 8);
+        artDrillHtml += _renderArtSubSection('Colors', '🎨', sortedColors, total, 8);
+        if (sortedSecondary.length > 0) {
+            artDrillHtml += _renderArtSubSection('Secondary Themes', '🏷️', sortedSecondary, total, 5);
+        }
     }
 
     const featureMap = {};
@@ -546,34 +547,7 @@ window.showThemeDetails = function (themeName, opts) {
         </div>`;
     }
 
-    // --- Build Art Profile from art characterization data ---
-    const artGames = themeGames.filter(g => F.artTheme(g));
-    let artProfileHtml = '';
-    if (artGames.length > 0) {
-        const settingCounts = {};
-        const moodCounts = {};
-        const characterCounts = {};
-        for (const g of artGames) {
-            const s = F.artTheme(g);
-            if (s) settingCounts[s] = (settingCounts[s] || 0) + 1;
-            const m = F.artMood(g);
-            if (m) moodCounts[m] = (moodCounts[m] || 0) + 1;
-            const chars = F.artCharacters(g);
-            if (Array.isArray(chars)) {
-                chars.forEach(c => {
-                    if (c && c !== 'No Characters (symbol-only game)')
-                        characterCounts[c] = (characterCounts[c] || 0) + 1;
-                });
-            }
-        }
-        const sortedSettings = Object.entries(settingCounts).sort((a, b) => b[1] - a[1]);
-        const sortedMoods = Object.entries(moodCounts).sort((a, b) => b[1] - a[1]);
-        const sortedCharacters = Object.entries(characterCounts)
-            .filter(([, n]) => n >= 2)
-            .sort((a, b) => b[1] - a[1]);
-
-        artProfileHtml = _renderArtProfileContent(sortedSettings, sortedMoods, sortedCharacters, artGames.length);
-    }
+    // Art Profile is now integrated into the drill-down above
 
     // --- Assemble panel in order of importance ---
     html += PanelSection({
@@ -590,13 +564,13 @@ window.showThemeDetails = function (themeName, opts) {
         accent: ACCENTS.themes,
         content: descContent,
     });
-    if (subThemesHtml) {
+    if (artDrillHtml) {
         html += PanelSection({
-            title: `Sub-Themes (${sortedSubThemes.length})`,
-            icon: '🏷️',
-            gradient: GRADIENTS.themes,
-            accent: ACCENTS.themes,
-            content: `<div class="space-y-0">${subThemesHtml}</div>`,
+            title: `Art Drill-Down (${artDrillGames.length} games)`,
+            icon: '🎨',
+            gradient: GRADIENTS.category,
+            accent: ACCENTS.category,
+            content: artDrillHtml,
         });
     }
     html += PanelSection({
@@ -606,15 +580,6 @@ window.showThemeDetails = function (themeName, opts) {
         accent: ACCENTS.similar,
         content: `<div class="space-y-0">${topGamesHtml}</div>`,
     });
-    if (artProfileHtml) {
-        html += PanelSection({
-            title: `Art Profile (${artGames.length})`,
-            icon: '🎨',
-            gradient: GRADIENTS.category,
-            accent: ACCENTS.category,
-            content: artProfileHtml,
-        });
-    }
     html += PanelSection({
         title: `Mechanics (${topFeatures.length})`,
         icon: '⚙️',

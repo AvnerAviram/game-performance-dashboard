@@ -1,5 +1,5 @@
 /**
- * Game Analytics Dashboard - Server
+ * Games Analytics Tool - Server
  *
  * Lightweight Express server with session-based auth.
  * Route handlers are split into focused modules under ./routes/.
@@ -15,6 +15,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const fs = require('fs');
 const path = require('path');
 
 const { loadUsers } = require('./helpers.cjs');
@@ -173,6 +174,21 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/api/screenshot/:slug', (req, res) => {
+    if (!req.session.user) return res.status(401).json({ error: 'Not authenticated' });
+    const slug = req.params.slug;
+    if (slug.includes('..') || slug.includes('/')) return res.status(400).end();
+    const dir = path.join(__dirname, '..', 'data', 'screenshots');
+    for (const ext of ['.jpg', '.jpeg', '.png', '.webp']) {
+        const filePath = path.join(dir, slug + ext);
+        if (fs.existsSync(filePath)) {
+            res.set('Cache-Control', 'public, max-age=86400');
+            return res.sendFile(filePath);
+        }
+    }
+    res.status(404).end();
+});
+
 app.use(
     express.static(DIST_DIR, {
         etag: true,
@@ -212,7 +228,7 @@ app.use((err, req, res, _next) => {
 const server = app.listen(PORT, () => {
     const users = loadUsers();
     console.log('');
-    console.log('  \x1b[1m\x1b[35m⚡ Game Analytics Dashboard\x1b[0m');
+    console.log('  \x1b[1m\x1b[35m⚡ Games Analytics Tool\x1b[0m');
     console.log('');
     console.log(`  \x1b[2m➜\x1b[0m  Local:   \x1b[36mhttp://localhost:${PORT}/\x1b[0m`);
     console.log(`  \x1b[2m➜\x1b[0m  Users:   ${users.length} loaded`);

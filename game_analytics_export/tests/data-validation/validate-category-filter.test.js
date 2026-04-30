@@ -150,7 +150,9 @@ describe('Category filter invariants', () => {
     it('filtered themes only contain themes from filtered games', () => {
         selectCategory('Slot');
         const activeGames = getActiveGames();
-        const gameThemes = new Set(activeGames.map(g => g.theme_consolidated || g.theme_primary).filter(Boolean));
+        const gameThemes = new Set(
+            activeGames.map(g => F.themeConsolidated(g)).filter(t => t && !/^unknown$/i.test(t))
+        );
         const activeThemes = getActiveThemes();
         activeThemes.forEach(t => {
             expect(gameThemes.has(t.Theme)).toBe(true);

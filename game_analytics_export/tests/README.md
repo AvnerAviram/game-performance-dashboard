@@ -1,4 +1,4 @@
-# Test Suite - Game Analytics Dashboard
+# Test Suite - Games Analytics Tool
 
 Comprehensive test suite with unit, integration, data validation, enforcement, and E2E tests.
 

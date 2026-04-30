@@ -169,7 +169,7 @@ const MECH_RE = /showMechanicDetails\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
 const VOL_RE = /showVolatilityDetails\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
 const RTP_BAND_RE = /showRtpBandDetails\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
 const ART_THEME_RE = /showArtTheme\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
-const ART_MOOD_RE = /showArtMood\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
+
 const ART_CHAR_RE = /showArtCharacter\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
 const ART_ELEM_RE = /showArtElement\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
 const ART_NARR_RE = /showArtNarrative\(\s*'((?:[^'\\]|\\.)*)'\s*\)/;
@@ -216,9 +216,6 @@ function extractFromOnclick(target) {
 
             const artS = onclick.match(ART_THEME_RE);
             if (artS) return { dimension: 'art_theme', value: unesc(artS[1]) };
-
-            const artM = onclick.match(ART_MOOD_RE);
-            if (artM) return { dimension: 'art_mood', value: unesc(artM[1]) };
 
             const artC = onclick.match(ART_CHAR_RE);
             if (artC) return { dimension: 'art_characters', value: unesc(artC[1]) };
@@ -303,8 +300,6 @@ function extractFromChart(e) {
             dimension = 'year';
         } else if (/art-opportunity|art-themes-chart|chart-art-themes/i.test(canvasId)) {
             dimension = 'art_theme';
-        } else if (canvasId === 'art-mood-chart') {
-            dimension = 'art_mood';
         } else if (canvasId === 'art-characters-chart') {
             dimension = 'art_characters';
         } else if (canvasId === 'art-elements-chart') {
@@ -316,7 +311,6 @@ function extractFromChart(e) {
             const activeDim = dimSelect?.value || 'environment';
             const dimMap = {
                 environment: 'art_theme',
-                mood: 'art_mood',
                 elements: 'art_elements',
                 characters: 'art_characters',
                 narrative: 'art_narrative',

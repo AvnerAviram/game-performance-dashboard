@@ -1,5 +1,5 @@
 {
-  "version": "2.1",
+  "version": "2.2",
   "created": "2026-04-13",
   "description": "User-verified GT for art classification. 20 games reviewed with gameplay screenshots. Characters must be OUTSIDE reels, not reel symbols.",
   "dimensions": [
@@ -40,11 +40,11 @@
         "Girl": "Human Character"
       },
       "art_elements": [
-        "Asian Lanterns/Decorations",
+        "Asian Lanterns",
+        "Asian Decorations",
         "Ancient Stone Carvings",
-        "Colored Frame",
-        "Bamboo/Tropical Plants",
-        "Asian Architecture"
+        "Bamboo",
+        "Tropical Plants"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
       "is_branded": false,
@@ -66,13 +66,10 @@
       ],
       "art_elements": [
         "Columns/Pillars",
-        "Speakers/DJ Equipment",
+        "Speakers",
+        "DJ Equipment",
         "Neon Glow",
-        "Hieroglyphs/Ancient Writing",
-        "Stone Frame",
-        "Pyramids/Temples",
-        "Torches",
-        "Statues/Sculptures"
+        "Hieroglyphs/Ancient Writing"
       ],
       "art_narrative": "Music/Performance/Concert",
       "is_branded": false,
@@ -96,8 +93,7 @@
       "art_elements": [
         "Sports Arena/Stadium",
         "Basketball Court",
-        "Stage Lights",
-        "Metal Frame"
+        "Stage Lights"
       ],
       "art_narrative": "Competition/Tournament/Race",
       "is_branded": false,
@@ -122,8 +118,7 @@
         "Buffalo": "Wild Animals"
       },
       "art_elements": [
-        "Fire/Flames",
-        "Metal Frame"
+        "Fire/Flames"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
       "is_branded": false,
@@ -143,9 +138,9 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Stone Frame",
         "Ancient Stone Carvings",
-        "Pyramids/Temples"
+        "Pyramids",
+        "Temples"
       ],
       "art_narrative": "Treasure Hunt",
       "is_branded": false,
@@ -167,12 +162,10 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Wood Frame",
         "Farmhouse/Barn",
         "Fields/Grassland",
-        "Rope Frame",
         "Coin Stacks",
-        "Trees/Forest"
+        "Trees"
       ],
       "art_narrative": "Collection/Harvest/Gathering",
       "is_branded": false,
@@ -194,12 +187,11 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Pyramids/Temples",
+        "Pyramids",
+        "Temples",
         "Hieroglyphs/Ancient Writing",
         "Ancient Stone Carvings",
-        "Torches",
-        "Columns/Pillars",
-        "Statues/Sculptures"
+        "Torches"
       ],
       "art_narrative": "Cultural/Mythological Story",
       "is_branded": false,
@@ -221,9 +213,9 @@
       ],
       "art_elements": [
         "Mountains",
-        "Trees/Forest",
-        "Colored Frame",
-        "Vines/Ivy/Plants"
+        "Forest",
+        "Vines/Ivy",
+        "Plants"
       ],
       "art_narrative": "Quest/Adventure/Journey",
       "is_branded": false,
@@ -246,8 +238,8 @@
       ],
       "art_elements": [
         "Office Items",
-        "Books/Scrolls/Maps",
-        "Minimal/No Frame"
+        "Books/Scrolls",
+        "Maps"
       ],
       "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
       "is_branded": true,
@@ -270,11 +262,10 @@
       ],
       "art_elements": [
         "Asian Architecture",
-        "Asian Lanterns/Decorations",
+        "Asian Lanterns",
+        "Asian Decorations",
         "Mountains",
-        "Trees/Forest",
-        "Colored Frame",
-        "Bamboo/Tropical Plants"
+        "Trees"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
       "is_branded": false,
@@ -296,7 +287,7 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Castle/Fortress/Tower",
+        "Castle",
         "Mountains",
         "Banners/Flags",
         "Torches"
@@ -321,12 +312,11 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Pyramids/Temples",
+        "Pyramids",
+        "Temples",
         "Lightning/Electricity",
         "Fire/Flames",
-        "Colored Frame",
-        "Ancient Stone Carvings",
-        "Torches"
+        "Ancient Stone Carvings"
       ],
       "art_narrative": "Treasure Hunt",
       "is_branded": false,
@@ -348,8 +338,7 @@
       ],
       "art_elements": [
         "Columns/Pillars",
-        "Lightning/Electricity",
-        "Stone Frame"
+        "Lightning/Electricity"
       ],
       "art_narrative": "Cultural/Mythological Story",
       "is_branded": false,
@@ -376,12 +365,11 @@
         "Peacock": "Bird"
       },
       "art_elements": [
-        "Stone Frame",
         "Asian Architecture",
-        "Asian Lanterns/Decorations",
+        "Asian Lanterns",
+        "Asian Decorations",
         "Magic Energy/Spell Effects",
-        "Ancient Stone Carvings",
-        "Bamboo/Tropical Plants"
+        "Ancient Stone Carvings"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
       "is_branded": false,
@@ -405,7 +393,6 @@
         "Alien": "Alien/Extraterrestrial"
       },
       "art_elements": [
-        "Metal Frame",
         "Spacecraft/UFO/Sci-Fi Objects"
       ],
       "art_narrative": "No Narrative (classic/abstract)",
@@ -425,9 +412,7 @@
       "art_characters": [
         "No Characters (symbol-only game)"
       ],
-      "art_elements": [
-        "Minimal/No Frame"
-      ],
+      "art_elements": [],
       "art_narrative": "No Narrative (classic/abstract)",
       "is_branded": false,
       "user_corrected": false,
@@ -447,9 +432,9 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Stars/Planets",
-        "Neon Glow",
-        "Minimal/No Frame"
+        "Stars",
+        "Planets",
+        "Neon Glow"
       ],
       "art_narrative": "No Narrative (classic/abstract)",
       "is_branded": false,
@@ -470,7 +455,6 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Colored Frame",
         "Casino Interior"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
@@ -494,7 +478,6 @@
       ],
       "art_elements": [
         "Lightning/Electricity",
-        "Minimal/No Frame",
         "Casino Interior"
       ],
       "art_narrative": "Wealth/Fortune/Prosperity",
@@ -517,7 +500,6 @@
         "No Characters (symbol-only game)"
       ],
       "art_elements": [
-        "Colored Frame",
         "Neon Glow"
       ],
       "art_narrative": "No Narrative (classic/abstract)",
@@ -527,6 +509,6 @@
       "art_character_categories": {}
     }
   },
-  "updated": "2026-04-19",
+  "updated": "2026-04-27",
   "pipeline_version": "v11.5"
 }

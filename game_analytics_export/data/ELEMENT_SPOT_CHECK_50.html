@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Element Spot Check — 20 Random Games</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #e94560; text-align: center; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.context { color: #aaa; font-size: 0.9em; margin-bottom: 8px; }
+.dims { margin-top: 12px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-wide { width: 100%; }
+.dim-label { font-weight: bold; color: #e94560; margin-bottom: 8px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.05em; margin-bottom: 8px; }
+.btns { margin-top: 8px; }
+.btn-ok, .btn-fix { padding: 6px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; margin-right: 8px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #e94560; color: #fff; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; }
+#export-area { width: 90%; height: 200px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; background: #e94560; color: #fff; }
+</style></head><body>
+<h1>Element Spot Check — 20 Random Games</h1>
+<p class="summary">20 random games from 2,726 classified (unreviewed, gameplay screenshots). ELEMENTS ONLY.</p>
+<p class="summary">For each game: look at the screenshot, check if the listed elements match what you see in the BACKGROUND. Click OK or Fix.</p>
+<p class="summary" id="score">Score: 0/0</p>
+
+
+<div class="game" id="g0">
+<div class="game-title">#0: 3 leprechaun charms <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/3-leprechaun-charms.webp" alt="3 leprechaun charms">
+<div class="context">Theme: Irish/Celtic Highlands</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fields/Grassland, Trees, Vines/Ivy/Plants</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g1">
+<div class="game-title">#1: 3x 2x fire and roses joker <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/3x-2x-fire-and-roses-joker.webp" alt="3x 2x fire and roses joker">
+<div class="context">Theme: Classic Slots</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Chandeliers, Gold Coins/Treasure</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g2">
+<div class="game-title">#2: 4 wild wolves <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/4-wild-wolves.webp" alt="4 wild wolves">
+<div class="context">Theme: Forest/Woodland</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Stone Frame, Torches, Forest, Vines/Ivy/Plants, Ancient Stone Carvings, Trees</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g3">
+<div class="game-title">#3: Big Size Fishin <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Big-Size-Fishin.jpg" alt="Big Size Fishin">
+<div class="context">Theme: Lakeside/River/Fishing Dock</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Water Effects, Mountains, Trees, Coral Reef/Underwater</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g4">
+<div class="game-title">#4: Blackjack Players Choice <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Blackjack-Players-Choice.webp" alt="Blackjack Players Choice">
+<div class="context">Theme: Casino Floor</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Casino Interior, Minimal/No Frame, City Landmarks/Skyline</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g5">
+<div class="game-title">#5: Blood Suckers Megaways <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Blood-Suckers-Megaways.jpeg" alt="Blood Suckers Megaways">
+<div class="context">Theme: Haunted Manor/Graveyard</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fog/Mist/Smoke, Ancient Stone Carvings, Skulls/Bones, Candles, Torches</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g6">
+<div class="game-title">#6: Boss Level <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Boss-Level.jpg" alt="Boss Level">
+<div class="context">Theme: Crime/Heist</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Colored Frame, Neon Glow</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g6','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g6','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g6-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g7">
+<div class="game-title">#7: Choco Reels <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Choco-Reels.jpg" alt="Choco Reels">
+<div class="context">Theme: Candy/Sweet World</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Candy/Sweets/Lollipops, Minimal/No Frame, Magic Energy/Spell Effects</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g7','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g7','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g7-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g8">
+<div class="game-title">#8: Fire Blaze Toltec Blocks <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Fire-Blaze-Toltec-Blocks.jpg" alt="Fire Blaze Toltec Blocks">
+<div class="context">Theme: Aztec/Mayan</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Temples, Trees, Ancient Stone Carvings, Vines/Ivy/Plants, Pyramids, Torches</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g8','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g8','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g8-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g9">
+<div class="game-title">#9: Foxpot <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Foxpot.jpg" alt="Foxpot">
+<div class="context">Theme: Classic Slots</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Neon/LED Frame, Stage Lights, Disco Ball, Neon Glow</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g9','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g9','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g9-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g10">
+<div class="game-title">#10: Golden Harvest <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Golden-Harvest.jpg" alt="Golden Harvest">
+<div class="context">Theme: Farm/Countryside</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Trees, Fields/Grassland, Wood Frame, Farmhouse/Barn</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g10','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g10','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g10-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g11">
+<div class="game-title">#11: Mystic Fortune Deluxe <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Mystic-Fortune-Deluxe.jpg" alt="Mystic Fortune Deluxe">
+<div class="context">Theme: Asian Temple/Garden</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Asian Architecture, Asian Lanterns/Decorations, Torches, Bamboo</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g11','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g11','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g11-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g12">
+<div class="game-title">#12: Smokin Triples <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Smokin-Triples.png" alt="Smokin Triples">
+<div class="context">Theme: Classic Slots</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fire/Flames</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g12','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g12','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g12-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g13">
+<div class="game-title">#13: The Haunted Horseman <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/The-Haunted-Horseman.jpg" alt="The Haunted Horseman">
+<div class="context">Theme: Haunted Manor/Graveyard</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Stone Frame, Fog/Mist/Smoke, Trees</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g13','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g13','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g13-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g14">
+<div class="game-title">#14: Ultra Stack Feature Rose <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Ultra-Stack-Feature-Rose.webp" alt="Ultra Stack Feature Rose">
+<div class="context">Theme: Fantasy/Fairy Tale</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Colored Frame, Vines/Ivy/Plants</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g14','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g14','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g14-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g15">
+<div class="game-title">#15: Wild Whopper <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/Wild-Whopper.jpg" alt="Wild Whopper">
+<div class="context">Theme: Deep Ocean/Underwater</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Water Effects, Coral Reef/Underwater, Bubbles, Underwater Structures</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g15','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g15','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g15-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g16">
+<div class="game-title">#16: celestial moon riches <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/celestial-moon-riches.webp" alt="celestial moon riches">
+<div class="context">Theme: Sky/Clouds</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Neon/LED Frame, Stars/Planets, Neon Glow, Magic Energy/Spell Effects</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g16','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g16','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g16-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g17">
+<div class="game-title">#17: cherry power boost <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/cherry-power-boost.webp" alt="cherry power boost">
+<div class="context">Theme: Classic Slots</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Minimal/No Frame, Neon Glow</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g17','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g17','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g17-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g18">
+<div class="game-title">#18: chicks in vegas <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/chicks-in-vegas.webp" alt="chicks in vegas">
+<div class="context">Theme: Casino Floor / Urban/Modern City</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Casino Interior, Stage Lights, Chandeliers, City Landmarks</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g18','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g18','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g18-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+<div class="game" id="g19">
+<div class="game-title">#19: ramosis treasures <span class="badge">element check</span></div>
+<img class="screenshot" src="screenshots/ramosis-treasures.webp" alt="ramosis treasures">
+<div class="context">Theme: Egyptian/Pharaoh</div>
+<div class="dims">
+<div class="dim dim-wide">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Pyramids/Temples, Stone Frame, Torches, Hieroglyphs/Ancient Writing, Ancient Stone Carvings, Columns/Pillars, Statues/Sculptures</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g19','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g19','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g19-art_elements-note"><textarea placeholder="What's wrong with elements?"></textarea></div>
+</div>
+</div></div>
+
+<button class="export-btn" onclick="exportResults()">Export Results</button>
+<textarea id="export-area"></textarea>
+
+<script>
+const verdicts = {};
+const fileMap = {
+  "g0": "3-leprechaun-charms.html",
+  "g1": "3x-2x-fire-and-roses-joker.html",
+  "g2": "4-wild-wolves.html",
+  "g3": "Big-Size-Fishin.html",
+  "g4": "Blackjack-Players-Choice.html",
+  "g5": "Blood-Suckers-Megaways.html",
+  "g6": "Boss-Level.html",
+  "g7": "Choco-Reels.html",
+  "g8": "Fire-Blaze-Toltec-Blocks.html",
+  "g9": "Foxpot.html",
+  "g10": "Golden-Harvest.html",
+  "g11": "Mystic-Fortune-Deluxe.html",
+  "g12": "Smokin-Triples.html",
+  "g13": "The-Haunted-Horseman.html",
+  "g14": "Ultra-Stack-Feature-Rose.html",
+  "g15": "Wild-Whopper.html",
+  "g16": "celestial-moon-riches.html",
+  "g17": "cherry-power-boost.html",
+  "g18": "chicks-in-vegas.html",
+  "g19": "ramosis-treasures.html"
+};
+
+function mark(btn, gid, dim, verdict) {
+  const key = gid + '-' + dim;
+  verdicts[key] = verdict;
+  const btns = btn.parentElement.querySelectorAll('button');
+  btns.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const noteDiv = document.getElementById(key + '-note');
+  if (verdict === 'fix') { noteDiv.style.display = 'block'; }
+  else { noteDiv.style.display = 'none'; }
+  updateSummary();
+}
+
+function updateSummary() {
+  const total = Object.keys(verdicts).length;
+  const ok = Object.values(verdicts).filter(v => v === 'ok').length;
+  const fix = Object.values(verdicts).filter(v => v === 'fix').length;
+  document.getElementById('score').textContent =
+    'Score: ' + ok + '/' + total + ' OK (' + (total ? ((ok/total)*100).toFixed(1) : 0) + '%) — Fix: ' + fix;
+}
+
+function exportResults() {
+  const lines = [];
+  for (const [key, verdict] of Object.entries(verdicts)) {
+    const [gid, ...dimParts] = key.split('-');
+    const dim = dimParts.join('-');
+    const fname = fileMap[gid] || gid;
+    let note = '';
+    if (verdict === 'fix') {
+      const ta = document.querySelector('#' + key + '-note textarea');
+      note = ta ? ta.value : '';
+    }
+    lines.push(fname + ': ' + dim + ': ' + verdict + (note ? ' - ' + note : ''));
+  }
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = lines.join('\n');
+  area.select();
+}
+</script>
+</body></html>

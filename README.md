@@ -1,6 +1,11 @@
 # Game Analytics Dashboard
 
-Internal analytics dashboard for slot game performance tracking. Built with Vanilla JS, Vite, Tailwind CSS, and DuckDB WASM. Deployed to Windows Server (IIS) with Node.js authentication.
+Internal analytics dashboard for slot game performance tracking. **4,550 games** with performance metrics, features, themes, and art characterization.
+
+Built with Vanilla JS, Vite, Tailwind CSS, DuckDB WASM. Deployed to Windows Server 2025 (IIS) with Node.js authentication.
+
+> For AI agents → read `AGENTS.md`
+> For agent system overview → read `agents/README.md`
 
 ## Quick Start (Development)
 
@@ -10,64 +15,76 @@ npm install
 npm run dev          # Vite dev server on http://localhost:5173
 ```
 
-Or with the auth server (production-like):
+With auth server (production-like):
 
 ```bash
 cd game_analytics_export
 npm run build
-npm run server           # http://localhost:3000
+npm run server       # http://localhost:3000
 ```
 
-Create a user to log in:
+Create users:
 
 ```bash
 node server/manage-users.cjs add <username>    # prompts for password
-node server/manage-users.cjs list              # show all users
-node server/manage-users.cjs remove <username> # remove a user
+node server/manage-users.cjs list
 ```
 
 ## Project Structure
 
 ```
-game-performace-dashboard/
-├── game_analytics_export/        # Main application
-│   ├── dashboard.html            # Dashboard SPA entry point
-│   ├── login.html                # Login page
+.
+├── AGENTS.md                        # AI agent entry point
+├── MASTER_PLAN.md                   # Living project backlog
+├── HANDOFF.md                       # Full data schema (3 layers)
+├── agents/                          # Agent role definitions + system README
+│
+├── game_analytics_export/           # Main application
 │   ├── src/
-│   │   ├── app.js                # App bootstrap
-│   │   ├── ui/                   # UI rendering (tables, panels, charts)
-│   │   ├── lib/                  # Core logic (auth, data, filters, DuckDB, sanitize)
-│   │   ├── features/             # Feature modules (overview, trends, idea generator)
-│   │   ├── components/           # Reusable UI components
-│   │   ├── config/               # Theme breakdowns, mechanic taxonomy
-│   │   └── pages/                # HTML page templates
+│   │   ├── pages/                   #   14 dashboard pages (HTML)
+│   │   ├── lib/                     #   Core: game-fields, metrics, filters, DuckDB, auth
+│   │   ├── features/                #   Page logic: name-gen, trends, game-lab, x-ray
+│   │   ├── ui/                      #   Charts, panels, routing, dark mode, search
+│   │   └── config/                  #   Theme breakdowns, mechanics, provider URLs
 │   ├── server/
-│   │   ├── server.cjs            # Express auth server (session-based)
-│   │   └── manage-users.cjs      # CLI for user management
+│   │   ├── server.cjs               #   Express server (session auth, helmet, rate limiting)
+│   │   └── routes/                  #   Auth, tickets, AI API routes
 │   ├── data/
-│   │   ├── games_dashboard.json  # Enriched game data (1539 games)
-│   │   ├── theme_consolidation_map.json
-│   │   ├── enrich_websearch.py   # AI enrichment pipeline
-│   │   └── PHASE1_TRUTH_MASTER.md  # Pipeline runbook
-│   ├── tests/                    # Vitest + Playwright test suites
-│   ├── deploy/                   # Deployment configs (Nginx, PowerShell)
-│   ├── web.config                # IIS HttpPlatformHandler config
-│   └── package.json
-├── docs/                         # Documentation & verification reports
-└── HANDOFF.md                    # Project overview and context
+│   │   ├── game_data_master.json    #   Source of truth (4,550 games)
+│   │   ├── eilers_source.csv        #   Original Eilers performance CSV
+│   │   ├── classify_art_v2.py       #   Art classification pipeline (Claude Vision)
+│   │   ├── extract_game_profile.py  #   Features/themes extraction pipeline (Claude)
+│   │   ├── sc_extract.py            #   SlotCatalog extraction + 95% F1 gate
+│   │   ├── ground_truth_ags.json    #   Ground truth (228 games, 207 with features)
+│   │   ├── art_pipeline/            #   Art results (2,701 games), reviews, corrections, gate
+│   │   ├── screenshots/             #   2,760 game screenshots
+│   │   └── rules_html/              #   8,860 HTML rules pages
+│   ├── tests/                       #   105 test files, 1,607 tests (vitest)
+│   ├── deploy/                      #   IIS deployment (PowerShell, nginx)
+│   └── public/duckdb/               #   Self-hosted DuckDB WASM
+│
+├── .cursor/rules/                   # AI enforcement rules (always-loaded)
+├── .cursor/hooks/                   # Automated guardrails (5 hooks)
+├── docs/                            # Active reference docs + archive
+└── scripts/                         # Standalone validation scripts
 ```
 
 ## Dashboard Pages
 
-- **Overview** -- Quick stats, top performers, brand intelligence, insight cards
-- **Games** -- Full searchable/sortable game database with detail panels
-- **Themes** -- Theme performance analysis with sub-theme breakdowns
-- **Mechanics** -- Game mechanic rankings and comparisons
-- **Providers** -- Provider and studio comparison
-- **Insights** -- Market insights, provider matrix, brand intelligence, opportunity finder
-- **Game Lab** -- Blueprint Advisor, feature recipes, winning combinations, specs analysis
-- **Name Generator** -- AI-assisted game name generation
-- **Trends** -- Historical trend analysis
+- **Overview** — Quick stats, top performers, brand intelligence, insight cards
+- **Games** — Full searchable/sortable game database with detail panels
+- **Themes** — Theme performance analysis with sub-theme breakdowns
+- **Mechanics** — Game mechanic rankings and comparisons
+- **Providers** — Provider and studio comparison
+- **Insights** — Market insights, provider matrix, brand intelligence, opportunity finder
+- **Art Insights** — Art characterization analytics (themes, elements, characters, colors)
+- **Game Lab** — Blueprint Advisor, feature recipes, winning combinations, specs analysis
+- **Name Generator** — AI-assisted game name generation (with image upload)
+- **Trends** — Historical trend analysis
+- **Prediction** — Performance prediction
+- **AI Assistant** — AI-powered analysis
+- **Anomalies** — Anomaly detection
+- **Tickets** — QA ticket tracking
 
 ## Tech Stack
 
@@ -75,84 +92,53 @@ game-performace-dashboard/
 |-------|------------|
 | Frontend | Vanilla JS, Tailwind CSS |
 | Build | Vite |
-| Data | DuckDB WASM (loaded from CDN), JSON |
+| Data | DuckDB WASM (self-hosted), JSON, Parquet |
 | Auth | Express + express-session + bcryptjs |
-| Security | Helmet, express-rate-limit, HTML escaping (sanitize.js) |
-| Hosting | IIS (HttpPlatformHandler) on Windows Server |
-| Tests | Vitest (866 tests), Playwright (E2E) |
-| Enrichment | Python + Claude API (Sonnet extraction, Haiku normalization) |
+| Security | Helmet, CSP, express-rate-limit, HTML sanitization |
+| Hosting | IIS (HttpPlatformHandler) on Windows Server 2025 |
+| Tests | Vitest (1,607 tests), Playwright (E2E) |
+| AI Pipelines | Python + Claude API (art classification, feature extraction) |
 
 ## Testing
 
 ```bash
 cd game_analytics_export
 
-npm run test              # Unit + integration + data validation (866 tests)
-npm run test:unit         # Unit tests only
-npm run test:integration  # Integration tests only
-npm run test:validation   # Data validation only
-npm run test:e2e          # Playwright E2E tests
+npm test                  # All tests (1,607 across 105 files)
+npm run format:check      # Prettier formatting check
+npm run format            # Auto-fix formatting
 ```
 
-## Packaging & Deployment
+Test categories: unit (52), data-validation (35), enforcement (16), integration (17), visual-regression (2), components (1), alignment (1), monitoring (1).
 
-### Build a release package
+## AI Classification Pipelines
+
+### Art Pipeline (`classify_art_v2.py`)
+Classifies game visual art across 7 dimensions (theme, characters, elements, colors, mood, narrative, style) using Claude Vision. 2,701 games classified. Quality gate: theme ≥97% AND overall ≥95% adjusted accuracy.
+
+### Features Pipeline (`extract_game_profile.py`)
+Extracts game features/mechanics and themes from HTML rules pages using Claude. Quality gate: 95% micro F1 against ground truth (228 games). Current benchmark: 97.0% F1.
+
+## Deployment
 
 ```bash
 cd game_analytics_export
-npm run release
+npm run release           # Build + package release zip
 ```
 
-This will:
-1. Auto-bump the patch version (e.g., 1.0.1 → 1.0.2)
-2. Run the full production build
-3. Assemble a clean `release/` folder with only deployment files
-4. Create `release-v1.0.2.zip` (removes any previous zip)
+Deploy to Windows Server 2025 + IIS:
+- `web.config` configures HttpPlatformHandler → Node.js
+- `deploy/install.ps1` for first-time IIS setup
+- `deploy/deploy.ps1` for updates
+- Build is local → deploy `dist/` to server
 
-The output zip contains everything needed for deployment:
-
-```
-release-v1.0.2.zip
-├── dist/              # Built frontend (HTML, JS, CSS, data)
-├── server/            # Express server (no credentials or sessions)
-├── data/              # 3 API JSON files
-├── src/config/        # theme-breakdowns.json
-├── package.json       # For npm install --omit=dev on server
-├── web.config         # IIS HttpPlatformHandler config
-└── .env.example       # Required environment variables reference
-```
-
-### Deploy to IIS (Windows Server)
-
-Prerequisites:
-- Windows Server 2012 R2+ with IIS and SSL
-- HttpPlatformHandler module installed
-- Node.js 20+ installed
-
-```powershell
-# On the server:
-node server\manage-users.cjs add avner     # Create first user
-node server\manage-users.cjs add analyst1  # Add more users
-node server\manage-users.cjs list          # List all users
-```
-
-See `deploy/deploy.ps1` for the automated deployment script and `web.config` for IIS configuration.
-
-## Enrichment Pipeline
-
-The AI enrichment pipeline in `data/enrich_websearch.py` uses a 2-stage approach:
-
-1. **Stage 1 (Sonnet)** -- Web search + extraction of themes, features, specs
-2. **Stage 2 (Haiku)** -- Normalization against canonical taxonomy
-
-See `data/PHASE1_TRUTH_MASTER.md` for the full pipeline runbook.
+See `deploy/DEPLOY_CHECKLIST.md` for full instructions.
 
 ## Security
 
-- Server-side session authentication (bcrypt hashed passwords)
-- Login rate limiting (10 attempts / 15 min)
-- Helmet security headers
-- XSS prevention via `escapeHtml()` / `safeOnclick()` across all UI
+- Session authentication (bcrypt hashed passwords)
+- Login rate limiting (25 attempts / 15 min)
+- Helmet security headers + Content Security Policy
+- XSS prevention via `escapeHtml()` / `escapeAttr()` / `safeOnclick()`
 - Build script only copies frontend-required data (no `.env` or pipeline files)
 - IIS `web.config` blocks `.env`, `.git`, `node_modules` paths
-- `robots.txt` disallows all crawlers

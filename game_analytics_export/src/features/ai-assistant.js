@@ -200,25 +200,16 @@ function handleThemeQuery(themeName) {
     const artGames = tGames.filter(g => F.artTheme(g));
     if (artGames.length >= 3) {
         const artThemes = {};
-        const artMoods = {};
         artGames.forEach(g => {
             const s = F.artTheme(g);
             if (s) artThemes[s] = (artThemes[s] || 0) + 1;
-            const m = F.artMood(g);
-            if (m) artMoods[m] = (artMoods[m] || 0) + 1;
         });
         const topThemes = Object.entries(artThemes)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 4);
-        const topMoods = Object.entries(artMoods)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 3);
         if (topThemes.length) {
             html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1 mt-2">Art Direction (${artGames.length} games)</p>`;
-            html += `<div class="flex flex-wrap gap-1 mb-1">${topThemes.map(([s, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(s)} (${c})</span>`).join('')}</div>`;
-            if (topMoods.length) {
-                html += `<div class="flex flex-wrap gap-1 mb-2">${topMoods.map(([m, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-pink-50 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300">${escapeHtml(m)} (${c})</span>`).join('')}</div>`;
-            }
+            html += `<div class="flex flex-wrap gap-1 mb-2">${topThemes.map(([s, c]) => `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(s)} (${c})</span>`).join('')}</div>`;
         }
     }
 
@@ -226,12 +217,12 @@ function handleThemeQuery(themeName) {
         vsMarket > 15
             ? `<p class="mt-2 text-emerald-700 dark:text-emerald-400 text-xs font-medium">This theme outperforms the market by ${vsMarket.toFixed(0)}% — strong choice for new games.</p>`
             : vsMarket < -15
-              ? `<p class="mt-2 text-red-600 dark:text-red-400 text-xs font-medium">This theme underperforms the market by ${Math.abs(vsMarket).toFixed(0)}% — consider pairing with high-performance mechanics like ${
+              ? `<p class="mt-2 text-red-600 dark:text-red-400 text-xs font-medium">This theme underperforms the market by ${Math.abs(vsMarket).toFixed(0)}% — consider pairing with high-performance mechanics like ${escapeHtml(
                     topFeats
                         .slice(0, 2)
                         .map(([f]) => f)
                         .join(', ') || 'Free Spins'
-                } to compensate.</p>`
+                )} to compensate.</p>`
               : `<p class="mt-2 text-gray-600 dark:text-gray-400 text-xs">This theme performs near market average. Differentiation through unique mechanic combinations will be key.</p>`;
     html += suggestion;
     return html;
@@ -729,7 +720,6 @@ function generateSmartResponse(question) {
         lo.includes('visual') ||
         lo.includes('style') ||
         lo.includes('aesthetic') ||
-        lo.includes('mood') ||
         lo.includes('setting') ||
         lo.includes('character')
     ) {
@@ -802,7 +792,6 @@ function handleArtQuery(question) {
     };
 
     const artThemeList = tally(g => F.artTheme(g));
-    const moods = tally(g => F.artMood(g));
     const chars = tally(g => F.artCharacters(g)).filter(([n]) => n !== 'No Characters (symbol-only game)');
     const elements = tally(g => F.artElements(g));
     const narratives = tally(g => F.artNarrative(g));
@@ -821,8 +810,6 @@ function handleArtQuery(question) {
 
     if (artThemeList.length)
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Themes</p><div class="flex flex-wrap gap-1 mb-2">${pills(artThemeList)}</div>`;
-    if (moods.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Mood</p><div class="flex flex-wrap gap-1 mb-2">${pills(moods)}</div>`;
     if (chars.length)
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Characters</p><div class="flex flex-wrap gap-1 mb-2">${pills(chars)}</div>`;
     if (elements.length)

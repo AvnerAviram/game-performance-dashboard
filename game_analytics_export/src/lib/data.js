@@ -94,15 +94,8 @@ export async function loadGameData() {
 async function loadViaDuckDB() {
     try {
         // Dynamic import to avoid blocking if DuckDB not available
-        const {
-            initializeDatabase,
-            getOverviewStats,
-            getThemeDistribution,
-            getMechanicDistribution,
-            getAnomalies,
-            getAllGames,
-            getThemeConsolidationMap,
-        } = await import('./db/duckdb-client.js');
+        const { initializeDatabase, getOverviewStats, getMechanicDistribution, getAnomalies, getAllGames } =
+            await import('./db/duckdb-client.js');
 
         log('🦆 DuckDB module loaded, initializing...');
 
@@ -114,23 +107,6 @@ async function loadViaDuckDB() {
         gameData.total_games = stats.total_games;
         gameData.theme_count = stats.theme_count;
         gameData.mechanic_count = stats.mechanic_count;
-
-        // Query themes — exclude Unknown/placeholder themes
-        const themesRaw = await getThemeDistribution();
-        gameData.themes = themesRaw
-            .filter(
-                t => t.theme && !/^unknown$/i.test(t.theme) && !t.theme.toUpperCase().includes('FLAGGED FOR RESEARCH')
-            )
-            .map(t => ({
-                Theme: t.theme,
-                'Game Count': t.game_count,
-                'Avg Theo Win Index': t.avg_theo_win,
-                'Market Share %': t.total_market_share,
-                theme: t.theme,
-                game_count: t.game_count,
-                avg_theo_win: t.avg_theo_win,
-                total_market_share: t.total_market_share,
-            }));
 
         // Query mechanics
         const mechanicsRaw = await getMechanicDistribution();
@@ -149,7 +125,7 @@ async function loadViaDuckDB() {
         const anomalies = await getAnomalies();
         gameData.top_anomalies = (anomalies.high || []).map(g => ({
             game: g.name,
-            themes: [g.theme_consolidated || 'Unknown'],
+            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -160,7 +136,7 @@ async function loadViaDuckDB() {
         }));
         gameData.bottom_anomalies = (anomalies.low || []).map(g => ({
             game: g.name,
-            themes: [g.theme_consolidated || 'Unknown'],
+            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -172,7 +148,37 @@ async function loadViaDuckDB() {
 
         // Query all games
         gameData.allGames = await getAllGames();
-        gameData.themeConsolidationMap = getThemeConsolidationMap();
+        // Build consolidation map using unified art_theme names
+        gameData.themeConsolidationMap = {};
+        for (const g of gameData.allGames) {
+            const unified = g.art_theme || g.theme_consolidated;
+            if (g.theme_primary && unified) {
+                gameData.themeConsolidationMap[g.theme_primary] = unified;
+            }
+        }
+
+        // Rebuild themes from allGames using unified art_theme name
+        const themeAggDuck = {};
+        for (const g of gameData.allGames) {
+            const t = g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown';
+            if (!themeAggDuck[t]) themeAggDuck[t] = { count: 0, theoSum: 0, mktSum: 0 };
+            themeAggDuck[t].count++;
+            themeAggDuck[t].theoSum += g.performance_theo_win || 0;
+            themeAggDuck[t].mktSum += g.performance_market_share_percent || 0;
+        }
+        gameData.themes = Object.entries(themeAggDuck)
+            .filter(([t]) => !/^unknown$/i.test(t) && !t.toUpperCase().includes('FLAGGED FOR RESEARCH'))
+            .map(([theme, s]) => ({
+                Theme: theme,
+                'Game Count': s.count,
+                'Avg Theo Win Index': s.theoSum / s.count,
+                'Market Share %': s.mktSum,
+                theme,
+                game_count: s.count,
+                avg_theo_win: s.theoSum / s.count,
+                total_market_share: s.mktSum,
+            }));
+        gameData.theme_count = gameData.themes.length;
 
         // Calculate Smart Index
         calculateSmartIndex();
@@ -198,8 +204,9 @@ async function loadViaJSON() {
 
         // Build theme consolidation map from loaded data
         for (const g of games) {
-            if (g.theme_primary && g.theme_consolidated) {
-                gameData.themeConsolidationMap[g.theme_primary] = g.theme_consolidated;
+            const unified = g.art_theme || g.theme_consolidated;
+            if (g.theme_primary && unified) {
+                gameData.themeConsolidationMap[g.theme_primary] = unified;
             }
         }
 
@@ -223,7 +230,9 @@ async function loadViaJSON() {
 
         // Compute stats
         gameData.total_games = reliableGames.length;
-        const themeSet = new Set(reliableGames.map(g => g.theme_consolidated).filter(Boolean));
+        const themeSet = new Set(
+            reliableGames.map(g => g.art_theme || g.theme_consolidated || g.theme_primary).filter(Boolean)
+        );
         gameData.theme_count = themeSet.size;
         const mechSet = new Set();
         for (const g of reliableGames) {
@@ -234,7 +243,7 @@ async function loadViaJSON() {
         // Build theme distribution
         const themeAgg = {};
         for (const g of reliableGames) {
-            const t = g.theme_consolidated || 'Unknown';
+            const t = g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown';
             if (!themeAgg[t]) themeAgg[t] = { count: 0, theoSum: 0, mktSum: 0 };
             themeAgg[t].count++;
             themeAgg[t].theoSum += g.performance_theo_win || 0;
@@ -279,7 +288,7 @@ async function loadViaJSON() {
         const byTheo = [...reliableGames].sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
         gameData.top_anomalies = byTheo.slice(0, 30).map(g => ({
             game: g.name,
-            themes: [g.theme_consolidated || 'Unknown'],
+            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -293,7 +302,7 @@ async function loadViaJSON() {
             .reverse()
             .map(g => ({
                 game: g.name,
-                themes: [g.theme_consolidated || 'Unknown'],
+                themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
                 mechanics: parseFeatures(g.features),
                 'Theo Win': g.performance_theo_win || 0,
                 'Market Share %': g.performance_market_share_percent || 0,

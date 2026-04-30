@@ -731,7 +731,6 @@ export function showGameDetails(gameName) {
     if (artTheme) {
         const artChars = F.artCharacters(game);
         const artElems = F.artElements(game);
-        const artMood = F.artMood(game);
         const artNarr = F.artNarrative(game);
 
         const artPills = (items, bgClass) =>
@@ -748,7 +747,6 @@ export function showGameDetails(gameName) {
                 value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artTheme)}</span>`,
             },
         ];
-        if (artMood) artMetrics.push({ label: 'Mood', value: escapeHtml(artMood) });
         if (artNarr) artMetrics.push({ label: 'Narrative', value: escapeHtml(artNarr) });
 
         const artContent =
@@ -780,6 +778,15 @@ export function showGameDetails(gameName) {
         const el = document.getElementById(id);
         if (el) el.innerHTML = html;
     };
+    const screenshotSlug = game.name.replace(/\s+/g, '-');
+    const screenshotHtml = `<div class="mb-4 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800">
+        <img src="/api/screenshot/${encodeURIComponent(screenshotSlug)}"
+             alt="${escapeAttr(game.name)}"
+             class="w-full h-auto block"
+             onerror="this.parentElement.style.display='none'"
+             loading="lazy" />
+    </div>`;
+    _set('game-screenshot', screenshotHtml);
     _set('game-description', descriptionSection);
     _set('game-performance', performanceSection);
     _set('game-differentiators', diffSection);
@@ -886,7 +893,7 @@ export function showProviderDetails(providerName) {
     ];
 
     if (parent && parent !== providerName) {
-        statsMetrics.push({ label: 'Parent Company', value: parent });
+        statsMetrics.push({ label: 'Parent Company', value: escapeHtml(parent) });
     }
     if (avgSites) statsMetrics.push({ label: 'Avg Casinos/Game', value: avgSites.toLocaleString() });
     if (avgPlayIdx) statsMetrics.push({ label: 'Avg Play Index', value: avgPlayIdx.toFixed(1) });
@@ -1090,12 +1097,9 @@ export function closeProviderPanel() {
 
 window.closeProviderPanel = closeProviderPanel;
 
-// Update closeAnyPanel to include new panels
+// Delegate to the canonical closeAllPanels (defined in panel-details.js)
 window.closeAnyPanel = function () {
-    closeGamePanel();
-    closeProviderPanel();
-    if (window.closeThemePanel) window.closeThemePanel();
-    if (window.closeMechanicPanel) window.closeMechanicPanel();
+    window.closeAllPanels();
 };
 
 // --- Feedback modal (used by hamburger menu and game panel) ---

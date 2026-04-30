@@ -14,7 +14,7 @@ const TOGGLE_HTML = `<button id="dark-mode-toggle" aria-label="Toggle dark mode"
 
 function setKnobPosition(toggle, isDark) {
     const knob = toggle?.querySelector('.dm-knob');
-    if (knob) knob.style.transform = isDark ? 'translate(18px, -50%)' : 'translate(0, -50%)';
+    if (knob) knob.style.transform = isDark ? 'translate(22px, -50%)' : 'translate(0, -50%)';
 }
 
 function injectToggle() {

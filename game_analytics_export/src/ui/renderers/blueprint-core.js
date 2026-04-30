@@ -88,7 +88,7 @@ export function initBlueprint() {
     const selectedCategories = new Set();
     const selectedSubThemes = new Set();
     const selectedFeatures = new Set();
-    const selectedArt = { theme: null, mood: null, characters: new Set(), elements: new Set(), narrative: null };
+    const selectedArt = { theme: null, characters: new Set(), elements: new Set(), narrative: null };
     let selectedLayout = null;
     let suggestPanelOpen = false;
     const globalAvg = allG.length > 0 ? allG.reduce((s, g) => s + (g.performance_theo_win || 0), 0) / allG.length : 0;
@@ -653,7 +653,6 @@ export function initBlueprint() {
         selectedSubThemes.clear();
         selectedFeatures.clear();
         selectedArt.theme = null;
-        selectedArt.mood = null;
         selectedArt.characters.clear();
         selectedArt.elements.clear();
         selectedArt.narrative = null;
@@ -873,17 +872,12 @@ export function initBlueprint() {
 
         const artDims = selectedArt || {};
         const hasArtSelection =
-            artDims.theme ||
-            artDims.mood ||
-            artDims.narrative ||
-            artDims.characters?.size > 0 ||
-            artDims.elements?.size > 0;
+            artDims.theme || artDims.narrative || artDims.characters?.size > 0 || artDims.elements?.size > 0;
 
         let artDirection = 50;
         if (hasArtSelection) {
             const matchesArt = g => {
                 if (artDims.theme && F.artTheme(g) !== artDims.theme) return false;
-                if (artDims.mood && F.artMood(g) !== artDims.mood) return false;
                 if (artDims.narrative && F.artNarrative(g) !== artDims.narrative) return false;
                 if (artDims.characters?.size > 0) {
                     const gc = F.artCharacters(g) || [];
@@ -928,7 +922,6 @@ export function initBlueprint() {
 
         function matchesAllArt(g) {
             if (artDims.theme && F.artTheme(g) !== artDims.theme) return false;
-            if (artDims.mood && F.artMood(g) !== artDims.mood) return false;
             if (artDims.narrative && F.artNarrative(g) !== artDims.narrative) return false;
             if (artDims.characters?.size > 0) {
                 const gc = F.artCharacters(g) || [];
@@ -1161,7 +1154,6 @@ export function initBlueprint() {
 
         const hasArtSelection =
             selectedArt.theme ||
-            selectedArt.mood ||
             selectedArt.characters.size > 0 ||
             selectedArt.elements.size > 0 ||
             selectedArt.narrative;
@@ -1172,7 +1164,6 @@ export function initBlueprint() {
             els.artClear = clearClone;
             clearClone.addEventListener('click', () => {
                 selectedArt.theme = null;
-                selectedArt.mood = null;
                 selectedArt.characters.clear();
                 selectedArt.elements.clear();
                 selectedArt.narrative = null;

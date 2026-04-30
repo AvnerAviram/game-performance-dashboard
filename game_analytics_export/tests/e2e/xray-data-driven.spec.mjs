@@ -90,7 +90,6 @@ test.describe('X-Ray Data-Driven: every dimension resolves against real data', (
         },
         { dimension: 'volatility', accessor: g => g.volatility || g.specs_volatility },
         { dimension: 'art_theme', accessor: g => g.art_theme },
-        { dimension: 'art_mood', accessor: g => g.art_mood },
         { dimension: 'art_characters', accessor: g => g.art_characters },
         { dimension: 'art_elements', accessor: g => g.art_elements },
         { dimension: 'art_narrative', accessor: g => g.art_narrative },

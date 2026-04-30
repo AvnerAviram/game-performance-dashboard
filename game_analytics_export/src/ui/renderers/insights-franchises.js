@@ -391,18 +391,10 @@ function buildGameRows(f) {
             const provider = F.provider(g);
             const ps = getProviderStyle(provider);
             const artTheme = F.artTheme(g);
-            const artMood = F.artMood(g);
 
-            const artTags = [
-                artTheme
-                    ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-300">🎨 ${escapeHtml(artTheme)}</span>`
-                    : '',
-                artMood
-                    ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-300">🎭 ${escapeHtml(artMood)}</span>`
-                    : '',
-            ]
-                .filter(Boolean)
-                .join('');
+            const artTags = artTheme
+                ? `<span class="px-1.5 py-0.5 text-[8px] font-medium rounded bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-300">🎨 ${escapeHtml(artTheme)}</span>`
+                : '';
 
             return `
       <div class="flex items-center gap-3 py-2.5 px-4 hover:bg-white dark:hover:bg-gray-700/40 cursor-pointer transition-colors ${idx > 0 ? 'border-t border-gray-100 dark:border-gray-700/40' : ''}"

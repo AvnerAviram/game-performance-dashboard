@@ -57,7 +57,7 @@ try {
   lines.push('Live data: ' + master.length + ' master, ' + resCount + ' classified (' + v2 + ' v2), ' + ss + ' screenshots, ' + human + ' human reviews, ' + corrCount + ' corrections');
   lines.push('Batch gate: ' + gateStatus);
   if (drifts.length > 0) lines.push('DRIFT DETECTED: ' + drifts.join('; ') + '. Update working memory before answering.');
-  lines.push('Rules: Read .cursor/rules/ before modifying code. Run npm test after code changes. Run --regression-full after pipeline changes.');
+  lines.push('Start: Read AGENTS.md for project overview. Agent roles in agents/. Rules in .cursor/rules/. Run npm test after code changes.');
 
   // Parse MASTER_PLAN.md if it exists
   try {

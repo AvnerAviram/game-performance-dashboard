@@ -1,6 +1,6 @@
-# Game Analytics Dashboard
+# Games Analytics Tool
 
-Professional analytics dashboard for slot game performance analysis across themes, mechanics, and providers.
+Professional analytics tool for slot game performance analysis across themes, mechanics, and providers.
 
 ## Features
 

@@ -568,7 +568,6 @@ const DIMENSION_FIELD_MAP = {
     volatility: 'volatility',
     rtp: 'rtp',
     art_theme: 'art_theme',
-    art_mood: 'art_mood',
     art_characters: 'art_characters',
     art_elements: 'art_elements',
     art_narrative: 'art_narrative',
@@ -598,10 +597,6 @@ const DIMENSION_SOURCE_INFO = {
     art_theme: {
         title: 'Art Theme',
         how: 'Art themes are classified via the art characterization pipeline — derived from game visual analysis and rules text.',
-    },
-    art_mood: {
-        title: 'Art Mood',
-        how: 'Art mood is classified via the art characterization pipeline — derived from game visual analysis and rules text.',
     },
     art_characters: {
         title: 'Art Characters',
@@ -1011,8 +1006,6 @@ function filterByDimension(games, dimension, value) {
             }
             case 'art_theme':
                 return (F.artTheme(g) || '').toLowerCase() === vl;
-            case 'art_mood':
-                return (F.artMood(g) || '').toLowerCase() === vl;
             case 'art_characters': {
                 const chars = F.artCharacters(g);
                 if (Array.isArray(chars)) return chars.some(c => c.toLowerCase() === vl);
@@ -1219,7 +1212,8 @@ export function renderYearSummary(container, year, allGames) {
         if (prov && prov !== 'Unknown') yearProvTally[prov] = (yearProvTally[prov] || 0) + 1;
         const feats = Array.isArray(g.features) ? g.features : [];
         for (const f of feats) {
-            if (f) yearFeatTally[f] = (yearFeatTally[f] || 0) + 1;
+            const fname = typeof f === 'string' ? f : f?.name || '';
+            if (fname) yearFeatTally[fname] = (yearFeatTally[fname] || 0) + 1;
         }
         const tw = F.theoWin(g);
         if (tw > 0) {

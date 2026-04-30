@@ -58,7 +58,7 @@ async function main() {
         const nameNorm = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
         const themePrimary = String(game.theme_primary || 'Unknown');
         const themeSecondary = String(game.theme_secondary || '');
-        const themeConsolidated = themeMap[game.theme_primary] || game.theme_primary || 'Unknown';
+        const themeConsolidated = game.art_theme || themeMap[game.theme_primary] || game.theme_primary || 'Unknown';
         const paylines = game.paylines_count
             ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
             : null;
@@ -137,10 +137,8 @@ async function main() {
             art_theme: art.art_theme || null,
             art_characters: art.art_characters ? JSON.stringify(art.art_characters) : null,
             art_elements: art.art_elements ? JSON.stringify(art.art_elements) : null,
-            art_mood: art.art_mood || null,
             art_narrative: art.art_narrative || null,
-            art_style: art.art_style || null,
-            art_color_tone: art.art_color_tone || null,
+            art_color_tone: art.art_color_tone ? JSON.stringify(art.art_color_tone) : null,
             art_confidence: art.art_confidence || null,
             data_confidence: game.data_confidence || null,
             extraction_date: game.extraction_date || null,

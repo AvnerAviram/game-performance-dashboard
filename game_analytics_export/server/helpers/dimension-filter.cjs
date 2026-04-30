@@ -20,6 +20,7 @@ function matchGameToDimension(game, dimension, valueLower, { normalizeProvider, 
 
     if (dimension === 'theme') {
         return (
+            (g.art_theme || '').toLowerCase() === valueLower ||
             (g.theme_primary || '').toLowerCase() === valueLower ||
             (g.theme_consolidated || '').toLowerCase() === valueLower
         );
@@ -58,7 +59,6 @@ function matchGameToDimension(game, dimension, valueLower, { normalizeProvider, 
     }
 
     if (dimension === 'art_theme') return (g.art_theme || '').toLowerCase() === valueLower;
-    if (dimension === 'art_mood') return (g.art_mood || '').toLowerCase() === valueLower;
 
     if (dimension === 'art_characters') {
         const chars = g.art_characters;

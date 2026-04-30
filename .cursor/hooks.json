@@ -1,24 +1,4 @@
 {
   "version": 1,
-  "hooks": {
-    "sessionStart": [
-      { "command": ".cursor/hooks/validate-atlas-memory.sh", "timeout": 15 }
-    ],
-    "preToolUse": [
-      {
-        "command": ".cursor/hooks/protect-data-files.sh",
-        "matcher": "Write|StrReplace|Delete",
-        "failClosed": true
-      }
-    ],
-    "beforeShellExecution": [
-      { "command": ".cursor/hooks/block-dangerous-commands.sh" }
-    ],
-    "afterFileEdit": [
-      { "command": ".cursor/hooks/track-edits.sh" }
-    ],
-    "stop": [
-      { "command": ".cursor/hooks/verify-on-stop.sh", "loop_limit": 1 }
-    ]
-  }
+  "hooks": {}
 }

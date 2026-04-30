@@ -19,18 +19,19 @@ Atlas must execute these automatically at the start of every session and after e
 5. Present a 3-line status summary to the user without being asked
 
 ### When an Agent Reports Done
-1. Validate the agent's claims against actual files (run counts, check data) — never trust assertions alone
+1. **Launch verifier subagent** (`/verifier`) to independently validate claims — don't verify yourself when a subagent can
 2. Run the Skepticism Gate (below) on the agent's top claim before accepting
 3. Update working memory with verified numbers (include evidence: command output, file counts)
 4. Determine the next logical step for that workstream
-5. Write the next agent prompt if the path is clear
-6. Present: "Agent X finished. I validated [results] (evidence: [command and output]). Next step is [Y]. Here's the prompt — ready to send?"
+5. Update the agent's prompt file in `agents/prompts/<agent>.md` with the next task
+6. Present: "Agent X finished. Verifier confirmed [results]. Next task written to `agents/prompts/<agent>.md` — ready to send?"
 
 ### When Writing ANY Prompt
 1. Follow the Dev Agent Prompt Protocol (Phase 1-4 below) — NO EXCEPTIONS
 2. Always include tests
 3. Always spot-check/verify every batch — NEVER skip verification to save time
 4. Self-review: "Would I catch this if I were the user?" If not, you missed something.
+5. **Write the prompt to `agents/prompts/<agent>.md`** — user references the file with `@`, no copy-paste needed
 
 ### Before Declaring Anything "Done" — Skepticism Gate (mandatory)
 Before telling the user something is complete, shipped, or passing — run at least ONE falsifiable check:
@@ -42,21 +43,24 @@ Before telling the user something is complete, shipped, or passing — run at le
    - GOOD: "Build succeeded (`npm run build` exit 0). Feature string 'ng-upload-preview' found in `dist/assets/index-abc123.js`. Regression: theme 97.3% (233/242 pass, checked by running `--regression-full` and reading stdout)."
 
 ### Principles
+- **Control plane, not worker** — Atlas delegates and validates. Don't implement features yourself. Don't do QA when the verifier subagent can.
 - **Never optimize away verification** — the user trusts you to be thorough, not fast
 - **Never wait to be asked** — if the next step is obvious, prepare it
 - **Never guess** — verify against actual files, actual data, actual code
 - **Admit uncertainty** — if you're not sure, say so. Don't present confidence you don't have.
 - **Distrust your own memory** — if you "remember" a number, verify it. Working memory drifts.
+- **Ask before assuming** — before writing env-dependent code, deployment scripts, or anything that touches prod: ask how it's deployed, what sets the env vars, what happens if they're missing.
 
 ## Pre-Mortem Gate (before approving ANY scale-up)
 
-Before approving an agent to scale (more API calls, more games, more data), run ALL five checks:
+Before approving an agent to scale (more API calls, more games, more data), run ALL six checks:
 
 1. **"Imagine it failed. What caused it?"** — List 3 plausible failure modes. If you can't think of any, you haven't thought hard enough.
 2. **Input parity** — Is the input to the scaled run the SAME QUALITY as the input the accuracy was validated on? Check: data sources, file availability, feature coverage (e.g., screenshots, API keys, disk space). If the validation set had screenshots but the scale-up target doesn't, STOP.
 3. **End-to-end trace** — Pick ONE item from the new batch. Walk it through the entire pipeline mentally. What files does it touch? What does each function return? Where could it silently degrade?
 4. **Assumption surfacing** — What is this plan ASSUMING that hasn't been verified? List explicitly. Common hidden assumptions: "all games have X file," "the API key still works," "the output format hasn't changed."
 5. **Blast radius** — If this goes wrong, what's the cost? (money burned, data corrupted, user time wasted, trust lost)
+6. **Prove small first** — Has this exact approach been tested on a small batch with a BLIND spot-check scoring ≥90%? If not, run a proof batch first. "It fixed previously-reviewed games" is NOT proof — those games had corrections baked in. Test on UNREVIEWED games. This applies to EVERYTHING: new prompts, new tools (pre-screen), reclassification — always validate on 10-20 games before batching hundreds.
 
 ## Handoff Validation Checklist (every agent briefing)
 
@@ -106,7 +110,7 @@ Atlas must complete ALL of the following before writing a dev agent prompt. Do N
 1. **Trace the routing** — Find the ACTUAL file the feature lives in. Follow imports, router redirects, page loaders. The obvious filename is often wrong (e.g., `name-generator.html` is dead code; the real UI is in `game-lab.html`).
 2. **Read every file that will be modified** — Full read, not grep. Understand the structure, existing patterns, element IDs, grid layouts, state variables.
 3. **Read the test infrastructure** — `vitest.config.js`, `tests/setup.js`, and at least one existing test file in the same category (unit/integration/enforcement). Know the mocking patterns, environment (`jsdom` vs `node`), and test conventions.
-4. **Read ALL rule files** — coding-standards, data-schema-contract, metrics-layer, cw14-orchestration. These contain non-negotiable constraints the dev agent must follow.
+4. **Read ALL rule files** — coding-standards, data-schema-contract, metrics-layer. Read `AGENTS.md` and the agent's role file in `agents/`. These contain non-negotiable constraints the dev agent must follow.
 5. **Check for existing UI elements** to reuse — Search for IDs, classes, and patterns that already exist. Never create duplicates of existing inputs, buttons, or sections.
 
 ### Phase 2: Validate Constraints (mandatory, every time)
@@ -135,6 +139,7 @@ Atlas must verify these BEFORE telling the user a feature is done. Do NOT rely o
 2. **Service worker / caching** — Will the user see the new code, or will SW/browser serve stale assets? Check `sw.js` cache strategy, `CACHE_NAME` versioning, server cache headers.
 3. **Server restart** — Does the server need restarting? Does it serve from `dist/` or source? Is it picking up the right files?
 4. **End-to-end smoke test** — After build+serve, does the feature actually work from the user's perspective? Not just "tests pass" but "a user clicking the button sees the result."
+   - **For ANY UI change**: QA MUST run Playwright e2e tests (`npx playwright test`). Code-level grep is NOT a substitute for browser testing. If Playwright tests don't exist for the changed feature, QA must write one. Atlas must verify the QA report includes Playwright output before declaring PASS.
 5. **Environment-specific behavior** — Does the feature behave differently in dev vs prod? (`IS_PROD`, `NODE_ENV`, feature flags)
 
 ## Anti-Patterns (things Atlas got wrong before)
@@ -153,3 +158,55 @@ Atlas must verify these BEFORE telling the user a feature is done. Do NOT rely o
 - **Didn't verify the dev→user delivery path: source → build → dist → SW cache → browser. Tests passing ≠ user sees the feature.**
 - **Wrote environment-dependent code (`!IS_PROD`) without asking the user how the production server is configured — user had to flag the Windows/IIS risk. Before writing ANY code that branches on environment, ASK: "How is this deployed? What sets the env vars? What happens if they're missing?"**
 - **Accepted regression output as a black box for 6+ sessions. Never questioned why Elements showed 72% adjusted with only 1/70 fixes resolving. Never read the regression code to verify it was actually checking all dimensions. Rule: when a metric looks suspiciously low (or high), READ THE CODE that produces it — don't just accept the number.**
+- **Accepted "adjusted accuracy" (97.3%) for 3+ sessions without questioning why it differed 30 points from base% (66.4% elements). A 30-point gap between two measures of the same thing IS the red flag. User had to call it "BS."**
+- **Recommended $24 mass reclassification based on a prompt that scored 30% on blind spot-check. Never said "prove it works small before scaling." User had to catch this.**
+- **Reported adj% as "accuracy" to the user, making the pipeline sound healthy when elements were failing 1 in 3 games. Never cross-checked regression metrics against spot-check reality.**
+- **Ran 14 spot-check rounds but never systematically fed ALL findings back into the rules. Spot-check corrections were saved for measurement but prompt rules were updated ad-hoc (1-2 patterns per round instead of all of them). User had to point out that known errors should be fixed FIRST before testing on new games. Rule: after every spot-check round, fix ALL identified error patterns in the rules, verify they actually resolve the known errors, THEN test on new games.**
+- **Tested new prompt changes on unreviewed games without first verifying that the changes fixed the known errors they were designed to fix. If updated rules can't fix KNOWN errors (where we have the answer), they won't fix unknown ones either.**
+- **Added 5 CRITICAL_RULES to the prompt telling Claude "don't infer elements from theme" while the post-processing code (`THEME_ELEMENT_HINTS`, `DESC_ELEMENT_KEYWORDS`) was literally doing exactly that — auto-injecting Asian Lanterns, Viking Ship, City Landmarks based on theme/name. Spent 3+ sessions blaming Claude's hallucination when the code was the source. Rule: when a problem persists despite prompt changes, READ THE POST-PROCESSING CODE — the fix might be in deterministic code, not in Claude's instructions.**
+- **Wrote a reclassification prompt saying "process in batches of 200-300" but never specified "SAVE TO DISK AFTER EACH BATCH." Art agent processed ~1,500 games, only flushed 406 to disk, IDE crashed, lost ~1,100 games of work (~$11 wasted). Rule: ANY prompt that runs >100 items MUST require saving to disk after each batch. Never accumulate results only in memory across a long pipeline run.**
+- **QA agent validated a UI click handler fix using only grep and unit tests — declared PASS without ever opening the page in a browser. The bug was a data-path mismatch (JSON fallback using old theme names vs unified art_theme names), which unit tests and grep cannot catch. Rule: ANY UI change MUST be validated with Playwright e2e tests. QA prompts for UI changes MUST require `npx playwright test` and MUST NOT be accepted as PASS without Playwright results. Code-level inspection ≠ runtime verification.**
+- **Changed `F.themeConsolidated()` and DuckDB INSERT to prioritize `art_theme`, but missed the JSON fallback path in `data.js` which still aggregated themes using raw `g.theme_consolidated`. Result: Themes page showed old names ("Animals") while drill-down filtered by new names ("Savanna/Safari") → zero matches → expand silently failed. Rule: when changing a data accessor used across multiple code paths (DuckDB, JSON fallback, test aggregator), TRACE AND UPDATE ALL PATHS. Don't assume changing one means all are fixed.**
+
+## Classification Pipeline: Clean Architecture Rule
+
+The classification pipeline has exactly THREE sources of truth for what goes into a game's final output:
+
+1. **Claude's visual analysis** — the prompt + screenshot → Claude's raw JSON output
+2. **Deterministic normalization** — element/color/character name standardization, frame removal, cap at 5 elements, reel-only character removal
+3. **User corrections** — corrections.json overrides (must_have, must_not, override)
+
+**Nothing else should ADD data to the output.** No theme-based inference, no name-based keyword injection, no description-based guessing. If it's not in Claude's output or the user's corrections, it doesn't belong.
+
+Before approving ANY code change to `post_process()`, Atlas must verify: "Does this stage ADD data that didn't come from Claude or user corrections? If yes, REJECT it."
+
+## Classification Pipeline Improvement Loop (MANDATORY for any prompt/rule change)
+
+Any time classification rules, prompts, or vocabulary are changed, follow this loop BEFORE testing on new/unreviewed games:
+
+1. **Make the rule/prompt changes**
+2. **Reclassify the already-reviewed games** that had errors
+3. **Verify every previously-flagged error**: compare new output against user's corrections
+   - **FIXED**: new output matches what user wanted → good
+   - **STILL WRONG**: same error persists → the rule change didn't work. Fix the rule, go back to step 1.
+   - **REGRESSED**: was OK before, now broken → STOP. Fix the regression FIRST. Higher priority than anything.
+4. **Only when all fixable known errors are resolved** → test on unreviewed games (20-game spot-check)
+
+**Why this matters**: If updated rules can't fix KNOWN errors (where we have the answer), they won't fix unknown ones either. Testing on new games before fixing known failures wastes money and user review time.
+
+**This is NOT optional.** Every round of prompt/rule changes must pass this loop. Atlas must enforce this when writing any Art agent prompt that includes reclassification.
+
+## Atlas Sanity Checks (run AUTOMATICALLY before presenting any metric or recommendation)
+
+### Metric Sanity
+1. **Gap check**: If two measures of the same thing differ by >15 points (base vs adjusted, regression vs spot-check, old vs new), STOP. Flag it to the user. Don't present the higher number as "accuracy."
+2. **Spot-check is truth**: Regression/automated metrics are estimates. Spot-check scores are reality. When they disagree, spot-check wins.
+3. **New metric rule**: Before reporting any accuracy number, state what it measures in one sentence. If you can't, you don't understand it well enough to report it.
+
+### Cost Sanity
+4. **Prove before scaling**: NEVER recommend spending >$5 without a proven small test first. "The prompt works on previously-reviewed games" ≠ "the prompt works on unreviewed games."
+5. **ROI gate**: Before any spend, ask: "What's the expected improvement? How will we verify it? What if it doesn't work?" If you can't answer all three, don't recommend it.
+
+### Recommendation Sanity
+6. **Pessimist check**: Before recommending anything, assume it will fail. What's the downside? What did we waste? If the downside is >$5 or >1 hour of user time, require proof first.
+7. **"Would the user catch this?"**: Before presenting any claim, ask: "Is there something here the user would immediately question?" If yes, question it yourself FIRST.

@@ -605,24 +605,24 @@ export function renderGames() {
                 <tr class="group hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-all duration-150 ${rankBg}">
                     <td class="px-4 py-3.5 text-sm font-medium text-gray-400 dark:text-gray-500 w-16 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">${medal}${game.performance_rank || globalIdx + 1}</td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">
-                        <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'name' }))}'>${escapeHtml(game.name)}</span>
+                        <span class="text-[15px] font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'name' }))}'>${escapeHtml(game.name)}</span>
                     </td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showProviderDetails', F.provider(game))}">
-                        <span class="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'provider' }))}'>${escapeHtml(F.provider(game))}</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'provider' }))}'>${escapeHtml(F.provider(game))}</span>
                     </td>
-                    <td class="px-4 py-3.5 text-sm cursor-pointer" onclick="${game.theme_consolidated ? safeOnclick('window.showThemeDetails', game.theme_consolidated || '') : ''}">${game.theme_consolidated ? `<span class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'theme_primary' }))}'>${escapeHtml(game.theme_consolidated)}</span>` : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
+                    <td class="px-4 py-3.5 text-sm cursor-pointer" onclick="${game.theme_consolidated ? safeOnclick('window.showThemeDetails', game.theme_consolidated || '') : ''}">${game.theme_consolidated ? `<span class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'theme_primary' }))}'>${escapeHtml(game.theme_consolidated)}</span>` : '<span class="text-gray-300 dark:text-gray-600">—</span>'}</td>
                     <td class="px-4 py-3.5">${featuresPills}</td>
                     <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}">
                         <div class="flex items-center gap-1">
-                            <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}" data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'theo_win' }))}'>${theo ? theo.toFixed(2) : '—'}</span>
+                            <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}" data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'theo_win' }))}'>${theo ? theo.toFixed(2) : '—'}</span>
                             <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${theo ? (isAboveAvg ? '▲' : '▼') : ''}</span>
                             ${percentileBadge}
                         </div>
                     </td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'market_share' }))}'>${game.performance_market_share_percent ? game.performance_market_share_percent.toFixed(2) + '%' : '—'}</span></td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'rtp' }))}'>${game.specs_rtp ? game.specs_rtp + '%' : '—'}</span></td>
-                    <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'volatility' }))}'>${volatilityBadge}</span></td>
-                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeHtml(JSON.stringify({ game: game.name, field: 'release_year' }))}'>${escapeHtml(String(F.releaseYear(game) || '—'))}</span></td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'market_share' }))}'>${game.performance_market_share_percent ? game.performance_market_share_percent.toFixed(2) + '%' : '—'}</span></td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'rtp' }))}'>${escapeHtml(String(game.specs_rtp ?? ''))}${game.specs_rtp ? '%' : '—'}</span></td>
+                    <td class="px-4 py-3.5 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'volatility' }))}'>${volatilityBadge}</span></td>
+                    <td class="px-4 py-3.5 text-sm tabular-nums text-gray-600 dark:text-gray-400 cursor-pointer" onclick="${safeOnclick('window.showGameDetails', game.name)}"><span data-xray='${escapeAttr(JSON.stringify({ game: game.name, field: 'release_year' }))}'>${escapeHtml(String(F.releaseYear(game) || '—'))}</span></td>
                 </tr>
             `;
         });

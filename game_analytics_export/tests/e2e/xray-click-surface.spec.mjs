@@ -476,17 +476,6 @@ test.describe('X-Ray Click Surface', () => {
 
     // ── ART & FRANCHISE DIMENSION API TESTS ──────────────────
 
-    test('API: art_mood dimension returns games (not 404)', async ({ page }) => {
-        const data = await page.evaluate(async () => {
-            const r = await fetch('/api/data/provenance/top-game?dimension=art_mood&value=Cartoon/Playful/Fun', {
-                credentials: 'include',
-            });
-            return r.ok ? r.json() : { error: r.status };
-        });
-        expect(data.error).toBeUndefined();
-        expect(data.totalGames).toBeGreaterThan(0);
-        expect(data.gameName).toBeTruthy();
-    });
 
     test('API: art_characters dimension returns games (not 404)', async ({ page }) => {
         const data = await page.evaluate(async () => {

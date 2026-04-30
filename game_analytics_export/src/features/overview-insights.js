@@ -47,7 +47,7 @@ export function getTopPerformers(allGames, themes, mechanics) {
         gameCount: p.count,
     }));
 
-    const bestProvider = providerArray[0];
+    const bestProvider = [...providerArray].sort((a, b) => (b.ggrShare || 0) - (a.ggrShare || 0))[0];
 
     // Top Game (highest theo_win)
     const sortedGames = [...allGames].sort((a, b) => {

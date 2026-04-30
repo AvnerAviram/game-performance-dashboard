@@ -108,8 +108,8 @@ export function createVolatilityChart() {
                     if (window.xrayActive) return;
                     if (!elements.length) return;
                     const idx = elements[0].index;
-                    const vol = volData[idx];
-                    if (vol && window.showVolatilityDetails) window.showVolatilityDetails(vol.volatility);
+                    const vol = sorted[idx];
+                    if (vol && window.showVolatilityDetails) window.showVolatilityDetails(vol.name);
                 },
             },
         });

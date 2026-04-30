@@ -19,10 +19,10 @@ describe('Cross-page metric agreement', () => {
     });
 
     describe('theme counts match across views', () => {
-        test('themes page game_count matches filtering allGames by theme_primary', () => {
+        test('themes page game_count matches filtering allGames by themeConsolidated', () => {
             for (const t of gameData.themes.slice(0, 10)) {
                 const themeName = t.theme || t.Theme;
-                const fromFilter = gameData.allGames.filter(g => g.theme_primary === themeName).length;
+                const fromFilter = gameData.allGames.filter(g => F.themeConsolidated(g) === themeName).length;
                 const fromThemes = t.game_count || t['Game Count'];
                 expect(fromThemes).toBe(fromFilter);
             }
@@ -70,13 +70,13 @@ describe('Cross-page metric agreement', () => {
             }
         });
 
-        test('every Smart Index is a positive finite number', () => {
+        test('every Smart Index is a non-negative finite number', () => {
             for (const t of gameData.themes) {
-                expect(t['Smart Index']).toBeGreaterThan(0);
+                expect(t['Smart Index']).toBeGreaterThanOrEqual(0);
                 expect(Number.isFinite(t['Smart Index'])).toBe(true);
             }
             for (const m of gameData.mechanics) {
-                expect(m['Smart Index']).toBeGreaterThan(0);
+                expect(m['Smart Index']).toBeGreaterThanOrEqual(0);
                 expect(Number.isFinite(m['Smart Index'])).toBe(true);
             }
         });

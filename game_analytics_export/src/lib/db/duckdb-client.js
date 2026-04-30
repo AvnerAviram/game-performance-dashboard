@@ -1,5 +1,5 @@
 /**
- * DuckDB Client for Game Analytics Dashboard
+ * DuckDB Client for Games Analytics Tool
  *
  * 100% DuckDB-ONLY data access
  * Single Source of Truth: game_data_master.json → DuckDB table
@@ -234,8 +234,8 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         reels_confidence VARCHAR, paylines_confidence VARCHAR,
         max_win_confidence VARCHAR, min_bet_confidence VARCHAR, max_bet_confidence VARCHAR,
         art_theme VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
-        art_mood VARCHAR, art_narrative VARCHAR,
-        art_style VARCHAR, art_color_tone VARCHAR, art_confidence VARCHAR
+        art_narrative VARCHAR,
+        art_color_tone VARCHAR, art_confidence VARCHAR
       )
     `);
 
@@ -270,7 +270,12 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         const nameNorm = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
         const themePrimary = String(game.theme_primary || 'Unknown').replace(/'/g, "''");
         const themeSecondary = String(game.theme_secondary || '').replace(/'/g, "''");
-        const themeConsolidated = (themeMap[game.theme_primary] || game.theme_primary || 'Unknown').replace(/'/g, "''");
+        const themeConsolidated = (
+            game.art_theme ||
+            themeMap[game.theme_primary] ||
+            game.theme_primary ||
+            'Unknown'
+        ).replace(/'/g, "''");
         const paylines = game.paylines_count
             ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
             : '';
@@ -329,9 +334,8 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
           ${safeStr(artMap[game.name]?.art_theme)},
           ${safeStr(artMap[game.name]?.art_characters ? JSON.stringify(artMap[game.name].art_characters) : null)},
           ${safeStr(artMap[game.name]?.art_elements ? JSON.stringify(artMap[game.name].art_elements) : null)},
-          ${safeStr(artMap[game.name]?.art_mood)}, ${safeStr(artMap[game.name]?.art_narrative)},
-          ${safeStr(artMap[game.name]?.art_style)},
-          ${safeStr(artMap[game.name]?.art_color_tone)},
+          ${safeStr(artMap[game.name]?.art_narrative)},
+          ${safeStr(artMap[game.name]?.art_color_tone ? JSON.stringify(artMap[game.name].art_color_tone) : null)},
           ${safeStr(artMap[game.name]?.art_confidence)}
         )
       `);

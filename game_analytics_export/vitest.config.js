@@ -11,6 +11,7 @@ export default defineConfig({
             '**/e2e/**',
             '**/tests/archive/**',
             '**/*.spec.js',
+            // DuckDB tests require WASM runtime + live API server — can't run in vitest/jsdom
             '**/validate-duckdb-aggregations.test.js',
             '**/duckdb-enforcement.test.js',
             '**/validate-json-baseline.test.js',

@@ -394,8 +394,8 @@ export function createScatterChart() {
             datasets.push({
                 label: `${minors.length} other themes`,
                 data: clusterData,
-                backgroundColor: 'rgba(148,163,184,0.15)',
-                borderColor: 'rgba(148,163,184,0.4)',
+                backgroundColor: 'rgba(148,163,184,0.3)',
+                borderColor: 'rgba(148,163,184,0.6)',
                 borderWidth: 1,
                 borderDash: [3, 2],
                 hoverRadius: 4,
@@ -413,7 +413,7 @@ export function createScatterChart() {
                 c.font = 'bold 11px Inter, system-ui, sans-serif';
                 c.textAlign = 'center';
                 c.textBaseline = 'middle';
-                c.fillStyle = 'rgba(100,116,139,0.7)';
+                c.fillStyle = 'rgba(71,85,105,0.85)';
                 meta1.data.forEach((pt, i) => {
                     c.fillText(clusterLabels[i], pt.x, pt.y);
                 });
