@@ -144,6 +144,10 @@ router.get('/api/data/theme-map', requireAuth, (req, res) => {
     serveDataFile(path.join(DATA_DIR, 'theme_consolidation_map.json'), res);
 });
 
+router.get('/api/data/art-theme-map', requireAuth, (req, res) => {
+    serveDataFile(path.join(DATA_DIR, 'art_theme_consolidation_map.json'), res);
+});
+
 router.get('/api/data/confidence-map', requireAuth, (req, res) => {
     serveDataFile(path.join(DATA_DIR, 'confidence_map.json'), res);
 });

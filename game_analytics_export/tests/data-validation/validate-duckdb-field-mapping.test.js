@@ -5,13 +5,28 @@ import { normalizeProvider } from '../../src/lib/shared-config.js';
 
 const DATA_DIR = resolve(import.meta.dirname, '../../data');
 
+function resolveThemeConsolidated(game, themeMap, artThemeMap) {
+    return (
+        (game.art_theme && artThemeMap[game.art_theme]) ||
+        themeMap[game.theme_primary] ||
+        game.theme_primary ||
+        'Unknown'
+    );
+}
+
+/** Pre–art-consolidation resolver (uses raw art_theme as consolidated). Used only for regression assertions. */
+function legacyThemeConsolidated(game, themeMap) {
+    return game.art_theme || themeMap[game.theme_primary] || game.theme_primary || 'Unknown';
+}
+
 describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
-    let games, confidenceMap, themeMap, validGames;
+    let games, confidenceMap, themeMap, artThemeMap, validGames;
 
     beforeAll(() => {
         games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
         confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
         themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
+        artThemeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'art_theme_consolidation_map.json'), 'utf-8'));
         validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
     });
 
@@ -24,7 +39,7 @@ describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
             id: game.id,
             name: game.name,
             theme_primary: game.theme_primary || 'Unknown',
-            theme_consolidated: themeMap[game.theme_primary] || game.theme_primary || 'Unknown',
+            theme_consolidated: resolveThemeConsolidated(game, themeMap, artThemeMap),
             provider_studio: normalizeProvider(studioOrParent),
             specs_reels: game.reels ?? null,
             specs_rows: game.rows ?? null,
@@ -63,12 +78,12 @@ describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
     });
 
     describe('theme mapping', () => {
-        test('theme_consolidated maps through theme_consolidation_map', () => {
+        test('theme_consolidated resolves art_theme → map and theme_primary fallback', () => {
             const gamesWithTheme = validGames.filter(g => g.theme_primary);
             const mismatches = [];
             for (const g of gamesWithTheme.slice(0, 100)) {
                 const row = simulateInsert(g);
-                const expected = themeMap[g.theme_primary] || g.theme_primary;
+                const expected = resolveThemeConsolidated(g, themeMap, artThemeMap);
                 if (row.theme_consolidated !== expected) {
                     mismatches.push({ name: g.name, got: row.theme_consolidated, expected });
                 }
@@ -76,9 +91,18 @@ describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
             expect(mismatches).toEqual([]);
         });
 
-        test('games without theme_primary get "Unknown"', () => {
-            const noTheme = validGames.filter(g => !g.theme_primary);
-            for (const g of noTheme.slice(0, 20)) {
+        test('games with mapped art_theme get consolidated even without theme_primary', () => {
+            const withArtOnly = validGames.filter(g => !g.theme_primary && g.art_theme && artThemeMap[g.art_theme]);
+            expect(withArtOnly.length).toBeGreaterThan(0);
+            for (const g of withArtOnly.slice(0, 15)) {
+                const row = simulateInsert(g);
+                expect(row.theme_consolidated).toBe(artThemeMap[g.art_theme]);
+            }
+        });
+
+        test('games with no theme_primary and no mapped art_theme get "Unknown"', () => {
+            const unresolved = validGames.filter(g => !g.theme_primary && !(g.art_theme && artThemeMap[g.art_theme]));
+            for (const g of unresolved.slice(0, 20)) {
                 const row = simulateInsert(g);
                 expect(row.theme_consolidated).toBe('Unknown');
             }
@@ -173,12 +197,13 @@ describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
 });
 
 describe('DuckDB chart data contracts', () => {
-    let games, confidenceMap, themeMap;
+    let games, confidenceMap, themeMap, artThemeMap;
 
     beforeAll(() => {
         games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
         confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
         themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
+        artThemeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'art_theme_consolidation_map.json'), 'utf-8'));
     });
 
     const CONF_FIELDS = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'];
@@ -203,10 +228,28 @@ describe('DuckDB chart data contracts', () => {
         test('theme_count = distinct consolidated themes in reliable set', () => {
             const themes = new Set();
             for (const g of getReliable()) {
-                const tc = themeMap[g.theme_primary] || g.theme_primary || 'Unknown';
+                const tc = resolveThemeConsolidated(g, themeMap, artThemeMap);
                 themes.add(tc);
             }
             expect(themes.size).toBeGreaterThan(30);
+        });
+
+        test('distinct consolidated themes in reliable set is at most 45', () => {
+            const themes = new Set();
+            for (const g of getReliable()) {
+                themes.add(resolveThemeConsolidated(g, themeMap, artThemeMap));
+            }
+            expect(themes.size).toBeLessThanOrEqual(45);
+        });
+
+        test('games that had a legacy non-Unknown consolidated label stay non-Unknown', () => {
+            for (const g of getReliable()) {
+                const legacy = legacyThemeConsolidated(g, themeMap);
+                const next = resolveThemeConsolidated(g, themeMap, artThemeMap);
+                if (legacy !== 'Unknown') {
+                    expect(next).not.toBe('Unknown');
+                }
+            }
         });
 
         test('mechanic_count = distinct features in reliable set', () => {
@@ -224,7 +267,7 @@ describe('DuckDB chart data contracts', () => {
             const reliable = getReliable();
             const themes = {};
             for (const g of reliable) {
-                const tc = themeMap[g.theme_primary] || g.theme_primary || 'Unknown';
+                const tc = resolveThemeConsolidated(g, themeMap, artThemeMap);
                 if (!themes[tc]) themes[tc] = { count: 0, totalTheo: 0 };
                 themes[tc].count++;
                 themes[tc].totalTheo += g.theo_win || 0;

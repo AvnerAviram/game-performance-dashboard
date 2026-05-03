@@ -156,6 +156,11 @@ describe('API Data Endpoints - Integration', () => {
         expect(res.status).toBe(401);
     });
 
+    it('should return 401 for /api/data/art-theme-map without session', async () => {
+        const res = await httpGet(`http://127.0.0.1:${TEST_PORT}/api/data/art-theme-map`);
+        expect(res.status).toBe(401);
+    });
+
     it('should return 401 for /api/data/theme-breakdowns without session', async () => {
         const res = await httpGet(`http://127.0.0.1:${TEST_PORT}/api/data/theme-breakdowns`);
         expect(res.status).toBe(401);

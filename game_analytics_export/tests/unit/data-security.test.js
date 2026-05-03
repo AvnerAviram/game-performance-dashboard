@@ -57,6 +57,12 @@ describe('Security - server routes (session auth on data endpoints)', () => {
         expect(code).toContain('/api/data/theme-map');
     });
 
+    it('should have session auth checks on /api/data/art-theme-map', () => {
+        const code = readFileSync(dataRoutePath, 'utf-8');
+        expect(code).toContain('/api/data/art-theme-map');
+        expect(code).toContain('requireAuth');
+    });
+
     it('should have session auth checks on /api/data/theme-breakdowns', () => {
         const code = readFileSync(dataRoutePath, 'utf-8');
         expect(code).toContain('/api/data/theme-breakdowns');

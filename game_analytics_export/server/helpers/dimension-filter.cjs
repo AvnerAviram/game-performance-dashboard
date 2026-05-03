@@ -20,9 +20,9 @@ function matchGameToDimension(game, dimension, valueLower, { normalizeProvider, 
 
     if (dimension === 'theme') {
         const canonical = (
-            g.art_theme ||
             g.theme_consolidated ||
             (g.theme && g.theme.consolidated) ||
+            g.art_theme ||
             g.theme_primary ||
             (g.theme && g.theme.primary) ||
             ''

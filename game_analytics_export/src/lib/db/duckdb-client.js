@@ -126,6 +126,9 @@ function prefetchData() {
         fetch('/api/data/theme-map', { credentials: 'same-origin' }).catch(() =>
             fetch('data/theme_consolidation_map.json')
         ),
+        fetch('/api/data/art-theme-map', { credentials: 'same-origin' }).catch(() =>
+            fetch('data/art_theme_consolidation_map.json')
+        ),
         fetch('data/franchise_mapping.json').catch(() => null),
         fetch('/api/data/confidence-map', { credentials: 'same-origin' }).catch(() =>
             fetch('data/confidence_map.json').catch(() => null)
@@ -143,12 +146,27 @@ async function loadGamesData(dataPromise) {
     try {
         log('Loading games data into DuckDB...');
 
-        const [parquetResult, jsonResponse, themeMapResponse, franchiseResponse, confidenceResponse, artResponse] =
-            await (dataPromise || prefetchData());
+        const [
+            parquetResult,
+            jsonResponse,
+            themeMapResponse,
+            artThemeMapResponse,
+            franchiseResponse,
+            confidenceResponse,
+            artResponse,
+        ] = await (dataPromise || prefetchData());
 
         // Theme consolidation map is needed regardless of load path
         const themeMapRaw = themeMapResponse?.ok ? await themeMapResponse.json() : {};
         themeConsolidationMap = themeMapRaw && typeof themeMapRaw === 'object' ? themeMapRaw : {};
+        let artThemeMapRaw = {};
+        try {
+            if (artThemeMapResponse?.ok) artThemeMapRaw = await artThemeMapResponse.json();
+        } catch (e) {
+            console.warn('Failed to parse art_theme_consolidation_map.json:', e.message);
+            artThemeMapRaw = {};
+        }
+        if (!artThemeMapRaw || typeof artThemeMapRaw !== 'object') artThemeMapRaw = {};
 
         // Fast path: load pre-built Parquet (all transformations baked in at build time)
         if (parquetResult?.format === 'parquet') {
@@ -156,7 +174,14 @@ async function loadGamesData(dataPromise) {
         }
 
         // Slow path: JSON with row-by-row INSERT (legacy / dev without build step)
-        return loadFromJSON(jsonResponse, themeMapRaw, franchiseResponse, confidenceResponse, artResponse);
+        return loadFromJSON(
+            jsonResponse,
+            themeMapRaw,
+            artThemeMapRaw,
+            franchiseResponse,
+            confidenceResponse,
+            artResponse
+        );
     } catch (error) {
         console.error('Failed to load games data:', error);
         throw error;
@@ -185,7 +210,7 @@ async function loadFromParquet(buffer) {
 /**
  * Legacy path: fetch JSON, transform, INSERT row-by-row.
  */
-async function loadFromJSON(response, themeMap, franchiseResponse, confidenceResponse, artResponse) {
+async function loadFromJSON(response, themeMap, artThemeMap, franchiseResponse, confidenceResponse, artResponse) {
     log('Loading from JSON (legacy path)...');
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText} - Failed to load game data`);
@@ -271,7 +296,7 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         const themePrimary = String(game.theme_primary || 'Unknown').replace(/'/g, "''");
         const themeSecondary = String(game.theme_secondary || '').replace(/'/g, "''");
         const themeConsolidated = (
-            game.art_theme ||
+            (game.art_theme && artThemeMap[game.art_theme]) ||
             themeMap[game.theme_primary] ||
             game.theme_primary ||
             'Unknown'

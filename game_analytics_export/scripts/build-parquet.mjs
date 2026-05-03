@@ -33,11 +33,13 @@ async function main() {
 
     const games = readJSON('game_data_master.json');
     const themeMap = readJSON('theme_consolidation_map.json');
+    const artThemeMap = readJSON('art_theme_consolidation_map.json');
     const franchiseMap = readJSON('franchise_mapping.json');
     const confidenceMap = readJSON('confidence_map.json');
     const artMap = readJSON('staged_art_characterization.json');
 
     console.log(`   ${games.length} games, ${Object.keys(themeMap).length} theme mappings`);
+    console.log(`   ${Object.keys(artThemeMap).length} art theme mappings`);
 
     const validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
     const sorted = [...validGames].sort((a, b) => (b.theo_win || 0) - (a.theo_win || 0));
@@ -58,7 +60,11 @@ async function main() {
         const nameNorm = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
         const themePrimary = String(game.theme_primary || 'Unknown');
         const themeSecondary = String(game.theme_secondary || '');
-        const themeConsolidated = game.art_theme || themeMap[game.theme_primary] || game.theme_primary || 'Unknown';
+        const themeConsolidated =
+            (game.art_theme && artThemeMap[game.art_theme]) ||
+            themeMap[game.theme_primary] ||
+            game.theme_primary ||
+            'Unknown';
         const paylines = game.paylines_count
             ? `${game.paylines_count}${game.paylines_kind ? ' ' + game.paylines_kind : ''}`
             : null;
@@ -150,6 +156,18 @@ async function main() {
             original_release_date_source: game.original_release_date_source || null,
         };
     });
+
+    const themesToCheck = new Set();
+    for (const g of validGames) {
+        if (g.art_theme) themesToCheck.add(g.art_theme);
+        const staged = artMap[g.name];
+        if (staged?.art_theme) themesToCheck.add(staged.art_theme);
+    }
+    const unmapped = [...themesToCheck].filter(t => t && !artThemeMap[t]);
+    if (unmapped.length) {
+        console.error('UNMAPPED art_theme values:', unmapped);
+        process.exit(1);
+    }
 
     // Write pre-processed JSON (used as DuckDB fallback & for Parquet generation)
     const processedPath = join(DATA_DIR, 'games_processed.json');
