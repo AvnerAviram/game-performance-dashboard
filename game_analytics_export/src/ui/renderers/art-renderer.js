@@ -1786,23 +1786,31 @@ function renderOpportunityGaps(artGames, globalAvg, themes, narratives, characte
         },
     ];
 
+    const totalGames = artGames.length;
     const gaps = [];
     for (const dim of dimSources) {
         for (const m of dim.metrics) {
-            if (m.count >= 3 && m.count < 10 && m.avgTheo > artAvg) {
+            const lift = artAvg > 0 ? (m.avgTheo / artAvg - 1) * 100 : 0;
+            const penetration = totalGames > 0 ? (m.count / totalGames) * 100 : 0;
+            const isUnderserved = m.count >= 3 && penetration < 5;
+            const isHighPerf = lift > 5;
+            if (isUnderserved && isHighPerf) {
+                const oppScore = lift * (1 + (5 - penetration) / 5);
                 gaps.push({
                     dimension: dim.label,
                     value: m[dim.nameKey],
                     count: m.count,
                     avgTheo: m.avgTheo,
                     handler: dim.handler,
-                    lift: (m.avgTheo / artAvg - 1) * 100,
+                    lift,
+                    penetration,
+                    oppScore,
                 });
             }
         }
     }
 
-    gaps.sort((a, b) => b.lift - a.lift);
+    gaps.sort((a, b) => b.oppScore - a.oppScore);
     const top = gaps.slice(0, 20);
 
     if (!top.length) {

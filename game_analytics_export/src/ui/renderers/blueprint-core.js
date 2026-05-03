@@ -792,20 +792,11 @@ export function initBlueprint() {
             .slice(0, 2)
             .map(e => e[0]);
 
-        // Display art suggestion in the art panel
-        const artContainer = document.getElementById('bp-art-container');
-        const artPanel = document.getElementById('bp-art-panel');
-        if (artContainer && artPanel) {
-            artPanel.classList.remove('hidden');
-            let artHtml = '';
-            if (topChars.length > 0) {
-                artHtml += `<div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Characters</div><div class="flex flex-wrap gap-1 mb-2">${topChars.map(c => `<span class="px-2 py-0.5 text-[11px] rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium">${c}</span>`).join('')}</div>`;
-            }
-            if (topElems.length > 0) {
-                artHtml += `<div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Elements</div><div class="flex flex-wrap gap-1">${topElems.map(e => `<span class="px-2 py-0.5 text-[11px] rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 font-medium">${e}</span>`).join('')}</div>`;
-            }
-            if (artHtml) artContainer.innerHTML = artHtml;
-        }
+        // Apply art suggestions to selectedArt state (affects score)
+        selectedArt.characters.clear();
+        selectedArt.elements.clear();
+        topChars.forEach(c => selectedArt.characters.add(c));
+        topElems.forEach(e => selectedArt.elements.add(e));
 
         refreshCategoryUI();
     });
