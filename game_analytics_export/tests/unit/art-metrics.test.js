@@ -67,6 +67,18 @@ describe('getArtElementMetrics', () => {
         expect(result.length).toBe(2);
         expect(result[0]).toHaveProperty('element');
     });
+
+    it('applies ELEMENT_CONSOLIDATION after SQL (merge Fire/Flames/Lava into Fire/Flames)', async () => {
+        query.mockResolvedValueOnce([
+            { element: 'Fire/Flames', count: 10, totalTheo: 100, avgTheo: 10 },
+            { element: 'Fire/Flames/Lava', count: 5, totalTheo: 45, avgTheo: 9 },
+        ]);
+        const result = await getArtElementMetrics();
+        expect(result).toHaveLength(1);
+        expect(result[0].element).toBe('Fire/Flames');
+        expect(result[0].count).toBe(15);
+        expect(result[0].avgTheo).toBeCloseTo((10 * 10 + 5 * 9) / 15, 8);
+    });
 });
 
 describe('getArtColorToneMetrics', () => {

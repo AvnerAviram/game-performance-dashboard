@@ -22,6 +22,7 @@ describe('Filter Dropdowns Module', () => {
         const mod = await import('../../src/ui/filter-dropdowns.js');
         expect(typeof mod.populateThemesFilters).toBe('function');
         expect(typeof mod.populateMechanicsFilters).toBe('function');
+        expect(typeof mod.filterThemes).toBe('function');
     });
 
     it('exports populateProvidersFilters and populateGamesFilters', async () => {

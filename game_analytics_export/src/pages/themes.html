@@ -178,7 +178,16 @@
                 >ⓘ
                 <div class="filter-tooltip">
                     <strong>Opportunities Filter</strong>
-                    <p>Themes with 5+ games, at or above average quality, and &lt;5% market share</p>
+                    <p>
+                        <strong>All-types / no dropdowns:</strong> themes with ≥5 games, average Theo ≥ the mean of
+                        theme averages, and summed GGR contribution under 5% on the full roster.
+                    </p>
+                    <p class="text-[10px] opacity-90 mt-1 leading-snug">
+                        <strong>With Provider/Category/Mechanic filters:</strong> the table rebuilds from only the
+                        filtered games — each row's share is its % of <em>that slice</em>, the minimum games per theme
+                        becomes 3 instead of 5, and the share test is no longer full-catalog GGR. Use for focused
+                        what-if views, not headline market totals.
+                    </p>
                     <hr />
                     <p>✓ Proven quality (not flukes)</p>
                     <p>✓ Low competition (not oversaturated)</p>
@@ -196,7 +205,10 @@
                 >ⓘ
                 <div class="filter-tooltip">
                     <strong>Premium Quality Filter</strong>
-                    <p>Shows the top 25% of themes by performance</p>
+                    <p>
+                        Shows the top quartile of themes by Performance Index (ratio of each theme's average Theo Win
+                        index to the mean of theme averages in the current cohort)
+                    </p>
                     <hr />
                     <p>✓ Highest quality regardless of volume</p>
                     <p>✓ Includes emerging high-performers</p>
@@ -239,13 +251,18 @@
                             <div class="filter-tooltip">
                                 <strong id="themes-tooltip-title">Performance Index</strong>
                                 <p id="themes-tooltip-formula">
-                                    Avg Performance Index per game &bull; Eilers &amp; Krejcik method
+                                    Each theme's average Theo Win index divided by the
+                                    <strong>mean average Theo Win of themes</strong> in your current filter
+                                    (Eilers-style cohort ratio)
                                 </p>
                                 <hr />
                                 <div id="themes-tooltip-content">
-                                    <p>✓ <b>1.00</b> = market average</p>
-                                    <p>✓ <b>2.50</b> = 2.5&times; above average</p>
-                                    <p>✓ Pure quality per game, independent of volume</p>
+                                    <p>✓ <b>1.00</b> = cohort average (unweighted mean of theme averages)</p>
+                                    <p>✓ <b>1.25</b> = 25% stronger than that baseline</p>
+                                    <p>
+                                        ✓ Themes with more games still use the same per-theme average Theo before the
+                                        ratio
+                                    </p>
                                 </div>
                             </div>
                         </span>
@@ -255,6 +272,16 @@
                         onclick="sortTable('themes-table', 4)"
                     >
                         Market Share %
+                        <span class="info-icon"
+                            >ⓘ
+                            <div class="filter-tooltip">
+                                <strong>Market Share %</strong>
+                                <p>
+                                    Sum of each game's GGR contribution % in the loaded roster for titles tagged with
+                                    this consolidated theme. Higher = larger share of tracked operator GGR.
+                                </p>
+                            </div>
+                        </span>
                     </th>
                 </tr>
             </thead>

@@ -350,8 +350,8 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Top 10 themes ranked by <strong>Market Share</strong> — total market presence across all
-                                games. Higher = more dominant on casino floors.
+                                Horizontal bars chart each theme's summed <strong>GGR contribution %</strong> (operator
+                                market share captured in this dataset). Longer bars = more tracked revenue footprint.
                             </div>
                         </div>
                     </div>
@@ -386,12 +386,13 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Shows the <strong>primary mechanic</strong> of each game, ranked by Performance Index
-                                (balancing game count and average performance).
+                                Bar length = summed <strong>GGR share %</strong> for consolidated mechanic names across
+                                the roster (same mechanics metrics as Insights). Hover each bar for game counts and
+                                cohort <strong>Performance Index</strong> (avg Theo divided by mean mechanic Theo).
                             </div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">By Performance Index</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">By GGR Share</p>
                 </div>
             </div>
         </div>
@@ -422,10 +423,10 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Top 10 games ranked by <strong>Performance Index</strong> — theoretical win per unit bet
-                                from the Eilers performance data. Higher = stronger market performance.
-                                <strong class="block mt-1">Data scope:</strong> Only games with verified or extracted
-                                data are shown. Rankings reflect position among these verified games.
+                                Bars plot raw <strong>Theo Win indices</strong> (Eilers benchmark scale) sorted high →
+                                low—not the ratio-style Performance Index used on theme/mechanics tables.
+                                <strong class="block mt-1">Data scope:</strong> Coverage reflects games with Theo Win
+                                &gt; 0 in loaded data (see footer pill below chart).
                             </div>
                         </div>
                     </div>
@@ -463,10 +464,10 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a theme. X = number of games, Y = average Performance Index. Dot size = game
-                                count. Dashed lines show the median, creating 4 quadrants:
-                                <strong>Leaders</strong> (high perf, many games), <strong>Opportunity</strong> (high
-                                perf, few games), <strong>Niche</strong>, <strong>Saturated</strong>.
+                                Each dot is a <strong>consolidated dashboard theme</strong>. X = game count, Y = average
+                                Theo Win index, dot area scales with count (top-volume themes sampled). Quadrant shading
+                                uses cohort medians: <strong>Leaders</strong>, <strong>Opportunity</strong>,
+                                <strong>Niche</strong>, <strong>Saturated</strong>.
                             </div>
                         </div>
                         <button
@@ -522,11 +523,10 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a volatility level. X = game count, Y = avg Performance Index. Dot size =
-                                game count. Dashed lines show medians creating 4 quadrants.
-                                <strong class="block mt-1">Data quality:</strong> Only games with provider-verified or
-                                high-confidence volatility data are included. Games with estimated volatility (e.g.
-                                SlotCatalog) are excluded to avoid misleading patterns.
+                                Each dot is a volatility level. X = game count, Y = average Theo Win index, dot area ∝
+                                game count. Dashed lines show medians across included buckets (quadrant shading).
+                                <strong class="block mt-1">Data quality:</strong> Only titles with trusted volatility
+                                sources are included — estimated guesses are dropped.
                             </div>
                         </div>
                         <button
@@ -582,10 +582,10 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is an RTP band. X = game count, Y = avg Performance Index. Dot size = game
-                                count. Dashed lines show medians creating 4 quadrants.
-                                <strong class="block mt-1">Data coverage:</strong> RTP data is available for ~66% of
-                                dashboard games. Games without RTP are excluded from this chart.
+                                Each dot is an RTP band. X = games in band, Y = average Theo Win index, dot area ∝
+                                counts. Dashed lines split the cohort quadrants via medians.
+                                <strong class="block mt-1">Data coverage:</strong> Percentage refreshes live from loaded
+                                data — hover bubbles or open Insights RTP Landscape for the exact share.
                             </div>
                         </div>
                         <button
@@ -701,8 +701,9 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a game brand/franchise. X = number of titles, Y = average Performance Index.
-                                Dot size = total market share. Dashed lines show medians creating 4 quadrants.
+                                Each dot is an IP/franchise with ≥2 titles. X = title count in that franchise, Y = avg
+                                Theo Win index, dot area scales with summed <strong>GGR share %</strong> versus the
+                                chart cohort (bubble area ∝ √(share)).
                             </div>
                         </div>
                         <button
@@ -760,9 +761,8 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a narrative type (e.g. Quest, Heist, Tournament). X = game count, Y = avg
-                                Performance Index. Dot size = game count. Dashed lines show medians creating 4
-                                quadrants.
+                                Each bubble is an art narrative type. X = classified games carrying that narrative, Y =
+                                avg Theo Win index among them, bubble area ∝ counts (classified art snapshot).
                             </div>
                         </div>
                         <button
@@ -799,8 +799,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Best/Worst by Performance Index. Best mechanic/provider require min 3 games. Top game = highest
-                    Performance Index.
+                    Snapshot cards pulled from aggregates: themes use cohort <strong>Performance Index</strong> ratios;
+                    best mechanic = highest avg Theo among mechanics with ≥5 games (see card tooltips); top provider =
+                    highest GGR share roster-wide; headline game card = peak Theo Win index.
                 </div>
             </div>
         </div>
@@ -822,8 +823,8 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Top-performing and emerging themes ranked by <strong>Performance Index</strong>. Includes rising
-                    themes and recipe explorer for mechanic combinations.
+                    Theme callouts emphasize Performance Index uplift vs the roster story mix (see Themes page for full
+                    definitions). Mechanics combos reference the Insights recipe leaderboard.
                 </div>
             </div>
         </div>

@@ -112,8 +112,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is a theme. X-axis = game count, Y-axis = avg Performance Index. Bubble size reflects
-                    game count. Only games with theme data are included.
+                    Each bubble is a <strong>consolidated dashboard theme</strong> (canonical theme_consolidated). X =
+                    games in theme, Y = average Theo Win index for those games (Eilers scale), bubble area scales with
+                    game count. Coverage pill: games that have usable theme mapping in the snapshot.
                 </div>
             </div>
             <div class="ml-auto">
@@ -126,7 +127,7 @@
             </div>
         </div>
         <p id="theme-landscape-subtitle" class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg Performance Index, bubble size = game count
+            X = game count, Y = avg Theo Win index, bubble area ∝ game count
         </p>
     </div>
     <div id="market-landscape-chart" class="px-2 pt-0 pb-0 relative" style="height: 780px">
@@ -186,13 +187,14 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is a provider. X-axis = game count, Y-axis = avg Performance Index. Bubble size reflects
-                    game count. Only games with Performance Index data are included.
+                    Each bubble is a provider. X = games in footprint, Y = average Theo Win index, bubble area scales
+                    with game count. Quadrant shading vs median splits the cohort shown. Coverage pill: games with Theo
+                    Win &gt; 0 in loaded data.
                 </div>
             </div>
         </div>
         <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg Performance Index, bubble size = game count
+            X = game count, Y = avg Theo Win index, bubble area ∝ game count
         </p>
     </div>
     <div id="provider-landscape-chart" class="px-4 pt-2 pb-1" style="height: 680px">
@@ -247,7 +249,7 @@
             </div>
         </div>
         <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg Performance Index, bubble size = game count per volatility level
+            X = game count, Y = avg Theo Win index, bubble area ∝ game count (per volatility bucket)
         </p>
     </div>
     <div id="volatility-landscape-chart" class="p-4" style="height: 480px">
@@ -278,7 +280,7 @@
             </div>
         </div>
         <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg Performance Index, bubble size = game count per RTP band
+            X = game count, Y = avg Theo Win index, bubble area ∝ game count (per RTP band)
         </p>
     </div>
     <div id="rtp-landscape-chart" class="p-4" style="height: 480px">
@@ -310,7 +312,7 @@
             </div>
         </div>
         <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = title count, Y = avg Performance Index, bubble size = title count
+            X = title count (franchise), Y = avg Theo Win index, bubble area ∝ title count (≥5-title franchises)
         </p>
     </div>
     <div id="brand-landscape-chart" class="px-4 pt-2 pb-1 relative" style="height: 780px; overflow: visible">
@@ -360,8 +362,9 @@
                     <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                     >
-                        Theme+Mechanic combos with above-median performance and low saturation, ranked by opportunity
-                        score.
+                        Theme×mechanic pairs from the cohort: avg Theo Win near median or better (&ge; ~90% of median
+                        combo avg) while game count stays in the lighter tail of adoption (&le; ~75th percentile of
+                        combo sizes). Sorted by avg Theo divided by √(games + 1).
                     </div>
                 </div>
             </div>
@@ -384,7 +387,9 @@
                     <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                     >
-                        Combos with 3+ games performing below 95% of median Performance Index.
+                        Theme×mechanic pairs with at least three games whose <strong>average Theo Win index</strong> is
+                        below ~95% of the <strong>median</strong> average across all such pairs — crowded legacy
+                        bundles.
                     </div>
                 </div>
             </div>
@@ -407,7 +412,9 @@
                     <div
                         class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                     >
-                        Emerging themes with 2-10 games and above-median Performance Index.
+                        Themes surfaced by scoring (not a single rule): e.g. recent titles outperforming older ones, few
+                        providers owning the theme, niche counts with strong Theo vs the whole-catalog average, or very
+                        high-performing medium-sized themes.
                     </div>
                 </div>
             </div>
@@ -442,8 +449,9 @@
                         <div
                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                         >
-                            Game families and licensed IPs grouped by brand. Shows performance, market share, and theme
-                            coverage to help identify strong brand opportunities.
+                            Franchise buckets from each game's franchise field on the roster. Rows show Theo vs market,
+                            total <strong>GGR share</strong> (sum of each title's measured contribution %), YoY mix, and
+                            top themes/mechanics across that franchise.
                         </div>
                     </div>
                 </div>
@@ -468,19 +476,21 @@
             </h3>
             <div class="relative group">
                 <button
-                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
                 >
-                    ?</button
-                ><span
+                    ?
+                </button>
+                <div
                     class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                    >Top 10 providers by game count. Best theme determined by highest avg Performance Index within each
-                    provider's portfolio.</span
                 >
+                    Top 10 providers by game count on the roster. Highlighted theme = highest average
+                    <strong>Theo Win index</strong> among themes that provider ships (portfolio slice, not cohort PI).
+                </div>
             </div>
         </div>
         <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
-            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg Performance Index</span
-            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg Performance Index</span
+            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg Theo Win index</span
+            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg Theo Win index</span
             ><span>↑↓ = year-over-year trend</span>
         </div>
     </div>

@@ -174,10 +174,9 @@
                                 class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                                For each year, computes the <strong>average Performance Index</strong> across all games
-                                released in that year.<br /><br /><strong>Performance Index</strong> = a game's
-                                theoretical win per unit bet, derived from the Eilers performance data. Higher =
-                                stronger market performance.
+                                For each release year, averages the <strong>Theo Win index</strong> (Eilers benchmark
+                                scale) over every game with that year. This is the raw index, not divided by a moving
+                                cohort ratio—compare years as relative strength on the same scale.
                             </div>
                         </div>
                     </div>
@@ -228,10 +227,10 @@
                                 class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                                Shows the <strong>top 10 themes by game count</strong>. For each theme and year,
-                                computes the <strong>average Performance Index</strong> of all games in that theme
-                                released in that year.<br /><br />Lines represent how each theme's average performance
-                                has changed over time.
+                                Shows the <strong>top 10 consolidated themes by total game count</strong>. For each
+                                theme and release year, averages the <strong>Theo Win index</strong> of games in that
+                                theme/year (same raw Eilers scale as the overall trend—<em>not</em> the theme-table
+                                Performance Index ratio).
                             </div>
                         </div>
                     </div>
@@ -273,9 +272,9 @@
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
                                 Shows the <strong>top 10 mechanics by adoption count</strong>. For each mechanic and
-                                year, computes the <strong>average Performance Index</strong> of all games that include
-                                that mechanic and were released in that year.<br /><br />A game can have multiple
-                                mechanics, so it contributes to multiple lines.
+                                release year, averages the <strong>Theo Win index</strong> of games that list that
+                                mechanic and shipped in that year. A single game can appear on multiple lines.<br /><br />
+                                Values are raw Theo Win averages, not mechanics-table Performance Index ratios.
                             </div>
                         </div>
                     </div>
@@ -318,14 +317,16 @@
                                 class="hidden group-hover:block absolute left-0 top-full mt-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
                             >
                                 <strong class="text-gray-900 dark:text-white block mb-1">Calculation</strong>
-                                Shows the <strong>top providers by game count</strong>. For each provider and year,
-                                computes the <strong>average Performance Index</strong> of all games from that provider
-                                released in that year.<br /><br />Lines represent how each provider's average
-                                performance has changed over time.
+                                Shows the <strong>top 10 providers by GGR share</strong> (same ordering as the roster
+                                aggregates). For each provider and release year, averages the
+                                <strong>Theo Win index</strong>
+                                of that studio's games released in that year.
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Top provider avg Performance Index by year</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        Top providers: avg Theo Win index by release year
+                    </p>
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-1.5" id="provider-trend-zoom"></div>

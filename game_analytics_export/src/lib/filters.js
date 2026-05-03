@@ -3,6 +3,7 @@
 
 import { log } from './env.js';
 import { MARKET_LEADER_THRESHOLD } from './shared-config.js';
+import { F } from './game-fields.js';
 
 function qualifiedFirstSort(a, b) {
     if ((a.qualified !== false) !== (b.qualified !== false)) return a.qualified !== false ? -1 : 1;
@@ -208,8 +209,8 @@ function _getFilteredGames(view) {
     switch (view) {
         case 'marketLeaders': {
             return games
-                .filter(g => (g['Market Share'] || 0) >= MARKET_LEADER_THRESHOLD)
-                .sort((a, b) => (b['Market Share'] || 0) - (a['Market Share'] || 0));
+                .filter(g => (F.marketShare(g) || 0) >= MARKET_LEADER_THRESHOLD)
+                .sort((a, b) => (F.marketShare(b) || 0) - (F.marketShare(a) || 0));
         }
         case 'newReleases': {
             const cutoffYear = new Date().getFullYear() - 1;
@@ -218,10 +219,10 @@ function _getFilteredGames(view) {
                 .sort((a, b) => (b['Release Year'] || 0) - (a['Release Year'] || 0));
         }
         case 'hiddenGems': {
-            const avg = games.reduce((s, g) => s + (g['Theo Win'] || 0), 0) / games.length;
+            const avg = games.reduce((s, g) => s + (F.theoWin(g) || 0), 0) / games.length;
             return games
-                .filter(g => (g['Theo Win'] || 0) >= avg && (g['Market Share'] || 0) < 1)
-                .sort((a, b) => b['Theo Win'] - a['Theo Win']);
+                .filter(g => (F.theoWin(g) || 0) >= avg && (F.marketShare(g) || 0) < 1)
+                .sort((a, b) => (F.theoWin(b) || 0) - (F.theoWin(a) || 0));
         }
         case 'all':
         default:

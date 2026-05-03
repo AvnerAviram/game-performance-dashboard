@@ -112,7 +112,7 @@ export function populateMechanicsFilters() {
  * Filter themes based on selected provider, mechanic, and optional tab view.
  * @param {string} [view] — tab preset ('all'|'leaders'|'opportunities'|'premium')
  */
-function filterThemes(view) {
+export function filterThemes(view) {
     const providerValue = document.getElementById('themes-filter-provider')?.value || '';
     const mechanicValue = document.getElementById('themes-filter-mechanic')?.value || '';
     const categoryValue = document.getElementById('themes-category-filter')?.value || '';

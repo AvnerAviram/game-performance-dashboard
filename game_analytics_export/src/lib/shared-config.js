@@ -82,8 +82,8 @@ export const MIN_QUALIFIED_GAMES = 20;
 /** Minimum sample size for sub-theme tags, combo signals, etc. */
 export const MIN_SAMPLE_SIZE = 2;
 
-/** Market share threshold for "market leaders" filter (0.5% = 0.005). */
-export const MARKET_LEADER_THRESHOLD = 0.005;
+/** Market share threshold for "market leaders" filter — percent points on DuckDB `performance_market_share_percent` (0.5 = 0.5% GGR). */
+export const MARKET_LEADER_THRESHOLD = 0.5;
 
 /** Element name consolidation — merge overlapping art element labels. */
 export const ELEMENT_CONSOLIDATION = {

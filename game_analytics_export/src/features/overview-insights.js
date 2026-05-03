@@ -31,15 +31,15 @@ export async function getTopPerformers(allGames, themes, mechanics) {
     const worstTheme = sortedThemes[sortedThemes.length - 1];
 
     // Best Feature (highest avg theo_win) — uses features array via metrics layer
-    const featureArray = (await getFeatureMetrics(gameData.activeCategory))
+    const filteredFeatures = (await getFeatureMetrics(gameData.activeCategory))
         .filter(f => f.count >= MIN_FEATURE_GAMES && f.feature && !/^unknown$/i.test(f.feature))
         .map(f => ({
             name: f.feature,
             avgTheoWin: f.avgTheo,
             gameCount: f.count,
         }));
-    const bestMechanic = featureArray[0] || null;
-    const mostCommonMechanic = [...featureArray].sort((a, b) => b.gameCount - a.gameCount)[0] || null;
+    const bestMechanic = [...filteredFeatures].sort((a, b) => (b.avgTheoWin || 0) - (a.avgTheoWin || 0))[0] || null;
+    const mostCommonMechanic = [...filteredFeatures].sort((a, b) => (b.gameCount || 0) - (a.gameCount || 0))[0] || null;
 
     const providerArray = (await getProviderMetrics(gameData.activeCategory)).map(p => ({
         name: p.name,
@@ -128,11 +128,11 @@ export function renderComparisonCards(performers) {
                 <div class="flex items-center gap-2 mb-2">
                     <span class="text-lg">⚙️</span>
                     <div class="text-[10px] font-bold uppercase tracking-wide text-purple-700 dark:text-purple-400">Best Mechanic</div>
-                    ${tooltip('Mechanic with the highest average Performance Index across games that include it (min ' + MIN_FEATURE_GAMES + ' games). Pure performance ranking, not weighted by popularity.')}
+                    ${tooltip('Mechanic with the highest average Theo Win among mechanics with ≥' + MIN_FEATURE_GAMES + ' games (same roster metrics as Mechanics page). Adoption volume is labeled separately via “Most Popular” card.')}
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5">${escapeHtml(performers.bestMechanic.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">${performers.bestMechanic.avgTheoWin}</div>
-                <div class="text-[9px] font-semibold uppercase tracking-wide text-purple-400 dark:text-purple-500 mb-1">Avg Performance Index</div>
+                <div class="text-[9px] font-semibold uppercase tracking-wide text-purple-400 dark:text-purple-500 mb-1">Avg Theo Win Index</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${performers.bestMechanic.gameCount} games</div>
             </div>
         `);
@@ -189,7 +189,7 @@ export function renderComparisonCards(performers) {
                 </div>
                 <div class="text-sm font-bold text-gray-900 dark:text-white mb-0.5 truncate" title="${escapeAttr(performers.highestRTPGame.name)}">${escapeHtml(performers.highestRTPGame.name)}</div>
                 <div class="text-xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">${performers.highestRTPGame.theoWin}</div>
-                <div class="text-[9px] font-semibold uppercase tracking-wide text-indigo-400 dark:text-indigo-500 mb-1">Performance Index</div>
+                <div class="text-[9px] font-semibold uppercase tracking-wide text-indigo-400 dark:text-indigo-500 mb-1">Theo Win Index</div>
                 <div class="text-[10px] text-gray-500 dark:text-gray-400">${escapeHtml(performers.highestRTPGame.theme)} · ${escapeHtml(performers.highestRTPGame.provider)}</div>
             </div>
         `);

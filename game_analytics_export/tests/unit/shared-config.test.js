@@ -77,8 +77,8 @@ describe('threshold constants', () => {
         expect(MIN_SAMPLE_SIZE).toBe(2);
     });
 
-    it('MARKET_LEADER_THRESHOLD is 0.005', () => {
-        expect(MARKET_LEADER_THRESHOLD).toBe(0.005);
+    it('MARKET_LEADER_THRESHOLD is 0.5 (percent points = 0.5% GGR)', () => {
+        expect(MARKET_LEADER_THRESHOLD).toBe(0.5);
     });
 
     it('INITIAL_SHOW is 5', () => {

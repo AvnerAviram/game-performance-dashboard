@@ -1,5 +1,13 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+vi.mock('../../src/ui/renderers/themes-renderer.js', () => ({
+    renderThemes: vi.fn(),
+}));
+
+import { renderThemes } from '../../src/ui/renderers/themes-renderer.js';
 import { getFilteredThemes, getFilteredMechanics, resetFilterState } from '../../src/lib/filters.js';
+import { gameData } from '../../src/lib/data.js';
+import { filterThemes } from '../../src/ui/filter-dropdowns.js';
 
 const mockThemes = [
     { Theme: 'Fantasy', 'Game Count': 60, 'Avg Theo Win Index': 2.0, 'Smart Index': 4.5, 'Market Share %': 8 },
@@ -126,5 +134,77 @@ describe('getFilteredMechanics', () => {
 describe('resetFilterState provider view', () => {
     it('resets provider view to all', () => {
         resetFilterState('providers');
+    });
+});
+
+describe('filterThemes(view) composition', () => {
+    /** @returns {HTMLElement & { value: string }} */
+    function optionEl(val) {
+        const el = document.createElement('div');
+        el.value = val;
+        return /** @type {any} */ (el);
+    }
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        vi.spyOn(document, 'getElementById').mockImplementation(id => {
+            if (id === 'themes-filter-provider') return optionEl('');
+            if (id === 'themes-filter-mechanic') return optionEl('');
+            if (id === 'themes-category-filter') return optionEl('');
+            if (id === 'themes-count') {
+                const s = document.createElement('span');
+                return s;
+            }
+            return null;
+        });
+
+        /** @param {{ theme: string, theo?: number }}[] rows */
+        const gamesFrom = rows =>
+            rows.flatMap(({ theme, theo }) =>
+                [...Array(theme.count)].map((_, i) => ({
+                    name: `${theme}_${i}_${Math.random()}`,
+                    provider_studio: 'Prov',
+                    category: 'Slot',
+                    theme_consolidated: theme.theme,
+                    features: [],
+                    performance_theo_win: theo ?? 10,
+                }))
+            );
+
+        const defs = [
+            { theme: { theme: 'Alpha', count: 60 }, theo: 20 },
+            { theme: { theme: 'Beta', count: 40 }, theo: 15 },
+            { theme: { theme: 'Gamma', count: 30 }, theo: 12 },
+            { theme: { theme: 'Delta', count: 8 }, theo: 18 },
+            { theme: { theme: 'Epsilon', count: 3 }, theo: 5 },
+        ];
+        gameData.allGames = gamesFrom(defs);
+        gameData.viewGames = null;
+    });
+
+    it('accepts an optional view parameter: leaders applies top 20% game-count threshold over full rebuilt set', () => {
+        filterThemes('leaders');
+        expect(renderThemes).toHaveBeenCalled();
+        const arg = renderThemes.mock.calls.at(-1)[0];
+        expect(Array.isArray(arg)).toBe(true);
+        // Known fixture: counts 60,40,30,8,3 → percentile index 1 → threshold 40 → Alpha + Beta only
+        expect(arg.map(t => t.Theme).sort()).toEqual(['Alpha', 'Beta']);
+    });
+
+    it('accepts optional view=premium (Smart Index cutoff from rebuilt rows, descending)', () => {
+        filterThemes('premium');
+        const arg = renderThemes.mock.calls.at(-1)[0];
+        expect(arg.length).toBeGreaterThan(0);
+        // Global PI baseline = mean(theme avg Theo); premium keeps rows at or above the 25th percentile Smart Index cutoff
+        expect(arg.map(t => t.Theme).sort()).toEqual(['Alpha', 'Delta']);
+        for (let i = 1; i < arg.length; i++) {
+            expect(arg[i - 1]['Smart Index']).toBeGreaterThanOrEqual(arg[i]['Smart Index']);
+        }
+    });
+
+    it('with no dropdowns and no view delegates to renderThemes() without curated list', () => {
+        filterThemes(undefined);
+        const lastCall = renderThemes.mock.calls.at(-1);
+        expect(lastCall.length).toBe(0);
     });
 });

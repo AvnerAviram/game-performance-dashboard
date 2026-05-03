@@ -515,11 +515,10 @@ export function renderGames() {
                             <span class="info-icon">ⓘ
                                 <div class="filter-tooltip">
                                     <strong>Theoretical Win Index</strong>
-                                    <p>Expected casino profit per game &bull; Eilers &amp; Krejcik method</p>
+                                    <p>Per-title Eilers Theo Win benchmark loaded from the performance layer (raw index)</p>
                                     <hr>
-                                    <p>✓ <b>1.00</b> = market average</p>
-                                    <p>✓ Higher = stronger revenue potential</p>
-                                    <p>✓ Independent of market share or volume</p>
+                                    <p>✓ Higher scores = stronger modeled performance on this scale</p>
+                                    <p>✓ Compared to the cohort in badges; not the theme-table PI ratio</p>
                                 </div>
                             </span>
                         </th>
