@@ -228,20 +228,34 @@ function buildArtBreakdown(games, excludeDimension) {
 
     if (!dims.length) return '';
 
+    const DIM_COLORS = {
+        art_theme: 'bg-violet-400 dark:bg-violet-500',
+        art_characters: 'bg-amber-400 dark:bg-amber-500',
+        art_elements: 'bg-teal-400 dark:bg-teal-500',
+        art_narrative: 'bg-rose-400 dark:bg-rose-500',
+        art_color_tone: 'bg-sky-400 dark:bg-sky-500',
+    };
+
     return dims
-        .map(
-            d => `
-        <div class="mb-3 last:mb-0">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">${d.label}${d.base < total ? ` <span class="font-normal">(${d.base} of ${total} games)</span>` : ''}</div>
-            <div class="flex flex-wrap gap-1.5">${d.items
+        .map(d => {
+            const maxCount = d.items.length ? d.items[0][1] : 1;
+            const barColor = DIM_COLORS[d.dim] || 'bg-indigo-400 dark:bg-indigo-500';
+            const rows = d.items
                 .map(([name, count]) => {
+                    const barW = ((count / maxCount) * 100).toFixed(0);
                     const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
-                    return `<span class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">${escapeHtml(name)} <span class="text-[9px] text-gray-400">${pct}%</span></span>`;
+                    return `<div class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
+                    <span class="text-[12px] font-medium text-gray-800 dark:text-gray-200 w-32 truncate flex-shrink-0">${escapeHtml(name)}</span>
+                    <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full ${barColor} rounded-full" style="width:${barW}%"></div></div>
+                    <span class="text-[10px] text-gray-400 dark:text-gray-500 w-14 text-right flex-shrink-0">${count} (${pct}%)</span>
+                </div>`;
                 })
-                .join('')}</div>
-        </div>
-    `
-        )
+                .join('');
+            return `<div class="mb-4 last:mb-0">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">${d.label}${d.base < total ? ` <span class="font-normal">(${d.base} of ${total} games)</span>` : ''}</div>
+            <div class="space-y-0.5">${rows}</div>
+        </div>`;
+        })
         .join('');
 }
 
