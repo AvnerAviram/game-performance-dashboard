@@ -51,7 +51,7 @@ export function renderAnomalies() {
             const featList = parseFeatures(features);
             const rank = gameObj?.performance_rank || null;
             const percentile = gameObj?.performance_percentile || '';
-            const volatility = gameObj?.specs_volatility || '';
+            const volatility = gameObj ? F.volatility(gameObj) : '';
             const marketShare = gameObj?.performance_market_share_percent;
 
             const themeAvg =
@@ -159,7 +159,7 @@ export function renderAnomalies() {
         const featList = parseFeatures(features);
         const rank = gameObj?.performance_rank || null;
         const percentile = gameObj?.performance_percentile || '';
-        const volatility = gameObj?.specs_volatility || '';
+        const volatility = gameObj ? F.volatility(gameObj) : '';
         const marketShare = gameObj?.performance_market_share_percent;
 
         const themeAvg =

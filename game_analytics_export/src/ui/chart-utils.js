@@ -1,22 +1,46 @@
 // Shared Chart.js utilities: color palettes, gradients, tooltips, grid config, label helpers
 
-import { Chart } from './chart-setup.js';
+import { Chart, Tooltip } from './chart-setup.js';
 import { saLabelSolver } from '../lib/sa-label-solver.js';
+
+Tooltip.positioners.bubbleAvoid = function (elements, eventPosition) {
+    if (!elements.length) return false;
+    const el = elements[0].element;
+    const r = el.options?.radius ?? el.outerRadius ?? 12;
+    const chart = this.chart || this._chart;
+    const chartArea = chart?.chartArea;
+    const dataIdx = elements[0].index;
+    const offset = r + 30;
+
+    let placeBelow = true;
+    const labelEntry = chart?._saCachedLabels?.find(e => e.dataIndex === dataIdx);
+    if (labelEntry) {
+        const labelCy = (labelEntry.rect.y1 + labelEntry.rect.y2) / 2;
+        placeBelow = labelCy < el.y;
+    } else {
+        const spaceAbove = chartArea ? el.y - chartArea.top : el.y;
+        const spaceBelow = chartArea ? chartArea.bottom - el.y : 200;
+        placeBelow = spaceBelow >= spaceAbove;
+    }
+
+    this.yAlign = placeBelow ? 'top' : 'bottom';
+    return { x: el.x, y: placeBelow ? el.y + offset : el.y - offset };
+};
 
 Chart.register({
     id: 'coverageAnnotation',
-    afterDraw(chart) {
+    afterRender(chart) {
         const txt = chart._coverageText;
         if (!txt) return;
-        const { ctx, chartArea, height } = chart;
-        if (!chartArea) return;
-        ctx.save();
-        ctx.font = '10px system-ui, sans-serif';
-        ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
-        ctx.textAlign = 'right';
-        ctx.textBaseline = 'bottom';
-        ctx.fillText(txt, chartArea.right - 4, height - 2);
-        ctx.restore();
+        const canvas = chart.canvas;
+        if (!canvas) return;
+        const card = canvas.closest('.bg-white, .dark\\:bg-gray-800') || canvas.parentElement;
+        const inline = card?.querySelector(`.coverage-inline[data-for="${canvas.id}"]`);
+        if (inline) {
+            inline.textContent = txt;
+            card.querySelectorAll('.coverage-footnote').forEach(el => el.remove());
+            return;
+        }
     },
 });
 
@@ -344,74 +368,111 @@ export function snapLabelToBubble(lab, anc, chartArea, allAncs) {
     lab.y = Math.max(chartArea.top, Math.min(chartArea.bottom - lab.height, best.y));
 }
 
+/** Pixels added to bubble radius on hover. */
+const HOVER_GROW = 4;
+
 /**
- * SA-based label plugin with leader lines. Use for crowded bubble charts (>10 bubbles).
- * Mirrors the Market Landscape label quality.
+ * Unified hover handler for bubble charts with SA labels.
+ * Manages hover state on chart instance (`chart._saLastHoverIdx`) so
+ * both onHover and mouseleave can coordinate. Uses `chart.draw()` to
+ * repaint without recalculating layout (hover visuals are drawn by the plugin).
  */
 export function createSAHoverHandler() {
-    return (e, elements, chart) => {
+    return (e, _elements, chart) => {
         const native = e.native;
         if (!native) return;
 
-        if (elements.length) {
-            const idx = elements[0].index;
-            chart._saSetHovered?.(idx);
-            chart.setActiveElements([{ datasetIndex: 0, index: idx }]);
-            chart.draw();
-            native.target.style.cursor = 'pointer';
-            return;
-        }
+        let targetIdx = -1;
+        let locked = false;
 
         if (chart._saFindLabel) {
             const rect = chart.canvas.getBoundingClientRect();
             const idx = chart._saFindLabel(native.clientX - rect.left, native.clientY - rect.top);
             if (idx >= 0) {
-                chart._saSetHovered?.(idx);
-                chart.setActiveElements([{ datasetIndex: 0, index: idx }]);
-                chart.draw();
-                native.target.style.cursor = 'pointer';
-                return;
+                targetIdx = idx;
+                locked = true;
             }
         }
 
-        if (chart._saGetHovered?.() >= 0) {
-            chart._saSetHovered?.(-1);
-            chart.setActiveElements([]);
-            chart.draw();
+        if (targetIdx < 0) {
+            const hits = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+            if (hits.length) targetIdx = hits[0].index;
         }
-        native.target.style.cursor = 'default';
+
+        const lastIdx = chart._saLastHoverIdx ?? -1;
+
+        if (targetIdx >= 0) {
+            if (targetIdx !== lastIdx) {
+                chart._saLastHoverIdx = targetIdx;
+                chart._saTooltipLocked = locked;
+                chart._saSetHovered?.(targetIdx);
+                chart.setActiveElements([{ datasetIndex: 0, index: targetIdx }]);
+                const pt = chart.getDatasetMeta(0).data?.[targetIdx];
+                if (pt) {
+                    chart.tooltip.setActiveElements([{ datasetIndex: 0, index: targetIdx }], { x: pt.x, y: pt.y });
+                }
+                chart.draw();
+            }
+            native.target.style.cursor = 'pointer';
+        } else if (lastIdx >= 0) {
+            deactivateSAHover(chart);
+            native.target.style.cursor = 'default';
+        }
     };
 }
 
+/** Clear all hover state and redraw. Shared by onHover and mouseleave. */
+export function deactivateSAHover(chart) {
+    chart._saLastHoverIdx = -1;
+    chart._saTooltipLocked = false;
+    chart._saSetHovered?.(-1);
+    chart.setActiveElements([]);
+    chart.tooltip.setActiveElements([], { x: 0, y: 0 });
+    chart.update('none');
+}
+
 export function createSAClickHandler(clickFn) {
-    return (evt, elements, chart) => {
+    return (evt, _elements, chart) => {
         if (window.xrayActive) return;
-        if (elements.length) {
-            clickFn(elements[0].index);
-            return;
-        }
         const native = evt.native;
-        if (!native || !chart._saFindLabel) return;
-        const rect = chart.canvas.getBoundingClientRect();
-        const idx = chart._saFindLabel(native.clientX - rect.left, native.clientY - rect.top);
-        if (idx >= 0) clickFn(idx);
+        if (!native) return;
+        if (chart._saFindLabel) {
+            const rect = chart.canvas.getBoundingClientRect();
+            const idx = chart._saFindLabel(native.clientX - rect.left, native.clientY - rect.top);
+            if (idx >= 0) {
+                clickFn(idx);
+                return;
+            }
+        }
+        const hits = chart.getElementsAtEventForMode(evt, 'nearest', { intersect: true }, false);
+        if (hits.length) clickFn(hits[0].index);
     };
 }
 
 export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, opts = {}) {
     let cachedLabels = null;
     let lastPosKey = null;
+    let lastShowAll = null;
     let hoveredIdx = -1;
 
     function findLabelAtPoint(x, y) {
         if (!cachedLabels) return -1;
         for (let i = cachedLabels.length - 1; i >= 0; i--) {
             const r = cachedLabels[i].rect;
-            if (x >= r.x1 - 2 && x <= r.x2 + 2 && y >= r.y1 - 2 && y <= r.y2 + 2) {
+            if (x >= r.x1 - 8 && x <= r.x2 + 8 && y >= r.y1 - 6 && y <= r.y2 + 6) {
                 return cachedLabels[i].dataIndex;
             }
         }
         return -1;
+    }
+
+    /** Compute pixel offset for a hovered label pushed outward from its bubble. */
+    function hoverOffset(entry) {
+        if (entry.dataIndex !== hoveredIdx) return { ox: 0, oy: 0 };
+        const cx = (entry.rect.x1 + entry.rect.x2) / 2;
+        const cy = (entry.rect.y1 + entry.rect.y2) / 2;
+        const ang = Math.atan2(cy - entry.by, cx - entry.bx);
+        return { ox: Math.cos(ang) * HOVER_GROW, oy: Math.sin(ang) * HOVER_GROW };
     }
 
     return {
@@ -422,37 +483,68 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                 hoveredIdx = idx;
             };
             chart._saGetHovered = () => hoveredIdx;
+            chart._saResetCache = () => {
+                cachedLabels = null;
+                lastPosKey = null;
+            };
+            chart._saCachedLabels = cachedLabels;
 
             const { ctx: c, chartArea } = chart;
             c.save();
             const isDark = document.documentElement.classList.contains('dark');
             const labelColor = isDark ? '#94a3b8' : '#64748b';
             const highlightColor = isDark ? '#e2e8f0' : '#1e293b';
-            const bgColor = isDark ? 'rgba(15,23,42,0.85)' : 'rgba(255,255,255,0.88)';
+            const bgColor = isDark ? 'rgba(15,23,42,0.92)' : 'rgba(255,255,255,0.92)';
 
-            const iconW = opts.iconWidth || 0;
             const hasActiveHover = chart.getActiveElements().length > 0;
             const meta0 = chart.getDatasetMeta(0);
             const posKey = meta0.data.map(el => `${el.x.toFixed(0)},${el.y.toFixed(0)}`).join('|');
-            const shouldRecalc = !cachedLabels || (!hasActiveHover && posKey !== lastPosKey);
+            const showAll = !!chart._showAllLabels;
+            const shouldRecalc = !cachedLabels || (!hasActiveHover && posKey !== lastPosKey) || showAll !== lastShowAll;
 
             if (shouldRecalc) {
                 lastPosKey = posKey;
+                lastShowAll = showAll;
                 const areaW = chartArea.right - chartArea.left;
                 const areaH = chartArea.bottom - chartArea.top;
                 const fontSize = 10;
                 const fontStr = `600 ${fontSize}px Inter, system-ui, sans-serif`;
                 c.font = fontStr;
 
-                const maxLabels = opts.maxLabels || labels.length;
+                const maxLabels = showAll ? labels.length : opts.maxLabels || labels.length;
                 const truncMax = opts.truncate || 18;
                 const truncName = (name, max = truncMax) => (name.length > max ? name.slice(0, max - 1) + '…' : name);
 
-                // Decide which bubbles get labels (top N by radius)
                 let labelIndices;
                 if (maxLabels < labels.length) {
-                    const ranked = bubbleData.map((d, i) => ({ i, r: d.r })).sort((a, b) => b.r - a.r);
-                    const allowed = new Set(ranked.slice(0, maxLabels).map(d => d.i));
+                    const allowed = new Set();
+                    const mX = opts.medX;
+                    const mY = opts.medY;
+                    if (mX != null && mY != null) {
+                        const quads = { tl: [], tr: [], bl: [], br: [] };
+                        bubbleData.forEach((d, i) => {
+                            const qx = d.x >= mX ? 'r' : 'l';
+                            const qy = d.y >= mY ? 't' : 'b';
+                            quads[qy + qx].push({ i, r: d.r, y: d.y });
+                        });
+                        const perQ = Math.max(8, Math.ceil(maxLabels / 4));
+                        for (const q of Object.values(quads)) {
+                            const byR = [...q].sort((a, b) => b.r - a.r);
+                            const byY = [...q].sort((a, b) => b.y - a.y);
+                            const half = Math.ceil(perQ / 2);
+                            for (let j = 0; j < Math.min(half, byR.length); j++) allowed.add(byR[j].i);
+                            for (let j = 0; j < Math.min(half, byY.length); j++) allowed.add(byY[j].i);
+                        }
+                    }
+                    const topByY = bubbleData.map((d, i) => ({ i, y: d.y })).sort((a, b) => b.y - a.y);
+                    for (let j = 0; j < Math.min(5, topByY.length); j++) allowed.add(topByY[j].i);
+                    if (allowed.size < maxLabels) {
+                        const ranked = bubbleData.map((d, i) => ({ i, r: d.r })).sort((a, b) => b.r - a.r);
+                        for (const item of ranked) {
+                            if (allowed.size >= maxLabels) break;
+                            allowed.add(item.i);
+                        }
+                    }
                     labelIndices = allowed;
                 } else {
                     labelIndices = null;
@@ -468,15 +560,15 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     const label = truncName(labels[i] || '');
                     if (!label) return;
                     const pxR = pt.options?.radius ?? bubbleData[i]?.r ?? 12;
-                    const tw = c.measureText(label).width + iconW;
+                    const tw = c.measureText(label).width;
                     const th = fontSize + 2;
                     const ang = Math.atan2(pt.y - midY, pt.x - midX);
-                    const offX = Math.cos(ang) * (pxR + 8);
-                    const offY = Math.sin(ang) * (pxR + 8);
+                    const offX = Math.cos(ang) * (pxR + 6);
+                    const offY = Math.sin(ang) * (pxR + 6);
                     let ix = pt.x + offX - tw / 2;
                     let iy = pt.y + offY - th / 2;
                     ix = Math.max(chartArea.left, Math.min(chartArea.right - tw, ix));
-                    iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th, iy));
+                    iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th - 18, iy));
                     labs.push({ x: ix, y: iy, width: tw, height: th });
                     ancs.push({ x: pt.x, y: pt.y, r: pxR });
                     labMeta.push({
@@ -486,83 +578,109 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     });
                 });
 
-                saLabelSolver(labs, ancs, areaW, areaH, chartArea.left, chartArea.top);
+                saLabelSolver(labs, ancs, areaW, areaH - 18, chartArea.left, chartArea.top);
 
-                const candidates = [];
-                const leaderThreshold = 15;
-                for (let k = 0; k < labs.length; k++) {
-                    const l = labs[k];
-                    const a = ancs[k];
-                    const meta = labMeta[k];
-                    const dist = Math.hypot(l.x + l.width / 2 - a.x, l.y + l.height / 2 - a.y);
-                    const wantsLeader = needsLeaderLine(dist, leaderThreshold, k, ancs);
+                const candidates = labs.map((l, k) => ({
+                    label: labMeta[k].label,
+                    dataIndex: labMeta[k].index,
+                    rect: { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height },
+                    fs: fontStr,
+                    dx: l.x + l.width / 2,
+                    dy: l.y + l.height / 2,
+                    al: 'center',
+                    bl: 'middle',
+                    bx: ancs[k].x,
+                    by: ancs[k].y,
+                    leaderColor: labMeta[k].leaderColor,
+                    ancR: ancs[k].r,
+                }));
 
-                    if (!wantsLeader && dist > a.r + 6) {
-                        snapLabelToBubble(l, a, chartArea, ancs);
-                    }
-
-                    const rect = { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height };
-                    candidates.push({
-                        label: meta.label,
-                        dataIndex: meta.index,
-                        rect,
-                        fs: fontStr,
-                        dx: l.x + l.width / 2,
-                        dy: l.y + l.height / 2,
-                        al: 'center',
-                        bl: 'middle',
-                        leader: wantsLeader,
-                        bx: a.x,
-                        by: a.y,
-                        leaderColor: meta.leaderColor,
-                        ancR: a.r,
-                    });
-                }
-
+                candidates.sort((a2, b2) => (bubbleData[a2.dataIndex]?.r || 0) - (bubbleData[b2.dataIndex]?.r || 0));
                 cachedLabels = candidates;
             }
 
+            // --- Hover bubble: erase original, redraw at HOVER_GROW larger ---
+            if (hoveredIdx >= 0) {
+                const hPt = chart.getDatasetMeta(0).data[hoveredIdx];
+                if (hPt) {
+                    const baseR = hPt.options?.radius ?? bubbleData[hoveredIdx]?.r ?? 12;
+                    const ds = chart.data.datasets[0];
+                    const bgCol = Array.isArray(ds.backgroundColor)
+                        ? ds.backgroundColor[hoveredIdx]
+                        : ds.backgroundColor;
+                    const bdCol = Array.isArray(ds.borderColor) ? ds.borderColor[hoveredIdx] : ds.borderColor;
+                    c.save();
+                    c.beginPath();
+                    c.arc(hPt.x, hPt.y, baseR + 2, 0, Math.PI * 2);
+                    c.fillStyle = isDark ? '#0f172a' : '#ffffff';
+                    c.fill();
+                    c.beginPath();
+                    c.arc(hPt.x, hPt.y, baseR + HOVER_GROW, 0, Math.PI * 2);
+                    c.fillStyle = bgCol;
+                    c.fill();
+                    c.strokeStyle = bdCol;
+                    c.lineWidth = 2;
+                    c.stroke();
+                    c.restore();
+                }
+            }
+
+            // --- Leader lines ---
+            const LEADER_GAP = 4;
             cachedLabels.forEach(entry => {
-                if (!entry.leader) return;
-                const r = entry.rect;
-                const nearX = (r.x1 + r.x2) / 2;
-                const nearY = (r.y1 + r.y2) / 2;
+                const isHov = entry.dataIndex === hoveredIdx;
+                const cx = (entry.rect.x1 + entry.rect.x2) / 2;
+                const cy = (entry.rect.y1 + entry.rect.y2) / 2;
+                const ang = Math.atan2(cy - entry.by, cx - entry.bx);
+                const effR = entry.ancR + (isHov ? HOVER_GROW : 0);
+                const startX = entry.bx + Math.cos(ang) * (effR + LEADER_GAP);
+                const startY = entry.by + Math.sin(ang) * (effR + LEADER_GAP);
+                const dist = Math.hypot(cx - entry.bx, cy - entry.by) + (isHov ? HOVER_GROW : 0);
+                const endX = entry.bx + Math.cos(ang) * (dist - LEADER_GAP);
+                const endY = entry.by + Math.sin(ang) * (dist - LEADER_GAP);
                 c.save();
-                c.strokeStyle = entry.leaderColor;
-                c.lineWidth = 1.5;
-                c.setLineDash([4, 3]);
+                c.strokeStyle = isHov
+                    ? isDark
+                        ? 'rgba(226,232,240,0.75)'
+                        : 'rgba(30,41,59,0.6)'
+                    : isDark
+                      ? 'rgba(148,163,184,0.4)'
+                      : 'rgba(71,85,105,0.35)';
+                c.lineWidth = isHov ? 1.5 : 1;
                 c.beginPath();
-                c.moveTo(entry.bx, entry.by);
-                c.lineTo(nearX, nearY);
+                c.moveTo(startX, startY);
+                c.lineTo(endX, endY);
                 c.stroke();
-                c.setLineDash([]);
                 c.restore();
             });
 
+            // --- Label backgrounds (opaque backing to prevent bleed-through) ---
             cachedLabels.forEach(entry => {
+                const { ox, oy } = hoverOffset(entry);
                 const r = entry.rect;
                 c.fillStyle = bgColor;
-                c.fillRect(r.x1 - 2, r.y1 - 1, r.x2 - r.x1 + 4, r.y2 - r.y1 + 2);
+                c.fillRect(r.x1 - 2 + ox, r.y1 - 1 + oy, r.x2 - r.x1 + 4, r.y2 - r.y1 + 2);
             });
+
+            // --- Label text ---
             cachedLabels.forEach(entry => {
-                const isHovered = entry.dataIndex === hoveredIdx;
-                c.font = isHovered ? entry.fs.replace('600', '800') : entry.fs;
+                const isHov = entry.dataIndex === hoveredIdx;
+                const { ox, oy } = hoverOffset(entry);
+                c.font = isHov ? entry.fs.replace('600', '700').replace('10px', '11px') : entry.fs;
                 const perLabelColor = opts.labelColors?.[entry.dataIndex];
-                c.fillStyle = isHovered ? highlightColor : perLabelColor || labelColor;
+                c.fillStyle = isHov ? highlightColor : perLabelColor || labelColor;
                 c.textAlign = entry.al;
                 c.textBaseline = entry.bl;
-                if (opts.drawIcon && iconW > 0) {
-                    const iconX = entry.rect.x1;
-                    const iconY = entry.dy - (entry.rect.y2 - entry.rect.y1) / 2;
-                    opts.drawIcon(c, iconX, iconY, entry.rect.y2 - entry.rect.y1, entry.dataIndex, isDark);
-                    c.font = isHovered ? entry.fs.replace('600', '800') : entry.fs;
-                    c.fillStyle = isHovered ? highlightColor : perLabelColor || labelColor;
-                    c.textAlign = 'left';
-                    c.textBaseline = entry.bl;
-                    c.fillText(entry.label, entry.rect.x1 + iconW, entry.dy);
-                } else {
-                    c.fillText(entry.label, entry.dx, entry.dy);
+                if (opts.labelColorFn) {
+                    const swatchColor = opts.labelColorFn(entry.dataIndex);
+                    if (swatchColor) {
+                        const sw = 8;
+                        c.fillStyle = swatchColor;
+                        c.fillRect(entry.rect.x1 - sw - 3 + ox, entry.dy - sw / 2 + oy, sw, sw);
+                        c.fillStyle = isHov ? highlightColor : perLabelColor || labelColor;
+                    }
                 }
+                c.fillText(entry.label, entry.dx + ox, entry.dy + oy);
             });
 
             c.restore();
@@ -686,11 +804,11 @@ export function createXWarp(xVals) {
  * Same proven approach used in the Market Landscape chart.
  * sqrt compresses the high end; piecewise stretches the crowded middle.
  */
-export function createYWarp(yVals, stretchK = 3.0) {
+export function createYWarp(yVals, stretchK = 16.0) {
     const sqrtVals = (yVals || []).map(v => Math.sqrt(Math.max(0, v)));
     const sorted = [...sqrtVals].sort((a, b) => a - b);
-    const lo = sorted.length ? sorted[Math.floor(sorted.length * 0.2)] : 1;
-    const hi = sorted.length ? sorted[Math.floor(sorted.length * 0.8)] : 2;
+    const lo = sorted.length ? sorted[Math.floor(sorted.length * 0.15)] : 1;
+    const hi = sorted.length ? sorted[Math.floor(sorted.length * 0.85)] : 2;
     const k = stretchK;
     const span = (hi - lo) * k;
     const warp = v => {
@@ -712,6 +830,258 @@ export function createYWarp(yVals, stretchK = 3.0) {
     return { warp, unwarp };
 }
 
+// ── Unified Bubble Landscape Factory ─────────────────────────────────
+export function createBubbleLandscape(
+    canvasId,
+    {
+        data,
+        instanceKey,
+        instanceRegistry,
+        xLabel = 'Number of Games',
+        yLabel = 'Avg Performance Index',
+        labels = 'none',
+        quadrants = true,
+        medianX,
+        medianY,
+        colorFn,
+        tooltipFn,
+        maxLabels = 8,
+        onBubbleClick,
+        coveragePill,
+        extraDatasets,
+        extraPlugins,
+        warp = true,
+        warpY = true,
+        labelColorFn,
+    }
+) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return null;
+    const ctx = canvas.getContext('2d');
+    const chartColors = getChartColors();
+
+    if (instanceRegistry && instanceKey && instanceRegistry[instanceKey]) {
+        instanceRegistry[instanceKey].destroy();
+        instanceRegistry[instanceKey] = null;
+    }
+    Chart.getChart(canvas)?.destroy();
+
+    if (coveragePill) {
+        const cp = coveragePill;
+        const pct = cp.covered > 0 ? Math.max(1, Math.round((cp.covered / cp.total) * 100)) : 0;
+        const coverageText = `${pct}% coverage · ${cp.covered.toLocaleString()} of ${cp.total.toLocaleString()} games ${cp.label}`;
+        const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');
+        const inline = card?.querySelector(`.coverage-inline[data-for="${canvasId}"]`);
+        if (inline) {
+            inline.textContent = coverageText;
+            card.querySelectorAll('.coverage-footnote').forEach(el => el.remove());
+        }
+    }
+
+    if (!data || !data.length) return null;
+
+    const xWarp = warp ? createXWarp(data.map(d => d.x)) : null;
+    const warpX = v => (xWarp ? xWarp.warpVal(v) : v);
+
+    const yWarpFns = warpY ? createYWarp(data.map(d => d.y)) : null;
+    const doWarpY = v => (yWarpFns ? yWarpFns.warp(v) : v);
+
+    const medX = xWarp ? xWarp.warpVal(medianX ?? median(data.map(d => d.x))) : (medianX ?? median(data.map(d => d.x)));
+    const rawMedY = medianY ?? median(data.map(d => d.y));
+    const medY = doWarpY(rawMedY);
+
+    const bubbleData = data.map(d => ({ x: warpX(d.x), y: doWarpY(d.y), r: d.r }));
+
+    const defaultColor = (d, i) => ({
+        bg: quadrantBgColor(bubbleData[i].x, bubbleData[i].y, medX, medY),
+        border: quadrantBorderColor(bubbleData[i].x, bubbleData[i].y, medX, medY),
+    });
+
+    const datasets = [
+        {
+            label: 'Main',
+            data: bubbleData,
+            clip: false,
+            backgroundColor: data.map((d, i) => {
+                if (colorFn) return colorFn(d, 'bg');
+                return defaultColor(d, i).bg;
+            }),
+            borderColor: data.map((d, i) => {
+                if (colorFn) return colorFn(d, 'border');
+                return defaultColor(d, i).border;
+            }),
+            borderWidth: 1.5,
+            hoverBorderWidth: 3,
+            hoverBorderColor: 'rgba(0,0,0,0.4)',
+        },
+        ...(extraDatasets || []),
+    ];
+
+    const plugins = [];
+    if (quadrants) plugins.push(createQuadrantPlugin(canvasId + 'Quad', medX, medY, chartColors));
+
+    if (labels !== 'none') {
+        const borderArr = data.map((d, i) => {
+            if (colorFn) return colorFn(d, 'border');
+            return defaultColor(d, i).border;
+        });
+        const effectiveMax = labels === 'all' ? data.length : maxLabels;
+        const saOpts = {
+            maxLabels: effectiveMax,
+            truncate: 999,
+            labelColorFn: labelColorFn ? idx => labelColorFn(data[idx], idx) : null,
+            medX,
+            medY,
+        };
+        plugins.push(
+            createSABubbleLabelPlugin(
+                canvasId + 'Labels',
+                bubbleData,
+                data.map(d => d.shortName || d.name || ''),
+                borderArr,
+                saOpts
+            )
+        );
+    }
+
+    if (extraPlugins) plugins.push(...extraPlugins);
+
+    const scales = xWarp
+        ? bubbleScaleOptionsWarped(chartColors, xWarp, xLabel, yLabel, yWarpFns)
+        : {
+              x: {
+                  type: 'linear',
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: xLabel,
+                      color: chartColors.textColor,
+                      font: { size: 10, weight: 'bold' },
+                  },
+                  ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
+                  grid: getModernGridConfig(),
+              },
+              y: {
+                  type: 'linear',
+                  beginAtZero: true,
+                  title: {
+                      display: true,
+                      text: yLabel,
+                      color: chartColors.textColor,
+                      font: { size: 10, weight: 'bold' },
+                  },
+                  ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
+                  grid: getModernGridConfig(),
+              },
+          };
+
+    const chart = new Chart(ctx, {
+        type: 'bubble',
+        data: { datasets },
+        plugins,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 0 },
+            hover: labels !== 'none' ? { mode: null } : { mode: 'nearest', intersect: true },
+            onHover: labels !== 'none' ? createSAHoverHandler() : undefined,
+            onClick:
+                labels !== 'none'
+                    ? createSAClickHandler(idx => {
+                          if (window.xrayActive) return;
+                          if (onBubbleClick) onBubbleClick(data[idx], idx);
+                      })
+                    : (e, elements) => {
+                          if (window.xrayActive) return;
+                          if (elements.length && elements[0].datasetIndex === 0 && onBubbleClick) {
+                              onBubbleClick(data[elements[0].index], elements[0].index);
+                          }
+                      },
+            layout: { padding: { top: 2, right: 8, bottom: 16, left: 16 } },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    ...getModernTooltipConfig(),
+                    mode: 'nearest',
+                    intersect: true,
+                    position: 'bubbleAvoid',
+                    caretPadding: 10,
+                    filter: extraDatasets?.length ? ti => ti.datasetIndex === 0 : undefined,
+                    callbacks: {
+                        title: items => {
+                            if (!items?.length) return '';
+                            const idx = items[0].dataIndex;
+                            return data[idx]?.name ?? '';
+                        },
+                        label: context => {
+                            if (!context || context.dataIndex == null) return '';
+                            const item = data[context.dataIndex];
+                            if (!item) return '';
+                            if (tooltipFn) return tooltipFn(item);
+                            return [`Games: ${item.x}`, `PI: ${item.y?.toFixed(2)}`];
+                        },
+                    },
+                },
+            },
+            scales,
+        },
+    });
+
+    if (labels !== 'none') {
+        const origHandleEvent = chart.tooltip.handleEvent.bind(chart.tooltip);
+        chart.tooltip.handleEvent = function (ev, replay) {
+            if (chart._saTooltipLocked) return false;
+            return origHandleEvent(ev, replay);
+        };
+    }
+
+    canvas.addEventListener('mouseleave', () => {
+        const c = Chart.getChart(canvas);
+        if (c) deactivateSAHover(c);
+    });
+
+    if (labels !== 'none' && labels === 'all') {
+        const card = canvas.closest('.bg-white, .dark\\:bg-gray-800') || canvas.parentElement;
+        if (card && !card.querySelector(`[data-label-toggle="${canvasId}"]`)) {
+            const btn = document.createElement('button');
+            btn.setAttribute('data-label-toggle', canvasId);
+            btn.className =
+                'text-[10px] font-medium px-2.5 py-1 rounded border cursor-pointer ' +
+                'border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 ' +
+                'hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 transition-colors';
+            btn.textContent = 'Show all labels';
+            btn.addEventListener('click', () => {
+                chart._showAllLabels = !chart._showAllLabels;
+                btn.textContent = chart._showAllLabels ? 'Show key labels' : 'Show all labels';
+                chart._saResetCache?.();
+                chart.draw();
+            });
+            const header = card.querySelector('.flex.items-center, .flex.justify-between');
+            if (header) {
+                header.appendChild(btn);
+            } else {
+                btn.style.cssText = 'position:absolute;top:8px;right:180px;z-index:10';
+                card.style.position = 'relative';
+                card.appendChild(btn);
+            }
+        }
+    }
+
+    if (coveragePill) {
+        const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');
+        const hasInline = card?.querySelector(`.coverage-inline[data-for="${canvasId}"]`);
+        if (!hasInline) {
+            injectCoveragePill(canvasId, coveragePill.covered, coveragePill.total, coveragePill.label);
+        }
+    }
+
+    if (instanceRegistry && instanceKey) {
+        instanceRegistry[instanceKey] = chart;
+    }
+
+    return chart;
+}
+
 export function bubbleScaleOptionsWarped(
     chartColors,
     warpFns,
@@ -723,7 +1093,7 @@ export function bubbleScaleOptionsWarped(
 
     const yScale = {
         beginAtZero: true,
-        grace: '10%',
+        grace: '1%',
         title: { display: true, text: yLabel, color: chartColors.textColor, font: { size: 10, weight: 'bold' } },
         ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
         grid: getModernGridConfig(),
@@ -732,7 +1102,7 @@ export function bubbleScaleOptionsWarped(
     if (yWarpFns) {
         const { unwarp: yUnwarp, niceOrigTicks } = yWarpFns;
         yScale.afterBuildTicks = axis => {
-            const ticks = niceOrigTicks || [0, 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20];
+            const ticks = niceOrigTicks || [0, 1, 2, 3, 4, 5, 6];
             axis.ticks = ticks
                 .map(v => yWarpFns.warp(v))
                 .filter(wv => wv >= 0 && wv <= (axis.max ?? 999))
@@ -763,7 +1133,7 @@ export function bubbleScaleOptionsWarped(
                 font: { size: 10 },
                 padding: 6,
                 callback: val => {
-                    if (val < 0.01) return '0';
+                    if (val < 0.01) return '';
                     const orig = Math.round(unwarpVal(val));
                     const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
                     return nice.reduce((a, b) => (Math.abs(b - orig) < Math.abs(a - orig) ? b : a)).toLocaleString();

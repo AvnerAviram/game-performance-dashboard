@@ -71,16 +71,30 @@ export const VOL_BADGE_CLASSES = {
 // ── Thresholds ─────────────────────────────────────────────────────────
 
 /** Minimum games a provider needs to appear in rankings/charts. */
-export const MIN_PROVIDER_GAMES = 3;
+export const MIN_PROVIDER_GAMES = 15;
 
 /** Minimum games for "best feature" calculations. */
 export const MIN_FEATURE_GAMES = 5;
+
+/** Minimum games for a theme/mechanic to be "qualified" in rankings (Eilers-style threshold). */
+export const MIN_QUALIFIED_GAMES = 20;
 
 /** Minimum sample size for sub-theme tags, combo signals, etc. */
 export const MIN_SAMPLE_SIZE = 2;
 
 /** Market share threshold for "market leaders" filter (0.5% = 0.005). */
 export const MARKET_LEADER_THRESHOLD = 0.005;
+
+/** Element name consolidation — merge overlapping art element labels. */
+export const ELEMENT_CONSOLIDATION = {
+    'Fire/Flames/Lava': 'Fire/Flames',
+    'Stars/Sparkles/Cosmic': 'Stars/Sparkles',
+    'Books/Scrolls/Maps': 'Books/Scrolls',
+    'Food/Candy/Drinks': 'Food/Drinks',
+    'Coral Reef/Underwater': 'Coral Reef/Underwater',
+    'Coral Reef': 'Coral Reef/Underwater',
+    Food: 'Food/Drinks',
+};
 
 /** Features completely hidden from the dashboard (too ambiguous for users). */
 export const HIDDEN_FEATURES = new Set(['Multiplier', 'Multipliers']);

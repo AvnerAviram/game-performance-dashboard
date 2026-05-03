@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
-import { getProviderMetrics } from '../../src/lib/metrics.js';
+import { computeProviderMetrics } from '../utils/test-aggregators.js';
 import { F } from '../../src/lib/game-fields.js';
 
 describe('Cross-page metric agreement', () => {
@@ -10,7 +10,7 @@ describe('Cross-page metric agreement', () => {
 
     describe('provider counts match across views', () => {
         test('metrics provider game_count matches filtering allGames by that provider', () => {
-            const providerMetrics = getProviderMetrics(gameData.allGames);
+            const providerMetrics = computeProviderMetrics(gameData.allGames);
             for (const pm of providerMetrics.slice(0, 10)) {
                 const fromFilter = gameData.allGames.filter(g => F.provider(g) === pm.name).length;
                 expect(pm.count).toBe(fromFilter);

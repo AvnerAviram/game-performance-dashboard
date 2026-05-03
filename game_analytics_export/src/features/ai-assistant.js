@@ -46,7 +46,7 @@ export async function askAI(question) {
     chatDiv.scrollTop = chatDiv.scrollHeight;
 
     await new Promise(r => setTimeout(r, 300 + Math.random() * 400));
-    const response = generateSmartResponse(question);
+    const response = await generateSmartResponse(question);
 
     typingEl.remove();
 
@@ -89,9 +89,9 @@ function findThemeInQ(q) {
 function findMechanicInQ(q) {
     return matchEntity(q, mechanics(), 'Mechanic');
 }
-function findProviderInQ(q) {
+async function findProviderInQ(q) {
     const lo = q.toLowerCase();
-    const provMetrics = getProviderMetrics(allGames());
+    const provMetrics = await getProviderMetrics(gameData.activeCategory);
     return provMetrics.find(p => lo.includes(p.name.toLowerCase()));
 }
 function findFeatureInQ(q) {
@@ -456,13 +456,13 @@ function handleConceptEval(q) {
     return html;
 }
 
-function handleMarketGaps() {
+async function handleMarketGaps() {
     const gapThemes = [...themes()]
         .filter(t => (t['Game Count'] || 0) < 40 && (t['Smart Index'] || 0) > 30)
         .sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0))
         .slice(0, 8);
 
-    const feats = getFeatureMetrics(allGames());
+    const feats = await getFeatureMetrics(gameData.activeCategory);
     const globalAvg = avg(
         allGames()
             .map(g => F.theoWin(g))
@@ -656,7 +656,7 @@ function handleMarketOverview() {
 
 /* ── intent router ───────────────────────────────────────────────── */
 
-function generateSmartResponse(question) {
+async function generateSmartResponse(question) {
     const lo = question.toLowerCase();
 
     if (lo.includes('compar') || lo.includes(' vs ') || lo.includes(' versus ')) {
@@ -683,7 +683,7 @@ function generateSmartResponse(question) {
         lo.includes('untapped') ||
         lo.includes('underserved')
     ) {
-        return handleMarketGaps();
+        return await handleMarketGaps();
     }
 
     if (lo.includes('top') && (lo.includes('game') || lo.includes('performer') || lo.includes('best game'))) {
@@ -742,7 +742,7 @@ function generateSmartResponse(question) {
         return handleMarketOverview();
     }
 
-    const provider = findProviderInQ(question);
+    const provider = await findProviderInQ(question);
     if (provider) {
         const result = handleProviderQuery(provider.name);
         if (result) return result;

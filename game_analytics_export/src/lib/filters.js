@@ -4,13 +4,22 @@
 import { log } from './env.js';
 import { MARKET_LEADER_THRESHOLD } from './shared-config.js';
 
+function qualifiedFirstSort(a, b) {
+    if ((a.qualified !== false) !== (b.qualified !== false)) return a.qualified !== false ? -1 : 1;
+    return (b['Smart Index'] || 0) - (a['Smart Index'] || 0);
+}
+
+function marketShareSort(a, b) {
+    return (b['Market Share %'] || 0) - (a['Market Share %'] || 0);
+}
+
 /**
  * Get filtered themes based on view
  * @param {string} view - Filter type: 'all', 'leaders', 'opportunities', 'premium'
  * @returns {Array} Filtered theme array
  */
 export function getFilteredThemes(view) {
-    const themes = window.gameData?.themes || [];
+    const themes = window.gameData?.viewThemes ?? window.gameData?.themes ?? [];
 
     if (themes.length === 0) return [];
 
@@ -19,24 +28,24 @@ export function getFilteredThemes(view) {
             const sortedByCount = [...themes].sort((a, b) => b['Game Count'] - a['Game Count']);
             const leaderThreshold = sortedByCount[Math.floor(sortedByCount.length * 0.2)]?.['Game Count'] || 30;
             const leaders = themes.filter(t => t['Game Count'] >= leaderThreshold);
-            return leaders.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return leaders.sort(marketShareSort);
         }
         case 'opportunities': {
             const avgPerformance = themes.reduce((sum, t) => sum + (t['Avg Theo Win Index'] || 0), 0) / themes.length;
             const opportunities = themes.filter(
                 t => t['Game Count'] >= 5 && t['Avg Theo Win Index'] >= avgPerformance && t['Market Share %'] < 5
             );
-            return opportunities.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return opportunities.sort(qualifiedFirstSort);
         }
         case 'premium': {
-            const sortedByPerf = [...themes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            const sortedByPerf = [...themes].sort(qualifiedFirstSort);
             const premiumThreshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Smart Index'] || 2.5;
             const premium = themes.filter(t => (t['Smart Index'] || 0) >= premiumThreshold);
-            return premium.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return premium.sort(qualifiedFirstSort);
         }
         case 'all':
         default:
-            return [...themes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return [...themes].sort(marketShareSort);
     }
 }
 
@@ -46,7 +55,7 @@ export function getFilteredThemes(view) {
  * @returns {Array} Filtered mechanics array
  */
 export function getFilteredMechanics(view) {
-    const mechanics = window.gameData?.mechanics || [];
+    const mechanics = window.gameData?.viewMechanics ?? window.gameData?.mechanics ?? [];
 
     if (mechanics.length === 0) return [];
 
@@ -55,17 +64,17 @@ export function getFilteredMechanics(view) {
             const sortedByCount = [...mechanics].sort((a, b) => b['Game Count'] - a['Game Count']);
             const popularThreshold = sortedByCount[Math.floor(sortedByCount.length * 0.2)]?.['Game Count'] || 20;
             const popular = mechanics.filter(m => m['Game Count'] >= popularThreshold);
-            return popular.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return popular.sort(marketShareSort);
         }
         case 'highPerforming': {
-            const sortedByPerf = [...mechanics].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            const sortedByPerf = [...mechanics].sort(qualifiedFirstSort);
             const perfThreshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.3)]?.['Smart Index'] || 1.5;
             const highPerforming = mechanics.filter(m => (m['Smart Index'] || 0) >= perfThreshold);
-            return highPerforming.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return highPerforming.sort(qualifiedFirstSort);
         }
         case 'all':
         default:
-            return [...mechanics].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+            return [...mechanics].sort(marketShareSort);
     }
 }
 

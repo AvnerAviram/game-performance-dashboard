@@ -8,22 +8,31 @@ alwaysApply: true
 
 ## NEVER aggregate game data outside `src/lib/metrics.js`
 
-All game-array aggregation (forEach/reduce/map loops computing counts, averages, or sums over game objects) MUST go through the centralized functions in `metrics.js`:
+All game-array aggregation MUST go through the centralized functions in `metrics.js`:
 
-- `getProviderMetrics(games)` — provider ranking by GGR share
-- `getThemeMetrics(games)` — theme distribution
-- `getFeatureMetrics(games)` — feature distribution
-- `getVolatilityMetrics(games)` — volatility breakdown
-- `getFeatureRecipes(games)` — multi-feature combo analysis
-- `getFeatureCombos(games)` — pair/triple combos within a theme
-- `getRtpBandMetrics(games)` — RTP band bucketing
-- `calculateSmartIndex(avgTheo, count, globalAvg)` — canonical Smart Index formula
-- `addSmartIndex(rows)` — add SI to dimension rows
-- `getGlobalAvgTheo(games)` — global average theo
+**Async SQL functions (take `category?`, return Promise):**
+- `getProviderMetrics(category?, opts?)` — provider ranking by GGR share
+- `getThemeMetrics(category?)` — theme distribution
+- `getFeatureMetrics(category?)` — feature/mechanic distribution
+- `getVolatilityMetrics(category?)` — volatility breakdown
+- `getRtpBandMetrics(category?)` — RTP band bucketing
+- `getGlobalAvgTheo(category?)` — global average theo
+- `getAvgRtp(category?)` — average RTP
+- `getArtThemeMetrics(category?)` — art theme distribution
+- `getArtNarrativeMetrics(category?)` — art narrative distribution
+- `getArtCharacterMetrics(category?)` — art character distribution
+- `getArtElementMetrics(category?)` — art element distribution
+- `getArtColorToneMetrics(category?)` — art color tone distribution
+- `getArtComboMetrics(category?, opts?)` — cross-dimension combo analysis
+- `getArtRecipeMetrics(category?, opts?)` — per-theme recipe analysis
+
+**Sync JS helpers (take game arrays or computed values):**
+- `calculatePerformanceIndex(avgTheo, globalAvgTheo)` — Eilers-style Performance Index (PI = avgTheo/globalAvg)
+- `addPerformanceIndex(rows)` — add PI + `qualified` flag to dimension rows, sort qualified-first
+- `calculateSmartIndex(avgTheo, count, globalAvg)` — deprecated alias for calculatePerformanceIndex
+- `addSmartIndex(rows)` — deprecated alias for addPerformanceIndex
 - `getDominantVolatility(games)` — most common volatility
 - `getDominantLayout(games)` — most common reel×row
-- `getDominantProvider(games)` — most common provider
-- `getAvgRtp(games)` — average RTP
 
 **Banned variable names** (will fail `tests/enforcement/no-inline-aggregation.test.js`):
 `provMap`, `providerMap`, `providerStats`, `themeMap`, `themeCounts`, `themeStats`, `featureMap`, `featureCounts`, `featureStats`, `volMap`, `totalTheo`, `totalMkt`, `totalMarketShare`
@@ -46,7 +55,7 @@ Never define local copies of:
 - `MECHANIC_NORMALIZE`
 - `VOLATILITY_ORDER`, `VOL_COLORS`, `VOL_BADGE_CLASSES`
 
-Use the threshold constants: `MIN_PROVIDER_GAMES`, `MIN_FEATURE_GAMES`, `MIN_SAMPLE_SIZE`, `MARKET_LEADER_THRESHOLD`, `INITIAL_SHOW`, `DEFAULT_PAGE_SIZE`.
+Use the threshold constants: `MIN_PROVIDER_GAMES`, `MIN_FEATURE_GAMES`, `MIN_QUALIFIED_GAMES`, `MIN_SAMPLE_SIZE`, `MARKET_LEADER_THRESHOLD`, `INITIAL_SHOW`, `DEFAULT_PAGE_SIZE`.
 
 ## Stays-inline exceptions
 

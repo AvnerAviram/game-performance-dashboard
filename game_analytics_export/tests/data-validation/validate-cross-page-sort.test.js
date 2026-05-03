@@ -2,14 +2,18 @@
  * Cross-Page Sorting Consistency Validation
  *
  * Verifies that dimensions (themes, mechanics, providers) appear in the
- * same Smart Index order everywhere they are ranked — overview charts,
- * detail page tables, metric functions, and filter tabs.
+ * same Smart Index order everywhere they are ranked.
  *
- * This test uses the real game_data_master.json dataset.
+ * Uses local aggregators (same logic as pre-SQL metrics.js).
  */
 import { describe, test, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData, getActiveThemes, getActiveMechanics } from '../utils/load-test-data.js';
-import { getThemeMetrics, getFeatureMetrics, getProviderMetrics, addSmartIndex } from '../../src/lib/metrics.js';
+import {
+    computeThemeMetrics,
+    computeFeatureMetrics,
+    computeProviderMetrics,
+    addSmartIndex,
+} from '../utils/test-aggregators.js';
 import { F } from '../../src/lib/game-fields.js';
 import { parseFeatures } from '../../src/lib/parse-features.js';
 
@@ -21,8 +25,8 @@ beforeAll(async () => {
 });
 
 describe('Cross-page Smart Index consistency', () => {
-    test('getThemeMetrics returns Smart Index-sorted data with smartIndex field', () => {
-        const themes = getThemeMetrics(allGames);
+    test('theme metrics return Smart Index-sorted data with smartIndex field', () => {
+        const themes = computeThemeMetrics(allGames);
         expect(themes.length).toBeGreaterThan(0);
         expect(themes[0].smartIndex).toBeDefined();
         for (let i = 0; i < themes.length - 1; i++) {
@@ -30,8 +34,8 @@ describe('Cross-page Smart Index consistency', () => {
         }
     });
 
-    test('getFeatureMetrics returns Smart Index-sorted data with smartIndex field', () => {
-        const features = getFeatureMetrics(allGames);
+    test('feature metrics return Smart Index-sorted data with smartIndex field', () => {
+        const features = computeFeatureMetrics(allGames);
         expect(features.length).toBeGreaterThan(0);
         expect(features[0].smartIndex).toBeDefined();
         for (let i = 0; i < features.length - 1; i++) {
@@ -39,8 +43,8 @@ describe('Cross-page Smart Index consistency', () => {
         }
     });
 
-    test('getProviderMetrics returns Smart Index-sorted data with smartIndex field', () => {
-        const providers = getProviderMetrics(allGames);
+    test('provider metrics return Smart Index-sorted data with smartIndex field', () => {
+        const providers = computeProviderMetrics(allGames);
         expect(providers.length).toBeGreaterThan(0);
         expect(providers[0].smartIndex).toBeDefined();
         for (let i = 0; i < providers.length - 1; i++) {
@@ -48,9 +52,9 @@ describe('Cross-page Smart Index consistency', () => {
         }
     });
 
-    test('getThemeMetrics top-10 are stable and Smart Index-sorted', () => {
-        const first = getThemeMetrics(allGames);
-        const second = getThemeMetrics(allGames);
+    test('theme metrics top-10 are stable and Smart Index-sorted', () => {
+        const first = computeThemeMetrics(allGames);
+        const second = computeThemeMetrics(allGames);
 
         const top10First = first.slice(0, 10);
         const top10Second = second.slice(0, 10);
@@ -62,8 +66,8 @@ describe('Cross-page Smart Index consistency', () => {
         }
     });
 
-    test('getFeatureMetrics top-10 are all Smart Index-sorted and exclude HIDDEN_FEATURES', () => {
-        const metricsFeatures = getFeatureMetrics(allGames);
+    test('feature metrics top-10 are all Smart Index-sorted and exclude HIDDEN_FEATURES', () => {
+        const metricsFeatures = computeFeatureMetrics(allGames);
         const top10 = metricsFeatures.slice(0, 10);
 
         expect(top10.length).toBe(10);
@@ -76,9 +80,9 @@ describe('Cross-page Smart Index consistency', () => {
     });
 
     test('all metric functions include smartIndex in each row', () => {
-        const themes = getThemeMetrics(allGames);
-        const features = getFeatureMetrics(allGames);
-        const providers = getProviderMetrics(allGames);
+        const themes = computeThemeMetrics(allGames);
+        const features = computeFeatureMetrics(allGames);
+        const providers = computeProviderMetrics(allGames);
 
         for (const t of themes) {
             expect(typeof t.smartIndex).toBe('number');
@@ -96,7 +100,7 @@ describe('Cross-page Smart Index consistency', () => {
     });
 
     test('Smart Index is not just avgTheo — count matters', () => {
-        const themes = getThemeMetrics(allGames);
+        const themes = computeThemeMetrics(allGames);
         if (themes.length < 3) return;
 
         const hasDifferentOrder = themes.some((t, i) => {
@@ -107,7 +111,7 @@ describe('Cross-page Smart Index consistency', () => {
     });
 
     test('Smart Index is not just count — avgTheo matters', () => {
-        const themes = getThemeMetrics(allGames);
+        const themes = computeThemeMetrics(allGames);
         if (themes.length < 3) return;
 
         const hasDifferentOrder = themes.some((t, i) => {
@@ -117,7 +121,7 @@ describe('Cross-page Smart Index consistency', () => {
         expect(hasDifferentOrder).toBe(true);
     });
 
-    test('addSmartIndex produces same result as metric functions', () => {
+    test('addSmartIndex produces same result as local aggregation', () => {
         const rawThemes = [];
         const map = {};
         for (const g of allGames) {
@@ -132,10 +136,10 @@ describe('Cross-page Smart Index consistency', () => {
         }
 
         const withSI = addSmartIndex(rawThemes);
-        const fromMetrics = getThemeMetrics(allGames);
+        const fromAggregator = computeThemeMetrics(allGames);
 
-        expect(withSI.length).toBe(fromMetrics.length);
-        expect(withSI[0].theme).toBe(fromMetrics[0].theme);
-        expect(withSI[0].smartIndex).toBeCloseTo(fromMetrics[0].smartIndex, 5);
+        expect(withSI.length).toBe(fromAggregator.length);
+        expect(withSI[0].theme).toBe(fromAggregator[0].theme);
+        expect(withSI[0].smartIndex).toBeCloseTo(fromAggregator[0].smartIndex, 5);
     });
 });

@@ -3,6 +3,8 @@
  * Shared across game panels, insights, and advisors.
  */
 
+import { F } from './game-fields.js';
+
 export const SYMBOL_CATEGORIES = [
     'Wild',
     'Scatter/Bonus',
@@ -207,7 +209,7 @@ export function aggregateSymbolStats(games) {
     games.forEach(g => {
         const syms = parseSymbols(g.symbols);
         if (syms.length === 0) return;
-        const theo = g.performance_theo_win || 0;
+        const theo = F.theoWin(g);
         const seen = new Set();
         syms.forEach(s => {
             const raw = String(s);

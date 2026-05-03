@@ -768,6 +768,45 @@ export function initBlueprint() {
         selectedFeatures.clear();
         selectedCategories.add(picked.cat);
         chosenFeats.forEach(f => selectedFeatures.add(f.feat));
+
+        // Pick art direction (elements + characters) from this theme's games
+        const themeGames = allG.filter(g => (g.theme_consolidated || g.theme_primary || '') === picked.cat);
+        const elemCounts = {};
+        const charCounts = {};
+        for (const g of themeGames) {
+            const elems = g.art_elements ? (Array.isArray(g.art_elements) ? g.art_elements : []) : [];
+            const chars = g.art_characters ? (Array.isArray(g.art_characters) ? g.art_characters : []) : [];
+            elems.forEach(e => {
+                if (e) elemCounts[e] = (elemCounts[e] || 0) + 1;
+            });
+            chars.forEach(c => {
+                if (c && c !== 'No Characters (symbol-only game)') charCounts[c] = (charCounts[c] || 0) + 1;
+            });
+        }
+        const topElems = Object.entries(elemCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3)
+            .map(e => e[0]);
+        const topChars = Object.entries(charCounts)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 2)
+            .map(e => e[0]);
+
+        // Display art suggestion in the art panel
+        const artContainer = document.getElementById('bp-art-container');
+        const artPanel = document.getElementById('bp-art-panel');
+        if (artContainer && artPanel) {
+            artPanel.classList.remove('hidden');
+            let artHtml = '';
+            if (topChars.length > 0) {
+                artHtml += `<div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Characters</div><div class="flex flex-wrap gap-1 mb-2">${topChars.map(c => `<span class="px-2 py-0.5 text-[11px] rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 font-medium">${c}</span>`).join('')}</div>`;
+            }
+            if (topElems.length > 0) {
+                artHtml += `<div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1">Elements</div><div class="flex flex-wrap gap-1">${topElems.map(e => `<span class="px-2 py-0.5 text-[11px] rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 font-medium">${e}</span>`).join('')}</div>`;
+            }
+            if (artHtml) artContainer.innerHTML = artHtml;
+        }
+
         refreshCategoryUI();
     });
 

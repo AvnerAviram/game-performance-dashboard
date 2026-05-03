@@ -11,11 +11,11 @@ const mockThemes = [
 ];
 
 const mockMechanics = [
-    { Mechanic: 'Free Spins', 'Game Count': 100, 'Avg Theo Win Index': 1.5, 'Smart Index': 6.0 },
-    { Mechanic: 'Hold & Win', 'Game Count': 50, 'Avg Theo Win Index': 2.0, 'Smart Index': 5.0 },
-    { Mechanic: 'Megaways', 'Game Count': 20, 'Avg Theo Win Index': 1.2, 'Smart Index': 2.0 },
-    { Mechanic: 'Cascading', 'Game Count': 15, 'Avg Theo Win Index': 1.8, 'Smart Index': 3.0 },
-    { Mechanic: 'Pick', 'Game Count': 5, 'Avg Theo Win Index': 0.8, 'Smart Index': 0.5 },
+    { Mechanic: 'Free Spins', 'Game Count': 100, 'Avg Theo Win Index': 1.5, 'Smart Index': 6.0, 'Market Share %': 15 },
+    { Mechanic: 'Hold & Win', 'Game Count': 50, 'Avg Theo Win Index': 2.0, 'Smart Index': 5.0, 'Market Share %': 10 },
+    { Mechanic: 'Megaways', 'Game Count': 20, 'Avg Theo Win Index': 1.2, 'Smart Index': 2.0, 'Market Share %': 4 },
+    { Mechanic: 'Cascading', 'Game Count': 15, 'Avg Theo Win Index': 1.8, 'Smart Index': 3.0, 'Market Share %': 3 },
+    { Mechanic: 'Pick', 'Game Count': 5, 'Avg Theo Win Index': 0.8, 'Smart Index': 0.5, 'Market Share %': 1 },
 ];
 
 describe('getFilteredThemes', () => {
@@ -23,11 +23,11 @@ describe('getFilteredThemes', () => {
         window.gameData = { themes: [...mockThemes] };
     });
 
-    it('returns all themes sorted by Smart Index for "all" view', () => {
+    it('returns all themes sorted by Market Share for "all" view', () => {
         const result = getFilteredThemes('all');
         expect(result.length).toBe(mockThemes.length);
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Smart Index']).toBeGreaterThanOrEqual(result[i]['Smart Index']);
+            expect(result[i - 1]['Market Share %']).toBeGreaterThanOrEqual(result[i]['Market Share %']);
         }
     });
 
@@ -85,11 +85,11 @@ describe('getFilteredMechanics', () => {
         window.gameData = { mechanics: [...mockMechanics] };
     });
 
-    it('returns all mechanics sorted for "all" view', () => {
+    it('returns all mechanics sorted by Market Share for "all" view', () => {
         const result = getFilteredMechanics('all');
         expect(result.length).toBe(mockMechanics.length);
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Smart Index']).toBeGreaterThanOrEqual(result[i]['Smart Index']);
+            expect(result[i - 1]['Market Share %']).toBeGreaterThanOrEqual(result[i]['Market Share %']);
         }
     });
 

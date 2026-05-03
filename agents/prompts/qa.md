@@ -1,273 +1,233 @@
-# QA Agent — Phase 1 Validation: Data Types + UNNEST Gate
+# QA Agent — Validate: Bubble Chart 8-Fix Batch + Unit Tests
 
 ## Context
 
-Dev agent completed Phase 1 of the SQL-First Architecture Migration — the GATE phase. Array fields (`features`, `art_characters`, `art_elements`, `art_color_tone`, `themes_all`, etc.) should now be stored as native `VARCHAR[]` in DuckDB instead of JSON strings.
-
-**This is a HARD GATE.** If native arrays + UNNEST don't work, the entire SQL migration stops.
-
-Full plan: `/Users/avner/.cursor/plans/sql-first_migration_(validated)_88725c2a.plan.md`
+Dev fixed 8 bubble chart bugs and wrote unit tests. This is a ping-pong cycle — if you find issues, append them to `dev.md` under `## QA Findings for Dev` and report FAIL. Dev will fix and re-run. Repeat until ALL checks pass.
 
 Use `fnm use 20` before any npm commands.
 
+**MANDATORY: Take Playwright screenshots for EVERY visual check. Actually LOOK at each screenshot and describe what you see. If you cannot visually confirm, report INCONCLUSIVE.**
+
 ---
 
-## Pre-Checks
+## Q1: Automated Tests (unit + gate)
 
 ```bash
 fnm use 20
-npm run format:check
 npm test
 npm run build
-```
-
-All must pass. Report exact test count.
-
----
-
-## Section 1: Build Pipeline Changes
-
-### 1a. build-parquet.mjs — arrays NOT stringified
-
-Read `scripts/build-parquet.mjs` and verify:
-
-1. `features` field: must NOT use `JSON.stringify`. Should pass native array (with HIDDEN_FEATURES filtered). Verify `HIDDEN_FEATURES` is imported from `shared-config.js`.
-2. `art_characters`, `art_elements`, `art_color_tone`: must NOT use `JSON.stringify`. Should pass native arrays.
-3. `themes_all`, `themes_raw`, `symbols`: same — no `JSON.stringify`.
-4. `art_theme_secondary` column exists in the row object.
-
-Run `npm run build:data` and verify:
-```bash
-npm run build:data
-```
-Must succeed.
-
-### 1b. games_processed.json — arrays are native JSON arrays
-
-Check the output file:
-```bash
-node -e "const d=require('./data/games_processed.json'); const g=d.find(x=>x.features&&x.features.length>0); console.log('Type:', typeof g.features, 'IsArray:', Array.isArray(g.features), 'Sample:', g.features.slice(0,3))"
-```
-
-Expected: `Type: object IsArray: true Sample: ['Free Spins', 'Wild', ...]` — NOT a string.
-
-Do the same for art_characters:
-```bash
-node -e "const d=require('./data/games_processed.json'); const g=d.find(x=>x.art_characters&&x.art_characters.length>0); console.log('Type:', typeof g.art_characters, 'IsArray:', Array.isArray(g.art_characters), 'Sample:', g.art_characters.slice(0,3))"
-```
-
-### 1c. HIDDEN_FEATURES filtered at build time
-
-Verify that `Multiplier` and `Multipliers` do NOT appear in any features array in games_processed.json:
-```bash
-node -e "const d=require('./data/games_processed.json'); const has=d.some(g=>Array.isArray(g.features)&&(g.features.includes('Multiplier')||g.features.includes('Multipliers'))); console.log('Has hidden features:', has)"
-```
-
-Expected: `Has hidden features: false`
-
----
-
-## Section 2: DuckDB Client Changes
-
-### 2a. CREATE TABLE column types
-
-In `src/lib/db/duckdb-client.js`, verify the CREATE TABLE statement uses:
-- `features VARCHAR[]` (not `features VARCHAR`)
-- `art_characters VARCHAR[]`
-- `art_elements VARCHAR[]`
-- `art_color_tone VARCHAR[]`
-- `themes_all VARCHAR[]`
-- `themes_raw VARCHAR[]`
-- `symbols VARCHAR[]`
-- `art_theme_secondary VARCHAR` (new column)
-
-### 2b. RELIABLE_GAME constant
-
-Verify it uses `len(features) > 0` instead of `features != '[]'`.
-
-### 2c. LIKE patterns replaced
-
-Search for any remaining `LIKE '%"` patterns related to features:
-```bash
-rg "features LIKE" src/lib/db/duckdb-client.js
-```
-Expected: **zero results**
-
-Verify `list_contains` is used instead:
-```bash
-rg "list_contains" src/lib/db/duckdb-client.js
-```
-Expected: at least 2-3 results (mechanic filter, feature filter, getGamesByMechanic)
-
-### 2d. features != '[]' eliminated
-
-```bash
-rg "features != '\[\]'" src/lib/db/duckdb-client.js
-```
-Expected: **zero results**
-
-### 2e. getOverviewStats uses UNNEST
-
-Read the `getOverviewStats` function and verify it uses `UNNEST(features)` instead of JS parseFeatures loop for counting unique mechanics.
-
-### 2f. getUniqueMechanics/getUniqueFeatures use UNNEST
-
-Read both functions and verify they use `UNNEST(features)` + `DISTINCT` in SQL instead of JS Set/loops.
-
----
-
-## Section 3: data.js Fallback Fix
-
-In `src/lib/data.js`, verify the `hasFeatures` check handles both arrays and strings:
-```bash
-rg "hasFeatures" src/lib/data.js
-```
-
-Must NOT use `g.features !== '[]'` as the only check. Should handle `Array.isArray(g.features)`.
-
----
-
-## Section 4: GATE VERIFICATION (most critical section)
-
-Start the server:
-```bash
-npm start &
-```
-
-Wait for it to be ready, then run these verification queries. You can either:
-- Use the browser console after logging in, OR
-- Write a small Node script that imports duckdb-client and runs queries
-
-### Gate Check 1: Column type
-```sql
-SELECT typeof(features) AS t FROM games LIMIT 1
-```
-**MUST return `VARCHAR[]`** (not `VARCHAR`)
-
-### Gate Check 2: UNNEST works
-```sql
-SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL LIMIT 10
-```
-**MUST return individual feature strings** (e.g., `{f: 'Free Spins'}`, `{f: 'Wild'}`)
-
-### Gate Check 3: list_contains works
-```sql
-SELECT COUNT(*) AS n FROM games WHERE list_contains(features, 'Free Spins')
-```
-**MUST return a number > 0**
-
-### Gate Check 4: Array return
-When querying a game with features, the JS result must have features as a native JS array:
-```sql
-SELECT features FROM games WHERE features IS NOT NULL LIMIT 1
-```
-Check: `Array.isArray(result[0].features)` **MUST be `true`**
-
-### Gate Check 5: Art arrays too
-```sql
-SELECT typeof(art_characters) AS t FROM games WHERE art_characters IS NOT NULL LIMIT 1
-```
-**MUST return `VARCHAR[]`**
-
-```sql
-SELECT UNNEST(art_characters) AS c FROM games WHERE art_characters IS NOT NULL LIMIT 5
-```
-**MUST return individual character strings**
-
-### Gate Check 6: Game counts preserved
-```sql
-SELECT COUNT(*) FROM games
-```
-Must match `game_data_master.json` length (expect ~4550)
-
-```sql
-SELECT COUNT(*) FROM games WHERE features IS NOT NULL AND len(features) > 0
-```
-Must be > 0 (expect ~2000+)
-
----
-
-## Section 5: Data Consistency
-
-### 5a. Cross-check with golden baseline
-
-Run the data validation tests:
-```bash
-npx vitest run tests/data-validation/validate-data-pipeline.test.js
-npx vitest run tests/data-validation/validate-parquet-pipeline.test.js
-npx vitest run tests/data-validation/validate-reliable-filter-alignment.test.js
-```
-
-All must pass.
-
-### 5b. Enforcement tests
-```bash
-npx vitest run tests/enforcement/
-```
-All must pass.
-
-### 5c. Full test suite
-```bash
-npm test
-```
-Report count. Must be >= 1609.
-
-### 5d. Post-build smoke
-```bash
 npm run test:gate
 ```
-Must pass.
 
----
-
-## Section 6: Playwright
-
+Also verify new unit tests exist:
 ```bash
-npx playwright test tests/e2e/debug-expand.spec.mjs --project chromium --reporter=line --timeout 60000
+ls -la tests/unit/bubble-labels.test.js
 ```
-Must pass.
+
+**FAIL if** any test fails or unit test file doesn't exist.
 
 ---
 
-## GATE DECISION
+## Q2: Bubble Size Range Restored
 
-Based on Sections 1-6:
+**Page:** Art Insights → Art Themes Landscape (canvas: `art-opportunity-chart`)
 
-- **ALL gate checks pass** (Section 4) → **GATE OPEN — proceed to Phase 2**
-- **ANY gate check fails** → **GATE CLOSED — document failure, report to Atlas, STOP**
+Take screenshot. Bubbles should range from small (~6px) to large (~40px). The largest bubbles (Classic Slots, Animals) should be visibly BIG — roughly the same size as they appear in the old version.
+
+**FAIL if** all bubbles are tiny (max ~16px) and clustered together. The biggest bubble should be clearly 3-4x larger than the smallest.
+
+---
+
+## Q3: Left-Side Bubbles Have Labels
+
+**Pages:** Art Themes Landscape + Market Insights Theme Landscape (`chart-market-landscape`)
+
+Take screenshot of each. Count labels per quadrant:
+- Green (top-left, Opportunity): ___
+- Blue (top-right, Leaders): ___
+- Gray (bottom-left, Niche): ___
+- Red (bottom-right, Saturated): ___
+
+**FAIL if** any quadrant has zero labels, or left side has drastically fewer than right.
+
+---
+
+## Q4: Label Hover Shows Tooltip (CRITICAL)
+
+**This has been reported broken 5+ times. Test thoroughly.**
+
+**Page:** Art Insights → Art Themes Landscape
+
+1. Find a visible label text in the chart
+2. Move mouse directly onto the label text
+3. Wait 800ms
+4. Take screenshot — there MUST be a visible tooltip near the label
+5. Move to a DIFFERENT label, wait, screenshot — tooltip must follow
+6. Move OFF all labels — tooltip must disappear
+
+Do this for at LEAST 3 different labels across different areas of the chart.
+
+```js
+const canvas = page.locator('#art-opportunity-chart');
+await canvas.scrollIntoViewIfNeeded();
+const box = await canvas.boundingBox();
+
+// Hover right label area
+await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.35);
+await page.waitForTimeout(800);
+await page.screenshot({ path: 'qa-screenshots/q4-hover-1.png' });
+
+// Hover left label area
+await page.mouse.move(box.x + box.width * 0.2, box.y + box.height * 0.3);
+await page.waitForTimeout(800);
+await page.screenshot({ path: 'qa-screenshots/q4-hover-2.png' });
+
+// Hover middle
+await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+await page.waitForTimeout(800);
+await page.screenshot({ path: 'qa-screenshots/q4-hover-3.png' });
+
+// Move off chart
+await page.mouse.move(box.x - 50, box.y - 50);
+await page.waitForTimeout(500);
+await page.screenshot({ path: 'qa-screenshots/q4-hover-off.png' });
+```
+
+**FAIL if** tooltip doesn't appear, or appears then instantly disappears, or stays stuck after moving away.
+
+---
+
+## Q5: No Chart Jump on First Hover
+
+**Page:** Art Themes Landscape
+
+1. Screenshot before any hover
+2. Hover one bubble, wait 500ms
+3. Screenshot during hover
+4. Compare chart axes and gridline positions — must be identical
+
+**FAIL if** chart shifts/jumps.
+
+---
+
+## Q6: Labels NOT Covering X-Axis Numbers
+
+**Page:** Art Themes Landscape
+
+Take screenshot. Look at the bottom edge of the chart where X-axis tick values are (1, 2, 5, 10, 20, 50, 100...).
+
+**FAIL if** any label text overlaps or sits on top of X-axis tick numbers. Labels should stay above the axis area with a visible gap.
+
+---
+
+## Q7: Leader Lines Clean
+
+**Page:** Art Themes Landscape, Market Theme Landscape
+
+Take screenshots. Leader lines (dashed lines from bubble to label) should be:
+- Relatively short
+- Not crossing over many other bubbles
+- Fewer than before (threshold increased)
+
+**FAIL if** there are many long tangled leader lines crossing the chart.
+
+---
+
+## Q8: Overview No Console Errors
+
+Navigate to Overview. Do a hover sweep over the theme landscape chart area.
+
+**FAIL if** any `TypeError` or `Cannot read properties of undefined` errors appear in console.
+
+---
+
+## Q9: No Stuck Hover Highlights
+
+**Page:** Art Themes Landscape
+
+1. Hover over 5+ different bubbles in sequence
+2. Move cursor completely off the chart
+3. Take screenshot
+4. All bubbles should return to normal appearance — none dimmed, none highlighted
+
+**FAIL if** any bubble remains dimmed or highlighted after moving away.
+
+---
+
+## Q10: No Regressions
+
+Quick check:
+- Overview loads, all charts render
+- Themes page loads
+- Market Insights landscapes render with labels
+- Providers page loads
+
+**FAIL if** any page breaks.
 
 ---
 
 ## Report
 
-Update `/Users/avner/Projects/game-performace-dashboard/agents/prompts/atlas.md` with:
+**Append** to `/Users/avner/Projects/game-performace-dashboard/agents/prompts/atlas.md`:
 
-### QA Agent Report — Phase 1 Gate Validation
+### QA Agent Report — Bubble Chart 8-Fix Batch
 
-| Section | Status | Detail |
-|---------|--------|--------|
-| Pre-checks | | format, test count, build |
-| 1a: build-parquet arrays | | No JSON.stringify confirmed |
-| 1b: games_processed.json | | IsArray=true for features + art |
-| 1c: HIDDEN_FEATURES | | Multiplier/Multipliers absent |
-| 2a: CREATE TABLE types | | VARCHAR[] columns listed |
-| 2b: RELIABLE_GAME | | len(features) > 0 |
-| 2c: LIKE patterns | | Zero LIKE results |
-| 2d: features != '[]' | | Zero results |
-| 2e-f: UNNEST functions | | Functions confirmed |
-| 3: data.js fallback | | Array.isArray check |
-| **GATE 1: typeof** | | VARCHAR[] or VARCHAR? |
-| **GATE 2: UNNEST** | | Individual strings? |
-| **GATE 3: list_contains** | | Count > 0? |
-| **GATE 4: Array.isArray** | | true or false? |
-| **GATE 5: Art arrays** | | VARCHAR[] + UNNEST? |
-| **GATE 6: Game counts** | | Total + featured count |
-| 5a: Data validation tests | | pass/fail |
-| 5b: Enforcement tests | | count + pass/fail |
-| 5c: Full test suite | | count + pass/fail |
-| 5d: test:gate | | pass/fail |
-| 6: Playwright | | pass/fail |
+| Check | Result | Notes |
+|-------|--------|-------|
+| Q1: Tests + unit tests | | pass count, unit test file exists? |
+| Q2: Bubble size restored | | Max bubble visually ~40px? |
+| Q3: Left-side labels | | Green/Gray/Blue/Red counts? |
+| Q4: Tooltip on label hover | | Appears and STAYS? 3 labels tested? |
+| Q5: No chart jump | | Before/after identical? |
+| Q6: Labels above X-axis | | Gap visible? |
+| Q7: Leader lines clean | | Short, not tangled? |
+| Q8: Overview no errors | | Console clean? |
+| Q9: No stuck highlights | | All bubbles normal after hover? |
+| Q10: No regressions | | All pages load? |
 
-**GATE DECISION: OPEN or CLOSED**
+**DECISION:** PASS / FAIL
 
-If CLOSED, describe exactly which gate check failed and what the error message was.
+**If FAIL:** Describe exactly what's wrong with screenshot evidence. Append findings to `dev.md` under `## QA Findings for Dev`.
+
+---
+
+## Dev Notes for QA
+
+### Bubble Chart 8-Fix Batch — Manual Verification Points
+
+**1. Bubble sizes restored (FIX 1)**
+- All bubble landscape charts should have noticeably larger bubbles (rMin=6, rMax=40)
+- Compare Market Insights Theme Landscape, Art Themes Landscape, and Overview scatter
+- Largest bubbles should be ~40px radius, smallest ~6px
+
+**2. Label overlap removal (FIX 2)**
+- On dense charts (Market Insights, Art Themes), labels should not fully cover each other
+- When two labels overlap >25%, the one for the smaller bubble is removed
+- Larger-bubble labels are drawn on top (drawn last in render order)
+
+**3. Label hover tooltip works (FIX 3)**
+- Hover over a label text (not the bubble) → tooltip should appear and STAY
+- Move cursor slowly across the label → tooltip should not flicker
+- This was broken because Chart.js tooltip plugin was clearing our manually-set tooltip
+- Test on Market Insights Theme Landscape and Art Themes Landscape
+
+**4. Labels recalculate on resize (FIX 4)**
+- Resize the browser window → labels should reposition correctly
+- Previously labels were calculated once and never updated
+
+**5. Labels don't cover X-axis (FIX 5)**
+- Bottom-most labels should be at least 18px above the X-axis numbers
+- Check Art Themes Landscape bottom edge — no label text overlapping "Number of Games"
+
+**6. Fewer leader lines (FIX 6)**
+- Leader lines (thin lines connecting labels to their bubbles) should only appear when labels are >25px from their bubble
+- Previously threshold was 15px, causing too many lines
+
+**7. Overview hover — no TypeError (FIX 7)**
+- Open browser console, hover over Overview scatter chart bubbles rapidly
+- Should see zero console errors (TypeError about undefined dataIndex)
+
+**8. Stuck highlights cleared (FIX 8)**
+- Hover over a bubble, then move cursor off the chart
+- All bubbles should return to normal (no dimmed/stuck state)
+- The mouseleave handler clears active elements and tooltip

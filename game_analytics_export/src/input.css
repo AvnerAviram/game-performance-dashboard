@@ -536,6 +536,29 @@ body.xray-cmd-held [class*='tabular-nums']:hover {
     cursor: crosshair !important;
 }
 
+/* Chart loading skeleton shimmer */
+canvas[data-loading]::before,
+.chart-loading {
+    position: relative;
+}
+.chart-loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.08), transparent);
+    animation: chart-shimmer 1.5s infinite;
+    border-radius: inherit;
+    pointer-events: none;
+}
+@keyframes chart-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
     /* Tablet: 2 cols max */
     .xl\\:grid-cols-4 {

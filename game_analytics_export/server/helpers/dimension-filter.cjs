@@ -19,11 +19,15 @@ function matchGameToDimension(game, dimension, valueLower, { normalizeProvider, 
     }
 
     if (dimension === 'theme') {
-        return (
-            (g.art_theme || '').toLowerCase() === valueLower ||
-            (g.theme_primary || '').toLowerCase() === valueLower ||
-            (g.theme_consolidated || '').toLowerCase() === valueLower
-        );
+        const canonical = (
+            g.art_theme ||
+            g.theme_consolidated ||
+            (g.theme && g.theme.consolidated) ||
+            g.theme_primary ||
+            (g.theme && g.theme.primary) ||
+            ''
+        ).toLowerCase();
+        return canonical === valueLower;
     }
 
     if (dimension === 'feature') {
@@ -38,7 +42,11 @@ function matchGameToDimension(game, dimension, valueLower, { normalizeProvider, 
         return false;
     }
 
-    if (dimension === 'volatility') return (g.volatility || g.specs_volatility || '').toLowerCase() === valueLower;
+    if (dimension === 'volatility') {
+        const raw = (g.volatility || g.specs_volatility || '').toLowerCase().trim();
+        const target = valueLower.trim();
+        return raw === target || raw.replace(/[-_\s]+/g, ' ') === target.replace(/[-_\s]+/g, ' ');
+    }
 
     if (dimension === 'rtp') {
         const rtp = parseFloat(g.rtp || g.specs_rtp);

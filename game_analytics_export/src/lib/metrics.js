@@ -4,174 +4,106 @@
  * Every chart, card, panel, and insight MUST call these functions instead
  * of writing inline forEach/reduce loops over game arrays.
  *
- * Pure functions: no DOM, no DuckDB, no side effects.
- * Input: array of game objects (flat DuckDB rows).
- * Output: plain objects/arrays.
+ * SQL-first: functions query DuckDB via `query()` and return plain objects.
+ * JS-only helpers (addPerformanceIndex, calculatePerformanceIndex,
+ * getDominantVolatility, getDominantLayout) remain sync and accept game arrays.
+ * Legacy aliases addSmartIndex/calculateSmartIndex are kept for backward compat.
  */
 
+import { query, RELIABLE_GAME } from './db/duckdb-client.js';
+import { VOLATILITY_ORDER, MIN_PROVIDER_GAMES, MIN_QUALIFIED_GAMES } from './shared-config.js';
 import { F } from './game-fields.js';
-import { parseFeatures } from './parse-features.js';
-import { VOLATILITY_ORDER, MIN_PROVIDER_GAMES } from './shared-config.js';
+
+function catFilter(category) {
+    return category ? `AND game_category = '${category.replace(/'/g, "''")}'` : '';
+}
 
 // ── Provider Metrics ───────────────────────────────────────────────────
 
 /**
  * Aggregate games by provider.
- * @param {Object[]} games
+ * @param {string} [category]
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum game count to include (default MIN_PROVIDER_GAMES)
- * @returns {{ name, count, totalTheo, avgTheo, totalMkt, ggrShare }[]}
+ * @returns {Promise<{ name, count, totalTheo, avgTheo, ggrShare, smartIndex }[]>}
  */
-export function getProviderMetrics(games, opts = {}) {
+export async function getProviderMetrics(category = null, opts = {}) {
     const minGames = opts.minGames ?? MIN_PROVIDER_GAMES;
-    const map = {};
-    for (const g of games) {
-        const prov = F.provider(g);
-        if (!prov || prov === 'Unknown') continue;
-        if (!map[prov]) map[prov] = { name: prov, count: 0, totalTheo: 0, totalMkt: 0 };
-        map[prov].count++;
-        map[prov].totalTheo += F.theoWin(g);
-        map[prov].totalMkt += F.marketShare(g);
-    }
-    const rows = Object.values(map)
-        .map(p => ({ ...p, avgTheo: p.count > 0 ? p.totalTheo / p.count : 0, ggrShare: p.totalMkt }))
-        .filter(p => p.count >= minGames);
-    return addSmartIndex(rows);
-}
-
-/**
- * Count unique providers per theme.
- * @param {Object[]} games
- * @returns {Map<string, Set<string>>} theme → Set of provider names
- */
-export function getProvidersPerTheme(games) {
-    const map = new Map();
-    for (const g of games) {
-        const theme = F.themeConsolidated(g);
-        const prov = F.provider(g);
-        if (!map.has(theme)) map.set(theme, new Set());
-        map.get(theme).add(prov);
-    }
-    return map;
+    const rows = await query(`
+        SELECT provider_studio AS name, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo,
+               SUM(performance_market_share_percent) AS totalMkt
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND provider_studio IS NOT NULL AND provider_studio != 'Unknown'
+        GROUP BY provider_studio
+        HAVING COUNT(*) >= ${minGames}
+    `);
+    const mapped = rows.map(r => ({ ...r, ggrShare: r.totalMkt }));
+    return addSmartIndex(mapped);
 }
 
 // ── Theme Metrics ──────────────────────────────────────────────────────
 
 /**
  * Aggregate games by consolidated theme.
- * @param {Object[]} games
- * @returns {{ theme, count, totalTheo, avgTheo, totalMkt }[]}
+ * @param {string} [category]
+ * @returns {Promise<{ theme, count, totalTheo, avgTheo, totalMkt, smartIndex }[]>}
  */
-export function getThemeMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const theme = F.themeConsolidated(g);
-        if (!map[theme]) map[theme] = { theme, count: 0, totalTheo: 0, totalMkt: 0 };
-        map[theme].count++;
-        map[theme].totalTheo += F.theoWin(g);
-        map[theme].totalMkt += F.marketShare(g);
-    }
-    const rows = Object.values(map).map(t => ({ ...t, avgTheo: t.count > 0 ? t.totalTheo / t.count : 0 }));
+export async function getThemeMetrics(category = null) {
+    const rows = await query(`
+        SELECT theme_consolidated AS theme, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo,
+               SUM(performance_market_share_percent) AS totalMkt
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+        GROUP BY theme_consolidated
+    `);
     return addSmartIndex(rows);
-}
-
-/**
- * Get games grouped by consolidated theme.
- * @param {Object[]} games
- * @returns {Map<string, Object[]>}
- */
-export function getGamesByTheme(games) {
-    const map = new Map();
-    for (const g of games) {
-        const theme = F.themeConsolidated(g);
-        if (!map.has(theme)) map.set(theme, []);
-        map.get(theme).push(g);
-    }
-    return map;
 }
 
 // ── Feature Metrics ────────────────────────────────────────────────────
 
 /**
- * Aggregate games by feature (canonical parsed features).
- * @param {Object[]} games
- * @returns {{ feature, count, totalTheo, avgTheo }[]}
+ * Aggregate games by feature (uses UNNEST on native array).
+ * @param {string} [category]
+ * @returns {Promise<{ feature, count, totalTheo, avgTheo, smartIndex }[]>}
  */
-export function getFeatureMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const feats = parseFeatures(F.features(g));
-        const theo = F.theoWin(g);
-        for (const feat of feats) {
-            if (!feat || feat === 'Unknown') continue;
-            if (!map[feat]) map[feat] = { feature: feat, count: 0, totalTheo: 0 };
-            map[feat].count++;
-            map[feat].totalTheo += theo;
-        }
-    }
-    const rows = Object.values(map).map(f => ({ ...f, avgTheo: f.count > 0 ? f.totalTheo / f.count : 0 }));
+export async function getFeatureMetrics(category = null) {
+    const rows = await query(`
+        SELECT f AS feature, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo,
+               SUM(performance_market_share_percent) AS totalMkt
+        FROM (
+          SELECT UNNEST(features) AS f, performance_theo_win, performance_market_share_percent
+          FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+            AND features IS NOT NULL AND len(features) > 0
+        )
+        GROUP BY f
+    `);
     return addSmartIndex(rows);
-}
-
-/**
- * Per-feature lift: avgTheo with feature vs avgTheo without.
- * @param {Object[]} games
- * @returns {{ feature, avgWith, avgWithout, lift, count }[]}
- */
-export function getFeatureLift(games) {
-    const globalAvg = games.length > 0 ? games.reduce((s, g) => s + F.theoWin(g), 0) / games.length : 0;
-
-    const map = {};
-    for (const g of games) {
-        const feats = parseFeatures(F.features(g));
-        const theo = F.theoWin(g);
-        for (const feat of feats) {
-            if (!feat || feat === 'Unknown') continue;
-            if (!map[feat]) map[feat] = { feature: feat, totalWith: 0, countWith: 0 };
-            map[feat].totalWith += theo;
-            map[feat].countWith++;
-        }
-    }
-
-    const totalGames = games.length;
-    return Object.values(map)
-        .map(f => {
-            const avgWith = f.countWith > 0 ? f.totalWith / f.countWith : 0;
-            const countWithout = totalGames - f.countWith;
-            const totalWithout = games.reduce((s, g) => s + F.theoWin(g), 0) - f.totalWith;
-            const avgWithout = countWithout > 0 ? totalWithout / countWithout : 0;
-            return {
-                feature: f.feature,
-                avgWith,
-                avgWithout,
-                lift: avgWithout > 0 ? ((avgWith - avgWithout) / avgWithout) * 100 : 0,
-                count: f.countWith,
-            };
-        })
-        .sort((a, b) => b.lift - a.lift);
 }
 
 // ── Volatility Metrics ─────────────────────────────────────────────────
 
 /**
  * Aggregate games by volatility level.
- * @param {Object[]} games
- * @returns {{ volatility, count, totalTheo, avgTheo }[]} sorted by VOLATILITY_ORDER
+ * @param {string} [category]
+ * @returns {Promise<{ volatility, count, totalTheo, avgTheo }[]>} sorted by VOLATILITY_ORDER
  */
-export function getVolatilityMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const vol = F.volatility(g);
-        if (!vol) continue;
-        if (!map[vol]) map[vol] = { volatility: vol, count: 0, totalTheo: 0 };
-        map[vol].count++;
-        map[vol].totalTheo += F.theoWin(g);
-    }
-    const all = Object.values(map).map(v => ({
-        ...v,
-        avgTheo: v.count > 0 ? v.totalTheo / v.count : 0,
-    }));
-    return VOLATILITY_ORDER.filter(v => all.find(a => a.volatility === v)).map(v => all.find(a => a.volatility === v));
+export async function getVolatilityMetrics(category = null) {
+    const rows = await query(`
+        SELECT specs_volatility AS volatility, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND specs_volatility IS NOT NULL
+        GROUP BY specs_volatility
+    `);
+    return VOLATILITY_ORDER.filter(v => rows.find(r => r.volatility === v)).map(v =>
+        rows.find(r => r.volatility === v)
+    );
 }
 
 /**
@@ -183,96 +115,12 @@ export function getDominantVolatility(games) {
     const counts = {};
     for (const g of games) {
         const vol = F.volatility(g);
-        if (!vol) continue;
+        if (!vol || vol === 'Unknown') continue;
         counts[vol] = (counts[vol] || 0) + 1;
     }
     const entries = Object.entries(counts);
     if (!entries.length) return '';
     return entries.sort((a, b) => b[1] - a[1])[0][0];
-}
-
-// ── Recipe / Combo Metrics ─────────────────────────────────────────────
-
-/**
- * Multi-feature recipe aggregation (sorted feature key combos).
- * @param {Object[]} games
- * @param {Object} [opts]
- * @param {number} [opts.minFeatures] — min features per game (default 2)
- * @param {number} [opts.minGames] — min games per recipe (default 2)
- * @returns {{ key, features, count, totalTheo, avgTheo, lift, games }[]}
- */
-export function getFeatureRecipes(games, opts = {}) {
-    const minFeatures = opts.minFeatures ?? 2;
-    const minGames = opts.minGames ?? 2;
-    const globalAvg = games.length > 0 ? games.reduce((s, g) => s + F.theoWin(g), 0) / games.length : 0;
-
-    const map = {};
-    for (const g of games) {
-        const feats = parseFeatures(F.features(g)).sort();
-        if (feats.length < minFeatures) continue;
-        const key = feats.join(' + ');
-        if (!map[key]) map[key] = { key, features: feats, count: 0, totalTheo: 0, games: [] };
-        map[key].count++;
-        map[key].totalTheo += F.theoWin(g);
-        map[key].games.push(g);
-    }
-
-    return Object.values(map)
-        .filter(r => r.count >= minGames)
-        .map(r => ({
-            ...r,
-            avgTheo: r.totalTheo / r.count,
-            lift: globalAvg > 0 ? ((r.totalTheo / r.count - globalAvg) / globalAvg) * 100 : 0,
-        }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
-}
-
-/**
- * Feature-pair and triple combos within a theme.
- * @param {Object[]} games — games already filtered to a theme
- * @param {Object} [opts]
- * @param {number} [opts.comboSize] — 2 for pairs, 3 for triples (default 2)
- * @param {number} [opts.minGames] — min games per combo (default 2)
- * @returns {{ key, features, count, totalTheo, avgTheo, lift }[]}
- */
-export function getFeatureCombos(games, opts = {}) {
-    const comboSize = opts.comboSize ?? 2;
-    const minGames = opts.minGames ?? 2;
-    const themeAvg = games.length > 0 ? games.reduce((s, g) => s + F.theoWin(g), 0) / games.length : 0;
-
-    const map = {};
-    for (const g of games) {
-        const feats = parseFeatures(F.features(g)).sort();
-        const combos = getCombinations(feats, comboSize);
-        const theo = F.theoWin(g);
-        for (const combo of combos) {
-            const key = combo.join(' + ');
-            if (!map[key]) map[key] = { key, features: combo, count: 0, totalTheo: 0 };
-            map[key].count++;
-            map[key].totalTheo += theo;
-        }
-    }
-
-    return Object.values(map)
-        .filter(c => c.count >= minGames)
-        .map(c => ({
-            ...c,
-            avgTheo: c.totalTheo / c.count,
-            lift: themeAvg > 0 ? ((c.totalTheo / c.count - themeAvg) / themeAvg) * 100 : 0,
-        }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
-}
-
-function getCombinations(arr, size) {
-    if (size === 1) return arr.map(x => [x]);
-    const result = [];
-    for (let i = 0; i <= arr.length - size; i++) {
-        const rest = getCombinations(arr.slice(i + 1), size - 1);
-        for (const combo of rest) {
-            result.push([arr[i], ...combo]);
-        }
-    }
-    return result;
 }
 
 // ── RTP Band Metrics ───────────────────────────────────────────────────
@@ -289,279 +137,304 @@ export const RTP_BANDS = [
 
 /**
  * Aggregate games into RTP bands.
- * @param {Object[]} games
- * @returns {{ label, min, max, count, avgTheo }[]}
+ * @param {string} [category]
+ * @returns {Promise<{ label, min, max, count, avgTheo }[]>}
  */
-export function getRtpBandMetrics(games) {
-    return RTP_BANDS.map(b => {
-        const matching = games.filter(g => {
-            const rtp = F.rtp(g);
-            return rtp > 0 && rtp >= b.min && rtp < b.max;
-        });
-        const totalTheo = matching.reduce((s, g) => s + F.theoWin(g), 0);
-        return {
-            ...b,
-            count: matching.length,
-            avgTheo: matching.length > 0 ? totalTheo / matching.length : 0,
-        };
-    }).filter(b => b.count > 0);
+export async function getRtpBandMetrics(category = null) {
+    const rows = await query(`
+        SELECT
+          CASE
+            WHEN specs_rtp >= 97 THEN '> 97%'
+            WHEN specs_rtp >= 96 THEN '96%-97%'
+            WHEN specs_rtp >= 95 THEN '95%-96%'
+            WHEN specs_rtp >= 94 THEN '94%-95%'
+            WHEN specs_rtp >= 93 THEN '93%-94%'
+            ELSE '< 93%'
+          END AS label,
+          COUNT(*) AS count,
+          AVG(performance_theo_win) AS avgTheo
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND specs_rtp > 0
+        GROUP BY label
+    `);
+    return RTP_BANDS.filter(b => rows.find(r => r.label === b.label)).map(b => {
+        const row = rows.find(r => r.label === b.label);
+        return { label: b.label, min: b.min, max: b.max, count: row.count, avgTheo: row.avgTheo };
+    });
 }
 
-// ── Smart Index ────────────────────────────────────────────────────────
+// ── Performance Index (Eilers-style) ──────────────────────────────────
 
 /**
- * Canonical Smart Index formula.
- * SI = (avgTheo * sqrt(gameCount)) / globalAvgTheo
- *
+ * Performance Index — pure performance relative to the group average.
+ * Eilers-style: no sample-size weighting. PI > 1 means above average.
  * @param {number} avgTheo — average theo win for this group
- * @param {number} gameCount — number of games in this group
  * @param {number} globalAvgTheo — average theo across all groups
  * @returns {number}
  */
-export function calculateSmartIndex(avgTheo, gameCount, globalAvgTheo) {
+export function calculatePerformanceIndex(avgTheo, globalAvgTheo) {
     if (!globalAvgTheo || globalAvgTheo === 0) return 0;
-    return (avgTheo * Math.sqrt(gameCount)) / globalAvgTheo;
+    return avgTheo / globalAvgTheo;
+}
+
+/** @deprecated Use calculatePerformanceIndex instead */
+export function calculateSmartIndex(avgTheo, _gameCount, globalAvgTheo) {
+    return calculatePerformanceIndex(avgTheo, globalAvgTheo);
 }
 
 /**
- * Add Smart Index to an array of dimension rows (themes or mechanics).
- * Each row must have `avg_theo_win` (or `avgTheo`) and `game_count` (or `count`).
- * Returns a new array with `smartIndex` added, sorted descending.
- *
- * @param {{ avg_theo_win?: number, avgTheo?: number, game_count?: number, count?: number }[]} rows
- * @returns {Object[]} same rows with `smartIndex` added
+ * Add Performance Index to dimension rows. Default sort: Market Share descending
+ * (Eilers "Top Grossing" style). PI sort is used by performance-specific filter views.
  */
-export function addSmartIndex(rows) {
+export function addPerformanceIndex(rows) {
     if (!rows.length) return rows;
     const globalAvg = rows.reduce((s, r) => s + (r.avg_theo_win ?? r.avgTheo ?? 0), 0) / rows.length;
     return rows
         .map(r => {
             const theo = r.avg_theo_win ?? r.avgTheo ?? 0;
             const count = r.game_count ?? r.count ?? 0;
-            return { ...r, smartIndex: calculateSmartIndex(theo, count, globalAvg) };
+            const pi = calculatePerformanceIndex(theo, globalAvg);
+            return {
+                ...r,
+                performanceIndex: pi,
+                smartIndex: pi,
+                qualified: count >= MIN_QUALIFIED_GAMES,
+            };
         })
-        .sort((a, b) => b.smartIndex - a.smartIndex);
+        .sort((a, b) => {
+            const aMkt = a.totalMkt ?? a.total_market_share ?? 0;
+            const bMkt = b.totalMkt ?? b.total_market_share ?? 0;
+            return bMkt - aMkt;
+        });
 }
 
+/** @deprecated Use addPerformanceIndex instead */
+export const addSmartIndex = addPerformanceIndex;
+
 // ── Convenience: Global Averages ───────────────────────────────────────
+
+/**
+ * Compute global average theo win across reliable games.
+ * @param {string} [category]
+ * @returns {Promise<number>}
+ */
+export async function getGlobalAvgTheo(category = null) {
+    const rows = await query(
+        `SELECT AVG(performance_theo_win) AS avg FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}`
+    );
+    return rows[0]?.avg ?? 0;
+}
+
+/**
+ * Get the average RTP from reliable games (ignoring 0/missing).
+ * @param {string} [category]
+ * @returns {Promise<number>}
+ */
+export async function getAvgRtp(category = null) {
+    const rows = await query(
+        `SELECT AVG(specs_rtp) AS avg FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)} AND specs_rtp > 0`
+    );
+    return rows[0]?.avg ?? 0;
+}
 
 // ── Art Design Metrics ─────────────────────────────────────────────────
 
 /**
  * Aggregate games by art theme.
- * @param {Object[]} games
- * @returns {{ theme, count, totalTheo, avgTheo, totalMkt }[]}
+ * @param {string} [category]
+ * @returns {Promise<{ theme, count, totalTheo, avgTheo, totalMkt }[]>}
  */
-export function getArtThemeMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const theme = F.artTheme(g);
-        if (!theme) continue;
-        if (!map[theme]) map[theme] = { theme, count: 0, totalTheo: 0, totalMkt: 0 };
-        map[theme].count++;
-        map[theme].totalTheo += F.theoWin(g);
-        map[theme].totalMkt += F.marketShare(g);
-    }
-    return Object.values(map)
-        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
-        .sort((a, b) => b.count - a.count);
-}
-
-/**
- * Aggregate games by art mood.
- * @param {Object[]} games
- * @returns {{ mood, count, totalTheo, avgTheo }[]}
- */
-export function getArtMoodMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const mood = F.artMood(g);
-        if (!mood) continue;
-        if (!map[mood]) map[mood] = { mood, count: 0, totalTheo: 0 };
-        map[mood].count++;
-        map[mood].totalTheo += F.theoWin(g);
-    }
-    return Object.values(map)
-        .map(m => ({ ...m, avgTheo: m.count > 0 ? m.totalTheo / m.count : 0 }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
+export async function getArtThemeMetrics(category = null) {
+    return query(`
+        SELECT art_theme AS theme, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo,
+               SUM(performance_market_share_percent) AS totalMkt
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND art_theme IS NOT NULL
+        GROUP BY art_theme
+        ORDER BY count DESC
+    `);
 }
 
 /**
  * Aggregate games by art narrative.
- * @param {Object[]} games
- * @returns {{ narrative, count, totalTheo, avgTheo }[]}
+ * @param {string} [category]
+ * @returns {Promise<{ narrative, count, totalTheo, avgTheo }[]>}
  */
-export function getArtNarrativeMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const narr = F.artNarrative(g);
-        if (!narr) continue;
-        if (!map[narr]) map[narr] = { narrative: narr, count: 0, totalTheo: 0 };
-        map[narr].count++;
-        map[narr].totalTheo += F.theoWin(g);
-    }
-    return Object.values(map)
-        .map(n => ({ ...n, avgTheo: n.count > 0 ? n.totalTheo / n.count : 0 }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
+export async function getArtNarrativeMetrics(category = null) {
+    return query(`
+        SELECT art_narrative AS narrative, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND art_narrative IS NOT NULL
+        GROUP BY art_narrative
+        ORDER BY avgTheo DESC
+    `);
 }
 
 /**
- * Aggregate games by individual art character type (multi-value field).
- * @param {Object[]} games
- * @returns {{ character, count, totalTheo, avgTheo }[]}
+ * Aggregate games by individual art character type (UNNEST on native array).
+ * @param {string} [category]
+ * @returns {Promise<{ character, count, totalTheo, avgTheo }[]>}
  */
-export function getArtCharacterMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const chars = F.artCharacters(g);
-        const theo = F.theoWin(g);
-        for (const ch of chars) {
-            if (!ch) continue;
-            if (!map[ch]) map[ch] = { character: ch, count: 0, totalTheo: 0 };
-            map[ch].count++;
-            map[ch].totalTheo += theo;
-        }
-    }
-    return Object.values(map)
-        .map(c => ({ ...c, avgTheo: c.count > 0 ? c.totalTheo / c.count : 0 }))
-        .sort((a, b) => b.count - a.count);
+export async function getArtCharacterMetrics(category = null) {
+    return query(`
+        SELECT c AS character, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo
+        FROM (
+          SELECT UNNEST(art_characters) AS c, performance_theo_win
+          FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+            AND art_characters IS NOT NULL AND len(art_characters) > 0
+        )
+        WHERE c != 'No Characters (symbol-only game)'
+        GROUP BY c
+        ORDER BY count DESC
+    `);
 }
 
 /**
- * Aggregate games by individual art element (multi-value field).
- * @param {Object[]} games
- * @returns {{ element, count, totalTheo, avgTheo }[]}
+ * Aggregate games by individual art element (UNNEST on native array).
+ * @param {string} [category]
+ * @returns {Promise<{ element, count, totalTheo, avgTheo }[]>}
  */
-export function getArtElementMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const elems = F.artElements(g);
-        const theo = F.theoWin(g);
-        for (const el of elems) {
-            if (!el) continue;
-            if (!map[el]) map[el] = { element: el, count: 0, totalTheo: 0 };
-            map[el].count++;
-            map[el].totalTheo += theo;
-        }
-    }
-    return Object.values(map)
-        .map(e => ({ ...e, avgTheo: e.count > 0 ? e.totalTheo / e.count : 0 }))
-        .sort((a, b) => b.count - a.count);
+export async function getArtElementMetrics(category = null) {
+    return query(`
+        SELECT e AS element, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo
+        FROM (
+          SELECT UNNEST(art_elements) AS e, performance_theo_win
+          FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+            AND art_elements IS NOT NULL AND len(art_elements) > 0
+        )
+        GROUP BY e
+        ORDER BY count DESC
+    `);
 }
 
 /**
- * Aggregate games by art style.
- * @param {Object[]} games
- * @returns {{ style, count, totalTheo, avgTheo }[]}
+ * Aggregate games by art color tone (UNNEST on native array).
+ * @param {string} [category]
+ * @returns {Promise<{ colorTone, count, totalTheo, avgTheo }[]>}
  */
-export function getArtStyleMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const style = F.artStyle(g);
-        if (!style) continue;
-        if (!map[style]) map[style] = { style, count: 0, totalTheo: 0 };
-        map[style].count++;
-        map[style].totalTheo += F.theoWin(g);
-    }
-    return Object.values(map)
-        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
-        .sort((a, b) => b.count - a.count);
-}
-
-/**
- * Aggregate games by art color tone.
- * @param {Object[]} games
- * @returns {{ colorTone, count, totalTheo, avgTheo }[]}
- */
-export function getArtColorToneMetrics(games) {
-    const map = {};
-    for (const g of games) {
-        const colors = F.artColorTone(g);
-        const theo = F.theoWin(g);
-        for (const ct of colors) {
-            if (!ct) continue;
-            if (!map[ct]) map[ct] = { colorTone: ct, count: 0, totalTheo: 0 };
-            map[ct].count++;
-            map[ct].totalTheo += theo;
-        }
-    }
-    return Object.values(map)
-        .map(s => ({ ...s, avgTheo: s.count > 0 ? s.totalTheo / s.count : 0 }))
-        .sort((a, b) => b.count - a.count);
+export async function getArtColorToneMetrics(category = null) {
+    const rows = await query(`
+        SELECT ct AS colorTone, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo
+        FROM (
+          SELECT UNNEST(art_color_tone) AS ct, performance_theo_win
+          FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+            AND art_color_tone IS NOT NULL AND len(art_color_tone) > 0
+        )
+        GROUP BY ct
+        ORDER BY count DESC
+    `);
+    return rows.map(r => ({ ...r, colorTone: r.colorTone || r.colortone }));
 }
 
 /**
  * Flexible cross-dimensional art combo analysis.
- * Default: theme x elements. Use opts.dimA / opts.dimB to pick any two.
- * Multi-value dims (characters, elements, colors) are exploded per entry.
+ * Default: theme × elements. Use opts.dimA / opts.dimB to pick any two.
  *
- * @param {Object[]} games
+ * @param {string} [category]
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum games per combo (default 2)
  * @param {'theme'|'characters'|'elements'|'colors'|'narrative'} [opts.dimA] — row axis (default 'theme')
  * @param {'theme'|'characters'|'elements'|'colors'|'narrative'} [opts.dimB] — col axis (default 'elements')
- * @returns {{ dimA: string, dimB: string, count: number, avgTheo: number, totalTheo: number, mktShare: number }[]}
+ * @returns {Promise<{ dimA: string, dimB: string, count: number, avgTheo: number, totalTheo: number, mktShare: number }[]>}
  */
-export function getArtComboMetrics(games, opts = {}) {
+export async function getArtComboMetrics(category = null, opts = {}) {
     const minGames = opts.minGames ?? 2;
-    const dimA = opts.dimA ?? 'theme';
-    const dimB = opts.dimB ?? 'elements';
+    const dimAKey = opts.dimA ?? 'theme';
+    const dimBKey = opts.dimB ?? 'elements';
 
-    const DIM_ACCESSOR = {
-        theme: g => {
-            const v = F.artTheme(g);
-            return v ? [v] : [];
-        },
-        characters: g => F.artCharacters(g).filter(Boolean),
-        elements: g => F.artElements(g).filter(Boolean),
-        colors: g => F.artColorTone(g).filter(Boolean),
-        narrative: g => {
-            const v = F.artNarrative(g);
-            return v ? [v] : [];
-        },
+    const DIM_CONFIG = {
+        theme: { col: 'art_theme', isArray: false },
+        characters: { col: 'art_characters', isArray: true },
+        elements: { col: 'art_elements', isArray: true },
+        colors: { col: 'art_color_tone', isArray: true },
+        narrative: { col: 'art_narrative', isArray: false },
     };
 
-    const getA = DIM_ACCESSOR[dimA] || DIM_ACCESSOR.theme;
-    const getB = DIM_ACCESSOR[dimB] || DIM_ACCESSOR.elements;
+    const cfgA = DIM_CONFIG[dimAKey] || DIM_CONFIG.theme;
+    const cfgB = DIM_CONFIG[dimBKey] || DIM_CONFIG.elements;
 
-    const map = {};
-    for (const g of games) {
-        const aVals = getA(g);
-        const bVals = getB(g);
-        if (!aVals.length || !bVals.length) continue;
-        const theo = F.theoWin(g);
-        const mkt = F.marketShare(g);
-        for (const a of aVals) {
-            for (const b of bVals) {
-                const key = `${a}|||${b}`;
-                if (!map[key]) map[key] = { dimA: a, dimB: b, count: 0, totalTheo: 0, mktShare: 0 };
-                map[key].count++;
-                map[key].totalTheo += theo;
-                map[key].mktShare += mkt;
-            }
-        }
+    let selectA, selectB, fromClause, whereExtra;
+
+    if (!cfgA.isArray && !cfgB.isArray) {
+        selectA = `${cfgA.col} AS dimA`;
+        selectB = `${cfgB.col} AS dimB`;
+        fromClause = 'FROM games';
+        whereExtra = `AND ${cfgA.col} IS NOT NULL AND ${cfgB.col} IS NOT NULL`;
+    } else if (!cfgA.isArray && cfgB.isArray) {
+        selectA = `${cfgA.col} AS dimA`;
+        selectB = 'b AS dimB';
+        fromClause = `FROM games, UNNEST(games.${cfgB.col}) AS t(b)`;
+        whereExtra = `AND ${cfgA.col} IS NOT NULL AND ${cfgB.col} IS NOT NULL AND len(${cfgB.col}) > 0`;
+    } else if (cfgA.isArray && !cfgB.isArray) {
+        selectA = 'a AS dimA';
+        selectB = `${cfgB.col} AS dimB`;
+        fromClause = `FROM games, UNNEST(games.${cfgA.col}) AS t(a)`;
+        whereExtra = `AND ${cfgA.col} IS NOT NULL AND len(${cfgA.col}) > 0 AND ${cfgB.col} IS NOT NULL`;
+    } else {
+        selectA = 'a AS dimA';
+        selectB = 'b AS dimB';
+        fromClause = `FROM games, UNNEST(games.${cfgA.col}) AS t1(a), UNNEST(games.${cfgB.col}) AS t2(b)`;
+        whereExtra = `AND ${cfgA.col} IS NOT NULL AND len(${cfgA.col}) > 0 AND ${cfgB.col} IS NOT NULL AND len(${cfgB.col}) > 0`;
     }
-    return Object.values(map)
-        .filter(c => c.count >= minGames)
-        .map(c => ({ ...c, avgTheo: c.totalTheo / c.count }))
-        .sort((a, b) => b.avgTheo - a.avgTheo);
+
+    let charFilter = '';
+    if (dimAKey === 'characters') charFilter += " AND dimA != 'No Characters (symbol-only game)'";
+    if (dimBKey === 'characters') charFilter += " AND dimB != 'No Characters (symbol-only game)'";
+
+    const rows = await query(`
+        SELECT ${selectA}, ${selectB}, COUNT(*) AS count,
+               SUM(performance_theo_win) AS totalTheo,
+               AVG(performance_theo_win) AS avgTheo,
+               SUM(performance_market_share_percent) AS mktShare
+        ${fromClause}
+        WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          ${whereExtra}
+        GROUP BY dimA, dimB
+        HAVING COUNT(*) >= ${minGames}
+        ORDER BY avgTheo DESC
+    `);
+    if (charFilter)
+        return rows.filter(
+            r => r.dimA !== 'No Characters (symbol-only game)' && r.dimB !== 'No Characters (symbol-only game)'
+        );
+    return rows;
 }
 
 /**
  * Enriched art recipes: theme-based combos with top characters, elements, colors, and dominant narrative.
- * @param {Object[]} games
+ * Hybrid: SQL fetches per-theme rows, JS builds frequency maps.
+ *
+ * @param {string} [category]
  * @param {Object} [opts]
  * @param {number} [opts.minGames] — minimum games per combo (default 3)
  * @param {number} [opts.topN] — max items per sub-dimension (default 5)
- * @returns {{ theme, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], topColors: string[], narrative: string }[]}
+ * @returns {Promise<{ theme, count, avgTheo, totalTheo, mktShare, topCharacters: string[], topElements: string[], topColors: string[], narrative: string }[]>}
  */
-export function getArtRecipeMetrics(games, opts = {}) {
+export async function getArtRecipeMetrics(category = null, opts = {}) {
     const minGames = opts.minGames ?? 3;
     const topN = opts.topN ?? 5;
+
+    const rows = await query(`
+        SELECT art_theme AS theme, performance_theo_win AS theo,
+               performance_market_share_percent AS mkt,
+               art_characters, art_elements, art_color_tone, art_narrative
+        FROM games WHERE ${RELIABLE_GAME} ${catFilter(category)}
+          AND art_theme IS NOT NULL
+    `);
+
     const map = {};
-    for (const g of games) {
-        const theme = F.artTheme(g);
-        if (!theme) continue;
+    for (const r of rows) {
+        const theme = r.theme;
         if (!map[theme]) {
             map[theme] = {
                 theme,
@@ -576,19 +449,21 @@ export function getArtRecipeMetrics(games, opts = {}) {
         }
         const entry = map[theme];
         entry.count++;
-        entry.totalTheo += F.theoWin(g);
-        entry.mktShare += F.marketShare(g);
-        for (const ch of F.artCharacters(g)) {
+        entry.totalTheo += r.theo || 0;
+        entry.mktShare += r.mkt || 0;
+        const chars = Array.isArray(r.art_characters) ? r.art_characters : [];
+        for (const ch of chars) {
             if (ch) entry.charFreq[ch] = (entry.charFreq[ch] || 0) + 1;
         }
-        for (const el of F.artElements(g)) {
+        const elems = Array.isArray(r.art_elements) ? r.art_elements : [];
+        for (const el of elems) {
             if (el) entry.elemFreq[el] = (entry.elemFreq[el] || 0) + 1;
         }
-        for (const ct of F.artColorTone(g)) {
+        const colors = Array.isArray(r.art_color_tone) ? r.art_color_tone : [];
+        for (const ct of colors) {
             if (ct) entry.colorFreq[ct] = (entry.colorFreq[ct] || 0) + 1;
         }
-        const narr = F.artNarrative(g);
-        if (narr) entry.narrFreq[narr] = (entry.narrFreq[narr] || 0) + 1;
+        if (r.art_narrative) entry.narrFreq[r.art_narrative] = (entry.narrFreq[r.art_narrative] || 0) + 1;
     }
 
     const topByFreq = (freq, n) =>
@@ -625,16 +500,6 @@ export function getArtRecipeMetrics(games, opts = {}) {
 }
 
 /**
- * Compute global average theo win across all games.
- * @param {Object[]} games
- * @returns {number}
- */
-export function getGlobalAvgTheo(games) {
-    if (!games.length) return 0;
-    return games.reduce((s, g) => s + F.theoWin(g), 0) / games.length;
-}
-
-/**
  * Get the dominant (most common) layout from a game set.
  * @param {Object[]} games
  * @returns {string} e.g. "5×3"
@@ -651,39 +516,4 @@ export function getDominantLayout(games) {
     const entries = Object.entries(counts);
     if (!entries.length) return '';
     return entries.sort((a, b) => b[1] - a[1])[0][0];
-}
-
-/**
- * Get the dominant (most common) provider from a game set.
- * @param {Object[]} games
- * @returns {string}
- */
-export function getDominantProvider(games) {
-    const counts = {};
-    for (const g of games) {
-        const prov = F.provider(g);
-        if (!prov || prov === 'Unknown') continue;
-        counts[prov] = (counts[prov] || 0) + 1;
-    }
-    const entries = Object.entries(counts);
-    if (!entries.length) return '';
-    return entries.sort((a, b) => b[1] - a[1])[0][0];
-}
-
-/**
- * Get the average RTP from a game set (ignoring 0/missing).
- * @param {Object[]} games
- * @returns {number}
- */
-export function getAvgRtp(games) {
-    let sum = 0,
-        count = 0;
-    for (const g of games) {
-        const rtp = F.rtp(g);
-        if (rtp > 0) {
-            sum += rtp;
-            count++;
-        }
-    }
-    return count > 0 ? sum / count : 0;
 }

@@ -7,7 +7,6 @@
 
 import { createTooltipsObject } from '../config/mechanics.js';
 import { log, warn } from './env.js';
-import { calculateSmartIndex as computeSI } from './metrics.js';
 import { parseFeatures } from './parse-features.js';
 
 // Global data store
@@ -94,7 +93,7 @@ export async function loadGameData() {
 async function loadViaDuckDB() {
     try {
         // Dynamic import to avoid blocking if DuckDB not available
-        const { initializeDatabase, getOverviewStats, getMechanicDistribution, getAnomalies, getAllGames } =
+        const { initializeDatabase, getOverviewStats, getAnomalies, getAllGames } =
             await import('./db/duckdb-client.js');
 
         log('🦆 DuckDB module loaded, initializing...');
@@ -108,24 +107,11 @@ async function loadViaDuckDB() {
         gameData.theme_count = stats.theme_count;
         gameData.mechanic_count = stats.mechanic_count;
 
-        // Query mechanics
-        const mechanicsRaw = await getMechanicDistribution();
-        gameData.mechanics = mechanicsRaw.map(m => ({
-            Mechanic: m.mechanic,
-            'Game Count': m.game_count,
-            'Avg Theo Win Index': m.avg_theo_win,
-            'Market Share %': m.total_market_share || 0, // ADD THIS!
-            mechanic: m.mechanic,
-            game_count: m.game_count,
-            avg_theo_win: m.avg_theo_win,
-            total_market_share: m.total_market_share || 0,
-        }));
-
         // Query anomalies (convert to old format for ui.js compatibility)
         const anomalies = await getAnomalies();
         gameData.top_anomalies = (anomalies.high || []).map(g => ({
             game: g.name,
-            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
+            themes: [g.theme_consolidated || g.art_theme || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -136,7 +122,7 @@ async function loadViaDuckDB() {
         }));
         gameData.bottom_anomalies = (anomalies.low || []).map(g => ({
             game: g.name,
-            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
+            themes: [g.theme_consolidated || g.art_theme || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -148,40 +134,23 @@ async function loadViaDuckDB() {
 
         // Query all games
         gameData.allGames = await getAllGames();
-        // Build consolidation map using unified art_theme names
+        // Build consolidation map
         gameData.themeConsolidationMap = {};
         for (const g of gameData.allGames) {
-            const unified = g.art_theme || g.theme_consolidated;
+            const unified = g.theme_consolidated || g.art_theme;
             if (g.theme_primary && unified) {
                 gameData.themeConsolidationMap[g.theme_primary] = unified;
             }
         }
 
-        // Rebuild themes from allGames using unified art_theme name
-        const themeAggDuck = {};
-        for (const g of gameData.allGames) {
-            const t = g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown';
-            if (!themeAggDuck[t]) themeAggDuck[t] = { count: 0, theoSum: 0, mktSum: 0 };
-            themeAggDuck[t].count++;
-            themeAggDuck[t].theoSum += g.performance_theo_win || 0;
-            themeAggDuck[t].mktSum += g.performance_market_share_percent || 0;
-        }
-        gameData.themes = Object.entries(themeAggDuck)
-            .filter(([t]) => !/^unknown$/i.test(t) && !t.toUpperCase().includes('FLAGGED FOR RESEARCH'))
-            .map(([theme, s]) => ({
-                Theme: theme,
-                'Game Count': s.count,
-                'Avg Theo Win Index': s.theoSum / s.count,
-                'Market Share %': s.mktSum,
-                theme,
-                game_count: s.count,
-                avg_theo_win: s.theoSum / s.count,
-                total_market_share: s.mktSum,
-            }));
+        // Load themes & mechanics from SQL (single source of truth)
+        const { getThemeMetrics, getFeatureMetrics } = await import('./metrics.js');
+        const { mapSqlThemes, mapSqlMechanics } = await import('../ui/chart-config.js');
+        const [sqlThemes, sqlMechanics] = await Promise.all([getThemeMetrics(), getFeatureMetrics()]);
+        gameData.themes = mapSqlThemes(sqlThemes);
+        gameData.mechanics = mapSqlMechanics(sqlMechanics);
         gameData.theme_count = gameData.themes.length;
-
-        // Calculate Smart Index
-        calculateSmartIndex();
+        gameData.mechanic_count = gameData.mechanics.length;
 
         log(
             `✅ DuckDB: ${gameData.total_games} games, ${gameData.themes.length} themes, ${gameData.mechanics.length} mechanics`
@@ -204,7 +173,7 @@ async function loadViaJSON() {
 
         // Build theme consolidation map from loaded data
         for (const g of games) {
-            const unified = g.art_theme || g.theme_consolidated;
+            const unified = g.theme_consolidated || g.art_theme;
             if (g.theme_primary && unified) {
                 gameData.themeConsolidationMap[g.theme_primary] = unified;
             }
@@ -222,7 +191,7 @@ async function loadViaJSON() {
                 g.max_bet_confidence,
             ];
             const specReliable = confFields.some(c => c === 'verified' || c === 'extracted');
-            const hasFeatures = g.features && g.features !== '[]';
+            const hasFeatures = Array.isArray(g.features) ? g.features.length > 0 : g.features && g.features !== '[]';
             return specReliable || hasFeatures;
         });
 
@@ -231,7 +200,7 @@ async function loadViaJSON() {
         // Compute stats
         gameData.total_games = reliableGames.length;
         const themeSet = new Set(
-            reliableGames.map(g => g.art_theme || g.theme_consolidated || g.theme_primary).filter(Boolean)
+            reliableGames.map(g => g.theme_consolidated || g.art_theme || g.theme_primary).filter(Boolean)
         );
         gameData.theme_count = themeSet.size;
         const mechSet = new Set();
@@ -243,7 +212,7 @@ async function loadViaJSON() {
         // Build theme distribution
         const themeAgg = {};
         for (const g of reliableGames) {
-            const t = g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown';
+            const t = g.theme_consolidated || g.art_theme || g.theme_primary || 'Unknown';
             if (!themeAgg[t]) themeAgg[t] = { count: 0, theoSum: 0, mktSum: 0 };
             themeAgg[t].count++;
             themeAgg[t].theoSum += g.performance_theo_win || 0;
@@ -288,7 +257,7 @@ async function loadViaJSON() {
         const byTheo = [...reliableGames].sort((a, b) => (b.performance_theo_win || 0) - (a.performance_theo_win || 0));
         gameData.top_anomalies = byTheo.slice(0, 30).map(g => ({
             game: g.name,
-            themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
+            themes: [g.theme_consolidated || g.art_theme || g.theme_primary || 'Unknown'],
             mechanics: parseFeatures(g.features),
             'Theo Win': g.performance_theo_win || 0,
             'Market Share %': g.performance_market_share_percent || 0,
@@ -302,7 +271,7 @@ async function loadViaJSON() {
             .reverse()
             .map(g => ({
                 game: g.name,
-                themes: [g.art_theme || g.theme_consolidated || g.theme_primary || 'Unknown'],
+                themes: [g.theme_consolidated || g.art_theme || g.theme_primary || 'Unknown'],
                 mechanics: parseFeatures(g.features),
                 'Theo Win': g.performance_theo_win || 0,
                 'Market Share %': g.performance_market_share_percent || 0,
@@ -312,7 +281,7 @@ async function loadViaJSON() {
                 ...g,
             }));
 
-        calculateSmartIndex();
+        applySmartIndexToGameData();
         return true;
     } catch (error) {
         console.error('❌ JSON fallback failed:', error);
@@ -320,24 +289,45 @@ async function loadViaJSON() {
     }
 }
 
-function applySmartIndex(
-    rows,
-    theoKey = 'avg_theo_win',
-    altKey = 'Avg Theo Win Index',
-    countKey = 'game_count',
-    altCountKey = 'Game Count'
-) {
-    const globalAvg = rows.reduce((s, r) => s + (r[theoKey] || r[altKey] || 0), 0) / (rows.length || 1);
-    return rows
-        .map(r => {
-            const theo = r[theoKey] || r[altKey] || 0;
-            const count = r[countKey] || r[altCountKey] || 0;
-            return { ...r, 'Smart Index': computeSI(theo, count, globalAvg) };
-        })
-        .sort((a, b) => b['Smart Index'] - a['Smart Index']);
-}
-
-function calculateSmartIndex() {
-    gameData.themes = applySmartIndex(gameData.themes);
-    gameData.mechanics = applySmartIndex(gameData.mechanics);
+/**
+ * Compute Smart Index for theme/mechanic rows (JSON fallback only).
+ * The DuckDB path uses SQL-computed Smart Index via mapSqlThemes/mapSqlMechanics.
+ */
+function applySmartIndexToGameData() {
+    const MIN_QUALIFIED = 20;
+    const computePI = (avgTheo, globalAvg) => {
+        if (!globalAvg) return 0;
+        return avgTheo / globalAvg;
+    };
+    const applyToRows = (
+        rows,
+        theoKey = 'avg_theo_win',
+        altKey = 'Avg Theo Win Index',
+        countKey = 'game_count',
+        altCountKey = 'Game Count'
+    ) => {
+        const globalAvg = rows.reduce((s, r) => s + (r[theoKey] || r[altKey] || 0), 0) / (rows.length || 1);
+        return rows
+            .map(r => {
+                const theo = r[theoKey] || r[altKey] || 0;
+                const count = r[countKey] || r[altCountKey] || 0;
+                const pi = computePI(theo, globalAvg);
+                const qualified = count >= MIN_QUALIFIED;
+                return {
+                    ...r,
+                    'Performance Index': pi,
+                    performanceIndex: pi,
+                    'Smart Index': pi,
+                    smartIndex: pi,
+                    qualified,
+                };
+            })
+            .sort((a, b) => {
+                const aMkt = a['Market Share %'] ?? a.total_market_share ?? 0;
+                const bMkt = b['Market Share %'] ?? b.total_market_share ?? 0;
+                return bMkt - aMkt;
+            });
+    };
+    gameData.themes = applyToRows(gameData.themes);
+    gameData.mechanics = applyToRows(gameData.mechanics);
 }

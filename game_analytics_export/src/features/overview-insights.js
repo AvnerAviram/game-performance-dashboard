@@ -4,8 +4,9 @@ import { getTheme, getProvider, getPerformance } from '../lib/game-fields.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
 import { MIN_FEATURE_GAMES } from '../lib/shared-config.js';
 import { getProviderMetrics, getFeatureMetrics } from '../lib/metrics.js';
+import { gameData } from '../lib/data.js';
 
-export function getTopPerformers(allGames, themes, mechanics) {
+export async function getTopPerformers(allGames, themes, mechanics) {
     if (!allGames || !themes || !mechanics) {
         return {
             bestTheme: null,
@@ -30,7 +31,7 @@ export function getTopPerformers(allGames, themes, mechanics) {
     const worstTheme = sortedThemes[sortedThemes.length - 1];
 
     // Best Feature (highest avg theo_win) — uses features array via metrics layer
-    const featureArray = getFeatureMetrics(allGames)
+    const featureArray = (await getFeatureMetrics(gameData.activeCategory))
         .filter(f => f.count >= MIN_FEATURE_GAMES && f.feature && !/^unknown$/i.test(f.feature))
         .map(f => ({
             name: f.feature,
@@ -40,7 +41,7 @@ export function getTopPerformers(allGames, themes, mechanics) {
     const bestMechanic = featureArray[0] || null;
     const mostCommonMechanic = [...featureArray].sort((a, b) => b.gameCount - a.gameCount)[0] || null;
 
-    const providerArray = getProviderMetrics(allGames).map(p => ({
+    const providerArray = (await getProviderMetrics(gameData.activeCategory)).map(p => ({
         name: p.name,
         avgTheoWin: p.avgTheo,
         ggrShare: p.ggrShare,

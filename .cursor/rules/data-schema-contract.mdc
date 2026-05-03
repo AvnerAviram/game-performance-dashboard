@@ -37,6 +37,12 @@ This is the single source of truth. **4,550 games**, flat objects. Canonical fie
 | `min_bet`, `max_bet`, `max_win` | number | |
 | `description` | string | |
 | `franchise`, `franchise_type` | string | |
+| `art_theme` | string | Primary art theme |
+| `art_theme_secondary` | string | Secondary art theme |
+| `art_narrative` | string | Narrative archetype |
+| `art_characters` | array | Character types — `VARCHAR[]` in DuckDB |
+| `art_elements` | array | Visual elements — `VARCHAR[]` in DuckDB |
+| `art_color_tone` | array | Color palette — `VARCHAR[]` in DuckDB |
 
 ## Layer 2: DuckDB Columns — `duckdb-client.js`
 
@@ -52,6 +58,14 @@ DuckDB uses **legacy prefixed names** for backward compatibility. The INSERT in 
 | `reels` | `specs_reels` | direct |
 | `rows` | `specs_rows` | direct |
 | `theme_primary` | `theme_primary` | consolidated via theme map |
+| `features` | `features` | `VARCHAR[]` (native array) |
+| `themes_all` | `themes_all` | `VARCHAR[]` (native array) |
+| `art_theme` | `art_theme` | direct |
+| `art_theme_secondary` | `art_theme_secondary` | direct |
+| `art_narrative` | `art_narrative` | direct |
+| `art_characters` | `art_characters` | `VARCHAR[]` (native array) |
+| `art_elements` | `art_elements` | `VARCHAR[]` (native array) |
+| `art_color_tone` | `art_color_tone` | `VARCHAR[]` (native array) |
 
 **DO NOT rename DuckDB columns** — every SQL query in the codebase uses these names.
 
@@ -78,6 +92,6 @@ F.volatility(g)    // g.specs_volatility || g.volatility
    - Add to `game_data_master.json` (via extraction script)
    - Add column to DuckDB CREATE TABLE + INSERT in `duckdb-client.js`
    - Add accessor to `F` in `game-fields.js`
-5. **Run `npm test` (1,616+ tests)** before declaring any change done.
+5. **Run `npm test` (1,605+ tests)** before declaring any change done.
 6. The `FIELD_NAMES` object in `game-fields.js` uses DuckDB column names (for SQL sort keys).
 7. **`market_share_pct`** is fractional in JSON (0.021) but percentage in DuckDB (2.1). The ×100 conversion happens in `duckdb-client.js`. Do not "fix" this — it is intentional.

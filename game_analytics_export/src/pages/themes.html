@@ -36,6 +36,15 @@
                     </svg>
                 </div>
                 <select
+                    id="themes-category-filter"
+                    class="pl-3 pr-10 py-2 border border-gray-200 dark:border-gray-700 rounded-md text-sm bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 focus:border-gray-400 dark:focus:border-gray-500 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3e%3cpath fill=%27%236b7280%27 d=%27M6 9L1 4h10z%27/%3e%3c/svg%3e')] bg-no-repeat bg-[length:12px] bg-[right_0.75rem_center]"
+                >
+                    <option value="">All Types</option>
+                    <option value="Slot">Slots</option>
+                    <option value="Live Casino">Live Casino</option>
+                    <option value="Table Game">Table Games</option>
+                </select>
+                <select
                     id="themes-filter-provider"
                     class="pl-3 pr-10 py-2 border border-gray-200 dark:border-gray-700 rounded-md text-sm bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600 focus:border-gray-400 dark:focus:border-gray-500 focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2712%27 height=%2712%27 viewBox=%270 0 12 12%27%3e%3cpath fill=%27%236b7280%27 d=%27M6 9L1 4h10z%27/%3e%3c/svg%3e')] bg-no-repeat bg-[length:12px] bg-[right_0.75rem_center]"
                 >
@@ -221,7 +230,7 @@
                         Games
                     </th>
                     <th
-                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable sorted-desc"
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable"
                         onclick="sortTable('themes-table', 3)"
                     >
                         Performance Index
@@ -242,7 +251,7 @@
                         </span>
                     </th>
                     <th
-                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable"
+                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors sortable sorted-desc"
                         onclick="sortTable('themes-table', 4)"
                     >
                         Market Share %

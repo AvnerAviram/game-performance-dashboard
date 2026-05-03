@@ -65,8 +65,8 @@ describe('volatility constants', () => {
 });
 
 describe('threshold constants', () => {
-    it('MIN_PROVIDER_GAMES is 3', () => {
-        expect(MIN_PROVIDER_GAMES).toBe(3);
+    it('MIN_PROVIDER_GAMES is 15', () => {
+        expect(MIN_PROVIDER_GAMES).toBe(15);
     });
 
     it('MIN_FEATURE_GAMES is 5', () => {

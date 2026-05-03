@@ -1,209 +1,100 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+vi.mock('../../src/lib/db/duckdb-client.js', () => ({
+    query: vi.fn(),
+    RELIABLE_GAME: '(1=1)',
+}));
+
+import { query } from '../../src/lib/db/duckdb-client.js';
+
 import {
     getProviderMetrics,
-    getProvidersPerTheme,
     getThemeMetrics,
-    getGamesByTheme,
     getFeatureMetrics,
-    getFeatureLift,
     getVolatilityMetrics,
     getDominantVolatility,
-    getFeatureRecipes,
-    getFeatureCombos,
     getRtpBandMetrics,
     RTP_BANDS,
     calculateSmartIndex,
     addSmartIndex,
     getGlobalAvgTheo,
     getDominantLayout,
-    getDominantProvider,
     getAvgRtp,
 } from '../../src/lib/metrics.js';
 
-const mockGames = [
-    {
-        name: 'Game A',
-        provider_studio: 'NetEnt',
-        theme_consolidated: 'Egypt',
-        performance_theo_win: 40,
-        performance_market_share_percent: 2,
-        features: ['Free Spins', 'Buy Bonus'],
-        specs_volatility: 'High',
-        specs_rtp: 96.5,
-        specs_reels: 5,
-        specs_rows: 3,
-    },
-    {
-        name: 'Game B',
-        provider_studio: 'NetEnt',
-        theme_consolidated: 'Egypt',
-        performance_theo_win: 50,
-        performance_market_share_percent: 3,
-        features: ['Free Spins', 'Wild Reels'],
-        specs_volatility: 'High',
-        specs_rtp: 95.0,
-        specs_reels: 5,
-        specs_rows: 3,
-    },
-    {
-        name: 'Game C',
-        provider_studio: 'NetEnt',
-        theme_consolidated: 'Fantasy',
-        performance_theo_win: 30,
-        performance_market_share_percent: 1,
-        features: ['Buy Bonus'],
-        specs_volatility: 'Medium',
-        specs_rtp: 94.0,
-        specs_reels: 3,
-        specs_rows: 3,
-    },
-    {
-        name: 'Game D',
-        provider_studio: 'Pragmatic Play',
-        theme_consolidated: 'Fantasy',
-        performance_theo_win: 60,
-        performance_market_share_percent: 4,
-        features: ['Free Spins', 'Buy Bonus', 'Hold and Spin'],
-        specs_volatility: 'Very High',
-        specs_rtp: 96.0,
-        specs_reels: 5,
-        specs_rows: 3,
-    },
-    {
-        name: 'Game E',
-        provider_studio: 'Pragmatic Play',
-        theme_consolidated: 'Egypt',
-        performance_theo_win: 20,
-        performance_market_share_percent: 0.5,
-        features: ['Free Spins'],
-        specs_volatility: 'Low',
-        specs_rtp: 97.5,
-        specs_reels: 5,
-        specs_rows: 4,
-    },
-    {
-        name: 'Game F',
-        provider_studio: 'Pragmatic Play',
-        theme_consolidated: 'Egypt',
-        performance_theo_win: 35,
-        performance_market_share_percent: 1.5,
-        features: ['Buy Bonus', 'Wild Reels'],
-        specs_volatility: 'Medium',
-        specs_rtp: 95.5,
-        specs_reels: 3,
-        specs_rows: 3,
-    },
-];
+beforeEach(() => {
+    vi.clearAllMocks();
+});
 
 describe('getProviderMetrics', () => {
-    it('aggregates by provider with correct counts and averages', () => {
-        const result = getProviderMetrics(mockGames);
+    it('aggregates by provider with smartIndex', async () => {
+        query.mockResolvedValueOnce([
+            { name: 'NetEnt', count: 3, totalTheo: 120, avgTheo: 40, totalMkt: 6 },
+            { name: 'Pragmatic Play', count: 3, totalTheo: 115, avgTheo: 38.33, totalMkt: 6 },
+        ]);
+        const result = await getProviderMetrics();
         expect(result.length).toBe(2);
-        const netent = result.find(p => p.name === 'NetEnt');
-        const prag = result.find(p => p.name === 'Pragmatic Play');
-        expect(netent.count).toBe(3);
-        expect(netent.avgTheo).toBeCloseTo(40, 1);
-        expect(netent.totalMkt).toBe(6);
-        expect(prag.count).toBe(3);
-        expect(prag.avgTheo).toBeCloseTo(38.33, 1);
+        expect(result[0]).toHaveProperty('smartIndex');
+        expect(result[0]).toHaveProperty('ggrShare');
     });
 
-    it('sorts by Smart Index descending', () => {
-        const result = getProviderMetrics(mockGames);
-        expect(result[0].smartIndex).toBeDefined();
+    it('sorts by Smart Index descending', async () => {
+        query.mockResolvedValueOnce([
+            { name: 'A', count: 10, totalTheo: 500, avgTheo: 50, totalMkt: 25 },
+            { name: 'B', count: 5, totalTheo: 100, avgTheo: 20, totalMkt: 10 },
+        ]);
+        const result = await getProviderMetrics();
         expect(result[0].smartIndex).toBeGreaterThanOrEqual(result[1].smartIndex);
     });
 
-    it('respects minGames filter', () => {
-        const result = getProviderMetrics(mockGames, { minGames: 4 });
-        expect(result.length).toBe(0);
-    });
-
-    it('returns empty for empty input', () => {
-        expect(getProviderMetrics([])).toEqual([]);
-    });
-});
-
-describe('getProvidersPerTheme', () => {
-    it('returns map of theme → provider set', () => {
-        const result = getProvidersPerTheme(mockGames);
-        expect(result.get('Egypt').size).toBe(2);
-        expect(result.get('Fantasy').size).toBe(2);
+    it('returns empty for empty SQL result', async () => {
+        query.mockResolvedValueOnce([]);
+        expect(await getProviderMetrics()).toEqual([]);
     });
 });
 
 describe('getThemeMetrics', () => {
-    it('aggregates by theme', () => {
-        const result = getThemeMetrics(mockGames);
+    it('aggregates by theme with smartIndex', async () => {
+        query.mockResolvedValueOnce([
+            { theme: 'Classic Slots', count: 5, totalTheo: 50, avgTheo: 10, totalMkt: 25 },
+            { theme: 'Asian Temple', count: 3, totalTheo: 24, avgTheo: 8, totalMkt: 12 },
+        ]);
+        const result = await getThemeMetrics();
         expect(result.length).toBe(2);
-        const egypt = result.find(t => t.theme === 'Egypt');
-        expect(egypt.count).toBe(4);
-        expect(egypt.avgTheo).toBeCloseTo(36.25, 1);
+        expect(result[0]).toHaveProperty('smartIndex');
     });
 
-    it('sorted by Smart Index descending', () => {
-        const result = getThemeMetrics(mockGames);
-        expect(result[0].smartIndex).toBeDefined();
-        expect(result[0].smartIndex).toBeGreaterThanOrEqual(result[1].smartIndex);
-    });
-});
-
-describe('getGamesByTheme', () => {
-    it('groups games into theme buckets', () => {
-        const result = getGamesByTheme(mockGames);
-        expect(result.get('Egypt').length).toBe(4);
-        expect(result.get('Fantasy').length).toBe(2);
+    it('passes category filter to SQL', async () => {
+        query.mockResolvedValueOnce([]);
+        await getThemeMetrics('Slots');
+        expect(query).toHaveBeenCalledWith(expect.stringContaining("game_category = 'Slots'"));
     });
 });
 
 describe('getFeatureMetrics', () => {
-    it('counts feature occurrences across games', () => {
-        const result = getFeatureMetrics(mockGames);
-        const fs = result.find(f => f.feature === 'Free Spins');
-        expect(fs.count).toBe(4);
-        const buy = result.find(f => f.feature === 'Buy Bonus');
-        expect(buy.count).toBe(4);
-    });
-
-    it('calculates avgTheo per feature', () => {
-        const result = getFeatureMetrics(mockGames);
-        const fs = result.find(f => f.feature === 'Free Spins');
-        expect(fs.avgTheo).toBeCloseTo((40 + 50 + 60 + 20) / 4, 1);
-    });
-
-    it('sorted by Smart Index descending', () => {
-        const result = getFeatureMetrics(mockGames);
-        expect(result[0].smartIndex).toBeDefined();
-        for (let i = 0; i < result.length - 1; i++) {
-            expect(result[i].smartIndex).toBeGreaterThanOrEqual(result[i + 1].smartIndex);
-        }
-    });
-});
-
-describe('getFeatureLift', () => {
-    it('returns lift percentage for each feature', () => {
-        const result = getFeatureLift(mockGames);
-        expect(result.length).toBeGreaterThan(0);
-        for (const f of result) {
-            expect(typeof f.lift).toBe('number');
-            expect(typeof f.avgWith).toBe('number');
-            expect(typeof f.avgWithout).toBe('number');
-        }
+    it('returns features with smartIndex via UNNEST', async () => {
+        query.mockResolvedValueOnce([
+            { feature: 'Free Spins', count: 10, totalTheo: 400, avgTheo: 40 },
+            { feature: 'Wild Reels', count: 5, totalTheo: 150, avgTheo: 30 },
+        ]);
+        const result = await getFeatureMetrics();
+        expect(result.length).toBe(2);
+        expect(result[0]).toHaveProperty('smartIndex');
+        expect(result[0]).toHaveProperty('feature');
     });
 });
 
 describe('getVolatilityMetrics', () => {
-    it('groups by volatility in VOLATILITY_ORDER', () => {
-        const result = getVolatilityMetrics(mockGames);
+    it('sorts by VOLATILITY_ORDER', async () => {
+        query.mockResolvedValueOnce([
+            { volatility: 'Low', count: 2, totalTheo: 40, avgTheo: 20 },
+            { volatility: 'High', count: 5, totalTheo: 250, avgTheo: 50 },
+            { volatility: 'Very High', count: 3, totalTheo: 180, avgTheo: 60 },
+        ]);
+        const result = await getVolatilityMetrics();
         const labels = result.map(v => v.volatility);
-        expect(labels[0]).toBe('Very High');
-        expect(labels[labels.length - 1]).toBe('Low');
-    });
-
-    it('calculates correct counts', () => {
-        const result = getVolatilityMetrics(mockGames);
-        const high = result.find(v => v.volatility === 'High');
-        expect(high.count).toBe(2);
+        expect(labels.indexOf('Very High')).toBeLessThan(labels.indexOf('High'));
+        expect(labels.indexOf('High')).toBeLessThan(labels.indexOf('Low'));
     });
 });
 
@@ -218,47 +109,18 @@ describe('getDominantVolatility', () => {
     });
 });
 
-describe('getFeatureRecipes', () => {
-    it('builds multi-feature recipe combos', () => {
-        const result = getFeatureRecipes(mockGames, { minGames: 1 });
-        expect(result.length).toBeGreaterThan(0);
-        for (const r of result) {
-            expect(r.features.length).toBeGreaterThanOrEqual(2);
-            expect(r.count).toBeGreaterThanOrEqual(1);
-        }
-    });
-
-    it('calculates lift vs global average', () => {
-        const result = getFeatureRecipes(mockGames, { minGames: 1 });
-        for (const r of result) {
-            expect(typeof r.lift).toBe('number');
-        }
-    });
-
-    it('filters by minGames default (2)', () => {
-        const strict = getFeatureRecipes(mockGames);
-        const loose = getFeatureRecipes(mockGames, { minGames: 1 });
-        expect(loose.length).toBeGreaterThanOrEqual(strict.length);
-    });
-});
-
-describe('getFeatureCombos', () => {
-    it('generates pairs within a theme slice', () => {
-        const egyptGames = mockGames.filter(g => g.theme_consolidated === 'Egypt');
-        const result = getFeatureCombos(egyptGames, { comboSize: 2, minGames: 1 });
-        expect(result.length).toBeGreaterThan(0);
-        for (const c of result) {
-            expect(c.features.length).toBe(2);
-        }
-    });
-});
-
 describe('getRtpBandMetrics', () => {
-    it('buckets games into RTP bands', () => {
-        const result = getRtpBandMetrics(mockGames);
-        expect(result.length).toBeGreaterThan(0);
-        const total = result.reduce((s, b) => s + b.count, 0);
-        expect(total).toBeGreaterThan(0);
+    it('maps SQL bands to RTP_BANDS with min/max', async () => {
+        query.mockResolvedValueOnce([
+            { label: '95%-96%', count: 10, avgTheo: 35 },
+            { label: '> 97%', count: 3, avgTheo: 20 },
+        ]);
+        const result = await getRtpBandMetrics();
+        expect(result.length).toBe(2);
+        expect(result[0].label).toBe('> 97%');
+        expect(result[0].min).toBe(97);
+        expect(result[0].max).toBe(200);
+        expect(result[1].label).toBe('95%-96%');
     });
 
     it('RTP_BANDS covers full range', () => {
@@ -267,10 +129,10 @@ describe('getRtpBandMetrics', () => {
     });
 });
 
-describe('calculateSmartIndex', () => {
-    it('computes (avgTheo * sqrt(count)) / globalAvg', () => {
+describe('calculateSmartIndex (deprecated alias for calculatePerformanceIndex)', () => {
+    it('computes avgTheo / globalAvg (Performance Index)', () => {
         const si = calculateSmartIndex(40, 100, 35);
-        expect(si).toBeCloseTo((40 * Math.sqrt(100)) / 35, 5);
+        expect(si).toBeCloseTo(40 / 35, 5);
     });
 
     it('returns 0 when globalAvg is 0', () => {
@@ -278,15 +140,37 @@ describe('calculateSmartIndex', () => {
     });
 });
 
-describe('addSmartIndex', () => {
-    it('adds smartIndex to dimension rows', () => {
+describe('addSmartIndex (deprecated alias for addPerformanceIndex)', () => {
+    it('adds smartIndex and performanceIndex to dimension rows', () => {
         const rows = [
-            { theme: 'A', avg_theo_win: 40, game_count: 100 },
-            { theme: 'B', avg_theo_win: 30, game_count: 50 },
+            { theme: 'A', avg_theo_win: 40, game_count: 100, totalMkt: 10 },
+            { theme: 'B', avg_theo_win: 30, game_count: 50, totalMkt: 5 },
         ];
         const result = addSmartIndex(rows);
         expect(result[0].smartIndex).toBeDefined();
-        expect(result[0].smartIndex).toBeGreaterThan(result[1].smartIndex);
+        expect(result[0].performanceIndex).toBeDefined();
+    });
+
+    it('marks rows with qualified flag based on MIN_QUALIFIED_GAMES', () => {
+        const rows = [
+            { theme: 'Big', avg_theo_win: 30, game_count: 25, totalMkt: 10 },
+            { theme: 'Small', avg_theo_win: 50, game_count: 5, totalMkt: 2 },
+        ];
+        const result = addSmartIndex(rows);
+        const big = result.find(r => r.theme === 'Big');
+        const small = result.find(r => r.theme === 'Small');
+        expect(big.qualified).toBe(true);
+        expect(small.qualified).toBe(false);
+    });
+
+    it('sorts by market share descending (Eilers Top Grossing default)', () => {
+        const rows = [
+            { theme: 'Low-mkt', avg_theo_win: 80, game_count: 25, totalMkt: 2 },
+            { theme: 'High-mkt', avg_theo_win: 20, game_count: 25, totalMkt: 15 },
+        ];
+        const result = addSmartIndex(rows);
+        expect(result[0].theme).toBe('High-mkt');
+        expect(result[1].theme).toBe('Low-mkt');
     });
 
     it('returns empty for empty input', () => {
@@ -295,36 +179,39 @@ describe('addSmartIndex', () => {
 });
 
 describe('getGlobalAvgTheo', () => {
-    it('returns correct average', () => {
-        const avg = getGlobalAvgTheo(mockGames);
-        const expected = (40 + 50 + 30 + 60 + 20 + 35) / 6;
-        expect(avg).toBeCloseTo(expected, 5);
+    it('returns single number from SQL', async () => {
+        query.mockResolvedValueOnce([{ avg: 39.17 }]);
+        const avg = await getGlobalAvgTheo();
+        expect(avg).toBeCloseTo(39.17, 1);
     });
 
-    it('returns 0 for empty', () => {
-        expect(getGlobalAvgTheo([])).toBe(0);
+    it('returns 0 when no rows', async () => {
+        query.mockResolvedValueOnce([{ avg: null }]);
+        const avg = await getGlobalAvgTheo();
+        expect(avg).toBe(0);
     });
 });
 
 describe('getDominantLayout', () => {
     it('returns most common reel×row combo', () => {
-        expect(getDominantLayout(mockGames)).toBe('5×3');
-    });
-});
-
-describe('getDominantProvider', () => {
-    it('returns most common provider', () => {
-        expect(['NetEnt', 'Pragmatic Play']).toContain(getDominantProvider(mockGames));
+        const games = [
+            { specs_reels: 5, specs_rows: 3 },
+            { specs_reels: 5, specs_rows: 3 },
+            { specs_reels: 3, specs_rows: 3 },
+        ];
+        expect(getDominantLayout(games)).toBe('5×3');
     });
 });
 
 describe('getAvgRtp', () => {
-    it('averages non-zero RTPs', () => {
-        const avg = getAvgRtp(mockGames);
-        expect(avg).toBeCloseTo((96.5 + 95 + 94 + 96 + 97.5 + 95.5) / 6, 1);
+    it('returns average from SQL', async () => {
+        query.mockResolvedValueOnce([{ avg: 95.75 }]);
+        const avg = await getAvgRtp();
+        expect(avg).toBeCloseTo(95.75, 1);
     });
 
-    it('returns 0 for empty', () => {
-        expect(getAvgRtp([])).toBe(0);
+    it('returns 0 when no rows', async () => {
+        query.mockResolvedValueOnce([{ avg: null }]);
+        expect(await getAvgRtp()).toBe(0);
     });
 });

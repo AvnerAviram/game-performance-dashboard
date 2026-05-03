@@ -1,22 +1,18 @@
 /**
  * Phase 5: Art Insights QA
  *
- * Validates all 5 art dimensions (setting, mood, characters, elements, narrative)
- * using metrics.js functions and the shared dimension-filter module.
- *
- * CRITICAL: art_characters and art_elements are arrays — the filter uses
- * .some() matching, NOT strict equality. This was the root cause of 10 false
- * positives in the dry run.
+ * Validates all 5 art dimensions using local aggregators and the
+ * shared dimension-filter module.
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
 import {
-    getArtThemeMetrics,
-    getArtNarrativeMetrics,
-    getArtCharacterMetrics,
-    getArtElementMetrics,
-    getArtColorToneMetrics,
-} from '../../src/lib/metrics.js';
+    computeArtThemeMetrics,
+    computeArtNarrativeMetrics,
+    computeArtCharacterMetrics,
+    computeArtElementMetrics,
+    computeArtColorToneMetrics,
+} from '../utils/test-aggregators.js';
 import { F } from '../../src/lib/game-fields.js';
 import { matchGameToDimension } from '../../server/helpers/dimension-filter.cjs';
 import { scoreFinding, assertNoDefiniteFindings } from '../utils/qa-scoring.js';
@@ -31,7 +27,7 @@ beforeAll(async () => {
 describe('Art Theme QA', () => {
     it('art theme counts match F.artTheme grouping', () => {
         const findings = [];
-        const rows = getArtThemeMetrics(allGames);
+        const rows = computeArtThemeMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
             const manual = allGames.filter(g => F.artTheme(g) === r.theme).length;
             if (manual !== r.count) {
@@ -47,7 +43,7 @@ describe('Art Theme QA', () => {
 
     it('dimension filter matches for top themes', () => {
         const findings = [];
-        const rows = getArtThemeMetrics(allGames);
+        const rows = computeArtThemeMetrics(allGames);
         for (const r of rows.slice(0, 5)) {
             const viaF = allGames.filter(g => F.artTheme(g) === r.theme).length;
             const viaFilter = allGames.filter(g => matchGameToDimension(g, 'art_theme', r.theme.toLowerCase())).length;
@@ -66,7 +62,7 @@ describe('Art Theme QA', () => {
 describe('Art Color Tone QA', () => {
     it('color tone metrics return valid entries', () => {
         const findings = [];
-        const rows = getArtColorToneMetrics(allGames);
+        const rows = computeArtColorToneMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
             if (!r.colorTone || r.count <= 0) {
                 findings.push(
@@ -83,7 +79,7 @@ describe('Art Color Tone QA', () => {
 describe('Art Characters QA', () => {
     it('character counts match F.artCharacters array-aware grouping', () => {
         const findings = [];
-        const rows = getArtCharacterMetrics(allGames);
+        const rows = computeArtCharacterMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
             const manual = allGames.filter(g => {
                 const chars = F.artCharacters(g);
@@ -102,7 +98,7 @@ describe('Art Characters QA', () => {
 
     it('dimension filter uses .some() for array values (prevents false positives)', () => {
         const findings = [];
-        const rows = getArtCharacterMetrics(allGames);
+        const rows = computeArtCharacterMetrics(allGames);
         for (const r of rows.slice(0, 5)) {
             const viaMetrics = r.count;
             const viaFilter = allGames.filter(g =>
@@ -126,7 +122,7 @@ describe('Art Characters QA', () => {
 describe('Art Elements QA', () => {
     it('element counts match F.artElements array-aware grouping', () => {
         const findings = [];
-        const rows = getArtElementMetrics(allGames);
+        const rows = computeArtElementMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
             const manual = allGames.filter(g => {
                 const elems = F.artElements(g);
@@ -147,7 +143,7 @@ describe('Art Elements QA', () => {
 describe('Art Narrative QA', () => {
     it('narrative counts match F.artNarrative grouping', () => {
         const findings = [];
-        const rows = getArtNarrativeMetrics(allGames);
+        const rows = computeArtNarrativeMetrics(allGames);
         for (const r of rows.slice(0, 10)) {
             const manual = allGames.filter(g => F.artNarrative(g) === r.narrative).length;
             if (manual !== r.count) {

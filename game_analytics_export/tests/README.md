@@ -16,18 +16,18 @@ npm run test:all      # Both: Vitest + Playwright smoke
 
 ```
 tests/
-├── unit/                      # 40 test files – formulas, metrics, fields, rendering, coding standards
+├── unit/                      # 53 test files – formulas, metrics, fields, rendering, coding standards
 ├── integration/               # 17 test files – page validation, API, filters, CSV export, security
-├── data-validation/           # 8 test files  – game data integrity, rankings, schema, duplicates
-├── enforcement/               # 3 test files  – no-inline-aggregation, no-inline-field-access, no-raw-provider-access
+├── data-validation/           # 35 test files – game data integrity, rankings, schema, duplicates
+├── enforcement/               # 16 test files – no-inline-aggregation, no-raw-field-access, no-raw-provider-access, + more
 ├── e2e/                       # Playwright E2E
 │   ├── smoke-e2e.spec.mjs     # Comprehensive smoke test (12 areas, ~24s)
-│   ├── test-production.mjs    # Production readiness checks
-│   └── ...                    # Additional spec/config files
+│   └── post-build-smoke.mjs   # Post-build smoke test (used by test:gate)
 ├── alignment/                 # Visual alignment tests (header positioning)
 ├── components/                # Component class enforcement
 ├── monitoring/                # Data quality monitor
-└── duckdb-enforcement.test.js # DuckDB-only aggregation enforcement
+├── utils/                     # Shared test utilities (data loaders, aggregators)
+└── visual-regression/         # Playwright visual regression tests
 ```
 
 ## Available Commands
@@ -47,9 +47,15 @@ npm run test:validation     # Data validation tests only
 
 ```bash
 npm run test:smoke          # Comprehensive smoke test (all panels, cross-nav, filters)
-npm run test:e2e            # Production readiness E2E checks
+npm run test:e2e            # Post-build smoke test (runs post-build-smoke.mjs on port 3099)
 npm run test:playwright     # Consolidated Playwright suite
 npm run test:alignment      # Visual alignment tests
+```
+
+### Smoke Gate (CI)
+
+```bash
+npm run test:gate           # format:check + vitest + post-build-smoke (port 3099)
 ```
 
 ### Run Everything
@@ -60,7 +66,7 @@ npm run test:all            # Vitest + Playwright smoke test
 
 ## Test Categories
 
-### 1. Unit Tests (40 files)
+### 1. Unit Tests (53 files)
 
 Located in `tests/unit/`. Covers:
 
@@ -79,9 +85,9 @@ Located in `tests/integration/`. Covers:
 - Filter logic and search functionality
 - Security and API interaction patterns
 
-### 3. Data Validation Tests (8 files)
+### 3. Data Validation Tests (35 files)
 
-Located in `tests/data-validation/`. Validates `games_dashboard.json` (1,539 games):
+Located in `tests/data-validation/`. Validates game data integrity:
 
 - All games have required fields
 - Numeric values are valid
@@ -89,14 +95,16 @@ Located in `tests/data-validation/`. Validates `games_dashboard.json` (1,539 gam
 - Themes, mechanics, and providers are valid
 - Rankings and schema integrity
 - DuckDB aggregation consistency
+- Art QA validation
 
-### 4. Enforcement Tests (3 files)
+### 4. Enforcement Tests (16 files)
 
 Located in `tests/enforcement/`. Grep-based source scanning that prevents:
 
 - Inline aggregation (must use metrics layer)
 - Inline field access (must use `F.*` accessors)
 - Raw provider access (must use `F.provider()`)
+- Art field raw access (must use `F.artXxx()`)
 
 ### 5. E2E Smoke Test
 
@@ -149,6 +157,6 @@ npm start
 
 ## Current Stats
 
-- **853 Vitest tests** across 53 test files (~28s)
+- **1,605+ Vitest tests** across 106+ test files (~17s)
 - **12-area Playwright smoke test** (~24s)
-- **Total `test:all` time:** ~55s
+- **27-check post-build smoke gate** (~60s)

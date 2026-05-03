@@ -99,7 +99,7 @@
 <div
     class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
 >
-    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+    <div class="px-5 pt-3 pb-1.5 border-b border-gray-100 dark:border-gray-700">
         <div class="flex items-center gap-2">
             <span class="text-lg">📊</span>
             <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Theme Landscape</h3>
@@ -129,7 +129,7 @@
             X = game count, Y = avg Performance Index, bubble size = game count
         </p>
     </div>
-    <div id="market-landscape-chart" class="p-4 relative" style="height: 780px">
+    <div id="market-landscape-chart" class="px-2 pt-0 pb-0 relative" style="height: 1100px">
         <canvas id="chart-market-landscape"></canvas>
         <!-- Label hover tooltip (matches Chart.js tooltip style) -->
         <div
@@ -143,7 +143,7 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+    <div class="flex items-center justify-between px-4 pb-2 pt-0 flex-wrap">
         <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
             <span class="flex items-center gap-1.5">
                 <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
@@ -162,6 +162,10 @@
                 Saturated
             </span>
         </div>
+        <span
+            class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+            data-for="chart-market-landscape"
+        ></span>
     </div>
 </div>
 
@@ -191,10 +195,10 @@
             X = game count, Y = avg Performance Index, bubble size = game count
         </p>
     </div>
-    <div id="provider-landscape-chart" class="p-4" style="height: 680px">
+    <div id="provider-landscape-chart" class="px-4 pt-2 pb-1" style="height: 680px">
         <canvas id="chart-provider-landscape"></canvas>
     </div>
-    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+    <div class="flex items-center justify-between px-4 pb-2 pt-0 flex-wrap">
         <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
             <span class="flex items-center gap-1.5">
                 <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
@@ -213,6 +217,10 @@
                 Saturated
             </span>
         </div>
+        <span
+            class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+            data-for="chart-provider-landscape"
+        ></span>
     </div>
 </div>
 
@@ -305,10 +313,10 @@
             X = title count, Y = avg Performance Index, bubble size = title count
         </p>
     </div>
-    <div id="brand-landscape-chart" class="p-4 relative" style="height: 780px; overflow: visible">
+    <div id="brand-landscape-chart" class="px-4 pt-2 pb-1 relative" style="height: 780px; overflow: visible">
         <canvas id="chart-brand-landscape"></canvas>
     </div>
-    <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
+    <div class="flex items-center justify-between px-4 pb-2 pt-0 flex-wrap">
         <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
             <span class="flex items-center gap-1.5">
                 <span class="inline-block w-2.5 h-2.5 rounded-sm" style="background: rgba(16, 185, 129, 0.5)"></span>
@@ -327,6 +335,10 @@
                 Saturated
             </span>
         </div>
+        <span
+            class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+            data-for="chart-brand-landscape"
+        ></span>
     </div>
 </div>
 

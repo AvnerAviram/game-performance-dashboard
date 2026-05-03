@@ -498,9 +498,14 @@ window.showThemeDetails = function (themeName, opts) {
         const sortedSecondary = Object.entries(secondaryCounts).sort((a, b) => b[1] - a[1]);
 
         const total = artDrillGames.length;
-        artDrillHtml += _renderArtSubSection('Characters', '🧙', sortedChars, total, 8);
-        artDrillHtml += _renderArtSubSection('Elements', '🏔️', sortedElems, total, 8);
-        artDrillHtml += _renderArtSubSection('Colors', '🎨', sortedColors, total, 8);
+        const gamesWithChars = artDrillGames.filter(
+            g => F.artCharacters(g).length > 0 && !F.artCharacters(g).includes('No Characters (symbol-only game)')
+        ).length;
+        const gamesWithElems = artDrillGames.filter(g => (F.artElements(g) || []).length > 0).length;
+        const gamesWithColors = artDrillGames.filter(g => (F.artColorTone(g) || []).length > 0).length;
+        artDrillHtml += _renderArtSubSection('Characters', '🧙', sortedChars, gamesWithChars || total, 8);
+        artDrillHtml += _renderArtSubSection('Elements', '🏔️', sortedElems, gamesWithElems || total, 8);
+        artDrillHtml += _renderArtSubSection('Colors', '🎨', sortedColors, gamesWithColors || total, 8);
         if (sortedSecondary.length > 0) {
             artDrillHtml += _renderArtSubSection('Secondary Themes', '🏷️', sortedSecondary, total, 5);
         }
@@ -564,6 +569,13 @@ window.showThemeDetails = function (themeName, opts) {
         accent: ACCENTS.themes,
         content: descContent,
     });
+    html += PanelSection({
+        title: `Top Games (${sortedGames.length})`,
+        icon: '🏆',
+        gradient: GRADIENTS.similar,
+        accent: ACCENTS.similar,
+        content: `<div class="space-y-0">${topGamesHtml}</div>`,
+    });
     if (artDrillHtml) {
         html += PanelSection({
             title: `Art Drill-Down (${artDrillGames.length} games)`,
@@ -573,13 +585,6 @@ window.showThemeDetails = function (themeName, opts) {
             content: artDrillHtml,
         });
     }
-    html += PanelSection({
-        title: `Top Games (${sortedGames.length})`,
-        icon: '🏆',
-        gradient: GRADIENTS.similar,
-        accent: ACCENTS.similar,
-        content: `<div class="space-y-0">${topGamesHtml}</div>`,
-    });
     html += PanelSection({
         title: `Mechanics (${topFeatures.length})`,
         icon: '⚙️',

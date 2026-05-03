@@ -119,7 +119,10 @@ switch (command) {
             console.error('Usage: node manage-users.cjs add <username> [--admin]');
             process.exit(1);
         }
-        addUser(username);
+        addUser(username).catch(err => {
+            console.error('Failed to add user:', err.message);
+            process.exit(1);
+        });
         break;
     case 'remove':
     case 'delete':

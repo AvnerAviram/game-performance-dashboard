@@ -43,8 +43,8 @@ async function initializePage(pageName) {
     resetFilterState(pageName);
     switch (pageName) {
         case 'overview':
-            renderOverview();
-            initializeCharts();
+            await initializeCharts();
+            await renderOverview();
             break;
 
         case 'themes':
@@ -87,11 +87,15 @@ async function initializePage(pageName) {
             return;
 
         case 'insights':
-            generateInsights();
+            await generateInsights();
             break;
 
         case 'game-lab': {
-            generateInsights();
+            try {
+                await generateInsights();
+            } catch (e) {
+                console.error('Insights init error (non-blocking):', e);
+            }
             setupPrediction();
             const ngMod = await import('../features/name-generator.js');
             ngMod.setupNameGenerator();
@@ -102,7 +106,7 @@ async function initializePage(pageName) {
             setTimeout(async () => {
                 try {
                     const { renderTrends } = await import('../features/trends.js');
-                    renderTrends();
+                    await renderTrends();
                 } catch (_error) {
                     console.error('Error loading trends:', _error);
                 }
@@ -113,7 +117,7 @@ async function initializePage(pageName) {
             setTimeout(async () => {
                 try {
                     const { renderArt } = await import('./renderers/art-renderer.js');
-                    renderArt();
+                    await renderArt();
                 } catch (_error) {
                     console.error('Error loading art page:', _error);
                 }
@@ -268,11 +272,21 @@ function updateGameLabSubnav(_page) {
     // no-op: Game Lab items are always visible in sidebar
 }
 
+const LAB_TOOL_NAMES = {
+    blueprint: 'Game Blueprint',
+    'feature-impact': 'Mechanics Insights',
+    concept: 'Concept Analyzer',
+    'name-gen': 'Name Generator',
+};
+
 window.switchLabTool = function (toolId) {
     if (toolId === 'symbols') toolId = 'blueprint';
     document.querySelectorAll('.gamelab-section').forEach(s => s.classList.add('hidden'));
     const target = document.getElementById(`lab-section-${toolId}`);
     if (target) target.classList.remove('hidden');
+
+    const label = document.getElementById('lab-active-tool');
+    if (label) label.textContent = LAB_TOOL_NAMES[toolId] ? `/ ${LAB_TOOL_NAMES[toolId]}` : '';
 
     const activeClasses = [
         'bg-gradient-to-r',

@@ -28,7 +28,7 @@ import {
     renderRecipeDNA,
 } from './insights-recipes.js';
 
-export function generateInsights() {
+export async function generateInsights() {
     log('💡 generateInsights() called');
 
     const heatmapDiv = document.getElementById('heatmap-container');
@@ -62,7 +62,7 @@ export function generateInsights() {
     if (document.getElementById('market-landscape-chart')) {
         try {
             createMarketLandscapeChart();
-            wireThemeLandscapeProviderFilter();
+            await wireThemeLandscapeProviderFilter();
             log('  ✅ Market Landscape chart created');
         } catch (e) {
             warn('Market Landscape chart:', e);
@@ -78,7 +78,7 @@ export function generateInsights() {
     for (const [elId, createFn, label] of landscapeCharts) {
         if (document.getElementById(elId)) {
             try {
-                createFn();
+                await createFn();
                 log(`  ✅ ${label} chart created`);
             } catch (e) {
                 warn(`${label} chart:`, e);
@@ -86,7 +86,7 @@ export function generateInsights() {
         }
     }
     if (document.getElementById('provider-theme-matrix')) {
-        generateProviderThemeMatrix();
+        await generateProviderThemeMatrix();
         log('  ✅ Provider theme matrix generated');
     }
 
@@ -104,12 +104,12 @@ export function generateInsights() {
     log('💡 All insights generated successfully');
 }
 
-function wireThemeLandscapeProviderFilter() {
+async function wireThemeLandscapeProviderFilter() {
     const select = document.getElementById('theme-landscape-provider-filter');
     if (!select) return;
 
     const allGames = getActiveGames();
-    const providers = getProviderMetrics(allGames, { minGames: 2 });
+    const providers = await getProviderMetrics(gameData.activeCategory, { minGames: 2 });
     const sorted = [...providers].sort((a, b) => b.count - a.count);
 
     select.innerHTML =

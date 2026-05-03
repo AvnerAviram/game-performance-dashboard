@@ -24,7 +24,7 @@ let themeConsolidationMap = {};
  * A game qualifies if it has at least one verified/extracted confidence field
  * OR has been extracted (features present = Claude extracted features/themes/symbols).
  */
-const RELIABLE_GAME = `(
+export const RELIABLE_GAME = `(
   rtp_confidence IN ('verified','extracted') OR
   volatility_confidence IN ('verified','extracted') OR
   reels_confidence IN ('verified','extracted') OR
@@ -32,7 +32,7 @@ const RELIABLE_GAME = `(
   max_win_confidence IN ('verified','extracted') OR
   min_bet_confidence IN ('verified','extracted') OR
   max_bet_confidence IN ('verified','extracted') OR
-  (features IS NOT NULL AND features != '[]')
+  (features IS NOT NULL AND len(features) > 0)
 )`;
 
 // Provider normalization via normalizeProvider() from shared-config.js
@@ -223,8 +223,8 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         performance_anomaly VARCHAR, performance_market_share_percent DOUBLE,
         performance_percentile VARCHAR,
         release_year INTEGER, release_month INTEGER,
-        features VARCHAR, themes_all VARCHAR, themes_raw VARCHAR,
-        symbols VARCHAR, description VARCHAR, demo_url VARCHAR,
+        features VARCHAR[], themes_all VARCHAR[], themes_raw VARCHAR[],
+        symbols VARCHAR[], description VARCHAR, demo_url VARCHAR,
         data_quality VARCHAR, sites INTEGER,
         avg_bet DOUBLE, median_bet DOUBLE, games_played_index DOUBLE,
         coin_in_index DOUBLE, max_win DOUBLE, min_bet DOUBLE, max_bet DOUBLE,
@@ -233,9 +233,9 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
         rtp_confidence VARCHAR, volatility_confidence VARCHAR,
         reels_confidence VARCHAR, paylines_confidence VARCHAR,
         max_win_confidence VARCHAR, min_bet_confidence VARCHAR, max_bet_confidence VARCHAR,
-        art_theme VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
+        art_theme VARCHAR, art_theme_secondary VARCHAR, art_characters VARCHAR[], art_elements VARCHAR[],
         art_narrative VARCHAR,
-        art_color_tone VARCHAR, art_confidence VARCHAR
+        art_color_tone VARCHAR[], art_confidence VARCHAR
       )
     `);
 
@@ -284,22 +284,14 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
             !rawStudio || /^unknown$/i.test(rawStudio) ? game.parent_company || rawStudio : rawStudio;
         const normalizedStudio = normalizeProvider(studioOrParent);
 
-        const featuresJson =
-            Array.isArray(game.features) && game.features.length > 0
-                ? JSON.stringify(game.features).replace(/'/g, "''")
-                : null;
-        const themesAllJson =
-            Array.isArray(game.themes_all) && game.themes_all.length > 0
-                ? JSON.stringify(game.themes_all).replace(/'/g, "''")
-                : null;
-        const themesRawJson =
-            Array.isArray(game.themes_raw) && game.themes_raw.length > 0
-                ? JSON.stringify(game.themes_raw).replace(/'/g, "''")
-                : null;
-        const symbolsJson =
-            Array.isArray(game.symbols) && game.symbols.length > 0
-                ? JSON.stringify(game.symbols).replace(/'/g, "''")
-                : null;
+        const toArrayLiteral = arr =>
+            Array.isArray(arr) && arr.length > 0
+                ? `ARRAY[${arr.map(v => `'${String(v).replace(/'/g, "''")}'`).join(',')}]`
+                : 'NULL';
+        const featuresVal = toArrayLiteral(game.features);
+        const themesAllVal = toArrayLiteral(game.themes_all);
+        const themesRawVal = toArrayLiteral(game.themes_raw);
+        const symbolsVal = toArrayLiteral(game.symbols);
 
         await connection.query(`
         INSERT INTO games VALUES (
@@ -314,10 +306,10 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
           ${typeof safeNum(game.market_share_pct) === 'number' ? safeNum(game.market_share_pct) * 100 : 0},
           ${safeStr(game.percentile)},
           ${safeNum(game.release_year)}, ${safeNum(game.release_month)},
-          ${featuresJson ? `'${featuresJson}'` : 'NULL'},
-          ${themesAllJson ? `'${themesAllJson}'` : 'NULL'},
-          ${themesRawJson ? `'${themesRawJson}'` : 'NULL'},
-          ${symbolsJson ? `'${symbolsJson}'` : 'NULL'},
+          ${featuresVal},
+          ${themesAllVal},
+          ${themesRawVal},
+          ${symbolsVal},
           ${safeStr(game.description)}, ${safeStr(game.demo_url)}, ${safeStr(game.data_quality)},
           ${safeNum(game.sites)}, ${safeNum(game.avg_bet)}, ${safeNum(game.median_bet)},
           ${safeNum(game.games_played_index)}, ${safeNum(game.coin_in_index)},
@@ -332,10 +324,11 @@ async function loadFromJSON(response, themeMap, franchiseResponse, confidenceRes
           ${safeStr(confidenceMap[game.name]?.min_bet_confidence)},
           ${safeStr(confidenceMap[game.name]?.max_bet_confidence)},
           ${safeStr(artMap[game.name]?.art_theme)},
-          ${safeStr(artMap[game.name]?.art_characters ? JSON.stringify(artMap[game.name].art_characters) : null)},
-          ${safeStr(artMap[game.name]?.art_elements ? JSON.stringify(artMap[game.name].art_elements) : null)},
+          ${safeStr(artMap[game.name]?.art_theme_secondary)},
+          ${toArrayLiteral(artMap[game.name]?.art_characters)},
+          ${toArrayLiteral(artMap[game.name]?.art_elements)},
           ${safeStr(artMap[game.name]?.art_narrative)},
-          ${safeStr(artMap[game.name]?.art_color_tone ? JSON.stringify(artMap[game.name].art_color_tone) : null)},
+          ${toArrayLiteral(artMap[game.name]?.art_color_tone)},
           ${safeStr(artMap[game.name]?.art_confidence)}
         )
       `);
@@ -368,7 +361,18 @@ export async function query(sql) {
             const obj = typeof row.toJSON === 'function' ? row.toJSON() : row;
             const converted = {};
             for (const [key, value] of Object.entries(obj)) {
-                converted[key] = typeof value === 'bigint' ? Number(value) : value;
+                if (typeof value === 'bigint') {
+                    converted[key] = Number(value);
+                } else if (
+                    value &&
+                    typeof value === 'object' &&
+                    typeof value.toJSON === 'function' &&
+                    !Array.isArray(value)
+                ) {
+                    converted[key] = value.toJSON();
+                } else {
+                    converted[key] = value;
+                }
             }
             return converted;
         });
@@ -397,13 +401,9 @@ export async function getOverviewStats() {
   `);
 
     const featureRows = await query(
-        `SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]' AND ${RELIABLE_GAME}`
+        `SELECT DISTINCT f FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0 AND ${RELIABLE_GAME})`
     );
-    const featureSet = new Set();
-    for (const r of featureRows) {
-        parseFeatures(r.features).forEach(f => featureSet.add(f));
-    }
-    basic.mechanic_count = featureSet.size;
+    basic.mechanic_count = featureRows.length;
 
     return [basic];
 }
@@ -437,7 +437,7 @@ export async function getMechanicDistribution() {
     SELECT features, performance_theo_win, performance_market_share_percent,
            specs_rtp, performance_rank
     FROM games
-    WHERE features IS NOT NULL AND features != '[]'
+    WHERE features IS NOT NULL AND len(features) > 0
       AND ${RELIABLE_GAME}
   `);
 
@@ -542,7 +542,7 @@ export async function getAllGames(filters = {}) {
     }
 
     if (filters.mechanic) {
-        sql += ` AND features LIKE '%"${filters.mechanic.replace(/'/g, "''")}"%'`;
+        sql += ` AND list_contains(features, '${filters.mechanic.replace(/'/g, "''")}')`;
     }
 
     if (filters.theme) {
@@ -550,7 +550,7 @@ export async function getAllGames(filters = {}) {
     }
 
     if (filters.feature) {
-        sql += ` AND features LIKE '%"${filters.feature.replace(/'/g, "''")}"%'`;
+        sql += ` AND list_contains(features, '${filters.feature.replace(/'/g, "''")}')`;
     }
 
     if (filters.search) {
@@ -573,7 +573,7 @@ export async function getGamesByMechanic(mechanic) {
     const safe = mechanic.replace(/'/g, "''");
     return query(`
     SELECT * FROM games 
-    WHERE features IS NOT NULL AND features LIKE '%"${safe}"%'
+    WHERE features IS NOT NULL AND list_contains(features, '${safe}')
       AND ${RELIABLE_GAME}
     ORDER BY performance_rank ASC
   `);
@@ -681,12 +681,10 @@ export async function getUniqueProviders() {
 }
 
 export async function getUniqueMechanics() {
-    const rows = await query(`SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]'`);
-    const set = new Set();
-    for (const r of rows) {
-        parseFeatures(r.features).forEach(f => set.add(f));
-    }
-    return [...set].sort().map(mechanic => ({ mechanic }));
+    const rows = await query(
+        `SELECT DISTINCT f AS mechanic FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0)`
+    );
+    return rows.sort((a, b) => a.mechanic.localeCompare(b.mechanic));
 }
 
 export async function getUniqueThemes() {
@@ -712,15 +710,10 @@ export async function getGameCategories() {
  */
 export async function getUniqueFeatures() {
     const rows = await query(`
-    SELECT features FROM games WHERE features IS NOT NULL
-  `);
-
-    const featureSet = new Set();
-    for (const row of rows) {
-        parseFeatures(row.features).forEach(f => featureSet.add(f));
-    }
-
-    return [...featureSet].sort().map(f => ({ feature: f }));
+        SELECT DISTINCT f AS feature FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0)
+        ORDER BY f
+    `);
+    return rows;
 }
 
 /**

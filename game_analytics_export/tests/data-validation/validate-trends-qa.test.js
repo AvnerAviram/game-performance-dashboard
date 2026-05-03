@@ -2,13 +2,12 @@
  * Phase 4: Trends Page QA
  *
  * Validates year-over-year trend computations against raw game data.
- * Uses F.xxx() accessors consistently to prevent the Egyptian-2013 class of bugs.
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
 import { F } from '../../src/lib/game-fields.js';
 import { parseFeatures } from '../../src/lib/parse-features.js';
-import { getProviderMetrics } from '../../src/lib/metrics.js';
+import { computeProviderMetrics } from '../utils/test-aggregators.js';
 import { scoreFinding, assertNoDefiniteFindings } from '../utils/qa-scoring.js';
 
 let allGames = [];
@@ -151,7 +150,7 @@ describe('Trends Page QA', () => {
     });
 
     it('provider trends top 10 uses GGR share ranking (same as Providers page)', () => {
-        const ranked = getProviderMetrics(allGames);
+        const ranked = computeProviderMetrics(allGames);
         const top10Providers = ranked.slice(0, 10).map(p => p.name);
 
         expect(top10Providers.length).toBeGreaterThanOrEqual(5);

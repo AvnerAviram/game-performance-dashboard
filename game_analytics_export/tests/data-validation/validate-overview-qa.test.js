@@ -2,22 +2,17 @@
  * Phase 1: Overview Page QA
  *
  * Validates KPIs, theme/provider rankings, and top performers
- * against metrics.js (single source of truth for aggregation).
- *
- * Tier rules:
- *   DEFINITE — uses exact metrics.js logic; test fails on mismatch.
- *   LIKELY   — statistical threshold check; warns loudly.
- *   POSSIBLE — coverage/info; never fails.
+ * using local aggregators (same logic as pre-SQL metrics.js).
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
 import {
-    getProviderMetrics,
-    getThemeMetrics,
-    getFeatureMetrics,
-    getVolatilityMetrics,
-    getGlobalAvgTheo,
-} from '../../src/lib/metrics.js';
+    computeProviderMetrics,
+    computeThemeMetrics,
+    computeFeatureMetrics,
+    computeVolatilityMetrics,
+    computeGlobalAvgTheo,
+} from '../utils/test-aggregators.js';
 import { F } from '../../src/lib/game-fields.js';
 import { parseFeatures } from '../../src/lib/parse-features.js';
 import { scoreFinding, assertNoDefiniteFindings } from '../utils/qa-scoring.js';
@@ -30,8 +25,6 @@ beforeAll(async () => {
 });
 
 describe('Overview Page QA', () => {
-    // ── KPI Cards ──────────────────────────────────────────────────
-
     it('total games count is positive and matches loaded data', () => {
         expect(allGames.length).toBeGreaterThan(0);
         expect(gameData.total_games).toBe(allGames.length);
@@ -41,8 +34,6 @@ describe('Overview Page QA', () => {
         const themes = new Set(allGames.map(g => F.themeConsolidated(g)));
         expect(themes.size).toBeGreaterThan(10);
         expect(themes.size).toBeLessThan(200);
-        // gameData.theme_count comes from json-aggregator which may count slightly
-        // differently (e.g., excludes Unknown). Allow ±2 tolerance.
         expect(Math.abs(gameData.theme_count - themes.size)).toBeLessThanOrEqual(2);
     });
 
@@ -50,7 +41,6 @@ describe('Overview Page QA', () => {
         const mechs = new Set();
         allGames.forEach(g => parseFeatures(g.features).forEach(f => mechs.add(f)));
         expect(mechs.size).toBeGreaterThan(5);
-        // json-aggregator may normalize features slightly differently. Allow ±2.
         expect(Math.abs(gameData.mechanic_count - mechs.size)).toBeLessThanOrEqual(2);
     });
 
@@ -65,10 +55,8 @@ describe('Overview Page QA', () => {
         expect(pct).toBeLessThanOrEqual(100);
     });
 
-    // ── Provider Rankings ──────────────────────────────────────────
-
     it('top 10 providers by GGR share have positive metrics', () => {
-        const providerRows = getProviderMetrics(allGames);
+        const providerRows = computeProviderMetrics(allGames);
         const top10 = providerRows.slice(0, 10);
 
         expect(top10.length).toBeGreaterThanOrEqual(5);
@@ -80,7 +68,7 @@ describe('Overview Page QA', () => {
     });
 
     it('provider Smart Index is monotonically decreasing (within top 10)', () => {
-        const providerRows = getProviderMetrics(allGames);
+        const providerRows = computeProviderMetrics(allGames);
         const top10 = providerRows.slice(0, 10);
         for (let i = 1; i < top10.length; i++) {
             expect(top10[i].smartIndex).toBeLessThanOrEqual(top10[i - 1].smartIndex);
@@ -88,29 +76,25 @@ describe('Overview Page QA', () => {
     });
 
     it('no provider appears twice in rankings', () => {
-        const providerRows = getProviderMetrics(allGames);
+        const providerRows = computeProviderMetrics(allGames);
         const names = providerRows.map(p => p.name);
         expect(new Set(names).size).toBe(names.length);
     });
 
-    // ── Theme Rankings ─────────────────────────────────────────────
-
     it('theme metrics cover all games (excluding Unknown)', () => {
-        const themeRows = getThemeMetrics(allGames);
+        const themeRows = computeThemeMetrics(allGames);
         const totalInThemes = themeRows.reduce((s, t) => s + t.count, 0);
         expect(totalInThemes).toBe(allGames.length);
     });
 
     it('no theme appears twice in rankings', () => {
-        const themeRows = getThemeMetrics(allGames);
+        const themeRows = computeThemeMetrics(allGames);
         const themes = themeRows.map(t => t.theme);
         expect(new Set(themes).size).toBe(themes.length);
     });
 
-    // ── Feature Rankings ───────────────────────────────────────────
-
     it('feature metrics have positive counts for top features', () => {
-        const featureRows = getFeatureMetrics(allGames);
+        const featureRows = computeFeatureMetrics(allGames);
         const top10 = featureRows.slice(0, 10);
         expect(top10.length).toBeGreaterThanOrEqual(5);
         for (const f of top10) {
@@ -118,10 +102,8 @@ describe('Overview Page QA', () => {
         }
     });
 
-    // ── Volatility Breakdown ───────────────────────────────────────
-
     it('volatility breakdown covers all games with standard volatility', () => {
-        const volRows = getVolatilityMetrics(allGames);
+        const volRows = computeVolatilityMetrics(allGames);
         const STANDARD_VOLS = new Set([
             'Very High',
             'High',
@@ -136,14 +118,10 @@ describe('Overview Page QA', () => {
         expect(sumVol).toBe(withStandardVol);
     });
 
-    // ── Global Avg Theo ────────────────────────────────────────────
-
     it('global average theo is positive', () => {
-        const avgTheo = getGlobalAvgTheo(allGames);
+        const avgTheo = computeGlobalAvgTheo(allGames);
         expect(avgTheo).toBeGreaterThan(0);
     });
-
-    // ── Cross-KPI Consistency ──────────────────────────────────────
 
     it('no game has negative theo_win', () => {
         const findings = [];

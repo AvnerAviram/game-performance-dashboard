@@ -6,7 +6,7 @@
  * inline fallback chains like `game.performance_theo_win ?? game.performance?.theo_win`.
  */
 
-import { normalizeProvider } from './shared-config.js';
+import { normalizeProvider, ELEMENT_CONSOLIDATION } from './shared-config.js';
 
 // ── Core accessors ─────────────────────────────────────────────────────
 
@@ -25,12 +25,7 @@ export const F = {
 
     theme: g => g.theme_primary || g.theme?.primary || 'Unknown',
     themeConsolidated: g =>
-        g.art_theme ||
-        g.theme_consolidated ||
-        g.theme?.consolidated ||
-        g.theme_primary ||
-        g.theme?.primary ||
-        'Unknown',
+        g.theme_consolidated || g.theme?.consolidated || g.theme_primary || g.theme?.primary || 'Unknown',
     themeSecondary: g => g.theme_secondary || g.theme?.secondary || '',
     themesAll: g => {
         const v = g.themes_all;
@@ -131,27 +126,29 @@ export const F = {
     artTheme: g => g.art_theme || null,
     artCharacters: g => {
         const v = g.art_characters;
-        if (Array.isArray(v)) return v;
-        if (typeof v === 'string' && v.startsWith('[')) {
+        let arr;
+        if (Array.isArray(v)) arr = v;
+        else if (typeof v === 'string' && v.startsWith('[')) {
             try {
-                return JSON.parse(v);
+                arr = JSON.parse(v);
             } catch {
                 return [];
             }
-        }
-        return [];
+        } else return [];
+        return arr.filter(c => c && c !== 'No Characters (symbol-only game)');
     },
     artElements: g => {
         const v = g.art_elements;
-        if (Array.isArray(v)) return v;
-        if (typeof v === 'string' && v.startsWith('[')) {
+        let arr;
+        if (Array.isArray(v)) arr = v;
+        else if (typeof v === 'string' && v.startsWith('[')) {
             try {
-                return JSON.parse(v);
+                arr = JSON.parse(v);
             } catch {
                 return [];
             }
-        }
-        return [];
+        } else return [];
+        return arr.map(e => ELEMENT_CONSOLIDATION[e] || e);
     },
     artMood: g => g.art_mood || null,
     artStyle: g => g.art_style || null,

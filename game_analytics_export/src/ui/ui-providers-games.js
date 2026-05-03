@@ -105,7 +105,10 @@ export async function renderProviders(providersData = null) {
         providers.forEach(p => {
             p['Smart Index'] = computeSI(p.avg_theo_win || 0, p.game_count || 0, globalAvgTheo);
         });
-        providers.sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+        providers.sort(
+            (a, b) =>
+                (b.total_market_share || b['Market Share %'] || 0) - (a.total_market_share || a['Market Share %'] || 0)
+        );
 
         // PAGINATION LOGIC
         const ITEMS_PER_PAGE = window.providersPerPage || DEFAULT_PAGE_SIZE;
@@ -140,8 +143,8 @@ export async function renderProviders(providersData = null) {
                                         </div>
                                     </span>
                                 </th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share %</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable sorted-desc cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 5)">
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable sorted-desc cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share %</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 5)">
                                     GGR Share %
                                     <span class="info-icon">ⓘ
                                         <div class="filter-tooltip">

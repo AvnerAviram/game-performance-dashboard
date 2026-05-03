@@ -29,9 +29,8 @@ export function updateHeaderStats() {
     if (statClassified) {
         const allGames = getActiveGames();
         const classified = allGames.filter(g => {
-            const hasTheme =
-                (g.theme_consolidated || g.theme_primary || '').trim() &&
-                (g.theme_consolidated || g.theme_primary) !== 'Unknown';
+            const tc = F.themeConsolidated(g);
+            const hasTheme = tc.trim() && tc !== 'Unknown';
             const hasFeatures = parseFeatsLocal(g.features).length > 0;
             return hasTheme && hasFeatures;
         }).length;
@@ -43,7 +42,7 @@ export function updateHeaderStats() {
     }
 }
 
-export function renderOverview() {
+export async function renderOverview() {
     log('📊 renderOverview() called');
     log('  - gameData exists:', !!gameData);
     log('  - active games length:', getActiveGames().length || 0);
@@ -96,7 +95,7 @@ export function renderOverview() {
 
     const providersEl = document.getElementById('overview-total-providers');
     if (providersEl) {
-        const rankedProviders = getProviderMetrics(getActiveGames());
+        const rankedProviders = await getProviderMetrics(gameData.activeCategory);
         providersEl.textContent = rankedProviders.length;
         providersEl.dataset.xray = JSON.stringify({
             dimension: 'overview',
@@ -112,7 +111,7 @@ export function renderOverview() {
         mechanics: getActiveMechanics().length,
     });
 
-    const performers = getTopPerformers(getActiveGames(), getActiveThemes(), getActiveMechanics());
+    const performers = await getTopPerformers(getActiveGames(), getActiveThemes(), getActiveMechanics());
     const comparisonEl = document.getElementById('comparison-cards');
     if (comparisonEl) {
         comparisonEl.innerHTML = renderComparisonCards(performers);
@@ -150,7 +149,7 @@ function renderTopThemesCards() {
 
     const yearData = {};
     allGames.forEach(g => {
-        const t = g.theme_consolidated || '';
+        const t = F.themeConsolidated(g);
         if (!t) return;
         if (!yearData[t]) yearData[t] = { recent: 0, old: 0, total: 0 };
         yearData[t].total++;
@@ -166,12 +165,15 @@ function renderTopThemesCards() {
         t._avgTheo = t.avg_theo_win || t['Avg Theo Win Index'] || 0;
         t._si = t['Smart Index'] || 0;
         t._gc = t['Game Count'] || t.game_count || 0;
+        t._ms = t['Market Share %'] ?? t.total_market_share ?? 0;
         t._opportunity = t._gc > 0 ? t._avgTheo / Math.sqrt(t._gc + 1) : 0;
     });
 
+    const byMarketShare = [...themes].sort((a, b) => (b._ms || 0) - (a._ms || 0));
+    const best = byMarketShare[0];
     const bySmartIndex = [...themes].sort((a, b) => b._si - a._si);
-    const best = bySmartIndex[0];
-    const worst = bySmartIndex[bySmartIndex.length - 1];
+    const qualifiedThemes = bySmartIndex.filter(t => t.qualified !== false);
+    const worst = qualifiedThemes[qualifiedThemes.length - 1] || bySmartIndex[bySmartIndex.length - 1];
 
     const opportunity =
         [...themes]
@@ -195,16 +197,16 @@ function renderTopThemesCards() {
         {
             theme: best,
             emoji: '👑',
-            label: 'Best Theme',
-            sub: 'Highest Performance Index',
-            tip: 'Theme with the highest Smart Index (Avg Theo Win × √Game Count, normalized). Represents the strongest overall market performer.',
+            label: 'Most Popular Theme',
+            sub: 'Highest Market Share',
+            tip: 'Theme with the highest total Market Share — the most dominant theme on casino floors by market presence.',
             bg: 'from-amber-50 to-yellow-50',
             dbg: 'dark:from-amber-900/20 dark:to-yellow-900/20',
             border: 'border-amber-200 dark:border-amber-800',
             labelColor: 'text-amber-700 dark:text-amber-400',
             gradient: 'from-amber-600 to-yellow-600',
-            value: best._si.toFixed(2),
-            valueLabel: 'Performance Index',
+            value: best._ms ? best._ms.toFixed(2) + '%' : best._gc.toString(),
+            valueLabel: 'Market Share',
         },
         {
             theme: opportunity,
@@ -253,7 +255,7 @@ function renderTopThemesCards() {
             emoji: '🔻',
             label: 'Worst Theme',
             sub: 'Lowest Performance Index',
-            tip: 'Theme with the lowest Smart Index. Weakest market performance — consider avoiding or innovating significantly.',
+            tip: 'Theme with the lowest Performance Index among qualified themes (≥20 games). Weakest market performance — consider avoiding or innovating significantly.',
             bg: 'from-red-50 to-rose-50',
             dbg: 'dark:from-red-900/20 dark:to-rose-900/20',
             border: 'border-red-200 dark:border-red-800',
@@ -315,11 +317,11 @@ function renderThemeFeatureHeatmap() {
 
     const themeGames = {};
     allGames.forEach(g => {
-        const theme = g.theme_consolidated || '';
+        const theme = F.themeConsolidated(g);
         if (!theme || /^unknown$/i.test(theme)) return;
         if (!themeGames[theme]) themeGames[theme] = [];
         const feats = parseFeatsLocal(g.features).sort();
-        themeGames[theme].push({ name: g.name || 'Unknown', theo: g.performance_theo_win || 0, feats });
+        themeGames[theme].push({ name: F.name(g) || 'Unknown', theo: F.theoWin(g), feats });
     });
 
     const recipes = [];

@@ -32,6 +32,7 @@ function getFranchiseMap() {
     return _franchiseMap;
 }
 
+// Must stay in sync with PROVIDER_NORMALIZATION_MAP in src/lib/shared-config.js
 const PROVIDER_NORM = {
     Igt: 'IGT',
     'International Gaming Technology': 'IGT',
@@ -51,9 +52,15 @@ const PROVIDER_NORM = {
     Nyx: 'Light & Wonder',
     'NextGen Gaming': 'Light & Wonder',
     'Slingshot Studios': 'Light & Wonder',
+    '4ThePlayer': '4theplayer',
+    'Pear Fiction Studios': 'PearFiction',
+    'Circular Arrow': 'Light & Wonder',
+    'Fortune Factory Studios': 'Light & Wonder',
+    Dsg: 'Design Works Gaming',
 };
 
 function normalizeProvider(raw) {
+    if (!raw) return 'Unknown';
     return PROVIDER_NORM[raw] || raw;
 }
 

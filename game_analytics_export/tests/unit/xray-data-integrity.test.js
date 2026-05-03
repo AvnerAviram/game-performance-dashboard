@@ -15,6 +15,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { join, resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { computeProviderMetrics, computeThemeMetrics, computeFeatureMetrics } from '../utils/test-aggregators.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
@@ -233,9 +234,8 @@ describe('X-Ray data integrity: theme evidence from rules text', () => {
 });
 
 describe('X-Ray data integrity: ranking API response structure', () => {
-    it('getProviderMetrics returns rows with smartIndex for ranking', async () => {
-        const { getProviderMetrics } = await import('../../src/lib/metrics.js');
-        const rows = getProviderMetrics(games);
+    it('getProviderMetrics returns rows with smartIndex for ranking', () => {
+        const rows = computeProviderMetrics(games);
         expect(rows.length).toBeGreaterThan(0);
         for (const row of rows.slice(0, 5)) {
             expect(row).toHaveProperty('name');
@@ -246,9 +246,8 @@ describe('X-Ray data integrity: ranking API response structure', () => {
         }
     });
 
-    it('getThemeMetrics returns rows with smartIndex for ranking', async () => {
-        const { getThemeMetrics } = await import('../../src/lib/metrics.js');
-        const rows = getThemeMetrics(games);
+    it('getThemeMetrics returns rows with smartIndex for ranking', () => {
+        const rows = computeThemeMetrics(games);
         expect(rows.length).toBeGreaterThan(0);
         for (const row of rows.slice(0, 5)) {
             expect(row).toHaveProperty('theme');
@@ -257,9 +256,8 @@ describe('X-Ray data integrity: ranking API response structure', () => {
         }
     });
 
-    it('getFeatureMetrics returns rows with smartIndex for ranking', async () => {
-        const { getFeatureMetrics } = await import('../../src/lib/metrics.js');
-        const rows = getFeatureMetrics(games);
+    it('getFeatureMetrics returns rows with smartIndex for ranking', () => {
+        const rows = computeFeatureMetrics(games);
         expect(rows.length).toBeGreaterThan(0);
         for (const row of rows.slice(0, 5)) {
             expect(row).toHaveProperty('feature');
@@ -268,17 +266,15 @@ describe('X-Ray data integrity: ranking API response structure', () => {
         }
     });
 
-    it('ranking rows are sorted by smartIndex descending', async () => {
-        const { getProviderMetrics } = await import('../../src/lib/metrics.js');
-        const rows = getProviderMetrics(games);
+    it('ranking rows are sorted by smartIndex descending', () => {
+        const rows = computeProviderMetrics(games);
         for (let i = 1; i < rows.length; i++) {
             expect(rows[i - 1].smartIndex).toBeGreaterThanOrEqual(rows[i].smartIndex);
         }
     });
 
-    it('top provider from ranking matches expected real provider', async () => {
-        const { getProviderMetrics } = await import('../../src/lib/metrics.js');
-        const rows = getProviderMetrics(games);
+    it('top provider from ranking matches expected real provider', () => {
+        const rows = computeProviderMetrics(games);
         const topProvider = rows[0];
         expect(topProvider.name).toBeTruthy();
         expect(topProvider.count).toBeGreaterThan(10);

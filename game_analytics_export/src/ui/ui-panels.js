@@ -1005,10 +1005,10 @@ export function showProviderDetails(providerName) {
                     const percent = ((count / gameCount) * 100).toFixed(0);
                     const barW = ((count / maxVolCount) * 100).toFixed(0);
                     return `
-                    <div class="flex items-center gap-2">
-                        <div class="w-20 flex-shrink-0">${VolatilityBadge(vol)}</div>
-                        <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-300 dark:bg-gray-500 rounded-full" style="width:${barW}%"></div></div>
-                        <span class="text-[11px] text-gray-400 dark:text-gray-500 w-12 text-right flex-shrink-0">${count} (${percent}%)</span>
+                    <div class="flex items-center gap-3">
+                        <div class="w-24 flex-shrink-0">${VolatilityBadge(vol)}</div>
+                        <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-gray-300 dark:bg-gray-500 rounded-full" style="width:${barW}%"></div></div>
+                        <span class="text-[11px] text-gray-400 dark:text-gray-500 w-14 text-right flex-shrink-0">${count} (${percent}%)</span>
                     </div>
                 `;
                 })

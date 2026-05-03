@@ -1,116 +1,55 @@
 // Volatility landscape bubble chart — filtered to verified/extracted confidence only
-import { Chart } from './chart-setup.js';
 import { gameData, getActiveGames } from '../lib/data.js';
 import { VOL_COLORS } from '../lib/shared-config.js';
 import { getVolatilityMetrics } from '../lib/metrics.js';
-import {
-    getChartColors,
-    getModernTooltipConfig,
-    createQuadrantPlugin,
-    median,
-    bubbleScaleOptions,
-    bubbleScaleOptionsLog,
-    bubbleScaleOptionsWarped,
-    createXWarp,
-    createBubbleLabelPlugin,
-    createSABubbleLabelPlugin,
-    createSAHoverHandler,
-    createSAClickHandler,
-    injectCoveragePill,
-} from './chart-utils.js';
+import { median, createBubbleLandscape, quadrantLabel } from './chart-utils.js';
 import { chartInstances } from './chart-config.js';
-import { F, isReliableConfidence } from '../lib/game-fields.js';
 
-export function createVolatilityChart() {
+export async function createVolatilityChart() {
     try {
-        const canvas = document.getElementById('chart-volatility');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        const chartColors = getChartColors();
-        if (chartInstances.volatility) {
-            chartInstances.volatility.destroy();
-            chartInstances.volatility = null;
-        }
-
         const allGames = getActiveGames();
         if (!allGames.length) return;
 
-        const reliableGames = allGames.filter(g => isReliableConfidence(F.volatilityConfidence(g)));
-
-        const sorted = getVolatilityMetrics(reliableGames).map(v => ({
+        const sorted = (await getVolatilityMetrics(gameData.activeCategory)).map(v => ({
             name: v.volatility,
             count: v.count,
             avgTheo: v.avgTheo,
         }));
         if (!sorted.length) return;
 
-        const xVals = sorted.map(v => v.count);
-        const yVals = sorted.map(v => v.avgTheo);
-        const xWarp = createXWarp(xVals);
-        const medX = xWarp.warpVal(median(xVals));
-        const medY = median(yVals);
-        const reliableTotal = reliableGames.length;
+        const reliableTotal = sorted.reduce((s, v) => s + v.count, 0);
+        const maxCount = Math.max(...sorted.map(v => v.count), 1);
+        const globalAvg = sorted.reduce((s, x) => s + x.avgTheo * x.count, 0) / sorted.reduce((s, x) => s + x.count, 0);
 
-        const maxCount = Math.max(...xVals, 1);
-        const bubbleData = sorted.map(v => ({
-            x: xWarp.warpVal(v.count),
+        const data = sorted.map(v => ({
+            name: `🎲 ${v.name} Volatility`,
+            x: v.count,
             y: v.avgTheo,
             r: Math.max(10, Math.min(28, 10 + Math.sqrt(v.count / maxCount) * 18)),
-            _label: v.name,
+            _vol: v,
         }));
 
-        const labels = sorted.map(v => v.name);
-
-        chartInstances.volatility = new Chart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Volatility',
-                        data: bubbleData,
-                        backgroundColor: sorted.map(v => (VOL_COLORS[v.name] || '#94a3b8') + 'AA'),
-                        borderColor: sorted.map(v => VOL_COLORS[v.name] || '#94a3b8'),
-                        borderWidth: 1.5,
-                        hoverRadius: 4,
-                    },
-                ],
+        createBubbleLandscape('chart-volatility', {
+            data,
+            instanceKey: 'volatility',
+            instanceRegistry: chartInstances,
+            labels: 'none',
+            colorFn: (d, type) => {
+                const c = VOL_COLORS[d._vol.name] || '#94a3b8';
+                return type === 'bg' ? c + 'AA' : c;
             },
-            plugins: [createQuadrantPlugin('volQuadrant', medX, medY, chartColors)],
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 600 },
-                layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        ...getModernTooltipConfig(),
-                        callbacks: {
-                            title: items => `🎲 ${labels[items[0].dataIndex]} Volatility`,
-                            label: item => {
-                                const v = sorted[item.dataIndex];
-                                const globalAvg =
-                                    sorted.reduce((s, x) => s + x.avgTheo * x.count, 0) /
-                                    sorted.reduce((s, x) => s + x.count, 0);
-                                const diff = v.avgTheo - globalAvg;
-                                const arrow = diff >= 0 ? '▲' : '▼';
-                                return [
-                                    `Games: ${v.count}  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
-                                    `${arrow} ${diff >= 0 ? '+' : ''}${diff.toFixed(2)} vs market avg (${globalAvg.toFixed(2)})`,
-                                    `Based on ${reliableTotal} verified games`,
-                                ];
-                            },
-                        },
-                    },
-                },
-                scales: bubbleScaleOptionsWarped(chartColors, xWarp),
-                onClick: (_evt, elements) => {
-                    if (window.xrayActive) return;
-                    if (!elements.length) return;
-                    const idx = elements[0].index;
-                    const vol = sorted[idx];
-                    if (vol && window.showVolatilityDetails) window.showVolatilityDetails(vol.name);
-                },
+            tooltipFn: item => {
+                const v = item._vol;
+                const diff = v.avgTheo - globalAvg;
+                const arrow = diff >= 0 ? '▲' : '▼';
+                return [
+                    `Games: ${v.count}  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
+                    `${arrow} ${diff >= 0 ? '+' : ''}${diff.toFixed(2)} vs market avg (${globalAvg.toFixed(2)})`,
+                    `Based on ${reliableTotal} verified games`,
+                ];
+            },
+            onBubbleClick: item => {
+                if (item._vol && window.showVolatilityDetails) window.showVolatilityDetails(item._vol.name);
             },
         });
     } catch (err) {
@@ -118,128 +57,51 @@ export function createVolatilityChart() {
     }
 }
 
-export function createVolatilityLandscapeChart() {
-    const canvas = document.getElementById('chart-volatility-landscape');
-    if (!canvas) return;
-
-    if (chartInstances.volatilityLandscape) {
-        chartInstances.volatilityLandscape.destroy();
-        chartInstances.volatilityLandscape = null;
-    }
-
+export async function createVolatilityLandscapeChart() {
     try {
-        const ctx = canvas.getContext('2d');
-        const chartColors = getChartColors();
         const allGames = getActiveGames();
         if (!allGames.length) return;
 
-        const reliableGames = allGames.filter(g => isReliableConfidence(F.volatilityConfidence(g)));
-
-        const sorted = getVolatilityMetrics(reliableGames).map(v => ({
+        const sorted = (await getVolatilityMetrics(gameData.activeCategory)).map(v => ({
             name: v.volatility,
             count: v.count,
             avgTheo: v.avgTheo,
         }));
         if (!sorted.length) return;
 
-        const xVals = sorted.map(v => v.count);
-        const yVals = sorted.map(v => v.avgTheo);
-        const xWarp = createXWarp(xVals);
-        const medX = xWarp.warpVal(median(xVals));
-        const medY = median(yVals);
-        const reliableTotal = reliableGames.length;
+        const reliableTotal = sorted.reduce((s, v) => s + v.count, 0);
+        const maxCount = Math.max(...sorted.map(v => v.count), 1);
 
-        const maxCount = Math.max(...xVals, 1);
-        const bubbleData = sorted.map(v => ({
-            x: xWarp.warpVal(v.count),
+        const data = sorted.map(v => ({
+            name: `🎲 ${v.name} Volatility`,
+            x: v.count,
             y: v.avgTheo,
             r: Math.max(8, Math.min(40, 8 + Math.sqrt(v.count / maxCount) * 32)),
-            _label: v.name,
+            _vol: v,
         }));
 
-        const labels = sorted.map(v => v.name);
-        const volBorder = sorted.map(v => VOL_COLORS[v.name] || '#94a3b8');
-
-        const VOL_BARS_MAP = {
-            Low: 1,
-            'Low-Medium': 2,
-            'Medium-Low': 3,
-            Medium: 3,
-            'Medium-High': 4,
-            High: 5,
-            'Very High': 5,
-        };
-
-        const drawVolIcon = (ctx, x, y, h, dataIndex, isDark) => {
-            const name = sorted[dataIndex]?.name;
-            const filled = VOL_BARS_MAP[name] || 3;
-            const color = VOL_COLORS[name] || '#94a3b8';
-            const totalBars = 5;
-            const barW = 2;
-            const gap = 1;
-            const maxH = h - 1;
-            const minH = 2;
-            for (let b = 0; b < totalBars; b++) {
-                const barH = minH + ((maxH - minH) * b) / (totalBars - 1);
-                const bx = x + b * (barW + gap);
-                const by = y + h - barH;
-                ctx.fillStyle = b < filled ? color : isDark ? '#334155' : '#e2e8f0';
-                ctx.fillRect(bx, by, barW, barH);
-            }
-        };
-
-        const saPlugin = createSABubbleLabelPlugin('volLandscapeLabels', bubbleData, labels, volBorder, {
-            iconWidth: 18,
-            drawIcon: drawVolIcon,
-            labelColors: sorted.map(v => VOL_COLORS[v.name] || '#94a3b8'),
-        });
-
-        chartInstances.volatilityLandscape = new Chart(ctx, {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: 'Volatility',
-                        data: bubbleData,
-                        backgroundColor: sorted.map(v => (VOL_COLORS[v.name] || '#94a3b8') + '99'),
-                        borderColor: volBorder,
-                        borderWidth: 1.5,
-                        hoverRadius: 6,
-                    },
-                ],
+        createBubbleLandscape('chart-volatility-landscape', {
+            data,
+            instanceKey: 'volatilityLandscape',
+            instanceRegistry: chartInstances,
+            labels: 'all',
+            colorFn: (d, type) => {
+                const c = VOL_COLORS[d._vol.name] || '#94a3b8';
+                return type === 'bg' ? c + '99' : c;
             },
-            plugins: [createQuadrantPlugin('volLandscapeQuadrant', medX, medY, chartColors), saPlugin],
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 600 },
-                layout: { padding: { top: 24, right: 16, bottom: 24, left: 4 } },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        ...getModernTooltipConfig(),
-                        callbacks: {
-                            title: items => `🎲 ${labels[items[0].dataIndex]} Volatility`,
-                            label: item => {
-                                const v = sorted[item.dataIndex];
-                                const pct = ((v.count / reliableTotal) * 100).toFixed(1);
-                                return [
-                                    `Games: ${v.count} (${pct}%)  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
-                                    `Based on ${reliableTotal} verified games`,
-                                ];
-                            },
-                        },
-                    },
-                },
-                scales: bubbleScaleOptionsWarped(chartColors, xWarp),
-                onHover: createSAHoverHandler(),
-                onClick: createSAClickHandler(idx => {
-                    const vol = sorted[idx];
-                    if (vol && window.showVolatilityDetails) window.showVolatilityDetails(vol.name);
-                }),
+            tooltipFn: item => {
+                const v = item._vol;
+                const pct = ((v.count / reliableTotal) * 100).toFixed(1);
+                return [
+                    `Games: ${v.count} (${pct}%)  |  Avg PI: ${v.avgTheo.toFixed(2)}`,
+                    `Based on ${reliableTotal} verified games`,
+                ];
             },
+            onBubbleClick: item => {
+                if (item._vol && window.showVolatilityDetails) window.showVolatilityDetails(item._vol.name);
+            },
+            coveragePill: { covered: reliableTotal, total: allGames.length, label: 'with verified volatility' },
         });
-        injectCoveragePill('chart-volatility-landscape', reliableTotal, allGames.length, 'with verified volatility');
     } catch (err) {
         console.error('[VOLATILITY-LANDSCAPE] FAILED:', err);
     }

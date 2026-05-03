@@ -108,16 +108,17 @@ export function renderThemes(themesToRender = null) {
         const si = theme['Smart Index'] || 0;
         const gc = theme['Game Count'] || 0;
         const ms = theme['Market Share %'] ?? 0;
+        const isQualified = theme.qualified !== false;
         const barW = Math.max(4, (si / maxSI) * 100);
         const gcBarW = Math.max(4, (gc / maxGC) * 100);
         const msBarW = Math.max(2, (ms / maxMS) * 100);
         const isAboveAvg = si >= avgSI;
         const medal =
-            globalIndex === 0
+            isQualified && globalIndex === 0
                 ? '<span class="mr-1">🥇</span>'
-                : globalIndex === 1
+                : isQualified && globalIndex === 1
                   ? '<span class="mr-1">🥈</span>'
-                  : globalIndex === 2
+                  : isQualified && globalIndex === 2
                     ? '<span class="mr-1">🥉</span>'
                     : '';
         const rankBg = globalIndex < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
@@ -157,8 +158,8 @@ export function renderThemes(themesToRender = null) {
             </td>
             <td class="px-4 py-3.5 w-56" data-xray='${xDim('smart_index', si.toFixed(2))}'>
                 <div class="flex items-center gap-2">
-                    <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}</span>
-                    <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>
+                    <span class="text-sm font-bold tabular-nums ${!isQualified ? 'text-gray-400 dark:text-gray-500' : isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}${!isQualified ? '<span class="text-[9px] ml-0.5" title="Below ${20}-game minimum — ranking may not be statistically reliable">†</span>' : ''}</span>
+                    <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${!isQualified ? 'bg-gray-300 dark:bg-gray-600 opacity-50' : isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>
                     <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${isAboveAvg ? '▲' : '▼'}</span>
                 </div>
             </td>
@@ -198,22 +199,29 @@ window.toggleArtDrill = function (index, themeName) {
     }
 
     const allGames = getActiveGames();
-    const themeGames = allGames.filter(g => {
-        if (F.themeConsolidated(g) !== themeName) return false;
-        return !!(
-            F.artTheme(g) ||
-            F.artCharacters(g).length > 0 ||
-            F.artElements(g).length > 0 ||
-            F.artColorTone(g).length > 0 ||
-            F.artThemeSecondary(g)
-        );
-    });
-    if (themeGames.length === 0) return;
+    const themeGames = allGames.filter(g => F.themeConsolidated(g) === themeName);
+    if (themeGames.length === 0) {
+        if (expandIcon) expandIcon.textContent = '▼';
+        const parentRow = document.querySelector(`[data-theme-index="${index}"]`);
+        const drillRow = document.createElement('tr');
+        drillRow.id = `art-drill-${index}`;
+        drillRow.className = 'bg-gray-50/80 dark:bg-gray-800/50';
+        drillRow.innerHTML = `<td></td><td colspan="4" class="px-4 py-3">
+            <span class="text-xs text-gray-400 dark:text-gray-500 italic">No games found for this theme in current view</span>
+        </td>`;
+        if (parentRow && parentRow.nextSibling) {
+            parentRow.parentNode.insertBefore(drillRow, parentRow.nextSibling);
+        } else {
+            parentRow?.parentNode?.appendChild(drillRow);
+        }
+        return;
+    }
 
     const characterCounts = {};
     const elementCounts = {};
     const colorCounts = {};
     const secondaryCounts = {};
+    const providerCounts = {};
     for (const g of themeGames) {
         const chars = F.artCharacters(g);
         if (Array.isArray(chars))
@@ -232,6 +240,8 @@ window.toggleArtDrill = function (index, themeName) {
             });
         const sec = F.artThemeSecondary(g);
         if (sec) secondaryCounts[sec] = (secondaryCounts[sec] || 0) + 1;
+        const prov = F.provider(g);
+        if (prov) providerCounts[prov] = (providerCounts[prov] || 0) + 1;
     }
 
     const sortAndLimit = (obj, min, limit) =>
@@ -240,62 +250,88 @@ window.toggleArtDrill = function (index, themeName) {
             .sort((a, b) => b[1] - a[1])
             .slice(0, limit);
 
-    const topChars = sortAndLimit(characterCounts, 1, 8);
-    const topElems = sortAndLimit(elementCounts, 2, 8);
-    const topColors = sortAndLimit(colorCounts, 1, 10);
-    const topSec = sortAndLimit(secondaryCounts, 1, 5);
     const total = themeGames.length;
+    const minCount = Math.max(2, Math.ceil(total * 0.03));
 
-    const pill = (label, count, bgClass, textClass) =>
-        `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${bgClass} ${textClass}"><span>${escapeHtml(label)}</span><span class="font-semibold">${count}</span></span>`;
+    const gamesWithChars = themeGames.filter(g => F.artCharacters(g).length > 0).length;
+    const gamesWithElems = themeGames.filter(g => F.artElements(g).length > 0).length;
+    const gamesWithColors = themeGames.filter(g => F.artColorTone(g).length > 0).length;
+    const gamesWithSec = themeGames.filter(g => F.artThemeSecondary(g)).length;
 
-    const cardSection = (title, items, borderColor, pillBg, pillText) => {
-        const pills = items.length
-            ? `<div class="flex flex-wrap gap-1.5">${items.map(([l, c]) => pill(l, c, pillBg, pillText)).join('')}</div>`
-            : `<span class="text-xs text-gray-400 dark:text-gray-500 italic">None found</span>`;
-        return `<div class="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3">
-            <div class="border-l-4 ${borderColor} pl-2 mb-2 text-[11px] font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">${escapeHtml(title)}</div>
+    const topChars = sortAndLimit(characterCounts, minCount, 5);
+    const topElems = sortAndLimit(elementCounts, minCount, 5);
+    const topColors = sortAndLimit(colorCounts, minCount, 5);
+    const topSec = sortAndLimit(secondaryCounts, minCount, 5);
+    const topProviders = sortAndLimit(providerCounts, minCount, 5);
+
+    const pill = (label, count, base, bgClass, textClass) => {
+        const pct = base > 0 ? ((count / base) * 100).toFixed(0) : '0';
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${bgClass} ${textClass}"><span>${escapeHtml(label)}</span><span class="font-semibold">${pct}%</span></span>`;
+    };
+
+    const cardSection = (title, items, base, borderColor, pillBg, pillText) => {
+        if (!items.length) return '';
+        const baseLabel = base < total ? ` (${base} of ${total} games)` : ` (${total} games)`;
+        const pills = `<div class="flex flex-wrap gap-1.5">${items.map(([l, c]) => pill(l, c, base, pillBg, pillText)).join('')}</div>`;
+        return `<div class="py-2 border-b border-gray-100 dark:border-gray-700/50 last:border-b-0">
+            <div class="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1.5">${escapeHtml(title)}<span class="font-normal text-gray-400 dark:text-gray-500">${baseLabel}</span></div>
             ${pills}
         </div>`;
     };
 
-    const content =
+    const sections = [
         cardSection(
-            'Characters',
-            topChars,
-            'border-blue-400',
-            'bg-blue-100 dark:bg-blue-900/40',
-            'text-blue-700 dark:text-blue-300'
-        ) +
-        cardSection(
-            'Elements',
-            topElems,
-            'border-green-400',
-            'bg-green-100 dark:bg-green-900/40',
-            'text-green-700 dark:text-green-300'
-        ) +
-        cardSection(
-            'Color Tones',
-            topColors,
-            'border-amber-400',
-            'bg-amber-100 dark:bg-amber-900/40',
-            'text-amber-700 dark:text-amber-300'
-        ) +
-        cardSection(
-            'Secondary Themes',
+            'Sub-Themes',
             topSec,
+            gamesWithSec,
             'border-purple-400',
             'bg-purple-100 dark:bg-purple-900/40',
             'text-purple-700 dark:text-purple-300'
-        );
+        ),
+        cardSection(
+            'Characters',
+            topChars,
+            gamesWithChars,
+            'border-blue-400',
+            'bg-blue-100 dark:bg-blue-900/40',
+            'text-blue-700 dark:text-blue-300'
+        ),
+        cardSection(
+            'Elements',
+            topElems,
+            gamesWithElems,
+            'border-green-400',
+            'bg-green-100 dark:bg-green-900/40',
+            'text-green-700 dark:text-green-300'
+        ),
+        cardSection(
+            'Color Tones',
+            topColors,
+            gamesWithColors,
+            'border-amber-400',
+            'bg-amber-100 dark:bg-amber-900/40',
+            'text-amber-700 dark:text-amber-300'
+        ),
+        cardSection(
+            'Top Providers',
+            topProviders,
+            total,
+            'border-indigo-400',
+            'bg-indigo-100 dark:bg-indigo-900/40',
+            'text-indigo-700 dark:text-indigo-300'
+        ),
+    ].filter(Boolean);
+
+    const content = sections.length
+        ? sections.join('')
+        : '<span class="text-xs text-gray-400 dark:text-gray-500 italic">No detailed breakdown data available</span>';
 
     const parentRow = document.querySelector(`[data-theme-index="${index}"]`);
     const drillRow = document.createElement('tr');
     drillRow.id = `art-drill-${index}`;
     drillRow.className = 'bg-gray-50/80 dark:bg-gray-800/50';
-    drillRow.innerHTML = `<td></td><td colspan="4" class="px-4 py-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">${content}</div>
-        <div class="text-[10px] text-gray-400 dark:text-gray-500 mt-2">${total} games with art data</div>
+    drillRow.innerHTML = `<td></td><td colspan="4" class="px-4 py-3">
+        <div class="space-y-0">${content}</div>
     </td>`;
 
     if (parentRow && parentRow.nextSibling) {

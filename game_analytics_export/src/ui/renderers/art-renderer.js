@@ -1,5 +1,5 @@
 import { Chart } from '../chart-setup.js';
-import { getActiveGames } from '../../lib/data.js';
+import { getActiveGames, gameData } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
 import {
@@ -22,14 +22,10 @@ import {
     getModernTooltipConfig,
     median,
     generateModernColors,
+    quadrantLabel,
     needsLeaderLine,
     snapLabelToBubble,
-    createXWarp,
-    createQuadrantPlugin,
-    bubbleScaleOptionsWarped,
-    quadrantBgColor,
-    quadrantBorderColor,
-    quadrantLabel,
+    createBubbleLandscape,
 } from '../chart-utils.js';
 import { saLabelSolver } from '../../lib/sa-label-solver.js';
 import {
@@ -113,6 +109,16 @@ function buildArtBreakdown(games, excludeDimension) {
     const total = games.length;
     if (!total) return '';
 
+    const gamesWithChars = games.filter(g => {
+        const chars = F.artCharacters(g);
+        return Array.isArray(chars) && chars.some(c => c && c !== 'No Characters (symbol-only game)');
+    }).length;
+    const gamesWithElems = games.filter(g => (F.artElements(g) || []).length > 0).length;
+    const gamesWithColors = games.filter(g => {
+        const v = F.artColorTone(g);
+        return Array.isArray(v) ? v.length > 0 : !!v;
+    }).length;
+
     const dims = [];
 
     if (excludeDimension !== 'theme') {
@@ -125,7 +131,13 @@ function buildArtBreakdown(games, excludeDimension) {
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
         if (sorted.length)
-            dims.push({ label: 'Themes', items: sorted, clickFn: 'window.showArtTheme', dim: 'art_theme' });
+            dims.push({
+                label: 'Themes',
+                items: sorted,
+                base: total,
+                clickFn: 'window.showArtTheme',
+                dim: 'art_theme',
+            });
     }
 
     if (excludeDimension !== 'character') {
@@ -144,6 +156,7 @@ function buildArtBreakdown(games, excludeDimension) {
             dims.push({
                 label: 'Characters',
                 items: sorted,
+                base: gamesWithChars,
                 clickFn: 'window.showArtCharacter',
                 dim: 'art_characters',
             });
@@ -162,7 +175,13 @@ function buildArtBreakdown(games, excludeDimension) {
             .sort((a, b) => b[1] - a[1])
             .slice(0, 6);
         if (sorted.length)
-            dims.push({ label: 'Elements', items: sorted, clickFn: 'window.showArtElement', dim: 'art_elements' });
+            dims.push({
+                label: 'Elements',
+                items: sorted,
+                base: gamesWithElems,
+                clickFn: 'window.showArtElement',
+                dim: 'art_elements',
+            });
     }
 
     if (excludeDimension !== 'narrative') {
@@ -178,6 +197,7 @@ function buildArtBreakdown(games, excludeDimension) {
             dims.push({
                 label: 'Narratives',
                 items: sorted,
+                base: total,
                 clickFn: 'window.showArtNarrative',
                 dim: 'art_narrative',
             });
@@ -200,6 +220,7 @@ function buildArtBreakdown(games, excludeDimension) {
             dims.push({
                 label: 'Color tones',
                 items: sorted,
+                base: gamesWithColors,
                 clickFn: 'window.showArtColorTone',
                 dim: 'art_color_tone',
             });
@@ -211,11 +232,11 @@ function buildArtBreakdown(games, excludeDimension) {
         .map(
             d => `
         <div class="mb-3 last:mb-0">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">${d.label}</div>
+            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">${d.label}${d.base < total ? ` <span class="font-normal">(${d.base} of ${total} games)</span>` : ''}</div>
             <div class="flex flex-wrap gap-1.5">${d.items
                 .map(([name, count]) => {
-                    const pct = ((count / total) * 100).toFixed(0);
-                    return `<span class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">${escapeHtml(name)} <span class="text-[9px] text-gray-400">${count} · ${pct}%</span></span>`;
+                    const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
+                    return `<span class="inline-flex items-center gap-1 text-[11px] px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-indigo-100 dark:hover:bg-indigo-900/30 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">${escapeHtml(name)} <span class="text-[9px] text-gray-400">${pct}%</span></span>`;
                 })
                 .join('')}</div>
         </div>
@@ -224,10 +245,10 @@ function buildArtBreakdown(games, excludeDimension) {
         .join('');
 }
 
-function showArtFilteredGames(title, filterFn, opts) {
+async function showArtFilteredGames(title, filterFn, opts) {
     const allGames = getActiveGames();
     const games = allGames.filter(filterFn).sort((a, b) => F.theoWin(b) - F.theoWin(a));
-    const globalAvg = getGlobalAvgTheo(allGames);
+    const globalAvg = await getGlobalAvgTheo(gameData.activeCategory);
     const avgTheo = games.length ? games.reduce((s, g) => s + F.theoWin(g), 0) / games.length : 0;
     const maxTheo = games.length ? Math.max(...games.map(g => F.theoWin(g) || 0)) : 0;
     const minTheo = games.length ? Math.min(...games.map(g => F.theoWin(g) || 0)) : 0;
@@ -344,52 +365,54 @@ function showArtFilteredGames(title, filterFn, opts) {
     document.body.style.overflow = 'hidden';
 }
 
-window.showArtTheme = function (setting) {
-    showArtFilteredGames(`Theme: ${setting}`, g => F.artTheme(g) === setting, { excludeDimension: 'theme' });
+window.showArtTheme = async function (setting) {
+    await showArtFilteredGames(`Theme: ${setting}`, g => F.artTheme(g) === setting, { excludeDimension: 'theme' });
 };
-window.showArtCharacter = function (character) {
-    showArtFilteredGames(`Character: ${character}`, g => F.artCharacters(g).includes(character), {
+window.showArtCharacter = async function (character) {
+    await showArtFilteredGames(`Character: ${character}`, g => F.artCharacters(g).includes(character), {
         excludeDimension: 'character',
     });
 };
-window.showArtElement = function (element) {
-    showArtFilteredGames(`Element: ${element}`, g => F.artElements(g).includes(element), {
+window.showArtElement = async function (element) {
+    await showArtFilteredGames(`Element: ${element}`, g => F.artElements(g).includes(element), {
         excludeDimension: 'element',
     });
 };
-window.showArtNarrative = function (narrative) {
-    showArtFilteredGames(`Narrative: ${narrative}`, g => F.artNarrative(g) === narrative, {
+window.showArtNarrative = async function (narrative) {
+    await showArtFilteredGames(`Narrative: ${narrative}`, g => F.artNarrative(g) === narrative, {
         excludeDimension: 'narrative',
     });
 };
-window.showArtColor = function (tone) {
-    showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
+window.showArtColor = async function (tone) {
+    await showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
         excludeDimension: 'colorTone',
     });
 };
-window.showArtColorTone = function (tone) {
-    showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
+window.showArtColorTone = async function (tone) {
+    await showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
         excludeDimension: 'colorTone',
     });
 };
-window.showArtRecipe = function (theme) {
-    showArtFilteredGames(`Theme: ${theme}`, g => F.artTheme(g) === theme);
+window.showArtRecipe = async function (theme) {
+    await showArtFilteredGames(`Theme: ${theme}`, g => F.artTheme(g) === theme);
 };
-window.showArtCombo = function (dimA, dimB) {
-    showArtFilteredGames(`${dimA} + ${dimB}`, g => F.artTheme(g) === dimA || F.artTheme(g) === dimB);
+window.showArtCombo = async function (dimA, dimB) {
+    await showArtFilteredGames(`${dimA} + ${dimB}`, g => F.artTheme(g) === dimA || F.artTheme(g) === dimB);
 };
 
-export function renderArt() {
+export async function renderArt() {
     const allGames = getActiveGames();
     const artGames = allGames.filter(g => F.artTheme(g));
 
-    const themes = getArtThemeMetrics(artGames);
-    const narratives = getArtNarrativeMetrics(artGames);
-    const characters = getArtCharacterMetrics(artGames);
-    const elements = getArtElementMetrics(artGames);
-    const colorTones = getArtColorToneMetrics(artGames);
-    const recipes = getArtRecipeMetrics(artGames, { minGames: 3 });
-    const globalAvg = getGlobalAvgTheo(allGames);
+    const [themes, narratives, characters, elements, colorTones, recipes, globalAvg] = await Promise.all([
+        getArtThemeMetrics(gameData.activeCategory),
+        getArtNarrativeMetrics(gameData.activeCategory),
+        getArtCharacterMetrics(gameData.activeCategory),
+        getArtElementMetrics(gameData.activeCategory),
+        getArtColorToneMetrics(gameData.activeCategory),
+        getArtRecipeMetrics(gameData.activeCategory, { minGames: 3 }),
+        getGlobalAvgTheo(gameData.activeCategory),
+    ]);
 
     renderStats(allGames, artGames, themes, characters, elements, colorTones);
     renderThemeLandscape(themes, globalAvg);
@@ -415,7 +438,69 @@ export function renderArt() {
         colorTones,
         'colorTone',
         c => c.colorTone,
-        'showArtColor'
+        'showArtColor',
+        {
+            labelColorFn: item => {
+                const colorMap = {
+                    Gold: '#FFD700',
+                    Silver: '#C0C0C0',
+                    Red: '#EF4444',
+                    Blue: '#3B82F6',
+                    Green: '#22C55E',
+                    Purple: '#A855F7',
+                    Pink: '#EC4899',
+                    Teal: '#14B8A6',
+                    Yellow: '#EAB308',
+                    Orange: '#F97316',
+                    Black: '#1F2937',
+                    White: '#F3F4F6',
+                    Beige: '#D2B48C',
+                    Brown: '#92400E',
+                    Crimson: '#DC143C',
+                    Magenta: '#FF00FF',
+                    Coral: '#FF7F50',
+                    Navy: '#000080',
+                    Turquoise: '#40E0D0',
+                    Ivory: '#FFFFF0',
+                    Lavender: '#E6E6FA',
+                    Indigo: '#4B0082',
+                    Maroon: '#800000',
+                    Olive: '#808000',
+                    Emerald: '#50C878',
+                    Ruby: '#E0115F',
+                    Sapphire: '#0F52BA',
+                    Amber: '#FFBF00',
+                    Copper: '#B87333',
+                    Bronze: '#CD7F32',
+                    Platinum: '#E5E4E2',
+                    Charcoal: '#36454F',
+                    Rose: '#FF007F',
+                    Burgundy: '#800020',
+                    Slate: '#708090',
+                    Tan: '#D2B48C',
+                    Peach: '#FFCBA4',
+                    Mint: '#98FB98',
+                    Aqua: '#00FFFF',
+                    Neon: '#39FF14',
+                    Pastel: '#FFD1DC',
+                    Earth: '#5C4033',
+                    Warm: '#FF6B35',
+                    Cool: '#4A90D9',
+                    Dark: '#2D2D2D',
+                    Light: '#F0F0F0',
+                    Bright: '#FFD700',
+                    Muted: '#9E9E9E',
+                    Metallic: '#AAA9AD',
+                    Rainbow: '#FF0000',
+                    Multi: '#FF69B4',
+                };
+                const name = item.name || '';
+                const firstName = name.split(/[\s/]/)[0];
+                if (colorMap[firstName]) return colorMap[firstName];
+                const hash = name.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+                return '#' + ((hash & 0xffffff) | 0x404040).toString(16).slice(-6);
+            },
+        }
     );
     renderDimensionLandscape(
         'narratives',
@@ -431,11 +516,10 @@ export function renderArt() {
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
     renderArtTrends(artGames);
-    renderComboHeatmap(artGames);
-    renderArtRecipes(recipes, globalAvg, artGames);
-    renderProviderArtCards(artGames, globalAvg);
-    renderOpportunityGaps(artGames, globalAvg);
-    renderTopCombos(artGames, globalAvg);
+    await renderArtRecipes(recipes, globalAvg, artGames);
+    await renderProviderArtCards(artGames, globalAvg);
+    renderOpportunityGaps(artGames, globalAvg, themes, narratives, characters, elements, colorTones);
+    await renderTopCombos(artGames, globalAvg);
 }
 
 function renderStats(allGames, artGames, themes, characters, elements, colorTones) {
@@ -461,600 +545,74 @@ function renderStats(allGames, artGames, themes, characters, elements, colorTone
     }
 }
 
-function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, clickHandler) {
+function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, clickHandler, extraOpts = {}) {
     destroyChart(key + 'Landscape');
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
     if (!metrics.length) return;
 
-    const ctx = canvas.getContext('2d');
-    const chartColors = getChartColors();
+    const maxCount = Math.max(...metrics.map(m => m.count), 1);
+    const medX = median(metrics.map(m => m.count));
+    const medY = median(metrics.map(m => m.avgTheo));
 
-    const xVals = metrics.map(m => m.count);
-    const yVals = metrics.map(m => m.avgTheo);
-    const xWarp = createXWarp(xVals);
-    const rawMedX = [...xVals].sort((a, b) => a - b)[Math.floor(xVals.length / 2)] || 10;
-    const medX = xWarp.warpVal(rawMedX);
-    const medY = [...yVals].sort((a, b) => a - b)[Math.floor(yVals.length / 2)] || 1;
-
-    const maxCount = Math.max(...xVals, 1);
-    const bubbleData = metrics.map(m => ({
-        x: xWarp.warpVal(m.count),
+    const data = metrics.map(m => ({
+        name: nameAccessor(m),
+        x: m.count,
         y: m.avgTheo,
-        r: Math.max(5, Math.min(16, Math.sqrt(m.count / maxCount) * 14 + 3)),
+        r: 6 + Math.sqrt(m.count / maxCount) * 34,
+        _m: m,
     }));
 
-    chartInstances[key + 'Landscape'] = new Chart(ctx, {
-        type: 'bubble',
-        data: {
-            datasets: [
-                {
-                    data: bubbleData,
-                    backgroundColor: bubbleData.map(d => quadrantBgColor(d.x, d.y, medX, medY)),
-                    borderColor: bubbleData.map(d => quadrantBorderColor(d.x, d.y, medX, medY)),
-                    borderWidth: 1.5,
-                    hoverRadius: 4,
-                },
-            ],
+    const chart = createBubbleLandscape(canvasId, {
+        data,
+        instanceKey: key + 'Landscape',
+        instanceRegistry: chartInstances,
+        labels: 'all',
+        medianX: medX,
+        medianY: medY,
+        tooltipFn: item => {
+            const m = item._m;
+            const q = quadrantLabel(m.count, m.avgTheo, medX, medY);
+            return [`Games: ${m.count}  |  Avg PI: ${m.avgTheo.toFixed(2)}  |  ${q}`];
         },
-        plugins: [createQuadrantPlugin(key + 'Quad', medX, medY, chartColors)],
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 600 },
-            onClick: (e, elements) => {
-                if (window.xrayActive) return;
-                if (elements.length && window[clickHandler]) {
-                    const m = metrics[elements[0].index];
-                    if (m) window[clickHandler](nameAccessor(m));
-                }
-            },
-            onHover: (e, elements) => {
-                e.native.target.style.cursor = elements.length ? 'pointer' : 'default';
-            },
-            layout: { padding: { top: 24, right: 16, bottom: 16, left: 16 } },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    ...getModernTooltipConfig(),
-                    callbacks: {
-                        title: items => nameAccessor(metrics[items[0].dataIndex]),
-                        label: item => {
-                            const m = metrics[item.dataIndex];
-                            const q = quadrantLabel(item.parsed.x, item.parsed.y, medX, medY);
-                            return `Games: ${m.count}  |  Avg PI: ${m.avgTheo.toFixed(2)}  |  ${q}`;
-                        },
-                    },
-                },
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grace: '10%',
-                    title: {
-                        display: true,
-                        text: 'Avg Performance Index',
-                        color: chartColors.textColor,
-                        font: { size: 10, weight: 'bold' },
-                    },
-                    ticks: { color: chartColors.textColor, font: { size: 10 }, padding: 6 },
-                    grid: getModernGridConfig(),
-                },
-                x: {
-                    ...bubbleScaleOptionsWarped(chartColors, xWarp, 'Number of Games').x,
-                    min: -0.15,
-                },
-            },
+        onBubbleClick: item => {
+            if (window[clickHandler]) window[clickHandler](item.name);
         },
+        ...extraOpts,
     });
 }
 
-// ── Art Landscape bubble chart (mirrors Theme Landscape pattern) ──
+// ── Art Landscape bubble chart (unified via createBubbleLandscape) ──
 
 function renderThemeLandscape(themes, globalAvg) {
     destroyChart('opportunity');
-    const canvas = document.getElementById('art-opportunity-chart');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    const chartColors = getChartColors();
-
     if (!themes.length) return;
 
-    const xVals = themes.map(s => s.count);
-    const yVals = themes.map(s => s.avgTheo);
-    const rawMedX = median(xVals);
-    const rawMedY = median(yVals);
+    const maxCount = Math.max(...themes.map(s => s.count), 1);
+    const medX = median(themes.map(s => s.count));
+    const medY = median(themes.map(s => s.avgTheo));
 
-    const maxCount = Math.max(...xVals, 1);
-    const rMin = 6;
-    const rMax = 40;
-
-    const sqrtY = v => Math.sqrt(Math.max(0, v));
-
-    // X-axis warp: log10 + piecewise stretch (data-driven percentiles)
-    const logX = v => Math.log10(Math.max(1, v));
-    const logXVals = xVals.map(logX);
-    const sortedLogX = [...logXVals].sort((a, b) => a - b);
-    const WX_LO = sortedLogX[Math.floor(sortedLogX.length * 0.2)] || 1.0;
-    const WX_HI = sortedLogX[Math.floor(sortedLogX.length * 0.8)] || 2.0;
-    const WX_K = 2.5;
-    const WX_SPAN = (WX_HI - WX_LO) * WX_K;
-    const warpX = lv => {
-        if (lv <= WX_LO) return lv;
-        if (lv <= WX_HI) return WX_LO + (lv - WX_LO) * WX_K;
-        return WX_LO + WX_SPAN + (lv - WX_HI);
-    };
-    const unwarpX = wv => {
-        if (wv <= WX_LO) return wv;
-        const warpedHi = WX_LO + WX_SPAN;
-        if (wv <= warpedHi) return WX_LO + (wv - WX_LO) / WX_K;
-        return WX_HI + (wv - warpedHi);
-    };
-
-    // Y-axis warp: sqrt + piecewise stretch (data-driven percentiles)
-    const sqrtVals = yVals.map(sqrtY);
-    const sortedSqrt = [...sqrtVals].sort((a, b) => a - b);
-    const WY_LO = sortedSqrt.length ? sortedSqrt[Math.floor(sortedSqrt.length * 0.2)] : 0.3;
-    const WY_HI = sortedSqrt.length ? sortedSqrt[Math.floor(sortedSqrt.length * 0.8)] : 0.8;
-    const WY_K = 3.0;
-    const WY_SPAN = (WY_HI - WY_LO) * WY_K;
-    const warpY = sv => {
-        if (sv <= WY_LO) return sv;
-        if (sv <= WY_HI) return WY_LO + (sv - WY_LO) * WY_K;
-        return WY_LO + WY_SPAN + (sv - WY_HI);
-    };
-    const unwarpY = wv => {
-        if (wv <= WY_LO) return wv;
-        const warpedHi = WY_LO + WY_SPAN;
-        if (wv <= warpedHi) return WY_LO + (wv - WY_LO) / WY_K;
-        return WY_HI + (wv - warpedHi);
-    };
-
-    const medX = warpX(logX(rawMedX));
-    const warpedMedY = warpY(sqrtY(rawMedY));
-
-    const quadrantColor = (wy, wx) => {
-        if (wy >= warpedMedY && wx < medX) return { bg: 'rgba(16,185,129,', border: 'rgba(16,185,129,' };
-        if (wy >= warpedMedY && wx >= medX) return { bg: 'rgba(99,102,241,', border: 'rgba(99,102,241,' };
-        if (wy < warpedMedY && wx < medX) return { bg: 'rgba(100,116,139,', border: 'rgba(100,116,139,' };
-        return { bg: 'rgba(239,68,68,', border: 'rgba(239,68,68,' };
-    };
-    const quadrantName = (wy, wx) => {
-        if (wy >= warpedMedY) return wx < medX ? '💎 Opportunity' : '🏆 Leader';
-        return wx < medX ? '🔍 Niche' : '⚠️ Saturated';
-    };
-
-    const bubbleData = themes.map(s => ({
-        x: warpX(logX(s.count)),
-        y: warpY(sqrtY(s.avgTheo)),
-        r: rMin + Math.sqrt(s.count / maxCount) * (rMax - rMin),
-        yOrig: s.avgTheo,
-        theme: s.theme,
-        _label: s.theme,
-        count: s.count,
+    const data = themes.map(s => ({
+        name: s.theme,
+        x: s.count,
+        y: s.avgTheo,
+        r: 6 + Math.sqrt(s.count / maxCount) * 34,
+        _theme: s,
     }));
 
-    const bubbleLabels = themes.map(s => shortLabel(s.theme));
-    const bgColors = bubbleData.map(d => quadrantColor(d.y, d.x).bg + '0.45)');
-    const borderColors = bubbleData.map(d => quadrantColor(d.y, d.x).border + '0.7)');
-
-    const truncName = (name, max = 18) => (name.length > max ? name.slice(0, max - 1) + '…' : name);
-
-    // Quadrant plugin (inline, like Theme Landscape)
-    const quadrantPlugin = {
-        id: 'artLandscapeQuadrants',
-        beforeDatasetsDraw(chart) {
-            const {
-                ctx: c,
-                chartArea: { left, right, top, bottom },
-                scales: { x: xScale, y: yScale },
-            } = chart;
-            const mx = xScale.getPixelForValue(medX);
-            const my = yScale.getPixelForValue(warpedMedY);
-            c.save();
-            c.setLineDash([5, 4]);
-            c.lineWidth = 1;
-            c.strokeStyle = chartColors.gridColor || 'rgba(148,163,184,0.4)';
-            c.beginPath();
-            c.moveTo(mx, top);
-            c.lineTo(mx, bottom);
-            c.stroke();
-            c.beginPath();
-            c.moveTo(left, my);
-            c.lineTo(right, my);
-            c.stroke();
-            c.setLineDash([]);
-            c.restore();
+    createBubbleLandscape('art-opportunity-chart', {
+        data,
+        instanceKey: 'opportunity',
+        instanceRegistry: chartInstances,
+        labels: 'all',
+        medianX: medX,
+        medianY: medY,
+        tooltipFn: item => {
+            const s = item._theme;
+            const q = quadrantLabel(s.count, s.avgTheo, medX, medY);
+            return [`Games: ${s.count}  |  Avg PI: ${s.avgTheo.toFixed(2)}  |  ${q}`];
         },
-        afterDatasetsDraw(chart) {
-            const {
-                ctx: c,
-                chartArea: { left, right, top, bottom },
-            } = chart;
-            const pad = 8;
-            c.save();
-            c.font = 'bold 10px Inter, system-ui, sans-serif';
-            c.globalAlpha = 0.55;
-            c.fillStyle = 'rgb(16,185,129)';
-            c.textAlign = 'left';
-            c.textBaseline = 'top';
-            c.fillText('💎 Opportunity', left + pad, top + pad);
-            c.fillStyle = 'rgb(99,102,241)';
-            c.textAlign = 'right';
-            c.textBaseline = 'top';
-            c.fillText('🏆 Leaders', right - pad, top + pad);
-            c.fillStyle = 'rgb(156,163,175)';
-            c.textAlign = 'left';
-            c.textBaseline = 'bottom';
-            c.fillText('🔍 Niche', left + pad, bottom - pad);
-            c.fillStyle = 'rgb(239,68,68)';
-            c.textAlign = 'right';
-            c.textBaseline = 'bottom';
-            c.fillText('⚠️ Saturated', right - pad, bottom - pad);
-            c.restore();
+        onBubbleClick: item => {
+            if (item._theme?.theme) window.showArtTheme(item._theme.theme);
         },
-    };
-
-    // Inline label plugin with hit-box tracking (mirrors Theme Landscape)
-    let labelHitBoxes = [];
-    let cachedLabels = null;
-    let lastPosKey = null;
-
-    const bubbleLabelPlugin = {
-        id: 'artBubbleLabels',
-        afterDatasetsDraw(chart) {
-            const { ctx: c, chartArea } = chart;
-            c.save();
-            const isDark = document.documentElement.classList.contains('dark');
-            const labelColor = isDark ? '#94a3b8' : '#64748b';
-
-            const hasActiveHover = chart.getActiveElements().length > 0;
-            const meta0 = chart.getDatasetMeta(0);
-            const posKey = meta0.data.map(el => `${el.x.toFixed(0)},${el.y.toFixed(0)}`).join('|');
-            const positionsChanged = posKey !== lastPosKey;
-            const shouldRecalc = !cachedLabels || (!hasActiveHover && positionsChanged);
-
-            if (shouldRecalc) {
-                lastPosKey = posKey;
-
-                const areaW = chartArea.right - chartArea.left;
-                const areaH = chartArea.bottom - chartArea.top;
-                const fontSize = 10;
-                const fontStr = `600 ${fontSize}px Inter, system-ui, sans-serif`;
-                c.font = fontStr;
-
-                const labs = [];
-                const ancs = [];
-                const labMeta = [];
-                const midX = chartArea.left + areaW / 2;
-                const midY = chartArea.top + areaH / 2;
-
-                meta0.data.forEach((pt, i) => {
-                    const label = truncName(bubbleLabels[i]);
-                    if (!label) return;
-                    const pxR = pt.options?.radius ?? bubbleData[i]?.r ?? 12;
-                    const tw = c.measureText(label).width;
-                    const th = fontSize + 2;
-
-                    const ang = Math.atan2(pt.y - midY, pt.x - midX);
-                    const offX = Math.cos(ang) * (pxR + 8);
-                    const offY = Math.sin(ang) * (pxR + 8);
-                    let ix = pt.x + offX - tw / 2;
-                    let iy = pt.y + offY - th / 2;
-                    ix = Math.max(chartArea.left, Math.min(chartArea.right - tw, ix));
-                    iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th, iy));
-
-                    labs.push({ x: ix, y: iy, width: tw, height: th });
-                    ancs.push({ x: pt.x, y: pt.y, r: pxR });
-                    labMeta.push({ label, index: i, leaderColor: borderColors[i] });
-                });
-
-                saLabelSolver(labs, ancs, areaW, areaH, chartArea.left, chartArea.top);
-
-                const hitBoxes = [];
-                const entries = [];
-                const leaderThreshold = 15;
-
-                for (let k = 0; k < labs.length; k++) {
-                    const l = labs[k];
-                    const a = ancs[k];
-                    const meta = labMeta[k];
-                    const dist = Math.hypot(l.x + l.width / 2 - a.x, l.y + l.height / 2 - a.y);
-                    const showLeader = needsLeaderLine(dist, leaderThreshold, k, ancs);
-
-                    if (!showLeader && dist > a.r + 6) {
-                        snapLabelToBubble(l, a, chartArea);
-                    }
-
-                    const rect = { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height };
-                    hitBoxes.push({ rect, index: meta.index });
-                    entries.push({
-                        label: meta.label,
-                        rect,
-                        fs: fontStr,
-                        key: `0:${meta.index}`,
-                        dx: l.x + l.width / 2,
-                        dy: l.y + l.height / 2,
-                        al: 'center',
-                        bl: 'middle',
-                        leader: showLeader,
-                        bx: a.x,
-                        by: a.y,
-                        br: a.r,
-                        leaderColor: meta.leaderColor,
-                    });
-                }
-
-                labelHitBoxes = hitBoxes;
-                cachedLabels = entries;
-            }
-
-            const highlightColor = isDark ? '#e2e8f0' : '#1e293b';
-            const bgColor = isDark ? 'rgba(15,23,42,0.85)' : 'rgba(255,255,255,0.88)';
-
-            cachedLabels.forEach(entry => {
-                if (!entry.leader) return;
-                const isHovered = hoveredLabelKey === entry.key;
-                const r = entry.rect;
-                const nearX = (r.x1 + r.x2) / 2;
-                const nearY = (r.y1 + r.y2) / 2;
-                const lc = isHovered ? highlightColor : entry.leaderColor;
-                c.save();
-                c.strokeStyle = lc;
-                c.lineWidth = 1.5;
-                c.setLineDash([4, 3]);
-                c.beginPath();
-                c.moveTo(entry.bx, entry.by);
-                c.lineTo(nearX, nearY);
-                c.stroke();
-                c.setLineDash([]);
-                c.restore();
-            });
-
-            cachedLabels.forEach(entry => {
-                const r = entry.rect;
-                c.fillStyle = bgColor;
-                c.fillRect(r.x1 - 2, r.y1 - 1, r.x2 - r.x1 + 4, r.y2 - r.y1 + 2);
-            });
-            cachedLabels.forEach(entry => {
-                const isHovered = hoveredLabelKey === entry.key;
-                if (isHovered) {
-                    const boldFont = entry.fs
-                        .replace(/\d+px/, m => Math.min(parseInt(m) + 1, 13) + 'px')
-                        .replace(/^(bold|\d{3})\s/, '700 ');
-                    c.font = boldFont;
-                    c.fillStyle = highlightColor;
-                } else {
-                    c.font = entry.fs;
-                    c.fillStyle = labelColor;
-                }
-                c.textAlign = entry.al;
-                c.textBaseline = entry.bl;
-                c.fillText(entry.label, entry.dx, entry.dy);
-            });
-
-            c.restore();
-        },
-    };
-
-    // Label hit detection
-    const findLabelHit = (mouseX, mouseY) => {
-        const canvasRect = canvas.getBoundingClientRect();
-        const cx = mouseX - canvasRect.left;
-        const cy = mouseY - canvasRect.top;
-        let closest = null;
-        let closestDist = Infinity;
-        for (const hb of labelHitBoxes) {
-            const r = hb.rect;
-            const mx = (r.x1 + r.x2) / 2;
-            const my = (r.y1 + r.y2) / 2;
-            const hw = (r.x2 - r.x1) / 2 + 12;
-            const hh = (r.y2 - r.y1) / 2 + 8;
-            const dx = Math.max(0, Math.abs(cx - mx) - hw);
-            const dy = Math.max(0, Math.abs(cy - my) - hh);
-            if (dx === 0 && dy === 0) {
-                const dist = Math.hypot(cx - mx, cy - my);
-                if (dist < closestDist) {
-                    closestDist = dist;
-                    closest = hb;
-                }
-            }
-        }
-        return closest;
-    };
-
-    let labelHoverActive = false;
-    let hoveredLabelKey = null;
-
-    const showArtLabelTooltip = (hit, mouseX, mouseY) => {
-        const tip = document.getElementById('art-label-tooltip');
-        const titleEl = document.getElementById('art-label-tooltip-title');
-        const bodyEl = document.getElementById('art-label-tooltip-body');
-        const swatchEl = document.getElementById('art-label-tooltip-swatch');
-        if (!tip || !titleEl || !bodyEl) return;
-        const d = bubbleData[hit.index];
-        if (!d) return;
-        const q = quadrantName(d.y, d.x);
-        titleEl.textContent = `🎨 ${d.theme}`;
-        bodyEl.textContent = `Games: ${d.count}  |  Avg Theo: ${d.yOrig.toFixed(2)}  |  ${q}`;
-        if (swatchEl) {
-            const color = quadrantColor(d.y, d.x);
-            swatchEl.style.backgroundColor = color.bg + '0.6)';
-        }
-        const container = canvas.parentElement;
-        const containerRect = container.getBoundingClientRect();
-        tip.classList.remove('hidden');
-        const tipW = tip.offsetWidth;
-        const tipH = tip.offsetHeight;
-        let lx = mouseX - containerRect.left + 14;
-        let ly = mouseY - containerRect.top - tipH - 15;
-        if (ly < 4) ly = mouseY - containerRect.top + 25;
-        if (lx + tipW > containerRect.width - 8) lx = mouseX - containerRect.left - tipW - 14;
-        tip.style.left = `${Math.max(4, lx)}px`;
-        tip.style.top = `${Math.max(4, ly)}px`;
-    };
-
-    const hideArtLabelTooltip = () => {
-        const tip = document.getElementById('art-label-tooltip');
-        if (tip) tip.classList.add('hidden');
-    };
-
-    chartInstances.opportunity = new Chart(ctx, {
-        type: 'bubble',
-        data: {
-            datasets: [
-                {
-                    label: 'Themes',
-                    data: bubbleData,
-                    backgroundColor: bgColors,
-                    borderColor: borderColors,
-                    borderWidth: 1.5,
-                    hoverRadius: 6,
-                },
-            ],
-        },
-        plugins: [quadrantPlugin, bubbleLabelPlugin],
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 400 },
-            layout: { padding: { top: 24, right: 16, bottom: 24, left: 24 } },
-            onClick: (e, elements) => {
-                if (window.xrayActive) return;
-                const chart = chartInstances.opportunity;
-                if (!chart) return;
-                if (elements.length) {
-                    const d = bubbleData[elements[0].index];
-                    if (d?.theme) window.showArtTheme(d.theme);
-                    return;
-                }
-            },
-            onHover: (e, elements) => {
-                const chart = chartInstances.opportunity;
-                if (!chart) return;
-                const native = e.native;
-
-                if (elements.length && native) {
-                    const el = elements[0];
-                    showArtLabelTooltip({ index: el.index }, native.clientX, native.clientY);
-                    labelHoverActive = true;
-                    const newKey = `0:${el.index}`;
-                    if (hoveredLabelKey !== newKey) {
-                        hoveredLabelKey = newKey;
-                        chart.draw();
-                    }
-                    native.target.style.cursor = 'pointer';
-                    return;
-                }
-
-                if (native) {
-                    const hit = findLabelHit(native.clientX, native.clientY);
-                    if (hit) {
-                        native.target.style.cursor = 'pointer';
-                        showArtLabelTooltip(hit, native.clientX, native.clientY);
-                        const newKey = `0:${hit.index}`;
-                        if (hoveredLabelKey !== newKey) hoveredLabelKey = newKey;
-                        chart.setActiveElements([{ datasetIndex: 0, index: hit.index }]);
-                        chart.draw();
-                        labelHoverActive = true;
-                        return;
-                    }
-                }
-
-                if (labelHoverActive || hoveredLabelKey) {
-                    labelHoverActive = false;
-                    hoveredLabelKey = null;
-                    hideArtLabelTooltip();
-                    chart.setActiveElements([]);
-                    chart.draw();
-                }
-                if (native) native.target.style.cursor = 'default';
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: false },
-            },
-            scales: {
-                y: {
-                    min: 0,
-                    title: {
-                        display: true,
-                        text: 'Avg Performance Index',
-                        color: chartColors.textColor,
-                        font: { size: 10, weight: 'bold' },
-                    },
-                    afterBuildTicks(axis) {
-                        const nice = [0, 0.1, 0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5, 6];
-                        axis.ticks = nice
-                            .map(v => warpY(sqrtY(v)))
-                            .filter(wv => wv >= 0 && wv <= (axis.max || 2))
-                            .map(v => ({ value: v }));
-                    },
-                    ticks: {
-                        color: chartColors.textColor,
-                        font: { size: 10 },
-                        padding: 6,
-                        callback: val => {
-                            const sv = unwarpY(val);
-                            const orig = sv * sv;
-                            if (orig === 0) return '0';
-                            return orig < 1 ? orig.toFixed(2) : orig.toFixed(1);
-                        },
-                    },
-                    grid: getModernGridConfig(),
-                },
-                x: {
-                    type: 'linear',
-                    min: warpX(logX(1)) - 0.15,
-                    title: {
-                        display: true,
-                        text: 'Number of Games',
-                        color: chartColors.textColor,
-                        font: { size: 10, weight: 'bold' },
-                    },
-                    afterBuildTicks(axis) {
-                        const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500];
-                        const seen = new Set();
-                        axis.ticks = nice
-                            .map(v => warpX(logX(v)))
-                            .filter(wv => {
-                                if (wv < (axis.min ?? 0) || wv > (axis.max || 5)) return false;
-                                const k = wv.toFixed(6);
-                                if (seen.has(k)) return false;
-                                seen.add(k);
-                                return true;
-                            })
-                            .map(v => ({ value: v }));
-                    },
-                    ticks: {
-                        color: chartColors.textColor,
-                        font: { size: 10 },
-                        padding: 6,
-                        callback: val => {
-                            const lv = unwarpX(val);
-                            const orig = Math.round(Math.pow(10, lv));
-                            const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500];
-                            const closest = nice.reduce((a, b) => (Math.abs(b - orig) < Math.abs(a - orig) ? b : a));
-                            return closest.toLocaleString();
-                        },
-                    },
-                    grid: getModernGridConfig(),
-                },
-            },
-        },
-    });
-
-    // Label click handler (click on displaced labels opens panel)
-    canvas.addEventListener('click', e => {
-        if (window.xrayActive) return;
-        const chart = chartInstances.opportunity;
-        if (!chart) return;
-        const hit = findLabelHit(e.clientX, e.clientY);
-        if (hit) {
-            const d = bubbleData[hit.index];
-            if (d?.theme) window.showArtTheme(d.theme);
-        }
     });
 }
 
@@ -1071,20 +629,24 @@ const COMBO_DIM_MAP = {
 
 let _comboArtGames = null;
 
-function renderComboHeatmap(artGames) {
+async function renderComboHeatmap(artGames) {
     _comboArtGames = artGames;
     const picker = document.getElementById('art-combo-dim-picker');
     if (!picker) return;
-    buildComboHeatmap(artGames, picker.value);
-    picker.addEventListener('change', () => buildComboHeatmap(_comboArtGames, picker.value));
+    await buildComboHeatmap(artGames, picker.value);
+    picker.addEventListener('change', () => void buildComboHeatmap(_comboArtGames, picker.value));
 }
 
-function buildComboHeatmap(artGames, comboKey) {
+async function buildComboHeatmap(artGames, comboKey) {
     const container = document.getElementById('art-combo-heatmap');
     if (!container) return;
 
     const dims = COMBO_DIM_MAP[comboKey] || COMBO_DIM_MAP.theme_elements;
-    const combos = getArtComboMetrics(artGames, { dimA: dims.dimA, dimB: dims.dimB, minGames: 2 });
+    const combos = await getArtComboMetrics(gameData.activeCategory, {
+        dimA: dims.dimA,
+        dimB: dims.dimB,
+        minGames: 2,
+    });
     if (!combos.length) {
         container.innerHTML = '<div class="text-center text-gray-400 dark:text-gray-500 py-8">No combos found</div>';
         return;
@@ -1121,18 +683,14 @@ function buildComboHeatmap(artGames, comboKey) {
     }
 
     allPI.sort((a, b) => a - b);
-    const p20 = allPI[Math.floor(allPI.length * 0.2)] || 0;
-    const p40 = allPI[Math.floor(allPI.length * 0.4)] || 0;
-    const p60 = allPI[Math.floor(allPI.length * 0.6)] || 0;
-    const p80 = allPI[Math.floor(allPI.length * 0.8)] || 0;
+    const p33 = allPI[Math.floor(allPI.length * 0.33)] || 0;
+    const p66 = allPI[Math.floor(allPI.length * 0.66)] || 0;
 
     const isDark = document.documentElement.classList.contains('dark');
     const piColor = v => {
-        if (v >= p80) return isDark ? 'background:rgba(16,185,129,0.45)' : 'background:rgba(16,185,129,0.25)';
-        if (v >= p60) return isDark ? 'background:rgba(59,130,246,0.35)' : 'background:rgba(59,130,246,0.18)';
-        if (v >= p40) return isDark ? 'background:rgba(148,163,184,0.25)' : 'background:rgba(148,163,184,0.15)';
-        if (v >= p20) return isDark ? 'background:rgba(251,146,60,0.3)' : 'background:rgba(251,146,60,0.18)';
-        return isDark ? 'background:rgba(239,68,68,0.3)' : 'background:rgba(239,68,68,0.15)';
+        if (v >= p66) return isDark ? 'background:rgba(16,185,129,0.4)' : 'background:rgba(16,185,129,0.2)';
+        if (v >= p33) return isDark ? 'background:rgba(148,163,184,0.25)' : 'background:rgba(148,163,184,0.12)';
+        return isDark ? 'background:rgba(239,68,68,0.25)' : 'background:rgba(239,68,68,0.12)';
     };
 
     let html = '<table class="w-full border-collapse text-[10px]">';
@@ -1169,12 +727,12 @@ function buildComboHeatmap(artGames, comboKey) {
     container.innerHTML = html;
 }
 
-function renderBlueOcean(artGames, globalAvg) {
+async function renderBlueOcean(artGames, globalAvg) {
     destroyChart('blueOcean');
     const canvas = document.getElementById('art-blue-ocean-chart');
     if (!canvas) return;
 
-    const combos = getArtComboMetrics(artGames, { minGames: 2 });
+    const combos = await getArtComboMetrics(gameData.activeCategory, { minGames: 2 });
     if (!combos.length) return;
 
     const ctx = canvas.getContext('2d');
@@ -1372,10 +930,12 @@ function renderBlueOcean(artGames, globalAvg) {
                     ...getModernTooltipConfig(),
                     callbacks: {
                         title: ctx => {
+                            if (!ctx?.length) return '';
                             const d = ctx[0]?.raw;
                             return d ? `${d.dimA} + ${d.dimB}` : '';
                         },
                         label: ctx => {
+                            if (!ctx) return '';
                             const d = ctx.raw;
                             if (!d) return '';
                             return [
@@ -1493,7 +1053,7 @@ function renderArtTrends(artGames) {
             }))
             .filter(d => d.total >= 5)
             .sort((a, b) => b.total - a.total)
-            .slice(0, 10);
+            .slice(0, 15);
         return { years, dims };
     }
 
@@ -1508,6 +1068,11 @@ function renderArtTrends(artGames) {
         '#f43f5e',
         '#14b8a6',
         '#3b82f6',
+        '#8b5cf6',
+        '#10b981',
+        '#f59e0b',
+        '#ef4444',
+        '#0ea5e9',
     ];
 
     function drawTrendChart(dimension) {
@@ -1609,8 +1174,14 @@ function renderArtTrends(artGames) {
                     tooltip: {
                         ...getModernTooltipConfig(),
                         callbacks: {
-                            title: items => items[0]?.label || '',
-                            label: item => `${item.dataset.label}: ${item.formattedValue} games`,
+                            title: items => {
+                                if (!items?.length) return '';
+                                return items[0]?.label || '';
+                            },
+                            label: item => {
+                                if (!item) return '';
+                                return `${item.dataset.label}: ${item.formattedValue} games`;
+                            },
                         },
                     },
                 },
@@ -1712,9 +1283,14 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                 tooltip: {
                     ...getModernTooltipConfig(),
                     callbacks: {
-                        title: items => top12[items[0].dataIndex],
-                        label: item =>
-                            `${metric}: ${typeof item.raw === 'number' && item.raw % 1 !== 0 ? item.raw.toFixed(2) : item.raw}`,
+                        title: items => {
+                            if (!items?.length) return '';
+                            return top12[items[0].dataIndex] || '';
+                        },
+                        label: item => {
+                            if (!item) return '';
+                            return `${metric}: ${typeof item.raw === 'number' && item.raw % 1 !== 0 ? item.raw.toFixed(2) : item.raw}`;
+                        },
                     },
                 },
             },
@@ -1858,7 +1434,7 @@ function sortRecipes(recipes, avg, mode) {
     return sorted;
 }
 
-function renderArtRecipes(recipes, globalAvg, artGames) {
+async function renderArtRecipes(recipes, globalAvg, artGames) {
     const container = document.getElementById('art-combos-table');
     if (!container) return;
 
@@ -1872,19 +1448,19 @@ function renderArtRecipes(recipes, globalAvg, artGames) {
     setupRecipeSortButtons();
 
     const sorted = sortRecipes(recipes, avg, 'opportunity');
-    renderArtRecipesInner(sorted, avg, container, artGames);
+    await renderArtRecipesInner(sorted, avg, container, artGames);
 }
 
-function reRenderRecipes(mode) {
+async function reRenderRecipes(mode) {
     _recipeCache.sortMode = mode;
     const { recipes, avg, artGames } = _recipeCache;
     const sorted = sortRecipes(recipes, avg, mode);
     const container = document.getElementById('art-combos-table');
     if (!container) return;
-    renderArtRecipesInner(sorted, avg, container, artGames);
+    await renderArtRecipesInner(sorted, avg, container, artGames);
 }
 
-function renderArtRecipesInner(sorted, avg, container, artGames) {
+async function renderArtRecipesInner(sorted, avg, container, artGames) {
     if (!sorted.length) {
         container.innerHTML = '<div class="text-center text-gray-400 dark:text-gray-500 py-8">No recipes found</div>';
         return;
@@ -1896,6 +1472,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
     const MEDALS = ['🥇', '🥈', '🥉'];
 
     const trendMap = artGames ? computeArtThemeTrends(artGames) : {};
+    const avgRtpMarket = await getAvgRtp(gameData.activeCategory);
 
     const rows = sorted
         .map((r, i) => {
@@ -1930,7 +1507,7 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
             const recipeGames = artGames ? artGames.filter(g => F.artTheme(g) === r.theme) : [];
             const domVol = recipeGames.length ? getDominantVolatility(recipeGames) : '';
             const domLayout = recipeGames.length ? getDominantLayout(recipeGames) : '';
-            const avgRtp = recipeGames.length ? getAvgRtp(recipeGames) : 0;
+            const avgRtp = recipeGames.length ? avgRtpMarket : 0;
 
             const providerSet = new Set(recipeGames.map(g => F.provider(g)).filter(Boolean));
             const provCount = providerSet.size;
@@ -2020,55 +1597,51 @@ function renderArtRecipesInner(sorted, avg, container, artGames) {
             const detailSection =
                 hasSpecs || hasArt
                     ? `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                        <div class="flex flex-wrap items-start gap-3">
-                            ${hasSpecs ? `<div><div class="text-[8px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Specs</div><div class="flex flex-wrap items-center gap-1.5">${specPills.join(SEP)}</div></div>` : ''}
-                            ${hasSpecs && hasArt ? '<div class="w-px h-10 bg-gray-300 dark:bg-gray-600 self-center shrink-0"></div>' : ''}
-                            ${hasArt ? `<div><div class="text-[8px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1.5">Art Details</div><div class="flex flex-wrap items-center gap-1.5">${artPills.join(SEP)}</div></div>` : ''}
-                        </div>
+                        ${hasArt ? `<div class="mb-2"><div class="flex flex-wrap items-center gap-1.5">${artPills.join(SEP)}</div></div>` : ''}
+                        ${hasSpecs ? `<div class="text-[9px] text-gray-400 dark:text-gray-500">${specPills.map(p => p.replace(/text-\[10px\]/g, 'text-[9px]')).join(' · ')}</div>` : ''}
                     </div>`
                     : '';
 
+            const pills = [];
+            pills.push(
+                `<span class="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-sm font-semibold">🎨 ${escapeHtml(shortLabel(r.theme, 20))}</span>`
+            );
+            chars.forEach(c => {
+                pills.push(
+                    `<span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold">👤 ${escapeHtml(shortLabel(c, 16))}</span>`
+                );
+            });
+            elems.forEach(e => {
+                pills.push(
+                    `<span class="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm font-semibold">✨ ${escapeHtml(shortLabel(e, 16))}</span>`
+                );
+            });
+            if (narr) {
+                pills.push(
+                    `<span class="px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 text-sm font-semibold">🎭 ${escapeHtml(shortLabel(narr, 16))}</span>`
+                );
+            }
+
+            const specLine = [domVol, domLayout, avgRtp > 0 ? `RTP ${avgRtp.toFixed(1)}%` : '']
+                .filter(Boolean)
+                .join(' · ');
+
             return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: r.theme }))}' onclick="${safeOnclick('window.showArtRecipe', r.theme)}">
-            <div class="px-4 py-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-8 text-center shrink-0">${rank}</div>
-                    <div class="w-px h-10 bg-gray-300 dark:bg-gray-600 shrink-0"></div>
+            <div class="px-5 py-5">
+                <div class="flex items-start gap-4">
+                    <div class="text-sm font-bold text-gray-400 dark:text-gray-500 w-6 shrink-0 pt-1">${rank}</div>
                     <div class="min-w-0 flex-1">
-                        <div class="flex flex-wrap items-center gap-1.5 mb-2">
-                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Theme</span>
-                            ${multiPill(r.theme, THEME_PALETTE)}
+                        <div class="flex flex-wrap gap-2 mb-3">${pills.join('')}</div>
+                        <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                            <span class="font-medium text-gray-900 dark:text-white">PI: ${r.avgTheo.toFixed(2)}</span>
+                            <span>${r.count} games</span>
+                            <span class="font-medium ${liftColor}">${liftIcon}${Math.abs(lift).toFixed(0)}% vs avg</span>
                             ${trendBadge}
                             ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
-                            <span class="text-[9px] font-medium ${riskColor} px-1.5 py-0.5 rounded-full">${riskLevel} Risk</span>
-                            <span class="text-[9px] text-gray-400 dark:text-gray-500">${provCount} provider${provCount !== 1 ? 's' : ''}</span>
                         </div>
-                        <div class="border-t border-dashed border-gray-200 dark:border-gray-700 pt-1.5 mt-1.5 flex items-center gap-2">
-                            <span class="text-[10px] font-semibold text-gray-500 dark:text-gray-400">Avg Theo</span>
-                            <div class="w-28 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden shrink-0">
-                                <div class="h-full rounded-full bg-gradient-to-r ${barGradient}" style="width:${barWidth.toFixed(0)}%"></div>
-                            </div>
-                            <span class="text-sm font-bold text-gray-900 dark:text-white tabular-nums">${r.avgTheo.toFixed(1)}</span>
-                        </div>
-                    </div>
-                    <div class="w-px h-14 bg-gray-300 dark:bg-gray-600 shrink-0"></div>
-                    <div class="flex items-center gap-1 shrink-0">
-                        <div class="text-center px-2.5">
-                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Lift</div>
-                            <span class="inline-flex px-2 py-0.5 rounded text-[11px] font-bold ${liftColor} ${liftBg}">${liftIcon}${Math.abs(lift).toFixed(0)}%</span>
-                        </div>
-                        <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 shrink-0"></div>
-                        <div class="text-center px-2.5">
-                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Games</div>
-                            <span class="text-sm font-bold text-gray-800 dark:text-gray-200 tabular-nums">${r.count}</span>
-                        </div>
-                        <div class="w-px h-8 bg-gray-200 dark:bg-gray-700 shrink-0"></div>
-                        <div class="text-center px-2.5">
-                            <div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 leading-none mb-1">Opportunity</div>
-                            <span class="text-sm font-bold tabular-nums ${opp >= 0.5 ? 'text-emerald-600 dark:text-emerald-400' : opp >= 0.3 ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 dark:text-gray-300'}">${opp.toFixed(2)}</span>
-                        </div>
+                        ${specLine ? `<div class="text-xs text-gray-400 dark:text-gray-500 mt-2">${specLine}</div>` : ''}
                     </div>
                 </div>
-                ${detailSection}
             </div>
         </div>`;
         })
@@ -2130,7 +1703,7 @@ function setupRecipeSortButtons() {
     const sel = document.getElementById('art-recipe-sort');
     if (!sel) return;
     sel.addEventListener('change', () => {
-        reRenderRecipes(sel.value);
+        void reRenderRecipes(sel.value);
     });
 }
 
@@ -2173,25 +1746,25 @@ function computeArtThemeTrends(artGames) {
 
 // ── Opportunity Gaps ──
 
-function renderOpportunityGaps(artGames, globalAvg) {
+function renderOpportunityGaps(artGames, globalAvg, themes, narratives, characters, elements, colorTones) {
     const container = document.getElementById('art-opportunity-gaps');
     if (!container) return;
 
     const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
 
     const dimSources = [
-        { label: 'Theme', metrics: getArtThemeMetrics(artGames), nameKey: 'theme', handler: 'showArtTheme' },
+        { label: 'Theme', metrics: themes, nameKey: 'theme', handler: 'showArtTheme' },
         {
             label: 'Character',
-            metrics: getArtCharacterMetrics(artGames).filter(c => c.character !== 'No Characters (symbol-only game)'),
+            metrics: characters.filter(c => c.character !== 'No Characters (symbol-only game)'),
             nameKey: 'character',
             handler: 'showArtCharacter',
         },
-        { label: 'Element', metrics: getArtElementMetrics(artGames), nameKey: 'element', handler: 'showArtElement' },
-        { label: 'Color', metrics: getArtColorToneMetrics(artGames), nameKey: 'colorTone', handler: 'showArtColor' },
+        { label: 'Element', metrics: elements, nameKey: 'element', handler: 'showArtElement' },
+        { label: 'Color', metrics: colorTones, nameKey: 'colorTone', handler: 'showArtColor' },
         {
             label: 'Narrative',
-            metrics: getArtNarrativeMetrics(artGames),
+            metrics: narratives,
             nameKey: 'narrative',
             handler: 'showArtNarrative',
         },
@@ -2200,7 +1773,7 @@ function renderOpportunityGaps(artGames, globalAvg) {
     const gaps = [];
     for (const dim of dimSources) {
         for (const m of dim.metrics) {
-            if (m.count < 5 && m.avgTheo > artAvg) {
+            if (m.count >= 3 && m.count < 10 && m.avgTheo > artAvg) {
                 gaps.push({
                     dimension: dim.label,
                     value: m[dim.nameKey],
@@ -2249,14 +1822,29 @@ function renderOpportunityGaps(artGames, globalAvg) {
 
 // ── Top Performing Combos ──
 
-function renderTopCombos(artGames, globalAvg) {
+async function renderTopCombos(artGames, globalAvg) {
     const container = document.getElementById('art-top-combos');
     if (!container) return;
 
-    const combos = getArtComboMetrics(artGames, { dimA: 'theme', dimB: 'elements', minGames: 3 });
+    const [themeElem, themeChar] = await Promise.all([
+        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'elements', minGames: 5 }),
+        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'characters', minGames: 5 }),
+    ]);
     const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
 
-    const sorted = [...combos].sort((a, b) => b.avgTheo - a.avgTheo).slice(0, 10);
+    const charByTheme = {};
+    themeChar.forEach(c => {
+        if (!charByTheme[c.dimA] || c.count > charByTheme[c.dimA].count) charByTheme[c.dimA] = c;
+    });
+
+    const enriched = themeElem.map(c => ({
+        theme: c.dimA,
+        element: c.dimB,
+        character: charByTheme[c.dimA]?.dimB || null,
+        count: c.count,
+        avgTheo: c.avgTheo,
+    }));
+    const sorted = enriched.sort((a, b) => b.avgTheo - a.avgTheo).slice(0, 10);
 
     if (!sorted.length) {
         container.innerHTML = '<p class="text-xs text-gray-400">Not enough data</p>';
@@ -2267,20 +1855,25 @@ function renderTopCombos(artGames, globalAvg) {
     html += '<thead><tr class="border-b border-gray-200 dark:border-gray-700">';
     html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">#</th>';
     html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Theme</th>';
+    html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Character</th>';
     html += '<th class="text-left py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Element</th>';
     html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Games</th>';
     html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Avg PI</th>';
-    html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Lift vs avg</th>';
+    html += '<th class="text-right py-2 px-2 text-gray-500 dark:text-gray-400 font-semibold">Lift</th>';
     html += '</tr></thead><tbody>';
 
     sorted.forEach((c, i) => {
         const lift = artAvg > 0 ? (c.avgTheo / artAvg - 1) * 100 : 0;
         const liftColor = lift >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400';
         const liftSign = lift >= 0 ? '+' : '';
-        html += `<tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer" onclick="${safeOnclick('window.showArtCombo', c.dimA, c.dimB)}">
+        const charCell = c.character
+            ? `<span class="text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.character))}</span>`
+            : '<span class="text-gray-300 dark:text-gray-600">—</span>';
+        html += `<tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer" onclick="${safeOnclick('window.showArtCombo', c.theme, c.element)}">
             <td class="py-2 px-2 text-gray-400 dark:text-gray-500 font-bold">${i + 1}</td>
-            <td class="py-2 px-2 font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(c.dimA))}</td>
-            <td class="py-2 px-2 text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.dimB))}</td>
+            <td class="py-2 px-2 font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(c.theme))}</td>
+            <td class="py-2 px-2">${charCell}</td>
+            <td class="py-2 px-2 text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.element))}</td>
             <td class="py-2 px-2 text-right tabular-nums text-gray-700 dark:text-gray-300">${c.count}</td>
             <td class="py-2 px-2 text-right font-bold tabular-nums text-gray-900 dark:text-white">${c.avgTheo.toFixed(2)}</td>
             <td class="py-2 px-2 text-right font-bold tabular-nums ${liftColor}">${liftSign}${lift.toFixed(0)}%</td>
@@ -2291,11 +1884,12 @@ function renderTopCombos(artGames, globalAvg) {
     container.innerHTML = html;
 }
 
-function renderProviderArtCards(artGames, globalAvg) {
+async function renderProviderArtCards(artGames, globalAvg) {
     const container = document.getElementById('art-provider-cards');
     if (!container) return;
 
-    const providers = getProviderMetrics(artGames, { minGames: 3 }).slice(0, 8);
+    const providerRows = await getProviderMetrics(gameData.activeCategory, { minGames: 3 });
+    const providers = providerRows.slice(0, 8);
     if (!providers.length) {
         container.innerHTML = '<p class="text-xs text-gray-400 dark:text-gray-500">Not enough data</p>';
         return;
@@ -2464,8 +2058,8 @@ function renderCardItem(c, color, clickAction) {
     </div>`;
 }
 
-function renderArtStrategicCards(artGames, globalAvg) {
-    const recipes = getArtRecipeMetrics(artGames, { minGames: 2 });
+async function renderArtStrategicCards(artGames, globalAvg) {
+    const recipes = await getArtRecipeMetrics(gameData.activeCategory, { minGames: 2 });
     const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
     const avg = artAvg;
 
@@ -2501,7 +2095,7 @@ function renderArtStrategicCards(artGames, globalAvg) {
     }
 
     if (watchDiv) {
-        const themes = getArtThemeMetrics(artGames);
+        const themes = await getArtThemeMetrics(gameData.activeCategory);
         const watch = themes
             .filter(s => s.count >= 2 && s.count <= 15 && s.avgTheo > avg)
             .map(s => {

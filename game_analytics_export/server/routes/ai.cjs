@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 const { requireAuth, requireAdmin, loadUsers } = require('../helpers.cjs');
 
 const router = Router();
-const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY || '';
+const CLAUDE_API_KEY = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY || '';
 const AI_NAME_CODE = process.env.AI_NAME_CODE || '';
 const AI_DAILY_CAP = parseInt(process.env.AI_DAILY_CAP, 10) || 50;
 const HAIKU_MODEL = 'claude-haiku-4-5-20241022';

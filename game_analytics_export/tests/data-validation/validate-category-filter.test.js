@@ -2,8 +2,7 @@
  * Category Filter Propagation Tests
  *
  * Validates that the per-page category filter (Slot / Table Game / etc.)
- * correctly flows through getActiveGames / getActiveThemes / getActiveMechanics
- * and that every downstream consumer sees the filtered data.
+ * correctly flows through getActiveGames / getActiveThemes / getActiveMechanics.
  */
 import { describe, it, expect, beforeAll, afterEach } from 'vitest';
 import {
@@ -14,7 +13,7 @@ import {
     getActiveMechanics,
 } from '../utils/load-test-data.js';
 import { F } from '../../src/lib/game-fields.js';
-import { getThemeMetrics, getFeatureMetrics, addSmartIndex } from '../../src/lib/metrics.js';
+import { addSmartIndex, computeThemeMetrics, computeFeatureMetrics } from '../utils/test-aggregators.js';
 
 beforeAll(async () => {
     await loadTestData();
@@ -27,7 +26,6 @@ afterEach(() => {
     gameData.activeCategory = null;
 });
 
-// ── Helper: simulate selecting a category (mirrors chart-config.js applyCategory) ──
 function selectCategory(category) {
     const allGames = gameData.allGames;
     gameData.activeCategory = category || null;
@@ -35,7 +33,7 @@ function selectCategory(category) {
     if (category) {
         gameData.viewGames = allGames.filter(g => F.gameCategory(g) === category);
 
-        const rawThemes = getThemeMetrics(gameData.viewGames).filter(t => t.theme && !/^unknown$/i.test(t.theme));
+        const rawThemes = computeThemeMetrics(gameData.viewGames).filter(t => t.theme && !/^unknown$/i.test(t.theme));
         const mapped = rawThemes.map(t => ({
             Theme: t.theme,
             theme: t.theme,
@@ -49,7 +47,7 @@ function selectCategory(category) {
             'Smart Index': r.smartIndex,
         }));
 
-        const rawMech = getFeatureMetrics(gameData.viewGames);
+        const rawMech = computeFeatureMetrics(gameData.viewGames);
         const mechMapped = rawMech.map(f => ({
             Mechanic: f.feature,
             mechanic: f.feature,

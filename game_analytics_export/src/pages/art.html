@@ -121,134 +121,28 @@
         </div>
     </div>
 
-    <!-- Opportunity Matrix (Bubble Chart) -->
-    <div
-        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6"
-        style="overflow: visible"
-    >
-        <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-            <div class="flex items-center gap-3 mb-2">
-                <div
-                    class="w-10 h-10 bg-pink-100 dark:bg-pink-900/40 rounded-lg flex items-center justify-center text-xl shrink-0"
-                >
-                    💎
-                </div>
-                <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-1.5">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Art Landscape</h3>
-                        <div class="relative group">
-                            <button
-                                class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
-                            >
-                                ?
-                            </button>
-                            <div
-                                class="hidden group-hover:block absolute left-full top-0 ml-1 w-72 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-xs text-gray-600 dark:text-gray-400 leading-relaxed"
-                            >
-                                <strong class="text-gray-900 dark:text-white block mb-1">How to read</strong>
-                                Each bubble is one art <strong>theme</strong> (e.g. Ancient Temple, Fantasy/Fairy Tale).
-                                <strong>X-axis</strong> = number of games with this theme. <strong>Y-axis</strong> =
-                                average Performance Index (performance). <strong>Bubble size</strong> = game count.
-                                <br /><br />
-                                <strong>💎 Top-left</strong> = high performance, few games — best opportunities.
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                        All art themes — find high-performing niches with low competition
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="p-6 w-full overflow-visible relative" style="height: 680px; min-height: 680px">
-            <canvas
-                id="art-opportunity-chart"
-                class="w-full block"
-                style="display: block; box-sizing: border-box"
-            ></canvas>
-            <div
-                id="art-label-tooltip"
-                class="hidden absolute z-40 pointer-events-none p-3 rounded-md shadow-lg bg-white/95 dark:bg-[rgba(30,41,59,0.95)] border border-[rgba(148,163,184,0.2)] dark:border-[rgba(148,163,184,0.3)] whitespace-nowrap"
-            >
-                <div
-                    id="art-label-tooltip-title"
-                    class="font-bold text-[13px] mb-1 text-slate-800 dark:text-slate-200"
-                ></div>
-                <div class="flex items-center gap-2">
-                    <span
-                        id="art-label-tooltip-swatch"
-                        class="inline-block w-[10px] h-[10px] rounded-sm flex-shrink-0"
-                    ></span>
-                    <span id="art-label-tooltip-body" class="text-[12px] text-slate-700 dark:text-slate-200"></span>
-                </div>
-            </div>
-        </div>
-        <div class="flex items-center justify-center gap-6 px-4 pb-3 pt-1 flex-wrap">
-            <div class="flex items-center gap-4 text-[10px] text-gray-500 dark:text-gray-400">
-                <span class="flex items-center gap-1"
-                    ><span class="w-2.5 h-2.5 rounded-full bg-emerald-500/50 border border-emerald-500/70"></span>
-                    Opportunity</span
-                >
-                <span class="flex items-center gap-1"
-                    ><span class="w-2.5 h-2.5 rounded-full bg-indigo-500/50 border border-indigo-500/70"></span>
-                    Leaders</span
-                >
-                <span class="flex items-center gap-1"
-                    ><span class="w-2.5 h-2.5 rounded-full bg-slate-400/50 border border-slate-400/70"></span>
-                    Niche</span
-                >
-                <span class="flex items-center gap-1"
-                    ><span class="w-2.5 h-2.5 rounded-full bg-red-500/50 border border-red-500/70"></span>
-                    Saturated</span
-                >
-            </div>
-        </div>
-    </div>
-
-    <!-- Dimension Landscapes (2-column grid) -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <!-- Characters Landscape -->
+    <!-- Art Themes + Color Tone side by side -->
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <!-- Art Themes Landscape -->
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
             <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                 <div class="flex items-center gap-2.5">
                     <div
-                        class="w-8 h-8 bg-purple-100 dark:bg-purple-900/40 rounded-lg flex items-center justify-center text-base shrink-0"
+                        class="w-8 h-8 bg-pink-100 dark:bg-pink-900/40 rounded-lg flex items-center justify-center text-base shrink-0"
                     >
-                        🧙
+                        💎
                     </div>
                     <div class="flex-1 min-w-0">
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Characters Landscape</h3>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400">Top 25 character types by game count</p>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Art Themes Landscape</h3>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400">
+                            All art themes — find high-performing niches
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="p-4" style="height: 400px; min-height: 400px">
+            <div class="p-4" style="height: 500px; min-height: 500px">
                 <canvas
-                    id="art-characters-landscape"
-                    class="w-full block"
-                    style="display: block; box-sizing: border-box"
-                ></canvas>
-            </div>
-        </div>
-
-        <!-- Elements Landscape -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
-            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-                <div class="flex items-center gap-2.5">
-                    <div
-                        class="w-8 h-8 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-base shrink-0"
-                    >
-                        ✨
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Elements Landscape</h3>
-                        <p class="text-[10px] text-gray-500 dark:text-gray-400">Top 25 visual elements by game count</p>
-                    </div>
-                </div>
-            </div>
-            <div class="p-4" style="height: 400px; min-height: 400px">
-                <canvas
-                    id="art-elements-landscape"
+                    id="art-opportunity-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
@@ -272,9 +166,60 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4" style="height: 400px; min-height: 400px">
+            <div class="p-4" style="height: 500px; min-height: 500px">
                 <canvas
                     id="art-colors-landscape"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dimension Landscapes (2-column grid) -->
+    <div class="grid grid-cols-1 gap-6 mb-6">
+        <!-- Characters Landscape -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
+            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-2.5">
+                    <div
+                        class="w-8 h-8 bg-purple-100 dark:bg-purple-900/40 rounded-lg flex items-center justify-center text-base shrink-0"
+                    >
+                        🧙
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Characters Landscape</h3>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400">Top 25 character types by game count</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4" style="height: 500px; min-height: 500px">
+                <canvas
+                    id="art-characters-landscape"
+                    class="w-full block"
+                    style="display: block; box-sizing: border-box"
+                ></canvas>
+            </div>
+        </div>
+
+        <!-- Elements Landscape -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600">
+            <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-2.5">
+                    <div
+                        class="w-8 h-8 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-base shrink-0"
+                    >
+                        ✨
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Elements Landscape</h3>
+                        <p class="text-[10px] text-gray-500 dark:text-gray-400">Top 25 visual elements by game count</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4" style="height: 500px; min-height: 500px">
+                <canvas
+                    id="art-elements-landscape"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
@@ -298,7 +243,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4" style="height: 400px; min-height: 400px">
+            <div class="p-4" style="height: 500px; min-height: 500px">
                 <canvas
                     id="art-narrative-landscape"
                     class="w-full block"
@@ -346,10 +291,7 @@
             </div>
             <div class="px-6 pb-4" id="art-themes-trend-legend"></div>
         </div>
-    </div>
 
-    <!-- Color Tone Distribution -->
-    <div class="grid md:grid-cols-2 gap-6 mb-6">
         <!-- Color Tone Distribution -->
         <div
             class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
@@ -360,7 +302,7 @@
                 </h3>
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Dominant color palettes across games</p>
             </div>
-            <div class="px-6 pb-6" style="height: 250px; min-height: 250px">
+            <div class="px-6 pb-6" style="height: 380px; min-height: 380px">
                 <canvas
                     id="art-color-tone-chart"
                     class="w-full block"
@@ -532,8 +474,10 @@
         </div>
     </div>
 
-    <!-- Art Combos Heatmap -->
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6">
+    <!-- Art Combos Heatmap (removed per user request) -->
+    <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 mb-6 hidden"
+    >
         <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-3">
                 <div

@@ -2,6 +2,8 @@ import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
+const chartUtilsPath = resolve(__dirname, '../../src/ui/chart-utils.js');
+
 const overviewPath = resolve(__dirname, '../../src/pages/overview.html');
 const uiPanelsPath = resolve(__dirname, '../../src/ui/ui-panels.js');
 const panelDetailsPath = resolve(__dirname, '../../src/ui/panel-details.js');
@@ -53,5 +55,22 @@ describe('Tooltip Positioning – no fixed tooltips', () => {
         questionBtns.forEach(btn => {
             expect(btn).toContain('cursor-help');
         });
+    });
+});
+
+describe('Bubble chart tooltip – must not cover bubbles', () => {
+    test('tooltip uses bubbleAvoid custom positioner', () => {
+        const src = readFileSync(chartUtilsPath, 'utf8');
+        expect(src).toContain("position: 'bubbleAvoid'");
+        expect(src).toContain('Tooltip.positioners.bubbleAvoid');
+    });
+
+    test('tooltip has no forced yAlign (auto-position via bubbleAvoid)', () => {
+        const src = readFileSync(chartUtilsPath, 'utf8');
+        const tooltipSection = src.slice(
+            src.indexOf("position: 'bubbleAvoid'"),
+            src.indexOf("position: 'bubbleAvoid'") + 300
+        );
+        expect(tooltipSection).not.toContain('yAlign:');
     });
 });

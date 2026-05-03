@@ -28,6 +28,11 @@ const BANNED_PATTERNS = [
     { pattern: /\.specs_rtp\b/g, name: '.specs_rtp', fix: 'F.rtp(game)' },
     { pattern: /\.specs_volatility\b/g, name: '.specs_volatility', fix: 'F.volatility(game)' },
     { pattern: /\.performance_market_share\b/g, name: '.performance_market_share', fix: 'F.marketShare(game)' },
+    { pattern: /\.art_characters\b/g, name: '.art_characters', fix: 'F.artCharacters(game) or SQL column' },
+    { pattern: /\.art_elements\b/g, name: '.art_elements', fix: 'F.artElements(game) or SQL column' },
+    { pattern: /\.art_color_tone\b/g, name: '.art_color_tone', fix: 'F.artColorTone(game) or SQL column' },
+    { pattern: /\.art_narrative\b/g, name: '.art_narrative', fix: 'F.artNarrative(game) or SQL column' },
+    { pattern: /\.art_theme_secondary\b/g, name: '.art_theme_secondary', fix: 'F.artThemeSecondary(game)' },
 ];
 
 // Display-only files that read DuckDB-enriched data where fields are always populated.
@@ -39,33 +44,24 @@ const DISPLAY_EXCEPTION_FILES = new Set([
     'ui/panel-details.js',
     'ui/ui-providers-games.js',
     'ui/renderers/overview-renderer.js',
-    'ui/renderers/insights-renderer.js',
     'ui/renderers/insights-cards.js',
     'ui/renderers/insights-recipes.js',
     'ui/renderers/insights-combos.js',
     'ui/renderers/insights-providers.js',
-    'ui/renderers/insights-franchises.js',
     'ui/renderers/blueprint-core.js',
     'ui/renderers/blueprint-insights.js',
     'ui/renderers/blueprint-competition.js',
     'ui/renderers/blueprint-symbols.js',
-    'ui/renderers/art-renderer.js',
-    'ui/renderers/themes-renderer.js',
     'ui/chart-themes.js',
-    'ui/chart-providers.js',
-    'ui/chart-volatility.js',
-    'ui/chart-rtp.js',
     'features/idea-generator.js',
     'features/name-generator.js',
     'features/prediction.js',
     'features/overview-insights.js',
-    'lib/shared-config.js',
-    'lib/symbol-utils.js',
-    'lib/metrics.js',
 ]);
 
 const INLINE_EXCEPTIONS = {
     'ui/renderers/xray-panel.js': ['.theo_win', '.theme_primary', '.release_year'],
+    'lib/metrics.js': ['.art_characters', '.art_elements', '.art_color_tone', '.art_narrative'],
 };
 
 function getJsFiles(dir, base = '') {

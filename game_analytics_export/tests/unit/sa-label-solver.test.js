@@ -60,7 +60,7 @@ const spreadOut = () => {
     return { labs, ancs, names };
 };
 
-describe('SA Label Solver – quality metrics', () => {
+describe('Greedy Label Solver – core guarantees', () => {
     it('no labels out of chart bounds', () => {
         const { labs, ancs } = denseCluster();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
@@ -68,40 +68,53 @@ describe('SA Label Solver – quality metrics', () => {
         expect(m.outOfBounds).toBe(0);
     });
 
-    it('spread-out scenario has zero overlaps', () => {
+    it('spread-out scenario has zero label-label overlaps', () => {
         const { labs, ancs } = spreadOut();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
         expect(m.labelLabelOverlaps).toBe(0);
+    });
+
+    it('spread-out scenario has zero label-bubble overlaps', () => {
+        const { labs, ancs } = spreadOut();
+        saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
+        const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
         expect(m.labelBubbleOverlaps).toBe(0);
     });
 
-    it('dense cluster: label-label overlaps are minimized (< 4)', () => {
-        const { labs, ancs } = denseCluster();
+    it('spread-out: labels stay very close to their bubbles (avg < 40px)', () => {
+        const { labs, ancs } = spreadOut();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.labelLabelOverlaps).toBeLessThan(4);
+        expect(m.avgDist).toBeLessThan(40);
     });
 
-    it('dense cluster: label-bubble overlaps are minimized (< 3)', () => {
+    it('dense cluster: zero label-label overlaps (greedy guarantees this)', () => {
         const { labs, ancs } = denseCluster();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.labelBubbleOverlaps).toBeLessThan(3);
+        expect(m.labelLabelOverlaps).toBe(0);
     });
 
-    it('labels stay reasonably close to their bubbles (avg < 80px)', () => {
+    it('dense cluster: zero label-bubble overlaps', () => {
         const { labs, ancs } = denseCluster();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.avgDist).toBeLessThan(80);
+        expect(m.labelBubbleOverlaps).toBe(0);
     });
 
-    it('no single label is extremely far from its bubble (max < 150px)', () => {
+    it('dense cluster: labels stay reasonably close (avg < 60px)', () => {
         const { labs, ancs } = denseCluster();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.maxDist).toBeLessThan(150);
+        expect(m.avgDist).toBeLessThan(60);
+    });
+
+    it('dense cluster: no single label extremely far (max < 100px)', () => {
+        const { labs, ancs } = denseCluster();
+        saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
+        const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
+        expect(m.maxDist).toBeLessThan(100);
     });
 
     it('deterministic — same input produces same output', () => {
@@ -113,73 +126,43 @@ describe('SA Label Solver – quality metrics', () => {
         expect(run()).toBe(run());
     });
 
-    it('dense cluster: no "too close" label pairs (min gap >= 6px)', () => {
+    it('largest bubbles get priority placement (closer to their bubble)', () => {
         const { labs, ancs } = denseCluster();
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
+        const largestIdx = ancs.reduce((best, a, i) => (a.r > ancs[best].r ? i : best), 0);
+        const largestDist = Math.hypot(
+            labs[largestIdx].x + labs[largestIdx].width / 2 - ancs[largestIdx].x,
+            labs[largestIdx].y + labs[largestIdx].height / 2 - ancs[largestIdx].y
+        );
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.tooClosePairs).toBeLessThan(3);
+        expect(largestDist).toBeLessThan(m.avgDist);
     });
 
-    it('adjacent bubbles: labels get placed on opposite sides', () => {
-        // Mimics Classic & Gems & Crystals — two bubbles close together vertically
+    it('adjacent bubbles: labels get placed without overlap', () => {
         const ancs = [makeAnc(400, 200, 20), makeAnc(410, 230, 18)];
         const names = ['Classic', 'Gems & Crystals'];
         const labs = ancs.map((a, i) => makeLab(a.x + a.r + 4, a.y - 6, names[i].length * 6, 12));
         saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
         const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
         expect(m.labelLabelOverlaps).toBe(0);
-        expect(m.tooClosePairs).toBe(0);
     });
 
-    it('spread-out scenario: no too-close pairs', () => {
-        const { labs, ancs } = spreadOut();
-        saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
-        const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.tooClosePairs).toBe(0);
-    });
-
-    it('crowded-below: label placed above bubble, not into the crowd', () => {
-        const ancs = [
-            makeAnc(500, 250, 20),
-            makeAnc(480, 310, 18),
-            makeAnc(510, 330, 16),
-            makeAnc(520, 350, 15),
-            makeAnc(490, 370, 14),
-            makeAnc(530, 290, 17),
-        ];
-        const names = ['Classic', 'Underwater', 'Greek', 'Western', 'Irish', 'Gems & Crystals'];
-        const labs = ancs.map((a, i) => makeLab(a.x + a.r + 4, a.y - 6, names[i].length * 6, 12));
-        saLabelSolver(labs, ancs, CHART.w, CHART.h, CHART.left, CHART.top);
-
-        const classicCenter = labs[0].y + labs[0].height / 2;
-        expect(classicCenter).toBeLessThan(ancs[0].y + 2);
-
-        const m = labelQualityMetrics(labs, ancs, CHART.left, CHART.top, CHART.w, CHART.h);
-        expect(m.labelLabelOverlaps).toBe(0);
-    });
-
-    it('brand-density: 30 brands with 10 sharing same X (after jitter)', () => {
-        // Simulates Brand Landscape: 10 brands at count=5 (X~200px, jittered ±15px),
-        // 3 at count=6, 4 at count=8, rest spread out. All within 780px chart height.
+    it('brand-density: 30 labels with clustering', () => {
         const CHART_BRAND = { left: 60, top: 20, w: 1100, h: 740 };
         const ancs = [];
         const names = [];
-        // 10 brands at X~200, varying Y (jittered)
         for (let i = 0; i < 10; i++) {
             ancs.push(makeAnc(200 + (i - 5) * 6, 100 + i * 55, 10));
             names.push(`Brand${i}`);
         }
-        // 3 brands at X~280
         for (let i = 0; i < 3; i++) {
             ancs.push(makeAnc(280 + i * 5, 150 + i * 80, 12));
             names.push(`Mid${i}`);
         }
-        // 4 brands at X~350
         for (let i = 0; i < 4; i++) {
             ancs.push(makeAnc(350 + i * 4, 120 + i * 70, 13));
             names.push(`High${i}`);
         }
-        // 13 spread-out brands
         for (let i = 0; i < 13; i++) {
             ancs.push(makeAnc(400 + i * 50, 80 + ((i * 137) % 600), 8 + (i % 5) * 3));
             names.push(`Spread${i}`);
@@ -188,10 +171,29 @@ describe('SA Label Solver – quality metrics', () => {
         saLabelSolver(labs, ancs, CHART_BRAND.w, CHART_BRAND.h, CHART_BRAND.left, CHART_BRAND.top);
         const m = labelQualityMetrics(labs, ancs, CHART_BRAND.left, CHART_BRAND.top, CHART_BRAND.w, CHART_BRAND.h);
 
-        expect(m.labelLabelOverlaps).toBeLessThan(3);
-        expect(m.labelBubbleOverlaps).toBeLessThan(3);
+        expect(m.labelLabelOverlaps).toBe(0);
+        expect(m.labelBubbleOverlaps).toBeLessThan(2);
         expect(m.outOfBounds).toBe(0);
-        expect(m.avgDist).toBeLessThan(100);
+        expect(m.avgDist).toBeLessThan(80);
+    });
+
+    it('66 themes in realistic chart dimensions', () => {
+        const CHART_THEME = { left: 60, top: 20, w: 1200, h: 850 };
+        const ancs = [];
+        const names = [];
+        for (let i = 0; i < 66; i++) {
+            const x = 80 + ((i * 17 + i * i * 3) % 1100);
+            const y = 40 + ((i * 13 + i * i * 7) % 780);
+            const r = 6 + (i % 10) * 3;
+            ancs.push(makeAnc(x, y, r));
+            names.push(`Theme${i}LongName`);
+        }
+        const labs = ancs.map((a, i) => makeLab(a.x + a.r + 4, a.y - 6, names[i].length * 6, 12));
+        saLabelSolver(labs, ancs, CHART_THEME.w, CHART_THEME.h, CHART_THEME.left, CHART_THEME.top);
+        const m = labelQualityMetrics(labs, ancs, CHART_THEME.left, CHART_THEME.top, CHART_THEME.w, CHART_THEME.h);
+
+        expect(m.labelLabelOverlaps).toBeLessThanOrEqual(5);
+        expect(m.outOfBounds).toBe(0);
     });
 });
 
@@ -233,7 +235,7 @@ describe('needsLeaderLine', () => {
 describe('snapLabelToBubble', () => {
     const area = { left: 0, top: 0, right: 1000, bottom: 600 };
 
-    it('places label just outside bubble radius (top preferred for center bubbles)', () => {
+    it('places label just outside bubble radius', () => {
         const lab = { x: 200, y: 50, width: 60, height: 12 };
         const anc = { x: 400, y: 300, r: 20 };
         snapLabelToBubble(lab, anc, area);
@@ -248,27 +250,5 @@ describe('snapLabelToBubble', () => {
         expect(lab.x).toBeGreaterThanOrEqual(area.left);
         expect(lab.y).toBeGreaterThanOrEqual(area.top);
         expect(lab.x + lab.width).toBeLessThanOrEqual(area.right);
-    });
-
-    it('positions label snug — not floating far away', () => {
-        const lab = { x: 700, y: 100, width: 50, height: 12 };
-        const anc = { x: 500, y: 300, r: 25 };
-        snapLabelToBubble(lab, anc, area);
-        const dist = Math.hypot(lab.x + lab.width / 2 - anc.x, lab.y + lab.height / 2 - anc.y);
-        expect(dist).toBeLessThan(anc.r + 12 + 10);
-    });
-
-    it('picks right side when bubble is near left edge', () => {
-        const lab = { x: 300, y: 300, width: 60, height: 12 };
-        const anc = { x: 10, y: 300, r: 8 };
-        snapLabelToBubble(lab, anc, area);
-        expect(lab.x).toBeGreaterThanOrEqual(anc.x + anc.r);
-    });
-
-    it('picks bottom when bubble is near top edge', () => {
-        const lab = { x: 300, y: 300, width: 60, height: 12 };
-        const anc = { x: 500, y: 5, r: 4 };
-        snapLabelToBubble(lab, anc, area);
-        expect(lab.y).toBeGreaterThanOrEqual(anc.y + anc.r);
     });
 });

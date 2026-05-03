@@ -3,13 +3,14 @@
  * Populates and handles Provider/Mechanic/Theme filters
  */
 
-import { gameData } from '../lib/data.js';
+import { gameData, getActiveGames } from '../lib/data.js';
 import { F } from '../lib/game-fields.js';
 import { log } from '../lib/env.js';
 import { renderThemes } from './renderers/themes-renderer.js';
 import { renderMechanics } from './renderers/mechanics-renderer.js';
 import { parseFeatures } from '../lib/parse-features.js';
-import { calculateSmartIndex, getThemeMetrics } from '../lib/metrics.js';
+import { calculateSmartIndex } from '../lib/metrics.js';
+import { MIN_QUALIFIED_GAMES } from '../lib/shared-config.js';
 
 /**
  * Populate Themes page filters
@@ -51,6 +52,12 @@ export function populateThemesFilters() {
 
         // Add change event
         mechanicSelect.onchange = () => filterThemes();
+    }
+
+    // Category filter (Slot, Live Casino, Table Game)
+    const categorySelect = document.getElementById('themes-category-filter');
+    if (categorySelect) {
+        categorySelect.onchange = () => filterThemes();
     }
 
     log(`✅ Themes filters populated: ${providers.length} providers, ${mechanics.length} mechanics`);
@@ -107,15 +114,20 @@ export function populateMechanicsFilters() {
 function filterThemes() {
     const providerValue = document.getElementById('themes-filter-provider')?.value || '';
     const mechanicValue = document.getElementById('themes-filter-mechanic')?.value || '';
+    const categoryValue = document.getElementById('themes-category-filter')?.value || '';
 
     // If no filters selected, show all
-    if (!providerValue && !mechanicValue) {
+    if (!providerValue && !mechanicValue && !categoryValue) {
         renderThemes();
         return;
     }
 
-    // Filter games first
-    let filteredGames = gameData.allGames;
+    // Filter games - start from allGames if category filter is applied, otherwise from active
+    let filteredGames = categoryValue ? gameData.allGames : getActiveGames();
+
+    if (categoryValue) {
+        filteredGames = filteredGames.filter(g => (g.category || 'Slot') === categoryValue);
+    }
 
     if (providerValue) {
         filteredGames = filteredGames.filter(g => F.provider(g) === providerValue);
@@ -125,19 +137,40 @@ function filterThemes() {
         filteredGames = filteredGames.filter(g => parseFeatures(g.features).includes(mechanicValue));
     }
 
-    const themeMetrics = getThemeMetrics(filteredGames);
+    const themeMap = {};
+    filteredGames.forEach(g => {
+        const t = F.themeConsolidated(g) || 'Unknown';
+        if (!themeMap[t]) themeMap[t] = { count: 0, totalTheo: 0 };
+        themeMap[t].count++;
+        themeMap[t].totalTheo += F.theoWin(g);
+    });
+    const themeMetrics = Object.entries(themeMap).map(([theme, d]) => ({
+        theme,
+        count: d.count,
+        avgTheo: d.count > 0 ? d.totalTheo / d.count : 0,
+    }));
     const globalAvgTheo =
         themeMetrics.length > 0 ? themeMetrics.reduce((s, t) => s + t.avgTheo, 0) / themeMetrics.length : 0;
-    const filteredThemes = themeMetrics.map(t => ({
-        Theme: t.theme,
-        'Game Count': t.count,
-        'Avg Theo Win Index': t.avgTheo,
-        avg_theo_win: t.avgTheo,
-        game_count: t.count,
-        'Smart Index': calculateSmartIndex(t.avgTheo, t.count, globalAvgTheo),
-        'Market Share %': ((t.count / filteredGames.length) * 100).toFixed(2),
-    }));
-    filteredThemes.sort((a, b) => b['Smart Index'] - a['Smart Index']);
+    const filteredThemes = themeMetrics.map(t => {
+        const pi = calculateSmartIndex(t.avgTheo, t.count, globalAvgTheo);
+        return {
+            Theme: t.theme,
+            'Game Count': t.count,
+            'Avg Theo Win Index': t.avgTheo,
+            avg_theo_win: t.avgTheo,
+            game_count: t.count,
+            'Smart Index': pi,
+            'Performance Index': pi,
+            performanceIndex: pi,
+            smartIndex: pi,
+            qualified: t.count >= MIN_QUALIFIED_GAMES,
+            'Market Share %': ((t.count / filteredGames.length) * 100).toFixed(2),
+        };
+    });
+    filteredThemes.sort((a, b) => {
+        if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
+        return b['Smart Index'] - a['Smart Index'];
+    });
 
     // Update count
     const themesCountSpan = document.getElementById('themes-count');
@@ -201,14 +234,22 @@ function filterMechanics() {
             : 0;
     const filteredMechanics = mechArr.map(mech => {
         const avgTheo = mech['Game Count'] > 0 ? mech.totalTheoWin / mech['Game Count'] : 0;
+        const pi = calculateSmartIndex(avgTheo, mech['Game Count'], globalAvgMechTheo);
         mech['Avg Theo Win Index'] = avgTheo;
         mech.avg_theo_win = avgTheo;
         mech.game_count = mech['Game Count'];
-        mech['Smart Index'] = calculateSmartIndex(avgTheo, mech['Game Count'], globalAvgMechTheo);
+        mech['Smart Index'] = pi;
+        mech['Performance Index'] = pi;
+        mech.performanceIndex = pi;
+        mech.smartIndex = pi;
+        mech.qualified = mech['Game Count'] >= MIN_QUALIFIED_GAMES;
         return mech;
     });
 
-    filteredMechanics.sort((a, b) => b['Smart Index'] - a['Smart Index']);
+    filteredMechanics.sort((a, b) => {
+        if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
+        return b['Smart Index'] - a['Smart Index'];
+    });
 
     // Update count
     const mechanicsCountSpan = document.getElementById('mechanics-count');

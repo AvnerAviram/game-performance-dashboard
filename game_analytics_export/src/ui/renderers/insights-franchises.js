@@ -290,7 +290,7 @@ function buildFranchiseRows(franchises) {
             const avgTheoStr = f.avgTheo.toFixed(2);
             const overflowCls = rank >= INITIAL_SHOW ? ' franchise-overflow hidden' : '';
             return `
-          <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors cursor-pointer${overflowCls}"
+          <tr class="border-b-2 border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors cursor-pointer${overflowCls}"
               onclick="document.getElementById('${rowId}').classList.toggle('hidden')">
             <td class="py-2.5 px-3 text-gray-400 font-medium">${medal}${rank + 1}</td>
             <td class="py-2.5 px-3 font-bold text-gray-900 dark:text-white"

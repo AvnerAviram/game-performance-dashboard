@@ -11,7 +11,7 @@ export default defineConfig({
             '**/e2e/**',
             '**/tests/archive/**',
             '**/*.spec.js',
-            // DuckDB tests require WASM runtime + live API server — can't run in vitest/jsdom
+            // DuckDB tests require WASM runtime — initializeDatabase() needs duckdb-wasm which jsdom can't load
             '**/validate-duckdb-aggregations.test.js',
             '**/duckdb-enforcement.test.js',
             '**/validate-json-baseline.test.js',
@@ -46,6 +46,11 @@ export default defineConfig({
                 'src/lib/metrics.js',
                 'src/lib/parse-features.js',
                 'src/config/mechanics.js',
+                'src/ui/chart-config.js',
+                'src/ui/renderers/art-renderer.js',
+                'src/ui/renderers/overview-renderer.js',
+                'src/ui/router.js',
+                'src/lib/db/duckdb-client.js',
             ],
             exclude: ['node_modules/', 'tests/', 'dist/', 'scripts/', '**/*.config.js'],
             thresholds: {

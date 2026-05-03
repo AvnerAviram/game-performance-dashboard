@@ -48,7 +48,7 @@
         "verify:dry-skip-web": "node scripts/data/verify-and-correct-games.mjs --dry-run --skip-web"
     },
     "devDependencies": {
-        "@duckdb/duckdb-wasm": "^1.33.1-dev42.0",
+        "@duckdb/duckdb-wasm": "^1.32.0",
         "@eslint/js": "^10.0.1",
         "@playwright/test": "^1.58.0",
         "@sentry/browser": "^10.38.0",

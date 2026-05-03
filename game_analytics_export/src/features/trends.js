@@ -122,11 +122,11 @@ export function computeFeatureTrends() {
  * (same ranking as Providers page and Overview), avg Theo Win per calendar year.
  * Returns { "ProviderName": { "2021": avg, "2022": avg, ... }, ... }
  */
-export function computeProviderTrends() {
+export async function computeProviderTrends() {
     const games = gameData?.allGames ?? [];
     if (games.length === 0) return {};
 
-    const ranked = getProviderMetrics(games);
+    const ranked = await getProviderMetrics(gameData.activeCategory);
     const top10 = ranked.slice(0, 10).map(p => p.name);
 
     const result = {};
@@ -235,7 +235,7 @@ window.drillChartYear = function (chartKey, year) {
 };
 
 // Build a bar chart for a single-year drill-down on a specific canvas
-function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
+async function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
     const games = gameData?.allGames ?? [];
     const yearGames = games.filter(g => String(F.releaseYear(g)) === String(year));
     if (!yearGames.length) return;
@@ -302,7 +302,7 @@ function renderDrillDownBar(canvasId, year, type, colors, lineColors) {
         barColors = lineColors.slice(0, top.length);
         _tooltipTitle = `⚙️ ${year} — Mechanic Performance`;
     } else if (type === 'provider') {
-        const topProviderNames = Object.keys(computeProviderTrends());
+        const topProviderNames = Object.keys(await computeProviderTrends());
         const provMap = {};
         yearGames.forEach(g => {
             const p = F.provider(g);
@@ -466,7 +466,7 @@ function getLineColors() {
     ];
 }
 
-export function renderTrends() {
+export async function renderTrends() {
     const el = document.getElementById('overall-trend-chart');
     if (!el || el.offsetParent === null || el.offsetWidth === 0) {
         setTimeout(renderTrends, 100);
@@ -519,7 +519,7 @@ export function renderTrends() {
 
     const themesTrends = computeThemesTrends();
     const mechanicsTrends = computeFeatureTrends();
-    const providerTrends = computeProviderTrends();
+    const providerTrends = await computeProviderTrends();
     const colors = getThemeColors();
     const lineColors = getLineColors();
 
@@ -535,7 +535,13 @@ export function renderTrends() {
     const overallCanvas = document.getElementById('overall-trend-chart');
     if (overallCanvas && overallYears.length > 0) {
         if (chartState.overall.drillYear) {
-            renderDrillDownBar('overall-trend-chart', chartState.overall.drillYear, 'overall', colors, lineColors);
+            await renderDrillDownBar(
+                'overall-trend-chart',
+                chartState.overall.drillYear,
+                'overall',
+                colors,
+                lineColors
+            );
         } else {
             const avgPerf = overallYears.map(y => trendsData[y]?.avg ?? 0);
             const ctx = overallCanvas.getContext('2d');
@@ -591,7 +597,7 @@ export function renderTrends() {
     const themeCanvas = document.getElementById('theme-trend-chart');
     if (themeCanvas && themeYears.length > 0) {
         if (chartState.theme.drillYear) {
-            renderDrillDownBar('theme-trend-chart', chartState.theme.drillYear, 'theme', colors, lineColors);
+            await renderDrillDownBar('theme-trend-chart', chartState.theme.drillYear, 'theme', colors, lineColors);
         } else if (Object.keys(themesTrends).length > 0) {
             const themeYearIndices = themeYears.map(y => allYears.indexOf(y)).filter(i => i >= 0);
             const themeTraces = Object.entries(themesTrends).map(([name, values], i) => ({
@@ -650,7 +656,13 @@ export function renderTrends() {
     const mechanicCanvas = document.getElementById('mechanic-trend-chart');
     if (mechanicCanvas && mechanicYears.length > 0) {
         if (chartState.mechanic.drillYear) {
-            renderDrillDownBar('mechanic-trend-chart', chartState.mechanic.drillYear, 'mechanic', colors, lineColors);
+            await renderDrillDownBar(
+                'mechanic-trend-chart',
+                chartState.mechanic.drillYear,
+                'mechanic',
+                colors,
+                lineColors
+            );
         } else if (Object.keys(mechanicsTrends).length > 0) {
             const mechYearIndices = mechanicYears.map(y => allYears.indexOf(y)).filter(i => i >= 0);
             const mechanicTraces = Object.entries(mechanicsTrends).map(([name, values], i) => ({
@@ -709,7 +721,13 @@ export function renderTrends() {
     const providerCanvas = document.getElementById('provider-trend-chart');
     if (providerCanvas && providerYears.length > 0) {
         if (chartState.provider.drillYear) {
-            renderDrillDownBar('provider-trend-chart', chartState.provider.drillYear, 'provider', colors, lineColors);
+            await renderDrillDownBar(
+                'provider-trend-chart',
+                chartState.provider.drillYear,
+                'provider',
+                colors,
+                lineColors
+            );
         } else if (Object.keys(providerTrends).length > 0) {
             const providerTraces = Object.entries(providerTrends).map(([name, yearMap], i) => ({
                 label: name,

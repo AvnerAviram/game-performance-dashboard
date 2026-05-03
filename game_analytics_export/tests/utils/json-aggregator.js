@@ -11,7 +11,7 @@
  * and nested (theme.consolidated, performance.theo_win, etc.)
  */
 function themeConsolidated(g) {
-    return g.art_theme ?? g.theme_consolidated ?? g.theme_primary ?? g.theme?.consolidated;
+    return g.theme_consolidated ?? g.theme_primary ?? g.theme?.consolidated;
 }
 function providerStudio(g) {
     return g.studio ?? g.provider ?? g.provider_studio ?? g.provider?.studio;

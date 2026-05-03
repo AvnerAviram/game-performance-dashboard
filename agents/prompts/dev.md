@@ -1,364 +1,285 @@
-# Dev Agent — Phase 1: Fix Data Types at Build Time (GATE PHASE)
+# Dev Agent — Bubble Chart Fixes (8 bugs) + Unit Tests
 
-## Context
+## Critical Context: What WAS Working
 
-This is Phase 1 of the SQL-First Architecture Migration. This phase fixes the ROOT CAUSE of all recurring data bugs: array fields stored as JSON strings instead of native arrays.
+The old Market Landscape (commit `cbea2469`, file `chart-themes.js` lines 635-900) had an **inline** label plugin that worked well. The migration to `createBubbleLandscape()` factory broke several things. Here are the key differences you MUST understand:
 
-**THIS IS A GATE.** After this phase, we verify that DuckDB can UNNEST native array columns. If it can't, the entire SQL migration stops.
+| Property | Old (working) | New (broken) | Impact |
+|----------|--------------|--------------|--------|
+| Bubble size range | `rMin=6, rMax=40` | `max(5, min(16, ...))` | Bubbles 2.5x smaller, cluster tightly |
+| Labels | ALL themes labeled | Capped at 40 of 86+ | Important themes unlabeled |
+| Recalculation | `lastPosKey` — recalc on resize | `!cachedLabels` — calc once | Stale positions after resize |
+| Hover/tooltip | Custom inline div tooltip | Chart.js tooltip + `createSAHoverHandler` | Race condition kills tooltip |
+| X warping | `log10 + piecewise stretch (K=2.5)` | `createXWarp()` | Different spread |
 
-Full plan: `/Users/avner/.cursor/plans/sql-first_migration_(validated)_88725c2a.plan.md`
+**The old code is at:** `git show cbea2469:game_analytics_export/src/ui/chart-themes.js` lines 635-900. READ IT before making changes.
 
 Use `fnm use 20` before any npm commands.
 
 ---
 
-## Task 1: Stop Stringifying Arrays in build-parquet.mjs
+## FIX 1: Restore bubble size range (CRITICAL — fixes label placement)
 
-File: `scripts/build-parquet.mjs`
+**File:** `src/ui/renderers/art-renderer.js` → `renderThemeLandscape()` line ~597, and `renderDimensionLandscape()` line ~560.
 
-### 1a. Features, themes_all, themes_raw, symbols (lines 69-76)
+Also `src/ui/chart-themes.js` → anywhere `createBubbleLandscape` is called with bubble data.
 
-**Current code:**
+**Current (broken):**
 ```js
-const featuresJson =
-    Array.isArray(game.features) && game.features.length > 0 ? JSON.stringify(game.features) : null;
-const themesAllJson =
-    Array.isArray(game.themes_all) && game.themes_all.length > 0 ? JSON.stringify(game.themes_all) : null;
-const themesRawJson =
-    Array.isArray(game.themes_raw) && game.themes_raw.length > 0 ? JSON.stringify(game.themes_raw) : null;
-const symbolsJson =
-    Array.isArray(game.symbols) && game.symbols.length > 0 ? JSON.stringify(game.symbols) : null;
+r: Math.max(5, Math.min(16, Math.sqrt(m.count / maxCount) * 14 + 3)),
 ```
+Or similar — bubbles capped at 16px.
 
-**Change to (remove JSON.stringify — keep native arrays):**
+**Fix — restore the old range:**
 ```js
-const featuresArr =
-    Array.isArray(game.features) && game.features.length > 0 ? game.features.filter(f => !HIDDEN_FEATURES.has(f)) : null;
-const themesAllArr =
-    Array.isArray(game.themes_all) && game.themes_all.length > 0 ? game.themes_all : null;
-const themesRawArr =
-    Array.isArray(game.themes_raw) && game.themes_raw.length > 0 ? game.themes_raw : null;
-const symbolsArr =
-    Array.isArray(game.symbols) && game.symbols.length > 0 ? game.symbols : null;
+r: 6 + Math.sqrt(m.count / maxCount) * 34,
 ```
+This gives `rMin=6, rMax=40` — matching the old working version. Bigger bubbles spread out more, making labels easier to place.
 
-**Note:** Features are filtered with `HIDDEN_FEATURES` at build time. Import `HIDDEN_FEATURES` from `src/lib/shared-config.js` at the top of the file:
+Apply this to ALL `createBubbleLandscape` call sites that build bubble data.
+
+---
+
+## FIX 2: Labels invisible on left side (overlap in rendering)
+
+**File:** `src/ui/chart-utils.js` → `createSABubbleLabelPlugin()`, after line 562
+
+**Root cause:** When 40 labels are drawn, later labels' background `fillRect` covers earlier labels' text. Important left-side labels get hidden.
+
+**Fix — add after `cachedLabels = candidates;` (line 562):**
+
 ```js
-import { HIDDEN_FEATURES } from '../src/lib/shared-config.js';
-```
-
-Check that `shared-config.js` uses a compatible export (it's ESM, build-parquet is `.mjs` — should be fine).
-
-### 1b. Art array fields (lines 138-141)
-
-**Current code:**
-```js
-art_characters: art.art_characters ? JSON.stringify(art.art_characters) : null,
-art_elements: art.art_elements ? JSON.stringify(art.art_elements) : null,
-art_color_tone: art.art_color_tone ? JSON.stringify(art.art_color_tone) : null,
-```
-
-**Change to:**
-```js
-art_characters: Array.isArray(art.art_characters) && art.art_characters.length > 0 ? art.art_characters : null,
-art_elements: Array.isArray(art.art_elements) && art.art_elements.length > 0 ? art.art_elements : null,
-art_color_tone: Array.isArray(art.art_color_tone) && art.art_color_tone.length > 0 ? art.art_color_tone : null,
-```
-
-### 1c. Update row property names (lines 111-114)
-
-Update the row object to use the new variable names:
-```js
-features: featuresArr,
-themes_all: themesAllArr,
-themes_raw: themesRawArr,
-symbols: symbolsArr,
-```
-
-### 1d. Add missing column — art_theme_secondary
-
-In the row object (around line 137), add:
-```js
-art_theme_secondary: art.art_theme_secondary || null,
+// Remove labels that are >25% hidden by a more important label
+const removed = new Set();
+for (let a = 0; a < candidates.length; a++) {
+    if (removed.has(a)) continue;
+    for (let b = a + 1; b < candidates.length; b++) {
+        if (removed.has(b)) continue;
+        const ra = candidates[a].rect;
+        const rb = candidates[b].rect;
+        const xO = Math.max(0, Math.min(ra.x2, rb.x2) - Math.max(ra.x1, rb.x1));
+        const yO = Math.max(0, Math.min(ra.y2, rb.y2) - Math.max(ra.y1, rb.y1));
+        if (xO <= 0 || yO <= 0) continue;
+        const overlap = xO * yO;
+        const areaA = (ra.x2 - ra.x1) * (ra.y2 - ra.y1);
+        const areaB = (rb.x2 - rb.x1) * (rb.y2 - rb.y1);
+        if (overlap / Math.min(areaA, areaB) > 0.25) {
+            const rA = bubbleData[candidates[a].dataIndex]?.r || 0;
+            const rB = bubbleData[candidates[b].dataIndex]?.r || 0;
+            removed.add(rA < rB ? a : b);
+        }
+    }
+}
+const filtered = removed.size > 0 ? candidates.filter((_, idx) => !removed.has(idx)) : candidates;
+filtered.sort((a2, b2) => {
+    const rA = bubbleData[a2.dataIndex]?.r || 0;
+    const rB = bubbleData[b2.dataIndex]?.r || 0;
+    return rA - rB;
+});
+cachedLabels = filtered;
 ```
 
 ---
 
-## Task 2: Update duckdb-client.js Column Types + SQL Patterns
+## FIX 3: Label hover tooltip doesn't work
 
-File: `src/lib/db/duckdb-client.js`
+**File:** `src/ui/chart-utils.js` → `createSAHoverHandler()` (line 356) and `createBubbleLandscape()` (line ~947)
 
-### 2a. Change column types in CREATE TABLE (line ~226)
+**Root cause:** Chart.js tooltip plugin runs `handleEvent()` AFTER our `onHover` handler → clears our manually-set tooltip.
 
-**Current:**
-```sql
-features VARCHAR, themes_all VARCHAR, themes_raw VARCHAR,
-symbols VARCHAR, description VARCHAR, demo_url VARCHAR,
-...
-art_theme VARCHAR, art_characters VARCHAR, art_elements VARCHAR,
-art_narrative VARCHAR,
-art_color_tone VARCHAR, art_confidence VARCHAR
-```
+### Change A: Lock flag in `createSAHoverHandler()` 
 
-**Change to:**
-```sql
-features VARCHAR[], themes_all VARCHAR[], themes_raw VARCHAR[],
-symbols VARCHAR[], description VARCHAR, demo_url VARCHAR,
-...
-art_theme VARCHAR, art_theme_secondary VARCHAR, art_characters VARCHAR[], art_elements VARCHAR[],
-art_narrative VARCHAR,
-art_color_tone VARCHAR[], art_confidence VARCHAR
-```
-
-Note: Also add `art_theme_secondary VARCHAR` column.
-
-### 2b. Rewrite RELIABLE_GAME constant (line ~33-34)
-
-**Current:**
+Line 361 — add `chart._saTooltipLocked = false;` before `const idx`:
 ```js
-(features IS NOT NULL AND features != '[]')
+if (elements.length) {
+    chart._saTooltipLocked = false;
+    const idx = elements[0].index;
 ```
 
-**Change to:**
+Line 380 — add `chart._saTooltipLocked = true;` before `chart._saSetHovered`:
 ```js
-(features IS NOT NULL AND len(features) > 0)
+if (idx >= 0) {
+    chart._saTooltipLocked = true;
+    chart._saSetHovered?.(idx);
 ```
 
-### 2c. Rewrite feature LIKE filters in getAllGames (lines ~545, 553)
-
-**Current:**
+Line 396 — add `chart._saTooltipLocked = false;` before the `if`:
 ```js
-if (filters.mechanic) {
-    sql += ` AND features LIKE '%"${filters.mechanic.replace(/'/g, "''")}"%'`;
-}
-...
-if (filters.feature) {
-    sql += ` AND features LIKE '%"${filters.feature.replace(/'/g, "''")}"%'`;
+chart._saTooltipLocked = false;
+if (chart._saGetHovered?.() >= 0) {
+```
+
+### Change B: Monkey-patch tooltip in `createBubbleLandscape()`
+
+After `new Chart(...)` (line ~947), BEFORE `canvas.addEventListener('mouseleave', ...)`:
+
+```js
+if (labels !== 'none') {
+    const origHandleEvent = chart.tooltip.handleEvent.bind(chart.tooltip);
+    chart.tooltip.handleEvent = function (ev, replay) {
+        if (chart._saTooltipLocked) return false;
+        return origHandleEvent(ev, replay);
+    };
 }
 ```
 
-**Change to:**
-```js
-if (filters.mechanic) {
-    sql += ` AND list_contains(features, '${filters.mechanic.replace(/'/g, "''")}')`;
-}
-...
-if (filters.feature) {
-    sql += ` AND list_contains(features, '${filters.feature.replace(/'/g, "''")}')`;
-}
-```
+### Change C: Clear lock on mouseleave
 
-### 2d. Rewrite getGamesByMechanic (line ~576)
-
-**Current:**
-```js
-WHERE features IS NOT NULL AND features LIKE '%"${safe}"%'
-```
-
-**Change to:**
-```js
-WHERE features IS NOT NULL AND list_contains(features, '${safe}')
-```
-
-### 2e. Rewrite getOverviewStats features handling (lines ~399-406)
-
-**Current:**
-```js
-const featureRows = await query(
-    `SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]' AND ${RELIABLE_GAME}`
-);
-const featureSet = new Set();
-for (const r of featureRows) {
-    parseFeatures(r.features).forEach(f => featureSet.add(f));
-}
-basic.mechanic_count = featureSet.size;
-```
-
-**Change to (use UNNEST on native array):**
-```js
-const featureRows = await query(
-    `SELECT DISTINCT f FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0 AND ${RELIABLE_GAME})`
-);
-basic.mechanic_count = featureRows.length;
-```
-
-### 2f. Rewrite getMechanicDistribution (lines ~439-446)
-
-**Current:** Fetches all rows with features, then iterates in JS with `parseFeatures`.
-
-This is a Phase 2 concern (metrics.js SQL migration). For now, just fix the SQL predicate:
-
-**Change `features != '[]'` to `len(features) > 0`** in the WHERE clause. Keep the JS aggregation loop for now — it will still work because `parseFeatures` handles both arrays and strings.
-
-### 2g. Rewrite getUniqueMechanics (line ~684)
-
-**Current:**
-```js
-const rows = await query(`SELECT DISTINCT features FROM games WHERE features IS NOT NULL AND features != '[]'`);
-```
-
-**Change to (use UNNEST):**
-```js
-const rows = await query(`SELECT DISTINCT f AS mechanic FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0)`);
-return rows.sort((a, b) => a.mechanic.localeCompare(b.mechanic));
-```
-
-Remove the JS Set/loop since UNNEST + DISTINCT does it in SQL. But keep the same return shape `[{ mechanic: '...' }]`.
-
-### 2h. Rewrite getUniqueFeatures (lines ~713-724)
-
-**Current:** Same JS Set/loop pattern.
-
-**Change to (use UNNEST):**
-```js
-export async function getUniqueFeatures() {
-    const rows = await query(`
-        SELECT DISTINCT f AS feature FROM (SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL AND len(features) > 0)
-        ORDER BY f
-    `);
-    return rows;
-}
-```
-
-### 2i. Rewrite getFeatureDistribution (lines ~729-740)
-
-For now, just fix the SQL predicate. Replace any `features != '[]'` checks with `len(features) > 0`. Keep the JS aggregation loop — it will be replaced in Phase 2.
-
-**Important:** `parseFeatures` already handles JS arrays (line 10-11 of parse-features.js: `if (Array.isArray(val)) { arr = val; }`), so the JS aggregation loops will still work with native arrays coming from DuckDB.
-
-### 2j. Update INSERT logic for JSON fallback
-
-The JSON fallback path (loadFromJSON) uses INSERT statements. When features is a native JS array in games_processed.json, the INSERT needs to handle it:
-
-**Option A (recommended for simplicity):** When inserting, convert arrays to DuckDB array literals:
-```js
-const featVal = Array.isArray(game.features) 
-    ? `ARRAY[${game.features.map(f => `'${f.replace(/'/g, "''")}'`).join(',')}]`
-    : 'NULL';
-```
-
-**Option B (simpler, documented degradation):** Keep features as VARCHAR in the JSON INSERT fallback path. This means the JSON fallback won't have native arrays, but the Parquet path (primary) will. Document this as a known limitation.
-
-Choose whichever is cleaner. The JSON fallback is rarely used.
+Add `c._saTooltipLocked = false;` as the first line in the mouseleave handler's `if (c) {` block.
 
 ---
 
-## Task 3: Fix data.js Fallback Check
+## FIX 4: Restore `lastPosKey` recalculation
 
-File: `src/lib/data.js` line ~224
+**File:** `src/ui/chart-utils.js` → `createSABubbleLabelPlugin()` line ~422, ~436, ~438
 
-**Current:**
+The old code recalculated labels when chart positions changed. Restore this.
+
+Line ~422: Restore `let lastPosKey = null;`
+
+Line ~436 (the `shouldRecalc` line): Change from:
 ```js
-const hasFeatures = g.features && g.features !== '[]';
+const shouldRecalc = !cachedLabels;
+```
+To:
+```js
+const posKey = meta0.data.map(el => `${el.x.toFixed(0)},${el.y.toFixed(0)}`).join('|');
+const shouldRecalc = !cachedLabels || (!hasActiveHover && posKey !== lastPosKey);
 ```
 
-**Change to:**
-```js
-const hasFeatures = Array.isArray(g.features) ? g.features.length > 0 : (g.features && g.features !== '[]');
-```
-
-This handles both native arrays (from Parquet/new JSON) and legacy strings.
+Inside the `if (shouldRecalc) {` block, add: `lastPosKey = posKey;`
 
 ---
 
-## Verification (CRITICAL — This is the GATE)
+## FIX 5: Labels covering X-axis numbers
 
-### Step 1: Rebuild data
+**File:** `src/ui/chart-utils.js` → `createSABubbleLabelPlugin()` lines ~479-480
+
+When computing initial label positions, the Y clamping allows labels right at `chartArea.bottom`. Fix by adding a 20px margin:
+
+Change line ~480:
+```js
+iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th, iy));
+```
+To:
+```js
+iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th - 18, iy));
+```
+
+Also in the SA solver (`src/lib/sa-label-solver.js`), the bounds check should use the same margin. Change the `h` parameter passed to `saLabelSolver` at line ~489:
+```js
+saLabelSolver(labs, ancs, areaW, areaH - 18, chartArea.left, chartArea.top);
+```
+
+---
+
+## FIX 6: Leader lines messy / too many
+
+**File:** `src/ui/chart-utils.js` → `createSABubbleLabelPlugin()` line ~492
+
+Increase `leaderThreshold` from 15 to 25 — this means labels need to be further from their bubble before a leader line is drawn, reducing visual clutter:
+```js
+const leaderThreshold = 25;
+```
+
+---
+
+## FIX 7: Overview hover TypeError (dataIndex undefined)
+
+**File:** `src/ui/chart-themes.js` → `createScatterChart()` or wherever the Overview scatter tooltip is configured.
+
+Find the tooltip `title` callback and add a null guard:
+```js
+title: items => {
+    if (!items?.length) return '';
+    // ... rest of callback
+}
+```
+
+Also check the `label` callback for the same issue.
+
+---
+
+## FIX 8: Stuck hover highlights (bubbles dimmed after hover)
+
+This should be fixed by FIX 3 (tooltip lock + proper mouseleave cleanup). Verify after implementing FIX 3 — if bubbles still get stuck dimmed, add explicit `chart.update('none')` after the `setActiveElements([])` in the mouseleave handler.
+
+---
+
+## MANDATORY: Unit Tests
+
+Write unit tests in `tests/unit/bubble-labels.test.js` for:
+
+1. **Per-quadrant selection**: Given 20 bubbles across 4 quadrants, all 4 quadrants get labels
+2. **Overlap removal**: Given 2 overlapping label rects, the smaller-bubble label is removed
+3. **Draw order**: After sorting, largest bubble's label is last in array
+4. **findLabelAtPoint**: Returns correct dataIndex within ±4px of label rect, returns -1 outside
+5. **Label Y constraint**: No label has `rect.y2 > chartArea.bottom - 18`
+6. **SA solver**: For 10 synthetic labels, final overlap count < 3
+
+These tests should import the functions directly and test with mock data — no browser/DOM needed.
+
+---
+
+## MANDATORY: Visual Verification (Rule 11)
+
+After ALL fixes, `npm run build && npm start`, then Playwright:
+
+1. **Art Themes Landscape**: ALL 4 bubble colors have labels. Left side green/gray bubbles HAVE labels.
+2. **Hover over label text**: Tooltip appears and STAYS. Test on at least 3 different labels.
+3. **First hover**: Chart does NOT jump/shift.
+4. **Labels vs X-axis**: Labels do NOT overlap X-axis tick numbers at the bottom.
+5. **Leader lines**: Clean, not crossing many bubbles. Fewer than before.
+6. **Overview**: No console errors during hover.
+
+**Take screenshots for EACH check. If ANY fail — FIX before reporting DONE.**
+
 ```bash
 fnm use 20
-npm run build:data
-```
-Must succeed with no errors.
-
-### Step 2: Run tests
-```bash
 npm test
-```
-All tests must pass. Some test fixtures may need updating if they use `features: '["Free Spins"]'` (string) — change to `features: ["Free Spins"]` (array).
-
-### Step 3: Build
-```bash
-npm run build
-```
-Must exit 0.
-
-### Step 4: Format
-```bash
-npm run format
-npm run format:check
-```
-
-### Step 5: Verify native types (GATE CHECK)
-
-Start the dev server and open browser console:
-```bash
-npm start
-```
-
-Then in the browser console (after login + data load), test these queries. Report the results in your atlas.md report:
-
-1. **Type check:**
-```js
-// In browser console:
-const result = await window._duckdb_query("SELECT typeof(features) AS t FROM games LIMIT 1");
-console.log(result[0].t);
-// Expected: VARCHAR[] (not VARCHAR)
-```
-
-If `window._duckdb_query` doesn't exist, add a temporary global in duckdb-client.js:
-```js
-window._duckdb_query = query;
-```
-
-2. **UNNEST check:**
-```js
-const feats = await window._duckdb_query("SELECT UNNEST(features) AS f FROM games WHERE features IS NOT NULL LIMIT 10");
-console.log(feats);
-// Expected: Array of objects like [{f: 'Free Spins'}, {f: 'Wild'}, ...]
-```
-
-3. **list_contains check:**
-```js
-const count = await window._duckdb_query("SELECT COUNT(*) AS n FROM games WHERE list_contains(features, 'Free Spins')");
-console.log(count[0].n);
-// Expected: a number > 0
-```
-
-4. **Array return check:**
-```js
-const game = await window._duckdb_query("SELECT features FROM games WHERE features IS NOT NULL LIMIT 1");
-console.log(Array.isArray(game[0].features));
-// Expected: true
+npm run test:gate
 ```
 
 ---
-
-## Constraints
-
-- Do NOT change metrics.js function signatures (Phase 2 work)
-- Do NOT change chart/renderer files (Phase 3 work)
-- Do NOT change server files (Phase 4 work)
-- Focus ONLY on: build-parquet.mjs, duckdb-client.js, data.js, and any test fixtures that break
 
 ## Report
 
-Update `/Users/avner/Projects/game-performace-dashboard/agents/prompts/atlas.md` with:
+**Append** to `/Users/avner/Projects/game-performace-dashboard/agents/prompts/atlas.md`:
 
-| Task | Status | Details |
-|------|--------|---------|
-| T1: build-parquet arrays | | Fields changed, HIDDEN_FEATURES applied |
-| T2a: CREATE TABLE types | | VARCHAR[] columns listed |
-| T2b: RELIABLE_GAME | | New predicate |
-| T2c-d: LIKE → list_contains | | How many patterns changed |
-| T2e: getOverviewStats | | UNNEST version |
-| T2g-h: getUniqueMechanics/Features | | UNNEST version |
-| T2j: JSON INSERT fallback | | Which option chosen |
-| T3: data.js hasFeatures | | Fix applied |
-| npm run build:data | | exit code |
-| npm test | | count + pass/fail |
-| npm run build | | exit code |
-| format:check | | pass/fail |
-| GATE: typeof(features) | | VARCHAR[] or VARCHAR? |
-| GATE: UNNEST works | | Shows individual strings? |
-| GATE: list_contains | | Returns count > 0? |
-| GATE: Array.isArray | | true or false? |
+### Dev Agent Report — Bubble Chart 8-Fix Batch
+
+| Item | Status | Notes |
+|------|--------|-------|
+| FIX 1: Bubble size rMin=6,rMax=40 | | |
+| FIX 2: Overlap removal + sort | | |
+| FIX 3: Tooltip lock | | |
+| FIX 4: lastPosKey restored | | |
+| FIX 5: Label Y margin 18px | | |
+| FIX 6: leaderThreshold 25 | | |
+| FIX 7: TypeError null guard | | |
+| FIX 8: Stuck highlights | | |
+| Unit tests written | | count |
+| Visual: left-side labels | | screenshot |
+| Visual: tooltip on hover | | screenshot |
+| Visual: no chart jump | | screenshot |
+| Visual: labels above X-axis | | screenshot |
+| npm test | | count |
+| test:gate | | X/27 |
+
+---
+
+## MANDATORY: Before Reporting Done
+
+### 1. Update QA prompt
+Append to `## Dev Notes for QA` in `qa.md`.
+
+### 2. Report to Atlas
+Append to `atlas.md` as specified above.
+
+---
+
+## QA Findings for Dev
+
+## QA Report: Bubble Chart 8-Fix Batch — PASS (all 10 checks)
+
+No action items for Dev. All 8 fixes confirmed working: bubble sizes restored (7.8-40px, 5.1x ratio), quadrant labels on all 4 colors, tooltip appears on label hover and clears on mouse-out, no chart jump, labels above X-axis, leader lines clean (25px threshold), 0 console errors on overview hover, no stuck highlights. 1619 tests passing (6 new unit tests).

@@ -68,12 +68,13 @@ describe('Parquet pipeline: games_processed.json', () => {
         expect(maxShare).toBeGreaterThan(1);
     });
 
-    test('features are stored as JSON strings', () => {
+    test('features are stored as native arrays', () => {
         const withFeatures = processedGames.filter(g => g.features);
         expect(withFeatures.length).toBeGreaterThan(2500);
         for (const g of withFeatures.slice(0, 50)) {
-            expect(g.features).toMatch(/^\[/);
-            expect(() => JSON.parse(g.features)).not.toThrow();
+            expect(Array.isArray(g.features)).toBe(true);
+            expect(g.features.length).toBeGreaterThan(0);
+            expect(typeof g.features[0]).toBe('string');
         }
     });
 

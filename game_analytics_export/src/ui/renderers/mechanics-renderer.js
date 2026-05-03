@@ -60,15 +60,16 @@ export function renderMechanics(mechanicsToRender = null) {
         const globalIndex = startIndex + index;
         const si = mech['Smart Index'] || 0;
         const gc = mech['Game Count'] || 0;
+        const isQualified = mech.qualified !== false;
         const barW = Math.max(4, (si / maxSI) * 100);
         const gcBarW = Math.max(4, (gc / maxGC) * 100);
         const isAboveAvg = si >= avgSI;
         const medal =
-            globalIndex === 0
+            isQualified && globalIndex === 0
                 ? '<span class="mr-1">🥇</span>'
-                : globalIndex === 1
+                : isQualified && globalIndex === 1
                   ? '<span class="mr-1">🥈</span>'
-                  : globalIndex === 2
+                  : isQualified && globalIndex === 2
                     ? '<span class="mr-1">🥉</span>'
                     : '';
         const rankBg = globalIndex < 3 ? 'bg-indigo-50 dark:bg-indigo-900/20' : '';
@@ -92,8 +93,8 @@ export function renderMechanics(mechanicsToRender = null) {
             </td>
             <td class="px-4 py-3.5 w-56" data-xray='${mxDim('smart_index', si.toFixed(2))}'>
                 <div class="flex items-center gap-2">
-                    <span class="text-sm font-bold tabular-nums ${isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}</span>
-                    <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>
+                    <span class="text-sm font-bold tabular-nums ${!isQualified ? 'text-gray-400 dark:text-gray-500' : isAboveAvg ? 'text-emerald-600 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}">${si.toFixed(2)}${!isQualified ? '<span class="text-[9px] ml-0.5" title="Below 20-game minimum">†</span>' : ''}</span>
+                    <div class="flex-1 h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full rounded-full transition-all ${!isQualified ? 'bg-gray-300 dark:bg-gray-600 opacity-50' : isAboveAvg ? 'bg-gradient-to-r from-emerald-400 to-emerald-500' : 'bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-500 dark:to-gray-600'}" style="width:${barW}%"></div></div>
                     <span class="text-[10px] ${isAboveAvg ? 'text-emerald-500' : 'text-gray-400'}">${isAboveAvg ? '▲' : '▼'}</span>
                 </div>
             </td>

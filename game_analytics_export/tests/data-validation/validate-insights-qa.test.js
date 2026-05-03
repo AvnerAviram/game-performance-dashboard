@@ -1,12 +1,9 @@
 /**
  * Phase 3: Market Insights QA — Brands + Provider Intel
- *
- * Validates franchise/brand intelligence and provider-insight aggregations
- * against the source data and metrics.js.
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { loadTestData, gameData } from '../utils/load-test-data.js';
-import { getProviderMetrics, getThemeMetrics, getFeatureMetrics } from '../../src/lib/metrics.js';
+import { computeProviderMetrics, computeThemeMetrics, computeFeatureMetrics } from '../utils/test-aggregators.js';
 import { F } from '../../src/lib/game-fields.js';
 import { parseFeatures } from '../../src/lib/parse-features.js';
 import { scoreFinding, assertNoDefiniteFindings } from '../utils/qa-scoring.js';
@@ -87,7 +84,7 @@ describe('Brand Intelligence QA', () => {
 describe('Provider Insights QA', () => {
     it('top providers have consistent theme distribution', () => {
         const findings = [];
-        const providers = getProviderMetrics(allGames);
+        const providers = computeProviderMetrics(allGames);
         const top5 = providers.slice(0, 5);
 
         for (const prov of top5) {
@@ -112,7 +109,7 @@ describe('Provider Insights QA', () => {
 
     it('provider game counts in metrics match direct filter', () => {
         const findings = [];
-        const metrics = getProviderMetrics(allGames);
+        const metrics = computeProviderMetrics(allGames);
 
         for (const p of metrics.slice(0, 15)) {
             const direct = allGames.filter(g => F.provider(g) === p.name).length;
@@ -133,7 +130,7 @@ describe('Provider Insights QA', () => {
 
 describe('Feature Insights QA', () => {
     it('top features have non-zero avgTheo', () => {
-        const rows = getFeatureMetrics(allGames);
+        const rows = computeFeatureMetrics(allGames);
         const top10 = rows.slice(0, 10);
         for (const f of top10) {
             expect(f.avgTheo).toBeGreaterThanOrEqual(0);
@@ -143,7 +140,7 @@ describe('Feature Insights QA', () => {
 
     it('feature count matches parseFeatures across all games', () => {
         const findings = [];
-        const rows = getFeatureMetrics(allGames);
+        const rows = computeFeatureMetrics(allGames);
 
         for (const f of rows.slice(0, 10)) {
             const manual = allGames.filter(g => parseFeatures(g.features).includes(f.feature)).length;
@@ -162,13 +159,13 @@ describe('Feature Insights QA', () => {
 describe('Theme Insights QA', () => {
     it('theme consolidation produces consistent results', () => {
         const findings = [];
-        const themeRows = getThemeMetrics(allGames);
+        const themeRows = computeThemeMetrics(allGames);
         const themeNames = themeRows.map(t => t.theme);
         const duplicates = themeNames.filter((t, i) => themeNames.indexOf(t) !== i);
 
         if (duplicates.length > 0) {
             findings.push(
-                scoreFinding('DEFINITE', 'theme', `Duplicate themes in getThemeMetrics: ${duplicates.join(', ')}`, {
+                scoreFinding('DEFINITE', 'theme', `Duplicate themes in metrics: ${duplicates.join(', ')}`, {
                     duplicates,
                 })
             );

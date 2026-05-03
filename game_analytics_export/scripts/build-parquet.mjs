@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { PROVIDER_NORMALIZATION_MAP } from '../src/lib/shared-config.js';
+import { PROVIDER_NORMALIZATION_MAP, HIDDEN_FEATURES } from '../src/lib/shared-config.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, '..', 'data');
@@ -66,14 +66,17 @@ async function main() {
         const studioOrParent =
             !rawStudio || /^unknown$/i.test(rawStudio) ? game.parent_company || rawStudio : rawStudio;
         const normalizedStudio = normalizeProvider(studioOrParent);
-        const featuresJson =
-            Array.isArray(game.features) && game.features.length > 0 ? JSON.stringify(game.features) : null;
-        const themesAllJson =
-            Array.isArray(game.themes_all) && game.themes_all.length > 0 ? JSON.stringify(game.themes_all) : null;
-        const themesRawJson =
-            Array.isArray(game.themes_raw) && game.themes_raw.length > 0 ? JSON.stringify(game.themes_raw) : null;
-        const symbolsJson =
-            Array.isArray(game.symbols) && game.symbols.length > 0 ? JSON.stringify(game.symbols) : null;
+        const featuresFiltered =
+            Array.isArray(game.features) && game.features.length > 0
+                ? game.features.filter(f => !HIDDEN_FEATURES.has(f))
+                : null;
+        const featuresArr = featuresFiltered && featuresFiltered.length > 0 ? featuresFiltered : null;
+        const themesAllArr =
+            Array.isArray(game.themes_all) && game.themes_all.length > 0 ? game.themes_all : null;
+        const themesRawArr =
+            Array.isArray(game.themes_raw) && game.themes_raw.length > 0 ? game.themes_raw : null;
+        const symbolsArr =
+            Array.isArray(game.symbols) && game.symbols.length > 0 ? game.symbols : null;
 
         const conf = confidenceMap[game.name] || {};
         const art = artMap[game.name] || {};
@@ -108,10 +111,10 @@ async function main() {
             release_month: safeNum(game.release_month),
             original_release_year: safeNum(game.original_release_year),
             original_release_month: safeNum(game.original_release_month),
-            features: featuresJson,
-            themes_all: themesAllJson,
-            themes_raw: themesRawJson,
-            symbols: symbolsJson,
+            features: featuresArr,
+            themes_all: themesAllArr,
+            themes_raw: themesRawArr,
+            symbols: symbolsArr,
             description: game.description || null,
             demo_url: game.demo_url || null,
             data_quality: game.data_quality || null,
@@ -135,10 +138,11 @@ async function main() {
             min_bet_confidence: conf.min_bet_confidence || null,
             max_bet_confidence: conf.max_bet_confidence || null,
             art_theme: art.art_theme || null,
-            art_characters: art.art_characters ? JSON.stringify(art.art_characters) : null,
-            art_elements: art.art_elements ? JSON.stringify(art.art_elements) : null,
+            art_theme_secondary: art.art_theme_secondary || null,
+            art_characters: Array.isArray(art.art_characters) && art.art_characters.length > 0 ? art.art_characters : null,
+            art_elements: Array.isArray(art.art_elements) && art.art_elements.length > 0 ? art.art_elements : null,
             art_narrative: art.art_narrative || null,
-            art_color_tone: art.art_color_tone ? JSON.stringify(art.art_color_tone) : null,
+            art_color_tone: Array.isArray(art.art_color_tone) && art.art_color_tone.length > 0 ? art.art_color_tone : null,
             art_confidence: art.art_confidence || null,
             data_confidence: game.data_confidence || null,
             extraction_date: game.extraction_date || null,

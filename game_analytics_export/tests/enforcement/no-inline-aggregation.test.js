@@ -37,6 +37,7 @@ const STAYS_INLINE_FILES = new Set([
     'ui/renderers/art-renderer.js',
     'ui/renderers/blueprint-art.js',
     'ui/chart-brands.js',
+    'ui/chart-config.js',
     'ui/filter-dropdowns.js',
 ]);
 
@@ -100,4 +101,15 @@ describe('No Inline Aggregation Enforcement', () => {
             }
         });
     }
+
+    it('data.js DuckDB path does not use art_theme-first theme grouping', () => {
+        const dataPath = path.join(SRC_DIR, 'lib/data.js');
+        const src = fs.readFileSync(dataPath, 'utf-8');
+
+        // The pattern art_theme || theme_consolidated produced different groupings than SQL.
+        // After the SQL-first fix, this pattern must not appear in aggregation contexts.
+        const duckDbSection = src.slice(src.indexOf('loadViaDuckDB'), src.indexOf('loadViaJSON'));
+        expect(duckDbSection).not.toMatch(/\.art_theme\s*\|\|\s*\w+\.theme_consolidated/);
+        expect(duckDbSection).not.toMatch(/themeAggDuck/);
+    });
 });

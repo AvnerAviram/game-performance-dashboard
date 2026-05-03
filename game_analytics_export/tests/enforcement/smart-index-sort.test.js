@@ -40,22 +40,13 @@ describe('Smart Index Sort Enforcement', () => {
         const metricsPath = path.join(SRC_DIR, 'lib/metrics.js');
         const src = fs.readFileSync(metricsPath, 'utf-8');
 
-        expect(src).toContain('export function getThemeMetrics');
-        expect(src).toContain('export function getFeatureMetrics');
-        expect(src).toContain('export function getProviderMetrics');
+        expect(src).toContain('getThemeMetrics');
+        expect(src).toContain('getFeatureMetrics');
+        expect(src).toContain('getProviderMetrics');
 
-        const themeBlock = src.slice(
-            src.indexOf('export function getThemeMetrics'),
-            src.indexOf('export function getGamesByTheme')
-        );
-        const featureBlock = src.slice(
-            src.indexOf('export function getFeatureMetrics'),
-            src.indexOf('export function getFeatureLift')
-        );
-        const providerBlock = src.slice(
-            src.indexOf('export function getProviderMetrics'),
-            src.indexOf('export function getProvidersPerTheme')
-        );
+        const themeBlock = src.slice(src.indexOf('getThemeMetrics'), src.indexOf('getFeatureMetrics'));
+        const featureBlock = src.slice(src.indexOf('getFeatureMetrics'), src.indexOf('getVolatilityMetrics'));
+        const providerBlock = src.slice(src.indexOf('getProviderMetrics'), src.indexOf('getThemeMetrics'));
 
         expect(themeBlock).toContain('addSmartIndex');
         expect(featureBlock).toContain('addSmartIndex');
@@ -104,11 +95,20 @@ describe('Smart Index Sort Enforcement', () => {
         expect(violations).toEqual([]);
     });
 
-    it('data.js applySmartIndex covers themes and mechanics', () => {
+    it('data.js uses SQL-based theme/mechanic loading (DuckDB) and local Smart Index (JSON fallback)', () => {
         const dataPath = path.join(SRC_DIR, 'lib/data.js');
         const src = fs.readFileSync(dataPath, 'utf-8');
 
-        expect(src).toContain('gameData.themes = applySmartIndex(gameData.themes)');
-        expect(src).toContain('gameData.mechanics = applySmartIndex(gameData.mechanics)');
+        // DuckDB path uses SQL via shared mappers
+        expect(src).toContain('getThemeMetrics');
+        expect(src).toContain('getFeatureMetrics');
+        expect(src).toContain('mapSqlThemes');
+        expect(src).toContain('mapSqlMechanics');
+
+        // JSON fallback still applies Smart Index locally
+        expect(src).toContain('applySmartIndexToGameData');
+
+        // No JS aggregation loop using art_theme || theme_consolidated
+        expect(src).not.toMatch(/art_theme\s*\|\|\s*g\.theme_consolidated\s*\|\|\s*g\.theme_primary/);
     });
 });

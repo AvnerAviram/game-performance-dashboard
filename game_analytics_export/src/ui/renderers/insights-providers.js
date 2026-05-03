@@ -1,14 +1,14 @@
 /**
  * Provider × theme matrix.
  */
-import { getActiveGames } from '../../lib/data.js';
+import { getActiveGames, gameData } from '../../lib/data.js';
 import { escapeHtml, escapeAttr, safeOnclick } from '../../lib/sanitize.js';
 import { log } from '../../lib/env.js';
 import { parseFeatsLocal } from './overview-renderer.js';
 import { getProviderMetrics } from '../../lib/metrics.js';
 import { F } from '../../lib/game-fields.js';
 
-export function generateProviderThemeMatrix() {
+export async function generateProviderThemeMatrix() {
     const container = document.getElementById('provider-theme-matrix');
     if (!container) return;
 
@@ -18,7 +18,7 @@ export function generateProviderThemeMatrix() {
         return;
     }
 
-    const rankedProviders = getProviderMetrics(allGames).slice(0, 10);
+    const rankedProviders = (await getProviderMetrics(gameData.activeCategory)).slice(0, 10);
     const topProviders = rankedProviders.map(p => {
         const themes = {};
         allGames
