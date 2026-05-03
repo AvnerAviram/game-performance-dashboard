@@ -99,16 +99,16 @@ export function createBrandLandscapeChart() {
         const allGames = getActiveGames();
         if (!allGames.length) return;
 
-        const franchises = getFranchiseBubbles(allGames, 5);
-        if (!franchises.length) return;
+        const allFranchises = getFranchiseBubbles(allGames);
+        if (!allFranchises.length) return;
 
-        const majors = franchises.slice(0, 30);
-        const maxCount = Math.max(...majors.map(f => f.count), 1);
-        const medX = median(majors.map(f => f.count));
-        const medY = median(majors.map(f => f.avgTheo));
+        const franchises = allFranchises.filter(f => f.count >= 5);
+        const maxCount = Math.max(...franchises.map(f => f.count), 1);
+        const medX = median(franchises.map(f => f.count));
+        const medY = median(franchises.map(f => f.avgTheo));
         const branded = franchises.reduce((s, f) => s + f.count, 0);
 
-        const data = majors.map(f => ({
+        const data = franchises.map(f => ({
             name: `🎮 ${f.name}`,
             shortName: f.name,
             x: f.count,

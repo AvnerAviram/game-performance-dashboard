@@ -419,7 +419,7 @@ export async function renderArt() {
     renderDimensionLandscape(
         'characters',
         'art-characters-landscape',
-        characters.filter(c => c.character !== 'No Characters (symbol-only game)').slice(0, 25),
+        characters.filter(c => c.character !== 'No Characters (symbol-only game)' && c.count > 1),
         'character',
         c => c.character,
         'showArtCharacter'
@@ -427,7 +427,7 @@ export async function renderArt() {
     renderDimensionLandscape(
         'elements',
         'art-elements-landscape',
-        elements.slice(0, 25),
+        elements,
         'element',
         c => c.element,
         'showArtElement'

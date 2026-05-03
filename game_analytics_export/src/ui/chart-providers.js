@@ -54,7 +54,7 @@ export async function createProviderLandscapeChart() {
         const allGames = getActiveGames();
         if (!allGames.length) return;
 
-        const providers = (await getProviderMetrics(gameData.activeCategory)).slice(0, 25);
+        const providers = await getProviderMetrics(gameData.activeCategory);
         if (!providers.length) return;
 
         const maxCount = Math.max(...providers.map(p => p.count), 1);
