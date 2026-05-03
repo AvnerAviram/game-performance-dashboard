@@ -85,11 +85,11 @@ describe('getFilteredMechanics', () => {
         window.gameData = { mechanics: [...mockMechanics] };
     });
 
-    it('returns all mechanics sorted by Market Share for "all" view', () => {
+    it('returns all mechanics sorted by Performance Index for "all" view', () => {
         const result = getFilteredMechanics('all');
         expect(result.length).toBe(mockMechanics.length);
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Market Share %']).toBeGreaterThanOrEqual(result[i]['Market Share %']);
+            expect(result[i - 1]['Smart Index'] || 0).toBeGreaterThanOrEqual(result[i]['Smart Index'] || 0);
         }
     });
 

@@ -11,11 +11,28 @@
  */
 
 import { query, RELIABLE_GAME } from './db/duckdb-client.js';
-import { VOLATILITY_ORDER, MIN_PROVIDER_GAMES, MIN_QUALIFIED_GAMES } from './shared-config.js';
+import { VOLATILITY_ORDER, MIN_PROVIDER_GAMES, MIN_QUALIFIED_GAMES, ELEMENT_CONSOLIDATION } from './shared-config.js';
 import { F } from './game-fields.js';
 
 function catFilter(category) {
     return category ? `AND game_category = '${category.replace(/'/g, "''")}'` : '';
+}
+
+function consolidateElements(rows) {
+    const merged = {};
+    for (const r of rows) {
+        const canonical = ELEMENT_CONSOLIDATION[r.element] || r.element;
+        if (!merged[canonical]) {
+            merged[canonical] = { element: canonical, count: 0, totalTheo: 0, _sumForAvg: 0 };
+        }
+        const m = merged[canonical];
+        m.count += r.count;
+        m.totalTheo += r.totalTheo;
+        m._sumForAvg += r.avgTheo * r.count;
+    }
+    return Object.values(merged)
+        .map(m => ({ element: m.element, count: m.count, totalTheo: m.totalTheo, avgTheo: m._sumForAvg / m.count }))
+        .sort((a, b) => b.count - a.count);
 }
 
 // ── Provider Metrics ───────────────────────────────────────────────────
@@ -301,7 +318,7 @@ export async function getArtCharacterMetrics(category = null) {
  * @returns {Promise<{ element, count, totalTheo, avgTheo }[]>}
  */
 export async function getArtElementMetrics(category = null) {
-    return query(`
+    const rows = await query(`
         SELECT e AS element, COUNT(*) AS count,
                SUM(performance_theo_win) AS totalTheo,
                AVG(performance_theo_win) AS avgTheo
@@ -313,6 +330,7 @@ export async function getArtElementMetrics(category = null) {
         GROUP BY e
         ORDER BY count DESC
     `);
+    return consolidateElements(rows);
 }
 
 /**
@@ -403,11 +421,37 @@ export async function getArtComboMetrics(category = null, opts = {}) {
         HAVING COUNT(*) >= ${minGames}
         ORDER BY avgTheo DESC
     `);
-    if (charFilter)
-        return rows.filter(
-            r => r.dimA !== 'No Characters (symbol-only game)' && r.dimB !== 'No Characters (symbol-only game)'
-        );
-    return rows;
+    let result = charFilter
+        ? rows.filter(
+              r => r.dimA !== 'No Characters (symbol-only game)' && r.dimB !== 'No Characters (symbol-only game)'
+          )
+        : rows;
+
+    if (dimAKey === 'elements' || dimBKey === 'elements') {
+        const merged = {};
+        for (const r of result) {
+            const a = dimAKey === 'elements' ? ELEMENT_CONSOLIDATION[r.dimA] || r.dimA : r.dimA;
+            const b = dimBKey === 'elements' ? ELEMENT_CONSOLIDATION[r.dimB] || r.dimB : r.dimB;
+            const key = `${a}|||${b}`;
+            if (!merged[key]) merged[key] = { dimA: a, dimB: b, count: 0, totalTheo: 0, mktShare: 0, _sum: 0 };
+            const m = merged[key];
+            m.count += r.count;
+            m.totalTheo += r.totalTheo;
+            m.mktShare += r.mktShare;
+            m._sum += r.avgTheo * r.count;
+        }
+        result = Object.values(merged)
+            .map(m => ({
+                dimA: m.dimA,
+                dimB: m.dimB,
+                count: m.count,
+                totalTheo: m.totalTheo,
+                avgTheo: m._sum / m.count,
+                mktShare: m.mktShare,
+            }))
+            .sort((a, b) => b.avgTheo - a.avgTheo);
+    }
+    return result;
 }
 
 /**
@@ -456,7 +500,8 @@ export async function getArtRecipeMetrics(category = null, opts = {}) {
             if (ch) entry.charFreq[ch] = (entry.charFreq[ch] || 0) + 1;
         }
         const elems = Array.isArray(r.art_elements) ? r.art_elements : [];
-        for (const el of elems) {
+        for (const rawEl of elems) {
+            const el = ELEMENT_CONSOLIDATION[rawEl] || rawEl;
             if (el) entry.elemFreq[el] = (entry.elemFreq[el] || 0) + 1;
         }
         const colors = Array.isArray(r.art_color_tone) ? r.art_color_tone : [];

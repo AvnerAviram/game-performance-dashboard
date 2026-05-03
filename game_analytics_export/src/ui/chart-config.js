@@ -139,6 +139,12 @@ export async function refreshCharts() {
 export async function refreshInsightsCharts() {
     if (isRefreshing) return;
     isRefreshing = true;
+
+    document.querySelectorAll('[id$="-landscape"] canvas, canvas[id*="landscape"]').forEach(c => {
+        const wrapper = c.parentElement;
+        if (wrapper) wrapper.classList.add('chart-loading');
+    });
+
     try {
         await Promise.all([
             createVolatilityLandscapeChart(),
@@ -149,6 +155,8 @@ export async function refreshInsightsCharts() {
     } catch (e) {
         console.error('[INSIGHTS-REFRESH]', e);
     }
+
+    document.querySelectorAll('.chart-loading').forEach(el => el.classList.remove('chart-loading'));
     setTimeout(() => {
         isRefreshing = false;
     }, 100);

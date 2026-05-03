@@ -74,7 +74,7 @@ export function getFilteredMechanics(view) {
         }
         case 'all':
         default:
-            return [...mechanics].sort(marketShareSort);
+            return [...mechanics].sort(qualifiedFirstSort);
     }
 }
 
@@ -108,23 +108,34 @@ window.switchThemeView = function (view) {
         });
     }
 
-    // Get filtered data
-    const filtered = getFilteredThemes(view);
-    log(`  📊 Filtered to ${filtered.length} themes`);
-
     // Reset to page 1 when switching filters (avoids empty list from stale pagination)
     if (window.themesCurrentPage !== undefined) {
         window.themesCurrentPage = 1;
     }
 
-    // Re-render with filtered data
+    // Check if dropdown filters are active — if so, delegate to filterThemes
+    // which already handles game-level filtering and composes with the view
+    const providerDropdown = document.getElementById('themes-filter-provider');
+    const mechanicDropdown = document.getElementById('themes-filter-mechanic');
+    const categoryDropdown = document.getElementById('themes-category-filter');
+    const hasDropdownFilter =
+        providerDropdown?.value || '' || mechanicDropdown?.value || '' || categoryDropdown?.value || '';
+
+    if (hasDropdownFilter && window.filterThemes) {
+        window.filterThemes(view);
+        return;
+    }
+
+    // No dropdown filters — use precomputed viewThemes with tab filter
+    const filtered = getFilteredThemes(view);
+    log(`  📊 Filtered to ${filtered.length} themes`);
+
     if (window.renderThemes) {
         window.renderThemes(filtered);
     } else {
         console.error('❌ window.renderThemes not available');
     }
 
-    // Update count
     const countSpan = document.getElementById('themes-count');
     if (countSpan) {
         countSpan.textContent = filtered.length;

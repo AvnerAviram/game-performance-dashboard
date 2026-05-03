@@ -397,7 +397,11 @@ window.showArtRecipe = async function (theme) {
     await showArtFilteredGames(`Theme: ${theme}`, g => F.artTheme(g) === theme);
 };
 window.showArtCombo = async function (dimA, dimB) {
-    await showArtFilteredGames(`${dimA} + ${dimB}`, g => F.artTheme(g) === dimA || F.artTheme(g) === dimB);
+    await showArtFilteredGames(`${dimA} + ${dimB}`, g => {
+        if (F.artTheme(g) !== dimA) return false;
+        const elems = F.artElements(g);
+        return Array.isArray(elems) && elems.some(e => e === dimB);
+    });
 };
 
 export async function renderArt() {
@@ -523,7 +527,12 @@ export async function renderArt() {
 }
 
 function renderStats(allGames, artGames, themes, characters, elements, colorTones) {
-    const pct = allGames.length > 0 ? ((artGames.length / allGames.length) * 100).toFixed(1) : '0';
+    const fullArt = artGames.filter(g => {
+        const elems = F.artElements(g);
+        const chars = F.artCharacters(g);
+        return elems.length > 0 && chars.length > 0;
+    });
+    const pct = artGames.length > 0 ? ((fullArt.length / artGames.length) * 100).toFixed(0) : '0';
     const avgTheo = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : 0;
 
     const el = id => document.getElementById(id);
@@ -532,7 +541,7 @@ function renderStats(allGames, artGames, themes, characters, elements, colorTone
         if (e) e.textContent = val;
     };
 
-    set('art-stat-coverage', `${artGames.length} (${pct}%)`);
+    set('art-stat-coverage', `${fullArt.length} of ${artGames.length} (${pct}%)`);
     set('art-stat-themes', themes.length);
     set('art-stat-characters', characters.length);
     set('art-stat-avg-theo', avgTheo.toFixed(2));
@@ -1532,8 +1541,8 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
 
             const chars = (r.topCharacters || [])
                 .filter(c => c && c !== 'No Characters (symbol-only game)')
-                .slice(0, 3);
-            const elems = (r.topElements || []).slice(0, 3);
+                .slice(0, 4);
+            const elems = (r.topElements || []).slice(0, 5);
             const narr = r.narrative && r.narrative !== 'No Narrative (classic/abstract)' ? r.narrative : '';
 
             const pipeSep =
@@ -1612,44 +1621,41 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
                     </div>`
                     : '';
 
-            const pills = [];
-            pills.push(
-                `<span class="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-sm font-semibold">🎨 ${escapeHtml(shortLabel(r.theme, 20))}</span>`
+            const recipeDims = [];
+            recipeDims.push(
+                `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Theme</span><span class="px-2.5 py-0.5 rounded-md bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs font-bold">${escapeHtml(shortLabel(r.theme, 24))}</span></div>`
             );
-            chars.forEach(c => {
-                pills.push(
-                    `<span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-sm font-semibold">👤 ${escapeHtml(shortLabel(c, 16))}</span>`
+            if (chars.length)
+                recipeDims.push(
+                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Characters</span><span class="flex flex-wrap gap-1">${chars.map(c => `<span class="px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-semibold">${escapeHtml(shortLabel(c, 18))}</span>`).join('')}</span></div>`
                 );
-            });
-            elems.forEach(e => {
-                pills.push(
-                    `<span class="px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 text-sm font-semibold">✨ ${escapeHtml(shortLabel(e, 16))}</span>`
+            if (elems.length)
+                recipeDims.push(
+                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Elements</span><span class="flex flex-wrap gap-1">${elems.map(e => `<span class="px-2 py-0.5 rounded-md bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 text-xs font-semibold">${escapeHtml(shortLabel(e, 18))}</span>`).join('')}</span></div>`
                 );
-            });
-            if (narr) {
-                pills.push(
-                    `<span class="px-3 py-1 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 text-sm font-semibold">🎭 ${escapeHtml(shortLabel(narr, 16))}</span>`
+            if (narr)
+                recipeDims.push(
+                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Narrative</span><span class="px-2 py-0.5 rounded-md bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 text-xs font-semibold">${escapeHtml(shortLabel(narr, 20))}</span></div>`
                 );
-            }
 
             const specLine = [domVol, domLayout, avgRtp > 0 ? `RTP ${avgRtp.toFixed(1)}%` : '']
                 .filter(Boolean)
                 .join(' · ');
 
             return `<div class="recipe-row group hover:bg-gray-50/80 dark:hover:bg-gray-800/40 transition-colors cursor-pointer ${rowBg}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'art_theme', value: r.theme }))}' onclick="${safeOnclick('window.showArtRecipe', r.theme)}">
-            <div class="px-5 py-5">
+            <div class="px-5 py-4">
                 <div class="flex items-start gap-4">
                     <div class="text-sm font-bold text-gray-400 dark:text-gray-500 w-6 shrink-0 pt-1">${rank}</div>
                     <div class="min-w-0 flex-1">
-                        <div class="flex flex-wrap gap-2 mb-3">${pills.join('')}</div>
-                        <div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+                        <div class="space-y-1.5 mb-3">${recipeDims.join('')}</div>
+                        <div class="flex items-center gap-3 text-xs text-gray-600 dark:text-gray-400">
                             <span class="font-medium text-gray-900 dark:text-white">PI: ${r.avgTheo.toFixed(2)}</span>
                             <span>${r.count} games</span>
                             <span class="font-medium ${liftColor}">${liftIcon}${Math.abs(lift).toFixed(0)}% vs avg</span>
                             ${trendBadge}
                             ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
                         </div>
-                        ${specLine ? `<div class="text-xs text-gray-400 dark:text-gray-500 mt-2">${specLine}</div>` : ''}
+                        ${specLine ? `<div class="text-[10px] text-gray-400 dark:text-gray-500 mt-1.5">${specLine}</div>` : ''}
                     </div>
                 </div>
             </div>

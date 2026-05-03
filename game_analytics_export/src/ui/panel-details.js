@@ -380,9 +380,7 @@ window.showThemeDetails = function (themeName, opts) {
     const allGames = gameData.allGames || [];
     let themeGames = allGames.filter(g => {
         const primary = F.themeConsolidated(g);
-        if (primary.toLowerCase() === themeName.toLowerCase()) return true;
-        const all = F.themesAll(g);
-        return Array.isArray(all) && all.some(t => t.toLowerCase() === themeName.toLowerCase());
+        return primary.toLowerCase() === themeName.toLowerCase();
     });
 
     if (scopeProvider) {

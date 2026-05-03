@@ -502,8 +502,7 @@ body.xray-active th {
 }
 
 /* Hover highlight — solid like Chrome inspect */
-body.xray-active [data-xray]:hover,
-body.xray-cmd-held [data-xray]:hover {
+body.xray-active [data-xray]:hover {
     outline: 2px solid rgba(99, 102, 241, 0.8) !important;
     outline-offset: 1px;
     background: rgba(99, 102, 241, 0.12) !important;
@@ -512,9 +511,7 @@ body.xray-cmd-held [data-xray]:hover {
 }
 
 body.xray-active td:hover,
-body.xray-active canvas:hover,
-body.xray-cmd-held td:hover,
-body.xray-cmd-held canvas:hover {
+body.xray-active canvas:hover {
     outline: 2px solid rgba(99, 102, 241, 0.5);
     outline-offset: 1px;
     background: rgba(99, 102, 241, 0.06);
@@ -527,13 +524,6 @@ body.xray-active [data-xray] {
     transition:
         background 0.15s,
         outline 0.15s;
-}
-
-/* CMD/CTRL held: lighter variant */
-body.xray-cmd-held [class*='tabular-nums']:hover {
-    outline: 2px solid rgba(99, 102, 241, 0.4);
-    outline-offset: 1px;
-    cursor: crosshair !important;
 }
 
 /* Chart loading skeleton shimmer */

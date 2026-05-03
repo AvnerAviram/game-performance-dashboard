@@ -874,11 +874,14 @@ export function createBubbleLandscape(
     if (coveragePill) {
         const cp = coveragePill;
         const pct = cp.covered > 0 ? Math.max(1, Math.round((cp.covered / cp.total) * 100)) : 0;
-        const coverageText = `${pct}% coverage · ${cp.covered.toLocaleString()} of ${cp.total.toLocaleString()} games ${cp.label}`;
         const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');
         const inline = card?.querySelector(`.coverage-inline[data-for="${canvasId}"]`);
         if (inline) {
-            inline.textContent = coverageText;
+            if (pct >= 99 && cp.covered === cp.total) {
+                inline.textContent = '';
+            } else {
+                inline.textContent = `${pct}% coverage · ${cp.covered.toLocaleString()} of ${cp.total.toLocaleString()} games ${cp.label}`;
+            }
             card.querySelectorAll('.coverage-footnote').forEach(el => el.remove());
         }
     }
@@ -1046,33 +1049,6 @@ export function createBubbleLandscape(
         const c = Chart.getChart(canvas);
         if (c) deactivateSAHover(c);
     });
-
-    if (labels !== 'none' && labels === 'all') {
-        const card = canvas.closest('.bg-white, .dark\\:bg-gray-800') || canvas.parentElement;
-        if (card && !card.querySelector(`[data-label-toggle="${canvasId}"]`)) {
-            const btn = document.createElement('button');
-            btn.setAttribute('data-label-toggle', canvasId);
-            btn.className =
-                'text-[10px] font-medium px-2.5 py-1 rounded border cursor-pointer ' +
-                'border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 ' +
-                'hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-200 transition-colors';
-            btn.textContent = 'Show all labels';
-            btn.addEventListener('click', () => {
-                chart._showAllLabels = !chart._showAllLabels;
-                btn.textContent = chart._showAllLabels ? 'Show key labels' : 'Show all labels';
-                chart._saResetCache?.();
-                chart.draw();
-            });
-            const header = card.querySelector('.flex.items-center, .flex.justify-between');
-            if (header) {
-                header.appendChild(btn);
-            } else {
-                btn.style.cssText = 'position:absolute;top:8px;right:180px;z-index:10';
-                card.style.position = 'relative';
-                card.appendChild(btn);
-            }
-        }
-    }
 
     if (coveragePill) {
         const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');

@@ -31,7 +31,7 @@ export function showGameDetails(gameName) {
 
     const gamePanelTitle = document.getElementById('game-panel-title');
     if (gamePanelTitle) {
-        gamePanelTitle.innerHTML = `${escapeHtml(game.name)} <button class="ml-2 text-xs px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-800/40 font-medium transition-colors cursor-pointer" onclick="window.openXRayPanel('${escapeAttr(game.name.replace(/'/g, "\\'"))}')" title="Data X-Ray">X-Ray</button>`;
+        gamePanelTitle.textContent = game.name;
     }
 
     // ===== DESCRIPTION SECTION =====

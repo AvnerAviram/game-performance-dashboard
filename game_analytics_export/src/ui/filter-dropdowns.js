@@ -109,15 +109,16 @@ export function populateMechanicsFilters() {
 }
 
 /**
- * Filter themes based on selected provider and mechanic
+ * Filter themes based on selected provider, mechanic, and optional tab view.
+ * @param {string} [view] — tab preset ('all'|'leaders'|'opportunities'|'premium')
  */
-function filterThemes() {
+function filterThemes(view) {
     const providerValue = document.getElementById('themes-filter-provider')?.value || '';
     const mechanicValue = document.getElementById('themes-filter-mechanic')?.value || '';
     const categoryValue = document.getElementById('themes-category-filter')?.value || '';
 
-    // If no filters selected, show all
-    if (!providerValue && !mechanicValue && !categoryValue) {
+    // If no filters selected and no view override, show all
+    if (!providerValue && !mechanicValue && !categoryValue && !view) {
         renderThemes();
         return;
     }
@@ -172,15 +173,33 @@ function filterThemes() {
         return b['Smart Index'] - a['Smart Index'];
     });
 
-    // Update count
-    const themesCountSpan = document.getElementById('themes-count');
-    if (themesCountSpan) {
-        themesCountSpan.textContent = filteredThemes.length;
+    // Apply tab view filter if provided
+    let result = filteredThemes;
+    if (view === 'leaders') {
+        const sortedByCount = [...filteredThemes].sort((a, b) => b['Game Count'] - a['Game Count']);
+        const threshold = sortedByCount[Math.floor(sortedByCount.length * 0.2)]?.['Game Count'] || 5;
+        result = filteredThemes.filter(t => t['Game Count'] >= threshold);
+        result.sort((a, b) => (b['Market Share %'] || 0) - (a['Market Share %'] || 0));
+    } else if (view === 'opportunities') {
+        const avgPerf = filteredThemes.reduce((s, t) => s + (t['Avg Theo Win Index'] || 0), 0) / filteredThemes.length;
+        result = filteredThemes.filter(
+            t => t['Game Count'] >= 3 && t['Avg Theo Win Index'] >= avgPerf && t['Market Share %'] < 5
+        );
+    } else if (view === 'premium') {
+        const sortedByPerf = [...filteredThemes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
+        const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Smart Index'] || 1.5;
+        result = filteredThemes.filter(t => (t['Smart Index'] || 0) >= threshold);
     }
 
-    renderThemes(filteredThemes);
-    log(`🔍 Filtered to ${filteredThemes.length} themes (${filteredGames.length} games)`);
+    const themesCountSpan = document.getElementById('themes-count');
+    if (themesCountSpan) {
+        themesCountSpan.textContent = result.length;
+    }
+
+    renderThemes(result);
+    log(`🔍 Filtered to ${result.length} themes (${filteredGames.length} games, view: ${view || 'all'})`);
 }
+window.filterThemes = filterThemes;
 
 /**
  * Filter mechanics based on selected provider and theme

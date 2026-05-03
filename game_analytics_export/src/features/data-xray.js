@@ -34,8 +34,7 @@ export function setupXRay() {
     document.addEventListener(
         'click',
         e => {
-            const shouldIntercept = xrayActive || e.metaKey || e.ctrlKey;
-            if (!shouldIntercept) return;
+            if (!xrayActive) return;
 
             // Don't intercept clicks on controls/nav/X-Ray panel itself
             if (isControlElement(e.target)) return;
@@ -86,12 +85,6 @@ export function setupXRay() {
         },
         true
     );
-
-    document.addEventListener('keydown', e => {
-        if (e.metaKey || e.ctrlKey) document.body.classList.add('xray-cmd-held');
-    });
-    document.addEventListener('keyup', () => document.body.classList.remove('xray-cmd-held'));
-    window.addEventListener('blur', () => document.body.classList.remove('xray-cmd-held'));
 }
 
 // ── Elements to NEVER intercept ──────────────────────────
@@ -626,7 +619,7 @@ function activateXRay(silent) {
 function deactivateXRay() {
     xrayActive = false;
     window.xrayActive = false;
-    document.body.classList.remove('xray-active', 'xray-cmd-held');
+    document.body.classList.remove('xray-active');
     const badge = document.getElementById('xray-badge');
     if (badge) badge.classList.add('hidden');
     showToast('X-Ray OFF');
