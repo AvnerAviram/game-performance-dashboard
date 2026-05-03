@@ -12,14 +12,16 @@ export async function createProvidersChart() {
 
         const allProviders = await getProviderMetrics(gameData.activeCategory);
         if (!allProviders.length) return;
-        const majors = allProviders.slice(0, 20);
 
-        const maxShare = Math.max(...majors.map(p => p.ggrShare), 1);
-        const medX = median(majors.map(p => p.count));
-        const medY = median(majors.map(p => p.avgTheo));
+        const medX = median(allProviders.map(p => p.count));
+        const medY = median(allProviders.map(p => p.avgTheo));
+
+        const majors = allProviders.slice(0, 12);
+        const maxShare = Math.max(...allProviders.map(p => p.ggrShare), 1);
 
         const data = majors.map(p => ({
-            name: `🏢 ${p.name}`,
+            name: p.name,
+            shortName: p.name,
             x: p.count,
             y: p.avgTheo,
             r: Math.max(6, Math.min(20, 6 + Math.sqrt(p.ggrShare / maxShare) * 14)),
@@ -30,7 +32,9 @@ export async function createProvidersChart() {
             data,
             instanceKey: 'providers',
             instanceRegistry: chartInstances,
-            labels: 'none',
+            labels: 'top',
+            maxLabels: 4,
+            quadrantLabels: false,
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {

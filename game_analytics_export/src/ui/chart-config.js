@@ -15,7 +15,7 @@ import {
 import { createVolatilityChart, createVolatilityLandscapeChart } from './chart-volatility.js';
 import { createRtpChart, createRtpLandscapeChart } from './chart-rtp.js';
 import { createBrandsChart, createBrandLandscapeChart } from './chart-brands.js';
-import { createArtThemeChart } from './chart-art.js';
+import { createNarrativeChart } from './chart-art.js';
 
 /** Re-export for consumers that import from charts-modern.js barrel */
 export { createMarketLandscapeChart } from './chart-themes.js';
@@ -98,7 +98,7 @@ export async function initializeCharts() {
     createMechanicsChart();
     createGamesChart();
     createScatterChart();
-    await Promise.all([createProvidersChart(), createVolatilityChart(), createRtpChart(), createArtThemeChart()]);
+    await Promise.all([createProvidersChart(), createVolatilityChart(), createRtpChart(), createNarrativeChart()]);
     createBrandsChart();
 
     const retryMissing = async () => {
@@ -108,7 +108,7 @@ export async function initializeCharts() {
             !chartInstances.providers ? createProvidersChart() : Promise.resolve(),
             !chartInstances.volatility ? createVolatilityChart() : Promise.resolve(),
             !chartInstances.rtp ? createRtpChart() : Promise.resolve(),
-            !chartInstances.artThemes ? createArtThemeChart() : Promise.resolve(),
+            !chartInstances.narratives ? createNarrativeChart() : Promise.resolve(),
         ]);
         if (!chartInstances.brands) createBrandsChart();
     };
@@ -129,7 +129,7 @@ export async function refreshCharts() {
     createMechanicsChart();
     createGamesChart();
     createScatterChart();
-    await Promise.all([createProvidersChart(), createVolatilityChart(), createRtpChart(), createArtThemeChart()]);
+    await Promise.all([createProvidersChart(), createVolatilityChart(), createRtpChart(), createNarrativeChart()]);
     createBrandsChart();
     setTimeout(() => {
         isRefreshing = false;

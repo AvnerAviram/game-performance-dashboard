@@ -95,10 +95,34 @@ export const saLabelSolver = (labs, ancs, w, h, left, top) => {
             labs[idx].x = bestPos.x;
             labs[idx].y = bestPos.y;
         } else {
-            const fallbackX = Math.max(left, Math.min(left + w - lw, a.x + a.r + 16));
-            const fallbackY = Math.max(top, Math.min(top + h - lh, a.y - a.r - lh - 8));
-            labs[idx].x = fallbackX;
-            labs[idx].y = fallbackY;
+            let placed_fb = false;
+            const fbCandidates = [
+                { x: a.x + a.r + 16, y: a.y - a.r - lh - 8 },
+                { x: a.x - lw - a.r - 16, y: a.y - a.r - lh - 8 },
+                { x: a.x + a.r + 16, y: a.y + a.r + 8 },
+                { x: a.x - lw - a.r - 16, y: a.y + a.r + 8 },
+            ];
+            for (const fb of fbCandidates) {
+                const fx = Math.max(left, Math.min(left + w - lw, fb.x));
+                const fy = Math.max(top, Math.min(top + h - lh, fb.y));
+                let hits = false;
+                for (let j = 0; j < m; j++) {
+                    if (rectOverlapsBubble(fx, fy, fx + lw, fy + lh, ancs[j].x, ancs[j].y, ancs[j].r + 4)) {
+                        hits = true;
+                        break;
+                    }
+                }
+                if (!hits) {
+                    labs[idx].x = fx;
+                    labs[idx].y = fy;
+                    placed_fb = true;
+                    break;
+                }
+            }
+            if (!placed_fb) {
+                labs[idx].x = -9999;
+                labs[idx].y = -9999;
+            }
         }
 
         placed.push({

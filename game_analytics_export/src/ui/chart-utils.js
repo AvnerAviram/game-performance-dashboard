@@ -175,7 +175,7 @@ export function median(arr) {
     return s[Math.floor(s.length / 2)];
 }
 
-export function createQuadrantPlugin(id, medX, medY, chartColors) {
+export function createQuadrantPlugin(id, medX, medY, chartColors, { showLabels = true } = {}) {
     return {
         id,
         beforeDatasetsDraw(chart) {
@@ -202,6 +202,7 @@ export function createQuadrantPlugin(id, medX, medY, chartColors) {
             c.restore();
         },
         afterDatasetsDraw(chart) {
+            if (!showLabels) return;
             const {
                 ctx: c,
                 chartArea: { left, right, top, bottom },
@@ -844,6 +845,7 @@ export function createBubbleLandscape(
         yLabel = 'Avg Performance Index',
         labels = 'none',
         quadrants = true,
+        quadrantLabels = true,
         medianX,
         medianY,
         colorFn,
@@ -921,7 +923,8 @@ export function createBubbleLandscape(
     ];
 
     const plugins = [];
-    if (quadrants) plugins.push(createQuadrantPlugin(canvasId + 'Quad', medX, medY, chartColors));
+    if (quadrants)
+        plugins.push(createQuadrantPlugin(canvasId + 'Quad', medX, medY, chartColors, { showLabels: quadrantLabels }));
 
     if (labels !== 'none') {
         const borderArr = data.map((d, i) => {

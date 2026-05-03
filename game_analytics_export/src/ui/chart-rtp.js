@@ -21,7 +21,8 @@ export async function createRtpChart() {
         const maxCount = Math.max(...bandData.map(b => b.count), 1);
 
         const data = bandData.map((b, i) => ({
-            name: `📐 RTP ${b.label}`,
+            name: `RTP ${b.label}`,
+            shortName: `RTP ${b.label}`,
             x: b.count,
             y: b.avgTheo,
             r: Math.max(10, Math.min(28, 10 + Math.sqrt(b.count / maxCount) * 18)),
@@ -33,7 +34,9 @@ export async function createRtpChart() {
             data,
             instanceKey: 'rtp',
             instanceRegistry: chartInstances,
-            labels: 'none',
+            labels: 'top',
+            maxLabels: 4,
+            quadrantLabels: false,
             colorFn: (d, type) => {
                 const c = RTP_COLORS[d._i % RTP_COLORS.length];
                 return type === 'bg' ? c + 'AA' : c;

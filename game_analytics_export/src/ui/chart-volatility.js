@@ -22,7 +22,8 @@ export async function createVolatilityChart() {
         const globalAvg = sorted.reduce((s, x) => s + x.avgTheo * x.count, 0) / sorted.reduce((s, x) => s + x.count, 0);
 
         const data = sorted.map(v => ({
-            name: `🎲 ${v.name} Volatility`,
+            name: `${v.name} Vol`,
+            shortName: `${v.name} Vol`,
             x: v.count,
             y: v.avgTheo,
             r: Math.max(10, Math.min(28, 10 + Math.sqrt(v.count / maxCount) * 18)),
@@ -33,7 +34,9 @@ export async function createVolatilityChart() {
             data,
             instanceKey: 'volatility',
             instanceRegistry: chartInstances,
-            labels: 'none',
+            labels: 'top',
+            maxLabels: 4,
+            quadrantLabels: false,
             colorFn: (d, type) => {
                 const c = VOL_COLORS[d._vol.name] || '#94a3b8';
                 return type === 'bg' ? c + 'AA' : c;

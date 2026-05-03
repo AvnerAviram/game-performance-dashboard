@@ -336,10 +336,11 @@ export function createScatterChart() {
         log('[SCATTER] filtered themes:', allThemes.length);
         if (!allThemes.length) return;
 
-        const majors = allThemes.slice(0, 20);
+        const medX = median(allThemes.map(t => t['Game Count'] || 0));
+        const medY = median(allThemes.map(t => t['Avg Theo Win Index'] || 0));
+
+        const majors = allThemes.slice(0, 12);
         const maxCount = Math.max(...allThemes.map(t => t['Game Count'] || 0), 1);
-        const medX = median(majors.map(t => t['Game Count'] || 0));
-        const medY = median(majors.map(t => t['Avg Theo Win Index'] || 0));
 
         const data = majors.map(t => {
             const full = stripParenthetical(t.Theme || '');
@@ -357,7 +358,9 @@ export function createScatterChart() {
             data,
             instanceKey: 'scatter',
             instanceRegistry: chartInstances,
-            labels: 'none',
+            labels: 'top',
+            maxLabels: 4,
+            quadrantLabels: false,
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {

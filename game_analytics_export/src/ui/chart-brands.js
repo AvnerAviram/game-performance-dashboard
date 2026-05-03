@@ -54,13 +54,15 @@ export function createBrandsChart() {
         const franchises = getFranchiseBubbles(allGames);
         if (!franchises.length) return;
 
-        const majors = franchises.slice(0, 35);
-        const maxShare = Math.max(...majors.map(f => f.totalShare), 0.01);
-        const medX = median(majors.map(f => f.count));
-        const medY = median(majors.map(f => f.avgTheo));
+        const medX = median(franchises.map(f => f.count));
+        const medY = median(franchises.map(f => f.avgTheo));
+
+        const majors = franchises.slice(0, 12);
+        const maxShare = Math.max(...franchises.map(f => f.totalShare), 0.01);
 
         const data = majors.map(f => ({
-            name: `🎮 ${f.name}`,
+            name: f.name,
+            shortName: f.name,
             x: f.count,
             y: f.avgTheo,
             r: Math.max(8, Math.min(24, 8 + Math.sqrt(f.totalShare / maxShare) * 16)),
@@ -73,7 +75,9 @@ export function createBrandsChart() {
             instanceRegistry: chartInstances,
             xLabel: 'Title Count',
             yLabel: 'Avg Performance Index',
-            labels: 'none',
+            labels: 'top',
+            maxLabels: 4,
+            quadrantLabels: false,
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {
