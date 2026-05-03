@@ -48,49 +48,44 @@ let themeBreakdowns = null;
     }
 })();
 
-function _artBarRow(label, count, total) {
-    const pct = total > 0 ? (count / total) * 100 : 0;
-    const pctStr = pct >= 10 || pct === Math.round(pct) ? `${Math.round(pct)}` : pct.toFixed(1);
-    const w = Math.min(100, Math.max(2, Math.round(pct)));
-    return `<div class="py-1">
-      <div class="flex items-baseline justify-between mb-0.5">
-        <span class="text-[11px] font-medium text-gray-800 dark:text-gray-200">${escapeHtml(label)}</span>
-        <span class="text-[10px] text-gray-500 dark:text-gray-400 ml-2 shrink-0">${count} (${pctStr}%)</span>
-      </div>
-      <div class="h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-        <div class="h-full bg-indigo-400 dark:bg-indigo-500 rounded-full" style="width:${w}%"></div>
-      </div>
+function _artBarRow(label, count, maxCount, total) {
+    const barW = Math.min(100, Math.max(4, Math.round((count / Math.max(maxCount, 1)) * 100)));
+    return `<div class="flex items-center gap-2.5 py-2.5">
+      <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-32 truncate flex-shrink-0" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
+      <div class="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-violet-400 dark:bg-violet-500 rounded-full" style="width:${barW}%"></div></div>
+      <span class="text-[12px] text-gray-500 dark:text-gray-400 w-8 text-right shrink-0">${count}</span>
     </div>`;
 }
 
 function _renderArtSubSection(title, icon, rows, total, initialShow) {
     if (!rows.length) return '';
     const uid = 'art-' + Math.random().toString(36).slice(2, 8);
+    const maxCount = rows[0]?.[1] || 1;
     const visible = rows
         .slice(0, initialShow)
-        .map(([l, c]) => _artBarRow(l, c, total))
+        .map(([l, c]) => _artBarRow(l, c, maxCount, total))
         .join('');
     const hidden = rows
         .slice(initialShow)
-        .map(([l, c]) => _artBarRow(l, c, total))
+        .map(([l, c]) => _artBarRow(l, c, maxCount, total))
         .join('');
     const hasMore = rows.length > initialShow;
 
     const header =
         title != null
-            ? `<h4 class="text-[11px] font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-    <span class="text-xs">${icon}</span> ${escapeHtml(title)} <span class="font-normal">(${rows.length})</span>
+            ? `<h4 class="text-[12px] font-bold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+    <span class="text-sm">${icon}</span> ${escapeHtml(title)} <span class="font-normal text-gray-400 dark:text-gray-500">(${rows.length})</span>
   </h4>`
             : '';
 
-    return `<div class="mb-3">
+    return `<div class="mb-5">
   ${header}
-  <div class="space-y-0.5">
+  <div class="space-y-0">
     ${visible}
     ${
         hasMore
-            ? `<div id="${uid}-more" class="hidden space-y-0.5">${hidden}</div>
-    <button id="${uid}-btn" onclick="(function(){var m=document.getElementById('${uid}-more'),b=document.getElementById('${uid}-btn');if(m.classList.contains('hidden')){m.classList.remove('hidden');b.textContent='Show less';}else{m.classList.add('hidden');b.textContent='Show ${rows.length - initialShow} more…';}})()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mt-1 cursor-pointer">Show ${rows.length - initialShow} more…</button>`
+            ? `<div id="${uid}-more" class="hidden space-y-0">${hidden}</div>
+    <button id="${uid}-btn" onclick="(function(){var m=document.getElementById('${uid}-more'),b=document.getElementById('${uid}-btn');if(m.classList.contains('hidden')){m.classList.remove('hidden');b.textContent='Show less';}else{m.classList.add('hidden');b.textContent='Show ${rows.length - initialShow} more…';}})()" class="text-[11px] text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-medium mt-2 cursor-pointer">Show ${rows.length - initialShow} more…</button>`
             : ''
     }
   </div>

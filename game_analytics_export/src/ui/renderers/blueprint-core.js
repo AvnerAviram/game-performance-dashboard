@@ -769,34 +769,68 @@ export function initBlueprint() {
         selectedCategories.add(picked.cat);
         chosenFeats.forEach(f => selectedFeatures.add(f.feat));
 
-        // Pick art direction (elements + characters) from this theme's games
+        // Pick art direction using performance-weighted selection
         const themeGames = allG.filter(g => (g.theme_consolidated || g.theme_primary || '') === picked.cat);
-        const elemCounts = {};
-        const charCounts = {};
-        for (const g of themeGames) {
-            const elems = g.art_elements ? (Array.isArray(g.art_elements) ? g.art_elements : []) : [];
-            const chars = g.art_characters ? (Array.isArray(g.art_characters) ? g.art_characters : []) : [];
-            elems.forEach(e => {
-                if (e) elemCounts[e] = (elemCounts[e] || 0) + 1;
-            });
-            chars.forEach(c => {
-                if (c && c !== 'No Characters (symbol-only game)') charCounts[c] = (charCounts[c] || 0) + 1;
-            });
-        }
-        const topElems = Object.entries(elemCounts)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 3)
-            .map(e => e[0]);
-        const topChars = Object.entries(charCounts)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 2)
-            .map(e => e[0]);
+        const themeTheoAvg = themeGames.reduce((s, g) => s + (F.theoWin(g) || 0), 0) / Math.max(themeGames.length, 1);
 
-        // Apply art suggestions to selectedArt state (affects score)
+        function perfWeightedTop(items, minCount = 2) {
+            return items
+                .filter(([, d]) => d.count >= minCount)
+                .map(([name, d]) => {
+                    const avg = d.sumTheo / d.count;
+                    const lift = themeTheoAvg > 0 ? (avg - themeTheoAvg) / themeTheoAvg : 0;
+                    return { name, score: d.count * (1 + Math.max(lift, 0) * 2) };
+                })
+                .sort((a, b) => b.score - a.score);
+        }
+
+        const envMap = {};
+        const elemMap = {};
+        const charMap = {};
+        const narrMap = {};
+        for (const g of themeGames) {
+            const theo = F.theoWin(g) || 0;
+            const env = F.artTheme(g);
+            if (env) {
+                if (!envMap[env]) envMap[env] = { count: 0, sumTheo: 0 };
+                envMap[env].count++;
+                envMap[env].sumTheo += theo;
+            }
+            const elems = F.artElements(g) || [];
+            elems.forEach(e => {
+                if (e) {
+                    if (!elemMap[e]) elemMap[e] = { count: 0, sumTheo: 0 };
+                    elemMap[e].count++;
+                    elemMap[e].sumTheo += theo;
+                }
+            });
+            const chars = F.artCharacters(g) || [];
+            chars.forEach(c => {
+                if (c && c !== 'No Characters (symbol-only game)') {
+                    if (!charMap[c]) charMap[c] = { count: 0, sumTheo: 0 };
+                    charMap[c].count++;
+                    charMap[c].sumTheo += theo;
+                }
+            });
+            const narr = F.artNarrative(g);
+            if (narr) {
+                if (!narrMap[narr]) narrMap[narr] = { count: 0, sumTheo: 0 };
+                narrMap[narr].count++;
+                narrMap[narr].sumTheo += theo;
+            }
+        }
+
+        const topEnvs = perfWeightedTop(Object.entries(envMap), 3);
+        const topElems = perfWeightedTop(Object.entries(elemMap), 2).slice(0, 3);
+        const topChars = perfWeightedTop(Object.entries(charMap), 2).slice(0, 2);
+        const topNarrs = perfWeightedTop(Object.entries(narrMap), 3);
+
+        selectedArt.theme = topEnvs[0]?.name || null;
         selectedArt.characters.clear();
         selectedArt.elements.clear();
-        topChars.forEach(c => selectedArt.characters.add(c));
-        topElems.forEach(e => selectedArt.elements.add(e));
+        selectedArt.narrative = topNarrs[0]?.name || null;
+        topChars.forEach(c => selectedArt.characters.add(c.name));
+        topElems.forEach(e => selectedArt.elements.add(e.name));
 
         refreshCategoryUI();
     });
@@ -923,10 +957,14 @@ export function initBlueprint() {
             if (artGames.length >= 2) {
                 const artAvg =
                     artGames.reduce((s, g) => s + (gameTheos ? gameTheos.get(g) : F.theoWin(g)), 0) / artGames.length;
-                artDirection = Math.min(100, Math.max(0, 50 + ((artAvg - themeAvg) / Math.max(themeAvg, 0.01)) * 200));
+                const coherenceBonus = Math.min(15, artGames.length * 1.5);
+                artDirection = Math.min(
+                    100,
+                    Math.max(20, 50 + ((artAvg - themeAvg) / Math.max(themeAvg, 0.01)) * 120 + coherenceBonus)
+                );
             } else if (artGames.length === 1) {
                 const t = gameTheos ? gameTheos.get(artGames[0]) : F.theoWin(artGames[0]);
-                artDirection = t > themeAvg ? 65 : 40;
+                artDirection = t > themeAvg ? 70 : 45;
             } else {
                 artDirection = 55;
             }

@@ -45,6 +45,7 @@ export function renderArtPills(container, themeGames, selectedArt, renderBluepri
     const settings = tallyWithTheo(artGames, g => F.artTheme(g)).slice(0, 6);
     const characters = tallyWithTheo(artGames, g => F.artCharacters(g)).slice(0, 6);
     const elements = tallyWithTheo(artGames, g => F.artElements(g)).slice(0, 8);
+    const narratives = tallyWithTheo(artGames, g => F.artNarrative(g)).slice(0, 5);
 
     const pillHtml = (value, isSelected, dimType, colorBg, colorText) => {
         const sel = isSelected
@@ -89,6 +90,14 @@ export function renderArtPills(container, themeGames, selectedArt, renderBluepri
             'bg-teal-100 dark:bg-teal-900/40',
             'text-teal-700 dark:text-teal-300',
             false
+        ),
+        group(
+            'Narrative',
+            narratives,
+            'narrative',
+            'bg-rose-100 dark:bg-rose-900/40',
+            'text-rose-700 dark:text-rose-300',
+            true
         ),
     ].join('');
 

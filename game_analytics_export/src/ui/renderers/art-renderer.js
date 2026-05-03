@@ -244,16 +244,16 @@ function buildArtBreakdown(games, excludeDimension) {
                 .map(([name, count]) => {
                     const barW = ((count / maxCount) * 100).toFixed(0);
                     const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
-                    return `<div class="flex items-center gap-2 py-1.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
-                    <span class="text-[12px] font-medium text-gray-800 dark:text-gray-200 w-32 truncate flex-shrink-0">${escapeHtml(name)}</span>
-                    <div class="flex-1 h-1.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full ${barColor} rounded-full" style="width:${barW}%"></div></div>
-                    <span class="text-[10px] text-gray-400 dark:text-gray-500 w-14 text-right flex-shrink-0">${count} (${pct}%)</span>
+                    return `<div class="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
+                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-36 truncate flex-shrink-0">${escapeHtml(name)}</span>
+                    <div class="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full ${barColor} rounded-full" style="width:${barW}%"></div></div>
+                    <span class="text-[12px] text-gray-500 dark:text-gray-400 w-16 text-right flex-shrink-0">${count} (${pct}%)</span>
                 </div>`;
                 })
                 .join('');
-            return `<div class="mb-4 last:mb-0">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1.5">${d.label}${d.base < total ? ` <span class="font-normal">(${d.base} of ${total} games)</span>` : ''}</div>
-            <div class="space-y-0.5">${rows}</div>
+            return `<div class="mb-5 last:mb-0">
+            <div class="text-[12px] font-bold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">${d.label}${d.base < total ? ` <span class="font-normal text-gray-400 dark:text-gray-500">(${d.base} of ${total} games)</span>` : ''}</div>
+            <div class="space-y-0">${rows}</div>
         </div>`;
         })
         .join('');
@@ -538,6 +538,22 @@ export async function renderArt() {
     await renderProviderArtCards(artGames, globalAvg);
     renderOpportunityGaps(artGames, globalAvg, themes, narratives, characters, elements, colorTones);
     await renderTopCombos(artGames, globalAvg);
+
+    const scrollTarget = sessionStorage.getItem('art-scroll-target');
+    if (scrollTarget) {
+        sessionStorage.removeItem('art-scroll-target');
+        setTimeout(() => {
+            const el = document.getElementById(scrollTarget);
+            if (el) {
+                const sc = document.getElementById('page-container');
+                if (sc) {
+                    const rect = el.getBoundingClientRect();
+                    const scRect = sc.getBoundingClientRect();
+                    sc.scrollTo({ top: sc.scrollTop + rect.top - scRect.top - 20, behavior: 'smooth' });
+                }
+            }
+        }, 300);
+    }
 }
 
 function renderStats(allGames, artGames, themes, characters, elements, colorTones) {

@@ -748,7 +748,10 @@
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('art')"
+                            onclick="
+                                sessionStorage.setItem('art-scroll-target', 'art-narrative-section');
+                                showPage('art');
+                            "
                         >
                             Narrative Landscape
                         </h3>
@@ -765,12 +768,8 @@
                                 avg Theo Win index among them, bubble area ∝ counts (classified art snapshot).
                             </div>
                         </div>
-                        <button
-                            onclick="showPage('art')"
-                            class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
-                        >
-                            View more &rarr;
-                        </button>
+                        <!-- prettier-ignore -->
+                        <button onclick="sessionStorage.setItem('art-scroll-target','art-narrative-section');showPage('art')" class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer">View more &rarr;</button>
                     </div>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Performance vs Game Count</p>
                 </div>
