@@ -127,9 +127,7 @@ function buildArtBreakdown(games, excludeDimension) {
             const v = F.artTheme(g);
             if (v) map[v] = (map[v] || 0) + 1;
         });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+        const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
         if (sorted.length)
             dims.push({
                 label: 'Themes',
@@ -149,9 +147,7 @@ function buildArtBreakdown(games, excludeDimension) {
                     if (c && c !== 'No Characters (symbol-only game)') map[c] = (map[c] || 0) + 1;
                 });
         });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+        const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
         if (sorted.length)
             dims.push({
                 label: 'Characters',
@@ -171,9 +167,7 @@ function buildArtBreakdown(games, excludeDimension) {
                     if (e) map[e] = (map[e] || 0) + 1;
                 });
         });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+        const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
         if (sorted.length)
             dims.push({
                 label: 'Elements',
@@ -190,9 +184,7 @@ function buildArtBreakdown(games, excludeDimension) {
             const v = F.artNarrative(g);
             if (v) map[v] = (map[v] || 0) + 1;
         });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+        const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
         if (sorted.length)
             dims.push({
                 label: 'Narratives',
@@ -213,9 +205,7 @@ function buildArtBreakdown(games, excludeDimension) {
                 });
             else if (v) map[v] = (map[v] || 0) + 1;
         });
-        const sorted = Object.entries(map)
-            .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+        const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
         if (sorted.length)
             dims.push({
                 label: 'Color tones',
@@ -236,24 +226,30 @@ function buildArtBreakdown(games, excludeDimension) {
         art_color_tone: 'bg-sky-400 dark:bg-sky-500',
     };
 
+    const INITIAL_SHOW = 8;
     return dims
-        .map(d => {
+        .map((d, di) => {
             const maxCount = d.items.length ? d.items[0][1] : 1;
             const barColor = DIM_COLORS[d.dim] || 'bg-indigo-400 dark:bg-indigo-500';
-            const rows = d.items
-                .map(([name, count]) => {
-                    const barW = ((count / maxCount) * 100).toFixed(0);
-                    const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
-                    return `<div class="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors" data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
-                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-36 truncate flex-shrink-0">${escapeHtml(name)}</span>
+            const uid = `art-bd-${di}-${Date.now()}`;
+            const makeRow = ([name, count], hidden) => {
+                const barW = ((count / maxCount) * 100).toFixed(0);
+                const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
+                return `<div class="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors${hidden ? ' hidden' : ''}" ${hidden ? `data-more="${uid}"` : ''} data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
+                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-36 truncate flex-shrink-0" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
                     <div class="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full ${barColor} rounded-full" style="width:${barW}%"></div></div>
                     <span class="text-[12px] text-gray-500 dark:text-gray-400 w-16 text-right flex-shrink-0">${count} (${pct}%)</span>
                 </div>`;
-                })
-                .join('');
+            };
+            const rows = d.items.map((item, i) => makeRow(item, i >= INITIAL_SHOW)).join('');
+            const moreCount = d.items.length - INITIAL_SHOW;
+            const showMoreBtn =
+                moreCount > 0
+                    ? `<button class="text-xs text-indigo-600 dark:text-indigo-400 font-medium mt-1 hover:underline cursor-pointer" onclick="this.parentElement.querySelectorAll('[data-more=\\'${uid}\\']').forEach(el=>el.classList.remove('hidden'));this.remove()">Show all ${d.items.length} items</button>`
+                    : '';
             return `<div class="mb-5 last:mb-0">
             <div class="text-[12px] font-bold uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-2">${d.label}${d.base < total ? ` <span class="font-normal text-gray-400 dark:text-gray-500">(${d.base} of ${total} games)</span>` : ''}</div>
-            <div class="space-y-0">${rows}</div>
+            <div class="space-y-0">${rows}${showMoreBtn}</div>
         </div>`;
         })
         .join('');
@@ -419,6 +415,11 @@ window.showArtCombo = async function (dimA, dimB) {
 };
 
 export async function renderArt() {
+    document.querySelectorAll('canvas[id^="art-"]').forEach(c => {
+        const wrapper = c.parentElement;
+        if (wrapper) wrapper.classList.add('chart-loading');
+    });
+
     const allGames = getActiveGames();
     const artGames = allGames.filter(g => F.artTheme(g));
 
@@ -538,6 +539,8 @@ export async function renderArt() {
     await renderProviderArtCards(artGames, globalAvg);
     renderOpportunityGaps(artGames, globalAvg, themes, narratives, characters, elements, colorTones);
     await renderTopCombos(artGames, globalAvg);
+
+    document.querySelectorAll('.chart-loading').forEach(el => el.classList.remove('chart-loading'));
 
     const scrollTarget = sessionStorage.getItem('art-scroll-target');
     if (scrollTarget) {
@@ -1653,19 +1656,19 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
 
             const recipeDims = [];
             recipeDims.push(
-                `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Theme</span><span class="px-2.5 py-0.5 rounded-md bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 text-xs font-bold">${escapeHtml(shortLabel(r.theme, 24))}</span></div>`
+                `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Theme</span><span class="px-2.5 py-1 rounded-md bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-[12px] font-bold">${escapeHtml(shortLabel(r.theme, 24))}</span></div>`
             );
             if (chars.length)
                 recipeDims.push(
-                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Characters</span><span class="flex flex-wrap gap-1">${chars.map(c => `<span class="px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 text-xs font-semibold">${escapeHtml(shortLabel(c, 18))}</span>`).join('')}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Characters</span><span class="flex flex-wrap gap-1.5">${chars.map(c => `<span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-[12px] font-semibold">${escapeHtml(shortLabel(c, 20))}</span>`).join('')}</span></div>`
                 );
             if (elems.length)
                 recipeDims.push(
-                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Elements</span><span class="flex flex-wrap gap-1">${elems.map(e => `<span class="px-2 py-0.5 rounded-md bg-teal-50 dark:bg-teal-900/20 text-teal-700 dark:text-teal-300 text-xs font-semibold">${escapeHtml(shortLabel(e, 18))}</span>`).join('')}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Elements</span><span class="flex flex-wrap gap-1.5">${elems.map(e => `<span class="px-2.5 py-1 rounded-md bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-[12px] font-semibold">${escapeHtml(shortLabel(e, 20))}</span>`).join('')}</span></div>`
                 );
             if (narr)
                 recipeDims.push(
-                    `<div class="flex items-center gap-1.5"><span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 w-16 shrink-0">Narrative</span><span class="px-2 py-0.5 rounded-md bg-rose-50 dark:bg-rose-900/20 text-rose-700 dark:text-rose-300 text-xs font-semibold">${escapeHtml(shortLabel(narr, 20))}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Narrative</span><span class="px-2.5 py-1 rounded-md bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 text-[12px] font-semibold">${escapeHtml(shortLabel(narr, 22))}</span></div>`
                 );
 
             const specLine = [domVol, domLayout, avgRtp > 0 ? `RTP ${avgRtp.toFixed(1)}%` : '']
@@ -1881,24 +1884,47 @@ async function renderTopCombos(artGames, globalAvg) {
     if (!container) return;
 
     const [themeElem, themeChar] = await Promise.all([
-        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'elements', minGames: 5 }),
-        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'characters', minGames: 5 }),
+        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'elements', minGames: 3 }),
+        getArtComboMetrics(gameData.activeCategory, { dimA: 'theme', dimB: 'characters', minGames: 2 }),
     ]);
     const artAvg = artGames.length > 0 ? artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length : globalAvg;
 
     const charByTheme = {};
     themeChar.forEach(c => {
+        if (c.dimB === 'No Characters (symbol-only game)') return;
         if (!charByTheme[c.dimA] || c.count > charByTheme[c.dimA].count) charByTheme[c.dimA] = c;
     });
 
-    const enriched = themeElem.map(c => ({
-        theme: c.dimA,
-        element: c.dimB,
-        character: charByTheme[c.dimA]?.dimB || null,
-        count: c.count,
-        avgTheo: c.avgTheo,
-    }));
-    const sorted = enriched.sort((a, b) => b.avgTheo - a.avgTheo).slice(0, 10);
+    const charByThemeElem = {};
+    artGames.forEach(g => {
+        const theme = F.artTheme(g);
+        const elems = F.artElements(g) || [];
+        const chars = (F.artCharacters(g) || []).filter(c => c && c !== 'No Characters (symbol-only game)');
+        if (!theme || !chars.length) return;
+        for (const elem of elems) {
+            const key = `${theme}|||${elem}`;
+            if (!charByThemeElem[key]) charByThemeElem[key] = {};
+            chars.forEach(c => {
+                charByThemeElem[key][c] = (charByThemeElem[key][c] || 0) + 1;
+            });
+        }
+    });
+
+    const enriched = themeElem.map(c => {
+        const key = `${c.dimA}|||${c.dimB}`;
+        const charMap = charByThemeElem[key];
+        const bestChar = charMap
+            ? Object.entries(charMap).sort((a, b) => b[1] - a[1])[0]?.[0]
+            : charByTheme[c.dimA]?.dimB || null;
+        return {
+            theme: c.dimA,
+            element: c.dimB,
+            character: bestChar || null,
+            count: c.count,
+            avgTheo: c.avgTheo,
+        };
+    });
+    const sorted = enriched.sort((a, b) => b.avgTheo - a.avgTheo).slice(0, 12);
 
     if (!sorted.length) {
         container.innerHTML = '<p class="text-xs text-gray-400">Not enough data</p>';

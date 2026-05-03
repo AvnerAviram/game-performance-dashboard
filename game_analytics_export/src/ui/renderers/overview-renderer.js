@@ -95,7 +95,7 @@ export async function renderOverview() {
 
     const providersEl = document.getElementById('overview-total-providers');
     if (providersEl) {
-        const rankedProviders = await getProviderMetrics(gameData.activeCategory, { minGames: 30 });
+        const rankedProviders = await getProviderMetrics(gameData.activeCategory);
         providersEl.textContent = rankedProviders.length;
         providersEl.dataset.xray = JSON.stringify({
             dimension: 'overview',

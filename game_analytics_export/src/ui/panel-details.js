@@ -51,7 +51,7 @@ let themeBreakdowns = null;
 function _artBarRow(label, count, maxCount, total) {
     const barW = Math.min(100, Math.max(4, Math.round((count / Math.max(maxCount, 1)) * 100)));
     return `<div class="flex items-center gap-2.5 py-2.5">
-      <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-32 truncate flex-shrink-0" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
+      <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-44 truncate flex-shrink-0" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
       <div class="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full bg-violet-400 dark:bg-violet-500 rounded-full" style="width:${barW}%"></div></div>
       <span class="text-[12px] text-gray-500 dark:text-gray-400 w-8 text-right shrink-0">${count}</span>
     </div>`;

@@ -453,6 +453,36 @@ function handleConceptEval(q) {
         else if (vsMarket < -10)
             html += `<p class="text-xs text-red-500 font-medium mt-1">This combination underperforms. Consider tweaking the feature mix or targeting a niche audience.</p>`;
     }
+
+    const artSubset = matchedGames.filter(g => F.artTheme(g));
+    if (artSubset.length >= 3) {
+        const charMap = {};
+        const elemMap = {};
+        artSubset.forEach(g => {
+            (F.artCharacters(g) || []).forEach(c => {
+                if (c && c !== 'No Characters (symbol-only game)') charMap[c] = (charMap[c] || 0) + 1;
+            });
+            (F.artElements(g) || []).forEach(e => {
+                if (e) elemMap[e] = (elemMap[e] || 0) + 1;
+            });
+        });
+        const topChars = Object.entries(charMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 3);
+        const topElems = Object.entries(elemMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 4);
+        if (topChars.length || topElems.length) {
+            html += `<div class="mt-3 p-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700">`;
+            html += `<p class="text-xs font-bold text-purple-700 dark:text-purple-300 mb-1">Art Direction Suggestion</p>`;
+            const parts = [];
+            if (topChars.length) parts.push(`Characters: ${topChars.map(([n]) => escapeHtml(n)).join(', ')}`);
+            if (topElems.length) parts.push(`Elements: ${topElems.map(([n]) => escapeHtml(n)).join(', ')}`);
+            html += `<p class="text-[11px] text-purple-600 dark:text-purple-400">${parts.join(' · ')}</p>`;
+            html += `</div>`;
+        }
+    }
+
     return html;
 }
 
@@ -779,43 +809,82 @@ function handleArtQuery(question) {
         : artGames;
     if (subset.length < 3) return null;
 
-    const tally = fn => {
+    const tallyWithPerf = fn => {
         const map = {};
         subset.forEach(g => {
             const v = fn(g);
-            if (Array.isArray(v)) v.forEach(x => x && (map[x] = (map[x] || 0) + 1));
-            else if (v) map[v] = (map[v] || 0) + 1;
+            const theo = F.theoWin(g) || 0;
+            if (Array.isArray(v))
+                v.forEach(x => {
+                    if (x) {
+                        if (!map[x]) map[x] = { count: 0, totalTheo: 0 };
+                        map[x].count++;
+                        map[x].totalTheo += theo;
+                    }
+                });
+            else if (v) {
+                if (!map[v]) map[v] = { count: 0, totalTheo: 0 };
+                map[v].count++;
+                map[v].totalTheo += theo;
+            }
         });
         return Object.entries(map)
+            .map(([name, d]) => [name, d.count, d.count > 0 ? d.totalTheo / d.count : 0])
             .sort((a, b) => b[1] - a[1])
-            .slice(0, 6);
+            .slice(0, 8);
     };
 
-    const artThemeList = tally(g => F.artTheme(g));
-    const chars = tally(g => F.artCharacters(g)).filter(([n]) => n !== 'No Characters (symbol-only game)');
-    const elements = tally(g => F.artElements(g));
-    const narratives = tally(g => F.artNarrative(g));
+    const artThemeList = tallyWithPerf(g => F.artTheme(g));
+    const chars = tallyWithPerf(g => F.artCharacters(g)).filter(([n]) => n !== 'No Characters (symbol-only game)');
+    const elements = tallyWithPerf(g => F.artElements(g));
+    const narratives = tallyWithPerf(g => F.artNarrative(g));
+    const colors = tallyWithPerf(g => F.artColorTone(g));
 
+    const subsetAvg = avg(subset.map(g => F.theoWin(g)).filter(t => t > 0));
     const label = theme ? escapeHtml(theme.Theme) : 'Market-Wide';
-    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${label} Art Direction</p>`;
-    html += `<p class="text-xs text-gray-500 mb-3">Based on ${subset.length} games with art characterization data.</p>`;
+    let html = `<p class="font-semibold text-gray-900 dark:text-white mb-2">${label} Art Intelligence</p>`;
+    html += `<div class="flex flex-wrap gap-2 mb-3">`;
+    html += statCard('Games', subset.length);
+    html += statCard('Avg PI', subsetAvg.toFixed(2));
+    html += statCard('Art Coverage', `${pct(subset.length, games.length)}%`);
+    html += `</div>`;
 
-    const pills = items =>
+    const perfBar = items =>
         items
-            .map(
-                ([n, c]) =>
-                    `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(n)} (${c})</span>`
-            )
+            .map(([n, c, avgPI]) => {
+                const lift = subsetAvg > 0 ? ((avgPI - subsetAvg) / subsetAvg) * 100 : 0;
+                const liftColor = lift >= 0 ? 'text-emerald-600' : 'text-red-500';
+                return `<div class="flex items-center gap-2 py-1"><span class="text-[11px] w-28 truncate font-medium text-gray-800 dark:text-gray-200">${escapeHtml(n)}</span><span class="text-[10px] text-gray-400 w-6 text-right">${c}</span><span class="text-[10px] font-semibold ${liftColor} w-12 text-right">${lift >= 0 ? '+' : ''}${lift.toFixed(0)}%</span></div>`;
+            })
             .join('');
 
     if (artThemeList.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Themes</p><div class="flex flex-wrap gap-1 mb-2">${pills(artThemeList)}</div>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Art Themes <span class="font-normal text-gray-400">(count · lift vs avg)</span></p><div class="mb-3">${perfBar(artThemeList)}</div>`;
     if (chars.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Characters</p><div class="flex flex-wrap gap-1 mb-2">${pills(chars)}</div>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Characters</p><div class="mb-3">${perfBar(chars)}</div>`;
     if (elements.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Visual Elements</p><div class="flex flex-wrap gap-1 mb-2">${pills(elements)}</div>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Visual Elements</p><div class="mb-3">${perfBar(elements)}</div>`;
     if (narratives.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Narrative</p><div class="flex flex-wrap gap-1 mb-2">${pills(narratives)}</div>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Narrative Styles</p><div class="mb-3">${perfBar(narratives)}</div>`;
+    if (colors.length)
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Color Tones</p><div class="mb-3">${perfBar(colors)}</div>`;
+
+    const bestArt = artThemeList.filter(([, , pi]) => pi > subsetAvg).slice(0, 3);
+    const bestChars = chars.filter(([, , pi]) => pi > subsetAvg).slice(0, 2);
+    const bestElems = elements.filter(([, , pi]) => pi > subsetAvg).slice(0, 3);
+    if (bestArt.length || bestChars.length || bestElems.length) {
+        html += `<div class="mt-3 p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-700">`;
+        html += `<p class="text-xs font-bold text-indigo-700 dark:text-indigo-300 mb-1">Recommended Art Recipe</p>`;
+        const parts = [];
+        if (bestArt.length)
+            parts.push(`<strong>Environment:</strong> ${bestArt.map(([n]) => escapeHtml(n)).join(', ')}`);
+        if (bestChars.length)
+            parts.push(`<strong>Characters:</strong> ${bestChars.map(([n]) => escapeHtml(n)).join(', ')}`);
+        if (bestElems.length)
+            parts.push(`<strong>Elements:</strong> ${bestElems.map(([n]) => escapeHtml(n)).join(', ')}`);
+        html += `<p class="text-[11px] text-indigo-600 dark:text-indigo-400">${parts.join(' · ')}</p>`;
+        html += `</div>`;
+    }
 
     return html;
 }

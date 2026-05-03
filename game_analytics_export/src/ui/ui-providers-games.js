@@ -83,12 +83,14 @@ export async function renderProviders(providersData = null) {
         if (themeFilter && themeFilter.value) {
             const themeVal = themeFilter.value;
             const providerNames = new Set(
-                gameData.allGames.filter(g => g.theme_primary === themeVal).map(g => F.provider(g))
+                gameData.allGames.filter(g => F.themeConsolidated(g) === themeVal).map(g => F.provider(g))
             );
             providers = providers.filter(p => providerNames.has(p.studio));
         }
 
-        // Update count
+        providers = providers.filter(p => (p.game_count || 0) >= MIN_PROVIDER_GAMES);
+
+        // Update count after applying min-games threshold
         if (countEl) countEl.textContent = providers.length;
 
         if (providers.length === 0) {
@@ -96,8 +98,6 @@ export async function renderProviders(providersData = null) {
                 '<div class="empty-state" style="text-align: center; padding: 3rem; color: var(--text-secondary);">No providers found</div>';
             return;
         }
-
-        providers = providers.filter(p => (p.game_count || 0) >= MIN_PROVIDER_GAMES);
         providers.forEach(p => {
             p.provider_score = p.total_market_share || 0;
         });

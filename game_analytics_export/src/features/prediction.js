@@ -699,38 +699,63 @@ function analyzeGameConcept() {
         }
     }
 
-    // Art Direction section for the detected theme
     if (primaryTheme) {
         const artGames = matchingGames.filter(g => F.artTheme(g));
         if (artGames.length >= 3) {
-            const artTally = fn => {
+            const artAvg = artGames.reduce((s, g) => s + F.theoWin(g), 0) / artGames.length;
+            const artTallyPerf = fn => {
                 const m = {};
                 artGames.forEach(g => {
                     const v = fn(g);
+                    const theo = F.theoWin(g) || 0;
                     if (Array.isArray(v))
-                        v.forEach(x => x && x !== 'No Characters (symbol-only game)' && (m[x] = (m[x] || 0) + 1));
-                    else if (v) m[v] = (m[v] || 0) + 1;
+                        v.forEach(x => {
+                            if (x && x !== 'No Characters (symbol-only game)') {
+                                if (!m[x]) m[x] = { count: 0, totalTheo: 0 };
+                                m[x].count++;
+                                m[x].totalTheo += theo;
+                            }
+                        });
+                    else if (v) {
+                        if (!m[v]) m[v] = { count: 0, totalTheo: 0 };
+                        m[v].count++;
+                        m[v].totalTheo += theo;
+                    }
                 });
                 return Object.entries(m)
-                    .sort((a, b) => b[1] - a[1])
-                    .slice(0, 5);
+                    .map(([name, d]) => ({ name, count: d.count, avg: d.count > 0 ? d.totalTheo / d.count : 0 }))
+                    .sort((a, b) => b.count - a.count)
+                    .slice(0, 6);
             };
-            const artThemes = artTally(g => F.artTheme(g));
-            const artChars = artTally(g => F.artCharacters(g));
-            const artElem = artTally(g => F.artElements(g));
-            const artPill = ([n, c]) =>
-                `<span class="px-2 py-0.5 text-[10px] rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">${escapeHtml(n)} (${c})</span>`;
+            const artThemes = artTallyPerf(g => F.artTheme(g));
+            const artChars = artTallyPerf(g => F.artCharacters(g));
+            const artElem = artTallyPerf(g => F.artElements(g));
+            const artNarr = artTallyPerf(g => F.artNarrative(g));
+            const artColors = artTallyPerf(g => F.artColorTone(g));
+
+            const artRow = (item, color) => {
+                const lift = artAvg > 0 ? ((item.avg - artAvg) / artAvg) * 100 : 0;
+                const liftCls = lift >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400';
+                return `<div class="flex items-center gap-2 py-1">
+                    <span class="px-2 py-0.5 text-[10px] rounded-md ${color} font-medium">${escapeHtml(item.name)}</span>
+                    <span class="text-[9px] text-gray-400">${item.count}g</span>
+                    <span class="text-[9px] font-semibold ${liftCls}">${lift >= 0 ? '+' : ''}${lift.toFixed(0)}%</span>
+                </div>`;
+            };
+
             if (artThemes.length) {
                 html += `
                 <div class="bg-white dark:bg-gray-800 rounded-xl border border-slate-200 dark:border-slate-600 overflow-hidden">
                     <div class="px-5 pt-4 pb-3 border-b border-gray-100 dark:border-gray-700">
                         <h3 class="text-sm font-bold text-gray-900 dark:text-white">🎨 Art Direction for ${escapeHtml(primaryTheme)}</h3>
-                        <p class="text-[10px] text-gray-400 mt-0.5">Based on ${artGames.length} games with art characterization</p>
+                        <p class="text-[10px] text-gray-400 mt-0.5">Based on ${artGames.length} games · lift vs art avg (${artAvg.toFixed(2)})</p>
                     </div>
-                        <div class="p-4 space-y-2">
-                        <div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Themes</div><div class="flex flex-wrap gap-1">${artThemes.map(artPill).join('')}</div></div>
-                        ${artChars.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Characters</div><div class="flex flex-wrap gap-1">${artChars.map(artPill).join('')}</div></div>` : ''}
-                        ${artElem.length ? `<div><div class="text-[10px] font-semibold text-gray-500 dark:text-gray-400 uppercase mb-1">Visual Elements</div><div class="flex flex-wrap gap-1">${artElem.map(artPill).join('')}</div></div>` : ''}
+                    <div class="p-4 space-y-3">
+                        <div><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Environment</div><div class="flex flex-wrap gap-1">${artThemes.map(i => artRow(i, 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300')).join('')}</div></div>
+                        ${artChars.length ? `<div><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Characters</div><div class="flex flex-wrap gap-1">${artChars.map(i => artRow(i, 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300')).join('')}</div></div>` : ''}
+                        ${artElem.length ? `<div><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Visual Elements</div><div class="flex flex-wrap gap-1">${artElem.map(i => artRow(i, 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300')).join('')}</div></div>` : ''}
+                        ${artNarr.length ? `<div><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Narrative</div><div class="flex flex-wrap gap-1">${artNarr.map(i => artRow(i, 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300')).join('')}</div></div>` : ''}
+                        ${artColors.length ? `<div><div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase mb-1">Color Tones</div><div class="flex flex-wrap gap-1">${artColors.map(i => artRow(i, 'bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300')).join('')}</div></div>` : ''}
                     </div>
                 </div>`;
             }

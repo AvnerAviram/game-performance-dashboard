@@ -36,7 +36,7 @@ export const PanelSection = ({ title, icon, gradient: _gradient, content, accent
         ? `onclick="const b=document.getElementById('${uid}');const c=document.getElementById('${uid}-chev');if(b.style.display==='none'){b.style.display='';c.style.transform='rotate(180deg)'}else{b.style.display='none';c.style.transform=''}"`
         : '';
     return `
-  <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700/50">
+  <div class="mb-4 bg-white dark:bg-gray-800 rounded-xl overflow-visible shadow-sm border border-gray-100 dark:border-gray-700/50">
     <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-700/50 ${cursor}" ${toggle}>
       <div class="w-1 h-5 rounded-full ${accentColor.replace('border-', 'bg-')}"></div>
       <span class="text-sm">${icon}</span>
