@@ -17,13 +17,17 @@ export async function createArtThemeChart() {
         const medX = median(themes.map(s => s.count));
         const medY = median(themes.map(s => s.avgTheo));
 
-        const data = themes.map(s => ({
-            name: s.theme,
-            x: s.count,
-            y: s.avgTheo,
-            r: 6 + Math.sqrt(s.count / maxCount) * 34,
-            _theme: s,
-        }));
+        const data = themes.map(s => {
+            const full = s.theme;
+            return {
+                name: full,
+                shortName: full.includes('/') ? full.split('/')[0].trim() : full,
+                x: s.count,
+                y: s.avgTheo,
+                r: 6 + Math.sqrt(s.count / maxCount) * 34,
+                _theme: s,
+            };
+        });
 
         createBubbleLandscape('chart-art-themes', {
             data,

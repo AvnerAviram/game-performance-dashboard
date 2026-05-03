@@ -110,6 +110,7 @@ export function createBrandLandscapeChart() {
 
         const data = majors.map(f => ({
             name: `🎮 ${f.name}`,
+            shortName: f.name,
             x: f.count,
             y: f.avgTheo,
             r: 6 + Math.sqrt(f.count / maxCount) * 32,

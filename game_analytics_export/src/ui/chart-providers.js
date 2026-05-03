@@ -64,6 +64,7 @@ export async function createProviderLandscapeChart() {
 
         const data = providers.map(p => ({
             name: `🏢 ${p.name}`,
+            shortName: p.name,
             x: p.count,
             y: p.avgTheo,
             r: 6 + Math.sqrt(p.count / maxCount) * 30,

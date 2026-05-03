@@ -553,13 +553,19 @@ function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, 
     const medX = median(metrics.map(m => m.count));
     const medY = median(metrics.map(m => m.avgTheo));
 
-    const data = metrics.map(m => ({
-        name: nameAccessor(m),
-        x: m.count,
-        y: m.avgTheo,
-        r: 6 + Math.sqrt(m.count / maxCount) * 34,
-        _m: m,
-    }));
+    const data = metrics.map(m => {
+        const full = nameAccessor(m);
+        let short = full.includes('/') ? full.split('/')[0].trim() : full;
+        short = short.replace(/\s*\(.*?\)\s*$/, '').trim();
+        return {
+            name: full,
+            shortName: short,
+            x: m.count,
+            y: m.avgTheo,
+            r: 6 + Math.sqrt(m.count / maxCount) * 34,
+            _m: m,
+        };
+    });
 
     const chart = createBubbleLandscape(canvasId, {
         data,
@@ -590,13 +596,17 @@ function renderThemeLandscape(themes, globalAvg) {
     const medX = median(themes.map(s => s.count));
     const medY = median(themes.map(s => s.avgTheo));
 
-    const data = themes.map(s => ({
-        name: s.theme,
-        x: s.count,
-        y: s.avgTheo,
-        r: 6 + Math.sqrt(s.count / maxCount) * 34,
-        _theme: s,
-    }));
+    const data = themes.map(s => {
+        const full = s.theme;
+        return {
+            name: full,
+            shortName: full.includes('/') ? full.split('/')[0].trim() : full,
+            x: s.count,
+            y: s.avgTheo,
+            r: 6 + Math.sqrt(s.count / maxCount) * 34,
+            _theme: s,
+        };
+    });
 
     createBubbleLandscape('art-opportunity-chart', {
         data,

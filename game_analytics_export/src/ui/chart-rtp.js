@@ -71,6 +71,7 @@ export async function createRtpLandscapeChart() {
 
         const data = bandData.map((b, i) => ({
             name: `📐 RTP ${b.label}`,
+            shortName: `RTP ${b.label}`,
             x: b.count,
             y: b.avgTheo,
             r: Math.max(8, Math.min(40, 8 + Math.sqrt(b.count / maxCount) * 32)),

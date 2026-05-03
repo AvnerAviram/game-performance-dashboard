@@ -74,6 +74,7 @@ export async function createVolatilityLandscapeChart() {
 
         const data = sorted.map(v => ({
             name: `🎲 ${v.name} Volatility`,
+            shortName: `${v.name} Vol`,
             x: v.count,
             y: v.avgTheo,
             r: Math.max(8, Math.min(40, 8 + Math.sqrt(v.count / maxCount) * 32)),

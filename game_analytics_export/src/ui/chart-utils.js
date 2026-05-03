@@ -553,6 +553,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                 const labs = [];
                 const ancs = [];
                 const labMeta = [];
+                const swatchPad = opts.labelColorFn ? 13 : 0;
                 const midX = chartArea.left + areaW / 2;
                 const midY = chartArea.top + areaH / 2;
                 meta0.data.forEach((pt, i) => {
@@ -560,7 +561,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     const label = truncName(labels[i] || '');
                     if (!label) return;
                     const pxR = pt.options?.radius ?? bubbleData[i]?.r ?? 12;
-                    const tw = c.measureText(label).width;
+                    const tw = c.measureText(label).width + swatchPad;
                     const th = fontSize + 2;
                     const ang = Math.atan2(pt.y - midY, pt.x - midX);
                     const offX = Math.cos(ang) * (pxR + 6);
@@ -585,7 +586,7 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     dataIndex: labMeta[k].index,
                     rect: { x1: l.x, x2: l.x + l.width, y1: l.y, y2: l.y + l.height },
                     fs: fontStr,
-                    dx: l.x + l.width / 2,
+                    dx: l.x + swatchPad + (l.width - swatchPad) / 2,
                     dy: l.y + l.height / 2,
                     al: 'center',
                     bl: 'middle',
@@ -676,7 +677,10 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     if (swatchColor) {
                         const sw = 8;
                         c.fillStyle = swatchColor;
-                        c.fillRect(entry.rect.x1 - sw - 3 + ox, entry.dy - sw / 2 + oy, sw, sw);
+                        c.fillRect(entry.rect.x1 + 1 + ox, entry.dy - sw / 2 + oy, sw, sw);
+                        c.strokeStyle = 'rgba(0,0,0,0.15)';
+                        c.lineWidth = 0.5;
+                        c.strokeRect(entry.rect.x1 + 1 + ox, entry.dy - sw / 2 + oy, sw, sw);
                         c.fillStyle = isHov ? highlightColor : perLabelColor || labelColor;
                     }
                 }
@@ -778,7 +782,7 @@ export function createXWarp(xVals) {
     const logX = v => Math.log10(Math.max(1, v));
     const logVals = xVals.map(logX);
     const sorted = [...logVals].sort((a, b) => a - b);
-    const lo = sorted[Math.floor(sorted.length * 0.2)] || 1.0;
+    const lo = sorted[Math.floor(sorted.length * 0.05)] || 0;
     const hi = sorted[Math.floor(sorted.length * 0.8)] || 2.0;
     const k = 2.5;
     const span = (hi - lo) * k;
@@ -793,9 +797,8 @@ export function createXWarp(xVals) {
         if (wv <= whi) return lo + (wv - lo) / k;
         return hi + (wv - whi);
     };
-    const OFFSET = 0.3;
-    const warpVal = v => warp(logX(v)) + OFFSET;
-    const unwarpVal = wv => Math.pow(10, unwarp(wv - OFFSET));
+    const warpVal = v => warp(logX(v));
+    const unwarpVal = wv => Math.pow(10, unwarp(wv));
     return { logX, warp, unwarp, warpVal, unwarpVal };
 }
 
@@ -946,8 +949,9 @@ export function createBubbleLandscape(
 
     if (extraPlugins) plugins.push(...extraPlugins);
 
+    const rawXMin = Math.min(...data.map(d => d.x));
     const scales = xWarp
-        ? bubbleScaleOptionsWarped(chartColors, xWarp, xLabel, yLabel, yWarpFns)
+        ? bubbleScaleOptionsWarped(chartColors, xWarp, xLabel, yLabel, yWarpFns, rawXMin)
         : {
               x: {
                   type: 'linear',
@@ -1087,9 +1091,15 @@ export function bubbleScaleOptionsWarped(
     warpFns,
     xLabel = 'Game Count',
     yLabel = 'Avg Performance Index',
-    yWarpFns = null
+    yWarpFns = null,
+    rawXMin = 1
 ) {
     const { warpVal, unwarpVal } = warpFns;
+
+    const niceTicks = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
+    const tickIdx = niceTicks.findIndex(t => t >= rawXMin);
+    const firstVisibleTick = niceTicks[Math.max(0, tickIdx - 1)] || 1;
+    const xMin = warpVal(firstVisibleTick) - 0.15;
 
     const yScale = {
         beginAtZero: true,
@@ -1119,13 +1129,12 @@ export function bubbleScaleOptionsWarped(
         y: yScale,
         x: {
             type: 'linear',
-            min: 0,
+            min: xMin,
             title: { display: true, text: xLabel, color: chartColors.textColor, font: { size: 10, weight: 'bold' } },
             afterBuildTicks(axis) {
-                const nice = [0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
-                axis.ticks = nice
-                    .map(v => (v === 0 ? 0 : warpVal(v)))
-                    .filter(wv => wv >= 0 && wv <= (axis.max || 5))
+                axis.ticks = niceTicks
+                    .map(v => warpVal(v))
+                    .filter(wv => wv >= (axis.min ?? 0) && wv <= (axis.max || 5))
                     .map(v => ({ value: v }));
             },
             ticks: {
@@ -1135,6 +1144,7 @@ export function bubbleScaleOptionsWarped(
                 callback: val => {
                     if (val < 0.01) return '';
                     const orig = Math.round(unwarpVal(val));
+                    if (orig < 1) return '';
                     const nice = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
                     return nice.reduce((a, b) => (Math.abs(b - orig) < Math.abs(a - orig) ? b : a)).toLocaleString();
                 },
