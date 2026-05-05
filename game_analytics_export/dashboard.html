@@ -22,7 +22,6 @@
         <!-- DuckDB WASM loaded on-demand by duckdb-client.js (35MB, not worth preloading) -->
         <title>Games Analytics Tool</title>
         <link rel="icon" type="image/png" href="/src/assets/ags-logo.png" />
-        <link rel="stylesheet" href="/src/output.css" />
     </head>
     <body class="h-full m-0 p-0 font-sans bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden">
         <a
@@ -361,6 +360,10 @@
                             </svg>
                         </span>
                         <span class="nav-text sidebar-text flex-1">Game Blueprint</span>
+                        <span
+                            class="sidebar-text text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide shrink-0"
+                            >🚧 WIP</span
+                        >
                     </button>
                     <button
                         class="gamelab-sub nav-item flex items-center justify-center gap-3 w-full py-3 px-4 bg-transparent border-none text-gray-700 dark:text-gray-300 text-left cursor-pointer text-sm font-medium rounded-lg mb-0 transition-all duration-150 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-blue-50 hover:text-indigo-600 dark:hover:from-indigo-900/20 dark:hover:to-blue-900/20 dark:hover:text-white"
@@ -592,7 +595,7 @@
 
         <!-- Game Details Side Panel -->
         <div
-            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            class="fixed top-0 right-[-720px] h-screen w-[680px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
             id="game-panel"
         >
             <div class="sticky top-0 z-10">
@@ -632,7 +635,7 @@
 
         <!-- Provider Details Side Panel -->
         <div
-            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            class="fixed top-0 right-[-720px] h-screen w-[680px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
             id="provider-panel"
         >
             <div class="sticky top-0 z-10">
@@ -658,7 +661,7 @@
 
         <!-- Mechanic Details Side Panel -->
         <div
-            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            class="fixed top-0 right-[-720px] h-screen w-[680px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
             id="mechanic-panel"
         >
             <div class="sticky top-0 z-10">
@@ -684,7 +687,7 @@
 
         <!-- Theme Details Side Panel -->
         <div
-            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
+            class="fixed top-0 right-[-720px] h-screen w-[680px] max-w-[90vw] bg-gray-50 dark:bg-gray-900 shadow-[-8px_0_40px_rgba(0,0,0,0.2)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out"
             id="theme-panel"
         >
             <div class="sticky top-0 z-10">
@@ -710,7 +713,7 @@
 
         <!-- X-Ray Provenance Side Panel -->
         <div
-            class="fixed top-0 right-[-650px] h-screen w-[600px] max-w-[90vw] bg-gray-950/95 backdrop-blur-xl shadow-[-8px_0_40px_rgba(0,0,0,0.4)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out border-l border-indigo-500/30"
+            class="fixed top-0 right-[-720px] h-screen w-[680px] max-w-[90vw] bg-gray-950/95 backdrop-blur-xl shadow-[-8px_0_40px_rgba(0,0,0,0.4)] z-[1100] overflow-y-auto transition-[right] duration-300 ease-in-out border-l border-indigo-500/30"
             id="xray-panel"
         >
             <div class="sticky top-0 z-10">

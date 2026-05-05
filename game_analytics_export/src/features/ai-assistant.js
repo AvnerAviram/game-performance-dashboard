@@ -1,11 +1,31 @@
 import { gameData } from '../lib/data.js';
-import { escapeHtml } from '../lib/sanitize.js';
+import { escapeHtml, sanitizeAIHtml } from '../lib/sanitize.js';
 import { F } from '../lib/game-fields.js';
 import { CANONICAL_FEATURES } from '../lib/features.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { getProviderMetrics, getFeatureMetrics } from '../lib/metrics.js';
+import { apiPost } from '../lib/api-client.js';
 
 let chatHistory = [];
+
+function getAICode() {
+    return document.getElementById('ai-chat-code')?.value?.trim() || '';
+}
+
+function updateModeBadge() {
+    const badge = document.getElementById('ai-mode-badge');
+    if (!badge) return;
+    const code = getAICode();
+    if (code) {
+        badge.textContent = 'Claude AI mode';
+        badge.className =
+            'text-[10px] px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-medium';
+    } else {
+        badge.textContent = 'Local mode';
+        badge.className =
+            'text-[10px] px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-medium';
+    }
+}
 
 export function sendAIMessage() {
     const input = document.getElementById('ai-input');
@@ -13,6 +33,11 @@ export function sendAIMessage() {
     if (!question) return;
     askAI(question);
     input.value = '';
+}
+
+export function initAIAssistant() {
+    const codeInput = document.getElementById('ai-chat-code');
+    if (codeInput) codeInput.addEventListener('input', updateModeBadge);
 }
 
 export async function askAI(question) {
@@ -45,8 +70,21 @@ export async function askAI(question) {
     chatDiv.appendChild(typingEl);
     chatDiv.scrollTop = chatDiv.scrollHeight;
 
-    await new Promise(r => setTimeout(r, 300 + Math.random() * 400));
-    const response = await generateSmartResponse(question);
+    let response;
+    const code = getAICode();
+    if (code) {
+        try {
+            const context = buildDataContext(question);
+            const data = await apiPost('/api/ai-chat', { message: question, context, code });
+            response = sanitizeAIHtml(data.answer || 'No response from AI.');
+        } catch (err) {
+            response = `<span class="text-red-500">Claude error: ${escapeHtml(err.message || 'Unknown error')}</span><br/>Falling back to local analysis...`;
+            response += '<br/><br/>' + (await generateSmartResponse(question));
+        }
+    } else {
+        await new Promise(r => setTimeout(r, 300 + Math.random() * 400));
+        response = await generateSmartResponse(question);
+    }
 
     typingEl.remove();
 
@@ -67,6 +105,24 @@ export async function askAI(question) {
 }
 
 /* ── helpers ─────────────────────────────────────────────────────── */
+
+function buildDataContext(question) {
+    const g = allGames();
+    const t = themes();
+    const m = mechanics();
+    const topThemes = t
+        .slice(0, 10)
+        .map(
+            th =>
+                `${th.Theme}: ${th['Game Count']} games, PI=${(th['Avg Theo Win Index'] || 0).toFixed(2)}, Mkt=${(th['Market Share %'] || 0).toFixed(1)}%`
+        )
+        .join('\n');
+    const topMechs = m
+        .slice(0, 8)
+        .map(mc => `${mc.Mechanic}: ${mc['Game Count']} games, PI=${(mc['Avg Theo Win Index'] || 0).toFixed(2)}`)
+        .join('\n');
+    return `Total games: ${g.length}\nTop Themes:\n${topThemes}\nTop Mechanics:\n${topMechs}\nUser question context: "${question}"`;
+}
 
 function allGames() {
     return gameData.allGames || [];
@@ -388,9 +444,9 @@ function handleCompare(q) {
             ['Games', `<strong>${aGames.length}</strong>`, `<strong>${bGames.length}</strong>`],
             ['Avg PI', `<strong>${aAvg.toFixed(2)}</strong>`, `<strong>${bAvg.toFixed(2)}</strong>`],
             [
-                'Performance Index',
-                `<strong>${(a['Smart Index'] || 0).toFixed(1)}</strong>`,
-                `<strong>${(b['Smart Index'] || 0).toFixed(1)}</strong>`,
+                'Avg Theo Win Index',
+                `<strong>${(a['Avg Theo Win Index'] || 0).toFixed(2)}</strong>`,
+                `<strong>${(b['Avg Theo Win Index'] || 0).toFixed(2)}</strong>`,
             ],
             [
                 'Market Share %',
@@ -399,8 +455,8 @@ function handleCompare(q) {
             ],
         ]
     );
-    const winner = (a['Smart Index'] || 0) > (b['Smart Index'] || 0) ? a : b;
-    html += `<p class="text-xs mt-2 text-indigo-600 dark:text-indigo-400 font-medium">Based on Performance Index, <strong>${escapeHtml(winner.Theme)}</strong> is the stronger performer overall.</p>`;
+    const winner = (a['Avg Theo Win Index'] || 0) > (b['Avg Theo Win Index'] || 0) ? a : b;
+    html += `<p class="text-xs mt-2 text-indigo-600 dark:text-indigo-400 font-medium">Based on Avg Theo Win, <strong>${escapeHtml(winner.Theme)}</strong> is the stronger performer.</p>`;
     return html;
 }
 
@@ -488,8 +544,8 @@ function handleConceptEval(q) {
 
 async function handleMarketGaps() {
     const gapThemes = [...themes()]
-        .filter(t => (t['Game Count'] || 0) < 40 && (t['Smart Index'] || 0) > 30)
-        .sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0))
+        .filter(t => (t['Game Count'] || 0) < 40 && (t['Avg Theo Win Index'] || 0) > 1.1)
+        .sort((a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0))
         .slice(0, 8);
 
     const feats = await getFeatureMetrics(gameData.activeCategory);
@@ -507,12 +563,11 @@ async function handleMarketGaps() {
     if (gapThemes.length) {
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">High-Potential, Low-Competition Themes</p>`;
         html += miniTable(
-            ['Theme', 'Games', 'Performance Index', 'Avg PI'],
+            ['Theme', 'Games', 'Avg Theo Win'],
             gapThemes.map(t => [
                 `<span class="font-semibold">${escapeHtml(t.Theme)}</span>`,
                 t['Game Count'] || 0,
-                `<span class="font-bold text-indigo-600">${(t['Smart Index'] || 0).toFixed(1)}</span>`,
-                (t['Avg Theo Win Index'] || 0).toFixed(2),
+                `<span class="font-bold text-indigo-600">${(t['Avg Theo Win Index'] || 0).toFixed(2)}</span>`,
             ])
         );
     }
@@ -657,26 +712,30 @@ function handleMarketOverview() {
     html += statCard('Avg PI', globalAvg.toFixed(2));
     html += `</div>`;
 
-    const topThemes = [...themes()].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0)).slice(0, 5);
-    const topMechs = [...mechanics()].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0)).slice(0, 5);
+    const topThemes = [...themes()]
+        .sort((a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0))
+        .slice(0, 5);
+    const topMechs = [...mechanics()]
+        .sort((a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0))
+        .slice(0, 5);
 
     html += `<div class="grid grid-cols-2 gap-4">`;
     html += `<div>`;
     html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Top Themes</p>`;
     html += miniTable(
-        ['Theme', 'PI'],
+        ['Theme', 'Avg Theo Win'],
         topThemes.map(t => [
             `<span class="font-medium">${escapeHtml(t.Theme)}</span>`,
-            `<span class="font-bold text-indigo-600">${(t['Smart Index'] || 0).toFixed(1)}</span>`,
+            `<span class="font-bold text-indigo-600">${(t['Avg Theo Win Index'] || 0).toFixed(2)}</span>`,
         ])
     );
     html += `</div><div>`;
     html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Top Mechanics</p>`;
     html += miniTable(
-        ['Mechanic', 'PI'],
+        ['Mechanic', 'Avg Theo Win'],
         topMechs.map(m => [
             `<span class="font-medium">${escapeHtml(m.Mechanic)}</span>`,
-            `<span class="font-bold text-indigo-600">${(m['Smart Index'] || 0).toFixed(1)}</span>`,
+            `<span class="font-bold text-indigo-600">${(m['Avg Theo Win Index'] || 0).toFixed(2)}</span>`,
         ])
     );
     html += `</div></div>`;
@@ -859,7 +918,7 @@ function handleArtQuery(question) {
             .join('');
 
     if (artThemeList.length)
-        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Art Themes <span class="font-normal text-gray-400">(count · lift vs avg)</span></p><div class="mb-3">${perfBar(artThemeList)}</div>`;
+        html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Visual Art Styles <span class="font-normal text-gray-400">(count · lift vs avg)</span></p><div class="mb-3">${perfBar(artThemeList)}</div>`;
     if (chars.length)
         html += `<p class="text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1">Characters</p><div class="mb-3">${perfBar(chars)}</div>`;
     if (elements.length)

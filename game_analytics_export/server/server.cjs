@@ -133,7 +133,6 @@ app.use(aiRoutes);
 const PUBLIC_PATHS = [
     '/login.html',
     '/assets/',
-    '/src/output.css',
     '/src/pages/login-page.js',
     '/src/assets/',
     '/robots.txt',

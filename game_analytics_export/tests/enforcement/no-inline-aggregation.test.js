@@ -22,6 +22,7 @@ const STAYS_INLINE_FILES = new Set([
     'features/ai-assistant.js',
     'features/prediction.js',
     'features/trends.js',
+    'lib/filters.js',
     'lib/game-analytics-engine.js',
     'lib/symbol-utils.js',
     'ui/panel-details.js',

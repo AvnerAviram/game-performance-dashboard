@@ -1,7 +1,7 @@
 // RTP landscape bubble chart
 import { gameData, getActiveGames } from '../lib/data.js';
 import { getRtpBandMetrics } from '../lib/metrics.js';
-import { median, createBubbleLandscape } from './chart-utils.js';
+import { median, createBubbleLandscape, injectCoveragePill } from './chart-utils.js';
 import { chartInstances } from './chart-config.js';
 
 const RTP_COLORS = ['#10b981', '#34d399', '#60a5fa', '#f59e0b', '#f97316', '#ef4444'];
@@ -37,6 +37,7 @@ export async function createRtpChart() {
             labels: 'top',
             maxLabels: 4,
             quadrantLabels: false,
+            labelPosition: 'below',
             colorFn: (d, type) => {
                 const c = RTP_COLORS[d._i % RTP_COLORS.length];
                 return type === 'bg' ? c + 'AA' : c;
@@ -55,6 +56,7 @@ export async function createRtpChart() {
                 if (item._band && window.showRtpBandDetails) window.showRtpBandDetails(item._band.label);
             },
         });
+        injectCoveragePill('chart-rtp', rtpTotal, allGames.length, 'with RTP data');
     } catch (err) {
         console.error('[RTP-CHART] FAILED:', err);
     }

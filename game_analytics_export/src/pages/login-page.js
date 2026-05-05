@@ -2,6 +2,7 @@
  * Login page -- handles form submit and redirect.
  * Posts credentials to the Express auth server at /api/login.
  */
+import '../input.css';
 import { login, isLoggedIn } from '../lib/auth.js';
 
 if (isLoggedIn()) {

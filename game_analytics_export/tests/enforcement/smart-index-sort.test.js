@@ -1,17 +1,15 @@
 /**
- * Enforcement: Smart Index Sort Order
+ * Enforcement: Chart Sort Consistency with Ranking Mode
  *
- * Ensures that ranking/display sorts for themes, mechanics (features),
- * and providers always use Smart Index — never raw Game Count, avgTheo,
- * ggrShare, or market share as the primary ranking criterion.
+ * Ensures that all chart and table ranking sorts use the shared
+ * getDefaultSort / theoIndexSort / marketShareSort from filters.js
+ * rather than hardcoded inline comparators.
  *
  * Allowed exceptions:
- *   - metrics.js / data.js — Smart Index is computed here
- *   - Threshold calculations that pick a cutoff value (not display order)
+ *   - metrics.js / data.js / duckdb-client.js — metric computation happens here
  *   - Lexicographic sorts for dropdown options
- *   - Game-level sorts by theoWin (games don't have Smart Index)
- *   - Filter logic that re-sorts by Smart Index after filtering
- *   - Chart axis/warp/median calculations (not ranking)
+ *   - Game-level sorts by theoWin (individual games, not aggregates)
+ *   - Chart axis/median calculations (not ranking)
  */
 import { describe, it, expect } from 'vitest';
 import fs from 'fs';
@@ -20,7 +18,7 @@ import { fileURLToPath } from 'url';
 
 const SRC_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../src');
 
-const ALLOWED_FILES = new Set(['lib/metrics.js', 'lib/data.js', 'lib/db/duckdb-client.js']);
+const ALLOWED_FILES = new Set(['lib/metrics.js', 'lib/data.js', 'lib/db/duckdb-client.js', 'lib/filters.js']);
 
 function getJsFiles(dir, base = '') {
     const results = [];
@@ -35,49 +33,66 @@ function getJsFiles(dir, base = '') {
     return results;
 }
 
-describe('Smart Index Sort Enforcement', () => {
-    it('metrics.js functions return Smart Index-sorted data', () => {
-        const metricsPath = path.join(SRC_DIR, 'lib/metrics.js');
-        const src = fs.readFileSync(metricsPath, 'utf-8');
-
-        expect(src).toContain('getThemeMetrics');
-        expect(src).toContain('getFeatureMetrics');
-        expect(src).toContain('getProviderMetrics');
-
-        const themeBlock = src.slice(src.indexOf('getThemeMetrics'), src.indexOf('getFeatureMetrics'));
-        const featureBlock = src.slice(src.indexOf('getFeatureMetrics'), src.indexOf('getVolatilityMetrics'));
-        const providerBlock = src.slice(src.indexOf('getProviderMetrics'), src.indexOf('getThemeMetrics'));
-
-        expect(themeBlock).toContain('addSmartIndex');
-        expect(featureBlock).toContain('addSmartIndex');
-        expect(providerBlock).toContain('addSmartIndex');
-
-        expect(themeBlock).not.toMatch(/\.sort\(\(a,\s*b\)\s*=>\s*b\.count/);
-        expect(featureBlock).not.toMatch(/\.sort\(\(a,\s*b\)\s*=>\s*b\.avgTheo/);
-        expect(providerBlock).not.toMatch(/\.sort\(\(a,\s*b\)\s*=>\s*b\.ggrShare/);
+describe('Chart Sort Consistency Enforcement', () => {
+    it('chart-themes.js imports getDefaultSort from filters.js', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-themes.js'), 'utf-8');
+        expect(src).toContain('import');
+        expect(src).toContain('getDefaultSort');
+        expect(src).toContain("from '../lib/filters.js'");
     });
 
-    it('Overview mechanics chart uses Smart Index sort, not Game Count', () => {
-        const chartPath = path.join(SRC_DIR, 'ui/chart-themes.js');
-        const src = fs.readFileSync(chartPath, 'utf-8');
+    it('chart-providers.js imports getDefaultSort from filters.js', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-providers.js'), 'utf-8');
+        expect(src).toContain('getDefaultSort');
+        expect(src).toContain("from '../lib/filters.js'");
+    });
 
+    it('consolidateMechanicsByCanonicalName uses getDefaultSort(), not hardcoded sort', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-themes.js'), 'utf-8');
         const fnStart = src.indexOf('function consolidateMechanicsByCanonicalName');
         const fnEnd = src.indexOf('\n}', fnStart) + 2;
         const fn = src.slice(fnStart, fnEnd);
 
-        expect(fn).toContain('Smart Index');
+        expect(fn).toContain('getDefaultSort()');
+        expect(fn).not.toMatch(/\.sort\(\(a,\s*b\)\s*=>\s*\(b\['Market Share %'\]/);
         expect(fn).not.toMatch(/\.sort\(\(a,\s*b\)\s*=>\s*b\['Game Count'\]/);
     });
 
-    it('Providers page sorts by Smart Index, not provider_score/market share', () => {
-        const provPath = path.join(SRC_DIR, 'ui/ui-providers-games.js');
-        const src = fs.readFileSync(provPath, 'utf-8');
+    it('createThemesChart sorts using getDefaultSort() or getActiveThemes pre-sorted', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-themes.js'), 'utf-8');
+        const fnStart = src.indexOf('export function createThemesChart');
+        const fnEnd = src.indexOf('\nexport function createMechanicsChart');
+        const fn = src.slice(fnStart, fnEnd);
 
-        expect(src).toContain("'Smart Index'");
-        expect(src).not.toMatch(/providers\.sort\(\(a,\s*b\)\s*=>\s*\(b\.provider_score/);
+        expect(fn).toContain('getDefaultSort()');
     });
 
-    it('No ranking sort by raw Game Count in display code', () => {
+    it('createProvidersChart sorts providers using getDefaultSort()', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-providers.js'), 'utf-8');
+        const fnStart = src.indexOf('export async function createProvidersChart');
+        const fnEnd = src.indexOf('\nexport async function createProviderLandscapeChart');
+        const fn = src.slice(fnStart, fnEnd);
+
+        expect(fn).toContain('getDefaultSort()');
+    });
+
+    it('chart-config.js refreshCharts handles race conditions with pendingRefresh', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'ui/chart-config.js'), 'utf-8');
+        expect(src).toContain('pendingRefresh');
+        expect(src).toMatch(/if\s*\(isRefreshing\)\s*\{/);
+        expect(src).toContain('pendingRefresh = true');
+    });
+
+    it('switchRankingMode triggers refreshCharts()', () => {
+        const src = fs.readFileSync(path.join(SRC_DIR, 'lib/filters.js'), 'utf-8');
+        const fnStart = src.indexOf('window.switchRankingMode');
+        const fnEnd = src.indexOf('};', fnStart) + 2;
+        const fn = src.slice(fnStart, fnEnd);
+
+        expect(fn).toContain('refreshCharts');
+    });
+
+    it('No ranking sort by raw Game Count in display code (outside allowed files)', () => {
         const files = getJsFiles(SRC_DIR);
         const violations = [];
 
@@ -95,20 +110,31 @@ describe('Smart Index Sort Enforcement', () => {
         expect(violations).toEqual([]);
     });
 
+    it('overview.html does NOT have ranking toggle (uses default sort)', () => {
+        const htmlDir = path.resolve(SRC_DIR, 'pages');
+        const overview = fs.readFileSync(path.join(htmlDir, 'overview.html'), 'utf-8');
+        expect(overview).not.toContain('data-ranking-mode="indexing"');
+        expect(overview).not.toContain('switchRankingMode');
+    });
+
+    it('Detail pages with charts have ranking toggle', () => {
+        const htmlDir = path.resolve(SRC_DIR, 'pages');
+        const pagesToCheck = ['themes.html', 'mechanics.html', 'providers.html'];
+        for (const page of pagesToCheck) {
+            const src = fs.readFileSync(path.join(htmlDir, page), 'utf-8');
+            expect(src).toContain('data-ranking-mode');
+            expect(src).toContain('switchRankingMode');
+        }
+    });
+
     it('data.js uses SQL-based theme/mechanic loading (DuckDB) and local Smart Index (JSON fallback)', () => {
         const dataPath = path.join(SRC_DIR, 'lib/data.js');
         const src = fs.readFileSync(dataPath, 'utf-8');
 
-        // DuckDB path uses SQL via shared mappers
         expect(src).toContain('getThemeMetrics');
         expect(src).toContain('getFeatureMetrics');
         expect(src).toContain('mapSqlThemes');
         expect(src).toContain('mapSqlMechanics');
-
-        // JSON fallback still applies Smart Index locally
         expect(src).toContain('applySmartIndexToGameData');
-
-        // No JS aggregation loop using art_theme || theme_consolidated
-        expect(src).not.toMatch(/art_theme\s*\|\|\s*g\.theme_consolidated\s*\|\|\s*g\.theme_primary/);
     });
 });

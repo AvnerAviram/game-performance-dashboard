@@ -3,7 +3,6 @@ export {
     refreshCharts,
     chartInstances,
     createMarketLandscapeChart,
-    createVolatilityLandscapeChart,
     createRtpLandscapeChart,
     createProviderLandscapeChart,
     createBrandLandscapeChart,

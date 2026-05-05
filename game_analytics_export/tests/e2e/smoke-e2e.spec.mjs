@@ -56,10 +56,9 @@ test('Dashboard smoke test – all interactive features', async ({ page, baseURL
     await page.evaluate(() => window.showPage('themes'));
     await page.waitForSelector('#themes-table tbody tr', { timeout: 10000 });
 
-    const themeLink = page.locator('#themes-table .theme-link').first();
-    const firstThemeName = await themeLink.getAttribute('data-theme');
-    expect(firstThemeName).toBeTruthy();
-    await themeLink.click();
+    const themeRow = page.locator('#themes-table tbody tr.theme-row').first();
+    await themeRow.waitFor({ state: 'visible', timeout: 10000 });
+    await themeRow.click();
     await page.waitForTimeout(500);
 
     expect(await panelIsOpen(page, 'theme-panel'), 'Theme panel should slide in').toBe(true);
@@ -139,7 +138,10 @@ test('Dashboard smoke test – all interactive features', async ({ page, baseURL
         const provName = await provInTheme.textContent();
         await provInTheme.click();
         await page.waitForTimeout(1000);
-        expect(await panelIsOpen(page, 'provider-panel'), `Provider panel should open from theme (clicked "${provName?.trim()}")`).toBe(true);
+        expect(
+            await panelIsOpen(page, 'provider-panel'),
+            `Provider panel should open from theme (clicked "${provName?.trim()}")`
+        ).toBe(true);
 
         // ──────────────────────────────────────
         // 8. Provider panel → click scoped theme → scoped title with clickable breadcrumb

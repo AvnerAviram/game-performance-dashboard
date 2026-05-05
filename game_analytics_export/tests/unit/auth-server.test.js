@@ -55,7 +55,7 @@ describe('Auth Server - server.cjs', () => {
     it('should allow public access to login page and assets', () => {
         const code = readFileSync(serverPath, 'utf-8');
         expect(code).toContain('/login.html');
-        expect(code).toContain('/src/output.css');
+        expect(code).toContain('/assets/');
         expect(code).toContain('/src/assets/');
     });
 

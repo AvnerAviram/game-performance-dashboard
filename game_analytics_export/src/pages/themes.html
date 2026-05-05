@@ -142,80 +142,144 @@
     </div>
 
     <!-- Theme Filter Tabs -->
-    <div class="filter-tabs-container flex gap-3 mb-6">
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 bg-indigo-600 border-indigo-600 text-white shadow-[0_2px_8px_rgba(99,102,241,0.3)] relative overflow-visible"
-            data-filter="all"
-            onclick="window.switchThemeView('all')"
+    <div class="flex items-center justify-between mb-6">
+        <div class="filter-tabs-container flex gap-3">
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 bg-indigo-600 border-indigo-600 text-white shadow-[0_2px_8px_rgba(99,102,241,0.3)] relative overflow-visible"
+                data-filter="all"
+                onclick="window.switchThemeView('all')"
+            >
+                All Themes
+            </button>
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
+                data-filter="leaders"
+                onclick="window.switchThemeView('leaders')"
+            >
+                🏆 Market Leaders
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Market Leaders Filter</strong>
+                        <p>Shows the top 20% of themes by game count — then ranks by Market Share %.</p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> threshold = Game Count at the 80th percentile. Only themes with count &ge;
+                            threshold appear.
+                        </p>
+                        <hr />
+                        <p>✓ Proven volume and reliability</p>
+                        <p>✓ Statistically significant samples</p>
+                        <p>✓ Best for risk-averse design</p>
+                    </div>
+                </span>
+            </button>
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
+                data-filter="opportunities"
+                onclick="window.switchThemeView('opportunities')"
+            >
+                💎 Opportunities
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Opportunities Filter</strong>
+                        <p>
+                            <strong>All-types / no dropdowns:</strong> themes with ≥5 games, average Theo ≥ the mean of
+                            theme averages, and summed GGR contribution under 5% on the full roster.
+                        </p>
+                        <p class="text-[10px] opacity-90 mt-1 leading-snug">
+                            <strong>With Provider/Category/Mechanic filters:</strong> the table rebuilds from only the
+                            filtered games — each row's share is its % of <em>that slice</em>, the minimum games per
+                            theme becomes 3 instead of 5, and the share test is no longer full-catalog GGR. Use for
+                            focused what-if views, not headline market totals.
+                        </p>
+                        <hr />
+                        <p>✓ Proven quality (not flukes)</p>
+                        <p>✓ Low competition (not oversaturated)</p>
+                        <p>✓ Best for innovation plays</p>
+                    </div>
+                </span>
+            </button>
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
+                data-filter="premium"
+                onclick="window.switchThemeView('premium')"
+            >
+                ⭐ Premium Quality
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Premium Quality Filter</strong>
+                        <p>
+                            Shows the top 25% of themes by Performance Index — the highest-performing themes regardless
+                            of volume.
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> Themes where Avg Theo Win Index &ge; 75th percentile of all theme Avg Theo
+                            Win Indices in current cohort.
+                        </p>
+                        <hr />
+                        <p>✓ Highest quality regardless of volume</p>
+                        <p>✓ Includes emerging high-performers</p>
+                        <p>✓ Best for maximum performance</p>
+                    </div>
+                </span>
+            </button>
+        </div>
+        <!-- Eilers Ranking Toggle -->
+        <div
+            class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 border border-gray-200 dark:border-gray-700 relative overflow-visible"
         >
-            All Themes
-        </button>
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
-            data-filter="leaders"
-            onclick="window.switchThemeView('leaders')"
-        >
-            🏆 Market Leaders
-            <span class="info-icon"
-                >ⓘ
-                <div class="filter-tooltip">
-                    <strong>Market Leaders Filter</strong>
-                    <p>Shows the top 20% of themes by game count</p>
-                    <hr />
-                    <p>✓ Proven volume and reliability</p>
-                    <p>✓ Statistically significant samples</p>
-                    <p>✓ Best for risk-averse design</p>
-                </div>
-            </span>
-        </button>
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
-            data-filter="opportunities"
-            onclick="window.switchThemeView('opportunities')"
-        >
-            💎 Opportunities
-            <span class="info-icon"
-                >ⓘ
-                <div class="filter-tooltip">
-                    <strong>Opportunities Filter</strong>
-                    <p>
-                        <strong>All-types / no dropdowns:</strong> themes with ≥5 games, average Theo ≥ the mean of
-                        theme averages, and summed GGR contribution under 5% on the full roster.
-                    </p>
-                    <p class="text-[10px] opacity-90 mt-1 leading-snug">
-                        <strong>With Provider/Category/Mechanic filters:</strong> the table rebuilds from only the
-                        filtered games — each row's share is its % of <em>that slice</em>, the minimum games per theme
-                        becomes 3 instead of 5, and the share test is no longer full-catalog GGR. Use for focused
-                        what-if views, not headline market totals.
-                    </p>
-                    <hr />
-                    <p>✓ Proven quality (not flukes)</p>
-                    <p>✓ Low competition (not oversaturated)</p>
-                    <p>✓ Best for innovation plays</p>
-                </div>
-            </span>
-        </button>
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative overflow-visible"
-            data-filter="premium"
-            onclick="window.switchThemeView('premium')"
-        >
-            ⭐ Premium Quality
-            <span class="info-icon"
-                >ⓘ
-                <div class="filter-tooltip">
-                    <strong>Premium Quality Filter</strong>
-                    <p>
-                        Shows the top quartile of themes by Performance Index (ratio of each theme's average Theo Win
-                        index to the mean of theme averages in the current cohort)
-                    </p>
-                    <hr />
-                    <p>✓ Highest quality regardless of volume</p>
-                    <p>✓ Includes emerging high-performers</p>
-                    <p>✓ Best for maximum performance</p>
-                </div>
-            </span>
-        </button>
+            <button
+                data-ranking-mode="indexing"
+                onclick="window.switchRankingMode('indexing')"
+                class="px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 relative overflow-visible"
+            >
+                Top Indexing
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Top Indexing (Performance)</strong>
+                        <p>
+                            Ranks by how well a theme/mechanic/provider performs relative to market average — regardless
+                            of volume.
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> Avg Theo Win Index = mean(game Theo Win) across all games in the group,
+                            divided by the global average Theo Win.
+                        </p>
+                        <p><b>Interpretation:</b> A value of 1.50 means the group performs 50% above average.</p>
+                        <hr />
+                        <p>Based on Eilers & Krejcik "Theo Net Win Index" methodology.</p>
+                    </div>
+                </span>
+            </button>
+            <button
+                data-ranking-mode="grossing"
+                onclick="window.switchRankingMode('grossing')"
+                class="px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm relative overflow-visible"
+            >
+                Top Grossing
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Top Grossing (Market Share)</strong>
+                        <p>
+                            Ranks by total GGR contribution — which themes/mechanics/providers generate the most revenue
+                            in the market.
+                        </p>
+                        <hr />
+                        <p><b>Formula:</b> Market Share % = SUM(game market_share_pct) for all games in the group.</p>
+                        <p><b>Interpretation:</b> Higher % = larger slice of total market GGR.</p>
+                        <hr />
+                        <p>Based on Eilers & Krejcik "% of Total Theo Net Win" (default supplier ranking).</p>
+                    </div>
+                </span>
+            </button>
+        </div>
     </div>
 
     <!-- Table Container -->
@@ -249,11 +313,14 @@
                         <span class="info-icon"
                             >ⓘ
                             <div class="filter-tooltip">
-                                <strong id="themes-tooltip-title">Performance Index</strong>
+                                <strong id="themes-tooltip-title">Performance Index (Avg Theo Win Index)</strong>
                                 <p id="themes-tooltip-formula">
-                                    Each theme's average Theo Win index divided by the
-                                    <strong>mean average Theo Win of themes</strong> in your current filter
-                                    (Eilers-style cohort ratio)
+                                    How well games in this theme perform relative to the market average.
+                                </p>
+                                <hr />
+                                <p>
+                                    <b>Formula:</b> AVG(game.theo_win) for theme games &divide; AVG(game.theo_win) for
+                                    all games in cohort.
                                 </p>
                                 <hr />
                                 <div id="themes-tooltip-content">
@@ -275,11 +342,17 @@
                         <span class="info-icon"
                             >ⓘ
                             <div class="filter-tooltip">
-                                <strong>Market Share %</strong>
+                                <strong>Market Share % (GGR Share)</strong>
+                                <p>Total revenue contribution of this theme to the tracked market.</p>
+                                <hr />
+                                <p><b>Formula:</b> SUM(game.market_share_pct) for all games tagged with this theme.</p>
                                 <p>
-                                    Sum of each game's GGR contribution % in the loaded roster for titles tagged with
-                                    this consolidated theme. Higher = larger share of tracked operator GGR.
+                                    <b>Interpretation:</b> Higher % = this theme captures a larger slice of total
+                                    operator GGR.
                                 </p>
+                                <hr />
+                                <p>✓ Equivalent to Eilers "% of Total Theo Net Win" metric</p>
+                                <p>✓ Volume-weighted — themes with many games naturally score higher</p>
                             </div>
                         </span>
                     </th>

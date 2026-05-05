@@ -91,13 +91,15 @@ describe('Smart Filters - Functional Tests', () => {
             expect(expectedRatio).toBeLessThanOrEqual(0.3); // At most 30%
             expect(expectedRatio).toBeGreaterThanOrEqual(0.2); // At least 20%
 
-            // Calculate threshold using Smart Index (matches filter logic)
-            const sortedByPerf = [...allThemes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
-            const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Smart Index'] || 2.5;
+            // Calculate threshold using Avg Theo Win Index (Eilers methodology)
+            const sortedByPerf = [...allThemes].sort(
+                (a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0)
+            );
+            const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Avg Theo Win Index'] || 1.2;
 
             // Verify ALL returned themes meet threshold
             result.forEach(theme => {
-                expect(theme['Smart Index'] || 0).toBeGreaterThanOrEqual(threshold);
+                expect(theme['Avg Theo Win Index'] || 0).toBeGreaterThanOrEqual(threshold);
             });
 
             console.log(`✅ Premium Quality: ${result.length} themes (top 25%, ≥${threshold.toFixed(2)} performance)`);
@@ -169,13 +171,15 @@ describe('Smart Filters - Functional Tests', () => {
             expect(expectedRatio).toBeLessThanOrEqual(1);
             expect(expectedRatio).toBeGreaterThanOrEqual(0.1);
 
-            // Calculate threshold using Smart Index (matches filter logic)
-            const sortedByPerf = [...allMechanics].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
-            const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.3)]?.['Smart Index'] || 1.5;
+            // Calculate threshold using Avg Theo Win Index (Eilers methodology)
+            const sortedByPerf = [...allMechanics].sort(
+                (a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0)
+            );
+            const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.3)]?.['Avg Theo Win Index'] || 1.2;
 
             // Verify ALL returned mechanics meet threshold
             result.forEach(mech => {
-                expect(mech['Smart Index'] || 0).toBeGreaterThanOrEqual(threshold);
+                expect(mech['Avg Theo Win Index'] || 0).toBeGreaterThanOrEqual(threshold);
             });
 
             console.log(

@@ -10,7 +10,7 @@ export { showPage } from './router.js';
 export { setupSearch } from './search.js';
 export { setupDarkMode } from './dark-mode.js';
 export { setupPrediction, predictGameSuccess } from '../features/prediction.js';
-export { sendAIMessage, askAI } from '../features/ai-assistant.js';
+export { sendAIMessage, askAI, initAIAssistant } from '../features/ai-assistant.js';
 export { renderTickets } from '../features/tickets.js';
 
 // Table sorting utility

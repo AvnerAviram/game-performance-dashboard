@@ -350,8 +350,9 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Horizontal bars chart each theme's summed <strong>GGR contribution %</strong> (operator
-                                market share captured in this dataset). Longer bars = more tracked revenue footprint.
+                                Horizontal bars show the top 10 themes ranked by Market Share (GGR contribution).
+                                <br /><br />
+                                <strong>Formula:</strong> SUM(game.market_share_pct) per theme.
                             </div>
                         </div>
                     </div>
@@ -386,13 +387,14 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Bar length = summed <strong>GGR share %</strong> for consolidated mechanic names across
-                                the roster (same mechanics metrics as Insights). Hover each bar for game counts and
-                                cohort <strong>Performance Index</strong> (avg Theo divided by mean mechanic Theo).
+                                Top 10 mechanics ranked by Market Share (GGR contribution). Hover each bar for game
+                                counts and performance index.
+                                <br /><br />
+                                <strong>Formula:</strong> SUM(game.market_share_pct) per mechanic.
                             </div>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">By GGR Share</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">By Market Share</p>
                 </div>
             </div>
         </div>
@@ -423,10 +425,13 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Bars plot raw <strong>Theo Win indices</strong> (Eilers benchmark scale) sorted high →
-                                low—not the ratio-style Performance Index used on theme/mechanics tables.
-                                <strong class="block mt-1">Data scope:</strong> Coverage reflects games with Theo Win
-                                &gt; 0 in loaded data (see footer pill below chart).
+                                Top 10 individual games sorted by raw <strong>Theo Win index</strong> (Eilers benchmark
+                                scale), high → low. <br /><br />
+                                <strong>Formula:</strong> game.theo_win (raw per-game index — NOT the ratio-style
+                                Performance Index used on aggregate tables).
+                                <br />
+                                <strong>Data scope:</strong> Only games with Theo Win &gt; 0 in loaded data (see footer
+                                pill below chart).
                             </div>
                         </div>
                     </div>
@@ -451,7 +456,24 @@
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('themes')"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('market-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white,.dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        sc.scrollTo({
+                                            top:
+                                                card.getBoundingClientRect().top -
+                                                sc.getBoundingClientRect().top +
+                                                sc.scrollTop -
+                                                120,
+                                            behavior: 'smooth',
+                                        });
+                                    }
+                                }, 600);
+                            "
                         >
                             Theme Landscape
                         </h3>
@@ -501,18 +523,35 @@
         </div>
     </div>
 
-    <!-- Volatility Landscape -->
+    <!-- Color Landscape -->
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0">
         <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
             <div class="flex items-center gap-2">
-                <span class="text-lg">🎲</span>
+                <span class="text-lg">🌈</span>
                 <div>
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('volatility')"
+                            onclick="
+                                showPage('art');
+                                setTimeout(() => {
+                                    const el = document.getElementById('art-colors-landscape');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white,.dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        sc.scrollTo({
+                                            top:
+                                                card.getBoundingClientRect().top -
+                                                sc.getBoundingClientRect().top +
+                                                sc.scrollTop -
+                                                120,
+                                            behavior: 'smooth',
+                                        });
+                                    }
+                                }, 600);
+                            "
                         >
-                            Volatility Landscape
+                            Color Landscape
                         </h3>
                         <div class="relative group">
                             <button
@@ -523,18 +562,16 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is a volatility level. X = game count, Y = average Theo Win index, dot area ∝
-                                game count. Dashed lines show medians across included buckets (quadrant shading).
-                                <strong class="block mt-1">Data quality:</strong> Only titles with trusted volatility
-                                sources are included — estimated guesses are dropped.
+                                Each dot is a color tone from AI art classification. X = game count, Y = avg Performance
+                                Index. Bubble area scales with count. Top 12 tones shown.
                             </div>
                         </div>
                         <button
                             class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors whitespace-nowrap ml-auto cursor-pointer"
                             onclick="
-                                showPage('insights');
+                                showPage('art');
                                 setTimeout(() => {
-                                    const el = document.getElementById('volatility-landscape-chart');
+                                    const el = document.getElementById('art-colors-landscape');
                                     const sc = document.getElementById('page-container');
                                     const card = el?.closest('.bg-white, .dark\\:bg-gray-800');
                                     if (card && sc) {
@@ -556,7 +593,7 @@
             </div>
         </div>
         <div class="p-4" style="height: 400px">
-            <canvas id="chart-volatility"></canvas>
+            <canvas id="chart-color-landscape"></canvas>
         </div>
     </div>
 
@@ -569,7 +606,24 @@
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('rtp')"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('rtp-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white,.dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        sc.scrollTo({
+                                            top:
+                                                card.getBoundingClientRect().top -
+                                                sc.getBoundingClientRect().top +
+                                                sc.scrollTop -
+                                                120,
+                                            behavior: 'smooth',
+                                        });
+                                    }
+                                }, 600);
+                            "
                         >
                             RTP Landscape
                         </h3>
@@ -631,7 +685,24 @@
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('providers')"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('provider-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white,.dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        sc.scrollTo({
+                                            top:
+                                                card.getBoundingClientRect().top -
+                                                sc.getBoundingClientRect().top +
+                                                sc.scrollTop -
+                                                120,
+                                            behavior: 'smooth',
+                                        });
+                                    }
+                                }, 600);
+                            "
                         >
                             Provider Landscape
                         </h3>
@@ -688,7 +759,24 @@
                     <div class="flex items-center gap-1.5">
                         <h3
                             class="text-sm font-bold text-gray-900 dark:text-white leading-none cursor-pointer hover:text-blue-400 transition-colors"
-                            onclick="showPage('brands')"
+                            onclick="
+                                showPage('insights');
+                                setTimeout(() => {
+                                    const el = document.getElementById('brand-landscape-chart');
+                                    const sc = document.getElementById('page-container');
+                                    const card = el?.closest('.bg-white,.dark\\:bg-gray-800');
+                                    if (card && sc) {
+                                        sc.scrollTo({
+                                            top:
+                                                card.getBoundingClientRect().top -
+                                                sc.getBoundingClientRect().top +
+                                                sc.scrollTop -
+                                                120,
+                                            behavior: 'smooth',
+                                        });
+                                    }
+                                }, 600);
+                            "
                         >
                             Brand Landscape
                         </h3>
@@ -701,9 +789,10 @@
                             <div
                                 class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                             >
-                                Each dot is an IP/franchise with ≥2 titles. X = title count in that franchise, Y = avg
-                                Theo Win index, dot area scales with summed <strong>GGR share %</strong> versus the
-                                chart cohort (bubble area ∝ √(share)).
+                                Each dot is a game franchise/brand with <strong>≥ 5 titles</strong> (smaller franchises
+                                filtered out). X = title count, Y = avg Theo Win index, bubble area ∝ title count. Only
+                                games matched to a known franchise are included — coverage % shown on the full chart in
+                                Market Insights.
                             </div>
                         </div>
                         <button
@@ -798,9 +887,15 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Snapshot cards pulled from aggregates: themes use cohort <strong>Performance Index</strong> ratios;
-                    best mechanic = highest avg Theo among mechanics with ≥5 games (see card tooltips); top provider =
-                    highest GGR share roster-wide; headline game card = peak Theo Win index.
+                    Snapshot cards pulled from aggregates:
+                    <br /><br />
+                    <b>Best/Worst Theme:</b> Ranked by Market Share % = SUM(game.market_share_pct).
+                    <br />
+                    <b>Best Mechanic:</b> Highest AVG(game.theo_win) among mechanics with &ge;5 games.
+                    <br />
+                    <b>Top Provider:</b> Highest GGR share roster-wide = SUM(game.market_share_pct).
+                    <br />
+                    <b>Headline Game:</b> Peak raw game.theo_win index.
                 </div>
             </div>
         </div>
@@ -822,8 +917,11 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-56 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Theme callouts emphasize Performance Index uplift vs the roster story mix (see Themes page for full
-                    definitions). Mechanics combos reference the Insights recipe leaderboard.
+                    Theme insight cards highlight themes with notable performance:
+                    <br /><br />
+                    <b>Rising:</b> Themes with high recent-release %. <b>Opportunity:</b> Low game count but high Avg
+                    Theo Win Index. <b>Declining:</b> Themes with high old-game %. See Themes page for full metric
+                    definitions.
                 </div>
             </div>
         </div>

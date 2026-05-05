@@ -108,9 +108,9 @@ test.describe('Component Classes Tests', () => {
         await page.goto('/');
         await page.waitForLoadState('networkidle');
 
-        // Check that the built CSS file is loaded
+        // Check that CSS is loaded (Vite injects it as hashed /assets/*.css)
         const cssLoaded = await page.evaluate(() => {
-            const link = document.querySelector('link[href*="output.css"]');
+            const link = document.querySelector('link[rel="stylesheet"][href*="/assets/"]');
             return link !== null;
         });
 

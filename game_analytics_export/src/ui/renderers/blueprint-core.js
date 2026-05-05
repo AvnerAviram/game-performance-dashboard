@@ -1479,7 +1479,7 @@ function buildBlueprintHTML() {
                 <div class="overflow-y-auto flex-1 space-y-3 min-h-0">
                     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-indigo-200 dark:border-indigo-800 p-4">
                         <div class="flex items-center justify-between mb-3">
-                            <div class="flex items-center gap-2"><span class="text-base">🎰</span><h3 class="text-base font-bold text-gray-900 dark:text-white">Game Blueprint</h3></div>
+                            <div class="flex items-center gap-2"><span class="text-base">🎰</span><h3 class="text-base font-bold text-gray-900 dark:text-white">Game Blueprint</h3><span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300 leading-none tracking-wide">🚧 WIP</span></div>
                             <div class="flex items-center gap-1.5">
                                 <div class="relative">
                                     <input id="bp-load-game" type="text" placeholder="Load existing game…" autocomplete="off" class="w-36 px-2 py-1.5 rounded-lg text-xs border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">

@@ -37,6 +37,7 @@ export async function createVolatilityChart() {
             labels: 'top',
             maxLabels: 4,
             quadrantLabels: false,
+            labelPosition: 'below',
             colorFn: (d, type) => {
                 const c = VOL_COLORS[d._vol.name] || '#94a3b8';
                 return type === 'bg' ? c + 'AA' : c;

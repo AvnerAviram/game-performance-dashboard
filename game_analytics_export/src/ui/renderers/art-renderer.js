@@ -40,6 +40,8 @@ import { collapsibleList } from '../collapsible-list.js';
 
 let chartInstances = {};
 
+let _artCache = { category: null, data: null };
+
 function destroyChart(key) {
     if (chartInstances[key]) {
         chartInstances[key].destroy();
@@ -103,6 +105,165 @@ function multiPill(compoundName, palette) {
 function shortLabel(compoundName) {
     const parts = compoundName.split('/');
     return parts[0].trim();
+}
+
+function getThemeIcon(theme) {
+    const t = (theme || '').toLowerCase();
+    if (t.includes('egypt') || t.includes('pharaoh')) return '☥';
+    if (t.includes('asian') || t.includes('chinese') || t.includes('japan')) return '🏮';
+    if (t.includes('dragon')) return '🐉';
+    if (t.includes('fire') || t.includes('volcan') || t.includes('inferno') || t.includes('lava')) return '🔥';
+    if (t.includes('ocean') || t.includes('underwater') || t.includes('deep sea')) return '🌊';
+    if (t.includes('space') || t.includes('cosmic')) return '🚀';
+    if (t.includes('jungle') || t.includes('tropical') || t.includes('rainforest')) return '🌴';
+    if (t.includes('arctic') || t.includes('frozen') || t === 'ice' || t.includes('ice ') || t.includes(' ice'))
+        return '❄️';
+    if (t.includes('irish') || t.includes('luck')) return '🍀';
+    if (t.includes('norse') || t.includes('viking')) return '⚔️';
+    if (t.includes('greek') || t === 'roman' || t.includes('roman ') || t.includes(' roman')) return '🏛️';
+    if (t.includes('pirate')) return '🏴‍☠️';
+    if (t.includes('candy') || t.includes('sweet')) return '🍬';
+    if (t.includes('fantasy') || t.includes('magic')) return '🪄';
+    if (t.includes('horror') || t.includes('haunted')) return '👻';
+    if (t.includes('fruit') || t.includes('classic slot')) return '🍒';
+    if (t.includes('money') || t.includes('gold') || t.includes('treasure')) return '💰';
+    if (t.includes('animal') || t.includes('safari') || t.includes('savanna')) return '🦁';
+    if (t.includes('music')) return '🎵';
+    if (t.includes('sport')) return '⚽';
+    if (t.includes('western') || t.includes('cowboy') || t.includes('wild west')) return '🤠';
+    if (t.includes('aztec') || t.includes('mayan')) return '🗿';
+    if (t.includes('indian')) return '🪷';
+    if (t.includes('arabian') || t.includes('palace') || t.includes('bazaar')) return '🧞';
+    if (t.includes('medieval') || t.includes('knight') || t.includes('castle')) return '🏰';
+    if (t.includes('gem') || t.includes('crystal')) return '💎';
+    if (t.includes('holiday') || t.includes('christmas') || t.includes('festive')) return '🎄';
+    if (t.includes('mountain') || t.includes('volcano')) return '🏔️';
+    if (t.includes('desert') || t.includes('sahara')) return '🏜️';
+    if (t.includes('casino') || t.includes('neon') || t.includes('vegas')) return '🎰';
+    if (t.includes('luxury') || t.includes('vip')) return '👑';
+    if (t.includes('prehistoric') || t.includes('dinosaur')) return '🦕';
+    if (t.includes('food') || t.includes('drink') || t.includes('kitchen')) return '🍽️';
+    if (t.includes('wheel') || t.includes('spin')) return '🎡';
+    if (t.includes('fairy')) return '🧚';
+    if (t.includes('farm')) return '🌾';
+    if (t.includes('forest')) return '🌲';
+    if (t.includes('urban') || t.includes('city')) return '🏙️';
+    return '🎲';
+}
+
+function getCharacterIcon(character) {
+    const c = (character || '').toLowerCase();
+    if (c.includes('dragon')) return '🐉';
+    if (c.includes('dinosaur') || c.includes('t-rex') || c.includes('rex') || c.includes('raptor')) return '🦖';
+    if (c.includes('phoenix')) return '🔥';
+    if (c.includes('unicorn')) return '🦄';
+    if (c.includes('griffin') || c.includes('eagle')) return '🦅';
+    if (c.includes('pharaoh') || c.includes('egypt')) return '☥';
+    if (c.includes('wizard') || c.includes('sorcerer')) return '🧙';
+    if (c.includes('knight') || c.includes('crusader')) return '⚔️';
+    if (c.includes('pirate') || c.includes('captain')) return '🏴‍☠️';
+    if (c.includes('leprechaun')) return '🍀';
+    if (c.includes('explorer') || c.includes('adventurer')) return '🧭';
+    if (c.includes('king') || c.includes('queen') || c.includes('royalty')) return '👑';
+    if (c.includes('cowboy') || c.includes('sheriff')) return '🤠';
+    if (c.includes('monkey') || c.includes('ape')) return '🐒';
+    if (c.includes('wolf')) return '🐺';
+    if (c.includes('lion')) return '🦁';
+    if (c.includes('cat')) return '🐱';
+    if (c.includes('bird') || c.includes('peacock') || c.includes('parrot')) return '🦜';
+    if (c.includes('fish') || c.includes('shark') || c.includes('octopus')) return '🐟';
+    if (c.includes('bear') || c.includes('panda')) return '🐻';
+    if (c.includes('bull') || c.includes('buffalo')) return '🐂';
+    if (c.includes('tiger')) return '🐯';
+    if (c.includes('pig') || c.includes('boar')) return '🐷';
+    if (c.includes('horse')) return '🐴';
+    if (c.includes('elephant')) return '🐘';
+    if (c.includes('rabbit') || c.includes('bunny')) return '🐰';
+    if (c.includes('snake') || c.includes('serpent')) return '🐍';
+    if (c.includes('turkey') || c.includes('chicken') || c.includes('rooster')) return '🐔';
+    if (c.includes('frog') || c.includes('toad')) return '🐸';
+    if (c.includes('deer') || c.includes('stag')) return '🦌';
+    if (c.includes('fox')) return '🦊';
+    if (c.includes('raccoon')) return '🦝';
+    if (c.includes('dog') || c.includes('hound')) return '🐕';
+    if (c.includes('gorilla')) return '🦍';
+    if (c.includes('crocodile') || c.includes('alligator')) return '🐊';
+    if (c.includes('monster') || c.includes('demon') || c.includes('devil')) return '👹';
+    if (c.includes('fairy') || c.includes('angel')) return '🧚';
+    if (c.includes('giant')) return '🗿';
+    if (c.includes('genie')) return '🧞';
+    if (c.includes('boy') || c.includes('man') || c.includes('warrior')) return '🧑';
+    if (c.includes('lady') || c.includes('girl') || c.includes('woman') || c.includes('princess')) return '👩';
+    if (c.includes('god') || c.includes('deity')) return '🔱';
+    if (c.includes('cartoon') || c.includes('mascot')) return '🎭';
+    if (c.includes('celebrity')) return '🌟';
+    if (c.includes('duck')) return '🦆';
+    if (c.includes('domestic') || c.includes('animal')) return '🐾';
+    return '👤';
+}
+
+function getElementIcon(element) {
+    const e = (element || '').toLowerCase();
+    if (e.includes('fruit') || e.includes('cherry') || e.includes('lemon') || e.includes('watermelon')) return '🍒';
+    if (e.includes('food') || e.includes('drink') || e.includes('cake') || e.includes('beer') || e.includes('wine'))
+        return '🍽️';
+    if (e.includes('gold') || e.includes('coin') || e.includes('treasure')) return '🪙';
+    if (e.includes('lava') || e.includes('magma') || e.includes('volcanic')) return '🌋';
+    if (e.includes('lightning') || e.includes('electric') || e.includes('thunder')) return '⚡';
+    if (e.includes('sky') || e.includes('cloud')) return '☁️';
+    if (e.includes('fire') || e.includes('flame')) return '🔥';
+    if (e.includes('ocean') || e.includes('wave')) return '🌊';
+    if (e.includes('water') || e.includes('rain') || e.includes('river')) return '💧';
+    if (e.includes('tree') || e.includes('forest')) return '🌳';
+    if (e.includes('star') || e.includes('sparkle')) return '⭐';
+    if (e.includes('gem') || e.includes('crystal') || e.includes('diamond') || e.includes('jewel')) return '💎';
+    if (e.includes('mountain') || e.includes('rock') || e.includes('stone')) return '🏔️';
+    if (e.includes('moon')) return '🌙';
+    if (e.includes('sun') || e.includes('light')) return '☀️';
+    if (e.includes('flower') || e.includes('blossom') || e.includes('rose')) return '🌸';
+    if (e.includes('lantern') || e.includes('lamp')) return '🏮';
+    if (e.includes('magic') || e.includes('energy') || e.includes('potion')) return '✨';
+    if (e.includes('neon') || e.includes('glow')) return '💡';
+    if (e.includes('column') || e.includes('pillar') || e.includes('temple')) return '🏛️';
+    if (e.includes('money') || e.includes('cash') || e.includes('safe') || e.includes('vault')) return '💵';
+    if (e.includes('curtain') || e.includes('drape') || e.includes('fabric')) return '🪭';
+    if (e.includes('pyramid')) return '🔺';
+    if (e.includes('religious') || e.includes('spiritual')) return '🕉️';
+    if (e.includes('wallpaper') || e.includes('decoration')) return '🖼️';
+    if (e.includes('amulet') || e.includes('mask') || e.includes('relic') || e.includes('artifact')) return '🗿';
+    if (e.includes('field') || e.includes('grass') || e.includes('meadow')) return '🌿';
+    if (e.includes('scroll') || e.includes('book') || e.includes('writing') || e.includes('hieroglyph')) return '📜';
+    if (e.includes('sand') || e.includes('desert')) return '🏜️';
+    if (e.includes('bell') || e.includes('seven')) return '🔔';
+    if (e.includes('village') || e.includes('town') || e.includes('house')) return '🏘️';
+    if (e.includes('chandelier') || e.includes('candle')) return '🕯️';
+    if (e.includes('weapon') || e.includes('sword') || e.includes('shield')) return '🗡️';
+    if (e.includes('card') || e.includes('poker') || e.includes('dice')) return '🎲';
+    return '•';
+}
+
+function getNarrativeIcon(narrative) {
+    const n = (narrative || '').toLowerCase();
+    if (n.includes('fairy tale') || n.includes('fantasy')) return '🧚';
+    if (n.includes('wealth') || n.includes('treasure') || n.includes('gold')) return '💰';
+    if (n.includes('hunt') || n.includes('quest')) return '🗺️';
+    if (n.includes('battle') || n.includes('war')) return '⚔️';
+    if (n.includes('love') || n.includes('romance')) return '❤️';
+    if (n.includes('heist') || n.includes('crime')) return '🔓';
+    if (n.includes('survival')) return '🏕️';
+    if (n.includes('rescue') || n.includes('mission')) return '🚁';
+    if (n.includes('discovery') || n.includes('exploration')) return '🔭';
+    if (n.includes('fishing')) return '🎣';
+    if (n.includes('magic show') || n.includes('magic trick')) return '🎩';
+    if (n.includes('magic')) return '🪄';
+    if (n.includes('celebration') || n.includes('festival')) return '🎉';
+    if (n.includes('cultural')) return '🏺';
+    if (n.includes('branded')) return '🎬';
+    if (n.includes('collection')) return '📦';
+    if (n.includes('music')) return '🎵';
+    if (n.includes('mystery')) return '🔍';
+    if (n.includes('journey') || n.includes('travel')) return '🧳';
+    return '📖';
 }
 
 function buildArtBreakdown(games, excludeDimension) {
@@ -226,7 +387,7 @@ function buildArtBreakdown(games, excludeDimension) {
         art_color_tone: 'bg-sky-400 dark:bg-sky-500',
     };
 
-    const INITIAL_SHOW = 8;
+    const INITIAL_SHOW = 20;
     return dims
         .map((d, di) => {
             const maxCount = d.items.length ? d.items[0][1] : 1;
@@ -236,7 +397,7 @@ function buildArtBreakdown(games, excludeDimension) {
                 const barW = ((count / maxCount) * 100).toFixed(0);
                 const pct = d.base > 0 ? ((count / d.base) * 100).toFixed(0) : '0';
                 return `<div class="flex items-center gap-3 py-2 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/30 rounded-lg px-2 transition-colors${hidden ? ' hidden' : ''}" ${hidden ? `data-more="${uid}"` : ''} data-xray='${escapeAttr(JSON.stringify({ dimension: d.dim, value: name }))}' onclick="${safeOnclick(d.clickFn, name)}">
-                    <span class="text-[13px] font-medium text-gray-800 dark:text-gray-200 w-36 truncate flex-shrink-0" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+                    <span class="text-[12px] font-medium text-gray-800 dark:text-gray-200 flex-shrink-0 leading-tight" style="width:40%;max-width:200px" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
                     <div class="flex-1 h-2.5 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden"><div class="h-full ${barColor} rounded-full" style="width:${barW}%"></div></div>
                     <span class="text-[12px] text-gray-500 dark:text-gray-400 w-16 text-right flex-shrink-0">${count} (${pct}%)</span>
                 </div>`;
@@ -423,15 +584,26 @@ export async function renderArt() {
     const allGames = getActiveGames();
     const artGames = allGames.filter(g => F.artTheme(g));
 
-    const [themes, narratives, characters, elements, colorTones, recipes, globalAvg] = await Promise.all([
-        getArtThemeMetrics(gameData.activeCategory),
-        getArtNarrativeMetrics(gameData.activeCategory),
-        getArtCharacterMetrics(gameData.activeCategory),
-        getArtElementMetrics(gameData.activeCategory),
-        getArtColorToneMetrics(gameData.activeCategory),
-        getArtRecipeMetrics(gameData.activeCategory, { minGames: 3 }),
-        getGlobalAvgTheo(gameData.activeCategory),
-    ]);
+    const currentCat = gameData.activeCategory || '__all__';
+    let themes, narratives, characters, elements, colorTones, recipes, globalAvg;
+
+    if (_artCache.category === currentCat && _artCache.data) {
+        ({ themes, narratives, characters, elements, colorTones, recipes, globalAvg } = _artCache.data);
+    } else {
+        [themes, narratives, characters, elements, colorTones, recipes, globalAvg] = await Promise.all([
+            getArtThemeMetrics(gameData.activeCategory),
+            getArtNarrativeMetrics(gameData.activeCategory),
+            getArtCharacterMetrics(gameData.activeCategory),
+            getArtElementMetrics(gameData.activeCategory),
+            getArtColorToneMetrics(gameData.activeCategory),
+            getArtRecipeMetrics(gameData.activeCategory, { minGames: 3 }),
+            getGlobalAvgTheo(gameData.activeCategory),
+        ]);
+        _artCache = {
+            category: currentCat,
+            data: { themes, narratives, characters, elements, colorTones, recipes, globalAvg },
+        };
+    }
 
     renderStats(allGames, artGames, themes, characters, elements, colorTones);
     renderThemeLandscape(themes, globalAvg);
@@ -459,9 +631,9 @@ export async function renderArt() {
         c => c.colorTone,
         'showArtColor',
         {
-            labelColorFn: item => {
+            colorFn: item => {
                 const colorMap = {
-                    Gold: '#FFD700',
+                    Gold: '#EAB308',
                     Silver: '#C0C0C0',
                     Red: '#EF4444',
                     Blue: '#3B82F6',
@@ -469,7 +641,7 @@ export async function renderArt() {
                     Purple: '#A855F7',
                     Pink: '#EC4899',
                     Teal: '#14B8A6',
-                    Yellow: '#EAB308',
+                    Yellow: '#FFD700',
                     Orange: '#F97316',
                     Black: '#1F2937',
                     White: '#F3F4F6',
@@ -534,6 +706,9 @@ export async function renderArt() {
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
+
+    fillArtCoverageInline(allGames, artGames);
+
     renderArtTrends(artGames);
     await renderArtRecipes(recipes, globalAvg, artGames);
     await renderProviderArtCards(artGames, globalAvg);
@@ -552,7 +727,7 @@ export async function renderArt() {
                 if (sc) {
                     const rect = el.getBoundingClientRect();
                     const scRect = sc.getBoundingClientRect();
-                    sc.scrollTo({ top: sc.scrollTop + rect.top - scRect.top - 20, behavior: 'smooth' });
+                    sc.scrollTo({ top: sc.scrollTop + rect.top - scRect.top - 140, behavior: 'smooth' });
                 }
             }
         }, 300);
@@ -585,6 +760,41 @@ function renderStats(allGames, artGames, themes, characters, elements, colorTone
     if (sub) {
         sub.textContent = `Visual design analysis across ${artGames.length} classified games — ${themes.length} themes, ${characters.length} characters, ${elements.length} elements, ${colorTones.length} color tones`;
     }
+}
+
+function fillArtCoverageInline(allGames, artGames) {
+    const total = allGames.length;
+    if (!total) return;
+
+    const withChars = allGames.filter(g => F.artCharacters(g).length > 0).length;
+    const withElems = allGames.filter(g => F.artElements(g).length > 0).length;
+    const withColor = allGames.filter(g => {
+        const ct = F.artColorTone(g);
+        return ct && (Array.isArray(ct) ? ct.length > 0 : !!ct);
+    }).length;
+    const withNarr = allGames.filter(g => F.artNarrative(g)).length;
+    const withTheme = artGames.length;
+
+    const fmt = (covered, label) => {
+        const pct = Math.max(1, Math.round((covered / total) * 100));
+        return `${pct}% coverage · ${covered.toLocaleString()} of ${total.toLocaleString()} games ${label}`;
+    };
+
+    const set = (forId, text) => {
+        const el = document.querySelector(`.coverage-inline[data-for="${forId}"]`);
+        if (el) el.textContent = text;
+    };
+
+    set('art-opportunity-chart', fmt(withTheme, 'with art data'));
+    set('art-themes-chart', fmt(withTheme, 'with art data'));
+    set('art-color-tone-chart', fmt(withColor, 'with color data'));
+    set('art-characters-chart', fmt(withChars, 'with character data'));
+    set('art-characters-landscape', fmt(withChars, 'with character data'));
+    set('art-elements-chart', fmt(withElems, 'with element data'));
+    set('art-elements-landscape', fmt(withElems, 'with element data'));
+    set('art-narrative-chart', fmt(withNarr, 'with narrative data'));
+    set('art-narrative-landscape', fmt(withNarr, 'with narrative data'));
+    set('art-colors-landscape', fmt(withColor, 'with color data'));
 }
 
 function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, clickHandler, extraOpts = {}) {
@@ -666,6 +876,9 @@ function renderThemeLandscape(themes, globalAvg) {
             if (item._theme?.theme) window.showArtTheme(item._theme.theme);
         },
     });
+
+    const loader = document.getElementById('art-opportunity-loader');
+    if (loader) loader.remove();
 }
 
 // ── Blue Ocean Opportunities bubble chart (recipe-level: Theme × Mood) ──
@@ -1292,20 +1505,29 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
 
     const ctx = canvas.getContext('2d');
     const chartColors = getChartColors();
-    const top12 = labels.slice(0, 12);
-    const top12Vals = values.slice(0, 12);
+    const MAX_BARS = 25;
+    const topN = labels.slice(0, MAX_BARS);
+    const topNVals = values.slice(0, MAX_BARS);
 
-    const displayLabels = displayLabelOverrides ? displayLabelOverrides.slice(0, 12) : top12.map(l => shortLabel(l));
-    const gradientColors = generateModernColors(ctx, top12.length);
+    const displayLabels = displayLabelOverrides
+        ? displayLabelOverrides.slice(0, MAX_BARS)
+        : topN.map(l => shortLabel(l));
+    const gradientColors = generateModernColors(ctx, topN.length);
+
+    const barCount = topN.length;
+    canvas.parentElement.style.height = `${Math.max(320, barCount * 28 + 60)}px`;
+
+    const trendArrowPlugin = { id: 'trendArrows' };
 
     chartInstances[chartKey] = new Chart(ctx, {
         type: 'bar',
+        plugins: [trendArrowPlugin],
         data: {
-            labels: top12,
+            labels: topN,
             datasets: [
                 {
                     label: metric,
-                    data: top12Vals,
+                    data: topNVals,
                     backgroundColor: gradientColors,
                     borderWidth: 0,
                     borderRadius: 6,
@@ -1323,7 +1545,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                 if (window.xrayActive) return;
                 if (elements.length && onClickFn) {
                     const idx = elements[0].index;
-                    onClickFn(top12[idx]);
+                    onClickFn(topN[idx]);
                 }
             },
             onHover: (e, elements) => {
@@ -1337,7 +1559,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                     callbacks: {
                         title: items => {
                             if (!items?.length) return '';
-                            return top12[items[0].dataIndex] || '';
+                            return topN[items[0].dataIndex] || '';
                         },
                         label: item => {
                             if (!item) return '';
@@ -1364,8 +1586,10 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
                         color: chartColors.textColor,
                         font: { size: 11 },
                         autoSkip: false,
-                        padding: 6,
-                        callback: (_, idx) => displayLabels[idx] || top12[idx],
+                        padding: 8,
+                        callback: (_, idx) => {
+                            return displayLabels[idx] || topN[idx];
+                        },
                     },
                 },
             },
@@ -1619,7 +1843,7 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
                 artPills.push(
                     pill(
                         'Characters',
-                        chars.map(c => escapeHtml(shortLabel(c))),
+                        chars.map(c => `${getCharacterIcon(c)} ${escapeHtml(c)}`),
                         'bg-amber-50 dark:bg-amber-900/20',
                         'text-amber-700 dark:text-amber-300'
                     )
@@ -1628,7 +1852,7 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
                 artPills.push(
                     pill(
                         'Elements',
-                        elems.map(e => escapeHtml(shortLabel(e))),
+                        elems.map(e => `${getElementIcon(e)} ${escapeHtml(e)}`),
                         'bg-teal-50 dark:bg-teal-900/20',
                         'text-teal-700 dark:text-teal-300'
                     )
@@ -1637,7 +1861,7 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
                 artPills.push(
                     pill(
                         'Narrative',
-                        escapeHtml(shortLabel(narr)),
+                        `${getNarrativeIcon(narr)} ${escapeHtml(narr)}`,
                         'bg-rose-50 dark:bg-rose-900/20',
                         'text-rose-700 dark:text-rose-300'
                     )
@@ -1656,19 +1880,19 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
 
             const recipeDims = [];
             recipeDims.push(
-                `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Theme</span><span class="px-2.5 py-1 rounded-md bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-[12px] font-bold">${escapeHtml(shortLabel(r.theme, 24))}</span></div>`
+                `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Theme</span><span class="px-2.5 py-1 rounded-md bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 text-[12px] font-bold">${getThemeIcon(r.theme)} ${escapeHtml(r.theme)}</span></div>`
             );
             if (chars.length)
                 recipeDims.push(
-                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Characters</span><span class="flex flex-wrap gap-1.5">${chars.map(c => `<span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-[12px] font-semibold">${escapeHtml(shortLabel(c, 20))}</span>`).join('')}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Characters</span><span class="flex flex-wrap gap-1.5">${chars.map(c => `<span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 text-[12px] font-semibold">${getCharacterIcon(c)} ${escapeHtml(c)}</span>`).join('')}</span></div>`
                 );
             if (elems.length)
                 recipeDims.push(
-                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Elements</span><span class="flex flex-wrap gap-1.5">${elems.map(e => `<span class="px-2.5 py-1 rounded-md bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-[12px] font-semibold">${escapeHtml(shortLabel(e, 20))}</span>`).join('')}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Elements</span><span class="flex flex-wrap gap-1.5">${elems.map(e => `<span class="px-2.5 py-1 rounded-md bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-[12px] font-semibold">${getElementIcon(e)} ${escapeHtml(e)}</span>`).join('')}</span></div>`
                 );
             if (narr)
                 recipeDims.push(
-                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Narrative</span><span class="px-2.5 py-1 rounded-md bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 text-[12px] font-semibold">${escapeHtml(shortLabel(narr, 22))}</span></div>`
+                    `<div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 w-[70px] shrink-0">Narrative</span><span class="px-2.5 py-1 rounded-md bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-200 text-[12px] font-semibold">${getNarrativeIcon(narr)} ${escapeHtml(narr)}</span></div>`
                 );
 
             const specLine = [domVol, domLayout, avgRtp > 0 ? `RTP ${avgRtp.toFixed(1)}%` : '']
@@ -1681,10 +1905,10 @@ async function renderArtRecipesInner(sorted, avg, container, artGames) {
                     <div class="text-sm font-bold text-gray-400 dark:text-gray-500 w-6 shrink-0 pt-1">${rank}</div>
                     <div class="min-w-0 flex-1">
                         <div class="space-y-1.5 mb-3">${recipeDims.join('')}</div>
-                        <div class="flex items-center gap-3 text-xs text-gray-600 dark:text-gray-400">
-                            <span class="font-medium text-gray-900 dark:text-white">PI: ${r.avgTheo.toFixed(2)}</span>
-                            <span>${r.count} games</span>
-                            <span class="font-medium ${liftColor}">${liftIcon}${Math.abs(lift).toFixed(0)}% vs avg</span>
+                        <div class="flex items-center gap-2.5 text-xs text-gray-600 dark:text-gray-400 flex-wrap">
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-semibold">Perf. Index: ${r.avgTheo.toFixed(2)}</span>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 font-medium">${r.count} games</span>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md ${lift >= 0 ? 'bg-emerald-50 dark:bg-emerald-900/30' : 'bg-red-50 dark:bg-red-900/30'} font-medium ${liftColor}">${liftIcon}${Math.abs(lift).toFixed(0)}% vs avg</span>
                             ${trendBadge}
                             ${isOpp ? '<span class="text-[9px] font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-1.5 py-0.5 rounded-full">💎 Opportunity</span>' : ''}
                         </div>
@@ -1865,7 +2089,7 @@ function renderOpportunityGaps(artGames, globalAvg, themes, narratives, characte
         for (const g of items) {
             const liftSign = g.lift > 0 ? '+' : '';
             html += `<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 cursor-pointer hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors" onclick="${safeOnclick('window.' + g.handler, g.value)}">
-                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(g.value))}</span>
+                <span class="text-xs font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(g.value)}</span>
                 <span class="text-[9px] text-gray-500 dark:text-gray-400">${g.count} games</span>
                 <span class="text-[9px] font-bold text-emerald-600 dark:text-emerald-400">${liftSign}${g.lift.toFixed(0)}%</span>
                 <span class="text-[9px] px-1 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 font-medium">💎</span>
@@ -1947,13 +2171,13 @@ async function renderTopCombos(artGames, globalAvg) {
         const liftColor = lift >= 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500 dark:text-red-400';
         const liftSign = lift >= 0 ? '+' : '';
         const charCell = c.character
-            ? `<span class="text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.character))}</span>`
+            ? `<span class="text-gray-600 dark:text-gray-300">${escapeHtml(c.character)}</span>`
             : '<span class="text-gray-300 dark:text-gray-600">—</span>';
         html += `<tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer" onclick="${safeOnclick('window.showArtCombo', c.theme, c.element)}">
             <td class="py-2 px-2 text-gray-400 dark:text-gray-500 font-bold">${i + 1}</td>
-            <td class="py-2 px-2 font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(shortLabel(c.theme))}</td>
+            <td class="py-2 px-2 font-semibold text-gray-800 dark:text-gray-200">${escapeHtml(c.theme)}</td>
             <td class="py-2 px-2">${charCell}</td>
-            <td class="py-2 px-2 text-gray-600 dark:text-gray-300">${escapeHtml(shortLabel(c.element))}</td>
+            <td class="py-2 px-2 text-gray-600 dark:text-gray-300">${escapeHtml(c.element)}</td>
             <td class="py-2 px-2 text-right tabular-nums text-gray-700 dark:text-gray-300">${c.count}</td>
             <td class="py-2 px-2 text-right font-bold tabular-nums text-gray-900 dark:text-white">${c.avgTheo.toFixed(2)}</td>
             <td class="py-2 px-2 text-right font-bold tabular-nums ${liftColor}">${liftSign}${lift.toFixed(0)}%</td>

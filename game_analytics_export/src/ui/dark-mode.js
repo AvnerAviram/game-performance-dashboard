@@ -24,7 +24,7 @@ function injectToggle() {
 
     const wrapper = document.createElement('div');
     wrapper.id = 'dm-injected';
-    wrapper.className = 'flex items-center';
+    wrapper.className = 'flex items-center mr-3';
     wrapper.innerHTML = TOGGLE_HTML;
     hamburger.parentElement.insertBefore(wrapper, hamburger);
 

@@ -5,4 +5,4 @@ coverage/
 *.min.css
 data/*.json
 package-lock.json
-src/output.css
+public/data/

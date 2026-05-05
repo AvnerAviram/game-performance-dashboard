@@ -112,9 +112,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is a <strong>consolidated dashboard theme</strong> (canonical theme_consolidated). X =
-                    games in theme, Y = average Theo Win index for those games (Eilers scale), bubble area scales with
-                    game count. Coverage pill: games that have usable theme mapping in the snapshot.
+                    Each bubble is a <strong>consolidated dashboard theme</strong> with <strong>≥ 2 games</strong>
+                    (single-game themes filtered out). X = games in theme, Y = average Theo Win index (Eilers scale),
+                    bubble area scales with game count. Coverage pill: percentage of games with usable theme mapping.
                 </div>
             </div>
             <div class="ml-auto">
@@ -187,9 +187,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is a provider. X = games in footprint, Y = average Theo Win index, bubble area scales
-                    with game count. Quadrant shading vs median splits the cohort shown. Coverage pill: games with Theo
-                    Win &gt; 0 in loaded data.
+                    Each bubble is a provider (all providers with at least 1 game are shown). X = games in footprint, Y
+                    = average Theo Win index, bubble area scales with game count. Quadrant shading uses median splits.
+                    Coverage pill: percentage of games with Theo Win &gt; 0 in loaded data.
                 </div>
             </div>
         </div>
@@ -226,37 +226,6 @@
     </div>
 </div>
 
-<!-- 2c. Volatility Landscape (full width) -->
-<div
-    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
->
-    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2">
-            <span class="text-lg">🎲</span>
-            <h3 class="text-sm font-bold text-gray-900 dark:text-white leading-none">Volatility Landscape</h3>
-            <div class="relative group ml-1">
-                <button
-                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
-                >
-                    ?
-                </button>
-                <div
-                    class="hidden group-hover:block absolute left-full top-0 ml-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                >
-                    <strong>Data quality:</strong> Only games with provider-verified or high-confidence volatility data
-                    are shown. Games with estimated volatility (e.g. SlotCatalog) are excluded to ensure accuracy.
-                </div>
-            </div>
-        </div>
-        <p class="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
-            X = game count, Y = avg Theo Win index, bubble area ∝ game count (per volatility bucket)
-        </p>
-    </div>
-    <div id="volatility-landscape-chart" class="p-4" style="height: 480px">
-        <canvas id="chart-volatility-landscape"></canvas>
-    </div>
-</div>
-
 <!-- 2d. RTP Landscape (full width) -->
 <div
     class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
@@ -274,8 +243,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is an RTP band. Only games with known RTP values are included — see the coverage pill
-                    for the exact percentage.
+                    Each bubble is an RTP band. <strong>Filter:</strong> Only games with a known (non-zero) RTP value
+                    are included — games without RTP data are excluded. Coverage pill shows the exact percentage of
+                    qualifying games. X = games in band, Y = avg Theo Win index, bubble area ∝ game count.
                 </div>
             </div>
         </div>
@@ -285,6 +255,12 @@
     </div>
     <div id="rtp-landscape-chart" class="p-4" style="height: 480px">
         <canvas id="chart-rtp-landscape"></canvas>
+    </div>
+    <div class="px-5 pb-3 text-right">
+        <span
+            class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+            data-for="chart-rtp-landscape"
+        ></span>
     </div>
 </div>
 
@@ -306,8 +282,9 @@
                 <div
                     class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
                 >
-                    Each bubble is a franchise/brand. Only games matched to a known franchise are shown — see the
-                    coverage pill for the exact percentage.
+                    Each bubble is a franchise/brand with <strong>≥ 5 titles</strong> (smaller franchises are filtered
+                    out for clarity). Only games matched to a known franchise are shown — see the coverage pill for the
+                    exact percentage. X = title count, Y = avg Theo Win index, bubble area ∝ title count.
                 </div>
             </div>
         </div>
@@ -342,6 +319,80 @@
             data-for="chart-brand-landscape"
         ></span>
     </div>
+</div>
+
+<!-- 3. Brand Intelligence (full width) -->
+<div
+    id="brand-intelligence-section"
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-3 mb-1">
+            <div
+                class="w-10 h-10 bg-violet-100 dark:bg-violet-900/30 rounded-lg flex items-center justify-center text-lg"
+            >
+                🎬
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-1.5">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white leading-none tracking-tight">
+                        Brand Intelligence
+                    </h3>
+                    <div class="relative group">
+                        <button
+                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
+                        >
+                            ?
+                        </button>
+                        <div
+                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                        >
+                            Franchise buckets from each game's franchise field on the roster. Rows show Theo vs market,
+                            total <strong>GGR share</strong> (sum of each title's measured contribution %), YoY mix, and
+                            top themes/mechanics across that franchise.
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    Licensed IPs and game families ranked by market performance
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="franchise-intelligence" class="p-4"></div>
+</div>
+
+<!-- 4. Provider Intelligence (full width) -->
+<div
+    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
+>
+    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
+        <div class="flex items-center gap-2">
+            <span class="text-lg">🏢</span>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
+                Provider Intelligence
+            </h3>
+            <div class="relative group">
+                <button
+                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
+                >
+                    ?
+                </button>
+                <div
+                    class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
+                >
+                    Top 10 providers by game count on the roster. Highlighted theme = highest average
+                    <strong>Theo Win index</strong> among themes that provider ships (portfolio slice, not cohort PI).
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
+            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg Theo Win index</span
+            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg Theo Win index</span
+            ><span>↑↓ = year-over-year trend</span>
+        </div>
+    </div>
+    <div id="provider-theme-matrix" class="p-4"></div>
 </div>
 
 <!-- Strategic Recommendations (Build Next / Avoid / Watch) -->
@@ -421,78 +472,4 @@
         </div>
         <div id="insight-watch" class="p-4 space-y-2 flex-1"></div>
     </div>
-</div>
-
-<!-- 3. Brand Intelligence (full width) -->
-<div
-    id="brand-intelligence-section"
-    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
->
-    <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-3 mb-1">
-            <div
-                class="w-10 h-10 bg-violet-100 dark:bg-violet-900/30 rounded-lg flex items-center justify-center text-lg"
-            >
-                🎬
-            </div>
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-1.5">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white leading-none tracking-tight">
-                        Brand Intelligence
-                    </h3>
-                    <div class="relative group">
-                        <button
-                            class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none"
-                        >
-                            ?
-                        </button>
-                        <div
-                            class="hidden group-hover:block absolute left-0 top-full mt-1 w-64 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                        >
-                            Franchise buckets from each game's franchise field on the roster. Rows show Theo vs market,
-                            total <strong>GGR share</strong> (sum of each title's measured contribution %), YoY mix, and
-                            top themes/mechanics across that franchise.
-                        </div>
-                    </div>
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                    Licensed IPs and game families ranked by market performance
-                </p>
-            </div>
-        </div>
-    </div>
-    <div id="franchise-intelligence" class="p-4"></div>
-</div>
-
-<!-- 4. Provider Intelligence (full width) -->
-<div
-    class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 overflow-hidden mb-6 shrink-0"
->
-    <div class="px-5 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
-        <div class="flex items-center gap-2">
-            <span class="text-lg">🏢</span>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white leading-none tracking-tight">
-                Provider Intelligence
-            </h3>
-            <div class="relative group">
-                <button
-                    class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold leading-none cursor-help"
-                >
-                    ?
-                </button>
-                <div
-                    class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                >
-                    Top 10 providers by game count on the roster. Highlighted theme = highest average
-                    <strong>Theo Win index</strong> among themes that provider ships (portfolio slice, not cohort PI).
-                </div>
-            </div>
-        </div>
-        <div class="flex items-center gap-3 mt-1.5 text-[10px] text-gray-400 dark:text-gray-500">
-            <span><span class="text-emerald-500 font-bold">▲ %</span> = above market avg Theo Win index</span
-            ><span><span class="text-red-400 font-bold">▼ %</span> = below market avg Theo Win index</span
-            ><span>↑↓ = year-over-year trend</span>
-        </div>
-    </div>
-    <div id="provider-theme-matrix" class="p-4"></div>
 </div>

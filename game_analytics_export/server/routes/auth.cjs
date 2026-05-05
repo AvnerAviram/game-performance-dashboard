@@ -1,10 +1,19 @@
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
+const rateLimit = require('express-rate-limit');
 const { loadUsers } = require('../helpers.cjs');
 
 const router = Router();
 
-router.post('/api/login', async (req, res) => {
+const loginLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 20,
+    message: { error: 'Too many login attempts. Try again in 5 minutes.' },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+router.post('/api/login', loginLimiter, async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
@@ -22,11 +31,20 @@ router.post('/api/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        req.session.user = { username: user.username, role: user.role || 'user' };
-        if (req.body.remember) {
-            req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
-        }
-        res.json({ success: true, user: { username: user.username, role: user.role || 'user' } });
+        const userData = { username: user.username, role: user.role || 'user' };
+        const remember = req.body.remember;
+
+        req.session.regenerate(err => {
+            if (err) {
+                console.error('[ERROR] Session regeneration failed:', err.message);
+                return res.status(500).json({ error: 'Internal server error' });
+            }
+            req.session.user = userData;
+            if (remember) {
+                req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
+            }
+            res.json({ success: true, user: userData });
+        });
     } catch (err) {
         console.error('[ERROR] Login failed:', err.message);
         res.status(500).json({ error: 'Internal server error' });

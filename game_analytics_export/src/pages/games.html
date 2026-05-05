@@ -164,10 +164,9 @@
                 >ⓘ
                 <div class="filter-tooltip">
                     <strong>Market Leaders</strong>
-                    <p>
-                        Games at or above <strong>0.5%</strong> combined GGR share in the loaded roster (Eilers market
-                        contribution field)
-                    </p>
+                    <p>Games with significant market revenue contribution.</p>
+                    <hr />
+                    <p><b>Formula:</b> game.market_share_pct &ge; 0.5% (Eilers market contribution field).</p>
                     <hr />
                     <p>✓ Meaningful revenue impact</p>
                     <p>✓ Proven market performance</p>
@@ -185,7 +184,9 @@
                 >ⓘ
                 <div class="filter-tooltip">
                     <strong>New Releases</strong>
-                    <p>Games released in the past year</p>
+                    <p>Games released within the last 12 months.</p>
+                    <hr />
+                    <p><b>Formula:</b> game.release_date &ge; (today - 365 days).</p>
                     <hr />
                     <p>✓ Latest market entrants</p>
                     <p>✓ Fresh content from providers</p>
@@ -203,7 +204,11 @@
                 >ⓘ
                 <div class="filter-tooltip">
                     <strong>Hidden Gems</strong>
-                    <p>Games with above-average <strong>Theo Win index</strong> but under 1.0% aggregate GGR share</p>
+                    <p>High-quality games that haven't yet captured significant market share.</p>
+                    <hr />
+                    <p>
+                        <b>Formula:</b> game.theo_win &ge; AVG(all games theo_win) AND game.market_share_pct &lt; 1.0%.
+                    </p>
                     <hr />
                     <p>✓ Theo Win &ge; cohort mean (all games)</p>
                     <p>✓ Under 1.0% summed GGR contribution</p>

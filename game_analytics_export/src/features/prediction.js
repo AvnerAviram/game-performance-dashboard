@@ -7,11 +7,12 @@ import {
     predictFromSimilarGames,
     getDatasetStats,
 } from '../lib/game-analytics-engine.js';
-import { escapeHtml, escapeAttr, safeOnclick } from '../lib/sanitize.js';
+import { escapeHtml, escapeAttr, safeOnclick, sanitizeAIHtml } from '../lib/sanitize.js';
 import { log, warn } from '../lib/env.js';
 import { parseFeatsLocal } from '../ui/renderers/overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../lib/features.js';
 import { F } from '../lib/game-fields.js';
+import { apiPost } from '../lib/api-client.js';
 
 // Initialize Blueprint prediction chips
 export function setupPrediction() {
@@ -32,7 +33,7 @@ export function setupPrediction() {
             'theme-chip inline-block px-4 py-2.5 rounded-lg text-base font-medium cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors';
         chip.dataset.theme = theme.Theme;
         chip.textContent = `${theme.Theme} (${theme['Game Count']} games)`;
-        chip.title = `Performance Index: ${theme['Smart Index'].toFixed(1)}`;
+        chip.title = `Avg Theo Win Index: ${(theme['Avg Theo Win Index'] || theme.avg_theo_win || 0).toFixed(2)} | Market Share: ${(theme['Market Share %'] || 0).toFixed(2)}% | Formula: AVG(game.theo_win) / global_avg`;
 
         chip.addEventListener('click', function () {
             document.querySelectorAll('#game-themes > div').forEach(c => {
@@ -64,7 +65,7 @@ export function setupPrediction() {
         chip.dataset.mechanic = mechName;
 
         const dataM = gameData.mechanics.find(m => m.Mechanic === mechName);
-        const siText = dataM ? `PI: ${dataM['Smart Index'].toFixed(1)}` : 'New';
+        const siText = dataM ? `Avg Theo: ${(dataM['Avg Theo Win Index'] || 0).toFixed(2)}` : 'New';
         chip.textContent = `${mechName} (${siText})`;
 
         const mechDef = getMechanicDefinition(mechName);
@@ -317,9 +318,9 @@ export function predictGameSuccess() {
         </div>
         <div class="result-section">
             <strong>🎨 Theme Analysis</strong>
-            ${themeData.map(t => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}'><div class="analysis-label">${escapeHtml(t.Theme)}</div><div class="analysis-value">${t['Smart Index'].toFixed(1)}</div></div>`).join('')}
+            ${themeData.map(t => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: t.Theme }))}'><div class="analysis-label">${escapeHtml(t.Theme)}</div><div class="analysis-value">${(t['Avg Theo Win Index'] || 0).toFixed(2)}</div></div>`).join('')}
         </div>
-        ${mechData.length > 0 ? `<div class="result-section"><strong>⚙️ Mechanic Analysis</strong>${mechData.map(m => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: m.Mechanic }))}'><div class="analysis-label">${escapeHtml(m.Mechanic)}</div><div class="analysis-value">${m['Smart Index'].toFixed(1)}</div></div>`).join('')}</div>` : ''}
+        ${mechData.length > 0 ? `<div class="result-section"><strong>⚙️ Mechanic Analysis</strong>${mechData.map(m => `<div class="analysis-item" data-xray='${escapeAttr(JSON.stringify({ dimension: 'feature', value: m.Mechanic }))}'><div class="analysis-label">${escapeHtml(m.Mechanic)}</div><div class="analysis-value">${(m['Avg Theo Win Index'] || 0).toFixed(2)}</div></div>`).join('')}</div>` : ''}
         <div class="prediction-suggest-section" style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid rgba(148, 163, 184, 0.35);">
             <button type="button" class="prediction-suggest-btn w-full py-2.5 px-4 rounded-xl text-sm font-semibold border border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors">Suggest Improvements</button>
             <div class="prediction-suggestions-panel hidden"></div>
@@ -337,7 +338,7 @@ export function predictGameSuccess() {
 }
 
 // Concept analyzer (free-text game concept analysis)
-function analyzeGameConcept() {
+async function analyzeGameConcept() {
     const input = document.getElementById('concept-input');
     const resultsDiv = document.getElementById('concept-results');
     const detectedDiv = document.getElementById('concept-detected');
@@ -348,6 +349,12 @@ function analyzeGameConcept() {
     if (!text) {
         input.classList.add('ring-2', 'ring-red-400');
         setTimeout(() => input.classList.remove('ring-2', 'ring-red-400'), 1500);
+        return;
+    }
+
+    const aiCode = document.getElementById('concept-ai-code')?.value?.trim() || '';
+    if (aiCode) {
+        await analyzeWithClaude(text, aiCode, resultsDiv);
         return;
     }
 
@@ -613,9 +620,9 @@ function analyzeGameConcept() {
                 <div class="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">Market Analysis</div>
                 <div class="text-xl font-bold ${verdictColor}">${verdict}</div>
             </div>
-            <div class="text-right">
-                <div class="text-4xl font-black ${verdictColor}">${normalizedScore}</div>
-                <div class="text-[10px] text-gray-400 font-medium">/ 100</div>
+            <div class="flex flex-col items-center justify-center min-w-[64px]">
+                <div class="text-4xl font-black ${verdictColor} leading-none">${normalizedScore}</div>
+                <div class="text-[10px] text-gray-400 font-medium mt-1">/ 100</div>
             </div>
         </div>
         <div class="grid grid-cols-3 gap-4 mt-4">
@@ -818,6 +825,47 @@ function analyzeGameConcept() {
     resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
+async function analyzeWithClaude(concept, code, resultsDiv) {
+    resultsDiv.innerHTML =
+        '<div class="flex items-center justify-center gap-3 py-12 text-gray-400"><div class="animate-spin w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full"></div><span>Claude is analyzing your concept...</span></div>';
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    const themes = (gameData.themes || [])
+        .slice(0, 15)
+        .map(t => `${t.Theme}: ${t['Game Count']} games, PI=${(t['Avg Theo Win Index'] || 0).toFixed(2)}`)
+        .join('; ');
+    const mechs = (gameData.mechanics || [])
+        .slice(0, 12)
+        .map(m => `${m.Mechanic}: ${m['Game Count']} games, PI=${(m['Avg Theo Win Index'] || 0).toFixed(2)}`)
+        .join('; ');
+    const context = `Top themes: ${themes}\nTop mechanics: ${mechs}\nTotal games in DB: ${(gameData.allGames || []).length}`;
+
+    try {
+        const data = await apiPost('/api/concept-analyze', { concept, context, code });
+        const answer = sanitizeAIHtml(data.answer || 'No response from AI.');
+        resultsDiv.innerHTML = `
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-violet-200 dark:border-violet-800 p-5">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 font-semibold">Claude AI Analysis</span>
+                </div>
+                <div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm dark:prose-invert max-w-none">${answer}</div>
+            </div>`;
+    } catch (err) {
+        resultsDiv.innerHTML = `<div class="text-red-500 text-sm p-4">Claude error: ${escapeHtml(err.message || 'Unknown error')}. Running local analysis instead...</div>`;
+        analyzeGameConceptLocal(concept);
+    }
+}
+
+function analyzeGameConceptLocal(text) {
+    const input = document.getElementById('concept-input');
+    if (input) input.value = text;
+    const aiCodeEl = document.getElementById('concept-ai-code');
+    const origCode = aiCodeEl?.value;
+    if (aiCodeEl) aiCodeEl.value = '';
+    analyzeGameConcept();
+    if (aiCodeEl && origCode) aiCodeEl.value = origCode;
+}
+
 window.analyzeGameConcept = analyzeGameConcept;
 
 async function useOpportunityCombo(theme, mechanic) {
@@ -846,5 +894,26 @@ window.setConceptExample = function (btn) {
         input.focus();
     }
 };
+
+(function initConceptModeBadge() {
+    const codeInput = document.getElementById('concept-ai-code');
+    if (!codeInput) {
+        setTimeout(initConceptModeBadge, 500);
+        return;
+    }
+    codeInput.addEventListener('input', () => {
+        const badge = document.getElementById('concept-mode-badge');
+        if (!badge) return;
+        if (codeInput.value.trim()) {
+            badge.textContent = 'Claude AI mode';
+            badge.className =
+                'text-[10px] px-2 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 font-medium';
+        } else {
+            badge.textContent = 'Local mode';
+            badge.className =
+                'text-[10px] px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-medium';
+        }
+    });
+})();
 
 window.switchPredictionTab = function () {};

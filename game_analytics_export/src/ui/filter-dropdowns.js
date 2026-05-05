@@ -8,6 +8,7 @@ import { F } from '../lib/game-fields.js';
 import { log } from '../lib/env.js';
 import { renderThemes } from './renderers/themes-renderer.js';
 import { renderMechanics } from './renderers/mechanics-renderer.js';
+import { getRankingMode } from '../lib/filters.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { calculateSmartIndex } from '../lib/metrics.js';
 import { MIN_QUALIFIED_GAMES } from '../lib/shared-config.js';
@@ -168,9 +169,12 @@ export function filterThemes(view) {
             'Market Share %': ((t.count / filteredGames.length) * 100).toFixed(2),
         };
     });
+    const isGrossing = getRankingMode() === 'grossing';
     filteredThemes.sort((a, b) => {
         if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
-        return b['Smart Index'] - a['Smart Index'];
+        return isGrossing
+            ? (b['Market Share %'] || 0) - (a['Market Share %'] || 0)
+            : (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0);
     });
 
     // Apply tab view filter if provided
@@ -186,9 +190,11 @@ export function filterThemes(view) {
             t => t['Game Count'] >= 3 && t['Avg Theo Win Index'] >= avgPerf && t['Market Share %'] < 5
         );
     } else if (view === 'premium') {
-        const sortedByPerf = [...filteredThemes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
-        const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Smart Index'] || 1.5;
-        result = filteredThemes.filter(t => (t['Smart Index'] || 0) >= threshold);
+        const sortedByPerf = [...filteredThemes].sort(
+            (a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0)
+        );
+        const threshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Avg Theo Win Index'] || 1.2;
+        result = filteredThemes.filter(t => (t['Avg Theo Win Index'] || 0) >= threshold);
     }
 
     const themesCountSpan = document.getElementById('themes-count');
@@ -265,9 +271,12 @@ function filterMechanics() {
         return mech;
     });
 
+    const isMechGrossing = getRankingMode() === 'grossing';
     filteredMechanics.sort((a, b) => {
         if (a.qualified !== b.qualified) return a.qualified ? -1 : 1;
-        return b['Smart Index'] - a['Smart Index'];
+        return isMechGrossing
+            ? (b['Market Share %'] || 0) - (a['Market Share %'] || 0)
+            : (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0);
     });
 
     // Update count

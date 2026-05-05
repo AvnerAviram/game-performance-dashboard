@@ -28,23 +28,24 @@ describe('Overview Renderer', () => {
             const statTotalMechanics = document.getElementById('stat-total-mechanics');
             const headerSummary = document.getElementById('header-summary');
 
-            expect(statTotalGames.textContent).toBe(gameData.total_games.toLocaleString());
-            expect(statTotalThemes.textContent).toBe(gameData.theme_count.toLocaleString());
-            expect(statTotalMechanics.textContent).toBe(String(gameData.mechanic_count));
-            expect(headerSummary.textContent).toContain(gameData.total_games.toLocaleString());
-            expect(headerSummary.textContent).toContain(gameData.theme_count.toLocaleString());
-            expect(headerSummary.textContent).toContain(String(gameData.mechanic_count));
+            const gCount = (gameData.allGames || []).length;
+            const tCount = (gameData.themes || []).length;
+            const mCount = (gameData.mechanics || []).length;
+            expect(statTotalGames.textContent).toBe(gCount.toLocaleString());
+            expect(statTotalThemes.textContent).toBe(tCount.toLocaleString());
+            expect(statTotalMechanics.textContent).toBe(String(mCount));
+            expect(headerSummary.textContent).toContain(gCount.toLocaleString());
+            expect(headerSummary.textContent).toContain(tCount.toLocaleString());
+            expect(headerSummary.textContent).toContain(String(mCount));
         });
 
         it('handles zero values gracefully', () => {
-            const orig = {
-                total_games: gameData.total_games,
-                theme_count: gameData.theme_count,
-                mechanic_count: gameData.mechanic_count,
-            };
-            gameData.total_games = 0;
-            gameData.theme_count = 0;
-            gameData.mechanic_count = 0;
+            const origGames = gameData.allGames;
+            const origThemes = gameData.themes;
+            const origMechanics = gameData.mechanics;
+            gameData.allGames = [];
+            gameData.themes = [];
+            gameData.mechanics = [];
 
             updateHeaderStats();
 
@@ -52,20 +53,18 @@ describe('Overview Renderer', () => {
             expect(document.getElementById('stat-total-themes').textContent).toBe('0');
             expect(document.getElementById('stat-total-mechanics').textContent).toBe('0');
 
-            gameData.total_games = orig.total_games;
-            gameData.theme_count = orig.theme_count;
-            gameData.mechanic_count = orig.mechanic_count;
+            gameData.allGames = origGames;
+            gameData.themes = origThemes;
+            gameData.mechanics = origMechanics;
         });
 
         it('formats large numbers with locale string', () => {
-            const orig = {
-                total_games: gameData.total_games,
-                theme_count: gameData.theme_count,
-                mechanic_count: gameData.mechanic_count,
-            };
-            gameData.total_games = 12345;
-            gameData.theme_count = 67;
-            gameData.mechanic_count = 12;
+            const origGames = gameData.allGames;
+            const origThemes = gameData.themes;
+            const origMechanics = gameData.mechanics;
+            gameData.allGames = new Array(12345);
+            gameData.themes = new Array(67);
+            gameData.mechanics = new Array(12);
 
             updateHeaderStats();
 
@@ -73,7 +72,9 @@ describe('Overview Renderer', () => {
             expect(document.getElementById('stat-total-themes').textContent).toBe('67');
             expect(document.getElementById('stat-total-mechanics').textContent).toBe('12');
 
-            Object.assign(gameData, orig);
+            gameData.allGames = origGames;
+            gameData.themes = origThemes;
+            gameData.mechanics = origMechanics;
         });
     });
 });

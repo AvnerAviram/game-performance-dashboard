@@ -16,7 +16,7 @@ import { renderThemes, setupThemeClickHandlers } from './renderers/themes-render
 import { renderMechanics } from './renderers/mechanics-renderer.js';
 import { renderAnomalies, generateInsights } from './renderers/insights-renderer.js';
 import { setupSearch } from './search.js';
-import { sendAIMessage } from '../features/ai-assistant.js';
+import { sendAIMessage, initAIAssistant } from '../features/ai-assistant.js';
 import { renderTickets } from '../features/tickets.js';
 import { setupPrediction } from '../features/prediction.js';
 import { updateAuthUI } from '../features/auth-ui.js';
@@ -141,6 +141,7 @@ async function initializePage(pageName) {
                     sendAIMessage();
                 }
             });
+            initAIAssistant();
             break;
 
         case 'tickets':
@@ -256,7 +257,7 @@ export async function showPage(page, { pushHistory = true } = {}) {
     // Close any open side panels when changing pages
     ['mechanic-panel', 'theme-panel', 'game-panel', 'provider-panel'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.style.right = '-650px';
+        if (el) el.style.right = '-720px';
     });
     const backdrop = document.getElementById('mechanic-backdrop');
     if (backdrop) {

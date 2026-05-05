@@ -133,19 +133,49 @@
                         💎
                     </div>
                     <div class="flex-1 min-w-0">
-                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Art Themes Landscape</h3>
+                        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Visual Art Styles Landscape</h3>
                         <p class="text-[10px] text-gray-500 dark:text-gray-400">
-                            All art themes — find high-performing niches
+                            All visual art styles — find high-performing niches
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="p-4" style="height: 850px; min-height: 850px">
+            <div class="p-4 relative" style="height: 850px; min-height: 850px">
+                <div
+                    id="art-opportunity-loader"
+                    class="absolute inset-0 z-20 flex items-center justify-center bg-white/70 dark:bg-gray-800/70 backdrop-blur-[2px] rounded-xl"
+                >
+                    <div class="flex items-center gap-2.5 text-purple-500 dark:text-purple-400">
+                        <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                            <circle
+                                class="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                stroke-width="4"
+                                fill="none"
+                            />
+                            <path
+                                class="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                            />
+                        </svg>
+                        <span class="text-sm font-medium">Loading landscape…</span>
+                    </div>
+                </div>
                 <canvas
                     id="art-opportunity-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
+            </div>
+            <div class="px-5 pb-3 text-right">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-opportunity-chart"
+                ></span>
             </div>
         </div>
 
@@ -172,6 +202,12 @@
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
+            </div>
+            <div class="px-5 pb-3 text-right">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-colors-landscape"
+                ></span>
             </div>
         </div>
     </div>
@@ -200,6 +236,12 @@
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
+            <div class="px-5 pb-3 text-right">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-characters-landscape"
+                ></span>
+            </div>
         </div>
 
         <!-- Elements Landscape -->
@@ -217,12 +259,18 @@
                     </div>
                 </div>
             </div>
-            <div class="p-4" style="height: 1100px; min-height: 1100px">
+            <div class="p-4" style="height: 1480px; min-height: 1480px">
                 <canvas
                     id="art-elements-landscape"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
+            </div>
+            <div class="px-5 pb-3 text-right">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-elements-landscape"
+                ></span>
             </div>
         </div>
 
@@ -253,6 +301,12 @@
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
+            <div class="px-5 pb-3 text-right">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-narrative-landscape"
+                ></span>
+            </div>
         </div>
     </div>
 
@@ -260,17 +314,17 @@
     <div class="grid md:grid-cols-2 gap-6 mb-6">
         <!-- Art Themes -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 flex flex-col"
             style="overflow: visible"
         >
-            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="px-6 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                 <div class="flex items-center gap-3">
                     <div
                         class="w-9 h-9 bg-indigo-100 dark:bg-indigo-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
                     >
                         🌍
                     </div>
-                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Art Themes</h3>
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-white">Visual Art Styles</h3>
                     <div class="relative group">
                         <button
                             class="w-4 h-4 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-400 hover:bg-indigo-100 hover:text-indigo-600 flex items-center justify-center text-[9px] font-bold cursor-help"
@@ -280,26 +334,32 @@
                         <div
                             class="hidden group-hover:block absolute left-full top-0 ml-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed"
                         >
-                            Each bar counts games with a classified <strong>art theme</strong> label in the staged art
-                            snapshot (only titles with art data — see dashboard coverage). Labels show release-trend
-                            arrows.
+                            Each bar counts games with a classified <strong>visual art style</strong> label in the
+                            staged art snapshot (only titles with art data — see dashboard coverage). Labels show
+                            release-trend arrows.
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-6 pb-2" style="height: 380px; min-height: 380px">
+            <div class="px-6 pt-3 pb-2" style="min-height: 380px">
                 <canvas
                     id="art-themes-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
-            <div class="px-6 pb-4" id="art-themes-trend-legend"></div>
+            <div class="px-6 pb-2" id="art-themes-trend-legend"></div>
+            <div class="px-6 pb-3 text-right mt-auto">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-themes-chart"
+                ></span>
+            </div>
         </div>
 
         <!-- Color Tone Distribution -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col"
         >
             <div class="p-6 pb-3">
                 <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
@@ -307,12 +367,18 @@
                 </h3>
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Dominant color palettes across games</p>
             </div>
-            <div class="px-6 pb-6" style="height: 380px; min-height: 380px">
+            <div class="px-6 pt-3 pb-4" style="min-height: 380px">
                 <canvas
                     id="art-color-tone-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
+            </div>
+            <div class="px-6 pb-3 text-right mt-auto">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-color-tone-chart"
+                ></span>
             </div>
         </div>
     </div>
@@ -321,10 +387,10 @@
     <div class="grid md:grid-cols-3 gap-6 mb-6">
         <!-- Top Characters -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 flex flex-col"
             style="overflow: visible"
         >
-            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="px-6 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                 <div class="flex items-center gap-3">
                     <div
                         class="w-9 h-9 bg-amber-100 dark:bg-amber-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
@@ -347,21 +413,27 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6" style="height: 380px; min-height: 380px">
+            <div class="px-6 pt-3 pb-2" style="min-height: 380px">
                 <canvas
                     id="art-characters-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
+            <div class="px-6 pb-3 text-right mt-auto">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-characters-chart"
+                ></span>
+            </div>
         </div>
 
         <!-- Top Visual Elements -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 flex flex-col"
             style="overflow: visible"
         >
-            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="px-6 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                 <div class="flex items-center gap-3">
                     <div
                         class="w-9 h-9 bg-teal-100 dark:bg-teal-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
@@ -383,21 +455,27 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6" style="height: 380px; min-height: 380px">
+            <div class="px-6 pt-3 pb-2" style="min-height: 380px">
                 <canvas
                     id="art-elements-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
             </div>
+            <div class="px-6 pb-3 text-right mt-auto">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-elements-chart"
+                ></span>
+            </div>
         </div>
 
         <!-- Narratives -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600"
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 flex flex-col"
             style="overflow: visible"
         >
-            <div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700">
+            <div class="px-6 pt-5 pb-3 border-b border-gray-100 dark:border-gray-700">
                 <div class="flex items-center gap-3">
                     <div
                         class="w-9 h-9 bg-rose-100 dark:bg-rose-900/40 rounded-lg flex items-center justify-center text-lg shrink-0"
@@ -421,12 +499,18 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6" style="height: 380px; min-height: 380px">
+            <div class="px-6 pt-3 pb-2" style="min-height: 380px">
                 <canvas
                     id="art-narrative-chart"
                     class="w-full block"
                     style="display: block; box-sizing: border-box"
                 ></canvas>
+            </div>
+            <div class="px-6 pb-3 text-right mt-auto">
+                <span
+                    class="coverage-inline text-[10px] text-gray-400 dark:text-gray-500"
+                    data-for="art-narrative-chart"
+                ></span>
             </div>
         </div>
     </div>

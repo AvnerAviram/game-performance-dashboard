@@ -1,7 +1,7 @@
 // Brand / franchise landscape bubble chart
 import { getActiveGames } from '../lib/data.js';
 import { F } from '../lib/game-fields.js';
-import { median, quadrantLabel, createBubbleLandscape } from './chart-utils.js';
+import { median, quadrantLabel, createBubbleLandscape, injectCoveragePill } from './chart-utils.js';
 import { chartInstances } from './chart-config.js';
 import { escapeHtml } from '../lib/sanitize.js';
 
@@ -78,6 +78,7 @@ export function createBrandsChart() {
             labels: 'top',
             maxLabels: 4,
             quadrantLabels: false,
+            labelPosition: 'below',
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {
@@ -91,6 +92,8 @@ export function createBrandsChart() {
                 if (item._f && window.showFranchiseDetails) window.showFranchiseDetails(item._f.name);
             },
         });
+        const gamesInFranchises = allGames.filter(g => F.franchise(g));
+        injectCoveragePill('chart-brands', gamesInFranchises.length, allGames.length, 'in branded franchises');
     } catch (err) {
         console.error('[BRANDS-CHART] FAILED:', err);
     }

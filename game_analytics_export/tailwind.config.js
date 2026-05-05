@@ -1,5 +1,5 @@
 module.exports = {
-    content: ['./dashboard.html', './src/pages/*.html', './src/**/*.js'],
+    content: ['./dashboard.html', './login.html', './src/pages/*.html', './src/**/*.js'],
     darkMode: 'class',
     theme: {
         extend: {

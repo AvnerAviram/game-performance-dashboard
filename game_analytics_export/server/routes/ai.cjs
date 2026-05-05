@@ -103,7 +103,7 @@ async function callClaude(messages, maxTokens = 300) {
 // =====================================================================
 // POST /api/generate-names — Name generation (pattern-based is free, AI requires code)
 // =====================================================================
-router.post('/api/generate-names', requireAuth, async (req, res) => {
+router.post('/api/generate-names', requireAuth, aiRateLimiter, async (req, res) => {
     const { theme, keywords, code } = req.body;
     let { features, style, sampleNames, topThemeWords, totalGames, avgWordCount, useAI } = req.body;
 
@@ -203,9 +203,6 @@ Return ONLY a JSON array of 10 refined name strings.`;
     }
 });
 
-// Apply AI rate limiter to the AI name endpoint
-router.use('/api/generate-names', aiRateLimiter);
-
 // =====================================================================
 // POST /api/generate-names-vision — Vision-based name generation
 // =====================================================================
@@ -304,71 +301,6 @@ Return ONLY a JSON array of 10 name strings. Example: ["Name One", "Name Two"]`;
     } catch (e) {
         console.error('Claude Vision request failed:', e.message);
         res.status(502).json({ error: 'AI vision service unavailable' });
-    }
-});
-
-// =====================================================================
-// POST /api/ai-chat — AI Game Consultant chat
-// =====================================================================
-router.post('/api/ai-chat', requireAuth, aiRateLimiter, async (req, res) => {
-    const { question, context, history } = req.body;
-
-    if (!question || typeof question !== 'string') {
-        return res.status(400).json({ error: 'Question is required' });
-    }
-    if (question.length > 2000) {
-        return res.status(400).json({ error: 'Question too long' });
-    }
-
-    if (!CLAUDE_API_KEY) {
-        return res.status(501).json({ error: 'Claude API key not configured.' });
-    }
-
-    if (!checkAndIncrementDailyCap()) {
-        return res.status(429).json({ error: 'Daily AI limit reached. Try again tomorrow.' });
-    }
-
-    const user = req.session.user?.username || 'unknown';
-    console.log(`[AI-AUDIT] chat | user=${user} | daily=${dailyAICalls}/${AI_DAILY_CAP}`);
-
-    const systemPrompt = `You are an expert Game Analytics AI Consultant for slot/casino games. You help game designers understand market trends, compare themes and mechanics, and make data-driven decisions.
-
-${typeof context === 'string' ? context.slice(0, 3000) : ''}
-
-Guidelines:
-- Be concise and actionable
-- Use data from the context when available
-- Format responses with HTML: use <p>, <strong>, <ul>/<li> tags
-- When comparing, use clear numerical evidence
-- Suggest specific, data-backed recommendations
-- Keep responses under 300 words`;
-
-    const messages = [];
-    if (Array.isArray(history)) {
-        history.slice(-6).forEach(m => {
-            if (m.role === 'user' && typeof m.content === 'string') {
-                messages.push({ role: 'user', content: m.content.slice(0, 1000) });
-            } else if (m.role === 'assistant' && typeof m.content === 'string') {
-                messages.push({ role: 'assistant', content: m.content.slice(0, 1000) });
-            }
-        });
-    }
-    messages.push({ role: 'user', content: question.slice(0, 2000) });
-
-    try {
-        const response = await callClaude(
-            [
-                { role: 'user', content: systemPrompt },
-                { role: 'assistant', content: "Understood. I'm ready to help with game analytics questions." },
-                ...messages,
-            ],
-            800
-        );
-
-        res.json({ response });
-    } catch (e) {
-        console.error('AI chat failed:', e.message);
-        res.status(502).json({ error: 'AI service unavailable' });
     }
 });
 
@@ -525,6 +457,92 @@ router.post('/api/admin/ai-code', requireAdmin, async (req, res) => {
     }
     console.log(`[AUDIT] AI code revealed to admin: ${req.session.user.username}`);
     res.json({ code: AI_NAME_CODE });
+});
+
+// =====================================================================
+// POST /api/concept-analyze — Concept Analyzer (Claude-powered)
+// =====================================================================
+router.post('/api/concept-analyze', requireAuth, aiRateLimiter, async (req, res) => {
+    const { concept, context, code } = req.body;
+    if (!concept || typeof concept !== 'string' || concept.length > 3000) {
+        return res.status(400).json({ error: 'Invalid concept' });
+    }
+    if (!checkCodeAttempts(req.session)) {
+        return res.status(429).json({ error: 'Too many failed attempts. Try again later.' });
+    }
+    if (!validateCode(code, req.session)) {
+        return res.status(403).json({ error: 'Invalid AI code' });
+    }
+    if (!CLAUDE_API_KEY) {
+        return res.status(503).json({ error: 'AI service not configured' });
+    }
+    if (!checkAndIncrementDailyCap()) {
+        return res.status(429).json({ error: 'Daily AI budget exhausted' });
+    }
+
+    const prompt = `You are a slot game market analyst. Analyze this game concept against real market data and provide actionable insights.
+
+MARKET DATA:
+${context || 'No data available.'}
+
+GAME CONCEPT:
+"${concept}"
+
+Provide a structured analysis with:
+1. **Market Fit Score** (1-10) — how well this concept fits current market trends
+2. **Theme Analysis** — how the theme compares to top performers
+3. **Mechanics Evaluation** — strengths/weaknesses of chosen mechanics
+4. **Competition** — similar existing games and how to differentiate
+5. **Recommendations** — 3-5 specific suggestions to improve the concept
+6. **Risk Factors** — potential market risks
+
+Keep it concise and data-driven. Use bullet points. Under 400 words.`;
+
+    try {
+        const answer = await callClaude([{ role: 'user', content: prompt }], 1000);
+        res.json({ answer, source: 'claude' });
+    } catch (e) {
+        console.error('Concept Analyze Claude error:', e.message);
+        res.status(502).json({ error: 'AI service unavailable' });
+    }
+});
+
+// =====================================================================
+// POST /api/ai-chat — AI Game Consultant (Claude-powered chat)
+// =====================================================================
+router.post('/api/ai-chat', requireAuth, aiRateLimiter, async (req, res) => {
+    const { message, context, code } = req.body;
+    if (!message || typeof message !== 'string' || message.length > 2000) {
+        return res.status(400).json({ error: 'Invalid message' });
+    }
+    if (!checkCodeAttempts(req.session)) {
+        return res.status(429).json({ error: 'Too many failed attempts. Try again later.' });
+    }
+    if (!validateCode(code, req.session)) {
+        return res.status(403).json({ error: 'Invalid AI code' });
+    }
+    if (!CLAUDE_API_KEY) {
+        return res.status(503).json({ error: 'AI service not configured' });
+    }
+    if (!checkAndIncrementDailyCap()) {
+        return res.status(429).json({ error: 'Daily AI budget exhausted' });
+    }
+
+    const systemPrompt = `You are a game analytics AI consultant for slot/casino games. You have access to real market data provided in the context below. Answer questions concisely and data-driven. Use numbers, percentages, and rankings when available. Keep responses under 300 words. Format with bullet points when listing data.
+
+DATA CONTEXT:
+${context || 'No specific data context provided.'}`;
+
+    try {
+        const answer = await callClaude(
+            [{ role: 'user', content: `${systemPrompt}\n\nUSER QUESTION: ${message}` }],
+            800
+        );
+        res.json({ answer, source: 'claude' });
+    } catch (e) {
+        console.error('AI Chat Claude error:', e.message);
+        res.status(502).json({ error: 'AI service unavailable' });
+    }
 });
 
 module.exports = router;

@@ -6,6 +6,7 @@ import { parseFeatures } from '../lib/parse-features.js';
 import { MIN_PROVIDER_GAMES, DEFAULT_PAGE_SIZE, MARKET_LEADER_THRESHOLD } from '../lib/shared-config.js';
 import { F } from '../lib/game-fields.js';
 import { calculateSmartIndex as computeSI } from '../lib/metrics.js';
+import { getRankingMode } from '../lib/filters.js';
 
 // ==========================================
 // PROVIDERS PAGE - USING DUCKDB
@@ -105,10 +106,15 @@ export async function renderProviders(providersData = null) {
         providers.forEach(p => {
             p['Smart Index'] = computeSI(p.avg_theo_win || 0, p.game_count || 0, globalAvgTheo);
         });
-        providers.sort(
-            (a, b) =>
-                (b.total_market_share || b['Market Share %'] || 0) - (a.total_market_share || a['Market Share %'] || 0)
-        );
+        if (getRankingMode() === 'grossing') {
+            providers.sort(
+                (a, b) =>
+                    (b.total_market_share || b['Market Share %'] || 0) -
+                    (a.total_market_share || a['Market Share %'] || 0)
+            );
+        } else {
+            providers.sort((a, b) => (b.avg_theo_win || 0) - (a.avg_theo_win || 0));
+        }
 
         // PAGINATION LOGIC
         const ITEMS_PER_PAGE = window.providersPerPage || DEFAULT_PAGE_SIZE;
@@ -131,27 +137,31 @@ export async function renderProviders(providersData = null) {
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 0)">Rank</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 1)">Provider</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 2)">Games</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 3)">
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable${getRankingMode() === 'indexing' ? ' sorted-desc' : ''} cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 3)">
                                     Avg Performance Index
                                     <span class="info-icon">ⓘ
                                         <div class="filter-tooltip">
-                                            <strong>Avg Performance Index</strong>
-                                            <p>Average Performance Index across all games from this provider</p>
+                                            <strong>Avg Performance Index (Theo Win Index)</strong>
+                                            <p>How well this provider's games perform on average vs. the market.</p>
+                                            <hr>
+                                            <p><b>Formula:</b> AVG(game.theo_win) for provider games &divide; global AVG(game.theo_win).</p>
                                             <hr>
                                             <p>✓ Higher = stronger average game quality</p>
                                             <p>✓ Independent of portfolio size</p>
                                         </div>
                                     </span>
                                 </th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable sorted-desc cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share %</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 5)">
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 4)">Market Share %</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sortable${getRankingMode() === 'grossing' ? ' sorted-desc' : ''} cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" onclick="sortTable('providers-table', 5)">
                                     GGR Share %
                                     <span class="info-icon">ⓘ
                                         <div class="filter-tooltip">
-                                            <strong>GGR Share %</strong>
-                                            <p>Sum of market share % across all provider games</p>
+                                            <strong>GGR Share % (Market Share)</strong>
+                                            <p>This provider's total contribution to tracked market revenue.</p>
                                             <hr>
-                                            <p>Follows Eilers &amp; Krejcik methodology — providers ranked by their share of total Gross Gaming Revenue.</p>
+                                            <p><b>Formula:</b> SUM(game.market_share_pct) for all games from this provider.</p>
+                                            <hr>
+                                            <p>Follows Eilers &amp; Krejcik "% of Total Theo Net Win" methodology.</p>
                                             <p>✓ Industry-standard supplier ranking</p>
                                             <p>✓ Reflects actual revenue contribution</p>
                                         </div>
@@ -514,11 +524,13 @@ export function renderGames() {
                             Theo Win
                             <span class="info-icon">ⓘ
                                 <div class="filter-tooltip">
-                                    <strong>Theoretical Win Index</strong>
-                                    <p>Per-title Eilers Theo Win benchmark loaded from the performance layer (raw index)</p>
+                                    <strong>Theoretical Win Index (Per-Game)</strong>
+                                    <p>Individual game performance score from Eilers methodology.</p>
                                     <hr>
-                                    <p>✓ Higher scores = stronger modeled performance on this scale</p>
-                                    <p>✓ Compared to the cohort in badges; not the theme-table PI ratio</p>
+                                    <p><b>Formula:</b> Raw Theo Win index per game (not a ratio). Represents estimated theoretical net win for the title.</p>
+                                    <hr>
+                                    <p>✓ Higher scores = stronger modeled performance</p>
+                                    <p>✓ This is the raw Eilers scale — NOT the ratio-style Performance Index used on aggregate tables</p>
                                 </div>
                             </span>
                         </th>

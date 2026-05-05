@@ -29,7 +29,7 @@ Tooltip.positioners.bubbleAvoid = function (elements, eventPosition) {
 
 Chart.register({
     id: 'coverageAnnotation',
-    afterRender(chart) {
+    afterDraw(chart) {
         const txt = chart._coverageText;
         if (!txt) return;
         const canvas = chart.canvas;
@@ -41,6 +41,15 @@ Chart.register({
             card.querySelectorAll('.coverage-footnote').forEach(el => el.remove());
             return;
         }
+        const { ctx, chartArea } = chart;
+        if (!chartArea) return;
+        ctx.save();
+        ctx.font = '10px system-ui, sans-serif';
+        ctx.fillStyle = 'rgba(148, 163, 184, 0.55)';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(txt, chartArea.right - 4, chart.height - 6);
+        ctx.restore();
     },
 });
 
@@ -564,11 +573,17 @@ export function createSABubbleLabelPlugin(id, bubbleData, labels, borderColors, 
                     const pxR = pt.options?.radius ?? bubbleData[i]?.r ?? 12;
                     const tw = c.measureText(label).width + swatchPad;
                     const th = fontSize + 2;
-                    const ang = Math.atan2(pt.y - midY, pt.x - midX);
-                    const offX = Math.cos(ang) * (pxR + 6);
-                    const offY = Math.sin(ang) * (pxR + 6);
-                    let ix = pt.x + offX - tw / 2;
-                    let iy = pt.y + offY - th / 2;
+                    let ix, iy;
+                    if (opts.labelPosition === 'below') {
+                        ix = pt.x - tw / 2;
+                        iy = pt.y + pxR + 4;
+                    } else {
+                        const ang = Math.atan2(pt.y - midY, pt.x - midX);
+                        const offX = Math.cos(ang) * (pxR + 6);
+                        const offY = Math.sin(ang) * (pxR + 6);
+                        ix = pt.x + offX - tw / 2;
+                        iy = pt.y + offY - th / 2;
+                    }
                     ix = Math.max(chartArea.left, Math.min(chartArea.right - tw, ix));
                     iy = Math.max(chartArea.top, Math.min(chartArea.bottom - th - 18, iy));
                     labs.push({ x: ix, y: iy, width: tw, height: th });
@@ -717,7 +732,7 @@ export function bubbleScaleOptions(chartColors, xLabel = 'Game Count', yLabel = 
  * Places a subtle "· X% of games" next to the subtitle text for clean UX.
  */
 export function injectCoveragePill(canvasId, covered, total, label) {
-    if (!total || covered >= total) return;
+    if (!total) return;
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');
@@ -726,21 +741,12 @@ export function injectCoveragePill(canvasId, covered, total, label) {
 
     const pct = covered > 0 ? Math.max(1, Math.round((covered / total) * 100)) : 0;
 
-    // Draw coverage on the chart canvas via the coverageAnnotation plugin
-    {
-        const chartInstance = Chart.getChart(canvas);
-        if (chartInstance) {
-            chartInstance._coverageText = `${pct}% coverage · ${covered.toLocaleString()} of ${total.toLocaleString()} games ${label}`;
-            chartInstance.draw();
-        }
-    }
-
     const pill = document.createElement('span');
     pill.setAttribute('data-coverage-pill', canvasId);
     pill.className = 'relative group inline-flex items-center';
     pill.innerHTML =
         `<span class="text-[10px] font-medium text-gray-400 dark:text-gray-500 cursor-help whitespace-nowrap"> · ${pct}% of games</span>` +
-        `<span class="hidden group-hover:block absolute left-0 top-full mt-1 w-52 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-normal whitespace-normal">${covered.toLocaleString()} of ${total.toLocaleString()} games ${label}. Games without this data are excluded from the chart.</span>`;
+        `<span class="hidden group-hover:block absolute left-0 top-full mt-1 w-52 p-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed font-normal whitespace-normal">${covered.toLocaleString()} of ${total.toLocaleString()} games ${label}.</span>`;
 
     const subtitle = card.querySelector('.border-b p, .pb-3 p');
     if (subtitle) {
@@ -858,6 +864,7 @@ export function createBubbleLandscape(
         warp = true,
         warpY = true,
         labelColorFn,
+        labelPosition,
     }
 ) {
     const canvas = document.getElementById(canvasId);
@@ -877,11 +884,7 @@ export function createBubbleLandscape(
         const card = canvas.closest('.bg-white, .dark\\:bg-gray-800');
         const inline = card?.querySelector(`.coverage-inline[data-for="${canvasId}"]`);
         if (inline) {
-            if (pct >= 99 && cp.covered === cp.total) {
-                inline.textContent = '';
-            } else {
-                inline.textContent = `${pct}% coverage · ${cp.covered.toLocaleString()} of ${cp.total.toLocaleString()} games ${cp.label}`;
-            }
+            inline.textContent = `${pct}% coverage · ${cp.covered.toLocaleString()} of ${cp.total.toLocaleString()} games ${cp.label}`;
             card.querySelectorAll('.coverage-footnote').forEach(el => el.remove());
         }
     }
@@ -941,6 +944,7 @@ export function createBubbleLandscape(
             labelColorFn: labelColorFn ? idx => labelColorFn(data[idx], idx) : null,
             medX,
             medY,
+            labelPosition,
         };
         plugins.push(
             createSABubbleLabelPlugin(

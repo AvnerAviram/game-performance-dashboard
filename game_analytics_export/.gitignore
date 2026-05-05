@@ -55,6 +55,8 @@ logs/
 data/games.parquet
 data/games_processed.json
 public/duckdb/
+public/data/
+public/src/
 
 # Cache & generated
 cache/

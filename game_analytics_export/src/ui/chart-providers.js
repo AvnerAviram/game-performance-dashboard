@@ -1,9 +1,10 @@
 // Provider landscape bubble chart
 import { gameData, getActiveGames } from '../lib/data.js';
 import { getProviderMetrics } from '../lib/metrics.js';
-import { median, quadrantLabel, createBubbleLandscape } from './chart-utils.js';
+import { median, quadrantLabel, createBubbleLandscape, injectCoveragePill } from './chart-utils.js';
 import { F } from '../lib/game-fields.js';
 import { chartInstances } from './chart-config.js';
+import { getDefaultSort } from '../lib/filters.js';
 
 export async function createProvidersChart() {
     try {
@@ -13,10 +14,11 @@ export async function createProvidersChart() {
         const allProviders = await getProviderMetrics(gameData.activeCategory);
         if (!allProviders.length) return;
 
+        const sorted = [...allProviders].sort(getDefaultSort());
         const medX = median(allProviders.map(p => p.count));
         const medY = median(allProviders.map(p => p.avgTheo));
 
-        const majors = allProviders.slice(0, 12);
+        const majors = sorted.slice(0, 12);
         const maxShare = Math.max(...allProviders.map(p => p.ggrShare), 1);
 
         const data = majors.map(p => ({
@@ -35,6 +37,7 @@ export async function createProvidersChart() {
             labels: 'top',
             maxLabels: 4,
             quadrantLabels: false,
+            labelPosition: 'below',
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {
@@ -48,6 +51,8 @@ export async function createProvidersChart() {
                 if (item._prov?.name && window.showProviderDetails) window.showProviderDetails(item._prov.name);
             },
         });
+        const withTheo = allGames.filter(g => F.theoWin(g) > 0);
+        injectCoveragePill('chart-providers', withTheo.length, allGames.length, 'with performance data');
     } catch (err) {
         console.error('[PROVIDERS-CHART] FAILED:', err);
     }

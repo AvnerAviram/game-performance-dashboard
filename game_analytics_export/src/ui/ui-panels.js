@@ -826,7 +826,7 @@ export function closeGamePanel() {
     const panel = document.getElementById('game-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
 
-    if (panel) panel.style.right = '-650px';
+    if (panel) panel.style.right = '-720px';
     if (backdrop) {
         backdrop.classList.add('hidden');
         backdrop.classList.remove('block');
@@ -1087,7 +1087,7 @@ export function closeProviderPanel() {
     const panel = document.getElementById('provider-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
 
-    if (panel) panel.style.right = '-650px';
+    if (panel) panel.style.right = '-720px';
     if (backdrop) {
         backdrop.classList.add('hidden');
         backdrop.classList.remove('block');

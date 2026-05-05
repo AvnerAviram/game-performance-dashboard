@@ -137,50 +137,114 @@
     </div>
 
     <!-- Mechanic Filter Tabs -->
-    <div class="filter-tabs-container flex gap-3 mb-6">
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 bg-indigo-600 border-indigo-600 text-white shadow-[0_2px_8px_rgba(99,102,241,0.3)] relative"
-            data-filter="all"
-            onclick="window.switchMechanicView('all')"
+    <div class="flex items-center justify-between mb-6">
+        <div class="filter-tabs-container flex gap-3">
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 bg-indigo-600 border-indigo-600 text-white shadow-[0_2px_8px_rgba(99,102,241,0.3)] relative"
+                data-filter="all"
+                onclick="window.switchMechanicView('all')"
+            >
+                All Mechanics
+            </button>
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative"
+                data-filter="popular"
+                onclick="window.switchMechanicView('popular')"
+            >
+                🔥 Most Popular
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Most Popular Filter</strong>
+                        <p>Shows the top 20% of mechanics by number of games that use them.</p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> threshold = Game Count at the 80th percentile. Only mechanics with count
+                            &ge; threshold appear.
+                        </p>
+                        <hr />
+                        <p>✓ Widely used and proven</p>
+                        <p>✓ High player familiarity</p>
+                        <p>✓ Best for mainstream games</p>
+                    </div>
+                </span>
+            </button>
+            <button
+                class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative"
+                data-filter="highPerforming"
+                onclick="window.switchMechanicView('highPerforming')"
+            >
+                💎 High Performing
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>High Performing Filter</strong>
+                        <p>Shows the top 30% of mechanics by Avg Theo Win Index — the highest-performing mechanics.</p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> Mechanics where Avg Theo Win Index &ge; 70th percentile of all mechanic
+                            averages in current cohort.
+                        </p>
+                        <hr />
+                        <p>✓ Best quality mechanics</p>
+                        <p>✓ Maximum performance potential</p>
+                        <p>✓ Best for competitive advantage</p>
+                    </div>
+                </span>
+            </button>
+        </div>
+        <!-- Eilers Ranking Toggle -->
+        <div
+            class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800 rounded-lg p-0.5 border border-gray-200 dark:border-gray-700 relative overflow-visible"
         >
-            All Mechanics
-        </button>
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative"
-            data-filter="popular"
-            onclick="window.switchMechanicView('popular')"
-        >
-            🔥 Most Popular
-            <span class="info-icon"
-                >ⓘ
-                <div class="filter-tooltip">
-                    <strong>Most Popular Filter</strong>
-                    <p>Shows the top 20% of mechanics by adoption</p>
-                    <hr />
-                    <p>✓ Widely used and proven</p>
-                    <p>✓ High player familiarity</p>
-                    <p>✓ Best for mainstream games</p>
-                </div>
-            </span>
-        </button>
-        <button
-            class="px-5 py-2.5 rounded-lg text-[0.9375rem] font-medium cursor-pointer transition-all duration-200 whitespace-nowrap border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:-translate-y-px relative"
-            data-filter="highPerforming"
-            onclick="window.switchMechanicView('highPerforming')"
-        >
-            💎 High Performing
-            <span class="info-icon"
-                >ⓘ
-                <div class="filter-tooltip">
-                    <strong>High Performing Filter</strong>
-                    <p>Shows the top 30% of mechanics by performance</p>
-                    <hr />
-                    <p>✓ Best quality mechanics</p>
-                    <p>✓ Maximum performance potential</p>
-                    <p>✓ Best for competitive advantage</p>
-                </div>
-            </span>
-        </button>
+            <button
+                data-ranking-mode="indexing"
+                onclick="window.switchRankingMode('indexing')"
+                class="px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 relative overflow-visible"
+            >
+                Top Indexing
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Top Indexing (Performance)</strong>
+                        <p>
+                            Ranks by how well a theme/mechanic/provider performs relative to market average — regardless
+                            of volume.
+                        </p>
+                        <hr />
+                        <p>
+                            <b>Formula:</b> Avg Theo Win Index = mean(game Theo Win) across all games in the group,
+                            divided by the global average Theo Win.
+                        </p>
+                        <p><b>Interpretation:</b> A value of 1.50 means the group performs 50% above average.</p>
+                        <hr />
+                        <p>Based on Eilers & Krejcik "Theo Net Win Index" methodology.</p>
+                    </div>
+                </span>
+            </button>
+            <button
+                data-ranking-mode="grossing"
+                onclick="window.switchRankingMode('grossing')"
+                class="px-3 py-1.5 rounded-md text-xs font-semibold transition-all cursor-pointer bg-indigo-600 dark:bg-indigo-500 text-white border-indigo-600 dark:border-indigo-500 shadow-sm relative overflow-visible"
+            >
+                Top Grossing
+                <span class="info-icon"
+                    >ⓘ
+                    <div class="filter-tooltip">
+                        <strong>Top Grossing (Market Share)</strong>
+                        <p>
+                            Ranks by total GGR contribution — which themes/mechanics/providers generate the most revenue
+                            in the market.
+                        </p>
+                        <hr />
+                        <p><b>Formula:</b> Market Share % = SUM(game market_share_pct) for all games in the group.</p>
+                        <p><b>Interpretation:</b> Higher % = larger slice of total market GGR.</p>
+                        <hr />
+                        <p>Based on Eilers & Krejcik "% of Total Theo Net Win" (default supplier ranking).</p>
+                    </div>
+                </span>
+            </button>
+        </div>
     </div>
 
     <!-- Table Container -->
@@ -214,11 +278,14 @@
                         <span class="info-icon"
                             >ⓘ
                             <div class="filter-tooltip">
-                                <strong id="mechanics-tooltip-title">Performance Index</strong>
+                                <strong id="mechanics-tooltip-title">Performance Index (Avg Theo Win Index)</strong>
                                 <p id="mechanics-tooltip-formula">
-                                    Each mechanic's average Theo Win index divided by the
-                                    <strong>mean of mechanic averages</strong> in your current cohort (Performance Index
-                                    baseline)
+                                    How well games with this mechanic perform relative to the market average.
+                                </p>
+                                <hr />
+                                <p>
+                                    <b>Formula:</b> AVG(game.theo_win) for mechanic games &divide; AVG(game.theo_win)
+                                    for all games in cohort.
                                 </p>
                                 <hr />
                                 <div id="mechanics-tooltip-content">

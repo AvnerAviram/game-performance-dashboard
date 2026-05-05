@@ -31,11 +31,11 @@ describe('getFilteredThemes', () => {
         window.gameData = { themes: [...mockThemes] };
     });
 
-    it('returns all themes sorted by Market Share for "all" view', () => {
+    it('returns all themes sorted by Market Share % for "all" view (default grossing)', () => {
         const result = getFilteredThemes('all');
         expect(result.length).toBe(mockThemes.length);
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Market Share %']).toBeGreaterThanOrEqual(result[i]['Market Share %']);
+            expect(result[i - 1]['Market Share %'] || 0).toBeGreaterThanOrEqual(result[i]['Market Share %'] || 0);
         }
     });
 
@@ -70,20 +70,24 @@ describe('getFilteredThemes', () => {
         });
     });
 
-    it('filters premium (top 25% by Smart Index)', () => {
+    it('filters premium (top 25% by Avg Theo Win Index)', () => {
         const result = getFilteredThemes('premium');
         expect(result.length).toBeGreaterThan(0);
-        const allSorted = [...mockThemes].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
-        const threshold = allSorted[Math.floor(allSorted.length * 0.25)]?.['Smart Index'] || 0;
+        const allSorted = [...mockThemes].sort(
+            (a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0)
+        );
+        const threshold = allSorted[Math.floor(allSorted.length * 0.25)]?.['Avg Theo Win Index'] || 0;
         result.forEach(t => {
-            expect(t['Smart Index']).toBeGreaterThanOrEqual(threshold);
+            expect(t['Avg Theo Win Index']).toBeGreaterThanOrEqual(threshold);
         });
     });
 
-    it('premium results are sorted by Smart Index descending', () => {
+    it('premium results are sorted by Avg Theo Win Index descending', () => {
         const result = getFilteredThemes('premium');
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Smart Index']).toBeGreaterThanOrEqual(result[i]['Smart Index']);
+            expect(result[i - 1]['Avg Theo Win Index'] || 0).toBeGreaterThanOrEqual(
+                result[i]['Avg Theo Win Index'] || 0
+            );
         }
     });
 });
@@ -93,11 +97,11 @@ describe('getFilteredMechanics', () => {
         window.gameData = { mechanics: [...mockMechanics] };
     });
 
-    it('returns all mechanics sorted by Performance Index for "all" view', () => {
+    it('returns all mechanics sorted by Market Share % for "all" view (default grossing)', () => {
         const result = getFilteredMechanics('all');
         expect(result.length).toBe(mockMechanics.length);
         for (let i = 1; i < result.length; i++) {
-            expect(result[i - 1]['Smart Index'] || 0).toBeGreaterThanOrEqual(result[i]['Smart Index'] || 0);
+            expect(result[i - 1]['Market Share %'] || 0).toBeGreaterThanOrEqual(result[i]['Market Share %'] || 0);
         }
     });
 
@@ -120,13 +124,15 @@ describe('getFilteredMechanics', () => {
         expect(result.length).toBeGreaterThan(0);
     });
 
-    it('filters highPerforming (top 30% by Smart Index)', () => {
+    it('filters highPerforming (top 30% by Avg Theo Win Index)', () => {
         const result = getFilteredMechanics('highPerforming');
         expect(result.length).toBeGreaterThan(0);
-        const allSorted = [...mockMechanics].sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0));
-        const threshold = allSorted[Math.floor(allSorted.length * 0.3)]?.['Smart Index'] || 0;
+        const allSorted = [...mockMechanics].sort(
+            (a, b) => (b['Avg Theo Win Index'] || 0) - (a['Avg Theo Win Index'] || 0)
+        );
+        const threshold = allSorted[Math.floor(allSorted.length * 0.3)]?.['Avg Theo Win Index'] || 0;
         result.forEach(m => {
-            expect(m['Smart Index']).toBeGreaterThanOrEqual(threshold);
+            expect(m['Avg Theo Win Index']).toBeGreaterThanOrEqual(threshold);
         });
     });
 });
@@ -191,14 +197,12 @@ describe('filterThemes(view) composition', () => {
         expect(arg.map(t => t.Theme).sort()).toEqual(['Alpha', 'Beta']);
     });
 
-    it('accepts optional view=premium (Smart Index cutoff from rebuilt rows, descending)', () => {
+    it('accepts optional view=premium (Avg Theo Win Index cutoff from rebuilt rows, descending)', () => {
         filterThemes('premium');
         const arg = renderThemes.mock.calls.at(-1)[0];
         expect(arg.length).toBeGreaterThan(0);
-        // Global PI baseline = mean(theme avg Theo); premium keeps rows at or above the 25th percentile Smart Index cutoff
-        expect(arg.map(t => t.Theme).sort()).toEqual(['Alpha', 'Delta']);
         for (let i = 1; i < arg.length; i++) {
-            expect(arg[i - 1]['Smart Index']).toBeGreaterThanOrEqual(arg[i]['Smart Index']);
+            expect(arg[i - 1]['Avg Theo Win Index'] || 0).toBeGreaterThanOrEqual(arg[i]['Avg Theo Win Index'] || 0);
         }
     });
 

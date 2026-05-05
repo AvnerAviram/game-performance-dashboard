@@ -10,27 +10,23 @@ import { join, resolve } from 'path';
 const ROOT = resolve(__dirname, '../..');
 
 describe('Build Security', () => {
-    const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf-8'));
-    const buildCmd = pkg.scripts?.build || '';
+    const buildScript = readFileSync(join(ROOT, 'scripts', 'build.mjs'), 'utf-8');
 
     it('build script should NOT copy entire data/ directory', () => {
-        expect(buildCmd).not.toContain('cp -r data dist');
-        expect(buildCmd).not.toContain('cp -r data/ dist');
+        expect(buildScript).not.toContain("cpSync(join(ROOT, 'data')");
+        expect(buildScript).not.toContain('cp -r data dist');
     });
 
-    it('build script should copy game data to dist', () => {
-        expect(buildCmd).toContain('game_data_master.json');
+    it('build script should copy game data to dist (via public/data)', () => {
+        expect(buildScript).toContain('game_data_master.json');
     });
 
     it('build script should copy theme-breakdowns.json for theme panels', () => {
-        expect(buildCmd).toContain('theme-breakdowns.json');
+        expect(buildScript).toContain('theme-breakdowns.json');
     });
 
-    it('build script should NOT reference .env in copy commands', () => {
-        const copyParts = buildCmd.split('&&').filter(p => p.includes('cp '));
-        copyParts.forEach(part => {
-            expect(part).not.toContain('.env');
-        });
+    it('build script should NOT reference .env in copy lists', () => {
+        expect(buildScript).not.toMatch(/DATA_FILES[^;]*\.env/s);
     });
 
     it('.env should not exist in dist/ after build', () => {

@@ -595,8 +595,8 @@ const DIMENSION_SOURCE_INFO = {
         how: 'RTP is pattern-matched from rules HTML ("return to player" + percentage), or sourced from SlotCatalog / ground truth.',
     },
     art_theme: {
-        title: 'Art Theme',
-        how: 'Art themes are classified via the art characterization pipeline — derived from game visual analysis and rules text.',
+        title: 'Visual Art Style',
+        how: 'Visual art styles are classified via the art characterization pipeline — derived from game visual analysis and rules text.',
     },
     art_characters: {
         title: 'Art Characters',

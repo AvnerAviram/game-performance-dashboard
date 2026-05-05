@@ -8,26 +8,26 @@ const routerPath = resolve(__dirname, '../../src/ui/router.js');
 describe('Scroll Behavior – View more buttons', () => {
     const overview = readFileSync(overviewPath, 'utf8');
 
-    test('View more buttons exist (exactly 5)', () => {
+    test('View more buttons exist (exactly 6)', () => {
         const matches = overview.match(/View more/g) || [];
         expect(matches.length).toBe(6);
     });
 
     test('all View more scrolls use getBoundingClientRect, not offsetTop', () => {
         const scrollCalls = overview.match(/getBoundingClientRect/g) || [];
-        expect(scrollCalls.length).toBe(10);
+        expect(scrollCalls.length).toBe(20);
 
         expect(overview).not.toMatch(/sc\.scrollTop\s*=\s*\w+\.offsetTop/);
     });
 
     test('all scrolls use behavior: smooth', () => {
         const smoothCalls = overview.match(/behavior:\s*'smooth'/g) || [];
-        expect(smoothCalls.length).toBe(5);
+        expect(smoothCalls.length).toBe(10);
     });
 
     test('scrollTo is used instead of direct scrollTop assignment for View more', () => {
         const scrollToCalls = overview.match(/sc\.scrollTo\(\{/g) || [];
-        expect(scrollToCalls.length).toBe(5);
+        expect(scrollToCalls.length).toBe(10);
     });
 
     test('no window.scrollTo calls in overview', () => {

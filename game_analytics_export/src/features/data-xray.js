@@ -670,7 +670,7 @@ async function openXRayPanel(gameName, focusField, extraData) {
 window.closeXRayPanel = function () {
     const panel = document.getElementById('xray-panel');
     const backdrop = document.getElementById('mechanic-backdrop');
-    if (panel) panel.style.right = '-650px';
+    if (panel) panel.style.right = '-720px';
     if (backdrop) {
         backdrop.classList.add('hidden');
         backdrop.classList.remove('block');

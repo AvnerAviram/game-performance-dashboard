@@ -7,6 +7,7 @@ import { parseFeatsLocal } from './overview-renderer.js';
 import { CANONICAL_FEATURES, SHORT_FEATURE_LABELS } from '../../lib/features.js';
 import { getReelGridCorrelation } from '../../lib/game-analytics-engine.js';
 import { F } from '../../lib/game-fields.js';
+import { getDefaultSort } from '../../lib/filters.js';
 
 const shortF = SHORT_FEATURE_LABELS;
 
@@ -184,9 +185,9 @@ export function renderFeatureHeatmap(heatmapDiv) {
             themeMap[theme].totalTheo += theo;
         });
 
-        const topThemeNames = getActiveThemes()
+        const topThemeNames = [...getActiveThemes()]
             .filter(t => t.Theme && (t['Game Count'] || 0) >= 5)
-            .sort((a, b) => (b['Smart Index'] || 0) - (a['Smart Index'] || 0))
+            .sort(getDefaultSort())
             .slice(0, 12)
             .map(t => t.Theme);
 

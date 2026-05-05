@@ -5,13 +5,22 @@ import { log } from './env.js';
 import { MARKET_LEADER_THRESHOLD } from './shared-config.js';
 import { F } from './game-fields.js';
 
-function qualifiedFirstSort(a, b) {
+// Eilers-style sort comparators — field-agnostic to work with theme, mechanic, AND provider data shapes
+export function theoIndexSort(a, b) {
     if ((a.qualified !== false) !== (b.qualified !== false)) return a.qualified !== false ? -1 : 1;
-    return (b['Smart Index'] || 0) - (a['Smart Index'] || 0);
+    const aVal = a['Avg Theo Win Index'] ?? a.avg_theo_win ?? a.avgTheo ?? 0;
+    const bVal = b['Avg Theo Win Index'] ?? b.avg_theo_win ?? b.avgTheo ?? 0;
+    return bVal - aVal;
 }
 
-function marketShareSort(a, b) {
-    return (b['Market Share %'] || 0) - (a['Market Share %'] || 0);
+export function marketShareSort(a, b) {
+    const aVal = a['Market Share %'] ?? a.total_market_share ?? a.totalMkt ?? a.ggrShare ?? 0;
+    const bVal = b['Market Share %'] ?? b.total_market_share ?? b.totalMkt ?? b.ggrShare ?? 0;
+    return bVal - aVal;
+}
+
+export function getDefaultSort() {
+    return rankingMode === 'grossing' ? marketShareSort : theoIndexSort;
 }
 
 /**
@@ -23,6 +32,8 @@ export function getFilteredThemes(view) {
     const themes = window.gameData?.viewThemes ?? window.gameData?.themes ?? [];
 
     if (themes.length === 0) return [];
+
+    const defaultSort = rankingMode === 'grossing' ? marketShareSort : theoIndexSort;
 
     switch (view) {
         case 'leaders': {
@@ -36,17 +47,18 @@ export function getFilteredThemes(view) {
             const opportunities = themes.filter(
                 t => t['Game Count'] >= 5 && t['Avg Theo Win Index'] >= avgPerformance && t['Market Share %'] < 5
             );
-            return opportunities.sort(qualifiedFirstSort);
+            return opportunities.sort(theoIndexSort);
         }
         case 'premium': {
-            const sortedByPerf = [...themes].sort(qualifiedFirstSort);
-            const premiumThreshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Smart Index'] || 2.5;
-            const premium = themes.filter(t => (t['Smart Index'] || 0) >= premiumThreshold);
-            return premium.sort(qualifiedFirstSort);
+            const sortedByPerf = [...themes].sort(theoIndexSort);
+            const premiumThreshold =
+                sortedByPerf[Math.floor(sortedByPerf.length * 0.25)]?.['Avg Theo Win Index'] || 1.2;
+            const premium = themes.filter(t => (t['Avg Theo Win Index'] || 0) >= premiumThreshold);
+            return premium.sort(theoIndexSort);
         }
         case 'all':
         default:
-            return [...themes].sort(marketShareSort);
+            return [...themes].sort(defaultSort);
     }
 }
 
@@ -68,20 +80,76 @@ export function getFilteredMechanics(view) {
             return popular.sort(marketShareSort);
         }
         case 'highPerforming': {
-            const sortedByPerf = [...mechanics].sort(qualifiedFirstSort);
-            const perfThreshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.3)]?.['Smart Index'] || 1.5;
-            const highPerforming = mechanics.filter(m => (m['Smart Index'] || 0) >= perfThreshold);
-            return highPerforming.sort(qualifiedFirstSort);
+            const sortedByPerf = [...mechanics].sort(theoIndexSort);
+            const perfThreshold = sortedByPerf[Math.floor(sortedByPerf.length * 0.3)]?.['Avg Theo Win Index'] || 1.2;
+            const highPerforming = mechanics.filter(
+                m => (m['Avg Theo Win Index'] || m.avg_theo_win || 0) >= perfThreshold
+            );
+            return highPerforming.sort(theoIndexSort);
         }
         case 'all':
-        default:
-            return [...mechanics].sort(qualifiedFirstSort);
+        default: {
+            const defaultSort = rankingMode === 'grossing' ? marketShareSort : theoIndexSort;
+            return [...mechanics].sort(defaultSort);
+        }
     }
 }
 
 // Track current view state
 let currentThemeView = 'all';
 let currentMechanicView = 'all';
+
+// Eilers ranking mode: 'indexing' (Avg Theo Win) or 'grossing' (Market Share)
+let rankingMode = 'grossing';
+
+/**
+ * Get the current ranking mode.
+ * @returns {'indexing' | 'grossing'}
+ */
+export function getRankingMode() {
+    return rankingMode;
+}
+
+/**
+ * Switch ranking mode and re-render current view.
+ * @param {'indexing' | 'grossing'} mode
+ */
+window.switchRankingMode = function (mode) {
+    rankingMode = mode;
+    log(`🔄 Ranking mode → ${mode === 'indexing' ? 'Top Indexing' : 'Top Grossing'}`);
+
+    document.querySelectorAll('[data-ranking-mode]').forEach(btn => {
+        const isActive = btn.dataset.rankingMode === mode;
+        btn.classList.toggle('bg-indigo-600', isActive);
+        btn.classList.toggle('dark:bg-indigo-500', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('border-indigo-600', isActive);
+        btn.classList.toggle('dark:border-indigo-500', isActive);
+        btn.classList.toggle('shadow-sm', isActive);
+        btn.classList.toggle('bg-white', !isActive);
+        btn.classList.toggle('dark:bg-gray-800', !isActive);
+        btn.classList.toggle('text-gray-600', !isActive);
+        btn.classList.toggle('dark:text-gray-400', !isActive);
+        btn.classList.toggle('border-gray-200', !isActive);
+        btn.classList.toggle('dark:border-gray-600', !isActive);
+    });
+
+    // Re-trigger the current filter view for whichever page is visible
+    if (document.querySelector('#themes-table tbody')?.children.length) {
+        window.switchThemeView?.(currentThemeView);
+    }
+    if (document.querySelector('#mechanics-table tbody')?.children.length) {
+        window.switchMechanicView?.(currentMechanicView);
+    }
+    if (document.querySelector('#providers-content table') && window.renderProviders) {
+        window.renderProviders();
+    }
+
+    // Refresh overview charts if visible
+    if (typeof window.refreshCharts === 'function') {
+        window.refreshCharts().catch(() => {});
+    }
+};
 
 /**
  * Switch theme filter view

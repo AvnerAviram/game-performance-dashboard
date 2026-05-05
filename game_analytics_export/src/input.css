@@ -76,7 +76,7 @@
 /* Info icon: no z-index on the icon itself so it never floats above sticky headers.
    Only the tooltip children (.info-tooltip / .filter-tooltip) get z-[80]. */
 .info-icon {
-    @apply relative inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-all duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500 hover:scale-110;
+    @apply relative inline-flex items-center justify-center w-[18px] h-[18px] text-sm text-slate-600 dark:text-slate-300 cursor-help font-semibold transition-colors duration-200 align-middle ml-2 rounded-full bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-600 hover:text-white dark:hover:bg-slate-500;
 }
 
 th {
@@ -130,7 +130,7 @@ th.sortable.sorted-asc::after {
 
 .info-tooltip,
 .filter-tooltip {
-    @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[80] break-words whitespace-normal overflow-hidden normal-case;
+    @apply hidden absolute left-1/2 -translate-x-1/2 w-[320px] max-w-[90vw] text-left p-4 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 shadow-xl box-border z-[9999] break-words whitespace-normal overflow-hidden normal-case;
 }
 
 .info-tooltip {
@@ -139,6 +139,15 @@ th.sortable.sorted-asc::after {
 
 .filter-tooltip {
     @apply top-[calc(100%+0.5rem)] pointer-events-none;
+}
+
+/* When tooltip-manager detects overflow, it switches to fixed positioning */
+.filter-tooltip.tooltip-fixed,
+.info-tooltip.tooltip-fixed {
+    position: fixed;
+    left: auto;
+    top: auto;
+    transform: none;
 }
 
 .info-tooltip strong,

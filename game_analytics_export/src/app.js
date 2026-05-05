@@ -1,4 +1,5 @@
 // Main Application Entry Point
+import './input.css';
 import { isLoggedIn, redirectToLogin, verifySession } from './lib/auth.js';
 import { loadGameData } from './lib/data.js';
 import { log, DEBUG } from './lib/env.js';

@@ -123,8 +123,9 @@
                                             ?</button
                                         ><span
                                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                                            >Ranked by average Performance Index across games sharing the exact same
-                                            mechanic set. Minimum 3 games required.</span
+                                            >Ranked by average Theo Win Index across games sharing the exact same
+                                            mechanic set. <br /><br /><b>Formula:</b> AVG(game.theo_win) for games with
+                                            identical mechanic sets. Min 3 games required.</span
                                         >
                                     </div>
                                 </div>
@@ -154,9 +155,10 @@
                                             ?</button
                                         ><span
                                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                                            >Mechanic combos within themes, ranked by avg Performance Index lift vs
-                                            theme baseline. Min 2 games per combo. Diverse themes shown via
-                                            round-robin.</span
+                                            >Mechanic combos within themes, ranked by how much they outperform the theme
+                                            baseline. <br /><br /><b>Formula:</b> Lift = AVG(combo games theo_win)
+                                            &divide; AVG(all theme games theo_win) - 1. Min 2 games per combo. Diverse
+                                            themes via round-robin.</span
                                         >
                                     </div>
                                 </div>
@@ -226,8 +228,10 @@
                                             ?</button
                                         ><span
                                             class="hidden group-hover:block absolute left-0 top-full mt-1 w-60 p-2.5 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-[9999] text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed font-normal"
-                                            >Which layout + volatility combos produce the best Performance Index. Ranked
-                                            by performance with lift vs market average.</span
+                                            >Which layout + volatility combinations produce the highest game
+                                            performance. <br /><br /><b>Formula:</b> AVG(game.theo_win) for each
+                                            layout+volatility combo. Lift = (combo avg &divide; market avg - 1) &times;
+                                            100%.</span
                                         >
                                     </div>
                                 </div>
@@ -276,6 +280,19 @@
                         class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 text-sm leading-relaxed resize-none"
                     ></textarea>
                 </div>
+                <div class="px-6 pb-2 flex items-center gap-2">
+                    <input
+                        id="concept-ai-code"
+                        type="password"
+                        placeholder="AI code (optional — enables Claude-powered analysis)"
+                        class="w-72 px-3 py-1.5 text-sm bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-1 focus:ring-violet-500 text-gray-700 dark:text-gray-300 placeholder-gray-400"
+                    />
+                    <span
+                        id="concept-mode-badge"
+                        class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-medium"
+                        >Local mode</span
+                    >
+                </div>
                 <div class="px-6 pb-4 flex items-center justify-between">
                     <div class="flex flex-wrap gap-1.5" id="concept-quick-ideas">
                         <span class="text-[10px] text-gray-400 dark:text-gray-500 mr-1 self-center">Try:</span>
@@ -310,6 +327,70 @@
                             class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
                         >
                             Fantasy dragon
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Underwater ocean theme with cascading wins, multiplier trails, and a buy-bonus feature. Medium volatility for a broad audience. Think Atlantis meets modern megaways-style gameplay."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Ocean cascading
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Space sci-fi theme targeting younger demographics. Cluster pays mechanic with a gamble feature and symbol transformations. Medium-high volatility with a cyberpunk aesthetic."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Sci-fi cluster
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Egyptian pharaoh theme with mystery symbols, hold and spin, and a progressive jackpot. Medium-high volatility. Target the US regulated market."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Egyptian jackpot
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Viking Norse mythology theme with a 5x4 grid, wild reels, and a battle bonus where players pick warriors. High volatility. Should compete with titles like Vikings Go Berzerk."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Viking battle
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Mexican Day of the Dead theme with stacked wilds, respin mechanic, and a progressive jackpot wheel. Low-medium volatility, colorful and fun."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Day of the Dead
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Animal safari theme with wild multipliers, free spins with sticky wilds, and a stampede bonus. Medium volatility with beautiful African savanna visuals."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Safari stampede
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Pirate treasure hunt with a map bonus, expanding wilds, and megaways mechanic. High volatility with a branded IP potential like Pirates of the Caribbean style."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Pirate megaways
+                        </button>
+                        <button
+                            type="button"
+                            onclick="window.setConceptExample(this)"
+                            data-text="Irish leprechaun theme with rainbow bonus, coin collect mechanic, and a pot of gold jackpot. Low volatility for casual players who enjoy frequent small wins."
+                            class="px-2.5 py-1 text-[11px] rounded-full bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 transition-colors cursor-pointer"
+                        >
+                            Irish luck
                         </button>
                     </div>
                     <button

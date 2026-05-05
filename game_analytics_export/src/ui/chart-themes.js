@@ -18,6 +18,8 @@ import {
 } from './chart-utils.js';
 import { chartInstances } from './chart-config.js';
 import { F } from '../lib/game-fields.js';
+import { getDefaultSort, getRankingMode } from '../lib/filters.js';
+import { MIN_QUALIFIED_GAMES } from '../lib/shared-config.js';
 export function createThemesChart() {
     const canvas = document.getElementById('chart-themes');
     if (!canvas) {
@@ -32,7 +34,12 @@ export function createThemesChart() {
 
     const ctx = canvas.getContext('2d');
     const chartColors = getChartColors();
-    const top10 = getActiveThemes().slice(0, 10);
+    const isGrossing = getRankingMode() === 'grossing';
+    const top10 = [...getActiveThemes()].sort(getDefaultSort()).slice(0, 10);
+    const metricKey = isGrossing ? 'Market Share %' : 'Avg Theo Win Index';
+    const metricLabel = isGrossing ? 'Market Share' : 'Avg Theo Win Index';
+    const secondaryKey = isGrossing ? 'Avg Theo Win Index' : 'Market Share %';
+    const secondaryLabel = isGrossing ? 'Performance Index' : 'Market Share';
 
     const allGames = getActiveGames();
     const withTheme = allGames.filter(g => F.themeConsolidated(g) && !/^unknown$/i.test(F.themeConsolidated(g)));
@@ -43,8 +50,8 @@ export function createThemesChart() {
             labels: top10.map(t => stripParenthetical(t.Theme)),
             datasets: [
                 {
-                    label: 'Market Share %',
-                    data: top10.map(t => t['Market Share %'] || 0),
+                    label: metricKey,
+                    data: top10.map(t => t[metricKey] || 0),
                     backgroundColor: generateModernColors(ctx, 10),
                     borderWidth: 0,
                     borderRadius: 6,
@@ -84,14 +91,16 @@ export function createThemesChart() {
                         },
                         label: tooltipItem => {
                             if (!tooltipItem) return '';
-                            return `Market Share: ${tooltipItem.parsed.x.toFixed(2)}%`;
+                            const val = tooltipItem.parsed.x.toFixed(2);
+                            return isGrossing ? `${metricLabel}: ${val}%` : `${metricLabel}: ${val}`;
                         },
                         afterBody: tooltipItems => {
                             if (!tooltipItems?.length) return [];
                             const theme = top10[tooltipItems[0].dataIndex];
                             if (!theme) return [];
-                            const pi = theme['Smart Index'] || theme.performanceIndex || 0;
-                            return [`Games: ${theme['Game Count']}`, `Performance Index: ${pi.toFixed(2)}`];
+                            const secVal = theme[secondaryKey] || theme['Smart Index'] || theme.performanceIndex || 0;
+                            const secFmt = isGrossing ? secVal.toFixed(2) : `${secVal.toFixed(2)}%`;
+                            return [`Games: ${theme['Game Count']}`, `${secondaryLabel}: ${secFmt}`];
                         },
                     },
                 },
@@ -135,8 +144,12 @@ function consolidateMechanicsByCanonicalName(mechanics) {
     }));
     const globalAvg = rows.reduce((s, r) => s + (r['Avg Theo Win Index'] || 0), 0) / (rows.length || 1);
     return rows
-        .map(m => ({ ...m, 'Smart Index': calculateSmartIndex(m['Avg Theo Win Index'], m['Game Count'], globalAvg) }))
-        .sort((a, b) => (b['Market Share %'] || 0) - (a['Market Share %'] || 0))
+        .map(m => ({
+            ...m,
+            'Smart Index': calculateSmartIndex(m['Avg Theo Win Index'], m['Game Count'], globalAvg),
+            qualified: (m['Game Count'] || 0) >= MIN_QUALIFIED_GAMES,
+        }))
+        .sort(getDefaultSort())
         .slice(0, 10);
 }
 
@@ -151,7 +164,12 @@ export function createMechanicsChart() {
 
     const ctx = canvas.getContext('2d');
     const chartColors = getChartColors();
+    const isGrossing = getRankingMode() === 'grossing';
     const mechanicData = consolidateMechanicsByCanonicalName(getActiveMechanics());
+    const mechMetricKey = isGrossing ? 'Market Share %' : 'Avg Theo Win Index';
+    const mechMetricLabel = isGrossing ? 'Market Share' : 'Avg Theo Win Index';
+    const mechSecondaryKey = isGrossing ? 'Avg Theo Win Index' : 'Market Share %';
+    const mechSecondaryLabel = isGrossing ? 'Performance Index' : 'Market Share';
     const mechAllGames = getActiveGames();
     const withFeatures = mechAllGames.filter(g => parseFeatures(g.features).length > 0);
 
@@ -161,8 +179,8 @@ export function createMechanicsChart() {
             labels: mechanicData.map(m => m.Mechanic),
             datasets: [
                 {
-                    label: 'Market Share %',
-                    data: mechanicData.map(m => m['Market Share %'] || 0),
+                    label: mechMetricKey,
+                    data: mechanicData.map(m => m[mechMetricKey] || 0),
                     backgroundColor: generateModernColors(ctx, 10),
                     borderWidth: 0,
                     borderRadius: 6,
@@ -201,14 +219,16 @@ export function createMechanicsChart() {
                         },
                         label: tooltipItem => {
                             if (!tooltipItem) return '';
-                            return `Market Share: ${tooltipItem.parsed.x.toFixed(2)}%`;
+                            const val = tooltipItem.parsed.x.toFixed(2);
+                            return isGrossing ? `${mechMetricLabel}: ${val}%` : `${mechMetricLabel}: ${val}`;
                         },
                         afterBody: tooltipItems => {
                             if (!tooltipItems?.length) return [];
                             const mechanic = mechanicData[tooltipItems[0].dataIndex];
                             if (!mechanic) return [];
-                            const pi = mechanic['Smart Index'] || 0;
-                            return [`Games: ${mechanic['Game Count']}`, `Performance Index: ${pi.toFixed(2)}`];
+                            const secVal = mechanic[mechSecondaryKey] || mechanic['Smart Index'] || 0;
+                            const secFmt = isGrossing ? secVal.toFixed(2) : `${secVal.toFixed(2)}%`;
+                            return [`Games: ${mechanic['Game Count']}`, `${mechSecondaryLabel}: ${secFmt}`];
                         },
                     },
                 },
@@ -332,7 +352,7 @@ export function createGamesChart() {
 export function createScatterChart() {
     log('[SCATTER] createScatterChart called');
     try {
-        const allThemes = getActiveThemes().filter(t => (t['Game Count'] || 0) >= 2);
+        const allThemes = [...getActiveThemes()].filter(t => (t['Game Count'] || 0) >= 2).sort(getDefaultSort());
         log('[SCATTER] filtered themes:', allThemes.length);
         if (!allThemes.length) return;
 
@@ -354,6 +374,9 @@ export function createScatterChart() {
             };
         });
 
+        const allGames = getActiveGames();
+        const withTheme = allGames.filter(g => F.theoWin(g) > 0);
+
         createBubbleLandscape('chart-scatter', {
             data,
             instanceKey: 'scatter',
@@ -361,6 +384,7 @@ export function createScatterChart() {
             labels: 'top',
             maxLabels: 4,
             quadrantLabels: false,
+            labelPosition: 'below',
             medianX: medX,
             medianY: medY,
             tooltipFn: item => {
@@ -375,6 +399,7 @@ export function createScatterChart() {
             },
         });
 
+        injectCoveragePill('chart-scatter', withTheme.length, allGames.length, 'with performance data');
         log('[SCATTER] chart created:', !!chartInstances.scatter);
     } catch (err) {
         console.error('[SCATTER] FAILED:', err);

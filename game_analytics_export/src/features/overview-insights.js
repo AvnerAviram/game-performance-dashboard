@@ -18,14 +18,13 @@ export async function getTopPerformers(allGames, themes, mechanics) {
         };
     }
 
-    // Best Theme (highest Smart Index) - exclude placeholder/unknown themes
     const isPlaceholderTheme = t => {
         const name = (t?.Theme || '').toUpperCase();
         return !name || name === 'UNKNOWN' || name.startsWith('UNKNOWN -') || name.includes('FLAGGED FOR RESEARCH');
     };
     const realThemes = themes.filter(t => !isPlaceholderTheme(t));
     const sortedThemes = [...realThemes].sort(
-        (a, b) => parseFloat(b['Smart Index'] || 0) - parseFloat(a['Smart Index'] || 0)
+        (a, b) => parseFloat(b['Market Share %'] || 0) - parseFloat(a['Market Share %'] || 0)
     );
     const bestTheme = sortedThemes[0];
     const worstTheme = sortedThemes[sortedThemes.length - 1];
@@ -62,15 +61,14 @@ export async function getTopPerformers(allGames, themes, mechanics) {
         bestTheme: bestTheme
             ? {
                   name: bestTheme.Theme,
-                  smartIndex: parseFloat(bestTheme['Smart Index']).toFixed(2),
+                  marketShare: parseFloat(bestTheme['Market Share %'] || 0).toFixed(2),
                   gameCount: bestTheme['Game Count'],
-                  avgRTP: parseFloat(bestTheme['Avg Theo Win Index'] ?? bestTheme.avg_theo_win ?? 0).toFixed(2),
               }
             : null,
         worstTheme: worstTheme
             ? {
                   name: worstTheme.Theme,
-                  smartIndex: parseFloat(worstTheme['Smart Index']).toFixed(2),
+                  marketShare: parseFloat(worstTheme['Market Share %'] || 0).toFixed(2),
                   gameCount: worstTheme['Game Count'],
               }
             : null,

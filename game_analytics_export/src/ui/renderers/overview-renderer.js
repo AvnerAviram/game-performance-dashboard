@@ -17,28 +17,34 @@ export function updateHeaderStats() {
     const statClassified = document.getElementById('stat-classified');
     const headerSummary = document.getElementById('header-summary');
 
+    const activeGames = getActiveGames();
+    const activeThemes = getActiveThemes();
+    const activeMechanics = getActiveMechanics();
+    const gCount = activeGames.length;
+    const tCount = activeThemes.length;
+    const mCount = activeMechanics.length;
+
     if (statTotalGames) {
-        statTotalGames.textContent = gameData.total_games.toLocaleString();
+        statTotalGames.textContent = gCount.toLocaleString();
     }
     if (statTotalThemes) {
-        statTotalThemes.textContent = gameData.theme_count.toLocaleString();
+        statTotalThemes.textContent = tCount.toLocaleString();
     }
     if (statTotalMechanics) {
-        statTotalMechanics.textContent = gameData.mechanic_count;
+        statTotalMechanics.textContent = mCount;
     }
     if (statClassified) {
-        const allGames = getActiveGames();
-        const classified = allGames.filter(g => {
+        const classified = activeGames.filter(g => {
             const tc = F.themeConsolidated(g);
             const hasTheme = tc.trim() && tc !== 'Unknown';
             const hasFeatures = parseFeatsLocal(g.features).length > 0;
             return hasTheme && hasFeatures;
         }).length;
-        const pct = allGames.length > 0 ? ((classified / allGames.length) * 100).toFixed(1) : '0';
+        const pct = gCount > 0 ? ((classified / gCount) * 100).toFixed(1) : '0';
         statClassified.textContent = `${pct}%`;
     }
     if (headerSummary) {
-        headerSummary.textContent = `Comprehensive analysis of ${gameData.total_games.toLocaleString()} slot games across ${gameData.theme_count.toLocaleString()} themes and ${gameData.mechanic_count} mechanics`;
+        headerSummary.textContent = `Comprehensive analysis of ${gCount.toLocaleString()} slot games across ${tCount.toLocaleString()} themes and ${mCount} mechanics`;
     }
 }
 
@@ -171,27 +177,27 @@ function renderTopThemesCards() {
 
     const byMarketShare = [...themes].sort((a, b) => (b._ms || 0) - (a._ms || 0));
     const best = byMarketShare[0];
-    const bySmartIndex = [...themes].sort((a, b) => b._si - a._si);
-    const qualifiedThemes = bySmartIndex.filter(t => t.qualified !== false);
-    const worst = qualifiedThemes[qualifiedThemes.length - 1] || bySmartIndex[bySmartIndex.length - 1];
+    const byTheoWin = [...themes].sort((a, b) => b._avgTheo - a._avgTheo);
+    const qualifiedThemes = byTheoWin.filter(t => t.qualified !== false);
+    const worst = qualifiedThemes[qualifiedThemes.length - 1] || byTheoWin[byTheoWin.length - 1];
 
     const opportunity =
         [...themes]
             .filter(t => t._gc <= 20 && t._avgTheo > 1.5 && t !== best)
-            .sort((a, b) => b._opportunity - a._opportunity)[0] || bySmartIndex[1];
+            .sort((a, b) => b._opportunity - a._opportunity)[0] || byTheoWin[1];
 
     const rising =
         [...themes]
             .filter(t => t._gc >= 3 && t !== best && t !== opportunity)
-            .sort((a, b) => b._recentPct - a._recentPct)[0] || bySmartIndex[2];
+            .sort((a, b) => b._recentPct - a._recentPct)[0] || byTheoWin[2];
 
     const saturated =
-        [...themes].filter(t => t !== best && t !== worst).sort((a, b) => b._gc - a._gc)[0] || bySmartIndex[3];
+        [...themes].filter(t => t !== best && t !== worst).sort((a, b) => b._gc - a._gc)[0] || byTheoWin[3];
 
     const declining =
         [...themes]
             .filter(t => t._gc >= 3 && t !== worst && t !== saturated)
-            .sort((a, b) => b._oldPct - a._oldPct)[0] || bySmartIndex[bySmartIndex.length - 2];
+            .sort((a, b) => b._oldPct - a._oldPct)[0] || byTheoWin[byTheoWin.length - 2];
 
     const cards = [
         {
@@ -233,8 +239,8 @@ function renderTopThemesCards() {
             border: 'border-sky-200 dark:border-sky-800',
             labelColor: 'text-sky-700 dark:text-sky-400',
             gradient: 'from-sky-600 to-blue-600',
-            value: rising._si.toFixed(2),
-            valueLabel: 'Performance Index',
+            value: rising._avgTheo.toFixed(2),
+            valueLabel: 'Avg Theo Win Index',
         },
         {
             theme: saturated,
@@ -254,15 +260,15 @@ function renderTopThemesCards() {
             theme: worst,
             emoji: '🔻',
             label: 'Worst Theme',
-            sub: 'Lowest Performance Index',
-            tip: 'Theme with the lowest Performance Index among qualified themes (≥20 games). Weakest market performance — consider avoiding or innovating significantly.',
+            sub: 'Lowest Avg Theo Win',
+            tip: 'Theme with the lowest Avg Theo Win Index among qualified themes (≥20 games). Weakest market performance — consider avoiding or innovating significantly.',
             bg: 'from-red-50 to-rose-50',
             dbg: 'dark:from-red-900/20 dark:to-rose-900/20',
             border: 'border-red-200 dark:border-red-800',
             labelColor: 'text-red-700 dark:text-red-400',
             gradient: 'from-red-600 to-rose-600',
-            value: worst._si.toFixed(2),
-            valueLabel: 'Performance Index',
+            value: worst._avgTheo.toFixed(2),
+            valueLabel: 'Avg Theo Win Index',
         },
         {
             theme: declining,
@@ -275,8 +281,8 @@ function renderTopThemesCards() {
             border: 'border-slate-300 dark:border-slate-700',
             labelColor: 'text-slate-600 dark:text-slate-400',
             gradient: 'from-slate-500 to-gray-500',
-            value: declining._si.toFixed(2),
-            valueLabel: 'Performance Index',
+            value: declining._avgTheo.toFixed(2),
+            valueLabel: 'Avg Theo Win Index',
         },
     ];
 

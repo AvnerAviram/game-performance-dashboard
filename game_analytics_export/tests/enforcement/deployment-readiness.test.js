@@ -66,23 +66,37 @@ describe('vercel.json configuration', () => {
 });
 
 describe('Build pipeline completeness', () => {
-    test('build script runs build:data before vite build', () => {
+    let buildScript;
+
+    beforeAll(() => {
+        buildScript = readFileSync(resolve(ROOT, 'scripts/build.mjs'), 'utf-8');
+    });
+
+    test('package.json build delegates to scripts/build.mjs', () => {
         const build = packageJson.scripts?.build || '';
-        const dataPos = build.indexOf('build:data');
-        const vitePos = build.indexOf('vite build');
+        expect(build).toContain('scripts/build.mjs');
+    });
+
+    test('build script runs build:data before vite build', () => {
+        const dataPos = buildScript.indexOf('build:data');
+        const vitePos = buildScript.indexOf('vite build');
         expect(dataPos).toBeGreaterThan(-1);
         expect(vitePos).toBeGreaterThan(dataPos);
     });
 
-    test('build script copies games.parquet and games_processed.json to dist', () => {
-        const build = packageJson.scripts?.build || '';
-        expect(build).toContain('games.parquet');
-        expect(build).toContain('games_processed.json');
+    test('build script copies games.parquet and games_processed.json to public/data', () => {
+        expect(buildScript).toContain('games.parquet');
+        expect(buildScript).toContain('games_processed.json');
     });
 
-    test('build script writes versioned sw.js to dist', () => {
-        const build = packageJson.scripts?.build || '';
-        expect(build).toContain('dist/sw.js');
+    test('build script stamps sw.js with build timestamp', () => {
+        expect(buildScript).toContain('sw.js');
+        expect(buildScript).toContain('gad-');
+    });
+
+    test('build script verifies artifacts exist after build', () => {
+        expect(buildScript).toContain('REQUIRED_ARTIFACTS');
+        expect(buildScript).toContain('dist/data/games.parquet');
     });
 
     test('postinstall copies DuckDB WASM files', () => {

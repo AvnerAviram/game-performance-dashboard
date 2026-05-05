@@ -886,17 +886,11 @@ export function setupNameGenerator() {
     // Select "modern" by default
     document.querySelector('.ng-style-btn[data-style="modern"]')?.click();
 
-    // Theme change -> show patterns + auto-generate
+    // Theme change -> show patterns only (don't auto-generate)
     themeSelect.addEventListener('change', () => {
         const theme = themeSelect.value;
         if (theme) {
             renderPatternStats(theme);
-            const keywords = document.getElementById('ng-keywords')?.value || '';
-            const resultsDiv = document.getElementById('ng-results');
-            if (resultsDiv) {
-                const names = generatePatternNames(theme, selectedFeatures, selectedStyle, keywords, 10);
-                renderResults(names, theme, false);
-            }
         }
     });
 

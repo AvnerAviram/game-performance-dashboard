@@ -38,7 +38,7 @@ describe('Coverage Pill (injectCoveragePill)', () => {
         expect(label).toContain('67% of games');
     });
 
-    it('shows detail text with counts and exclusion note on hover', () => {
+    it('shows detail text with counts and label on hover', () => {
         setupCard('test-chart');
         injectCoveragePill('test-chart', 2044, 3105, 'with RTP data');
 
@@ -47,15 +47,15 @@ describe('Coverage Pill (injectCoveragePill)', () => {
         expect(tooltip.textContent).toContain('2,044');
         expect(tooltip.textContent).toContain('3,105');
         expect(tooltip.textContent).toContain('with RTP data');
-        expect(tooltip.textContent).toContain('excluded');
     });
 
-    it('skips injection when coverage is 100%', () => {
+    it('still injects pill when coverage is 100%', () => {
         setupCard('test-chart');
         injectCoveragePill('test-chart', 3000, 3000, '');
 
         const pill = document.querySelector('[data-coverage-pill="test-chart"]');
-        expect(pill).toBeNull();
+        expect(pill).not.toBeNull();
+        expect(pill.textContent).toContain('100%');
     });
 
     it('is idempotent — does not duplicate pills', () => {

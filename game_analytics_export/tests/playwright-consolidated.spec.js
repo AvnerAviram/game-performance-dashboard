@@ -11,30 +11,24 @@ const PAGES = [
     { id: 'mechanics', name: 'Mechanics', sticky: true },
     { id: 'games', name: 'Games', sticky: true },
     { id: 'providers', name: 'Providers', sticky: true },
-    { id: 'anomalies', name: 'Anomalies', sticky: false },
     { id: 'insights', name: 'Insights', sticky: false },
+    { id: 'art', name: 'Art Insights', sticky: false },
     { id: 'trends', name: 'Trends', sticky: false },
-    { id: 'prediction', name: 'Prediction', sticky: false },
+    { id: 'prediction', name: 'Game Lab', sticky: false },
     { id: 'ai-assistant', name: 'AI Assistant', sticky: false },
 ];
 
-async function seedAuth(page) {
-    // App requires login - pre-seed auth so dashboard loads (no redirect to login)
+async function loginAndWait(page) {
     await page.goto('/login.html');
-    await page.evaluate(() => {
-        localStorage.setItem('game-dashboard-auth', JSON.stringify({ username: 'e2e-test', loggedInAt: Date.now() }));
-    });
-}
-
-async function waitForAppReady(page) {
-    await page.waitForLoadState('networkidle');
-    await page.locator('#overview-total-games').waitFor({ state: 'visible', timeout: 10000 });
+    await page.fill('#login-username', 'e2e_test_user');
+    await page.fill('#login-password', 'e2eTestPass123!');
+    await page.click('button[type="submit"]');
+    await page.waitForURL('**/dashboard**', { timeout: 15000 });
+    await page.locator('#overview-total-games').waitFor({ state: 'visible', timeout: 15000 });
 }
 
 async function gotoDashboard(page) {
-    await seedAuth(page);
-    await page.goto('/dashboard.html');
-    await waitForAppReady(page);
+    await loginAndWait(page);
 }
 
 test.describe('Consolidated: Load, Visual, Alignment, E2E', () => {

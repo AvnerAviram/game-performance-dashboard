@@ -40,7 +40,7 @@ describe('Coding Standards: Configuration files exist and are correct', () => {
         expect(content).toContain('dist/');
         expect(content).toContain('node_modules/');
         expect(content).toContain('coverage/');
-        expect(content).toContain('src/output.css');
+        expect(content).toContain('public/data/');
     });
 
     it('.editorconfig and .prettierrc are consistent (indent)', () => {

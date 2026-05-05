@@ -9,7 +9,6 @@ import { escapeHtml, escapeAttr } from '../../lib/sanitize.js';
 import { F } from '../../lib/game-fields.js';
 import {
     createMarketLandscapeChart,
-    createVolatilityLandscapeChart,
     createRtpLandscapeChart,
     createProviderLandscapeChart,
     createBrandLandscapeChart,
@@ -70,7 +69,6 @@ export async function generateInsights() {
     }
 
     const landscapeCharts = [
-        ['volatility-landscape-chart', createVolatilityLandscapeChart, 'Volatility Landscape'],
         ['rtp-landscape-chart', createRtpLandscapeChart, 'RTP Landscape'],
         ['provider-landscape-chart', createProviderLandscapeChart, 'Provider Landscape'],
         ['brand-landscape-chart', createBrandLandscapeChart, 'Brand Landscape'],

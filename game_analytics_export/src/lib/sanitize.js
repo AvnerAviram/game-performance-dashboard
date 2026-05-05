@@ -41,6 +41,57 @@ export function sanitizeUrl(url) {
 }
 
 /**
+ * Sanitize HTML from AI/LLM responses — allow safe formatting tags only.
+ * Strips scripts, event handlers, iframes, and dangerous attributes.
+ */
+const SAFE_TAGS = new Set([
+    'p',
+    'br',
+    'strong',
+    'b',
+    'em',
+    'i',
+    'ul',
+    'ol',
+    'li',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'span',
+    'div',
+    'blockquote',
+    'code',
+    'pre',
+    'hr',
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'th',
+    'td',
+]);
+
+export function sanitizeAIHtml(html) {
+    if (html == null) return '';
+    let s = String(html);
+    s = s.replace(CONTROL_RE, '');
+    s = s.replace(/<script[\s\S]*?<\/script>/gi, '');
+    s = s.replace(/<style[\s\S]*?<\/style>/gi, '');
+    s = s.replace(/<!--[\s\S]*?-->/g, '');
+    s = s.replace(/<\s*(iframe|object|embed|form|input|button|link|meta|base)[^>]*>/gi, '');
+    s = s.replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, '');
+    s = s.replace(/\s*href\s*=\s*["']?\s*javascript:[^"'>\s]*/gi, '');
+    s = s.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, (match, tag) => {
+        if (SAFE_TAGS.has(tag.toLowerCase())) {
+            return match.replace(/\s+(style|class)\s*=\s*("[^"]*"|'[^']*')/gi, '');
+        }
+        return '';
+    });
+    return s.trim();
+}
+
+/**
  * Wrap content with a data-xray attribute for X-Ray provenance inspection.
  * The content is NOT escaped here — caller must pre-escape it.
  */

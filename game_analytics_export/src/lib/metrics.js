@@ -257,7 +257,7 @@ export async function getAvgRtp(category = null) {
 // ── Art Design Metrics ─────────────────────────────────────────────────
 
 /**
- * Aggregate games by art theme.
+ * Aggregate games by visual art style.
  * @param {string} [category]
  * @returns {Promise<{ theme, count, totalTheo, avgTheo, totalMkt }[]>}
  */
