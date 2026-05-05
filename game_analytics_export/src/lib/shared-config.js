@@ -31,6 +31,7 @@ export const PROVIDER_NORMALIZATION_MAP = {
     'Circular Arrow': 'Light & Wonder',
     'Fortune Factory Studios': 'Light & Wonder',
     Dsg: 'Design Works Gaming',
+    Ags: 'AGS',
 };
 
 // ── Volatility ordering & colors ───────────────────────────────────────
