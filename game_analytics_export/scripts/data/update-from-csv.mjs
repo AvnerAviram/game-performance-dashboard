@@ -89,23 +89,27 @@ function detectDelimiter(decoded) {
 }
 
 function parseAvgBet(val) {
-    if (!val) return null;
-    return parseFloat(String(val).replace(/[$,]/g, '')) || null;
+    if (val === null || val === undefined || String(val).trim() === '') return null;
+    const n = parseFloat(String(val).replace(/[$,]/g, ''));
+    return isNaN(n) ? null : n;
 }
 
 function parseTheoWin(val) {
-    if (!val) return null;
-    return parseFloat(String(val).replace(/,/g, '')) || null;
+    if (val === null || val === undefined || String(val).trim() === '') return null;
+    const n = parseFloat(String(val).replace(/,/g, ''));
+    return isNaN(n) ? null : n;
 }
 
 function parseMarketShare(val) {
-    if (!val) return null;
-    return parseFloat(String(val).replace(/%/g, '')) / 100 || null;
+    if (val === null || val === undefined || String(val).trim() === '') return null;
+    const n = parseFloat(String(val).replace(/%/g, ''));
+    return isNaN(n) ? null : n / 100;
 }
 
 function parseSites(val) {
-    if (!val) return null;
-    return parseInt(String(val).replace(/,/g, ''), 10) || null;
+    if (val === null || val === undefined || String(val).trim() === '') return null;
+    const n = parseInt(String(val).replace(/,/g, ''), 10);
+    return isNaN(n) ? null : n;
 }
 
 function parseReleaseDate(val) {
@@ -128,13 +132,14 @@ function parseReleaseDate(val) {
         .split(',')
         .map(s => s.trim());
     const monthName = (parts[0] || '').toLowerCase();
-    const year = parseInt(parts[1], 10) || null;
-    return { release_year: year, release_month: months[monthName] || null };
+    const year = parseInt(parts[1], 10);
+    return { release_year: isNaN(year) ? null : year, release_month: months[monthName] || null };
 }
 
 function parseGamesPlayed(val) {
-    if (!val) return null;
-    return parseFloat(String(val).replace(/,/g, '')) || null;
+    if (val === null || val === undefined || String(val).trim() === '') return null;
+    const n = parseFloat(String(val).replace(/,/g, ''));
+    return isNaN(n) ? null : n;
 }
 
 function normalizeProvider(raw) {

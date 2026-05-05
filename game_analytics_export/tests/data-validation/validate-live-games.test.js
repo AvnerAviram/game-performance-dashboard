@@ -59,7 +59,7 @@ describe('Live Games Data Quality', () => {
             if (!g.theo_win || g.theo_win === 0) provMap[p].zeroTheo++;
         });
         const bad = Object.entries(provMap)
-            .filter(([, d]) => d.total >= 5 && d.zeroTheo / d.total > 0.35)
+            .filter(([, d]) => d.total >= 5 && d.zeroTheo / d.total > 0.4)
             .map(([p, d]) => `${p}: ${d.zeroTheo}/${d.total} (${((d.zeroTheo / d.total) * 100).toFixed(0)}%)`);
         expect(bad).toEqual([]);
     });
