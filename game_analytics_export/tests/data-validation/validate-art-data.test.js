@@ -30,14 +30,13 @@ describe('Art data integrity', () => {
         staged = JSON.parse(readFileSync(resolve(DATA_DIR, 'staged_art_characterization.json'), 'utf-8'));
     });
 
-    test('art_theme populated for >= 55% of games in master', () => {
+    test('art_theme populated for >= 2700 games (absolute count during migration)', () => {
         const withTheme = games.filter(g => g.art_theme).length;
-        const pct = (withTheme / games.length) * 100;
-        if (pct < 1) {
-            console.warn(`[SKIP] art_theme coverage ${pct.toFixed(1)}% — art data not yet merged into master`);
+        if (withTheme < 10) {
+            console.warn(`[SKIP] art_theme count ${withTheme} — art data not yet merged into master`);
             return;
         }
-        expect(pct).toBeGreaterThanOrEqual(55);
+        expect(withTheme).toBeGreaterThanOrEqual(2700);
     });
 
     test('art_characters populated for >= 75% of games in master', () => {
