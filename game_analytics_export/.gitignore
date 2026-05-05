@@ -77,6 +77,11 @@ data/*.cleaned.json
 
 # CSV exports and data files (internal/proprietary)
 *.csv
+*.tsv
+
+# But track archived source data files
+!data/sources/*.csv
+!data/sources/*.tsv
 
 # E2E test screenshots and debug logs (generated during runs)
 tests/e2e/*.png
