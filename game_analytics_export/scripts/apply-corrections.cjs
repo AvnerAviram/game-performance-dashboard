@@ -4,9 +4,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(__dirname, '..', 'data');
 const TICKETS_FILE = path.join(__dirname, '..', 'server', 'tickets.json');
-const MASTER_FILE = path.join(DATA_DIR, 'game_data_master.json');
+const { MASTER_JSON: MASTER_FILE } = require('../src/lib/data-paths.cjs');
 
 const dryRun = process.argv.includes('--dry-run');
 

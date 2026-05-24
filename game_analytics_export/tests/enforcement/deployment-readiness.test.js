@@ -7,8 +7,7 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
-
-const ROOT = resolve(import.meta.dirname, '../..');
+import { ROOT, MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 let vercelConfig;
 let cspValue;
@@ -106,8 +105,8 @@ describe('Build pipeline completeness', () => {
     });
 
     test('source data files exist', () => {
-        expect(existsSync(resolve(ROOT, 'data/game_data_master.json'))).toBe(true);
-        expect(existsSync(resolve(ROOT, 'data/theme_consolidation_map.json'))).toBe(true);
+        expect(existsSync(MASTER_JSON)).toBe(true);
+        expect(existsSync(MAPPINGS.theme)).toBe(true);
     });
 });
 

@@ -1,16 +1,16 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
 const SRC_DIR = resolve(import.meta.dirname, '../../src/lib/db');
 
 describe('RELIABLE_GAME filter alignment (JS === SQL)', () => {
     let games, confidenceMap, duckdbSource;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        confidenceMap = JSON.parse(readFileSync(MAPPINGS.confidence, 'utf-8'));
         duckdbSource = readFileSync(resolve(SRC_DIR, 'duckdb-client.js'), 'utf-8');
     });
 

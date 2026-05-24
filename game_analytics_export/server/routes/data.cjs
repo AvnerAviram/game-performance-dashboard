@@ -17,14 +17,14 @@ const { matchGameToDimension, defaultMatchRtpBand } = require('../helpers/dimens
 
 const router = Router();
 
-const DATA_DIR = path.join(__dirname, '..', '..', 'data');
+const { DATA_DIR, MASTER_JSON, MAPPINGS, MATCHING, STAGING, VALIDATION } = require('../../src/lib/data-paths.cjs');
 const CONFIG_DIR = path.join(__dirname, '..', '..', 'src', 'config');
 
 let _franchiseMap = null;
 function getFranchiseMap() {
     if (!_franchiseMap) {
         try {
-            _franchiseMap = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'franchise_mapping.json'), 'utf-8'));
+            _franchiseMap = JSON.parse(fs.readFileSync(MAPPINGS.franchise, 'utf-8'));
         } catch {
             _franchiseMap = {};
         }
@@ -90,7 +90,7 @@ let _gamesCache = null;
 let _gamesCacheMtime = 0;
 
 function getSlimGames() {
-    const filePath = path.join(DATA_DIR, 'game_data_master.json');
+    const filePath = MASTER_JSON;
     const stat = fs.statSync(filePath);
     if (_gamesCache && stat.mtimeMs === _gamesCacheMtime) return _gamesCache;
 
@@ -141,19 +141,19 @@ router.get('/api/data/games', requireAuth, (req, res) => {
 });
 
 router.get('/api/data/theme-map', requireAuth, (req, res) => {
-    serveDataFile(path.join(DATA_DIR, 'theme_consolidation_map.json'), res);
+    serveDataFile(MAPPINGS.theme, res);
 });
 
 router.get('/api/data/art-theme-map', requireAuth, (req, res) => {
-    serveDataFile(path.join(DATA_DIR, 'art_theme_consolidation_map.json'), res);
+    serveDataFile(MAPPINGS.artTheme, res);
 });
 
 router.get('/api/data/confidence-map', requireAuth, (req, res) => {
-    serveDataFile(path.join(DATA_DIR, 'confidence_map.json'), res);
+    serveDataFile(MAPPINGS.confidence, res);
 });
 
 router.get('/api/data/art', requireAuth, (req, res) => {
-    serveDataFile(path.join(DATA_DIR, 'staged_art_characterization.json'), res);
+    serveDataFile(STAGING.art, res);
 });
 
 router.get('/api/data/theme-breakdowns', requireAuth, (req, res) => {
@@ -174,7 +174,7 @@ let _thinGt;
 let _themeConsolidationMap;
 
 function loadAgsGt() {
-    if (_agsGt === undefined) _agsGt = loadJsonSafe(path.join(DATA_DIR, 'ground_truth_ags.json'));
+    if (_agsGt === undefined) _agsGt = loadJsonSafe(VALIDATION.groundTruthAgs);
     return _agsGt;
 }
 
@@ -184,8 +184,7 @@ function loadThinGt() {
 }
 
 function loadThemeConsolidationMap() {
-    if (_themeConsolidationMap === undefined)
-        _themeConsolidationMap = loadJsonSafe(path.join(DATA_DIR, 'theme_consolidation_map.json'));
+    if (_themeConsolidationMap === undefined) _themeConsolidationMap = loadJsonSafe(MAPPINGS.theme);
     return _themeConsolidationMap;
 }
 
@@ -218,8 +217,7 @@ function buildThemeConsolidation(themeValue) {
 }
 
 function getFullGames() {
-    const filePath = path.join(DATA_DIR, 'game_data_master.json');
-    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    return JSON.parse(fs.readFileSync(MASTER_JSON, 'utf8'));
 }
 
 function loadJsonSafe(filePath) {
@@ -232,7 +230,7 @@ function loadJsonSafe(filePath) {
 }
 
 function readRulesText(slug, maxChars) {
-    const filePath = path.join(DATA_DIR, 'rules_text', `${slug}.txt`);
+    const filePath = path.join(MATCHING.rulesText, `${slug}.txt`);
     if (!fs.existsSync(filePath)) return null;
     const buf = Buffer.alloc(maxChars || 3000);
     const fd = fs.openSync(filePath, 'r');
@@ -418,10 +416,10 @@ router.get('/api/data/provenance/:gameName', requireAuth, (req, res) => {
 
         if (!_providerStats) _providerStats = buildProviderStats(games);
 
-        const confMap = loadJsonSafe(path.join(DATA_DIR, 'confidence_map.json'));
-        const artMap = loadJsonSafe(path.join(DATA_DIR, 'staged_art_characterization.json'));
-        const rulesMatches = loadJsonSafe(path.join(DATA_DIR, 'rules_game_matches.json'));
-        const bestOfSources = loadJsonSafe(path.join(DATA_DIR, 'staged_best_of_sources.json'));
+        const confMap = loadJsonSafe(MAPPINGS.confidence);
+        const artMap = loadJsonSafe(STAGING.art);
+        const rulesMatches = loadJsonSafe(MATCHING.rulesMatches);
+        const bestOfSources = loadJsonSafe(STAGING.bestOf);
 
         if (!_coverageStats) {
             _coverageStats = computeCoverageStats(games);
@@ -559,12 +557,12 @@ router.get('/api/data/provenance/:gameName', requireAuth, (req, res) => {
 router.get('/api/data/provenance/:gameName/rules-text', requireAuth, (req, res) => {
     try {
         const gameName = decodeURIComponent(req.params.gameName);
-        const rulesMatches = loadJsonSafe(path.join(DATA_DIR, 'rules_game_matches.json'));
+        const rulesMatches = loadJsonSafe(MATCHING.rulesMatches);
         const rulesMatch = findRulesMatch(gameName, rulesMatches);
         const slug = rulesMatch?.slug || rulesMatch?.rules_slug || null;
         if (!slug) return res.status(404).json({ error: 'No rules text found for this game' });
 
-        const filePath = path.join(DATA_DIR, 'rules_text', `${slug}.txt`);
+        const filePath = path.join(MATCHING.rulesText, `${slug}.txt`);
         if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'Rules text file not found' });
 
         const text = fs.readFileSync(filePath, 'utf8');
@@ -578,7 +576,7 @@ router.get('/api/data/provenance/:gameName/rules-text', requireAuth, (req, res) 
 router.get('/api/data/provenance/:gameName/rules-html', requireAuth, (req, res) => {
     try {
         const gameName = decodeURIComponent(req.params.gameName);
-        const rulesMatches = loadJsonSafe(path.join(DATA_DIR, 'rules_game_matches.json'));
+        const rulesMatches = loadJsonSafe(MATCHING.rulesMatches);
         const rulesMatch = findRulesMatch(gameName, rulesMatches);
         const slug = rulesMatch?.slug || rulesMatch?.rules_slug || null;
         if (!slug) return res.status(404).json({ error: 'No rules HTML found for this game' });

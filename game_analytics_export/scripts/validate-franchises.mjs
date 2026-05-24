@@ -9,14 +9,17 @@
  */
 
 import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const { MASTER_JSON, MAPPINGS } = require('../src/lib/data-paths.cjs');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = join(__dirname, '..', 'data');
 
-const franchiseMapping = JSON.parse(readFileSync(join(DATA_DIR, 'franchise_mapping.json'), 'utf-8'));
-const master = JSON.parse(readFileSync(join(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+const franchiseMapping = JSON.parse(readFileSync(MAPPINGS.franchise, 'utf-8'));
+const master = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
 
 const COMMON_ENGLISH_WORDS = new Set([
     'age',

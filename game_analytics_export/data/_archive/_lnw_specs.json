@@ -1,0 +1,2962 @@
+{
+  "Huff N Even More Puff": {
+    "slug": "huff-n-even-more-puff-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 90% | 92% | 94% | 96%",
+      "paylines": 243,
+      "top_prize_raw": "7500x",
+      "top_prize": 7500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "88 Fortunes": {
+    "slug": "88-fortunes",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.08,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Huff N More Puff": {
+    "slug": "huff-n-more-puff",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 90% | 92% | 94% | 96%",
+      "paylines": 243,
+      "top_prize_raw": "5,500x",
+      "top_prize": 5500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "5 (UK), 100 (EU)",
+      "max_bet": 5.0
+    }
+  },
+  "Huff N Lots Of Puff": {
+    "slug": "huff-n-lots-of-puff",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Jin Ji Bao Xi Endless Treasure": {
+    "slug": "jin-ji-bao-xi-endless-treasure",
+    "specs": {
+      "rtp": 95.65,
+      "rtp_raw": "95.65%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.08,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Lightning Gorilla": {
+    "slug": "lightning-gorilla",
+    "specs": {
+      "rtp": 96.18,
+      "rtp_raw": "96.18%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 1024,
+      "top_prize_raw": "160,850",
+      "top_prize": 160850.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Ultimate Fire Link China Street": {
+    "slug": "ultimate-fire-link-china-street",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "paylines": 50,
+      "top_prize_raw": "200,000",
+      "top_prize": 200000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0,
+      "volatility": "Free Games"
+    }
+  },
+  "Pirots": {
+    "slug": "pirots",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "reels_raw": "6",
+      "reels": 6,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Thundering Gorilla": {
+    "slug": "thundering-gorilla",
+    "specs": {
+      "rtp": 95.03,
+      "rtp_raw": "95.03%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "1,197x",
+      "top_prize": 1197.0,
+      "min_bet": 0.48,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Ultimate Fire Link Cash Falls Olvera Street": {
+    "slug": "ultimate-fire-link-cash-falls-olvera-street",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 4608,
+      "top_prize_raw": "10,614x",
+      "top_prize": 10614.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "45",
+      "max_bet": 45.0
+    }
+  },
+  "Three Card Poker": {
+    "slug": "three-card-poker",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Ultimate Fire Link Cash Falls China Street": {
+    "slug": "ultimate-fire-link-cash-falls-china-street",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 4608,
+      "top_prize_raw": "10,107x",
+      "top_prize": 10107.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "45",
+      "max_bet": 45.0,
+      "volatility": "Free Games"
+    }
+  },
+  "Lightning Box Keno": {
+    "slug": "lightning-box-keno",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "top_prize_raw": "2,646x",
+      "top_prize": 2646.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "62.50",
+      "max_bet": 62.5
+    }
+  },
+  "Mad Mad Monkey": {
+    "slug": "mad-mad-monkey",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "25.00",
+      "max_bet": 25.0
+    }
+  },
+  "Ryze": {
+    "slug": "ryze",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Ultimate Fire Link Cash Falls By The Bay": {
+    "slug": "ufl-cash-falls-by-the-bay-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 4608,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "45",
+      "max_bet": 45.0
+    }
+  },
+  "Medusa Megaways": {
+    "slug": "medusa-megaways",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 117649,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "25",
+      "max_bet": 25.0
+    }
+  },
+  "Thundering Shenlong": {
+    "slug": "thundering-shenlong",
+    "specs": {
+      "rtp": 95.09,
+      "rtp_raw": "95.09%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "18,794x",
+      "top_prize": 18794.0,
+      "min_bet": 0.48,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Doctor Love On Vacation": {
+    "slug": "doctor-love-on-vacation",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Lightning Shenlong": {
+    "slug": "lightning-shenlong",
+    "specs": {
+      "rtp": 96.13,
+      "rtp_raw": "96.13%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Monopoly Megaways": {
+    "slug": "monopoly-megaways",
+    "specs": {
+      "rtp": 96.5,
+      "rtp_raw": "96.5%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 117,
+      "top_prize_raw": "14,700",
+      "top_prize": 14700.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Let It Ride": {
+    "slug": "let-it-ride",
+    "specs": {
+      "rtp": 96.49,
+      "rtp_raw": "96.49%",
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "300",
+      "max_bet": 300.0
+    }
+  },
+  "Irish Eyes 2": {
+    "slug": "irish-eyes-2",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Genie Wild": {
+    "slug": "genie-wild",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Four Card Poker": {
+    "slug": "four-card-poker",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Mighty Black Knight": {
+    "slug": "mighty-black-knight",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 10,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "250",
+      "max_bet": 250.0
+    }
+  },
+  "88 Fortunes Megaways": {
+    "slug": "88-fortunes-megaways",
+    "specs": {
+      "rtp": 96.06,
+      "rtp_raw": "96.06%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 117649,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.08,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Ultimate Fire Link Olvera Street": {
+    "slug": "ultimate-fire-link-olvera-street-us",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "250,00",
+      "top_prize": 25000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "80",
+      "max_bet": 80.0,
+      "volatility": "Free Games"
+    }
+  },
+  "Dancing Drums Explosion": {
+    "slug": "dancing-drums-explosion",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.18,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Starmania": {
+    "slug": "starmania",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Ultra Blazing Fire Link": {
+    "slug": "ultra-blazing-fire-link",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "paylines": 50,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Cygnus": {
+    "slug": "cygnus",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Lucky Tree": {
+    "slug": "lucky-tree",
+    "specs": {
+      "min_bet": 0.3,
+      "max_bet_raw": "90.00",
+      "max_bet": 90.0
+    }
+  },
+  "Hercules High And Mighty": {
+    "slug": "hercules-high-and-mighty",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Quick Hit Super Wheel Wild Red": {
+    "slug": "quick-hit-super-wheel-wild-red",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Triple Cash Wheel": {
+    "slug": "triple-cash-wheel",
+    "specs": {
+      "min_bet": 1.0,
+      "max_bet_raw": "400.00",
+      "max_bet": 400.0
+    }
+  },
+  "Owl Eyes": {
+    "slug": "owl-eyes",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Raging Rhino": {
+    "slug": "raging-rhino",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Dancing Drums": {
+    "slug": "dancing-drums",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.18,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Ace Ventura Pet Detective": {
+    "slug": "ace-ventura-pet-detective",
+    "specs": {
+      "rtp": 94.03,
+      "rtp_raw": "94.03%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "3,200x",
+      "top_prize": 3200.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Chicken Fox Jr": {
+    "slug": "chicken-fox-jr",
+    "specs": {
+      "rtp": 95.5,
+      "rtp_raw": "95.5%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "246,051",
+      "top_prize": 246051.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "90",
+      "max_bet": 90.0
+    }
+  },
+  "Monopoly Money Grab": {
+    "slug": "monopoly-money-grab",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "A While On The Nile": {
+    "slug": "a-while-on-the-nile",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Ultimate Fire Link River Walk": {
+    "slug": "ultimate-fire-link-river-walk",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0,
+      "volatility": "Free Games"
+    }
+  },
+  "Lightning Leopard": {
+    "slug": "lightning-leopard",
+    "specs": {
+      "rtp": 95.52,
+      "rtp_raw": "95.52%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "195,000",
+      "top_prize": 195000.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Quick Hit Ultra Pays Eagles Peak": {
+    "slug": "quick-hit-ultra-pays-eagles-peak",
+    "specs": {
+      "rtp": 96.89,
+      "rtp_raw": "96.89%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Invaders Megaways": {
+    "slug": "invaders-megaways",
+    "specs": {
+      "rtp": 96.3,
+      "rtp_raw": "96.3%",
+      "reels_raw": "6",
+      "reels": 6,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Golden Fire Link Dragon Song": {
+    "slug": "golden-fire-link-dragon-song",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 50,
+      "top_prize_raw": "6,103x",
+      "top_prize": 6103.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "150",
+      "max_bet": 150.0
+    }
+  },
+  "Oxygen": {
+    "slug": "oxygen",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "top_prize_raw": "25,000x",
+      "top_prize": 25000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Lightning Horseman": {
+    "slug": "lightning-horseman-us",
+    "specs": {
+      "rtp": 95.52,
+      "rtp_raw": "95.52%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "195,000",
+      "top_prize": 195000.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Blazing 777 2x3x5x": {
+    "slug": "blazing-7777-2x-3x-5x",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 90% | 94% | 96%",
+      "reels_raw": "3",
+      "reels": 3,
+      "paylines": 9,
+      "top_prize_raw": "500x",
+      "top_prize": 500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "175",
+      "max_bet": 175.0
+    }
+  },
+  "Lightning Blaze": {
+    "slug": "lightning-blaze",
+    "specs": {
+      "paylines": 40,
+      "top_prize_raw": "9,750x",
+      "top_prize": 9750.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Dancing Drums Prosperity": {
+    "slug": "dancing-drums-prosperity",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94.05% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "20.88",
+      "max_bet": 20.88
+    }
+  },
+  "Blazing 777 Triple Double Jackpot Wild": {
+    "slug": "blazing-777-triple-double-jackpot-wild",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 90% | 94% | 96%",
+      "reels_raw": "3",
+      "reels": 3,
+      "paylines": 9,
+      "top_prize_raw": "807.5x",
+      "top_prize": 807.5,
+      "min_bet": 0.2,
+      "max_bet_raw": "175",
+      "max_bet": 175.0
+    }
+  },
+  "Spartacus Gladiator Of Rome": {
+    "slug": "spartacus-gladiator-of-rome-gdm",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "max_bet_raw": "TBC"
+    }
+  },
+  "Marvelous Mouse Coin Combo": {
+    "slug": "marvelous-mouse-coin-combo",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Chicken Fox": {
+    "slug": "chicken-fox-us",
+    "specs": {
+      "rtp": 95.54,
+      "rtp_raw": "95.54%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 25,
+      "top_prize_raw": "12,225",
+      "top_prize": 12225.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "240",
+      "max_bet": 240.0
+    }
+  },
+  "Hurricane Horse Coin Combo": {
+    "slug": "hurricane-horse-coin-combo-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Fortunes Of The Dead": {
+    "slug": "fortunes-of-the-dead",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Panda Pow": {
+    "slug": "panda-pow",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Dragon Palace": {
+    "slug": "dragon-palace-2",
+    "specs": {
+      "rtp": 95.58,
+      "rtp_raw": "95.58%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "33,500x",
+      "top_prize": 33500.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "125",
+      "max_bet": 125.0
+    }
+  },
+  "Cash Spin": {
+    "slug": "cash-spin",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "300 Shields Extreme": {
+    "slug": "300-shields-extreme",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Squid Game Gganbu": {
+    "slug": "squid-game-gganbu",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "2,500x",
+      "top_prize": 2500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "500.88",
+      "max_bet": 500.88
+    }
+  },
+  "Monopoly Mega Movers": {
+    "slug": "monopoly-mega-movers",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Clue Cash Mystery": {
+    "slug": "clue-cash-mystery",
+    "specs": {
+      "rtp": 96.5,
+      "rtp_raw": "96.5%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "3,750x",
+      "top_prize": 3750.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Ultimate Fire Link Rue Royale": {
+    "slug": "ultimate-fire-link-rue-royale-us",
+    "specs": {
+      "rtp": 95.97,
+      "rtp_raw": "95.97%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "80",
+      "max_bet": 80.0
+    }
+  },
+  "5 Treasures": {
+    "slug": "5-treasures",
+    "specs": {
+      "rtp": 96.37,
+      "rtp_raw": "96.37%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.11,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Ultimate Fire Link Country Lights": {
+    "slug": "ultimate-fire-link-country-lights",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "5,536x",
+      "top_prize": 5536.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Lucha Kitty": {
+    "slug": "lucha-kitty",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "15,004x",
+      "top_prize": 15004.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Bloomin Bunnies": {
+    "slug": "bloomin-bunnies",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "4,000x",
+      "top_prize": 4000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Rich Little Piggies World Class": {
+    "slug": "rich-little-piggies-world-class",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "13,350x",
+      "top_prize": 13350.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "32",
+      "max_bet": 32.0
+    }
+  },
+  "Volcano Eruption": {
+    "slug": "volcano-eruption",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "1250.00",
+      "max_bet": 1250.0
+    }
+  },
+  "Lightning Eclipse": {
+    "slug": "lightning-eclipse",
+    "specs": {
+      "rtp": 96.03,
+      "rtp_raw": "94.22% | 96.03%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "5,528x",
+      "top_prize": 5528.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Bingo Billions": {
+    "slug": "bingo-billions",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Lightning Tiger": {
+    "slug": "lightning-tiger",
+    "specs": {
+      "rtp": 96.13,
+      "rtp_raw": "96.13%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "6,250x",
+      "top_prize": 6250.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0,
+      "volatility": "rating"
+    }
+  },
+  "Kronos": {
+    "slug": "kronos",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "60.00",
+      "max_bet": 60.0
+    }
+  },
+  "Stellar Cash Chicken Fox 5x Skillstar": {
+    "slug": "stellar-cash-chicken-fox-5x-skillstar",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "2173x",
+      "top_prize": 2173.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Ravens Reveal": {
+    "slug": "ravens-reveal",
+    "specs": {
+      "rtp": 96.07,
+      "rtp_raw": "96.07%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "3,533x",
+      "top_prize": 3533.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Fortune Frog Skillstar": {
+    "slug": "fortune-frog-skillstar",
+    "specs": {
+      "rtp": 96.07,
+      "rtp_raw": "96.07%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "233,625",
+      "top_prize": 233625.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Thunder Drums Samurai Storm": {
+    "slug": "thunder-drums-samurai-storm-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "20,000",
+      "top_prize": 20000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Medusa": {
+    "slug": "medusa",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "50.00",
+      "max_bet": 50.0
+    }
+  },
+  "Enchanted Waysfecta": {
+    "slug": "enchanted-waysfecta",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "16.00",
+      "max_bet": 16.0
+    }
+  },
+  "Catemple": {
+    "slug": "catemple",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Jin Ji Bao Xi Megaways": {
+    "slug": "jin-ji-bao-xi-megaways",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 117649,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "44",
+      "max_bet": 44.0
+    }
+  },
+  "Golden Fire Link Buchae Blossom": {
+    "slug": "golden-fire-link-buchae-blossom",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 50,
+      "top_prize_raw": "6,103x",
+      "top_prize": 6103.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "150",
+      "max_bet": 150.0
+    }
+  },
+  "Raging Rhino Megaways": {
+    "slug": "raging-rhino-megaways",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Carnival Cow Coin Combo": {
+    "slug": "carnival-cow-coin-combo",
+    "specs": {
+      "rtp": 95.97,
+      "rtp_raw": "89.96% | 93.97% | 95.97%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "30,000x",
+      "top_prize": 30000.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "10.88",
+      "max_bet": 10.88
+    }
+  },
+  "Five Pirates": {
+    "slug": "five-pirates",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "350.00",
+      "max_bet": 350.0
+    }
+  },
+  "Sweet 16 Blackjack": {
+    "slug": "sweet-16-blackjack",
+    "specs": {
+      "rtp": 99.66,
+      "rtp_raw": "99.66%",
+      "top_prize_raw": "160x",
+      "top_prize": 160.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "2,500",
+      "max_bet": 2.0
+    }
+  },
+  "Monopoly Lunar New Year": {
+    "slug": "monopoly-lunar-new-year-2",
+    "specs": {
+      "rtp": 95.99,
+      "rtp_raw": "95.99%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "13,771",
+      "top_prize": 13771.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Miss Midas": {
+    "slug": "miss-midas",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Bruce Lee Kung Fu Wilds": {
+    "slug": "bruce-lee-kung-fu-wilds",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "92% | 94% | 96%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 20,
+      "top_prize_raw": "1,000x",
+      "top_prize": 1000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "150",
+      "max_bet": 150.0
+    }
+  },
+  "Dragon Spin": {
+    "slug": "dragon-spin",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Doctor Love": {
+    "slug": "doctor-love",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Quick Hit Blitz Gold": {
+    "slug": "quick-hit-blitz-gold",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "2,040x",
+      "top_prize": 2040.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Gorilla Go Wild": {
+    "slug": "gorilla-go-wild",
+    "specs": {
+      "min_bet": 0.3,
+      "max_bet_raw": "150.00",
+      "max_bet": 150.0
+    }
+  },
+  "Monopoly On The Money": {
+    "slug": "monopoly-on-the-money",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Medusa Hq": {
+    "slug": "medusa-hq",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Texas Holdem Plus": {
+    "slug": "texas-holdem-plus",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Zeus": {
+    "slug": "zeus",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Celestial King": {
+    "slug": "celestial-king",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Double Play Superbet": {
+    "slug": "double-play-superbet",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "150.00",
+      "max_bet": 150.0
+    }
+  },
+  "Stellar Jackpots Serengeti Lions": {
+    "slug": "stellar-jackpots-serengeti-lions",
+    "specs": {
+      "rtp": 97.01,
+      "rtp_raw": "97.01%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "40,000",
+      "top_prize": 40000.0,
+      "min_bet": 0.48,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Cash Falls Add Em Up Gold": {
+    "slug": "cash-falls-add-em-up-gold-2",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "reels_raw": "5",
+      "reels": 5,
+      "top_prize_raw": "500x",
+      "top_prize": 500.0,
+      "max_bet_raw": "0.2/20",
+      "max_bet": 0.2
+    }
+  },
+  "Gold Fish Feeding Time": {
+    "slug": "gold-fish-feeding-time",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "2,378x",
+      "top_prize": 2378.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Lock It Link Diamonds": {
+    "slug": "lock-it-link-diamonds-2",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "45",
+      "max_bet": 45.0
+    }
+  },
+  "Casino Stud": {
+    "slug": "casino-stud",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Heidis Bier Haus": {
+    "slug": "heidis-bierhaus",
+    "specs": {
+      "min_bet": 0.75,
+      "max_bet_raw": "52.50",
+      "max_bet": 52.5
+    }
+  },
+  "Thunder Drums Leaping Lions": {
+    "slug": "thunder-drums-leaping-lions",
+    "specs": {
+      "rtp": 96.03,
+      "rtp_raw": "94.11% | 96.03%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "5,163x",
+      "top_prize": 5163.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Montezuma Megaways": {
+    "slug": "montezuma-megaways",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "20.00",
+      "max_bet": 20.0
+    }
+  },
+  "Spartacus Megaways": {
+    "slug": "spartacus-megaways",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Cool Jewels": {
+    "slug": "cool-jewels",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Blazin Hot 7s Big Bonus": {
+    "slug": "blazin-hot-7s-big-bonus-us",
+    "specs": {
+      "reels_raw": "5 x 4",
+      "rows": 5,
+      "reels": 4,
+      "paylines": 40,
+      "top_prize_raw": "2,300x",
+      "top_prize": 2300.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "A Hot Hot Blazing Christmas": {
+    "slug": "a-hot-hot-blazing-christmas",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "1,000x",
+      "top_prize": 1000.0,
+      "min_bet": 0.66,
+      "max_bet_raw": "66",
+      "max_bet": 66.0
+    }
+  },
+  "Irish Eyes": {
+    "slug": "irish-eyes",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "125.00",
+      "max_bet": 125.0
+    }
+  },
+  "Drop And Lock Deep Sea Magic": {
+    "slug": "drop-and-lock-deep-sea-magic",
+    "specs": {
+      "rtp": 96.01,
+      "rtp_raw": "96.01%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Quick Hit Blitz Blue": {
+    "slug": "quick-hit-blitz-blue",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "2,000x",
+      "top_prize": 2000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Dr Jekyll Goes Wild": {
+    "slug": "dr-jekyll-goes-wild",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Kronos Unleashed": {
+    "slug": "kronos-unleashed",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Green Machine Bingo": {
+    "slug": "green-machine-bingo",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "reels_raw": "5 x 5",
+      "rows": 5,
+      "reels": 5,
+      "paylines": 12,
+      "top_prize_raw": "10,072x",
+      "top_prize": 10072.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Wild Play Superbet": {
+    "slug": "wild-play-superbet",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "150.00",
+      "max_bet": 150.0
+    }
+  },
+  "Volts And Bolts": {
+    "slug": "volts-and-bolts",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Lock It Link Night Life": {
+    "slug": "lock-it-link-nightlife-us",
+    "specs": {
+      "rtp": 96.03,
+      "rtp_raw": "96.03%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 50,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "45",
+      "max_bet": 45.0
+    }
+  },
+  "Epic Monopoly Ii": {
+    "slug": "epic-monopoly-ii",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "50.00",
+      "max_bet": 50.0
+    }
+  },
+  "Rich Little Piggies Meal Ticket": {
+    "slug": "rich-little-piggies-meal-ticket-us",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 92% | 94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "12,917x",
+      "top_prize": 12917.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "24",
+      "max_bet": 24.0
+    }
+  },
+  "Quick Hit Blitz Red": {
+    "slug": "quick-hit-blitz-red",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90.1% | 94.02% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "2,000x",
+      "top_prize": 2000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Gorilla Go Wilder": {
+    "slug": "gorilla-go-wilder-2",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "20.00",
+      "max_bet": 20.0
+    }
+  },
+  "Emperors Garden": {
+    "slug": "emperors-garden",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "25.00",
+      "max_bet": 25.0
+    }
+  },
+  "Zodiac Lantern Rabbit": {
+    "slug": "zodiac-lantern-rabbit",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 50,
+      "top_prize_raw": "10,500x",
+      "top_prize": 10500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Reindeer Royale": {
+    "slug": "reindeer-royale",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "paylines": 259,
+      "top_prize_raw": "25,000x",
+      "top_prize": 25000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Astrocat": {
+    "slug": "astro-cat",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "min_bet": 0.5,
+      "max_bet_raw": "500",
+      "max_bet": 500.0
+    }
+  },
+  "Spartacus": {
+    "slug": "spartacus",
+    "specs": {
+      "rtp": 95.94,
+      "rtp_raw": "95.94%",
+      "paylines": 100,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "250",
+      "max_bet": 250.0
+    }
+  },
+  "Cash Falls Add Em Up Chariots Of Rome": {
+    "slug": "cash-falls-add-em-up-chariots-of-rome",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "top_prize_raw": "500x",
+      "top_prize": 500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Terrific Tiger Coin Combo": {
+    "slug": "terrific-tiger-coin-combo-3",
+    "specs": {
+      "rtp": 96.15,
+      "rtp_raw": "96.15%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "20.88",
+      "max_bet": 20.88
+    }
+  },
+  "Prosperity Twin": {
+    "slug": "prosperity-twin",
+    "specs": {
+      "min_bet": 0.28,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Avalon Gold": {
+    "slug": "avalon-gold-2",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Queen Of The Castle": {
+    "slug": "queen-of-the-castle",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Fire Queen": {
+    "slug": "fire-queen",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Foxin Wins": {
+    "slug": "foxin-wins",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "1000.00",
+      "max_bet": 1000.0
+    }
+  },
+  "Casinomeister": {
+    "slug": "casinomeister",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Angels Touch": {
+    "slug": "angels-touch",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Big Spinner": {
+    "slug": "big-spinner",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Dolphin Thunder Ways": {
+    "slug": "dolphin-thunderways",
+    "specs": {
+      "rtp": 96.15,
+      "rtp_raw": "92.15% | 94.08% | 96.15%",
+      "reels_raw": "5",
+      "reels": 5,
+      "top_prize_raw": "2,194x",
+      "top_prize": 2194.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "90",
+      "max_bet": 90.0
+    }
+  },
+  "La Bomba": {
+    "slug": "la-bomba",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Nitropolis": {
+    "slug": "nitropolis",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Bank Boom": {
+    "slug": "bank-boom",
+    "specs": {
+      "rtp": 96.12,
+      "rtp_raw": "94.09% | 96.12%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 1024,
+      "top_prize_raw": "2048x",
+      "top_prize": 2048.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Zodiac Lantern Tiger": {
+    "slug": "zodiac-lantern-tiger",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 50,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Quick Hit Ultra Pays Wolf Mountain": {
+    "slug": "quick-hit-ultra-pays-wolf-mountain-us",
+    "specs": {
+      "rtp": 96.02,
+      "rtp_raw": "96.02%",
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Key To Success": {
+    "slug": "key-to-success",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 1024,
+      "top_prize_raw": "2,756x",
+      "top_prize": 2756.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Emerald Isle": {
+    "slug": "emerald-isle",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Thoro": {
+    "slug": "thoro",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "reels_raw": "5 x 4",
+      "rows": 5,
+      "reels": 4,
+      "paylines": 178,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Wild Dodo": {
+    "slug": "wild-dodo",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Ritual Respins": {
+    "slug": "ritual-respins",
+    "specs": {
+      "rtp": 96.08,
+      "rtp_raw": "94.36% | 96.08%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "1,066.66x",
+      "top_prize": 1066.66,
+      "min_bet": 0.3,
+      "max_bet_raw": "90",
+      "max_bet": 90.0
+    }
+  },
+  "I Luv Suits": {
+    "slug": "i-luv-suits",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Pacific Gold": {
+    "slug": "pacific-gold",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Mighty Monkey Coin Combo": {
+    "slug": "mighty-monkey-coin-combo-us",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "30,300x",
+      "top_prize": 30300.0,
+      "min_bet": 0.22,
+      "max_bet_raw": "60.88",
+      "max_bet": 60.88
+    }
+  },
+  "Merlins Magic Respins": {
+    "slug": "merlins-magic-respins",
+    "specs": {
+      "min_bet": 3.5,
+      "max_bet_raw": "700.00",
+      "max_bet": 700.0
+    }
+  },
+  "Golden": {
+    "slug": "golden",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Lucky Link Beats": {
+    "slug": "lucky-link-beats",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Duo Fu Duo Cai Grand Dragons": {
+    "slug": "duo-fu-duo-cai-grand-dragons",
+    "specs": {
+      "rtp": 95.79,
+      "rtp_raw": "90% | 94% | 95.79%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.18,
+      "max_bet_raw": "352",
+      "max_bet": 352.0
+    }
+  },
+  "Blazin Hot 7s Bigger Bonus": {
+    "slug": "blazin-hot-7s-bigger-bonus",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 92% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "4,503x",
+      "top_prize": 4503.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Money Raid Kodiak": {
+    "slug": "money-raid-kodiak-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 4096,
+      "top_prize_raw": "2,500x",
+      "top_prize": 2500.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Rich Little Piggies Hog Wild": {
+    "slug": "rich-little-piggies-hog-wild",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "12,909x",
+      "top_prize": 12909.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "32",
+      "max_bet": 32.0
+    }
+  },
+  "Cirque Du Soleil Kooza": {
+    "slug": "cirque-du-soleil-kooza",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Ithacas Gold": {
+    "slug": "ithacas-gold",
+    "specs": {
+      "rtp": 96.09,
+      "rtp_raw": "94.08% | 96.09%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "6,250x",
+      "top_prize": 6250.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Dragon Drop": {
+    "slug": "dragon-drop",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "50.00",
+      "max_bet": 50.0
+    }
+  },
+  "Monopoly Big Event": {
+    "slug": "monopoly-big-event",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Ace Ventura Ultranudge": {
+    "slug": "ace-ventura-ultranudge",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "40",
+      "max_bet": 40.0
+    }
+  },
+  "Respin Rhino": {
+    "slug": "respin-rhino",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Monopoly Bring The House Down": {
+    "slug": "monopoly-bring-the-house-down",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Claw And Roar": {
+    "slug": "claw-and-roar",
+    "specs": {
+      "rtp": 96.02,
+      "rtp_raw": "94.30% | 96.02%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "802.8x",
+      "top_prize": 802.8,
+      "min_bet": 0.4,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Bruce Lee": {
+    "slug": "bruce-lee",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "60.00",
+      "max_bet": 60.0
+    }
+  },
+  "Monopoly Hot Property": {
+    "slug": "monopoly-hot-property",
+    "specs": {
+      "rtp": 87.0,
+      "rtp_raw": "87%",
+      "top_prize_raw": "150,000",
+      "top_prize": 150000.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "30",
+      "max_bet": 30.0
+    }
+  },
+  "Polterheist": {
+    "slug": "polterheist",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Teddy Bears Picnic": {
+    "slug": "teddy-bears-picnic",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Fu Dao Le": {
+    "slug": "fu-dao-le",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "3x5",
+      "rows": 3,
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.38,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Kings Honour": {
+    "slug": "kings-honour",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Monopoly Travel World Tour": {
+    "slug": "monopoly-travel-world-tour",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 40,
+      "top_prize_raw": "3032x",
+      "top_prize": 3032.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Merlins Money Burst": {
+    "slug": "merlins-money-burst",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Giants Gold": {
+    "slug": "giants-gold",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "25.00",
+      "max_bet": 25.0
+    }
+  },
+  "Cash Falls Pirates Trove": {
+    "slug": "cash-falls-pirates-trove",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "paylines": 4608,
+      "top_prize_raw": "21,025x",
+      "top_prize": 21025.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "80",
+      "max_bet": 80.0
+    }
+  },
+  "Blazin Hot 7s Stack Em Up": {
+    "slug": "blazin-hot-7s-stack-em-up",
+    "specs": {
+      "rtp": 93.99,
+      "rtp_raw": "93.99%",
+      "reels_raw": "3",
+      "reels": 3,
+      "paylines": 5,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Enchanted Kingdom Mega Drop": {
+    "slug": "enchanted-kingdom-megadrop",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Squid Game One Lucky Day": {
+    "slug": "squid-game-one-lucky-day",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "87% | 90% | 92% | 94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "4,560x",
+      "top_prize": 4560.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Monopoly Hot Offer": {
+    "slug": "monopoly-hot-offer",
+    "specs": {
+      "rtp": 94.0,
+      "rtp_raw": "94%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "2,500x",
+      "top_prize": 2500.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Stellar Cash Blown Away": {
+    "slug": "stellar-cash-blown-away",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 25,
+      "top_prize_raw": "904x",
+      "top_prize": 904.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Jinse Dao Dragon": {
+    "slug": "jinse-dao-dragon",
+    "specs": {
+      "rtp": 96.01,
+      "rtp_raw": "96.01%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Montezuma": {
+    "slug": "montezuma-2",
+    "specs": {
+      "rtp": 95.86,
+      "rtp_raw": "95.86%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 30,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Rich Little Hens Founding Feathers": {
+    "slug": "rich-little-hens-founding-feathers",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "90% | 94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "12,900x",
+      "top_prize": 12900.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "32",
+      "max_bet": 32.0
+    }
+  },
+  "Book Of Toro": {
+    "slug": "book-of-toro",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Big Foot": {
+    "slug": "bigfoot",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Happily Ever After": {
+    "slug": "happily-ever-after",
+    "specs": {
+      "rtp": 94.08,
+      "rtp_raw": "94.08%",
+      "reels_raw": "5x3",
+      "rows": 5,
+      "reels": 3,
+      "paylines": 20,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "25",
+      "max_bet": 25.0
+    }
+  },
+  "Venice Magic": {
+    "slug": "venice-magic",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Jackpot Jester Wild Nudge": {
+    "slug": "jackpot-jester-wild-nudge",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "40.00",
+      "max_bet": 40.0
+    }
+  },
+  "Cash Stampede": {
+    "slug": "cash-stampede",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "125.00",
+      "max_bet": 125.0
+    }
+  },
+  "Happy Holidays": {
+    "slug": "happy-holidays",
+    "specs": {
+      "rtp": 94.08,
+      "rtp_raw": "94.08%",
+      "reels_raw": "5x3",
+      "rows": 5,
+      "reels": 3,
+      "paylines": 83,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "25",
+      "max_bet": 25.0
+    }
+  },
+  "Subbuteo Star Striker": {
+    "slug": "subbuteo-star-striker",
+    "specs": {
+      "top_prize_raw": "534X",
+      "top_prize": 534.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "30",
+      "max_bet": 30.0
+    }
+  },
+  "Very Fruity": {
+    "slug": "very-fruity",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Aladdins Legacy": {
+    "slug": "aladdins-legacy",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Desert Cats": {
+    "slug": "desert-cats",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Cleos Wish": {
+    "slug": "cleoswish",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Stargate Megaways": {
+    "slug": "stargate-megaways",
+    "specs": {
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 117649,
+      "top_prize_raw": "25,000x",
+      "top_prize": 25000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "Robin Hood Prince Of Tweets": {
+    "slug": "robin-hood-prince-of-tweets",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Divine Stars": {
+    "slug": "divine-stars-2",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 25,
+      "max_bet_raw": "Coming Soon"
+    }
+  },
+  "Scratch Irish Eyes 2": {
+    "slug": "scratch-irish-eyes-2",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "1.00",
+      "max_bet": 1.0
+    }
+  },
+  "Pillars Of Asgard": {
+    "slug": "pillars-of-asgard",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "10.00",
+      "max_bet": 10.0
+    }
+  },
+  "Stellar Cash Dragon Palace": {
+    "slug": "stellar-cash-dragon-palace",
+    "specs": {
+      "rtp": 96.24,
+      "rtp_raw": "94.38% | 96.24%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "2,136x",
+      "top_prize": 2136.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "The Demon Code": {
+    "slug": "the-demon-code",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "20.00",
+      "max_bet": 20.0
+    }
+  },
+  "Blood And Gold": {
+    "slug": "blood-and-gold",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "paylines": 25,
+      "top_prize_raw": "185,440",
+      "top_prize": 185440.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "60",
+      "max_bet": 60.0
+    }
+  },
+  "Monopoly 250k": {
+    "slug": "monopoly-250k",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Book Of Fusion": {
+    "slug": "book-of-fusion",
+    "specs": {
+      "paylines": 10,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "35",
+      "max_bet": 35.0
+    }
+  },
+  "Giant Gems": {
+    "slug": "giant-gems",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Spin Sorceress": {
+    "slug": "spin-sorceress",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Phoenix Coins": {
+    "slug": "phoenix-coins",
+    "specs": {
+      "rtp": 96.03,
+      "rtp_raw": "96.03%",
+      "reels_raw": "4x5",
+      "rows": 4,
+      "reels": 5,
+      "paylines": 1024,
+      "top_prize_raw": "1000x",
+      "top_prize": 1000.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Golden Mane": {
+    "slug": "golden-mane",
+    "specs": {
+      "min_bet": 0.15,
+      "max_bet_raw": "150.00",
+      "max_bet": 150.0
+    }
+  },
+  "Casino War": {
+    "slug": "casino-war",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Red Roo": {
+    "slug": "redroo",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "280.00",
+      "max_bet": 280.0
+    }
+  },
+  "Manic Millions": {
+    "slug": "manic-millions",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Pearl Of The Caribbean": {
+    "slug": "pearl-of-the-caribbean",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Jollys Gifts": {
+    "slug": "jollys-gifts",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Flame": {
+    "slug": "flame",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Wild Streets": {
+    "slug": "wild-streets",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Wild Hot Wasabi": {
+    "slug": "wild-hot-wasabi",
+    "specs": {
+      "rtp": 96.11,
+      "rtp_raw": "96.11%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 1296,
+      "top_prize_raw": "40,000",
+      "top_prize": 40000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "Duo Fu Duo Cai Flower Of Riches": {
+    "slug": "duo-fu-duo-cai-flower-of-riches",
+    "specs": {
+      "rtp": 96.37,
+      "rtp_raw": "96.37%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.11,
+      "max_bet_raw": "88",
+      "max_bet": 88.0
+    }
+  },
+  "Medusa 2 Hq": {
+    "slug": "medusa-2-hq",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "50.00",
+      "max_bet": 50.0
+    }
+  },
+  "Radiant Gems Rapid Respin": {
+    "slug": "radiant-gems-rapid-respin",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "86.91% | 90.01% | 93.98% | 96%",
+      "reels_raw": "3x3",
+      "rows": 3,
+      "reels": 3,
+      "paylines": 9,
+      "top_prize_raw": "1,000x",
+      "top_prize": 1000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "175",
+      "max_bet": 175.0
+    }
+  },
+  "7s On Fire Power Mix": {
+    "slug": "7s-on-fire-power-mix",
+    "specs": {
+      "reels_raw": "3 x 3 x 4",
+      "rows": 3,
+      "reels": 3,
+      "paylines": 20,
+      "top_prize_raw": "8,000x",
+      "top_prize": 8000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "30",
+      "max_bet": 30.0
+    }
+  },
+  "Great Wild Elk": {
+    "slug": "great-wild-elk",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Savannah Drums": {
+    "slug": "savannah-drums",
+    "specs": {
+      "rtp": 96.1,
+      "rtp_raw": "96.1%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "29,445x",
+      "top_prize": 29445.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "200",
+      "max_bet": 200.0
+    }
+  },
+  "Charlies Angels": {
+    "slug": "charlies-angels",
+    "specs": {
+      "rtp": 94.05,
+      "rtp_raw": "94.05%",
+      "reels_raw": "6",
+      "reels": 6,
+      "paylines": 4096,
+      "top_prize_raw": "23,949x",
+      "top_prize": 23949.0,
+      "max_bet_raw": "TBC"
+    }
+  },
+  "Top Strike Championship": {
+    "slug": "top-strike-championship",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Buccaneers Bay": {
+    "slug": "buccaneers-bay",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Legend Of Fortune": {
+    "slug": "legend-of-fortune",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Stunt Stars": {
+    "slug": "stunt-stars",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "567x",
+      "top_prize": 567.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "90",
+      "max_bet": 90.0
+    }
+  },
+  "Jinse Dao Tiger": {
+    "slug": "jinse-dao-tiger-us",
+    "specs": {
+      "rtp": 96.11,
+      "rtp_raw": "96.11%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 243,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "10",
+      "max_bet": 10.0
+    }
+  },
+  "King Of Babylon Action Spins": {
+    "slug": "king-of-babylon-action-spins",
+    "specs": {
+      "min_bet": 0.2,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Shields Of The Wild": {
+    "slug": "shields-of-the-wild",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Monopoly Grand Hotel": {
+    "slug": "monopoly-grand-hotel",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Colossal Splash Ink And Win": {
+    "slug": "colossal-splash-ink-and-win",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "max_bet_raw": "TBC"
+    }
+  },
+  "Foxin Wins Football Fever": {
+    "slug": "foxin-wins-football-fever",
+    "specs": {
+      "max_bet_raw": "40.00",
+      "max_bet": 40.0
+    }
+  },
+  "Into The Storm": {
+    "slug": "into-the-storm",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "10,000x",
+      "top_prize": 10000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Soldier Of Rome": {
+    "slug": "soldier-of-rome",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Smash Nudge Skillstar": {
+    "slug": "smash-nudge-skillstar",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "94% | 96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 40,
+      "top_prize_raw": "5,044x",
+      "top_prize": 5044.0,
+      "min_bet": 0.4,
+      "max_bet_raw": "100",
+      "max_bet": 100.0
+    }
+  },
+  "The Wild 3": {
+    "slug": "the-wild-3",
+    "specs": {
+      "min_bet": 0.1,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Murphys Pots": {
+    "slug": "murphys-pots",
+    "specs": {
+      "rtp": 95.08,
+      "rtp_raw": "95.08%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 25,
+      "top_prize_raw": "249,587",
+      "top_prize": 249587.0,
+      "min_bet": 0.25,
+      "max_bet_raw": "16",
+      "max_bet": 16.0
+    }
+  },
+  "Crystal Vault": {
+    "slug": "crystal-vault",
+    "specs": {
+      "rtp": 95.99,
+      "rtp_raw": "94.02% | 95.99%",
+      "paylines": 25,
+      "top_prize_raw": "2,729x",
+      "top_prize": 2729.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "37.5",
+      "max_bet": 37.5
+    }
+  },
+  "Frozen Inferno": {
+    "slug": "frozen-inferno",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "200.00",
+      "max_bet": 200.0
+    }
+  },
+  "Renegades": {
+    "slug": "renegades",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Monopoly Utility Trails": {
+    "slug": "monopoly-utility-trails",
+    "specs": {
+      "rtp": 97.0,
+      "rtp_raw": "97%",
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Spartan Fire": {
+    "slug": "spartan-fire",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "40.00",
+      "max_bet": 40.0
+    }
+  },
+  "Jacks Beanstalk": {
+    "slug": "jacks-beanstalk",
+    "specs": {
+      "min_bet": 0.25,
+      "max_bet_raw": "50.00",
+      "max_bet": 50.0
+    }
+  },
+  "Blazing X Asia": {
+    "slug": "blazing-x-asia",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Wonder Hounds": {
+    "slug": "wonder-hounds",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Dave Lame Bad Magician": {
+    "slug": "dave-lame-bad-magician-2-2",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Spirit Of The River": {
+    "slug": "spirit-of-the-river",
+    "specs": {
+      "rtp": 96.7,
+      "rtp_raw": "96.70%",
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Kalahari Safari": {
+    "slug": "kalahari-safari",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "100.00",
+      "max_bet": 100.0
+    }
+  },
+  "Action Bank Plus": {
+    "slug": "action-bank-plus",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Druidess Gold": {
+    "slug": "druidess-gold",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Hit N Miss": {
+    "slug": "hit-n-miss",
+    "specs": {
+      "top_prize_raw": "500x",
+      "top_prize": 500.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "30",
+      "max_bet": 30.0
+    }
+  },
+  "Scratch Medusa": {
+    "slug": "scratch-medusa",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "1.00",
+      "max_bet": 1.0
+    }
+  },
+  "Wild Showdown": {
+    "slug": "wild-showdown",
+    "specs": {
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 1024,
+      "top_prize_raw": "30,000x",
+      "top_prize": 30000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "20",
+      "max_bet": 20.0
+    }
+  },
+  "Reign Of The Mountain King": {
+    "slug": "reign-of-the-mountain-king",
+    "specs": {
+      "rtp": 96.0,
+      "rtp_raw": "96%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 10,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.1,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Sword Of Destiny": {
+    "slug": "sword-of-destiny",
+    "specs": {
+      "min_bet": 0.4,
+      "max_bet_raw": "360.00",
+      "max_bet": 360.0
+    }
+  },
+  "Kingdoms Edge": {
+    "slug": "kingdoms-edge",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Acorn Pixie": {
+    "slug": "acorn-pixie",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "250.00",
+      "max_bet": 250.0
+    }
+  },
+  "Lady Of Egypt": {
+    "slug": "lady-of-egypt",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Pharaohs Dream": {
+    "slug": "pharaohs-dream",
+    "specs": {
+      "min_bet": 1.0,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Scratch Merlins Millions": {
+    "slug": "scratch-merlins-millions",
+    "specs": {
+      "min_bet": 0.01,
+      "max_bet_raw": "1.00",
+      "max_bet": 1.0
+    }
+  },
+  "Road To Riches": {
+    "slug": "road-to-riches",
+    "specs": {
+      "rtp": 96.4,
+      "rtp_raw": "96.40%",
+      "reels_raw": "5 x 3",
+      "rows": 5,
+      "reels": 3,
+      "paylines": 20,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Glorious Empire": {
+    "slug": "glorious-empire",
+    "specs": {
+      "min_bet": 0.5,
+      "max_bet_raw": "500.00",
+      "max_bet": 500.0
+    }
+  },
+  "Arthur And The Round Table": {
+    "slug": "arthur-and-the-round-table-2",
+    "specs": {
+      "rtp": 96.11,
+      "rtp_raw": "96.11%",
+      "reels_raw": "5",
+      "reels": 5,
+      "paylines": 20,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.2,
+      "max_bet_raw": "50",
+      "max_bet": 50.0
+    }
+  },
+  "Reel Clash": {
+    "slug": "reel-clash",
+    "specs": {
+      "rtp": 96.2,
+      "rtp_raw": "96.2%",
+      "reels_raw": "4 x 5",
+      "rows": 4,
+      "reels": 5,
+      "paylines": 30,
+      "top_prize_raw": "250,000",
+      "top_prize": 250000.0,
+      "min_bet": 0.3,
+      "max_bet_raw": "90",
+      "max_bet": 90.0
+    }
+  },
+  "Cirque Du Soleil Amaluna": {
+    "slug": "cirque-du-soleil-amaluna",
+    "specs": {
+      "max_bet_raw": "None"
+    }
+  },
+  "Donkey Dash": {
+    "slug": "donkey-dash",
+    "specs": {
+      "top_prize_raw": "15,000",
+      "top_prize": 15000.0,
+      "min_bet": 0.5,
+      "max_bet_raw": "30",
+      "max_bet": 30.0
+    }
+  }
+}

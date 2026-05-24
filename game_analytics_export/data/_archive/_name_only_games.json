@@ -1,0 +1,3548 @@
+[
+  {
+    "name": "1.21 Gigawatts",
+    "provider": "Rogue",
+    "theo_win": 0.05,
+    "id": "game-3192-1_21_gigawatts"
+  },
+  {
+    "name": "10001 Nights Limited",
+    "provider": "Evolution",
+    "theo_win": 0.31,
+    "id": "game-1552-10001_nights_limited"
+  },
+  {
+    "name": "101 Candies",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3505-101_candies"
+  },
+  {
+    "name": "20 Celestial Fruits",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.01,
+    "id": "game-4021-20_celestial_fruits"
+  },
+  {
+    "name": "24 Stars Dream",
+    "provider": "Fantasma Games",
+    "theo_win": 0.06,
+    "id": "game-3141-24_stars_dream"
+  },
+  {
+    "name": "24k Gold Tiger",
+    "provider": "Reel Play",
+    "theo_win": 0.16,
+    "id": "game-2166-24k_gold_tiger"
+  },
+  {
+    "name": "3 Capybaras",
+    "provider": "1x2 Network",
+    "theo_win": 0.15,
+    "id": "game-2181-3_capybaras"
+  },
+  {
+    "name": "3 Clown Monty 2",
+    "provider": "Play'n GO",
+    "theo_win": 0.02,
+    "id": "game-3939-3_clown_monty_2"
+  },
+  {
+    "name": "3 Jokers Plus",
+    "provider": "Spearhead Studios",
+    "theo_win": 0.03,
+    "id": "game-3603-3_jokers_plus"
+  },
+  {
+    "name": "3 Leprechaun Charms",
+    "provider": "1x2 Network",
+    "theo_win": 0.26,
+    "id": "game-1713-3_leprechaun_charms"
+  },
+  {
+    "name": "3 Lucky Minecarts Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.19,
+    "id": "game-1979-3_lucky_minecarts_hold_and_win"
+  },
+  {
+    "name": "3 Sparkling Pearls",
+    "provider": "Rising Digital",
+    "theo_win": 1.97,
+    "id": "game-0333-3_sparkling_pearls"
+  },
+  {
+    "name": "40 Imperial Crown",
+    "provider": "Greentube",
+    "theo_win": 0.04,
+    "id": "game-3327-40_imperial_crown"
+  },
+  {
+    "name": "5 Line Hold And Spin",
+    "provider": "Greentube",
+    "theo_win": 0.04,
+    "id": "game-3317-5_line_hold_and_spin"
+  },
+  {
+    "name": "7 Hot 7",
+    "provider": "Aristocrat",
+    "theo_win": 0.01,
+    "id": "game-4080-7_hot_7"
+  },
+  {
+    "name": "777 Mania Slots",
+    "provider": "Betixon",
+    "theo_win": 0.04,
+    "id": "game-3321-777_mania_slots"
+  },
+  {
+    "name": "9 Burning Stars Halloween",
+    "provider": "Wazdan",
+    "theo_win": 0.15,
+    "id": "game-2182-9_burning_stars_halloween"
+  },
+  {
+    "name": "9 Line Fortune",
+    "provider": "Greentube",
+    "theo_win": 0.23,
+    "id": "game-1826-9_line_fortune"
+  },
+  {
+    "name": "90k Yeti",
+    "provider": "Gaming Realms",
+    "theo_win": 0.05,
+    "id": "game-3219-90k_yeti"
+  },
+  {
+    "name": "A Dragons Story",
+    "provider": "Light & Wonder",
+    "theo_win": 0.07,
+    "id": "game-2975-a_dragons_story"
+  },
+  {
+    "name": "A Girls Best Friends",
+    "provider": "Internal",
+    "theo_win": 0.55,
+    "id": "game-1036-a_girls_best_friends"
+  },
+  {
+    "name": "Abra Cat Dabra",
+    "provider": "Games Global",
+    "theo_win": 0.15,
+    "id": "game-2179-abra_cat_dabra"
+  },
+  {
+    "name": "Absolutely Mammoth",
+    "provider": "Playtech",
+    "theo_win": 0.13,
+    "id": "game-2367-absolutely_mammoth"
+  },
+  {
+    "name": "Action Dragons Cash Stacks Gold",
+    "provider": "Ainsworth",
+    "theo_win": 0.08,
+    "id": "game-2865-action_dragons_cash_stacks_gold"
+  },
+  {
+    "name": "Aesir Treasures",
+    "provider": "Aristocrat",
+    "theo_win": 0.01,
+    "id": "game-4255-aesir_treasures"
+  },
+  {
+    "name": "African Blaze",
+    "provider": "Aruze",
+    "theo_win": 0.03,
+    "id": "game-3650-african_blaze"
+  },
+  {
+    "name": "African Diamond",
+    "provider": "Konami",
+    "theo_win": 0.16,
+    "id": "game-2173-african_diamond"
+  },
+  {
+    "name": "Age Of The Gods Collect Em",
+    "provider": "Playtech",
+    "theo_win": 1.46,
+    "id": "game-0449-age_of_the_gods_collect_em"
+  },
+  {
+    "name": "Age Of The Gods Maze Keeper",
+    "provider": "Playtech",
+    "theo_win": 0.06,
+    "id": "game-3096-age_of_the_gods_maze_keeper"
+  },
+  {
+    "name": "Aladdins Rollover Respins",
+    "provider": "Spearhead Studios",
+    "theo_win": 0.01,
+    "id": "game-4321-aladdins_rollover_respins"
+  },
+  {
+    "name": "Alchemist",
+    "provider": "High 5 Games",
+    "theo_win": 0.03,
+    "id": "game-3701-alchemist"
+  },
+  {
+    "name": "Almighty 777 Glory Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "theo_win": 0.33,
+    "id": "game-1468-almighty_777_glory_jackpot_royale_expres"
+  },
+  {
+    "name": "Almighty 7s Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.4,
+    "id": "game-1322-almighty_7s_jackpot_royale"
+  },
+  {
+    "name": "Anaconda Uncoiled",
+    "provider": "Playtech",
+    "theo_win": 0.05,
+    "id": "game-3154-anaconda_uncoiled"
+  },
+  {
+    "name": "Apes Dynasty",
+    "provider": "High 5 Games",
+    "theo_win": 0.07,
+    "id": "game-2904-apes_dynasty"
+  },
+  {
+    "name": "Apex Strike Megaways",
+    "provider": "1x2 Network",
+    "theo_win": 0.16,
+    "id": "game-2171-apex_strike_megaways"
+  },
+  {
+    "name": "Arabian Fire",
+    "provider": "Ainsworth",
+    "theo_win": 0.07,
+    "id": "game-2979-arabian_fire"
+  },
+  {
+    "name": "Argos Quest",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.05,
+    "id": "game-3209-argos_quest"
+  },
+  {
+    "name": "Azteca Gold Collect",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.14,
+    "id": "game-2295-azteca_gold_collect"
+  },
+  {
+    "name": "Ba Fang Jin Bao Fortune Totems",
+    "provider": "Konami",
+    "theo_win": 0.06,
+    "id": "game-3076-ba_fang_jin_bao_fortune_totems"
+  },
+  {
+    "name": "Baker Street Detectives",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4385-baker_street_detectives"
+  },
+  {
+    "name": "Banana Splits",
+    "provider": "High 5 Games",
+    "theo_win": 0.1,
+    "id": "game-2568-banana_splits"
+  },
+  {
+    "name": "Bankin Even More Bacon Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "theo_win": 4.47,
+    "id": "game-0130-bankin_even_more_bacon_jackpot_royale_ex"
+  },
+  {
+    "name": "Barnyard Bonanza",
+    "provider": "Aristocrat",
+    "theo_win": 0.2,
+    "id": "game-1932-barnyard_bonanza"
+  },
+  {
+    "name": "Battle Mania",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4057-battle_mania"
+  },
+  {
+    "name": "Bay Bounty Bonanza",
+    "provider": "Betixon",
+    "theo_win": 0.07,
+    "id": "game-2988-bay_bounty_bonanza"
+  },
+  {
+    "name": "Beach Invaders",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3929-beach_invaders"
+  },
+  {
+    "name": "Beating Alcatraz",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.02,
+    "id": "game-3720-beating_alcatraz"
+  },
+  {
+    "name": "Bee Frenzy",
+    "provider": "Playtech",
+    "theo_win": 0.01,
+    "id": "game-4132-bee_frenzy"
+  },
+  {
+    "name": "Bee Frenzy Thundershots",
+    "provider": "Playtech",
+    "theo_win": 0.02,
+    "id": "game-3853-bee_frenzy_thundershots"
+  },
+  {
+    "name": "Beehive Bonanza",
+    "provider": "Evolution",
+    "theo_win": 0.1,
+    "id": "game-2623-beehive_bonanza"
+  },
+  {
+    "name": "Benny The Beer",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.13,
+    "id": "game-2320-benny_the_beer"
+  },
+  {
+    "name": "Big Dragon Lounge",
+    "provider": "High 5 Games",
+    "theo_win": 0.04,
+    "id": "game-3424-big_dragon_lounge"
+  },
+  {
+    "name": "Big Money Wheel",
+    "provider": "Evolution",
+    "theo_win": 0.14,
+    "id": "game-2269-big_money_wheel"
+  },
+  {
+    "name": "Big Prize Bubblegum Deluxe",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.11,
+    "id": "game-2516-big_prize_bubblegum_deluxe"
+  },
+  {
+    "name": "Bison Valley Bonus Buy",
+    "provider": "IGT",
+    "theo_win": 0.02,
+    "id": "game-3802-bison_valley_bonus_buy"
+  },
+  {
+    "name": "Blood Moon Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 3.86,
+    "id": "game-0156-blood_moon_hold_and_win"
+  },
+  {
+    "name": "Bloodlore Wolf Pack",
+    "provider": "Light & Wonder",
+    "theo_win": 0.26,
+    "id": "game-1695-bloodlore_wolf_pack"
+  },
+  {
+    "name": "Blooming Bunnies",
+    "provider": "Light & Wonder",
+    "theo_win": 0.36,
+    "id": "game-1403-blooming_bunnies"
+  },
+  {
+    "name": "Blue Coyote",
+    "provider": "Aruze",
+    "theo_win": 0.15,
+    "id": "game-2221-blue_coyote"
+  },
+  {
+    "name": "Boat Bonanza Christmas",
+    "provider": "Play'n GO",
+    "theo_win": 0.02,
+    "id": "game-3913-boat_bonanza_christmas"
+  },
+  {
+    "name": "Bohemian Bazaar",
+    "provider": "High 5 Games",
+    "theo_win": 0.1,
+    "id": "game-2609-bohemian_bazaar"
+  },
+  {
+    "name": "Bon Bomb Lux Pots",
+    "provider": "White Hat Studios",
+    "theo_win": 0.21,
+    "id": "game-1896-bon_bomb_lux_pots"
+  },
+  {
+    "name": "Bon Bomb Luxpots Megaways Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.49,
+    "id": "game-1145-bon_bomb_luxpots_megaways_jackpot_royale"
+  },
+  {
+    "name": "Bonanza Town Sheriff Sam",
+    "provider": "Aruze",
+    "theo_win": 0.01,
+    "id": "game-4222-bonanza_town_sheriff_sam"
+  },
+  {
+    "name": "Bonanza Town Sheriff Sherry",
+    "provider": "Aruze",
+    "theo_win": 0.01,
+    "id": "game-4109-bonanza_town_sheriff_sherry"
+  },
+  {
+    "name": "Bonus 7s Wild",
+    "provider": "Light & Wonder",
+    "theo_win": 0.04,
+    "id": "game-3374-bonus_7s_wild"
+  },
+  {
+    "name": "Book Of Christmas",
+    "provider": "Inspired",
+    "theo_win": 0.06,
+    "id": "game-3020-book_of_christmas"
+  },
+  {
+    "name": "Book Of Enchantments",
+    "provider": "Aristocrat",
+    "theo_win": 0.03,
+    "id": "game-3597-book_of_enchantments"
+  },
+  {
+    "name": "Book Of Itza",
+    "provider": "Aristocrat",
+    "theo_win": 0.01,
+    "id": "game-4331-book_of_itza"
+  },
+  {
+    "name": "Book Of Relics Megadrop",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4518-book_of_relics_megadrop"
+  },
+  {
+    "name": "Book Of Sevens",
+    "provider": "Crucible Gaming",
+    "theo_win": 0.18,
+    "id": "game-2031-book_of_sevens"
+  },
+  {
+    "name": "Boots Of Luck",
+    "provider": "Betixon",
+    "theo_win": 0.03,
+    "id": "game-3558-boots_of_luck"
+  },
+  {
+    "name": "Bound For Riches Egyptian Majesty",
+    "provider": "Aruze",
+    "theo_win": 0.05,
+    "id": "game-3281-bound_for_riches_egyptian_majesty"
+  },
+  {
+    "name": "Bound For Riches Spanish Matador",
+    "provider": "Aruze",
+    "theo_win": 0.02,
+    "id": "game-3813-bound_for_riches_spanish_matador"
+  },
+  {
+    "name": "Bounty Hunt Reloaded",
+    "provider": "Reel Play",
+    "theo_win": 0.02,
+    "id": "game-3803-bounty_hunt_reloaded"
+  },
+  {
+    "name": "Bounty O Bucks",
+    "provider": "IGT",
+    "theo_win": 0.03,
+    "id": "game-3695-bounty_o_bucks"
+  },
+  {
+    "name": "Bounty Raid Limited",
+    "provider": "Evolution",
+    "theo_win": 0.3,
+    "id": "game-1565-bounty_raid_limited"
+  },
+  {
+    "name": "Bravo Mission First Strike",
+    "provider": "Light & Wonder",
+    "theo_win": 0.01,
+    "id": "game-4329-bravo_mission_first_strike"
+  },
+  {
+    "name": "Breakout Bob",
+    "provider": "Playtech",
+    "theo_win": 0.02,
+    "id": "game-3762-breakout_bob"
+  },
+  {
+    "name": "Brilliant Diamonds Hold And Win With Bonus Buy",
+    "provider": "IGT",
+    "theo_win": 0.5,
+    "id": "game-1115-brilliant_diamonds_hold_and_win_with_bon"
+  },
+  {
+    "name": "Brilliant Wild",
+    "provider": "IGT",
+    "theo_win": 0.04,
+    "id": "game-3320-brilliant_wild"
+  },
+  {
+    "name": "Bubble Bucks",
+    "provider": "Ainsworth",
+    "theo_win": 0,
+    "id": "game-4517-bubble_bucks"
+  },
+  {
+    "name": "Bubbly Wild Colour Connect",
+    "provider": "Aristocrat",
+    "theo_win": 0.06,
+    "id": "game-3044-bubbly_wild_colour_connect"
+  },
+  {
+    "name": "Bubbly Wild Incredibet",
+    "provider": "Aristocrat",
+    "theo_win": 0.16,
+    "id": "game-2133-bubbly_wild_incredibet"
+  },
+  {
+    "name": "Bubbly Wild Super 7",
+    "provider": "Aristocrat",
+    "theo_win": 0.12,
+    "id": "game-2423-bubbly_wild_super_7"
+  },
+  {
+    "name": "Buckshot Wilds",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2718-buckshot_wilds"
+  },
+  {
+    "name": "Buffalo Untamed",
+    "provider": "Betixon",
+    "theo_win": 0.03,
+    "id": "game-3498-buffalo_untamed"
+  },
+  {
+    "name": "Build Your Empire",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4514-build_your_empire"
+  },
+  {
+    "name": "Burn In Hell Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 2.21,
+    "id": "game-0282-burn_in_hell_hold_and_win"
+  },
+  {
+    "name": "Burn In Love",
+    "provider": "1x2 Network",
+    "theo_win": 0.12,
+    "id": "game-2411-burn_in_love"
+  },
+  {
+    "name": "Buzz Thrill",
+    "provider": "Light & Wonder",
+    "theo_win": 0.03,
+    "id": "game-3679-buzz_thrill"
+  },
+  {
+    "name": "Cai Fu Yun Fortune",
+    "provider": "Aruze",
+    "theo_win": 0.23,
+    "id": "game-1806-cai_fu_yun_fortune"
+  },
+  {
+    "name": "Cai Fu Yun Lion",
+    "provider": "Aruze",
+    "theo_win": 0.08,
+    "id": "game-2806-cai_fu_yun_lion"
+  },
+  {
+    "name": "Candy Blasted",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4213-candy_blasted"
+  },
+  {
+    "name": "Candy Mine",
+    "provider": "Light & Wonder",
+    "theo_win": 0.01,
+    "id": "game-4268-candy_mine"
+  },
+  {
+    "name": "Carnivale",
+    "provider": "Oddsworks",
+    "theo_win": 0.05,
+    "id": "game-3289-carnivale"
+  },
+  {
+    "name": "Cash Carts Western Wagons",
+    "provider": "Games Global",
+    "theo_win": 0.07,
+    "id": "game-2937-cash_carts_western_wagons"
+  },
+  {
+    "name": "Cash Cascade Imperial Crown",
+    "provider": "Greentube",
+    "theo_win": 0.2,
+    "id": "game-1925-cash_cascade_imperial_crown"
+  },
+  {
+    "name": "Cash Express Luxury Line Pelican Pete",
+    "provider": "Aristocrat",
+    "theo_win": 0.45,
+    "id": "game-1225-cash_express_luxury_line_pelican_pete"
+  },
+  {
+    "name": "Casino Win Spin",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3889-casino_win_spin"
+  },
+  {
+    "name": "Cat Wilde And The Incan Quest",
+    "provider": "Play'n GO",
+    "theo_win": 0.02,
+    "id": "game-3768-cat_wilde_and_the_incan_quest"
+  },
+  {
+    "name": "Cat Wilde And The Pyramids Of Dead",
+    "provider": "Play'n GO",
+    "theo_win": 0.04,
+    "id": "game-3430-cat_wilde_and_the_pyramids_of_dead"
+  },
+  {
+    "name": "Chain Beat",
+    "provider": "Eibic",
+    "theo_win": 0.01,
+    "id": "game-4389-chain_beat"
+  },
+  {
+    "name": "Chambers Of Ancients",
+    "provider": "Play'n GO",
+    "theo_win": 0.03,
+    "id": "game-3506-chambers_of_ancients"
+  },
+  {
+    "name": "Cherry 8",
+    "provider": "Crucible Gaming",
+    "theo_win": 0.01,
+    "id": "game-4383-cherry_8"
+  },
+  {
+    "name": "Chests Of Gold",
+    "provider": "Games Global",
+    "theo_win": 0.14,
+    "id": "game-2273-chests_of_gold"
+  },
+  {
+    "name": "Child Of Battle",
+    "provider": "Golden Spin",
+    "theo_win": 0.03,
+    "id": "game-3656-child_of_battle"
+  },
+  {
+    "name": "Chillilot",
+    "provider": "Oddsworks",
+    "theo_win": 0.06,
+    "id": "game-3110-chillilot"
+  },
+  {
+    "name": "China Gold",
+    "provider": "Ainsworth",
+    "theo_win": 0.01,
+    "id": "game-4338-china_gold"
+  },
+  {
+    "name": "China Mystery",
+    "provider": "Konami",
+    "theo_win": 0.19,
+    "id": "game-1982-china_mystery"
+  },
+  {
+    "name": "China Mystery Quick Strike",
+    "provider": "Konami",
+    "theo_win": 0.51,
+    "id": "game-1099-china_mystery_quick_strike"
+  },
+  {
+    "name": "Christmas Gift Rush",
+    "provider": "Oddsworks",
+    "theo_win": 0.03,
+    "id": "game-3522-christmas_gift_rush"
+  },
+  {
+    "name": "Cleopatra Megaways Hold And Win",
+    "provider": "IGT",
+    "theo_win": 0.58,
+    "id": "game-0998-cleopatra_megaways_hold_and_win"
+  },
+  {
+    "name": "Cleos Jackpot Win And Spin",
+    "provider": "Inspired",
+    "theo_win": 0.98,
+    "id": "game-0648-cleos_jackpot_win_and_spin"
+  },
+  {
+    "name": "Clover Rush 1000",
+    "provider": "High 5 Games",
+    "theo_win": 0.21,
+    "id": "game-1881-clover_rush_1000"
+  },
+  {
+    "name": "Coco Coin Pirates Treasure",
+    "provider": "Aruze",
+    "theo_win": 0.09,
+    "id": "game-2669-coco_coin_pirates_treasure"
+  },
+  {
+    "name": "Coin Burst",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4417-coin_burst"
+  },
+  {
+    "name": "Coin Quest",
+    "provider": "Slotmill",
+    "theo_win": 0.06,
+    "id": "game-3111-coin_quest"
+  },
+  {
+    "name": "Coin Quest 2",
+    "provider": "Slotmill",
+    "theo_win": 0.12,
+    "id": "game-2459-coin_quest_2"
+  },
+  {
+    "name": "Coins Of Fortune",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3935-coins_of_fortune"
+  },
+  {
+    "name": "Cool Loot",
+    "provider": "High 5 Games",
+    "theo_win": 0.07,
+    "id": "game-2896-cool_loot"
+  },
+  {
+    "name": "Cosmic Jewels",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3947-cosmic_jewels"
+  },
+  {
+    "name": "Crab Attack",
+    "provider": "Betixon",
+    "theo_win": 0.01,
+    "id": "game-4238-crab_attack"
+  },
+  {
+    "name": "Crab Trap",
+    "provider": "Evolution",
+    "theo_win": 0.08,
+    "id": "game-2859-crab_trap"
+  },
+  {
+    "name": "Crabbin Crazy 2",
+    "provider": "IGT",
+    "theo_win": 0.08,
+    "id": "game-2789-crabbin_crazy_2"
+  },
+  {
+    "name": "Crabbin For Cash Extra Big Catch Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.49,
+    "id": "game-1138-crabbin_for_cash_extra_big_catch_jackpot"
+  },
+  {
+    "name": "Crabbin For Cash Extra Big Splash Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.77,
+    "id": "game-0808-crabbin_for_cash_extra_big_splash_jackpo"
+  },
+  {
+    "name": "Crazy Fishin Megaways Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.11,
+    "id": "game-2508-crazy_fishin_megaways_jackpot_royale"
+  },
+  {
+    "name": "Crazy Prospector Bonanza Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.18,
+    "id": "game-2023-crazy_prospector_bonanza_jackpot_royale"
+  },
+  {
+    "name": "Crocodile Blitz",
+    "provider": "Playtech",
+    "theo_win": 0.12,
+    "id": "game-2409-crocodile_blitz"
+  },
+  {
+    "name": "Crystal Gardens",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3784-crystal_gardens"
+  },
+  {
+    "name": "Curse Of Anubis",
+    "provider": "Playtech",
+    "theo_win": 0.03,
+    "id": "game-3472-curse_of_anubis"
+  },
+  {
+    "name": "Cursed Treasure",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3794-cursed_treasure"
+  },
+  {
+    "name": "Da Vinci Creations",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3781-da_vinci_creations"
+  },
+  {
+    "name": "Da Vinci Gems",
+    "provider": "High 5 Games",
+    "theo_win": 0.04,
+    "id": "game-3388-da_vinci_gems"
+  },
+  {
+    "name": "Da Vinci Muse",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4549-da_vinci_muse"
+  },
+  {
+    "name": "Da Vinci Power Bet",
+    "provider": "High 5 Games",
+    "theo_win": 0.1,
+    "id": "game-2576-da_vinci_power_bet"
+  },
+  {
+    "name": "Deal Or No Deal Whats In Your Case",
+    "provider": "White Hat Studios",
+    "theo_win": 0.12,
+    "id": "game-2420-deal_or_no_deal_whats_in_your_case"
+  },
+  {
+    "name": "Deal Or No Deal Whats In Your Case Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.17,
+    "id": "game-2112-deal_or_no_deal_whats_in_your_case_jackp"
+  },
+  {
+    "name": "Declaration Of Spindependance",
+    "provider": "IGT",
+    "theo_win": 0.18,
+    "id": "game-2019-declaration_of_spindependance"
+  },
+  {
+    "name": "Demi Gods 2",
+    "provider": "Spinomenal",
+    "theo_win": 0.04,
+    "id": "game-3361-demi_gods_2"
+  },
+  {
+    "name": "Demi Gods 5",
+    "provider": "Spinomenal",
+    "theo_win": 0.48,
+    "id": "game-1165-demi_gods_5"
+  },
+  {
+    "name": "Desperados Wild",
+    "provider": "Inspired",
+    "theo_win": 0.04,
+    "id": "game-3352-desperados_wild"
+  },
+  {
+    "name": "Diamond 777 Mutliplier Retro Roller",
+    "provider": "Games Global",
+    "theo_win": 0.22,
+    "id": "game-1851-diamond_777_mutliplier_retro_roller"
+  },
+  {
+    "name": "Diamond Cash Mighty Dwarves Inc",
+    "provider": "Greentube",
+    "theo_win": 0.16,
+    "id": "game-2127-diamond_cash_mighty_dwarves_inc"
+  },
+  {
+    "name": "Diamond Charge Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 6.39,
+    "id": "game-0076-diamond_charge_hold_and_win"
+  },
+  {
+    "name": "Diamond Charge Megaways",
+    "provider": "1x2 Network",
+    "theo_win": 0.07,
+    "id": "game-2994-diamond_charge_megaways"
+  },
+  {
+    "name": "Diamond Link Almighty Wolf",
+    "provider": "Greentube",
+    "theo_win": 0.15,
+    "id": "game-2180-diamond_link_almighty_wolf"
+  },
+  {
+    "name": "Diamond Link Mighty Santa Boarded Up",
+    "provider": "Greentube",
+    "theo_win": 0.21,
+    "id": "game-1910-diamond_link_mighty_santa_boarded_up"
+  },
+  {
+    "name": "Diamond Link Mighty Sevens Win Ways",
+    "provider": "Greentube",
+    "theo_win": 0.09,
+    "id": "game-2694-diamond_link_mighty_sevens_win_ways"
+  },
+  {
+    "name": "Diamond Mystery Fruitilicious Deluxe",
+    "provider": "Greentube",
+    "theo_win": 0.01,
+    "id": "game-4128-diamond_mystery_fruitilicious_deluxe"
+  },
+  {
+    "name": "Diamond Rush Fortune",
+    "provider": "Betixon",
+    "theo_win": 0.03,
+    "id": "game-3674-diamond_rush_fortune"
+  },
+  {
+    "name": "Diamond Spins Cleopatra",
+    "provider": "IGT",
+    "theo_win": 0.08,
+    "id": "game-2844-diamond_spins_cleopatra"
+  },
+  {
+    "name": "Diamond Spins Dionysus",
+    "provider": "IGT",
+    "theo_win": 0.05,
+    "id": "game-3272-diamond_spins_dionysus"
+  },
+  {
+    "name": "Diamond Spins Mistress Of Egypt",
+    "provider": "IGT",
+    "theo_win": 0.05,
+    "id": "game-3265-diamond_spins_mistress_of_egypt"
+  },
+  {
+    "name": "Diamonds By Da Vinci",
+    "provider": "High 5 Games",
+    "theo_win": 0.16,
+    "id": "game-2132-diamonds_by_da_vinci"
+  },
+  {
+    "name": "Dinero Loco Deluxe",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.01,
+    "id": "game-4250-dinero_loco_deluxe"
+  },
+  {
+    "name": "Dio Killing The Dragon",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4045-dio_killing_the_dragon"
+  },
+  {
+    "name": "Divers Paradise",
+    "provider": "Spinberry",
+    "theo_win": 0.08,
+    "id": "game-2815-divers_paradise"
+  },
+  {
+    "name": "Divine Mystery Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 0.05,
+    "id": "game-3169-divine_mystery_jackpot_royale"
+  },
+  {
+    "name": "Divine Wine",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.12,
+    "id": "game-2408-divine_wine"
+  },
+  {
+    "name": "Djinn Of Storms",
+    "provider": "Playtech",
+    "theo_win": 0.01,
+    "id": "game-4153-djinn_of_storms"
+  },
+  {
+    "name": "Doctor Reactive Mega Drop Low",
+    "provider": "Light & Wonder",
+    "theo_win": 0.76,
+    "id": "game-0816-doctor_reactive_mega_drop_low"
+  },
+  {
+    "name": "Dolla Dolla Bill",
+    "provider": "1x2 Network",
+    "theo_win": 0.04,
+    "id": "game-3316-dolla_dolla_bill"
+  },
+  {
+    "name": "Dolla Dolla Bill Mo Money",
+    "provider": "1x2 Network",
+    "theo_win": 0.12,
+    "id": "game-2439-dolla_dolla_bill_mo_money"
+  },
+  {
+    "name": "Dolphins",
+    "provider": "Ainsworth",
+    "theo_win": 0.13,
+    "id": "game-2370-dolphins"
+  },
+  {
+    "name": "Dont Eat The Candy",
+    "provider": "Evolution",
+    "theo_win": 0.12,
+    "id": "game-2415-dont_eat_the_candy"
+  },
+  {
+    "name": "Donut Divison",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.26,
+    "id": "game-1702-donut_divison"
+  },
+  {
+    "name": "Dr Wildshock Mad Loot Lab",
+    "provider": "Games Global",
+    "theo_win": 0.02,
+    "id": "game-3839-dr_wildshock_mad_loot_lab"
+  },
+  {
+    "name": "Dragon Power 10k Ways",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 1.62,
+    "id": "game-0406-dragon_power_10k_ways"
+  },
+  {
+    "name": "Dragon Spin Cross Link Water",
+    "provider": "Light & Wonder",
+    "theo_win": 0.07,
+    "id": "game-2905-dragon_spin_cross_link_water"
+  },
+  {
+    "name": "Dragon Waves Rings Of Fortune",
+    "provider": "Ainsworth",
+    "theo_win": 0.03,
+    "id": "game-3520-dragon_waves_rings_of_fortune"
+  },
+  {
+    "name": "Dragons Heat",
+    "provider": "Ainsworth",
+    "theo_win": 0,
+    "id": "game-4423-dragons_heat"
+  },
+  {
+    "name": "Drop Em",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.23,
+    "id": "game-1819-drop_em"
+  },
+  {
+    "name": "Druids Magic",
+    "provider": "Evolution",
+    "theo_win": 0.07,
+    "id": "game-2922-druids_magic"
+  },
+  {
+    "name": "Duck Of The Draw",
+    "provider": "Aristocrat",
+    "theo_win": 0.02,
+    "id": "game-3833-duck_of_the_draw"
+  },
+  {
+    "name": "Dynamite Riches Megaways Limited",
+    "provider": "Evolution",
+    "theo_win": 0.17,
+    "id": "game-2080-dynamite_riches_megaways_limited"
+  },
+  {
+    "name": "Eagle Ridge Cash Link",
+    "provider": "IGT",
+    "theo_win": 0.03,
+    "id": "game-3510-eagle_ridge_cash_link"
+  },
+  {
+    "name": "Eagle Storm Jackpot Royal Express",
+    "provider": "White Hat Studios",
+    "theo_win": 0.52,
+    "id": "game-1093-eagle_storm_jackpot_royal_express"
+  },
+  {
+    "name": "Eagle Strike",
+    "provider": "1x2 Network",
+    "theo_win": 0.01,
+    "id": "game-4229-eagle_strike"
+  },
+  {
+    "name": "Eagle Strike Lucky Cache",
+    "provider": "1x2 Network",
+    "theo_win": 0.04,
+    "id": "game-3348-eagle_strike_lucky_cache"
+  },
+  {
+    "name": "Eggsponential",
+    "provider": "Octoplay",
+    "theo_win": 0.02,
+    "id": "game-3743-eggsponential"
+  },
+  {
+    "name": "Egyptian Magic",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.1,
+    "id": "game-2644-egyptian_magic"
+  },
+  {
+    "name": "Elephants Vs Tigers",
+    "provider": "King Show Games",
+    "theo_win": 0.24,
+    "id": "game-1762-elephants_vs_tigers"
+  },
+  {
+    "name": "Elk Hunter",
+    "provider": "Evolution",
+    "theo_win": 0.07,
+    "id": "game-2931-elk_hunter"
+  },
+  {
+    "name": "Empire Of Dead",
+    "provider": "Greentube",
+    "theo_win": 0,
+    "id": "game-4422-empire_of_dead"
+  },
+  {
+    "name": "Empire Treasures Pride Of Persia",
+    "provider": "Playtech",
+    "theo_win": 0.05,
+    "id": "game-3287-empire_treasures_pride_of_persia"
+  },
+  {
+    "name": "Empress Of The Nile",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4177-empress_of_the_nile"
+  },
+  {
+    "name": "Eternal Clash",
+    "provider": "Octoplay",
+    "theo_win": 0.05,
+    "id": "game-3257-eternal_clash"
+  },
+  {
+    "name": "Extra Cash",
+    "provider": "Light & Wonder",
+    "theo_win": 0.26,
+    "id": "game-1704-extra_cash"
+  },
+  {
+    "name": "Extreme Kylin",
+    "provider": "Aruze",
+    "theo_win": 0.02,
+    "id": "game-3864-extreme_kylin"
+  },
+  {
+    "name": "Extreme Phoenix",
+    "provider": "Aruze",
+    "theo_win": 0.04,
+    "id": "game-3457-extreme_phoenix"
+  },
+  {
+    "name": "Extreme Tortoise",
+    "provider": "Aruze",
+    "theo_win": 0.04,
+    "id": "game-3441-extreme_tortoise"
+  },
+  {
+    "name": "Eye Of Anubis",
+    "provider": "Playtech",
+    "theo_win": 0.02,
+    "id": "game-3711-eye_of_anubis"
+  },
+  {
+    "name": "Fairy Gathering Thundershots",
+    "provider": "Playtech",
+    "theo_win": 0.01,
+    "id": "game-4103-fairy_gathering_thundershots"
+  },
+  {
+    "name": "Fashion Tv Bank Collect Em",
+    "provider": "Playtech",
+    "theo_win": 0.27,
+    "id": "game-1673-fashion_tv_bank_collect_em"
+  },
+  {
+    "name": "Fat Cat",
+    "provider": "Light & Wonder",
+    "theo_win": 0.03,
+    "id": "game-3486-fat_cat"
+  },
+  {
+    "name": "Fat Cat Classix",
+    "provider": "Light & Wonder",
+    "theo_win": 0.16,
+    "id": "game-2125-fat_cat_classix"
+  },
+  {
+    "name": "Fate Of The 8 Power Wheel",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.03,
+    "id": "game-3497-fate_of_the_8_power_wheel"
+  },
+  {
+    "name": "Feature Streak Tiger",
+    "provider": "Aruze",
+    "theo_win": 0.04,
+    "id": "game-3458-feature_streak_tiger"
+  },
+  {
+    "name": "Fever Spin Megaways",
+    "provider": "IGT",
+    "theo_win": 0.07,
+    "id": "game-3010-fever_spin_megaways"
+  },
+  {
+    "name": "Fiesta De Bailarina",
+    "provider": "Ainsworth",
+    "theo_win": 0,
+    "id": "game-4550-fiesta_de_bailarina"
+  },
+  {
+    "name": "Finn And The Candy Spin",
+    "provider": "Evolution",
+    "theo_win": 0.48,
+    "id": "game-1161-finn_and_the_candy_spin"
+  },
+  {
+    "name": "Fire Blaze Sisters Gift",
+    "provider": "Playtech",
+    "theo_win": 0.22,
+    "id": "game-1852-fire_blaze_sisters_gift"
+  },
+  {
+    "name": "Fire Blaze Toltec Blocks",
+    "provider": "Playtech",
+    "theo_win": 0.15,
+    "id": "game-2227-fire_blaze_toltec_blocks"
+  },
+  {
+    "name": "Fire Blaze Tsai Shens Gift",
+    "provider": "Playtech",
+    "theo_win": 0.8,
+    "id": "game-0787-fire_blaze_tsai_shens_gift"
+  },
+  {
+    "name": "Fire Coins",
+    "provider": "White Hat Studios",
+    "theo_win": 0.1,
+    "id": "game-2600-fire_coins"
+  },
+  {
+    "name": "Firedrakes Fortune",
+    "provider": "Games Global",
+    "theo_win": 0.05,
+    "id": "game-3232-firedrakes_fortune"
+  },
+  {
+    "name": "Fish Wishes",
+    "provider": "Internal",
+    "theo_win": 0.15,
+    "id": "game-2206-fish_wishes"
+  },
+  {
+    "name": "Fishin Bonanza",
+    "provider": "Playtech",
+    "theo_win": 0.06,
+    "id": "game-3045-fishin_bonanza"
+  },
+  {
+    "name": "Flaming Chilies",
+    "provider": "Aruze",
+    "theo_win": 0.01,
+    "id": "game-4175-flaming_chilies"
+  },
+  {
+    "name": "Fluffy Favourites Cash Collect",
+    "provider": "Playtech",
+    "theo_win": 0.22,
+    "id": "game-1836-fluffy_favourites_cash_collect"
+  },
+  {
+    "name": "Forensic Fortune",
+    "provider": "Aristocrat",
+    "theo_win": 0.03,
+    "id": "game-3538-forensic_fortune"
+  },
+  {
+    "name": "Forgotten Treasures",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4096-forgotten_treasures"
+  },
+  {
+    "name": "Fortuna Carnivale",
+    "provider": "Skillzz Gaming",
+    "theo_win": 0.01,
+    "id": "game-4150-fortuna_carnivale"
+  },
+  {
+    "name": "Fortune Fireworks",
+    "provider": "Oddsworks",
+    "theo_win": 0.07,
+    "id": "game-2944-fortune_fireworks"
+  },
+  {
+    "name": "Frogs Gift",
+    "provider": "Playtech",
+    "theo_win": 0.03,
+    "id": "game-3467-frogs_gift"
+  },
+  {
+    "name": "Fruit Coins Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.21,
+    "id": "game-1895-fruit_coins_hold_and_win"
+  },
+  {
+    "name": "Fruit Lightning",
+    "provider": "1x2 Network",
+    "theo_win": 0,
+    "id": "game-4474-fruit_lightning"
+  },
+  {
+    "name": "Fruit Smash",
+    "provider": "Slotmill",
+    "theo_win": 0.03,
+    "id": "game-3484-fruit_smash"
+  },
+  {
+    "name": "Fruits Fantasy",
+    "provider": "Aruze",
+    "theo_win": 0.01,
+    "id": "game-4302-fruits_fantasy"
+  },
+  {
+    "name": "Fu Friends",
+    "provider": "Spearhead Studios",
+    "theo_win": 0,
+    "id": "game-4406-fu_friends"
+  },
+  {
+    "name": "Fu Lai Cai Lai Wild Reveal",
+    "provider": "Aruze",
+    "theo_win": 0.1,
+    "id": "game-2604-fu_lai_cai_lai_wild_reveal"
+  },
+  {
+    "name": "Fugitive Gold",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4476-fugitive_gold"
+  },
+  {
+    "name": "Full Force Link Good Deal",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.04,
+    "id": "game-3407-full_force_link_good_deal"
+  },
+  {
+    "name": "Full Force Link Vegas Revue",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.07,
+    "id": "game-2920-full_force_link_vegas_revue"
+  },
+  {
+    "name": "Fun On The Seafront",
+    "provider": "Aristocrat",
+    "theo_win": 0.19,
+    "id": "game-1960-fun_on_the_seafront"
+  },
+  {
+    "name": "Galactic Invaders Swift Hits",
+    "provider": "Games Global",
+    "theo_win": 0.01,
+    "id": "game-4156-galactic_invaders_swift_hits"
+  },
+  {
+    "name": "Ghosts And Gold",
+    "provider": "IGT",
+    "theo_win": 0.31,
+    "id": "game-1521-ghosts_and_gold"
+  },
+  {
+    "name": "Gifts Of Fortune Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2661-gifts_of_fortune_megaways"
+  },
+  {
+    "name": "Giga Match Bunny",
+    "provider": "Ruby Play",
+    "theo_win": 0.26,
+    "id": "game-1690-giga_match_bunny"
+  },
+  {
+    "name": "Gladiator Clash",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3872-gladiator_clash"
+  },
+  {
+    "name": "Gods Vs Diamonds",
+    "provider": "Reel Play",
+    "theo_win": 0.07,
+    "id": "game-2929-gods_vs_diamonds"
+  },
+  {
+    "name": "Gold Fish Feeding Time Treasure",
+    "provider": "Light & Wonder",
+    "theo_win": 0.25,
+    "id": "game-1754-gold_fish_feeding_time_treasure"
+  },
+  {
+    "name": "Gold Pile Orangutan",
+    "provider": "Playtech",
+    "theo_win": 0.03,
+    "id": "game-3496-gold_pile_orangutan"
+  },
+  {
+    "name": "Gold Pile Toltec Treasure",
+    "provider": "Playtech",
+    "theo_win": 0.04,
+    "id": "game-3338-gold_pile_toltec_treasure"
+  },
+  {
+    "name": "Gold Power",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4456-gold_power"
+  },
+  {
+    "name": "Gold Stacks 88 Dancing Foo",
+    "provider": "Aristocrat",
+    "theo_win": 0.13,
+    "id": "game-2339-gold_stacks_88_dancing_foo"
+  },
+  {
+    "name": "Golden Gateway",
+    "provider": "Aruze",
+    "theo_win": 0.12,
+    "id": "game-2398-golden_gateway"
+  },
+  {
+    "name": "Golden Magic",
+    "provider": "Aruze",
+    "theo_win": 0.03,
+    "id": "game-3493-golden_magic"
+  },
+  {
+    "name": "Golden Peony",
+    "provider": "High 5 Games",
+    "theo_win": 0.04,
+    "id": "game-3438-golden_peony"
+  },
+  {
+    "name": "Golden Realms",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3555-golden_realms"
+  },
+  {
+    "name": "Golden Safari",
+    "provider": "Greentube",
+    "theo_win": 0,
+    "id": "game-4544-golden_safari"
+  },
+  {
+    "name": "Golden Treasure",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.12,
+    "id": "game-2421-golden_treasure"
+  },
+  {
+    "name": "Golden Vault Of The Pharaohs Power Bet",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4491-golden_vault_of_the_pharaohs_power_bet"
+  },
+  {
+    "name": "Golden Wheels Of Egypt",
+    "provider": "Evolution",
+    "theo_win": 0.06,
+    "id": "game-3079-golden_wheels_of_egypt"
+  },
+  {
+    "name": "Goldorado",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4502-goldorado"
+  },
+  {
+    "name": "Good Old 7s",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3999-good_old_7s"
+  },
+  {
+    "name": "Grand Ahoy",
+    "provider": "1x2 Network",
+    "theo_win": 0.16,
+    "id": "game-2119-grand_ahoy"
+  },
+  {
+    "name": "Grand Link Express Hold And Win",
+    "provider": "Octoplay",
+    "theo_win": 4.93,
+    "id": "game-0113-grand_link_express_hold_and_win"
+  },
+  {
+    "name": "Grand Pepper Party",
+    "provider": "Aristocrat",
+    "theo_win": 0.01,
+    "id": "game-4368-grand_pepper_party"
+  },
+  {
+    "name": "Great Aztec",
+    "provider": "IGT",
+    "theo_win": 0.03,
+    "id": "game-3688-great_aztec"
+  },
+  {
+    "name": "Great Emperor",
+    "provider": "Greentube",
+    "theo_win": 0.01,
+    "id": "game-4367-great_emperor"
+  },
+  {
+    "name": "Great Western 4",
+    "provider": "Relax Gaming",
+    "theo_win": 0.19,
+    "id": "game-1959-great_western_4"
+  },
+  {
+    "name": "Gridiron Goal",
+    "provider": "Design Works Gaming",
+    "theo_win": 0.95,
+    "id": "game-0665-gridiron_goal"
+  },
+  {
+    "name": "Griffins Quest",
+    "provider": "Kalamba Games",
+    "theo_win": 0.01,
+    "id": "game-4234-griffins_quest"
+  },
+  {
+    "name": "Grizzly Gold",
+    "provider": "Inspired",
+    "theo_win": 0.23,
+    "id": "game-1816-grizzly_gold"
+  },
+  {
+    "name": "Grizzly Strike",
+    "provider": "1x2 Network",
+    "theo_win": 0.05,
+    "id": "game-3296-grizzly_strike"
+  },
+  {
+    "name": "Gummy Galaxy",
+    "provider": "Spearhead Studios",
+    "theo_win": 0,
+    "id": "game-4516-gummy_galaxy"
+  },
+  {
+    "name": "Guss Gold Hold And Win",
+    "provider": "IGT",
+    "theo_win": 0.08,
+    "id": "game-2824-guss_gold_hold_and_win"
+  },
+  {
+    "name": "Gypsy",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3774-gypsy"
+  },
+  {
+    "name": "Hammer Fall",
+    "provider": "Play'n GO",
+    "theo_win": 0.08,
+    "id": "game-2802-hammer_fall"
+  },
+  {
+    "name": "Hansel And Gretel Treasure Trail",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4327-hansel_and_gretel_treasure_trail"
+  },
+  {
+    "name": "Heads Up Hold Em",
+    "provider": "Playtech",
+    "theo_win": 10.45,
+    "id": "game-0042-heads_up_hold_em"
+  },
+  {
+    "name": "Hexbreaker 3",
+    "provider": "IGT",
+    "theo_win": 0.02,
+    "id": "game-3745-hexbreaker_3"
+  },
+  {
+    "name": "High 5 Heroes",
+    "provider": "High 5 Games",
+    "theo_win": 0.11,
+    "id": "game-2484-high_5_heroes"
+  },
+  {
+    "name": "Highway Legends",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4251-highway_legends"
+  },
+  {
+    "name": "Himalayas Roof Of The World",
+    "provider": "Light & Wonder",
+    "theo_win": 0.02,
+    "id": "game-3912-himalayas_roof_of_the_world"
+  },
+  {
+    "name": "Hit Bar",
+    "provider": "Playtech",
+    "theo_win": 0.1,
+    "id": "game-2593-hit_bar"
+  },
+  {
+    "name": "Holidays Joker Halloween",
+    "provider": "Spinomenal",
+    "theo_win": 0.15,
+    "id": "game-2212-holidays_joker_halloween"
+  },
+  {
+    "name": "Hop N Pop",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.11,
+    "id": "game-2526-hop_n_pop"
+  },
+  {
+    "name": "Hot 4 Cash",
+    "provider": "Evolution",
+    "theo_win": 0.01,
+    "id": "game-4317-hot_4_cash"
+  },
+  {
+    "name": "Hot Hot Honey Rollover Respins",
+    "provider": "Everymatrix",
+    "theo_win": 0.01,
+    "id": "game-4359-hot_hot_honey_rollover_respins"
+  },
+  {
+    "name": "Hot Offer Deluxe",
+    "provider": "Bang Bang Games",
+    "theo_win": 0.04,
+    "id": "game-3453-hot_offer_deluxe"
+  },
+  {
+    "name": "Hot Rockin Super 7s",
+    "provider": "Aristocrat",
+    "theo_win": 0.21,
+    "id": "game-1893-hot_rockin_super_7s"
+  },
+  {
+    "name": "Huang Jin Shu",
+    "provider": "Kalamba Games",
+    "theo_win": 0.03,
+    "id": "game-3631-huang_jin_shu"
+  },
+  {
+    "name": "Humpty Dumpty Wild Riches",
+    "provider": "Oddsworks",
+    "theo_win": 0.02,
+    "id": "game-3905-humpty_dumpty_wild_riches"
+  },
+  {
+    "name": "Hyper Strike Hyper Spins",
+    "provider": "Games Global",
+    "theo_win": 0.12,
+    "id": "game-2387-hyper_strike_hyper_spins"
+  },
+  {
+    "name": "Immortal Ways Buffalo",
+    "provider": "Ruby Play",
+    "theo_win": 0.18,
+    "id": "game-1994-immortal_ways_buffalo"
+  },
+  {
+    "name": "Immortal Ways Luva",
+    "provider": "Ruby Play",
+    "theo_win": 0.23,
+    "id": "game-1801-immortal_ways_luva"
+  },
+  {
+    "name": "Immortal Ways Volcano",
+    "provider": "Ruby Play",
+    "theo_win": 0.16,
+    "id": "game-2137-immortal_ways_volcano"
+  },
+  {
+    "name": "Imperial Wealth Quick Strike",
+    "provider": "Konami",
+    "theo_win": 0.54,
+    "id": "game-1050-imperial_wealth_quick_strike"
+  },
+  {
+    "name": "Inspector Wilds",
+    "provider": "1x2 Network",
+    "theo_win": 0.15,
+    "id": "game-2187-inspector_wilds"
+  },
+  {
+    "name": "J Mania 3 Buffalo",
+    "provider": "Ruby Play",
+    "theo_win": 0.1,
+    "id": "game-2643-j_mania_3_buffalo"
+  },
+  {
+    "name": "J Mania Loco Habanero",
+    "provider": "Ruby Play",
+    "theo_win": 0.16,
+    "id": "game-2163-j_mania_loco_habanero"
+  },
+  {
+    "name": "Jack Hammer 3 Diamond Affair",
+    "provider": "Evolution",
+    "theo_win": 0.08,
+    "id": "game-2836-jack_hammer_3_diamond_affair"
+  },
+  {
+    "name": "Jackpot Carnival The Power Of 88",
+    "provider": "Aristocrat",
+    "theo_win": 1.99,
+    "id": "game-0326-jackpot_carnival_the_power_of_88"
+  },
+  {
+    "name": "Jackpot Hitz Xtrawin",
+    "provider": "Oddsworks",
+    "theo_win": 0.12,
+    "id": "game-2473-jackpot_hitz_xtrawin"
+  },
+  {
+    "name": "Jackpot Jester 50,000",
+    "provider": "Light & Wonder",
+    "theo_win": 0.08,
+    "id": "game-2810-jackpot_jester_50_000"
+  },
+  {
+    "name": "Jacks Haunted Wins",
+    "provider": "Aruze",
+    "theo_win": 0.08,
+    "id": "game-2774-jacks_haunted_wins"
+  },
+  {
+    "name": "Jacks Treasures",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4499-jacks_treasures"
+  },
+  {
+    "name": "Jesters Wilds",
+    "provider": "1x2 Network",
+    "theo_win": 0.01,
+    "id": "game-4373-jesters_wilds"
+  },
+  {
+    "name": "Jewelling Diamonds",
+    "provider": "1x2 Network",
+    "theo_win": 0.01,
+    "id": "game-4032-jewelling_diamonds"
+  },
+  {
+    "name": "Jingle Wins",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4486-jingle_wins"
+  },
+  {
+    "name": "Joker Flip",
+    "provider": "Play'n GO",
+    "theo_win": 0.02,
+    "id": "game-3767-joker_flip"
+  },
+  {
+    "name": "Joker Rush Cash Collect",
+    "provider": "Playtech",
+    "theo_win": 0.14,
+    "id": "game-2268-joker_rush_cash_collect"
+  },
+  {
+    "name": "Joker Rush Collect Em",
+    "provider": "Playtech",
+    "theo_win": 0.15,
+    "id": "game-2178-joker_rush_collect_em"
+  },
+  {
+    "name": "Jokers Edge",
+    "provider": "1x2 Network",
+    "theo_win": 0.47,
+    "id": "game-1178-jokers_edge"
+  },
+  {
+    "name": "Juicy Bell Bonanza",
+    "provider": "Betixon",
+    "theo_win": 0,
+    "id": "game-4448-juicy_bell_bonanza"
+  },
+  {
+    "name": "Jumpin Jack First Strike",
+    "provider": "Hitsqwad",
+    "theo_win": 0.02,
+    "id": "game-3742-jumpin_jack_first_strike"
+  },
+  {
+    "name": "Jumpin Jalapenos Quick Strike",
+    "provider": "Konami",
+    "theo_win": 0.36,
+    "id": "game-1414-jumpin_jalapenos_quick_strike"
+  },
+  {
+    "name": "Jungle Jack",
+    "provider": "High 5 Games",
+    "theo_win": 0.12,
+    "id": "game-2470-jungle_jack"
+  },
+  {
+    "name": "Jungle Spirit Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2745-jungle_spirit_megaways"
+  },
+  {
+    "name": "Keystone Kops",
+    "provider": "IGT",
+    "theo_win": 0.07,
+    "id": "game-3000-keystone_kops"
+  },
+  {
+    "name": "King Maker Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3927-king_maker_megaways"
+  },
+  {
+    "name": "King Of Alexandria Mega Moolah",
+    "provider": "Games Global",
+    "theo_win": 0.01,
+    "id": "game-4027-king_of_alexandria_mega_moolah"
+  },
+  {
+    "name": "King Of Babylon",
+    "provider": "Light & Wonder",
+    "theo_win": 0.02,
+    "id": "game-3906-king_of_babylon"
+  },
+  {
+    "name": "King Of The Catch Splash",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4398-king_of_the_catch_splash"
+  },
+  {
+    "name": "King Of The Jungle",
+    "provider": "Ainsworth",
+    "theo_win": 0.01,
+    "id": "game-4336-king_of_the_jungle"
+  },
+  {
+    "name": "Kingmaker Fully Loaded Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3557-kingmaker_fully_loaded_megaways"
+  },
+  {
+    "name": "Kings Relics",
+    "provider": "1x2 Network",
+    "theo_win": 0,
+    "id": "game-4497-kings_relics"
+  },
+  {
+    "name": "Knights Of The Secret Sword",
+    "provider": "Internal",
+    "theo_win": 0.02,
+    "id": "game-3849-knights_of_the_secret_sword"
+  },
+  {
+    "name": "Koi Harmony",
+    "provider": "Playtech",
+    "theo_win": 0.1,
+    "id": "game-2571-koi_harmony"
+  },
+  {
+    "name": "Lady Helsing",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4335-lady_helsing"
+  },
+  {
+    "name": "Lamp Of Magic",
+    "provider": "Betixon",
+    "theo_win": 0,
+    "id": "game-4490-lamp_of_magic"
+  },
+  {
+    "name": "Lavish Lifestyles",
+    "provider": "High 5 Games",
+    "theo_win": 0.03,
+    "id": "game-3678-lavish_lifestyles"
+  },
+  {
+    "name": "Legacy Of Inca",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4159-legacy_of_inca"
+  },
+  {
+    "name": "Legacy Of The Nile",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3938-legacy_of_the_nile"
+  },
+  {
+    "name": "Legacy Of The Nile Extreme",
+    "provider": "High 5 Games",
+    "theo_win": 0.05,
+    "id": "game-3276-legacy_of_the_nile_extreme"
+  },
+  {
+    "name": "Legends Of Troy Achilles Glory",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4023-legends_of_troy_achilles_glory"
+  },
+  {
+    "name": "Legion Gold And The Sphinx Of Dead",
+    "provider": "Play'n GO",
+    "theo_win": 0.03,
+    "id": "game-3635-legion_gold_and_the_sphinx_of_dead"
+  },
+  {
+    "name": "Legion Gold Unleashed",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4301-legion_gold_unleashed"
+  },
+  {
+    "name": "Leprechauns Luck Collect Em",
+    "provider": "Playtech",
+    "theo_win": 0.52,
+    "id": "game-1090-leprechauns_luck_collect_em"
+  },
+  {
+    "name": "Lock And Pop",
+    "provider": "Evolution",
+    "theo_win": 0.13,
+    "id": "game-2348-lock_and_pop"
+  },
+  {
+    "name": "Loot Crab",
+    "provider": "1x2 Network",
+    "theo_win": 0.07,
+    "id": "game-2960-loot_crab"
+  },
+  {
+    "name": "Lordi Reel Monster",
+    "provider": "Play'n GO",
+    "theo_win": 0.07,
+    "id": "game-3006-lordi_reel_monster"
+  },
+  {
+    "name": "Love Fool",
+    "provider": "Playtech",
+    "theo_win": 0.03,
+    "id": "game-3623-love_fool"
+  },
+  {
+    "name": "Love Is In The Fair",
+    "provider": "Play'n GO",
+    "theo_win": 0.09,
+    "id": "game-2696-love_is_in_the_fair"
+  },
+  {
+    "name": "Lucha Chilli",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4493-lucha_chilli"
+  },
+  {
+    "name": "Lucid Fruits",
+    "provider": "Betixon",
+    "theo_win": 0.01,
+    "id": "game-4382-lucid_fruits"
+  },
+  {
+    "name": "Lucky 8 Reactors",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4533-lucky_8_reactors"
+  },
+  {
+    "name": "Lucky Circus",
+    "provider": "Oddsworks",
+    "theo_win": 0.31,
+    "id": "game-1531-lucky_circus"
+  },
+  {
+    "name": "Lucky Dragon Tree",
+    "provider": "Boom Entertainment",
+    "theo_win": 0.04,
+    "id": "game-3380-lucky_dragon_tree"
+  },
+  {
+    "name": "Lucky Envelope Plum Riches",
+    "provider": "Konami",
+    "theo_win": 0.11,
+    "id": "game-2480-lucky_envelope_plum_riches"
+  },
+  {
+    "name": "Lucky Faire",
+    "provider": "Oddsworks",
+    "theo_win": 0.34,
+    "id": "game-1443-lucky_faire"
+  },
+  {
+    "name": "Lucky Lucky",
+    "provider": "Oddsworks",
+    "theo_win": 0.12,
+    "id": "game-2407-lucky_lucky"
+  },
+  {
+    "name": "Lucky Shihtzu",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.03,
+    "id": "game-3539-lucky_shihtzu"
+  },
+  {
+    "name": "Lucky Stars Scatter Reactors",
+    "provider": "Pixiu Gaming",
+    "theo_win": 0,
+    "id": "game-4475-lucky_stars_scatter_reactors"
+  },
+  {
+    "name": "Lucky Strip",
+    "provider": "High 5 Games",
+    "theo_win": 0.1,
+    "id": "game-2578-lucky_strip"
+  },
+  {
+    "name": "Lucky Wealth Cat",
+    "provider": "King Show Games",
+    "theo_win": 0.06,
+    "id": "game-3092-lucky_wealth_cat"
+  },
+  {
+    "name": "Lucy Luck And The Crimson Diamond",
+    "provider": "Slotmill",
+    "theo_win": 0.05,
+    "id": "game-3205-lucy_luck_and_the_crimson_diamond"
+  },
+  {
+    "name": "Lust For Gold",
+    "provider": "Playtech",
+    "theo_win": 0.05,
+    "id": "game-3231-lust_for_gold"
+  },
+  {
+    "name": "Mad Cabs Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.34,
+    "id": "game-1459-mad_cabs_hold_and_win"
+  },
+  {
+    "name": "Mad Moose Megaways",
+    "provider": "Pixiu Gaming",
+    "theo_win": 0.01,
+    "id": "game-4028-mad_moose_megaways"
+  },
+  {
+    "name": "Magic Lab",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3899-magic_lab"
+  },
+  {
+    "name": "Magic Stars 3 Xmas",
+    "provider": "Wazdan",
+    "theo_win": 0.03,
+    "id": "game-3481-magic_stars_3_xmas"
+  },
+  {
+    "name": "Magic Wheel 7s",
+    "provider": "Ainsworth",
+    "theo_win": 0.01,
+    "id": "game-4118-magic_wheel_7s"
+  },
+  {
+    "name": "Majestic Mysteries Power Reel",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3761-majestic_mysteries_power_reel"
+  },
+  {
+    "name": "Majestic Spirit",
+    "provider": "Spinomenal",
+    "theo_win": 0.25,
+    "id": "game-1729-majestic_spirit"
+  },
+  {
+    "name": "Majestic White Rhino",
+    "provider": "Spinomenal",
+    "theo_win": 0.25,
+    "id": "game-1753-majestic_white_rhino"
+  },
+  {
+    "name": "Manhattan Goes Wild",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3694-manhattan_goes_wild"
+  },
+  {
+    "name": "Masks Of Fortune Megaways",
+    "provider": "IGT",
+    "theo_win": 0.1,
+    "id": "game-2656-masks_of_fortune_megaways"
+  },
+  {
+    "name": "Master Of Magic First Strike",
+    "provider": "Light & Wonder",
+    "theo_win": 0.04,
+    "id": "game-3326-master_of_magic_first_strike"
+  },
+  {
+    "name": "Mega Fire Blaze Toltec Blocks",
+    "provider": "Playtech",
+    "theo_win": 0.17,
+    "id": "game-2098-mega_fire_blaze_toltec_blocks"
+  },
+  {
+    "name": "Mei Fortunes",
+    "provider": "Design Works Gaming",
+    "theo_win": 0.02,
+    "id": "game-3856-mei_fortunes"
+  },
+  {
+    "name": "Merlin Realm Of Charm",
+    "provider": "Play'n GO",
+    "theo_win": 0.02,
+    "id": "game-3985-merlin_realm_of_charm"
+  },
+  {
+    "name": "Merlwins Matchup",
+    "provider": "Aristocrat",
+    "theo_win": 0.13,
+    "id": "game-2312-merlwins_matchup"
+  },
+  {
+    "name": "Milky Ways",
+    "provider": "Evolution",
+    "theo_win": 0.01,
+    "id": "game-4277-milky_ways"
+  },
+  {
+    "name": "Million 777",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.01,
+    "id": "game-4104-million_777"
+  },
+  {
+    "name": "Million 777 Wheel",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.05,
+    "id": "game-3153-million_777_wheel"
+  },
+  {
+    "name": "Million Zeus",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.06,
+    "id": "game-3057-million_zeus"
+  },
+  {
+    "name": "Millionaire Mile Hold & Win",
+    "provider": "IGT",
+    "theo_win": 0.32,
+    "id": "game-1493-millionaire_mile_hold___win"
+  },
+  {
+    "name": "Millionaires Mile Hold And Win Riches",
+    "provider": "IGT",
+    "theo_win": 0.11,
+    "id": "game-2537-millionaires_mile_hold_and_win_riches"
+  },
+  {
+    "name": "Mine Blown",
+    "provider": "Evolution",
+    "theo_win": 0.08,
+    "id": "game-2796-mine_blown"
+  },
+  {
+    "name": "Minted Coins",
+    "provider": "1x2 Network",
+    "theo_win": 0.08,
+    "id": "game-2857-minted_coins"
+  },
+  {
+    "name": "Mirror Joker",
+    "provider": "Play'n GO",
+    "theo_win": 0.11,
+    "id": "game-2477-mirror_joker"
+  },
+  {
+    "name": "Money Blast Quick Strike",
+    "provider": "Konami",
+    "theo_win": 2.23,
+    "id": "game-0280-money_blast_quick_strike"
+  },
+  {
+    "name": "Money Jar",
+    "provider": "Slotmill",
+    "theo_win": 0.07,
+    "id": "game-2993-money_jar"
+  },
+  {
+    "name": "Money Megaways",
+    "provider": "Pixiu Gaming",
+    "theo_win": 0.13,
+    "id": "game-2373-money_megaways"
+  },
+  {
+    "name": "Monkey God",
+    "provider": "Kalamba Games",
+    "theo_win": 0.01,
+    "id": "game-4133-monkey_god"
+  },
+  {
+    "name": "Monkeys Gold Xpays",
+    "provider": "Evolution",
+    "theo_win": 0.06,
+    "id": "game-3037-monkeys_gold_xpays"
+  },
+  {
+    "name": "Monopoly Electric Win",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4471-monopoly_electric_win"
+  },
+  {
+    "name": "Mr Porky Banker Cash Stash",
+    "provider": "1x2 Network",
+    "theo_win": 0.03,
+    "id": "game-3668-mr_porky_banker_cash_stash"
+  },
+  {
+    "name": "Ms Robin Hood",
+    "provider": "Evolution",
+    "theo_win": 0.05,
+    "id": "game-3163-ms_robin_hood"
+  },
+  {
+    "name": "Muerto En Mictlan",
+    "provider": "Play'n GO",
+    "theo_win": 0.14,
+    "id": "game-2285-muerto_en_mictlan"
+  },
+  {
+    "name": "Mustang Spirit Cash Stacks Gold",
+    "provider": "Ainsworth",
+    "theo_win": 0.05,
+    "id": "game-3194-mustang_spirit_cash_stacks_gold"
+  },
+  {
+    "name": "My Slot Studio",
+    "provider": "High 5 Games",
+    "theo_win": 1.31,
+    "id": "game-0490-my_slot_studio"
+  },
+  {
+    "name": "Mysteries Of Egypt",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.02,
+    "id": "game-4011-mysteries_of_egypt"
+  },
+  {
+    "name": "Mystery Genie Fortunes Of The Lamp",
+    "provider": "Play'n GO",
+    "theo_win": 0.15,
+    "id": "game-2185-mystery_genie_fortunes_of_the_lamp"
+  },
+  {
+    "name": "Mystic Fortune Deluxe",
+    "provider": "Oddsworks",
+    "theo_win": 0.11,
+    "id": "game-2554-mystic_fortune_deluxe"
+  },
+  {
+    "name": "Mystic Moon",
+    "provider": "Ainsworth",
+    "theo_win": 0.03,
+    "id": "game-3587-mystic_moon"
+  },
+  {
+    "name": "Mystic Treasures Of The Nile",
+    "provider": "Internal",
+    "theo_win": 0.04,
+    "id": "game-3463-mystic_treasures_of_the_nile"
+  },
+  {
+    "name": "Mystical Forest",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.03,
+    "id": "game-3700-mystical_forest"
+  },
+  {
+    "name": "Mythological Mayhem Supreme Streaks",
+    "provider": "Everymatrix",
+    "theo_win": 0.06,
+    "id": "game-3052-mythological_mayhem_supreme_streaks"
+  },
+  {
+    "name": "Nefertiti Hot 1",
+    "provider": "Gaming Realms",
+    "theo_win": 0.05,
+    "id": "game-3180-nefertiti_hot_1"
+  },
+  {
+    "name": "Neptunes Champions",
+    "provider": "High 5 Games",
+    "theo_win": 0.04,
+    "id": "game-3368-neptunes_champions"
+  },
+  {
+    "name": "Night Wolf Frozen Flames",
+    "provider": "Spinomenal",
+    "theo_win": 0.09,
+    "id": "game-2684-night_wolf_frozen_flames"
+  },
+  {
+    "name": "Niulang And Zhinu",
+    "provider": "Ainsworth",
+    "theo_win": 0.03,
+    "id": "game-3550-niulang_and_zhinu"
+  },
+  {
+    "name": "Noble 7s",
+    "provider": "Games Global",
+    "theo_win": 0.02,
+    "id": "game-4006-noble_7s"
+  },
+  {
+    "name": "Ocean Spin Kingdoms Treasures",
+    "provider": "Konami",
+    "theo_win": 0.2,
+    "id": "game-1915-ocean_spin_kingdoms_treasures"
+  },
+  {
+    "name": "Octo Attack",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.26,
+    "id": "game-1703-octo_attack"
+  },
+  {
+    "name": "Old Money Deluxe",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3791-old_money_deluxe"
+  },
+  {
+    "name": "Olympus Zeus Megaways",
+    "provider": "IGT",
+    "theo_win": 0.07,
+    "id": "game-2952-olympus_zeus_megaways"
+  },
+  {
+    "name": "Om Nom",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.01,
+    "id": "game-4055-om_nom"
+  },
+  {
+    "name": "Orb Of Wealth Mythic Beasts",
+    "provider": "Aruze",
+    "theo_win": 0.25,
+    "id": "game-1756-orb_of_wealth_mythic_beasts"
+  },
+  {
+    "name": "Outback Walkabout",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4483-outback_walkabout"
+  },
+  {
+    "name": "Outlaws Inc",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.07,
+    "id": "game-2888-outlaws_inc"
+  },
+  {
+    "name": "Paddy O Plunder",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.03,
+    "id": "game-3534-paddy_o_plunder"
+  },
+  {
+    "name": "Panda Money Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.07,
+    "id": "game-2890-panda_money_megaways"
+  },
+  {
+    "name": "Pandamania",
+    "provider": "Light & Wonder",
+    "theo_win": 0.09,
+    "id": "game-2690-pandamania"
+  },
+  {
+    "name": "Pandas Fortune",
+    "provider": "Internal",
+    "theo_win": 0.07,
+    "id": "game-2938-pandas_fortune"
+  },
+  {
+    "name": "Pandoras Treasure",
+    "provider": "Evolution",
+    "theo_win": 0.1,
+    "id": "game-2601-pandoras_treasure"
+  },
+  {
+    "name": "Parrots Gold",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4506-parrots_gold"
+  },
+  {
+    "name": "Patricks Jackpot",
+    "provider": "Oddsworks",
+    "theo_win": 0.03,
+    "id": "game-3599-patricks_jackpot"
+  },
+  {
+    "name": "Peaky Blinders 2 The Shelby Empire",
+    "provider": "White Hat Studios",
+    "theo_win": 1.08,
+    "id": "game-0597-peaky_blinders_2_the_shelby_empire"
+  },
+  {
+    "name": "Pearl Power",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.14,
+    "id": "game-2278-pearl_power"
+  },
+  {
+    "name": "Pegasus Power",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4416-pegasus_power"
+  },
+  {
+    "name": "Piggi Bank",
+    "provider": "Aristocrat",
+    "theo_win": 0.09,
+    "id": "game-2761-piggi_bank"
+  },
+  {
+    "name": "Piggy Bank Cash",
+    "provider": "1x2 Network",
+    "theo_win": 0.13,
+    "id": "game-2316-piggy_bank_cash"
+  },
+  {
+    "name": "Pinocchios Fortune",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4058-pinocchios_fortune"
+  },
+  {
+    "name": "Piranha Pays",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4246-piranha_pays"
+  },
+  {
+    "name": "Pirates Of The Black Skull",
+    "provider": "Internal",
+    "theo_win": 0.03,
+    "id": "game-3527-pirates_of_the_black_skull"
+  },
+  {
+    "name": "Pixie Garden",
+    "provider": "Internal",
+    "theo_win": 0.16,
+    "id": "game-2172-pixie_garden"
+  },
+  {
+    "name": "Poison Eve",
+    "provider": "Evolution",
+    "theo_win": 0,
+    "id": "game-4488-poison_eve"
+  },
+  {
+    "name": "Polar Wilds Arctic Circles",
+    "provider": "IGT",
+    "theo_win": 0.01,
+    "id": "game-4138-polar_wilds_arctic_circles"
+  },
+  {
+    "name": "Porkin Cashpots Combo Frenzy Jackpot Royale",
+    "provider": "White Hat Studios",
+    "theo_win": 2.61,
+    "id": "game-0236-porkin_cashpots_combo_frenzy_jackpot_roy"
+  },
+  {
+    "name": "Power Zone Legend Of Hydra",
+    "provider": "Playtech",
+    "theo_win": 0.05,
+    "id": "game-3262-power_zone_legend_of_hydra"
+  },
+  {
+    "name": "Power Zone Thunder Birds",
+    "provider": "Playtech",
+    "theo_win": 0.17,
+    "id": "game-2058-power_zone_thunder_birds"
+  },
+  {
+    "name": "Prince Of The Night",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4034-prince_of_the_night"
+  },
+  {
+    "name": "Prism Of Gems",
+    "provider": "Play'n GO",
+    "theo_win": 0.1,
+    "id": "game-2626-prism_of_gems"
+  },
+  {
+    "name": "Prize Miner Gold Megaways",
+    "provider": "White Hat Studios",
+    "theo_win": 0.26,
+    "id": "game-1691-prize_miner_gold_megaways"
+  },
+  {
+    "name": "Professor Bigwin",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.03,
+    "id": "game-3588-professor_bigwin"
+  },
+  {
+    "name": "Prospector Wilds Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.02,
+    "id": "game-3979-prospector_wilds_hold_and_win"
+  },
+  {
+    "name": "Punk Rocker",
+    "provider": "Evolution",
+    "theo_win": 0.12,
+    "id": "game-2438-punk_rocker"
+  },
+  {
+    "name": "Pussy Cat",
+    "provider": "Ainsworth",
+    "theo_win": 0.04,
+    "id": "game-3399-pussy_cat"
+  },
+  {
+    "name": "Pyramid",
+    "provider": "Evolution",
+    "theo_win": 0.13,
+    "id": "game-2346-pyramid"
+  },
+  {
+    "name": "Pyramid Jackpots",
+    "provider": "King Show Games",
+    "theo_win": 0.03,
+    "id": "game-3652-pyramid_jackpots"
+  },
+  {
+    "name": "Pyramid Linx",
+    "provider": "Playtech",
+    "theo_win": 0.26,
+    "id": "game-1701-pyramid_linx"
+  },
+  {
+    "name": "Queen Of The Forest",
+    "provider": "Spinomenal",
+    "theo_win": 0.04,
+    "id": "game-3456-queen_of_the_forest"
+  },
+  {
+    "name": "Queen Of Water",
+    "provider": "Spinomenal",
+    "theo_win": 0.03,
+    "id": "game-3692-queen_of_water"
+  },
+  {
+    "name": "Quick Hit Black And White Double Jackpot",
+    "provider": "Light & Wonder",
+    "theo_win": 0.45,
+    "id": "game-1229-quick_hit_black_and_white_double_jackpot"
+  },
+  {
+    "name": "Rage",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3764-rage"
+  },
+  {
+    "name": "Raging Rhino Ultra Megadrop",
+    "provider": "Light & Wonder",
+    "theo_win": 0.33,
+    "id": "game-1465-raging_rhino_ultra_megadrop"
+  },
+  {
+    "name": "Ragnar First Strike",
+    "provider": "Light & Wonder",
+    "theo_win": 0.02,
+    "id": "game-3828-ragnar_first_strike"
+  },
+  {
+    "name": "Raiden V",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0,
+    "id": "game-4548-raiden_v"
+  },
+  {
+    "name": "Rainbow Power Potz Ultranudge",
+    "provider": "Bang Bang Games",
+    "theo_win": 0.19,
+    "id": "game-1945-rainbow_power_potz_ultranudge"
+  },
+  {
+    "name": "Rainforest Gold",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3734-rainforest_gold"
+  },
+  {
+    "name": "Rainin Money",
+    "provider": "1x2 Network",
+    "theo_win": 0.01,
+    "id": "game-4073-rainin_money"
+  },
+  {
+    "name": "Rampaging Bull",
+    "provider": "Ainsworth",
+    "theo_win": 0.02,
+    "id": "game-3945-rampaging_bull"
+  },
+  {
+    "name": "Rays Of Egypt Power Wheel",
+    "provider": "Incredible Technologies",
+    "theo_win": 0.01,
+    "id": "game-4046-rays_of_egypt_power_wheel"
+  },
+  {
+    "name": "Red Zone Blitz",
+    "provider": "1x2 Network",
+    "theo_win": 0.09,
+    "id": "game-2668-red_zone_blitz"
+  },
+  {
+    "name": "Redroo",
+    "provider": "Light & Wonder",
+    "theo_win": 0.01,
+    "id": "game-4081-redroo"
+  },
+  {
+    "name": "Reefpop",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4509-reefpop"
+  },
+  {
+    "name": "Reel Diamonds",
+    "provider": "1x2 Network",
+    "theo_win": 0.04,
+    "id": "game-3393-reel_diamonds"
+  },
+  {
+    "name": "Reel Em In Tournament Fishing",
+    "provider": "Light & Wonder",
+    "theo_win": 0.05,
+    "id": "game-3214-reel_em_in_tournament_fishing"
+  },
+  {
+    "name": "Reel Hot 7s Classic",
+    "provider": "Ainsworth",
+    "theo_win": 0,
+    "id": "game-4401-reel_hot_7s_classic"
+  },
+  {
+    "name": "Reel Star",
+    "provider": "Relax Gaming",
+    "theo_win": 0,
+    "id": "game-4408-reel_star"
+  },
+  {
+    "name": "Rich Little Piggies Meal Ticket Christmas Edition",
+    "provider": "Light & Wonder",
+    "theo_win": 0.09,
+    "id": "game-2670-rich_little_piggies_meal_ticket_christma"
+  },
+  {
+    "name": "Rich Roll Lust For Gold",
+    "provider": "Playtech",
+    "theo_win": 0.06,
+    "id": "game-3025-rich_roll_lust_for_gold"
+  },
+  {
+    "name": "Ring Tailed Wilds",
+    "provider": "Konami",
+    "theo_win": 0.06,
+    "id": "game-3083-ring_tailed_wilds"
+  },
+  {
+    "name": "Rise Of Tut Magic",
+    "provider": "Greentube",
+    "theo_win": 0,
+    "id": "game-4438-rise_of_tut_magic"
+  },
+  {
+    "name": "Robin Hoods Heroes",
+    "provider": "Games Global",
+    "theo_win": 0.01,
+    "id": "game-4024-robin_hoods_heroes"
+  },
+  {
+    "name": "Rocco Gallo",
+    "provider": "Play'n GO",
+    "theo_win": 0.03,
+    "id": "game-3501-rocco_gallo"
+  },
+  {
+    "name": "Rocket Man",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4351-rocket_man"
+  },
+  {
+    "name": "Rocket Reels",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.05,
+    "id": "game-3292-rocket_reels"
+  },
+  {
+    "name": "Rome The Conquerors",
+    "provider": "Peter & Sons",
+    "theo_win": 0.01,
+    "id": "game-4330-rome_the_conquerors"
+  },
+  {
+    "name": "Ronins Honour",
+    "provider": "Play'n GO",
+    "theo_win": 0.04,
+    "id": "game-3442-ronins_honour"
+  },
+  {
+    "name": "Royal Nuts",
+    "provider": "Evolution",
+    "theo_win": 0.13,
+    "id": "game-2332-royal_nuts"
+  },
+  {
+    "name": "Royale With Cheese Megaways",
+    "provider": "IGT",
+    "theo_win": 0.14,
+    "id": "game-2298-royale_with_cheese_megaways"
+  },
+  {
+    "name": "Run Amuck",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4075-run_amuck"
+  },
+  {
+    "name": "Run With The Wolfs",
+    "provider": "Ainsworth",
+    "theo_win": 0.06,
+    "id": "game-3105-run_with_the_wolfs"
+  },
+  {
+    "name": "Rusty And Curly",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.13,
+    "id": "game-2377-rusty_and_curly"
+  },
+  {
+    "name": "Samurai Fury",
+    "provider": "Playtech",
+    "theo_win": 0.01,
+    "id": "game-4162-samurai_fury"
+  },
+  {
+    "name": "San Fa Dragons",
+    "provider": "Ainsworth",
+    "theo_win": 0.17,
+    "id": "game-2070-san_fa_dragons"
+  },
+  {
+    "name": "San Fa Pandas",
+    "provider": "Ainsworth",
+    "theo_win": 0.09,
+    "id": "game-2697-san_fa_pandas"
+  },
+  {
+    "name": "Santa Stacked Freespins",
+    "provider": "Inspired",
+    "theo_win": 0.84,
+    "id": "game-0752-santa_stacked_freespins"
+  },
+  {
+    "name": "Sapphire Tiger",
+    "provider": "High 5 Games",
+    "theo_win": 0.02,
+    "id": "game-3942-sapphire_tiger"
+  },
+  {
+    "name": "Scarab Gold Bonus Buy",
+    "provider": "Inspired",
+    "theo_win": 0.12,
+    "id": "game-2474-scarab_gold_bonus_buy"
+  },
+  {
+    "name": "Scudamore Super Stakes",
+    "provider": "Evolution",
+    "theo_win": 0.02,
+    "id": "game-3931-scudamore_super_stakes"
+  },
+  {
+    "name": "Sea Of Plenty",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.1,
+    "id": "game-2590-sea_of_plenty"
+  },
+  {
+    "name": "Secrets Of The Gods Hold And Gold",
+    "provider": "Aristocrat",
+    "theo_win": 0.02,
+    "id": "game-3880-secrets_of_the_gods_hold_and_gold"
+  },
+  {
+    "name": "Seven And Suns",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.02,
+    "id": "game-3891-seven_and_suns"
+  },
+  {
+    "name": "Sevens And Suns",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.07,
+    "id": "game-2903-sevens_and_suns"
+  },
+  {
+    "name": "Shadow Diamonds Noir",
+    "provider": "High 5 Games",
+    "theo_win": 0.16,
+    "id": "game-2157-shadow_diamonds_noir"
+  },
+  {
+    "name": "Shamaria",
+    "provider": "Betixon",
+    "theo_win": 0.01,
+    "id": "game-4167-shamaria"
+  },
+  {
+    "name": "Shaolin Panda Chaos Reels",
+    "provider": "Octoplay",
+    "theo_win": 0.14,
+    "id": "game-2291-shaolin_panda_chaos_reels"
+  },
+  {
+    "name": "Silent Hill Return",
+    "provider": "Konami",
+    "theo_win": 0.13,
+    "id": "game-2329-silent_hill_return"
+  },
+  {
+    "name": "Silver Enchantress",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4543-silver_enchantress"
+  },
+  {
+    "name": "Silver Enchantress Extreme",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4193-silver_enchantress_extreme"
+  },
+  {
+    "name": "Silver Lux Coin Run",
+    "provider": "Greentube",
+    "theo_win": 0.05,
+    "id": "game-3170-silver_lux_coin_run"
+  },
+  {
+    "name": "Sizzling Bells Xmas",
+    "provider": "Wazdan",
+    "theo_win": 0.03,
+    "id": "game-3647-sizzling_bells_xmas"
+  },
+  {
+    "name": "Slingo Lucky Mcgold",
+    "provider": "Gaming Realms",
+    "theo_win": 0.11,
+    "id": "game-2491-slingo_lucky_mcgold"
+  },
+  {
+    "name": "Slot Vegas Fully Loaded Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3524-slot_vegas_fully_loaded_megaways"
+  },
+  {
+    "name": "Smoking Hot Fortunes",
+    "provider": "1x2 Network",
+    "theo_win": 0.01,
+    "id": "game-4218-smoking_hot_fortunes"
+  },
+  {
+    "name": "Smoking Hot Fruits",
+    "provider": "1x2 Network",
+    "theo_win": 0,
+    "id": "game-4512-smoking_hot_fruits"
+  },
+  {
+    "name": "Solar Nova Megaways",
+    "provider": "1x2 Network",
+    "theo_win": 0.21,
+    "id": "game-1882-solar_nova_megaways"
+  },
+  {
+    "name": "Space Wars Megaways Xxxtreme",
+    "provider": "Evolution",
+    "theo_win": 0.06,
+    "id": "game-3061-space_wars_megaways_xxxtreme"
+  },
+  {
+    "name": "Spear Of Fire",
+    "provider": "Spinomenal",
+    "theo_win": 0,
+    "id": "game-4511-spear_of_fire"
+  },
+  {
+    "name": "Spicy Meatballs Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.19,
+    "id": "game-1947-spicy_meatballs_megaways"
+  },
+  {
+    "name": "Spinata Grande",
+    "provider": "Evolution",
+    "theo_win": 0.1,
+    "id": "game-2632-spinata_grande"
+  },
+  {
+    "name": "Spinberry Wilds",
+    "provider": "Spinberry",
+    "theo_win": 0,
+    "id": "game-4473-spinberry_wilds"
+  },
+  {
+    "name": "Spirit Of The Beast",
+    "provider": "Relax Gaming",
+    "theo_win": 0.26,
+    "id": "game-1714-spirit_of_the_beast"
+  },
+  {
+    "name": "Star Stacks",
+    "provider": "Oddsworks",
+    "theo_win": 0.03,
+    "id": "game-3512-star_stacks"
+  },
+  {
+    "name": "Star Watch Jungle",
+    "provider": "Konami",
+    "theo_win": 0.07,
+    "id": "game-2930-star_watch_jungle"
+  },
+  {
+    "name": "Stellar Cash Chicken Fox 5x",
+    "provider": "Light & Wonder",
+    "theo_win": 0.2,
+    "id": "game-1939-stellar_cash_chicken_fox_5x"
+  },
+  {
+    "name": "Story Of Loki Master Of Illusions",
+    "provider": "Spinomenal",
+    "theo_win": 0.04,
+    "id": "game-3391-story_of_loki_master_of_illusions"
+  },
+  {
+    "name": "Story Of Odin",
+    "provider": "Spinomenal",
+    "theo_win": 0.02,
+    "id": "game-3975-story_of_odin"
+  },
+  {
+    "name": "Sun Chief",
+    "provider": "Ainsworth",
+    "theo_win": 0.05,
+    "id": "game-3299-sun_chief"
+  },
+  {
+    "name": "Super 25 Stars",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.2,
+    "id": "game-1940-super_25_stars"
+  },
+  {
+    "name": "Super Fruit Smash",
+    "provider": "Slotmill",
+    "theo_win": 0.07,
+    "id": "game-2895-super_fruit_smash"
+  },
+  {
+    "name": "Super Hammer 2x3x4x5x Super3",
+    "provider": "Gamecode",
+    "theo_win": 0.72,
+    "id": "game-0851-super_hammer_2x3x4x5x_super3"
+  },
+  {
+    "name": "Super Hot 7s",
+    "provider": "Ainsworth",
+    "theo_win": 0.03,
+    "id": "game-3626-super_hot_7s"
+  },
+  {
+    "name": "Super Mouse Grand",
+    "provider": "Aristocrat",
+    "theo_win": 0.12,
+    "id": "game-2471-super_mouse_grand"
+  },
+  {
+    "name": "Super Sake",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.02,
+    "id": "game-3898-super_sake"
+  },
+  {
+    "name": "Surtrs Fury",
+    "provider": "Aristocrat",
+    "theo_win": 0.02,
+    "id": "game-3887-surtrs_fury"
+  },
+  {
+    "name": "Sweet Spotz",
+    "provider": "Slotmill",
+    "theo_win": 0.16,
+    "id": "game-2159-sweet_spotz"
+  },
+  {
+    "name": "Tai The Toad",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.08,
+    "id": "game-2817-tai_the_toad"
+  },
+  {
+    "name": "Taiko Beats",
+    "provider": "Oddsworks",
+    "theo_win": 0.04,
+    "id": "game-3384-taiko_beats"
+  },
+  {
+    "name": "Temple Of Treasures Megaways",
+    "provider": "Internal",
+    "theo_win": 0.01,
+    "id": "game-4059-temple_of_treasures_megaways"
+  },
+  {
+    "name": "Ternion",
+    "provider": "Play'n GO",
+    "theo_win": 0.06,
+    "id": "game-3015-ternion"
+  },
+  {
+    "name": "The Ankh Protector",
+    "provider": "Spinomenal",
+    "theo_win": 0.02,
+    "id": "game-3862-the_ankh_protector"
+  },
+  {
+    "name": "The Fury Of Goddess",
+    "provider": "Aruze",
+    "theo_win": 0.06,
+    "id": "game-3112-the_fury_of_goddess"
+  },
+  {
+    "name": "The Great Tiki",
+    "provider": "Aruze",
+    "theo_win": 0.01,
+    "id": "game-4249-the_great_tiki"
+  },
+  {
+    "name": "The Jungle House Win Ways",
+    "provider": "Greentube",
+    "theo_win": 0.06,
+    "id": "game-3113-the_jungle_house_win_ways"
+  },
+  {
+    "name": "The Race Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.01,
+    "id": "game-4019-the_race_megaways"
+  },
+  {
+    "name": "Thor Infinity Reels Megaways",
+    "provider": "Reel Play",
+    "theo_win": 0.03,
+    "id": "game-3707-thor_infinity_reels_megaways"
+  },
+  {
+    "name": "Thors Hammer Time",
+    "provider": "Evolution",
+    "theo_win": 0,
+    "id": "game-4450-thors_hammer_time"
+  },
+  {
+    "name": "Thrill To Grill",
+    "provider": "Evolution",
+    "theo_win": 0.05,
+    "id": "game-3206-thrill_to_grill"
+  },
+  {
+    "name": "Thriller Gorilla Cashpots Jackpot",
+    "provider": "White Hat Studios",
+    "theo_win": 0.14,
+    "id": "game-2253-thriller_gorilla_cashpots_jackpot"
+  },
+  {
+    "name": "Thunder Cash Candelas Senor Muerte",
+    "provider": "Greentube",
+    "theo_win": 0.27,
+    "id": "game-1682-thunder_cash_candelas_senor_muerte"
+  },
+  {
+    "name": "Thunder Cash Candelas Senorita Suerte",
+    "provider": "Greentube",
+    "theo_win": 0.21,
+    "id": "game-1909-thunder_cash_candelas_senorita_suerte"
+  },
+  {
+    "name": "Thunder Of The Egyptian Pyramid",
+    "provider": "Aruze",
+    "theo_win": 0.12,
+    "id": "game-2400-thunder_of_the_egyptian_pyramid"
+  },
+  {
+    "name": "Ticket To Wild",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2752-ticket_to_wild"
+  },
+  {
+    "name": "Tiger King Joe Exotic",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2683-tiger_king_joe_exotic"
+  },
+  {
+    "name": "Tiki Time Exotic Wilds",
+    "provider": "Everymatrix",
+    "theo_win": 0,
+    "id": "game-4538-tiki_time_exotic_wilds"
+  },
+  {
+    "name": "Titan Storm",
+    "provider": "Light & Wonder",
+    "theo_win": 0.01,
+    "id": "game-4174-titan_storm"
+  },
+  {
+    "name": "Tomb Of Akhenaten",
+    "provider": "Evolution",
+    "theo_win": 0.13,
+    "id": "game-2325-tomb_of_akhenaten"
+  },
+  {
+    "name": "Tombstone Rip",
+    "provider": "Evolution",
+    "theo_win": 0.06,
+    "id": "game-3117-tombstone_rip"
+  },
+  {
+    "name": "Top Of The Money Pots Of Wealth",
+    "provider": "Greentube",
+    "theo_win": 0.02,
+    "id": "game-3900-top_of_the_money_pots_of_wealth"
+  },
+  {
+    "name": "Toshi",
+    "provider": "Hacksaw Gaming",
+    "theo_win": 0.24,
+    "id": "game-1766-toshi"
+  },
+  {
+    "name": "Tower Quest Legacy",
+    "provider": "Play'n GO",
+    "theo_win": 0.03,
+    "id": "game-3645-tower_quest_legacy"
+  },
+  {
+    "name": "Tractor Beam",
+    "provider": "Evolution",
+    "theo_win": 0.01,
+    "id": "game-4364-tractor_beam"
+  },
+  {
+    "name": "Treasures Of The Pyramid",
+    "provider": "IGT",
+    "theo_win": 0.13,
+    "id": "game-2365-treasures_of_the_pyramid"
+  },
+  {
+    "name": "Treats Of Terror",
+    "provider": "Play'n GO",
+    "theo_win": 0.08,
+    "id": "game-2762-treats_of_terror"
+  },
+  {
+    "name": "Trinity Treasures Wukong",
+    "provider": "Greentube",
+    "theo_win": 0.16,
+    "id": "game-2130-trinity_treasures_wukong"
+  },
+  {
+    "name": "Triple Coin Treasures Shamrock Fortunes",
+    "provider": "AGS",
+    "theo_win": 2.49,
+    "id": "game-0250-triple_coin_treasures_shamrock_fortunes"
+  },
+  {
+    "name": "Tropical Thunder",
+    "provider": "1x2 Network",
+    "theo_win": 0.1,
+    "id": "game-2633-tropical_thunder"
+  },
+  {
+    "name": "Twin Happiness",
+    "provider": "Evolution",
+    "theo_win": 0.03,
+    "id": "game-3476-twin_happiness"
+  },
+  {
+    "name": "Twin Turbo",
+    "provider": "High 5 Games",
+    "theo_win": 0,
+    "id": "game-4481-twin_turbo"
+  },
+  {
+    "name": "Ultimate Ink Mega Drop Low",
+    "provider": "Light & Wonder",
+    "theo_win": 0,
+    "id": "game-4528-ultimate_ink_mega_drop_low"
+  },
+  {
+    "name": "Ultra Blitz Chilli El Toro",
+    "provider": "Greentube",
+    "theo_win": 0.02,
+    "id": "game-3842-ultra_blitz_chilli_el_toro"
+  },
+  {
+    "name": "Ultra Stack Bison",
+    "provider": "Aruze",
+    "theo_win": 0.03,
+    "id": "game-3643-ultra_stack_bison"
+  },
+  {
+    "name": "Unchain The Dragons",
+    "provider": "Aristocrat",
+    "theo_win": 0.04,
+    "id": "game-3333-unchain_the_dragons"
+  },
+  {
+    "name": "Vegas All In",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.2,
+    "id": "game-1928-vegas_all_in"
+  },
+  {
+    "name": "Vegas Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.06,
+    "id": "game-3136-vegas_hold_and_win"
+  },
+  {
+    "name": "Vegas Riches",
+    "provider": "Aruze",
+    "theo_win": 0.05,
+    "id": "game-3244-vegas_riches"
+  },
+  {
+    "name": "Viking Reign",
+    "provider": "Ainsworth",
+    "theo_win": 0.01,
+    "id": "game-4386-viking_reign"
+  },
+  {
+    "name": "Vip",
+    "provider": "King Show Games",
+    "theo_win": 1.66,
+    "id": "game-0391-vip"
+  },
+  {
+    "name": "Vivaldis Seasons",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4290-vivaldis_seasons"
+  },
+  {
+    "name": "Waikiki Hold And Win",
+    "provider": "1x2 Network",
+    "theo_win": 0.02,
+    "id": "game-3956-waikiki_hold_and_win"
+  },
+  {
+    "name": "Warlords Crystal Of Power",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2723-warlords_crystal_of_power"
+  },
+  {
+    "name": "Way To Go",
+    "provider": "Aristocrat",
+    "theo_win": 0.11,
+    "id": "game-2529-way_to_go"
+  },
+  {
+    "name": "Western Champions",
+    "provider": "High 5 Games",
+    "theo_win": 0.01,
+    "id": "game-4362-western_champions"
+  },
+  {
+    "name": "Wheels Go Round Bull",
+    "provider": "Aruze",
+    "theo_win": 0.07,
+    "id": "game-2917-wheels_go_round_bull"
+  },
+  {
+    "name": "Wheels Go Round Orb Legend",
+    "provider": "Aruze",
+    "theo_win": 0.05,
+    "id": "game-3308-wheels_go_round_orb_legend"
+  },
+  {
+    "name": "Wheels Of Prosperity Dragon",
+    "provider": "Aruze",
+    "theo_win": 0.05,
+    "id": "game-3157-wheels_of_prosperity_dragon"
+  },
+  {
+    "name": "Wheels Of Prosperity Phoenix",
+    "provider": "Aruze",
+    "theo_win": 0.04,
+    "id": "game-3344-wheels_of_prosperity_phoenix"
+  },
+  {
+    "name": "Whispering Winds",
+    "provider": "Play'n GO",
+    "theo_win": 0.01,
+    "id": "game-4171-whispering_winds"
+  },
+  {
+    "name": "White Rabbit Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.08,
+    "id": "game-2882-white_rabbit_megaways"
+  },
+  {
+    "name": "Wicked Dragon Wilds Mega Drop",
+    "provider": "Light & Wonder",
+    "theo_win": 0.12,
+    "id": "game-2402-wicked_dragon_wilds_mega_drop"
+  },
+  {
+    "name": "Wild Animals",
+    "provider": "Red Rake Gaming",
+    "theo_win": 0.1,
+    "id": "game-2594-wild_animals"
+  },
+  {
+    "name": "Wild Bandolier",
+    "provider": "Play'n GO",
+    "theo_win": 0.11,
+    "id": "game-2527-wild_bandolier"
+  },
+  {
+    "name": "Wild Bills Bounties",
+    "provider": "Light & Wonder",
+    "theo_win": 0.03,
+    "id": "game-3473-wild_bills_bounties"
+  },
+  {
+    "name": "Wild Destiny",
+    "provider": "Oddsworks",
+    "theo_win": 0.15,
+    "id": "game-2240-wild_destiny"
+  },
+  {
+    "name": "Wild Extravaganza",
+    "provider": "Spearhead Studios",
+    "theo_win": 0.04,
+    "id": "game-3429-wild_extravaganza"
+  },
+  {
+    "name": "Wild Force Frosty Win",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4247-wild_force_frosty_win"
+  },
+  {
+    "name": "Wild Leprecoins Double Luck",
+    "provider": "Aristocrat",
+    "theo_win": 0.13,
+    "id": "game-2379-wild_leprecoins_double_luck"
+  },
+  {
+    "name": "Wild Linx",
+    "provider": "Playtech",
+    "theo_win": 0.1,
+    "id": "game-2616-wild_linx"
+  },
+  {
+    "name": "Wild Nights",
+    "provider": "Ainsworth",
+    "theo_win": 0.01,
+    "id": "game-4168-wild_nights"
+  },
+  {
+    "name": "Wild Portals Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.09,
+    "id": "game-2744-wild_portals_megaways"
+  },
+  {
+    "name": "Wild Run",
+    "provider": "Light & Wonder",
+    "theo_win": 0.04,
+    "id": "game-3461-wild_run"
+  },
+  {
+    "name": "Wild West Zone",
+    "provider": "Oddsworks",
+    "theo_win": 0,
+    "id": "game-4410-wild_west_zone"
+  },
+  {
+    "name": "Wild Wild Wynmor",
+    "provider": "Aristocrat",
+    "theo_win": 0.05,
+    "id": "game-3266-wild_wild_wynmor"
+  },
+  {
+    "name": "Wildtastic Beasts",
+    "provider": "Oddsworks",
+    "theo_win": 0.01,
+    "id": "game-4228-wildtastic_beasts"
+  },
+  {
+    "name": "Win Eruption",
+    "provider": "Oddsworks",
+    "theo_win": 0.66,
+    "id": "game-0917-win_eruption"
+  },
+  {
+    "name": "Winifreds Chronicles",
+    "provider": "Betixon",
+    "theo_win": 0,
+    "id": "game-4441-winifreds_chronicles"
+  },
+  {
+    "name": "Wish Master Megaways",
+    "provider": "Evolution",
+    "theo_win": 0.05,
+    "id": "game-3190-wish_master_megaways"
+  },
+  {
+    "name": "Witch Pickings",
+    "provider": "Light & Wonder",
+    "theo_win": 0.07,
+    "id": "game-2966-witch_pickings"
+  },
+  {
+    "name": "Wixx",
+    "provider": "Evolution",
+    "theo_win": 0,
+    "id": "game-4428-wixx"
+  },
+  {
+    "name": "Wolf Fang Spear Of Fire",
+    "provider": "Spinomenal",
+    "theo_win": 0.12,
+    "id": "game-2410-wolf_fang_spear_of_fire"
+  },
+  {
+    "name": "Wolf Strike",
+    "provider": "1x2 Network",
+    "theo_win": 0.03,
+    "id": "game-3491-wolf_strike"
+  },
+  {
+    "name": "Wolves Collect Em And Link",
+    "provider": "Playtech",
+    "theo_win": 1.83,
+    "id": "game-0361-wolves_collect_em_and_link"
+  },
+  {
+    "name": "World Of Ripleys",
+    "provider": "Bragg Gaming Group",
+    "theo_win": 0.08,
+    "id": "game-2861-world_of_ripleys"
+  },
+  {
+    "name": "Xing Xing",
+    "provider": "Betixon",
+    "theo_win": 0,
+    "id": "game-4470-xing_xing"
+  },
+  {
+    "name": "Xipe Con Hambre",
+    "provider": "Betixon",
+    "theo_win": 0.03,
+    "id": "game-3508-xipe_con_hambre"
+  },
+  {
+    "name": "Xmacabra Linx",
+    "provider": "Playtech",
+    "theo_win": 0.29,
+    "id": "game-1588-xmacabra_linx"
+  },
+  {
+    "name": "Xways Hoarder Xsplit",
+    "provider": "Evolution",
+    "theo_win": 0.18,
+    "id": "game-1989-xways_hoarder_xsplit"
+  },
+  {
+    "name": "Zen Panda Loot Link",
+    "provider": "High 5 Games",
+    "theo_win": 0.15,
+    "id": "game-2245-zen_panda_loot_link"
+  },
+  {
+    "name": "Zombies Gone Wild",
+    "provider": "Aristocrat",
+    "theo_win": 0,
+    "id": "game-4515-zombies_gone_wild"
+  },
+  {
+    "name": "Zombies Payday",
+    "provider": "Betixon",
+    "theo_win": 0.02,
+    "id": "game-3948-zombies_payday"
+  }
+]

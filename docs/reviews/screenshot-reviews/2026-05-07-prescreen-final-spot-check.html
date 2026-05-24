@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Pre-screen Final Spot Check (permissive prompt)</title>
+<style>
+body { font-family: system-ui; background: #1a1a2e; color: #eee; padding: 20px; }
+h1 { color: #fff; }
+.info { background: #16213e; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card { background: #16213e; border-radius: 8px; padding: 8px; cursor: pointer; border: 2px solid transparent; }
+.card img { width: 100%; border-radius: 4px; }
+.card.wrong { border-color: #e74c3c; background: #2c1010; }
+.card p { margin: 6px 0 0; font-size: 13px; }
+.lbl-gameplay { color: #2ecc71; font-weight: bold; }
+.lbl-not_gameplay { color: #e74c3c; font-weight: bold; }
+#export { margin-top: 20px; background: #2ecc71; color: #000; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+#results { margin-top: 10px; background: #16213e; padding: 10px; border-radius: 6px; white-space: pre-wrap; display: none; }
+</style></head>
+<body>
+<h1>Final Spot Check — 40 samples (permissive prompt, 512px)</h1>
+<div class="info">
+<b>Instructions:</b> Click any image where Claude got it WRONG.<br>
+Claude now only rejects 4 images (all included here). 36 random approvals included too. Click Export when done.
+</div>
+<div class="grid"><div class="card" data-slug="Royal-Diamonds" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Royal-Diamonds.jpg" loading="lazy">
+  <p><b>Royal-Diamonds</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Wild-Flower" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Wild-Flower.jpg" loading="lazy">
+  <p><b>Wild-Flower</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Piggy-Riches" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Piggy-Riches.jpg" loading="lazy">
+  <p><b>Piggy-Riches</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="piggy-blitz-disco-gold" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/piggy-blitz-disco-gold.webp" loading="lazy">
+  <p><b>piggy-blitz-disco-gold</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Wishwood" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Wishwood.jpg" loading="lazy">
+  <p><b>Wishwood</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Blazing-Bells" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Blazing-Bells.jpg" loading="lazy">
+  <p><b>Blazing-Bells</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="White-King" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/White-King.jpg" loading="lazy">
+  <p><b>White-King</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Flaming-Fox" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Flaming-Fox.jpg" loading="lazy">
+  <p><b>Flaming-Fox</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Christmas-Cash-Pots" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Christmas-Cash-Pots.jpg" loading="lazy">
+  <p><b>Christmas-Cash-Pots</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Pyramid-Jackpots" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Pyramid-Jackpots.jpg" loading="lazy">
+  <p><b>Pyramid-Jackpots</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Desperados-Wild-Megaways" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Desperados-Wild-Megaways.jpg" loading="lazy">
+  <p><b>Desperados-Wild-Megaways</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Legacy-Of-Dynasties" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Legacy-Of-Dynasties.jpg" loading="lazy">
+  <p><b>Legacy-Of-Dynasties</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Star-Jewels" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Star-Jewels.jpg" loading="lazy">
+  <p><b>Star-Jewels</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Ariana" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Ariana.jpg" loading="lazy">
+  <p><b>Ariana</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Halloween-Fortune-Ii" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Halloween-Fortune-Ii.jpg" loading="lazy">
+  <p><b>Halloween-Fortune-Ii</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Monkey-God" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Monkey-God.jpg" loading="lazy">
+  <p><b>Monkey-God</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="money-mayham" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/money-mayham.jpg" loading="lazy">
+  <p><b>money-mayham</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="xing-xing" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/xing-xing.webp" loading="lazy">
+  <p><b>xing-xing</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Treasure-Box-Clans" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Treasure-Box-Clans.jpg" loading="lazy">
+  <p><b>Treasure-Box-Clans</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Grim-Muerto" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Grim-Muerto.jpg" loading="lazy">
+  <p><b>Grim-Muerto</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="fruit-coins-hold-and-win" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/fruit-coins-hold-and-win.webp" loading="lazy">
+  <p><b>fruit-coins-hold-and-win</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Bingo-Staxx-Amazon-Fury" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Bingo-Staxx-Amazon-Fury.jpg" loading="lazy">
+  <p><b>Bingo-Staxx-Amazon-Fury</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Mighty-Griffin-Megaways-Jackpot-Royale" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Mighty-Griffin-Megaways-Jackpot-Royale.jpg" loading="lazy">
+  <p><b>Mighty-Griffin-Megaways-Jackpot-Royale</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Chocolate-Cash-Pots" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Chocolate-Cash-Pots.jpg" loading="lazy">
+  <p><b>Chocolate-Cash-Pots</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Twisted-Lab" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Twisted-Lab.png" loading="lazy">
+  <p><b>Twisted-Lab</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Mad-Moose-Megaways" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Mad-Moose-Megaways.jpg" loading="lazy">
+  <p><b>Mad-Moose-Megaways</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="3-leprechaun-charms" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/3-leprechaun-charms.webp" loading="lazy">
+  <p><b>3-leprechaun-charms</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Silver-Enchantress" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Silver-Enchantress.jpg" loading="lazy">
+  <p><b>Silver-Enchantress</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="red-hot-joker-cascade-high-stakes" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/red-hot-joker-cascade-high-stakes.webp" loading="lazy">
+  <p><b>red-hot-joker-cascade-high-stakes</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Pork-Knox" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Pork-Knox.jpg" loading="lazy">
+  <p><b>Pork-Knox</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Win-A-Beest" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Win-A-Beest.jpg" loading="lazy">
+  <p><b>Win-A-Beest</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Titan-Storm" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Titan-Storm.png" loading="lazy">
+  <p><b>Titan-Storm</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Path-Of-Destiny" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Path-Of-Destiny.jpg" loading="lazy">
+  <p><b>Path-Of-Destiny</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Lucha-Chilli" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Lucha-Chilli.jpg" loading="lazy">
+  <p><b>Lucha-Chilli</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Rumble-Rumble" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Rumble-Rumble.jpg" loading="lazy">
+  <p><b>Rumble-Rumble</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Rainbow-Cash-Pots" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Rainbow-Cash-Pots.jpg" loading="lazy">
+  <p><b>Rainbow-Cash-Pots</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="thundering-eclipse" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/thundering-eclipse.webp" loading="lazy">
+  <p><b>thundering-eclipse</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Quick-Hit-Blitz-Red" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Quick-Hit-Blitz-Red.jpg" loading="lazy">
+  <p><b>Quick-Hit-Blitz-Red</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Buffalo-Blitz-Ii" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Buffalo-Blitz-Ii.jpg" loading="lazy">
+  <p><b>Buffalo-Blitz-Ii</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Cops-N-Robbers-Big-Money-Trick-Or-Treat" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Cops-N-Robbers-Big-Money-Trick-Or-Treat.jpg" loading="lazy">
+  <p><b>Cops-N-Robbers-Big-Money-Trick-Or-Treat</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div></div>
+<button id="export">Export Corrections</button>
+<pre id="results"></pre>
+<script>
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => card.classList.toggle("wrong"));
+});
+document.getElementById("export").addEventListener("click", () => {
+  const wrong = [...document.querySelectorAll(".card.wrong")].map(c => ({
+    slug: c.dataset.slug,
+    claude_said: c.dataset.label,
+    correct: c.dataset.label === "gameplay" ? "not_gameplay" : "gameplay"
+  }));
+  const el = document.getElementById("results");
+  el.style.display = "block";
+  el.textContent = wrong.length === 0
+    ? "Perfect! Claude got all " + document.querySelectorAll(".card").length + " right!"
+    : JSON.stringify(wrong, null, 2);
+});
+</script></body></html>

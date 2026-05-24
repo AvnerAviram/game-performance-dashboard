@@ -260,7 +260,7 @@ async function loadFromJSON(response, themeMap, artThemeMap, franchiseResponse, 
         max_win_confidence VARCHAR, min_bet_confidence VARCHAR, max_bet_confidence VARCHAR,
         art_theme VARCHAR, art_theme_secondary VARCHAR, art_characters VARCHAR[], art_elements VARCHAR[],
         art_narrative VARCHAR,
-        art_color_tone VARCHAR[], art_confidence VARCHAR
+        art_color_tone VARCHAR[], art_color_tone_pct VARCHAR, art_confidence VARCHAR
       )
     `);
 
@@ -354,6 +354,7 @@ async function loadFromJSON(response, themeMap, artThemeMap, franchiseResponse, 
           ${toArrayLiteral(artMap[game.name]?.art_elements)},
           ${safeStr(artMap[game.name]?.art_narrative)},
           ${toArrayLiteral(artMap[game.name]?.art_color_tone)},
+          ${safeStr(artMap[game.name]?.art_color_tone_pct)},
           ${safeStr(artMap[game.name]?.art_confidence)}
         )
       `);

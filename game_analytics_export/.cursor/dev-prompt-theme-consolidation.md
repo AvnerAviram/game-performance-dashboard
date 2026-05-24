@@ -127,7 +127,7 @@ const themeConsolidated = (game.art_theme && artThemeMap[game.art_theme]) || the
 ### 7. Add new tests
 
 **a) Art theme map contract test** (`tests/unit/art-theme-consolidation.test.js`):
-- Every key in the map matches one of the 48 `VALID_THEMES` from classify_art_v2.py
+- Every key in the map matches one of the 48 `VALID_THEMES` from classify_art.py
 - Every value is one of the ~43 allowed consolidated names
 - Every non-null `art_theme` in `game_data_master.json` has a mapping
 - No art theme maps to "Unknown"

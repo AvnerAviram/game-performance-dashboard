@@ -1,6 +1,6 @@
 #!/bin/bash
 # preToolUse hook (Write|StrReplace|Delete) — blocks direct writes to protected pipeline data files.
-# Agents must use the pipeline CLI (classify_art_v2.py) to modify these files.
+# Agents must use the pipeline CLI (classify_art.py) to modify these files.
 
 input=$(cat)
 
@@ -30,7 +30,7 @@ for pattern in "${PROTECTED_PATTERNS[@]}"; do
 {
   "permission": "deny",
   "user_message": "BLOCKED: Direct write to protected file '$pattern'. Use the pipeline CLI instead.",
-  "agent_message": "HOOK BLOCKED: You attempted to directly write to '$pattern'. This file is protected. Use the pipeline CLI (classify_art_v2.py) to modify pipeline data files. For game_data_master.json, you need explicit user permission. This protection exists because direct writes bypass validation logic and can corrupt data."
+  "agent_message": "HOOK BLOCKED: You attempted to directly write to '$pattern'. This file is protected. Use the pipeline CLI (classify_art.py) to modify pipeline data files. For game_data_master.json, you need explicit user permission. This protection exists because direct writes bypass validation logic and can corrupt data."
 }
 EOF
     exit 0

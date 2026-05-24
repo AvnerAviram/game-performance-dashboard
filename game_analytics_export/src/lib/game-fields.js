@@ -166,6 +166,19 @@ export const F = {
         if (typeof v === 'string' && v) return [v];
         return [];
     },
+    artColorTonePct: g => {
+        const v = g.art_color_tone_pct;
+        if (Array.isArray(v)) return v.filter(e => e && typeof e === 'object' && e.color);
+        if (typeof v === 'string' && v) {
+            try {
+                const parsed = JSON.parse(v);
+                if (Array.isArray(parsed)) return parsed.filter(e => e && typeof e === 'object' && e.color);
+            } catch {
+                return [];
+            }
+        }
+        return [];
+    },
     artThemeSecondary: g => g.art_theme_secondary || null,
     artConfidence: g => g.art_confidence || null,
     screenshotQuality: g => g.screenshot_quality || null,

@@ -1,15 +1,13 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 describe('Rank integrity (contiguous, reliable-only)', () => {
     let games, confidenceMap;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        confidenceMap = JSON.parse(readFileSync(MAPPINGS.confidence, 'utf-8'));
     });
 
     const CONF_FIELDS = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'];

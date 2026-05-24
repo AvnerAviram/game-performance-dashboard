@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Spot Check — 10 Games</title>
+<style>
+body{font-family:system-ui;background:#0f172a;color:#e2e8f0;margin:0;padding:20px;max-width:1400px;margin:0 auto}
+h1{color:#38bdf8;text-align:center}
+.summary{text-align:center;margin:20px 0;padding:15px;background:#1e293b;border-radius:8px}
+.summary .count{font-size:2em;font-weight:bold}
+.game{background:#1e293b;border-radius:12px;margin:30px 0;padding:24px}
+.screenshot{width:100%;max-width:900px;border-radius:8px;cursor:pointer;display:block;margin:0 auto 20px}
+.screenshot:hover{opacity:0.9}
+.screenshot.zoomed{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);max-width:95vw;max-height:95vh;z-index:1000;width:auto}
+.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:999}
+.game-name{font-size:1.5em;font-weight:bold;color:#f1f5f9;margin-bottom:16px;text-align:center}
+.dims{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:900px;margin:0 auto}
+.dim{background:#0f172a;padding:12px;border-radius:8px}
+.dim-label{color:#94a3b8;font-size:0.85em;text-transform:uppercase;margin-bottom:6px}
+.badge{display:inline-block;padding:3px 12px;border-radius:12px;font-size:0.9em;margin:3px}
+.badge-theme{background:#312e81;color:#a5b4fc}.badge-color{background:#1e3a5f;color:#7dd3fc}
+.badge-char{background:#3f1e1e;color:#fca5a5}.badge-elem{background:#1e3b2e;color:#86efac}
+.btn{padding:8px 20px;border:none;border-radius:6px;cursor:pointer;font-size:1em;margin-right:8px;margin-top:8px}
+.btn-ok{background:#22c55e;color:#000}.btn-fix{background:#ef4444;color:#fff}
+.btn-ok.active{box-shadow:0 0 0 3px #22c55e}.btn-fix.active{box-shadow:0 0 0 3px #ef4444}
+.fix-input{display:none;margin-top:8px;width:100%;padding:10px;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:1em;box-sizing:border-box}
+.fix-input.visible{display:block}
+.links{text-align:center;margin-top:12px;font-size:0.85em}.links a{color:#60a5fa;margin:0 12px}
+.vision-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75em;background:#065f46;color:#6ee7b7}
+#export-btn{position:fixed;bottom:20px;right:20px;padding:14px 28px;background:#3b82f6;color:white;border:none;border-radius:8px;font-size:1.1em;cursor:pointer;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+</style></head><body>
+<h1>Spot Check — 10 Games (all Vision-verified)</h1>
+<div class="summary">
+<div>These 10 games test the key fixes: characters, colors, elements. Mark each OK/FIX.</div>
+<div style="margin-top:8px">Total: <span class="count" id="total-count">0</span> |
+OK: <span class="count" id="ok-count" style="color:#22c55e">0</span> |
+Fix: <span class="count" id="fix-count" style="color:#ef4444">0</span></div></div>
+
+<div class="game" id="g0">
+  <div class="game-name">#0 Play Tiger 7s Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Tiger-7s.png" onclick="toggleZoom(this)" alt="Play Tiger 7s Slot">
+  <div class="dims">
+    <div class="dim" id="g0-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Jungle/Rainforest</span> <span class="badge badge-theme" style="opacity:0.6">Classic Slots</span>
+      <div><button class="btn btn-ok" onclick="mark('0-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('0-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-0-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g0-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Green</span> <span class="badge badge-color">Orange</span> <span class="badge badge-color">Purple</span>
+      <div><button class="btn btn-ok" onclick="mark('0-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('0-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-0-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g0-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">Wild Animals (lion, wolf, eagle, bear)</span>
+      <div><button class="btn btn-ok" onclick="mark('0-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('0-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-0-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g0-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Vines/Ivy/Plants</span> <span class="badge badge-elem">Trees/Forest Background</span> <span class="badge badge-elem">Bamboo/Tropical Plants</span> <span class="badge badge-elem">Metal/Iron/Steel Frame</span>
+      <div><button class="btn btn-ok" onclick="mark('0-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('0-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-0-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Tiger-7s" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Tiger+7s+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g1">
+  <div class="game-name">#1 Giga Match Moolah <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/giga-match-moolah.webp" onclick="toggleZoom(this)" alt="Giga Match Moolah">
+  <div class="dims">
+    <div class="dim" id="g1-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Steampunk/Victorian</span> <span class="badge badge-theme" style="opacity:0.6">Luxury/VIP</span>
+      <div><button class="btn btn-ok" onclick="mark('1-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('1-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-1-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g1-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Teal</span> <span class="badge badge-color">Gold</span> <span class="badge badge-color">Bronze</span>
+      <div><button class="btn btn-ok" onclick="mark('1-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('1-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-1-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g1-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('1-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('1-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-1-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g1-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Clocks/Gears/Mechanical</span> <span class="badge badge-elem">Gold/Gilded Ornate Frame</span> <span class="badge badge-elem">Metal/Iron/Steel Frame</span> <span class="badge badge-elem">Coins/Gold Piles</span> <span class="badge badge-elem">Glow/Aura</span>
+      <div><button class="btn btn-ok" onclick="mark('1-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('1-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-1-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/giga-match-moolah" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Giga+Match+Moolah+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g2">
+  <div class="game-name">#2 Rich Wilde and the Pearls of Vishnu <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/rich-wilde-and-the-pearls-of-vishnu.webp" onclick="toggleZoom(this)" alt="Rich Wilde and the Pearls of Vishnu">
+  <div class="dims">
+    <div class="dim" id="g2-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Indian/South Asian</span>
+      <div><button class="btn btn-ok" onclick="mark('2-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('2-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-2-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g2-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Brown</span> <span class="badge badge-color">Green</span> <span class="badge badge-color">Gold</span>
+      <div><button class="btn btn-ok" onclick="mark('2-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('2-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-2-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g2-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('2-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('2-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-2-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g2-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Carved Stone Frame</span> <span class="badge badge-elem">Vines/Ivy/Plants</span> <span class="badge badge-elem">Ancient Stone Carvings/Reliefs</span> <span class="badge badge-elem">Trees/Forest Background</span> <span class="badge badge-elem">Columns/Pillars</span>
+      <div><button class="btn btn-ok" onclick="mark('2-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('2-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-2-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/rich-wilde-and-the-pearls-of-vishnu" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Rich+Wilde+and+the+Pearls+of+Vishnu+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g3">
+  <div class="game-name">#3 Giga Match Phantasmal Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/giga-match-phantasmal.webp" onclick="toggleZoom(this)" alt="Giga Match Phantasmal Demo & Slot Review">
+  <div class="dims">
+    <div class="dim" id="g3-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Haunted Manor/Graveyard</span> <span class="badge badge-theme" style="opacity:0.6">Fantasy/Fairy Tale</span>
+      <div><button class="btn btn-ok" onclick="mark('3-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('3-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-3-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g3-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Teal</span> <span class="badge badge-color">Blue</span> <span class="badge badge-color">Purple</span>
+      <div><button class="btn btn-ok" onclick="mark('3-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('3-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-3-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g3-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">Wizard/Sorcerer</span>
+      <div><button class="btn btn-ok" onclick="mark('3-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('3-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-3-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g3-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Crystal/Glass Frame</span> <span class="badge badge-elem">Torches/Lanterns/Candles</span> <span class="badge badge-elem">Glow/Aura</span> <span class="badge badge-elem">Light Rays/Beams</span> <span class="badge badge-elem">Magic Energy/Spell Effects</span> <span class="badge badge-elem">Carved Stone Frame</span> <span class="badge badge-elem">Ancient Stone Carvings/Reliefs</span> <span class="badge badge-elem">Columns/Pillars</span> <span class="badge badge-elem">Fog/Mist/Smoke</span>
+      <div><button class="btn btn-ok" onclick="mark('3-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('3-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-3-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/giga-match-phantasmal" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Giga+Match+Phantasmal+Demo+&+Slot+Review+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g4">
+  <div class="game-name">#4 Play Buffalo (Aristocrat) Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Buffalo.jpg" onclick="toggleZoom(this)" alt="Play Buffalo (Aristocrat) Slot">
+  <div class="dims">
+    <div class="dim" id="g4-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Savanna/Wildlife</span>
+      <div><button class="btn btn-ok" onclick="mark('4-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('4-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-4-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g4-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Purple</span> <span class="badge badge-color">Gold</span> <span class="badge badge-color">Blue</span>
+      <div><button class="btn btn-ok" onclick="mark('4-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('4-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-4-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g4-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('4-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('4-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-4-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g4-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Purple/Colored Frame</span> <span class="badge badge-elem">Glow/Aura</span> <span class="badge badge-elem">Light Rays/Beams</span>
+      <div><button class="btn btn-ok" onclick="mark('4-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('4-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-4-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Buffalo" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Buffalo+(Aristocrat)+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g5">
+  <div class="game-name">#5 Play Madame Ink Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Madame-Ink.jpg" onclick="toggleZoom(this)" alt="Play Madame Ink Slot">
+  <div class="dims">
+    <div class="dim" id="g5-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Asian Temple/Garden</span>
+      <div><button class="btn btn-ok" onclick="mark('5-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('5-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-5-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g5-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Brown</span> <span class="badge badge-color">Beige</span> <span class="badge badge-color">Green</span>
+      <div><button class="btn btn-ok" onclick="mark('5-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('5-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-5-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g5-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('5-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('5-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-5-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g5-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Carved Stone Frame</span> <span class="badge badge-elem">Columns/Pillars</span> <span class="badge badge-elem">Statues/Sculptures</span> <span class="badge badge-elem">Ornate Scrollwork/Filigree</span> <span class="badge badge-elem">Ancient Stone Carvings/Reliefs</span> <span class="badge badge-elem">Vines/Ivy/Plants</span>
+      <div><button class="btn btn-ok" onclick="mark('5-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('5-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-5-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Madame-Ink" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Madame+Ink+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g6">
+  <div class="game-name">#6 Play Fishin Bonanza Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Fishin-Bonanza.jpg" onclick="toggleZoom(this)" alt="Play Fishin Bonanza Slot">
+  <div class="dims">
+    <div class="dim" id="g6-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Deep Ocean/Underwater</span> <span class="badge badge-theme" style="opacity:0.6">Lakeside/River/Fishing Dock</span>
+      <div><button class="btn btn-ok" onclick="mark('6-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('6-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-6-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g6-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Blue</span> <span class="badge badge-color">Teal</span> <span class="badge badge-color">Gold</span>
+      <div><button class="btn btn-ok" onclick="mark('6-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('6-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-6-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g6-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('6-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('6-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-6-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g6-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Gold/Gilded Ornate Frame</span> <span class="badge badge-elem">Coral Reef/Underwater Structures</span> <span class="badge badge-elem">Water Effects</span> <span class="badge badge-elem">Bubbles</span> <span class="badge badge-elem">Trees/Forest Background</span>
+      <div><button class="btn btn-ok" onclick="mark('6-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('6-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-6-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Fishin-Bonanza" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Fishin+Bonanza+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g7">
+  <div class="game-name">#7 Play Golden Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Golden.jpg" onclick="toggleZoom(this)" alt="Play Golden Slot">
+  <div class="dims">
+    <div class="dim" id="g7-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Farm/Countryside</span>
+      <div><button class="btn btn-ok" onclick="mark('7-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('7-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-7-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g7-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Blue</span> <span class="badge badge-color">Gold</span> <span class="badge badge-color">Red</span>
+      <div><button class="btn btn-ok" onclick="mark('7-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('7-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-7-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g7-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('7-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('7-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-7-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g7-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Gold/Gilded Ornate Frame</span> <span class="badge badge-elem">Fields/Grassland/Meadow</span> <span class="badge badge-elem">Trees/Forest Background</span> <span class="badge badge-elem">Ornate Scrollwork/Filigree</span>
+      <div><button class="btn btn-ok" onclick="mark('7-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('7-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-7-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Golden" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Golden+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g8">
+  <div class="game-name">#8 Play Tomb Of Mirrors Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Tomb-Of-Mirrors.jpg" onclick="toggleZoom(this)" alt="Play Tomb Of Mirrors Slot">
+  <div class="dims">
+    <div class="dim" id="g8-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Egyptian/Pharaoh</span>
+      <div><button class="btn btn-ok" onclick="mark('8-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('8-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-8-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g8-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Brown</span> <span class="badge badge-color">Gold</span> <span class="badge badge-color">Purple</span>
+      <div><button class="btn btn-ok" onclick="mark('8-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('8-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-8-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g8-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">No Characters (symbol-only game)</span>
+      <div><button class="btn btn-ok" onclick="mark('8-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('8-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-8-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g8-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Gold/Gilded Ornate Frame</span> <span class="badge badge-elem">Ancient Stone Carvings/Reliefs</span> <span class="badge badge-elem">Hieroglyphs/Ancient Writing</span> <span class="badge badge-elem">Columns/Pillars</span> <span class="badge badge-elem">Torches/Lanterns/Candles</span> <span class="badge badge-elem">Ornate Scrollwork/Filigree</span>
+      <div><button class="btn btn-ok" onclick="mark('8-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('8-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-8-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Tomb-Of-Mirrors" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Play+Tomb+Of+Mirrors+Slot+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g9">
+  <div class="game-name">#9 Fortune Coin Fever Spins Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/fortune-coin-fever-spins.webp" onclick="toggleZoom(this)" alt="Fortune Coin Fever Spins Demo & Slot Review">
+  <div class="dims">
+    <div class="dim" id="g9-theme">
+      <div class="dim-label">Theme</div>
+      <span class="badge badge-theme">Asian Temple/Garden</span>
+      <div><button class="btn btn-ok" onclick="mark('9-theme','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('9-theme','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-9-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g9-color">
+      <div class="dim-label">Colors</div>
+      <span class="badge badge-color">Blue</span> <span class="badge badge-color">Gold</span> <span class="badge badge-color">Purple</span>
+      <div><button class="btn btn-ok" onclick="mark('9-color','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('9-color','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-9-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g9-chars">
+      <div class="dim-label">Characters</div>
+      <span class="badge badge-char">Dragon</span>
+      <div><button class="btn btn-ok" onclick="mark('9-chars','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('9-chars','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-9-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g9-elems">
+      <div class="dim-label">Elements</div>
+      <span class="badge badge-elem">Gold/Gilded Ornate Frame</span> <span class="badge badge-elem">Ornate Scrollwork/Filigree</span> <span class="badge badge-elem">Columns/Pillars</span> <span class="badge badge-elem">Coins/Gold Piles</span> <span class="badge badge-elem">Glow/Aura</span> <span class="badge badge-elem">Light Rays/Beams</span> <span class="badge badge-elem">Ancient Stone Carvings/Reliefs</span>
+      <div><button class="btn btn-ok" onclick="mark('9-elems','ok')">OK</button>
+      <button class="btn btn-fix" onclick="mark('9-elems','fix')">FIX</button></div>
+      <input class="fix-input" id="fix-9-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/fortune-coin-fever-spins" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Fortune+Coin+Fever+Spins+Demo+&+Slot+Review+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="overlay" id="overlay" onclick="closeZoom()"></div>
+<button id="export-btn" onclick="exportResults()">Export Results</button>
+<script>
+const marks={};
+function mark(key,val){marks[key]=val;const[idx,dim]=key.split('-');
+document.querySelectorAll(`#g${idx}-${dim} .btn`).forEach(b=>b.classList.remove('active'));
+document.querySelector(`#g${idx}-${dim} .btn-${val}`).classList.add('active');
+const input=document.getElementById(`fix-${key}`);
+if(val==='fix'){input.classList.add('visible');input.focus()}else{input.classList.remove('visible')}
+updateCounts()}
+function updateCounts(){const v=Object.values(marks);
+document.getElementById('total-count').textContent=v.length;
+document.getElementById('ok-count').textContent=v.filter(x=>x==='ok').length;
+document.getElementById('fix-count').textContent=v.filter(x=>x==='fix').length}
+function toggleZoom(img){if(img.classList.contains('zoomed')){closeZoom();return}
+document.getElementById('overlay').style.display='block';img.classList.add('zoomed')}
+function closeZoom(){document.getElementById('overlay').style.display='none';
+document.querySelectorAll('.screenshot.zoomed').forEach(i=>i.classList.remove('zoomed'))}
+function exportResults(){const fixes=[];
+for(const[k,v] of Object.entries(marks)){if(v==='fix'){
+const i=document.getElementById(`fix-${k}`);fixes.push(`${k}: ${i.value||'(no correction)'}`)}}
+const t=Object.keys(marks).length,o=Object.values(marks).filter(v=>v==='ok').length,
+f=Object.values(marks).filter(v=>v==='fix').length,p=t>0?(o/t*100).toFixed(1):0;
+let txt=`SPOT CHECK RESULTS\nTotal: ${t} | OK: ${o} | Fix: ${f}\nAccuracy: ${p}%\n\nCORRECTIONS:\n`+fixes.join('\n');
+navigator.clipboard.writeText(txt).then(()=>alert('Copied!')).catch(()=>{
+const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);
+ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('Copied!')})}
+</script></body></html>

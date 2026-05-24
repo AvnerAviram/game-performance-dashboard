@@ -1,0 +1,542 @@
+{
+  "Black Hawk Deluxe": {
+    "source": "wazdan_official",
+    "reels": 4,
+    "paylines": 54,
+    "rtp": 96.47,
+    "max_win": 600.0,
+    "volatility": "Medium",
+    "theme": "Horror"
+  },
+  "Magic Spins": {
+    "source": "wazdan_official",
+    "reels": 29,
+    "paylines": 0,
+    "rtp": 96.17,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Magic"
+  },
+  "Sizzling Eggs": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 5,
+    "rtp": 96.12,
+    "max_win": 2500.0,
+    "volatility": "Very High",
+    "theme": "Hot"
+  },
+  "12 Coins Grand Platinum Edition": {
+    "source": "wazdan_official",
+    "reels": 12,
+    "paylines": 0,
+    "rtp": 96.15,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Hot Slot 777 Crown": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.42,
+    "max_win": 305.0,
+    "volatility": "Low-Medium",
+    "theme": "Retro"
+  },
+  "9 Coins Grand Gold Edition": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.14,
+    "max_win": 1500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Mighty Wild Jaguar": {
+    "source": "wazdan_official",
+    "reels": 15,
+    "paylines": 0,
+    "rtp": 96.14,
+    "max_win": 750.0,
+    "volatility": "High",
+    "theme": "Animals"
+  },
+  "Prosperity Pearls": {
+    "source": "wazdan_official",
+    "reels": 25,
+    "paylines": 0,
+    "rtp": 96.15,
+    "max_win": 4000.0,
+    "volatility": "Very High",
+    "theme": "Treasure"
+  },
+  "25 Coins Grand Gold Edition": {
+    "source": "wazdan_official",
+    "reels": 25,
+    "paylines": 0,
+    "rtp": 96.13,
+    "max_win": 2500.0,
+    "volatility": "Very High",
+    "theme": "Treasure"
+  },
+  "12 Bells": {
+    "source": "wazdan_official",
+    "reels": 12,
+    "paylines": 0,
+    "rtp": 96.15,
+    "max_win": 750.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Sizzling Moon": {
+    "source": "wazdan_official",
+    "reels": 16,
+    "paylines": 0,
+    "rtp": 96.14,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Space"
+  },
+  "16 Coins Grand Platinum Edition": {
+    "source": "wazdan_official",
+    "reels": 16,
+    "paylines": 0,
+    "rtp": 96.16,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "9 Coins 1000 Edition": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.14,
+    "max_win": 1000.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Magic Fruits 4 Deluxe": {
+    "source": "wazdan_official",
+    "reels": 4,
+    "paylines": 10,
+    "rtp": 96.1,
+    "max_win": 260.0,
+    "volatility": "Medium",
+    "theme": "Retro"
+  },
+  "Jelly Reels": {
+    "source": "wazdan_official",
+    "reels": 8,
+    "paylines": 8,
+    "rtp": 96.22,
+    "max_win": 2500.0,
+    "volatility": "Very High",
+    "theme": "Food"
+  },
+  "9 Coins": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.06,
+    "max_win": 500.0,
+    "volatility": "Medium-High",
+    "theme": "Treasure"
+  },
+  "15 Coins Grand Platinum Edition": {
+    "source": "wazdan_official",
+    "reels": 15,
+    "paylines": 0,
+    "rtp": 96.17,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Power Of Gods Medusa": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 10,
+    "rtp": 96.18,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Mythology"
+  },
+  "20 Coins Grand Gold Edition": {
+    "source": "wazdan_official",
+    "reels": 20,
+    "paylines": 0,
+    "rtp": 96.15,
+    "max_win": 2000.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Hot Slot Mystery Jackpot Joker": {
+    "source": "wazdan_official",
+    "reels": 3,
+    "paylines": 5,
+    "rtp": 96.11,
+    "max_win": 1000.0,
+    "volatility": "High",
+    "theme": "Retro"
+  },
+  "Sizzling Bells": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 5,
+    "rtp": 96.2,
+    "max_win": 15000.0,
+    "volatility": "High",
+    "theme": "Retro"
+  },
+  "Sizzling Kingdom Bison": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 10,
+    "rtp": 96.12,
+    "max_win": 5000.0,
+    "volatility": "Extreme",
+    "theme": "Animals"
+  },
+  "Sun Of Fortune": {
+    "source": "wazdan_official",
+    "reels": 16,
+    "paylines": 0,
+    "rtp": 96.15,
+    "max_win": 1450.0,
+    "volatility": "High",
+    "theme": "Asian"
+  },
+  "Power Of Gods Hades": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 243,
+    "rtp": 96.14,
+    "max_win": 5000.0,
+    "volatility": "High",
+    "theme": "Mythology"
+  },
+  "Hot Slot 777 Rubies": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.14,
+    "max_win": 500.0,
+    "volatility": "Volatility Levels",
+    "theme": "Retro"
+  },
+  "Power Of Gods Valhalla": {
+    "source": "wazdan_official",
+    "reels": 16,
+    "paylines": 0,
+    "rtp": 96.23,
+    "max_win": 2145.0,
+    "volatility": "High",
+    "theme": "Mythology"
+  },
+  "Hot Slot 777 Cash Out Grand Diamond Edition": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.15,
+    "max_win": 3500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Fortune Reels": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 6,
+    "rtp": 96.12,
+    "max_win": 2100.0,
+    "volatility": "High",
+    "theme": "Asian"
+  },
+  "Power Of Sun Svarog": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 243,
+    "rtp": 96.15,
+    "max_win": 5000.0,
+    "volatility": "High",
+    "theme": "Mythology"
+  },
+  "Unicorn Reels": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 10,
+    "rtp": 96.14,
+    "max_win": 1000.0,
+    "volatility": "Very High",
+    "theme": "Fantasy"
+  },
+  "9 Burning Stars": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.14,
+    "max_win": 1500.0,
+    "volatility": "High",
+    "theme": "Space"
+  },
+  "Sizzling 777 Deluxe": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.42,
+    "max_win": 305.0,
+    "volatility": "Low-Medium",
+    "theme": "Retro"
+  },
+  "Gem Splitter": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 243,
+    "rtp": 96.27,
+    "max_win": 9000.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Lucky Reels": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.6,
+    "max_win": 900.0,
+    "volatility": "Low",
+    "theme": "Retro"
+  },
+  "Hot Slot 777 Stars": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.1,
+    "max_win": 500.0,
+    "volatility": "Medium",
+    "theme": "Retro"
+  },
+  "Magic Of The Ring Deluxe": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.47,
+    "max_win": 5150.0,
+    "volatility": "High",
+    "theme": "Book"
+  },
+  "Clover Lady": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 10,
+    "rtp": 96.21,
+    "max_win": 3500.0,
+    "volatility": "High",
+    "theme": "Fantasy"
+  },
+  "Black Horse Deluxe": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.23,
+    "max_win": 950.0,
+    "volatility": "Medium",
+    "theme": "Around the World"
+  },
+  "Choco Reels": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 6,
+    "rtp": 96.22,
+    "max_win": 9500.0,
+    "volatility": "Medium-High",
+    "theme": "Food"
+  },
+  "Magic Stars 6": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.49,
+    "max_win": 750.0,
+    "volatility": "Low",
+    "theme": "Magic"
+  },
+  "Burning Stars 3": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.12,
+    "max_win": 2187.0,
+    "volatility": "Very High",
+    "theme": "Space"
+  },
+  "9 Burning Dragons": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.12,
+    "max_win": 2187.0,
+    "volatility": "Very High",
+    "theme": "Asian"
+  },
+  "One Coin": {
+    "source": "wazdan_official",
+    "reels": 1,
+    "paylines": 0,
+    "rtp": 96.17,
+    "max_win": 500.0,
+    "volatility": "Medium",
+    "theme": "Treasure"
+  },
+  "Hot Slot Magic Pearls": {
+    "source": "wazdan_official",
+    "reels": 25,
+    "paylines": 0,
+    "rtp": 96.19,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Retro"
+  },
+  "Dwarfs Fortune": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 0,
+    "rtp": 96.16,
+    "max_win": 2500.0,
+    "volatility": "High",
+    "theme": "Treasure"
+  },
+  "Magic Stars 5": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.42,
+    "max_win": 305.0,
+    "volatility": "Low-Medium",
+    "theme": "Magic"
+  },
+  "Mystery Jack Deluxe": {
+    "source": "wazdan_official",
+    "reels": 3,
+    "paylines": 27,
+    "rtp": 96.49,
+    "max_win": 820.0,
+    "volatility": "High",
+    "theme": "Around the World"
+  },
+  "Telly Reels": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.19,
+    "max_win": 1400.0,
+    "volatility": "Low",
+    "theme": "Retro"
+  },
+  "Midnight In Tokyo": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 243,
+    "rtp": 96.15,
+    "max_win": 3000.0,
+    "volatility": "High",
+    "theme": "Asian"
+  },
+  "Great Book Of Magic Deluxe": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.47,
+    "max_win": 5150.0,
+    "volatility": "High",
+    "theme": "Book"
+  },
+  "Space Spins": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 40,
+    "rtp": 96.66,
+    "max_win": 1650.0,
+    "volatility": "Low-Medium",
+    "theme": "Space"
+  },
+  "Infinity Hero": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.24,
+    "max_win": 13000.0,
+    "volatility": "Medium-High",
+    "theme": "Hero"
+  },
+  "Hot 777 Deluxe": {
+    "source": "wazdan_official",
+    "reels": 3,
+    "paylines": 5,
+    "rtp": 96.47,
+    "max_win": 200.0,
+    "volatility": "Medium",
+    "theme": "Around the World"
+  },
+  "Magic Stars 3": {
+    "source": "wazdan_official",
+    "reels": 3,
+    "paylines": 5,
+    "rtp": 96.5,
+    "max_win": 200.0,
+    "volatility": "Low-Medium",
+    "theme": "Magic"
+  },
+  "Power Of Gods Egypt": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 243,
+    "rtp": 96.19,
+    "max_win": 8000.0,
+    "volatility": "High",
+    "theme": "Mythology"
+  },
+  "Reel Joke": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.2,
+    "max_win": 9500.0,
+    "volatility": "Low-Medium",
+    "theme": "Retro"
+  },
+  "Magic Fruits Deluxe": {
+    "source": "wazdan_official",
+    "reels": 3,
+    "paylines": 5,
+    "rtp": 96.41,
+    "max_win": 40.0,
+    "volatility": "Low-Medium",
+    "theme": "Retro"
+  },
+  "Magic Stars 9": {
+    "source": "wazdan_official",
+    "reels": 9,
+    "paylines": 0,
+    "rtp": 96.21,
+    "max_win": 10500.0,
+    "volatility": "High",
+    "theme": "Magic"
+  },
+  "Magic Target Deluxe": {
+    "source": "wazdan_official",
+    "reels": 5,
+    "paylines": 20,
+    "rtp": 96.63,
+    "max_win": 1250.0,
+    "volatility": "Low",
+    "theme": "Magic"
+  },
+  "Relic Hunters And The Book Of Faith": {
+    "source": "wazdan_official",
+    "reels": 6,
+    "paylines": 20,
+    "rtp": 96.37,
+    "max_win": 750.0,
+    "volatility": "Low-Medium",
+    "theme": "Book"
+  }
+}

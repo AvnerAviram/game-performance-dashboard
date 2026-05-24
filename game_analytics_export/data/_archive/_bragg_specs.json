@@ -1,0 +1,27 @@
+{
+  "Star Chase": {
+    "source": "bragg_official",
+    "rtp": 94.0,
+    "volatility": "Low"
+  },
+  "Get Hot": {
+    "source": "bragg_official",
+    "rtp": 94.0,
+    "volatility": "Low"
+  },
+  "X Wild X": {
+    "source": "bragg_official",
+    "rtp": 94.0,
+    "volatility": "Medium"
+  },
+  "Royal Fortunes": {
+    "source": "bragg_official",
+    "rtp": 94.0,
+    "volatility": "Low"
+  },
+  "Four Guardians": {
+    "source": "bragg_official",
+    "rtp": 92.0,
+    "volatility": "Med- Low"
+  }
+}

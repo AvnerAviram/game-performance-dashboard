@@ -1,0 +1,234 @@
+{
+  "review_date": "2026-05-13T16:12:53.945021Z",
+  "batch": "color-threshold-calibration-40",
+  "total": 40,
+  "ok": 30,
+  "fix": 10,
+  "valid_games": 39,
+  "valid_ok": 30,
+  "accuracy_pct": 76.9,
+  "error_patterns": {
+    "wrong_dominance": [
+      "10x-Minimum",
+      "Thors-Hammer-Strike",
+      "Fate-Of-The-8-Power-Wheel",
+      "Mad-Mad-Monkey"
+    ],
+    "missed_color": [
+      "Black-Diamond",
+      "Gems-Inferno-Megaways"
+    ],
+    "color_naming": [
+      "El-Dorado",
+      "Neon-Links"
+    ],
+    "overestimated_pct": [
+      "Mystery-Reels"
+    ],
+    "screenshot_issue": [
+      "3-mad-frogs"
+    ]
+  },
+  "reviews": [
+    {
+      "game": "Asgardian-Fire",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Crown-Of-Egypt",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gold-Pile-Orangutan",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Great-Gold",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Wonder-Hounds",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Black-Diamond",
+      "color": "fix",
+      "notes": "missed the light blue at the top - skys"
+    },
+    {
+      "game": "Cash-Crew",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Ghostbusters-Triple-Slime",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Sweet-16-Blackjack",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "The-Wolfs-Bane",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Atlantis-Megaways",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Aurora-Wilds",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Christmas-Gift-Rush",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Cloud-Corsairs",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Slingo-Wolf-Snowstorm",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "El-Dorado",
+      "color": "fix",
+      "notes": "darker green really - do we track tones?"
+    },
+    {
+      "game": "Fate-Of-The-8-Power-Wheel",
+      "color": "fix",
+      "notes": "more green than yellow"
+    },
+    {
+      "game": "Neon-Links",
+      "color": "fix",
+      "notes": "more red than pink"
+    },
+    {
+      "game": "777-hot-reels",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Cyber-Wildz",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mystery-Reels",
+      "color": "fix",
+      "notes": "dont see that much brown"
+    },
+    {
+      "game": "Power-Prizes-Noble-Peacock",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Sparkling-Roses",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mad-Mad-Monkey",
+      "color": "fix",
+      "notes": "more green than blue"
+    },
+    {
+      "game": "Poison-Eve",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Rainbow-Trinkets",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Arcade-Bomb",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Attack-On-Retro",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Blazing-Planets",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Trollpot-5000",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "10x-Minimum",
+      "color": "fix",
+      "notes": "more black than gold"
+    },
+    {
+      "game": "Desperados-Wild",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mayhem",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Rage-Of-The-Seas",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Thors-Hammer-Strike",
+      "color": "fix",
+      "notes": "more gray than gold"
+    },
+    {
+      "game": "Smash-The-Pig",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Hyper-Gold",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gold-Fish-Feeding-Time-Deluxe-Treasure",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gems-Inferno-Megaways",
+      "color": "fix",
+      "notes": "brown is missing"
+    },
+    {
+      "game": "3-mad-frogs",
+      "color": "fix",
+      "notes": "no ingame image in HTML"
+    }
+  ]
+}

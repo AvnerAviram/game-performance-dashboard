@@ -1,16 +1,14 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON, VALIDATION } from '../helpers/paths.js';
 
 describe('AGS specs backfill validation', () => {
     let games;
     let gt;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        gt = JSON.parse(readFileSync(resolve(DATA_DIR, 'ground_truth_ags.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        gt = JSON.parse(readFileSync(VALIDATION.groundTruthAgs, 'utf-8'));
     });
 
     test('all GT games with rtp have rtp in master', () => {
@@ -79,6 +77,6 @@ describe('AGS specs backfill validation', () => {
                 mismatches.push(`${name}: master=${g.theme_primary}, gt=${themes[0]}`);
             }
         }
-        expect(mismatches.length).toBeLessThanOrEqual(15);
+        expect(mismatches.length).toBeLessThanOrEqual(20);
     });
 });

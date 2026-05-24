@@ -1,0 +1,16 @@
+Classify this casino/slot game screenshot into one category.
+
+CATEGORIES:
+  "gameplay"       = An actual game session in progress. You can see a reel grid, number grid, or game board with symbols visible, AND game controls (spin button, bet, balance, win display).
+  "promotional"    = Marketing poster or banner. Large game logo or character art fills the image with NO reel grid or game board visible anywhere. No spin button or bet controls.
+  "splash_screen"  = Loading or intro screen shown BEFORE gameplay starts. Common signs: game title prominently displayed, provider logo, "TOUCH TO CONTINUE" or "PRESS START", stylized artwork filling the screen, NO reel grid visible, NO spin button or bet controls. The key difference from promotional: splash screens are shown inside the game client before the reels appear.
+  "rules_page"     = Paytable, help text, or feature explanation. Dominated by text, symbol tables, or payout information.
+
+DECISION RULES:
+1. If you see a grid of symbols (even partially visible or small) AND a spin button or bet display → gameplay
+2. If the image is ALL text about rules/payouts → rules_page
+3. If you see "TOUCH TO CONTINUE", "PRESS START", or a full-screen title card with game name/logo and NO reel grid → splash_screen
+4. If the image is pure artwork/logo with NO grid of symbols and NO game controls → promotional
+5. When genuinely uncertain between gameplay and non-gameplay → gameplay
+
+Answer with ONLY one word: gameplay or promotional or splash_screen or rules_page

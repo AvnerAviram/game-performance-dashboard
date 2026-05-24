@@ -52,3 +52,4 @@ __pycache__/
 
 # Agent config
 .claude/
+game_analytics_export/data/_archive/*.tar.gz

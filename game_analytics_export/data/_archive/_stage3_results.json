@@ -1,0 +1,3791 @@
+{
+  "Golden Lucky Fortune": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Sea Creatures (fish, octopus, shark)",
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Animals (as reel elements, not characters)",
+        "Money/Cash/Bills",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4,
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1960,
+      "output_tokens": 294,
+      "images_used": 0
+    }
+  ],
+  "Almighty Buffalo Lightning Gold": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "Bull/Buffalo"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Lightning/Thunder/Electricity"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2122,
+      "output_tokens": 242,
+      "images_used": 0
+    }
+  ],
+  "3 Lucky Maneki Hold And Spin": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1244,
+      "output_tokens": 255,
+      "images_used": 0
+    }
+  ],
+  "The Wish Master": [
+    {
+      "art_theme": "Magic/Fantasy",
+      "art_characters": [
+        "Wizard/Sorcerer"
+      ],
+      "art_elements": [
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Magic Show/Sorcery",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          3
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1892,
+      "output_tokens": 202,
+      "images_used": 0
+    }
+  ],
+  "Mighty Wild Jaguar": [
+    {
+      "art_theme": "Jungle/Rainforest",
+      "art_characters": [
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure",
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2211,
+      "output_tokens": 204,
+      "images_used": 0
+    }
+  ],
+  "Golden Macaque": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Monkey/Ape"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Musical Instruments",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Stars/Sparkles/Cosmic",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          4,
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2133,
+      "output_tokens": 286,
+      "images_used": 0
+    }
+  ],
+  "Bloomin Bunnies": [
+    {
+      "art_theme": "Farm/Countryside",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Pastel/Soft (muted, gentle)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2226,
+      "output_tokens": 205,
+      "images_used": 0
+    }
+  ],
+  "1 Million Megaways Bc": [
+    {
+      "art_theme": "Prehistoric/Primordial",
+      "art_characters": [
+        "Explorer/Adventurer",
+        "Dinosaur/Prehistoric Beast"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Survival/Horror",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4,
+          5,
+          4
+        ],
+        "elements": [
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2074,
+      "output_tokens": 240,
+      "images_used": 0
+    }
+  ],
+  "Outlaw": [
+    {
+      "art_theme": "Wild West/Frontier",
+      "art_characters": [
+        "Cowboy/Sheriff"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Crime/Mystery/Detective",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2165,
+      "output_tokens": 192,
+      "images_used": 0
+    }
+  ],
+  "Mercy Of The Gods": [
+    {
+      "art_theme": "Ancient Temple/Ruins",
+      "art_characters": [
+        "Explorer/Adventurer",
+        "Pharaoh/Egyptian Ruler",
+        "Mythical Creature (phoenix, unicorn, griffin)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "elements": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2052,
+      "output_tokens": 302,
+      "images_used": 0
+    }
+  ],
+  "Ariana": [
+    {
+      "art_theme": "Deep Ocean/Underwater",
+      "art_characters": [
+        "Mythical Creature (phoenix, unicorn, griffin)"
+      ],
+      "art_elements": [
+        "Water/Waves/Rain",
+        "Gold Coins/Treasure",
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Cool (blues, purples, silvers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1965,
+      "output_tokens": 221,
+      "images_used": 0
+    }
+  ],
+  "Charlies Angels": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "Celebrity/Licensed Character"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1978,
+      "output_tokens": 179,
+      "images_used": 0
+    }
+  ],
+  "Happy Lucky": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          3,
+          3
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2054,
+      "output_tokens": 235,
+      "images_used": 0
+    }
+  ],
+  "Hercules High And Mighty": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "Greek/Roman God",
+        "Mythical Creature (phoenix, unicorn, griffin)",
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          4
+        ],
+        "elements": [
+          4,
+          4,
+          3
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1602,
+      "output_tokens": 260,
+      "images_used": 0
+    }
+  ],
+  "Stadium Megaways": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sports Equipment (balls, trophies)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Competition/Tournament/Race",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1942,
+      "output_tokens": 170,
+      "images_used": 0
+    }
+  ],
+  "Fiesta Pop": [
+    {
+      "art_theme": "Mexican/Latin Village",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Food/Candy/Drinks",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Festive/Holiday/Celebratory",
+      "art_narrative": "Celebration/Festival/Party",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1455,
+      "output_tokens": 191,
+      "images_used": 0
+    }
+  ],
+  "Mega Fire Blaze Breaking Bad": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "Celebrity/Licensed Character"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Fire/Flames/Lava",
+        "Vehicles (ships, planes, cars)"
+      ],
+      "art_mood": "Dark/Mysterious",
+      "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2209,
+      "output_tokens": 216,
+      "images_used": 0
+    }
+  ],
+  "Buffalo Gold Collection": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "Bird (peacock, parrot, owl)",
+        "Bull/Buffalo"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          4
+        ],
+        "elements": [
+          5,
+          5,
+          5
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2041,
+      "output_tokens": 259,
+      "images_used": 0
+    }
+  ],
+  "Fire Stampede": [
+    {
+      "art_theme": "Wild West/Frontier",
+      "art_characters": [
+        "Bird (peacock, parrot, owl)",
+        "Bull/Buffalo"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Fire/Flames/Lava",
+        "Nature/Flowers/Trees",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2090,
+      "output_tokens": 295,
+      "images_used": 0
+    }
+  ],
+  "Masai Mara Megaways": [
+    {
+      "art_theme": "Savanna/Wildlife",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Earthy (greens, browns, natural)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2094,
+      "output_tokens": 202,
+      "images_used": 0
+    }
+  ],
+  "Fa Fa Babies 2": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Sea Creatures (fish, octopus, shark)",
+        "Dragon",
+        "Mythical Creature (phoenix, unicorn, griffin)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Animals (as reel elements, not characters)",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Vehicles (ships, planes, cars)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          4
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          4,
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2152,
+      "output_tokens": 348,
+      "images_used": 0
+    }
+  ],
+  "La Mafia Heist": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Heist/Robbery/Escape",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2046,
+      "output_tokens": 188,
+      "images_used": 0
+    }
+  ],
+  "Geese With Attitude": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "Bird (peacock, parrot, owl)"
+      ],
+      "art_elements": [
+        "Dice/Cards/Casino Items",
+        "Musical Instruments"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Music/Performance/Concert",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2014,
+      "output_tokens": 185,
+      "images_used": 0
+    }
+  ],
+  "Cash Machine": [
+    {
+      "art_theme": "Casino Floor",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": "Minimalist/Classic",
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 3,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2001,
+      "output_tokens": 199,
+      "images_used": 0
+    }
+  ],
+  "Case Closed": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Books/Scrolls/Maps"
+      ],
+      "art_mood": "Dark/Mysterious",
+      "art_narrative": "Crime/Mystery/Detective",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          4,
+          4
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1892,
+      "output_tokens": 181,
+      "images_used": 0
+    }
+  ],
+  "Big Catch Bass Fishing Christmas Jackpot Royale": [
+    {
+      "art_theme": "Festive/Holiday",
+      "art_characters": [
+        "Cartoon/Mascot Character",
+        "Sea Creatures (fish, octopus, shark)",
+        "Explorer/Adventurer"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Fishing/Tackle/Bait (rods, hooks, nets)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Vehicles (ships, planes, cars)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Festive/Holiday/Celebratory",
+      "art_narrative": "Fishing/Angling",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          4,
+          3
+        ],
+        "elements": [
+          5,
+          5,
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2042,
+      "output_tokens": 326,
+      "images_used": 0
+    }
+  ],
+  "Tombstone": [
+    {
+      "art_theme": "Wild West/Frontier",
+      "art_characters": [
+        "Cowboy/Sheriff"
+      ],
+      "art_elements": [
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Crime/Mystery/Detective",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2171,
+      "output_tokens": 199,
+      "images_used": 0
+    }
+  ],
+  "Great Balloon Adventure": [
+    {
+      "art_theme": "Sky/Clouds",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Vehicles (ships, planes, cars)"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          3
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1574,
+      "output_tokens": 169,
+      "images_used": 0
+    }
+  ],
+  "Twin Spin Xxxtreme": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1928,
+      "output_tokens": 179,
+      "images_used": 0
+    }
+  ],
+  "Monopoly Big Event": [
+    {
+      "art_theme": "Casino Floor",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Dice/Cards/Casino Items"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 3,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2028,
+      "output_tokens": 190,
+      "images_used": 0
+    }
+  ],
+  "Diamond Mystery 40 Charming 7s": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Gems/Jewels/Crystals",
+        "Stars/Sparkles/Cosmic",
+        "Fruits (cherry, lemon, watermelon)"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1565,
+      "output_tokens": 237,
+      "images_used": 0
+    }
+  ],
+  "Tsai Shens Gift": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Cartoon/Mascot Character"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Animals (as reel elements, not characters)",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          5,
+          3
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2042,
+      "output_tokens": 267,
+      "images_used": 0
+    }
+  ],
+  "Mystic Spirits": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": "Earthy (greens, browns, natural)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5,
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1813,
+      "output_tokens": 217,
+      "images_used": 0
+    }
+  ],
+  "Charming Lady Deluxe 10 Win Ways": [
+    {
+      "art_theme": "Fantasy/Fairy Tale",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Magic Show/Sorcery",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          3
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1877,
+      "output_tokens": 184,
+      "images_used": 0
+    }
+  ],
+  "Stormforged": [
+    {
+      "art_theme": "Norse/Viking Realm",
+      "art_characters": [
+        "Viking/Norse Warrior",
+        "Bird (peacock, parrot, owl)",
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Weapons/Armor (swords, shields)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Fire/Flames/Lava",
+        "Lightning/Thunder/Electricity",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Battle/Combat/War",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          4,
+          5,
+          4
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2223,
+      "output_tokens": 348,
+      "images_used": 0
+    }
+  ],
+  "Monkeys Journey": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Monkey/Ape"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1941,
+      "output_tokens": 191,
+      "images_used": 0
+    }
+  ],
+  "Cup Glory": [
+    {
+      "art_theme": "Urban/Modern City",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sports Equipment (balls, trophies)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Competition/Tournament/Race",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1894,
+      "output_tokens": 170,
+      "images_used": 0
+    }
+  ],
+  "Bigger Piggy Bank": [
+    {
+      "art_theme": "Farm/Countryside",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2110,
+      "output_tokens": 190,
+      "images_used": 0
+    }
+  ],
+  "Win A Beest": [
+    {
+      "art_theme": "Savanna/Wildlife",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1228,
+      "output_tokens": 192,
+      "images_used": 0
+    }
+  ],
+  "Magic Stars 3": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Stars/Sparkles/Cosmic",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          4,
+          5,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1804,
+      "output_tokens": 220,
+      "images_used": 0
+    }
+  ],
+  "Golden Ram": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "Greek/Roman God"
+      ],
+      "art_elements": [
+        "Musical Instruments",
+        "Weapons/Armor (swords, shields)",
+        "Fruits (cherry, lemon, watermelon)",
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5
+        ],
+        "elements": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2016,
+      "output_tokens": 272,
+      "images_used": 0
+    }
+  ],
+  "Galaxy Gold Cashstacks Gold": [
+    {
+      "art_theme": "Outer Space",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2126,
+      "output_tokens": 221,
+      "images_used": 0
+    }
+  ],
+  "Superstars": [
+    {
+      "art_theme": "Casino Floor",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Dice/Cards/Casino Items",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          3
+        ],
+        "mood": 3,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1872,
+      "output_tokens": 189,
+      "images_used": 0
+    }
+  ],
+  "Wild Frames": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Gems/Jewels/Crystals",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1708,
+      "output_tokens": 241,
+      "images_used": 0
+    }
+  ],
+  "Valkyrie Queen": [
+    {
+      "art_theme": "Norse/Viking Realm",
+      "art_characters": [
+        "Viking/Norse Warrior",
+        "Bird (peacock, parrot, owl)",
+        "Mythical Creature (phoenix, unicorn, griffin)"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Animals (as reel elements, not characters)",
+        "Weapons/Armor (swords, shields)",
+        "Vehicles (ships, planes, cars)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          4,
+          4
+        ],
+        "elements": [
+          4,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1429,
+      "output_tokens": 295,
+      "images_used": 0
+    }
+  ],
+  "Rick And Morty Wubba Lubba Dub Dub Jackpot Royale": [
+    {
+      "art_theme": "Outer Space",
+      "art_characters": [
+        "Celebrity/Licensed Character",
+        "Cartoon/Mascot Character",
+        "King/Queen/Royalty"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Magic/Spells (wands, potions, orbs)",
+        "Vehicles (ships, planes, cars)",
+        "Fruits (cherry, lemon, watermelon)"
+      ],
+      "art_mood": "Cartoon/Playful/Fun",
+      "art_narrative": "Branded/Licensed Story (TV, movie, celebrity)",
+      "art_style": "Cartoon/Illustrated",
+      "art_color_tone": "Bright/Vibrant (saturated, neon)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5,
+          5
+        ],
+        "elements": [
+          4,
+          4,
+          3,
+          3
+        ],
+        "mood": 5,
+        "narrative": 5,
+        "style": 4,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2026,
+      "output_tokens": 270,
+      "images_used": 0
+    }
+  ],
+  "Wonder Whirl": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1872,
+      "output_tokens": 176,
+      "images_used": 0
+    }
+  ],
+  "Monopoly Grand Hotel": [
+    {
+      "art_theme": "Casino Floor",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Dice/Cards/Casino Items"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2063,
+      "output_tokens": 186,
+      "images_used": 0
+    }
+  ],
+  "Santa Pays": [
+    {
+      "art_theme": "Festive/Holiday",
+      "art_characters": [
+        "Cartoon/Mascot Character"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Festive/Holiday/Celebratory",
+      "art_narrative": "Celebration/Festival/Party",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4,
+          3
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1951,
+      "output_tokens": 200,
+      "images_used": 0
+    }
+  ],
+  "Slice Of Midnight": [
+    {
+      "art_theme": "Haunted Manor/Graveyard",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Magic/Spells (wands, potions, orbs)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Spooky/Horror/Creepy",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Dark (blacks, deep tones, shadows)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          4,
+          4
+        ],
+        "mood": 5,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 989,
+      "output_tokens": 211,
+      "images_used": 0
+    }
+  ],
+  "Gold Stacks 88 Royal Monkey": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Monkey/Ape"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Lucky Charms (horseshoe, clover, coin)"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1650,
+      "output_tokens": 205,
+      "images_used": 0
+    }
+  ],
+  "Shah Mat": [
+    {
+      "art_theme": "Ancient Temple/Ruins",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Ancient Artifacts (scrolls, amulets, masks)"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1919,
+      "output_tokens": 174,
+      "images_used": 0
+    }
+  ],
+  "Triple Gold": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Gold Coins/Treasure",
+        "Fruits (cherry, lemon, watermelon)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1858,
+      "output_tokens": 226,
+      "images_used": 0
+    }
+  ],
+  "Bubbly Wild Fizz": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Water/Waves/Rain"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          3,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1836,
+      "output_tokens": 191,
+      "images_used": 0
+    }
+  ],
+  "Vegas Fiesta Grand": [
+    {
+      "art_theme": "Mexican/Latin Village",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Dice/Cards/Casino Items",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1944,
+      "output_tokens": 205,
+      "images_used": 0
+    }
+  ],
+  "Dragons Mirror": [
+    {
+      "art_theme": "Fantasy/Fairy Tale",
+      "art_characters": [
+        "Dragon"
+      ],
+      "art_elements": [
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2088,
+      "output_tokens": 170,
+      "images_used": 0
+    }
+  ],
+  "Rich Little Hens Founding Feathers": [
+    {
+      "art_theme": "Farm/Countryside",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Tools/Construction",
+        "Gold Coins/Treasure",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          3
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2090,
+      "output_tokens": 213,
+      "images_used": 0
+    }
+  ],
+  "Giga Match Moolah": [
+    {
+      "art_theme": "Luxury/VIP",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gems/Jewels/Crystals",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1037,
+      "output_tokens": 225,
+      "images_used": 0
+    }
+  ],
+  "Wild Portals": [
+    {
+      "art_theme": "Magic/Fantasy",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Magic Show/Sorcery",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1892,
+      "output_tokens": 204,
+      "images_used": 0
+    }
+  ],
+  "Gold Standard Jackpots": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Gold Coins/Treasure",
+        "Money/Cash/Bills"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": "Minimalist/Classic",
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 3,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2080,
+      "output_tokens": 225,
+      "images_used": 0
+    }
+  ],
+  "Polar Wilds": [
+    {
+      "art_theme": "Arctic/Snow",
+      "art_characters": [
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Cool (blues, purples, silvers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2129,
+      "output_tokens": 199,
+      "images_used": 0
+    }
+  ],
+  "Moonlight Riches": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Money/Cash/Bills",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          3
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1535,
+      "output_tokens": 194,
+      "images_used": 0
+    }
+  ],
+  "9 Loaded Pots Hyperspins": [
+    {
+      "art_theme": "Irish/Celtic Highlands",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Lucky Charms (horseshoe, clover, coin)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1879,
+      "output_tokens": 205,
+      "images_used": 0
+    }
+  ],
+  "Diamond Desire Flame": [
+    {
+      "art_theme": "Tavern/Saloon",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Gems/Jewels/Crystals",
+        "Fire/Flames/Lava"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1948,
+      "output_tokens": 227,
+      "images_used": 0
+    }
+  ],
+  "Almighty Bear Megaways": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "Panda/Bear"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 3,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2073,
+      "output_tokens": 170,
+      "images_used": 0
+    }
+  ],
+  "Lucky Larry Lobstermania 2": [
+    {
+      "art_theme": "Coastal/Beach/Shore",
+      "art_characters": [
+        "Sea Creatures (fish, octopus, shark)"
+      ],
+      "art_elements": [
+        "Water/Waves/Rain",
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Vehicles (ships, planes, cars)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Fishing/Angling",
+      "art_style": null,
+      "art_color_tone": "Cool (blues, purples, silvers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1088,
+      "output_tokens": 249,
+      "images_used": 0
+    }
+  ],
+  "Gladiatoro": [
+    {
+      "art_theme": "Circus/Carnival",
+      "art_characters": [
+        "Explorer/Adventurer",
+        "Bull/Buffalo"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure",
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Competition/Tournament/Race",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3,
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1988,
+      "output_tokens": 212,
+      "images_used": 0
+    }
+  ],
+  "Stallion Kingdom": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Earthy (greens, browns, natural)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2070,
+      "output_tokens": 222,
+      "images_used": 0
+    }
+  ],
+  "Wishwood": [
+    {
+      "art_theme": "Jungle/Rainforest",
+      "art_characters": [
+        "Bird (peacock, parrot, owl)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Magic/Spells (wands, potions, orbs)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": "Earthy (greens, browns, natural)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4,
+          5,
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2033,
+      "output_tokens": 264,
+      "images_used": 0
+    }
+  ],
+  "Bonus Bunnies": [
+    {
+      "art_theme": "Farm/Countryside",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Cartoon/Playful/Fun",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1577,
+      "output_tokens": 174,
+      "images_used": 0
+    }
+  ],
+  "Prized Panda": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Panda/Bear"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Lucky Charms (horseshoe, clover, coin)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1614,
+      "output_tokens": 192,
+      "images_used": 0
+    }
+  ],
+  "Immortails Of Egypt": [
+    {
+      "art_theme": "Ancient Temple/Ruins",
+      "art_characters": [
+        "Mythical Creature (phoenix, unicorn, griffin)",
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Animals (as reel elements, not characters)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          4
+        ],
+        "elements": [
+          4,
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1892,
+      "output_tokens": 253,
+      "images_used": 0
+    }
+  ],
+  "Cairo Link And Win": [
+    {
+      "art_theme": "Ancient Temple/Ruins",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Ancient Artifacts (scrolls, amulets, masks)"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          4,
+          4
+        ],
+        "mood": 3,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1176,
+      "output_tokens": 206,
+      "images_used": 0
+    }
+  ],
+  "Green Machine Supreme": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Sevens/Bars/Bells (classic)"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2295,
+      "output_tokens": 192,
+      "images_used": 0
+    }
+  ],
+  "Slingo Maximus Soldier Of Rome": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "Knight/Crusader"
+      ],
+      "art_elements": [
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Vehicles (ships, planes, cars)",
+        "Weapons/Armor (swords, shields)",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Battle/Combat/War",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2064,
+      "output_tokens": 226,
+      "images_used": 0
+    }
+  ],
+  "Wellspring Eternal": [
+    {
+      "art_theme": "Fantasy/Fairy Tale",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Magic Show/Sorcery",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1791,
+      "output_tokens": 197,
+      "images_used": 0
+    }
+  ],
+  "Knight Fight": [
+    {
+      "art_theme": "Medieval Castle",
+      "art_characters": [
+        "Dragon",
+        "Knight/Crusader"
+      ],
+      "art_elements": [
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Animals (as reel elements, not characters)",
+        "Weapons/Armor (swords, shields)",
+        "Fire/Flames/Lava"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Quest/Adventure/Journey",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          4,
+          3
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2094,
+      "output_tokens": 255,
+      "images_used": 0
+    }
+  ],
+  "Rakin Bacon": [
+    {
+      "art_theme": "Luxury/VIP",
+      "art_characters": [
+        "Domestic Animals (cat, dog, horse, pig)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure",
+        "Gems/Jewels/Crystals",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1789,
+      "output_tokens": 254,
+      "images_used": 0
+    }
+  ],
+  "Lucky Wu": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Lucky Charms (horseshoe, clover, coin)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          3
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1946,
+      "output_tokens": 176,
+      "images_used": 0
+    }
+  ],
+  "Blazing Luck": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Gems/Jewels/Crystals",
+        "Fruits (cherry, lemon, watermelon)",
+        "Lucky Charms (horseshoe, clover, coin)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Fire/Flames/Lava",
+        "Sevens/Bars/Bells (classic)",
+        "Dice/Cards/Casino Items",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          3
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1557,
+      "output_tokens": 334,
+      "images_used": 0
+    }
+  ],
+  "Space Spins": [
+    {
+      "art_theme": "Outer Space",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Cool (blues, purples, silvers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 3,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2038,
+      "output_tokens": 179,
+      "images_used": 0
+    }
+  ],
+  "Bigger Size Fishin": [
+    {
+      "art_theme": "Lakeside/River/Fishing Dock",
+      "art_characters": [
+        "Explorer/Adventurer",
+        "Sea Creatures (fish, octopus, shark)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Animals (as reel elements, not characters)",
+        "Fishing/Tackle/Bait (rods, hooks, nets)"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Fishing/Angling",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4,
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1035,
+      "output_tokens": 242,
+      "images_used": 0
+    }
+  ],
+  "Crazy Chilli": [
+    {
+      "art_theme": "Mexican/Latin Village",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Food/Candy/Drinks",
+        "Money/Cash/Bills",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2158,
+      "output_tokens": 223,
+      "images_used": 0
+    }
+  ],
+  "Cosmic Convoy": [
+    {
+      "art_theme": "Outer Space",
+      "art_characters": [
+        "Robot/Alien"
+      ],
+      "art_elements": [
+        "Vehicles (ships, planes, cars)",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Cool (blues, purples, silvers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          5
+        ],
+        "mood": 3,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1731,
+      "output_tokens": 192,
+      "images_used": 0
+    }
+  ],
+  "Chili Chili Fire": [
+    {
+      "art_theme": "Mexican/Latin Village",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Musical Instruments",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Fire/Flames/Lava",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Festive/Holiday/Celebratory",
+      "art_narrative": "Celebration/Festival/Party",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          5,
+          4,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1836,
+      "output_tokens": 261,
+      "images_used": 0
+    }
+  ],
+  "Split Dragon": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "Dragon"
+      ],
+      "art_elements": [],
+      "art_mood": "Mystical/Magical/Ethereal",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1714,
+      "output_tokens": 171,
+      "images_used": 0
+    }
+  ],
+  "Olympus Raging Megaways": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "Greek/Roman God",
+        "Mythical Creature (phoenix, unicorn, griffin)",
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Musical Instruments",
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5,
+          5,
+          4
+        ],
+        "elements": [
+          4,
+          4,
+          5
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1088,
+      "output_tokens": 273,
+      "images_used": 0
+    }
+  ],
+  "Let It Burn": [
+    {
+      "art_theme": "Treasure Cave/Mine",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Gems/Jewels/Crystals",
+        "Fire/Flames/Lava"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          5
+        ],
+        "mood": 4,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 4
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2016,
+      "output_tokens": 205,
+      "images_used": 0
+    }
+  ],
+  "Very Fruity": [
+    {
+      "art_theme": "Fruit Machine",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Stars/Sparkles/Cosmic",
+        "Fruits (cherry, lemon, watermelon)"
+      ],
+      "art_mood": "Bright/Fun/Cheerful",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1544,
+      "output_tokens": 193,
+      "images_used": 0
+    }
+  ],
+  "Majestic North": [
+    {
+      "art_theme": "Prairie/Plains/Grassland",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Playing Card Values (A, K, Q, J, 10)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Serene/Calm/Peaceful",
+      "art_narrative": "Discovery/Exploration",
+      "art_style": null,
+      "art_color_tone": "Earthy (greens, browns, natural)",
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2067,
+      "output_tokens": 221,
+      "images_used": 0
+    }
+  ],
+  "9 Coins": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2109,
+      "output_tokens": 187,
+      "images_used": 0
+    }
+  ],
+  "Giga Match Phantasmal": [
+    {
+      "art_theme": "Haunted Manor/Graveyard",
+      "art_characters": [
+        "Cartoon/Mascot Character",
+        "Monster/Demon"
+      ],
+      "art_elements": [
+        "Religious/Spiritual Symbols",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Spooky/Horror/Creepy",
+      "art_narrative": "Survival/Horror",
+      "art_style": null,
+      "art_color_tone": "Dark (blacks, deep tones, shadows)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4,
+          3
+        ],
+        "elements": [
+          4,
+          3
+        ],
+        "mood": 5,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1977,
+      "output_tokens": 223,
+      "images_used": 0
+    }
+  ],
+  "Wild Bazaar": [
+    {
+      "art_theme": "Treasure Cave/Mine",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Gold Coins/Treasure"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Treasure Hunt/Gold Rush",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2172,
+      "output_tokens": 169,
+      "images_used": 0
+    }
+  ],
+  "Burning Stars 3 Halloween": [
+    {
+      "art_theme": "Festive/Holiday",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Fire/Flames/Lava",
+        "Stars/Sparkles/Cosmic"
+      ],
+      "art_mood": "Spooky/Horror/Creepy",
+      "art_narrative": "Celebration/Festival/Party",
+      "art_style": null,
+      "art_color_tone": "Dark (blacks, deep tones, shadows)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1447,
+      "output_tokens": 202,
+      "images_used": 0
+    }
+  ],
+  "Diamond Cash Mighty Elephant": [
+    {
+      "art_theme": "Savanna/Wildlife",
+      "art_characters": [
+        "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+      ],
+      "art_elements": [
+        "Money/Cash/Bills",
+        "Gems/Jewels/Crystals",
+        "Animals (as reel elements, not characters)",
+        "Ancient Artifacts (scrolls, amulets, masks)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Adventurous/Exciting",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": "Warm (golds, reds, ambers)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4,
+          4,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1953,
+      "output_tokens": 237,
+      "images_used": 0
+    }
+  ],
+  "Platinum Goddess Extreme": [
+    {
+      "art_theme": "Ancient Greece",
+      "art_characters": [
+        "Greek/Roman God"
+      ],
+      "art_elements": [
+        "Playing Card Values (A, K, Q, J, 10)"
+      ],
+      "art_mood": "Epic/Grand/Heroic",
+      "art_narrative": "Cultural/Mythological Story",
+      "art_style": null,
+      "art_color_tone": "Metallic/Jewel Tones (rich, shimmering)",
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 3
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1999,
+      "output_tokens": 187,
+      "images_used": 0
+    }
+  ],
+  "Double Lotus": [
+    {
+      "art_theme": "Classic Slots",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Nature/Flowers/Trees"
+      ],
+      "art_mood": "Retro/Nostalgic/Classic",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          5
+        ],
+        "elements": [
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1456,
+      "output_tokens": 193,
+      "images_used": 0
+    }
+  ],
+  "Wild Hot Wasabi": [
+    {
+      "art_theme": "Asian Temple/Garden",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Food/Candy/Drinks"
+      ],
+      "art_mood": "Intense/Action/Thrilling",
+      "art_narrative": "No Narrative (classic/abstract)",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 4,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5
+        ],
+        "mood": 3,
+        "narrative": 3,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2239,
+      "output_tokens": 171,
+      "images_used": 0
+    }
+  ],
+  "Hot Hot 777": [
+    {
+      "art_theme": "Casino Floor",
+      "art_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "art_elements": [
+        "Sevens/Bars/Bells (classic)",
+        "Dice/Cards/Casino Items",
+        "Food/Candy/Drinks"
+      ],
+      "art_mood": "Luxurious/Elegant/Premium",
+      "art_narrative": "Wealth/Fortune/Prosperity",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4
+        ],
+        "elements": [
+          5,
+          5,
+          4
+        ],
+        "mood": 4,
+        "narrative": 4,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 2095,
+      "output_tokens": 210,
+      "images_used": 0
+    }
+  ],
+  "The Wild Kiss": [
+    {
+      "art_theme": "Fantasy/Fairy Tale",
+      "art_characters": [
+        "King/Queen/Royalty"
+      ],
+      "art_elements": [
+        "Animals (as reel elements, not characters)",
+        "Magic/Spells (wands, potions, orbs)"
+      ],
+      "art_mood": "Romantic/Dreamy",
+      "art_narrative": "Fairy Tale/Storybook",
+      "art_style": null,
+      "art_color_tone": null,
+      "_confidence": {
+        "theme": 5,
+        "characters": [
+          4,
+          4
+        ],
+        "elements": [
+          4,
+          5
+        ],
+        "mood": 4,
+        "narrative": 5,
+        "style": 1,
+        "color_tone": 1
+      },
+      "art_confidence": "text_inferred"
+    },
+    {
+      "input_tokens": 1940,
+      "output_tokens": 231,
+      "images_used": 0
+    }
+  ]
+}

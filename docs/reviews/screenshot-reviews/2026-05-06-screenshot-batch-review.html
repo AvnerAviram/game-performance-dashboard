@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html><head><title>Screenshot Review - 2026-05-06</title>
+<style>
+body{font-family:system-ui;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#fff}
+.controls{margin:20px 0;padding:15px;background:#16213e;border-radius:8px;display:flex;gap:15px;align-items:center}
+.controls button{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-weight:600}
+.btn-export{background:#4CAF50;color:#fff}
+.btn-export:hover{background:#45a049}
+.btn-clear{background:#666;color:#fff}
+.stats{margin:10px 0;padding:15px;background:#16213e;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:15px}
+.card{background:#16213e;border-radius:8px;overflow:hidden;border:3px solid transparent;position:relative;cursor:pointer;transition:all 0.2s}
+.card:hover{border-color:#0f3460;transform:scale(1.02)}
+.card.rejected{border-color:#f44336;opacity:0.6}
+.card.rejected::after{content:'NOT GAMEPLAY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(244,67,54,0.9);color:#fff;padding:8px 16px;border-radius:4px;font-weight:bold;font-size:14px}
+.card img{width:100%;height:180px;object-fit:cover}
+.card .info{padding:8px 12px;display:flex;justify-content:space-between;align-items:center}
+.card .name{font-weight:600;font-size:13px;flex:1}
+.card .meta{font-size:11px;color:#888}
+.counter{font-size:14px;color:#4CAF50;font-weight:bold}
+</style></head><body>
+<h1>Screenshot Review (251 new)</h1>
+<div class="controls">
+  <span>Click a screenshot to mark as NOT gameplay. Click again to undo.</span>
+  <span class="counter">Rejected: <span id="count">0</span></span>
+  <button class="btn-export" onclick="exportResults()">Export Results</button>
+  <button class="btn-clear" onclick="clearAll()">Clear All</button>
+</div>
+<div class="stats">
+  <strong>Acquired today:</strong> 251 |
+  <strong>Avg size:</strong> 554KB |
+  <strong>Total on disk:</strong> 2870
+</div>
+<div class="grid">
+<div class="card" data-file="Queen-Of-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Queen-Of-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Queen Of Riches</div>
+    <div class="meta">263KB</div>
+  </div>
+</div>
+<div class="card" data-file="Apollo-God-Of-The-Sun.jpg" onclick="toggle(this)">
+  <img src="screenshots/Apollo-God-Of-The-Sun.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Apollo God Of The Sun</div>
+    <div class="meta">167KB</div>
+  </div>
+</div>
+<div class="card" data-file="Betti-The-Yetti.jpg" onclick="toggle(this)">
+  <img src="screenshots/Betti-The-Yetti.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Betti The Yetti</div>
+    <div class="meta">143KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spirit-Of-The-Beast.jpg" onclick="toggle(this)">
+  <img src="screenshots/Spirit-Of-The-Beast.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Spirit Of The Beast</div>
+    <div class="meta">144KB</div>
+  </div>
+</div>
+<div class="card" data-file="Carnival-In-Rio.jpg" onclick="toggle(this)">
+  <img src="screenshots/Carnival-In-Rio.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Carnival In Rio</div>
+    <div class="meta">256KB</div>
+  </div>
+</div>
+<div class="card" data-file="Gold-Gold-Gold-Miners-Way.jpg" onclick="toggle(this)">
+  <img src="screenshots/Gold-Gold-Gold-Miners-Way.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Gold Gold Gold Miners Way</div>
+    <div class="meta">145KB</div>
+  </div>
+</div>
+<div class="card" data-file="Play-With-The-Devil.jpg" onclick="toggle(this)">
+  <img src="screenshots/Play-With-The-Devil.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Play With The Devil</div>
+    <div class="meta">195KB</div>
+  </div>
+</div>
+<div class="card" data-file="East-Coast-Vs-West-Coast.jpg" onclick="toggle(this)">
+  <img src="screenshots/East-Coast-Vs-West-Coast.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">East Coast Vs West Coast</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cai-Shens-Pots-Of-Wealth-Megaways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cai-Shens-Pots-Of-Wealth-Megaways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cai Shens Pots Of Wealth Megaways</div>
+    <div class="meta">148KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dragons-Blessings-Prosperity.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dragons-Blessings-Prosperity.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dragons Blessings Prosperity</div>
+    <div class="meta">144KB</div>
+  </div>
+</div>
+<div class="card" data-file="Smash-The-Pig.jpg" onclick="toggle(this)">
+  <img src="screenshots/Smash-The-Pig.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Smash The Pig</div>
+    <div class="meta">213KB</div>
+  </div>
+</div>
+<div class="card" data-file="Hundred-Or-Grand.jpg" onclick="toggle(this)">
+  <img src="screenshots/Hundred-Or-Grand.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Hundred Or Grand</div>
+    <div class="meta">195KB</div>
+  </div>
+</div>
+<div class="card" data-file="Goddess-Of-The-Nile.jpg" onclick="toggle(this)">
+  <img src="screenshots/Goddess-Of-The-Nile.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Goddess Of The Nile</div>
+    <div class="meta">240KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dead-Canary.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dead-Canary.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dead Canary</div>
+    <div class="meta">259KB</div>
+  </div>
+</div>
+<div class="card" data-file="Hearts-And-Horns.jpg" onclick="toggle(this)">
+  <img src="screenshots/Hearts-And-Horns.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Hearts And Horns</div>
+    <div class="meta">244KB</div>
+  </div>
+</div>
+<div class="card" data-file="Loki-Wild-Tiles.jpg" onclick="toggle(this)">
+  <img src="screenshots/Loki-Wild-Tiles.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Loki Wild Tiles</div>
+    <div class="meta">141KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fireworks-Megaways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fireworks-Megaways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fireworks Megaways</div>
+    <div class="meta">166KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mega-Fire-Blaze-Emperor-Of-Rome.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mega-Fire-Blaze-Emperor-Of-Rome.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mega Fire Blaze Emperor Of Rome</div>
+    <div class="meta">220KB</div>
+  </div>
+</div>
+<div class="card" data-file="Age-Of-The-Gods-Wheels-Of-Olympus.jpg" onclick="toggle(this)">
+  <img src="screenshots/Age-Of-The-Gods-Wheels-Of-Olympus.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Age Of The Gods Wheels Of Olympus</div>
+    <div class="meta">266KB</div>
+  </div>
+</div>
+<div class="card" data-file="10000-Bc-Doublemax.jpg" onclick="toggle(this)">
+  <img src="screenshots/10000-Bc-Doublemax.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">10000 Bc Doublemax</div>
+    <div class="meta">337KB</div>
+  </div>
+</div>
+<div class="card" data-file="Megajackpots-Golden-Goddess.jpg" onclick="toggle(this)">
+  <img src="screenshots/Megajackpots-Golden-Goddess.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Megajackpots Golden Goddess</div>
+    <div class="meta">188KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dragon-Spin-Cross-Link-Fire.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dragon-Spin-Cross-Link-Fire.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dragon Spin Cross Link Fire</div>
+    <div class="meta">205KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cash-Or-Nothing.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cash-Or-Nothing.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cash Or Nothing</div>
+    <div class="meta">174KB</div>
+  </div>
+</div>
+<div class="card" data-file="Lock-And-Hit-Red-Knight.jpg" onclick="toggle(this)">
+  <img src="screenshots/Lock-And-Hit-Red-Knight.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Lock And Hit Red Knight</div>
+    <div class="meta">256KB</div>
+  </div>
+</div>
+<div class="card" data-file="7-Shields-Of-Fortune.jpg" onclick="toggle(this)">
+  <img src="screenshots/7-Shields-Of-Fortune.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">7 Shields Of Fortune</div>
+    <div class="meta">399KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wild-Wild-7s.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wild-Wild-7s.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wild Wild 7s</div>
+    <div class="meta">193KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mercy-Of-The-Gods.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mercy-Of-The-Gods.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mercy Of The Gods</div>
+    <div class="meta">196KB</div>
+  </div>
+</div>
+<div class="card" data-file="San-Quentin-Xways.jpg" onclick="toggle(this)">
+  <img src="screenshots/San-Quentin-Xways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">San Quentin Xways</div>
+    <div class="meta">223KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ravens-Reveal.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ravens-Reveal.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ravens Reveal</div>
+    <div class="meta">232KB</div>
+  </div>
+</div>
+<div class="card" data-file="Minting-It-Hold-And-Win.jpg" onclick="toggle(this)">
+  <img src="screenshots/Minting-It-Hold-And-Win.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Minting It Hold And Win</div>
+    <div class="meta">242KB</div>
+  </div>
+</div>
+<div class="card" data-file="Space-Invaders-Win-And-Spin.jpg" onclick="toggle(this)">
+  <img src="screenshots/Space-Invaders-Win-And-Spin.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Space Invaders Win And Spin</div>
+    <div class="meta">209KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wish-Upon-A-Star.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wish-Upon-A-Star.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wish Upon A Star</div>
+    <div class="meta">233KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fire-Blaze-Tundra-Wolf.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fire-Blaze-Tundra-Wolf.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fire Blaze Tundra Wolf</div>
+    <div class="meta">299KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cops-N-Robbers-Big-Money-Trick-Or-Treat.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cops-N-Robbers-Big-Money-Trick-Or-Treat.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cops N Robbers Big Money Trick Or Treat</div>
+    <div class="meta">172KB</div>
+  </div>
+</div>
+<div class="card" data-file="Euphoria-Megaways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Euphoria-Megaways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Euphoria Megaways</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Twice-The-Diamonds.jpg" onclick="toggle(this)">
+  <img src="screenshots/Twice-The-Diamonds.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Twice The Diamonds</div>
+    <div class="meta">242KB</div>
+  </div>
+</div>
+<div class="card" data-file="Halloween-Cashpots.jpg" onclick="toggle(this)">
+  <img src="screenshots/Halloween-Cashpots.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Halloween Cashpots</div>
+    <div class="meta">239KB</div>
+  </div>
+</div>
+<div class="card" data-file="A-Visit-From-St-Nick.jpg" onclick="toggle(this)">
+  <img src="screenshots/A-Visit-From-St-Nick.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">A Visit From St Nick</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Egglink-100x-Ra.jpg" onclick="toggle(this)">
+  <img src="screenshots/Egglink-100x-Ra.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Egglink 100x Ra</div>
+    <div class="meta">190KB</div>
+  </div>
+</div>
+<div class="card" data-file="Professor-Clanks-10k-Ways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Professor-Clanks-10k-Ways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Professor Clanks 10k Ways</div>
+    <div class="meta">95KB</div>
+  </div>
+</div>
+<div class="card" data-file="Devils-Lock.jpg" onclick="toggle(this)">
+  <img src="screenshots/Devils-Lock.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Devils Lock</div>
+    <div class="meta">178KB</div>
+  </div>
+</div>
+<div class="card" data-file="Big-Wolf-Bonus-Booster.jpg" onclick="toggle(this)">
+  <img src="screenshots/Big-Wolf-Bonus-Booster.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Big Wolf Bonus Booster</div>
+    <div class="meta">174KB</div>
+  </div>
+</div>
+<div class="card" data-file="Farmtastic.jpg" onclick="toggle(this)">
+  <img src="screenshots/Farmtastic.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Farmtastic</div>
+    <div class="meta">142KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mega-Fire-Blaze-Dwarves-And-Goblins.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mega-Fire-Blaze-Dwarves-And-Goblins.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mega Fire Blaze Dwarves And Goblins</div>
+    <div class="meta">213KB</div>
+  </div>
+</div>
+<div class="card" data-file="A-Fistful-Of-Wilds.jpg" onclick="toggle(this)">
+  <img src="screenshots/A-Fistful-Of-Wilds.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">A Fistful Of Wilds</div>
+    <div class="meta">269KB</div>
+  </div>
+</div>
+<div class="card" data-file="Book-Of-Slingo.jpg" onclick="toggle(this)">
+  <img src="screenshots/Book-Of-Slingo.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Book Of Slingo</div>
+    <div class="meta">250KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fortunes-Of-The-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fortunes-Of-The-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fortunes Of The Dead</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fire-Blaze-Blue-Wizard-Megaways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fire-Blaze-Blue-Wizard-Megaways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fire Blaze Blue Wizard Megaways</div>
+    <div class="meta">320KB</div>
+  </div>
+</div>
+<div class="card" data-file="10000-Bc-Jurassic-10k-Ways.jpg" onclick="toggle(this)">
+  <img src="screenshots/10000-Bc-Jurassic-10k-Ways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">10000 Bc Jurassic 10k Ways</div>
+    <div class="meta">102KB</div>
+  </div>
+</div>
+<div class="card" data-file="Santas-Winning-Wishlist.jpg" onclick="toggle(this)">
+  <img src="screenshots/Santas-Winning-Wishlist.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Santas Winning Wishlist</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Call-Of-The-Wild.jpg" onclick="toggle(this)">
+  <img src="screenshots/Call-Of-The-Wild.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Call Of The Wild</div>
+    <div class="meta">211KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mighty-Symbols-Jokers-Santas-Jackpots.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mighty-Symbols-Jokers-Santas-Jackpots.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mighty Symbols Jokers Santas Jackpots</div>
+    <div class="meta">99KB</div>
+  </div>
+</div>
+<div class="card" data-file="Shadow-Of-The-Panther.jpg" onclick="toggle(this)">
+  <img src="screenshots/Shadow-Of-The-Panther.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Shadow Of The Panther</div>
+    <div class="meta">211KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spartacus-Gladiator-Of-Rome.jpg" onclick="toggle(this)">
+  <img src="screenshots/Spartacus-Gladiator-Of-Rome.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Spartacus Gladiator Of Rome</div>
+    <div class="meta">280KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spin-Vention.jpg" onclick="toggle(this)">
+  <img src="screenshots/Spin-Vention.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Spin Vention</div>
+    <div class="meta">132KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cops-N-Robbers-Big-Money-Christmas.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cops-N-Robbers-Big-Money-Christmas.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cops N Robbers Big Money Christmas</div>
+    <div class="meta">169KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cake-And-Ice-Cream.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cake-And-Ice-Cream.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cake And Ice Cream</div>
+    <div class="meta">171KB</div>
+  </div>
+</div>
+<div class="card" data-file="Trophy-Fish.jpg" onclick="toggle(this)">
+  <img src="screenshots/Trophy-Fish.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Trophy Fish</div>
+    <div class="meta">190KB</div>
+  </div>
+</div>
+<div class="card" data-file="Treasures-Of-Troy.jpg" onclick="toggle(this)">
+  <img src="screenshots/Treasures-Of-Troy.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Treasures Of Troy</div>
+    <div class="meta">90KB</div>
+  </div>
+</div>
+<div class="card" data-file="Egglink-Astro-Cat.jpg" onclick="toggle(this)">
+  <img src="screenshots/Egglink-Astro-Cat.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Egglink Astro Cat</div>
+    <div class="meta">191KB</div>
+  </div>
+</div>
+<div class="card" data-file="Quick-Hit-Ultra-Pays-Eagles-Peak.jpg" onclick="toggle(this)">
+  <img src="screenshots/Quick-Hit-Ultra-Pays-Eagles-Peak.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Quick Hit Ultra Pays Eagles Peak</div>
+    <div class="meta">239KB</div>
+  </div>
+</div>
+<div class="card" data-file="King-Maker.jpg" onclick="toggle(this)">
+  <img src="screenshots/King-Maker.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">King Maker</div>
+    <div class="meta">218KB</div>
+  </div>
+</div>
+<div class="card" data-file="Drakes-Treasure.jpg" onclick="toggle(this)">
+  <img src="screenshots/Drakes-Treasure.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Drakes Treasure</div>
+    <div class="meta">241KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fortune-Freespins.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fortune-Freespins.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fortune Freespins</div>
+    <div class="meta">220KB</div>
+  </div>
+</div>
+<div class="card" data-file="Billionaires-Bank.jpg" onclick="toggle(this)">
+  <img src="screenshots/Billionaires-Bank.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Billionaires Bank</div>
+    <div class="meta">133KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bull-Blitz-Roses-And-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Bull-Blitz-Roses-And-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Bull Blitz Roses And Riches</div>
+    <div class="meta">146KB</div>
+  </div>
+</div>
+<div class="card" data-file="Paddys-Golden-Fortune.jpg" onclick="toggle(this)">
+  <img src="screenshots/Paddys-Golden-Fortune.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Paddys Golden Fortune</div>
+    <div class="meta">257KB</div>
+  </div>
+</div>
+<div class="card" data-file="Crown-Of-Egypt.jpg" onclick="toggle(this)">
+  <img src="screenshots/Crown-Of-Egypt.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Crown Of Egypt</div>
+    <div class="meta">95KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wildwood-Buffalo.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wildwood-Buffalo.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wildwood Buffalo</div>
+    <div class="meta">257KB</div>
+  </div>
+</div>
+<div class="card" data-file="Truckers-Vs-Aliens.jpg" onclick="toggle(this)">
+  <img src="screenshots/Truckers-Vs-Aliens.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Truckers Vs Aliens</div>
+    <div class="meta">97KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ultra-Blazing-Fire-Link.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ultra-Blazing-Fire-Link.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ultra Blazing Fire Link</div>
+    <div class="meta">273KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bull-Blitz-Fortunes-Of-The-Orient.jpg" onclick="toggle(this)">
+  <img src="screenshots/Bull-Blitz-Fortunes-Of-The-Orient.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Bull Blitz Fortunes Of The Orient</div>
+    <div class="meta">147KB</div>
+  </div>
+</div>
+<div class="card" data-file="Megajackpots-Wheel-Of-Fortune-On-Air.jpg" onclick="toggle(this)">
+  <img src="screenshots/Megajackpots-Wheel-Of-Fortune-On-Air.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Megajackpots Wheel Of Fortune On Air</div>
+    <div class="meta">81KB</div>
+  </div>
+</div>
+<div class="card" data-file="Slingo-Deal-Or-No-Deal.jpg" onclick="toggle(this)">
+  <img src="screenshots/Slingo-Deal-Or-No-Deal.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Slingo Deal Or No Deal</div>
+    <div class="meta">292KB</div>
+  </div>
+</div>
+<div class="card" data-file="Diamond-Reels.jpg" onclick="toggle(this)">
+  <img src="screenshots/Diamond-Reels.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Diamond Reels</div>
+    <div class="meta">240KB</div>
+  </div>
+</div>
+<div class="card" data-file="Clems-Gems.jpg" onclick="toggle(this)">
+  <img src="screenshots/Clems-Gems.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Clems Gems</div>
+    <div class="meta">257KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rakin-Bacon-Jackpots-Bonus-Board.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rakin-Bacon-Jackpots-Bonus-Board.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rakin Bacon Jackpots Bonus Board</div>
+    <div class="meta">299KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Little-Piggies-World-Class-Halloween-Edition.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Little-Piggies-World-Class-Halloween-Edition.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Little Piggies World Class Halloween Edition</div>
+    <div class="meta">298KB</div>
+  </div>
+</div>
+<div class="card" data-file="Coin-Strike-Hold-And-Win.jpg" onclick="toggle(this)">
+  <img src="screenshots/Coin-Strike-Hold-And-Win.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Coin Strike Hold And Win</div>
+    <div class="meta">136KB</div>
+  </div>
+</div>
+<div class="card" data-file="Prize-Piggy-Win-And-Spin.jpg" onclick="toggle(this)">
+  <img src="screenshots/Prize-Piggy-Win-And-Spin.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Prize Piggy Win And Spin</div>
+    <div class="meta">195KB</div>
+  </div>
+</div>
+<div class="card" data-file="Secrets-Of-The-Phoenix.jpg" onclick="toggle(this)">
+  <img src="screenshots/Secrets-Of-The-Phoenix.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Secrets Of The Phoenix</div>
+    <div class="meta">121KB</div>
+  </div>
+</div>
+<div class="card" data-file="Triple-Double-Da-Vinci-Diamonds.jpg" onclick="toggle(this)">
+  <img src="screenshots/Triple-Double-Da-Vinci-Diamonds.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Triple Double Da Vinci Diamonds</div>
+    <div class="meta">318KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wheel-Of-Fortune-Triple-Extreme-Spin.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wheel-Of-Fortune-Triple-Extreme-Spin.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wheel Of Fortune Triple Extreme Spin</div>
+    <div class="meta">233KB</div>
+  </div>
+</div>
+<div class="card" data-file="Lucky-Larrys-Lobstermania-Slingo.jpg" onclick="toggle(this)">
+  <img src="screenshots/Lucky-Larrys-Lobstermania-Slingo.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Lucky Larrys Lobstermania Slingo</div>
+    <div class="meta">317KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tiger-And-Dragon.jpg" onclick="toggle(this)">
+  <img src="screenshots/Tiger-And-Dragon.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Tiger And Dragon</div>
+    <div class="meta">202KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fire-And-Roses-Joker-2-All-In.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fire-And-Roses-Joker-2-All-In.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fire And Roses Joker 2 All In</div>
+    <div class="meta">271KB</div>
+  </div>
+</div>
+<div class="card" data-file="Big-Piggy-Bank.jpg" onclick="toggle(this)">
+  <img src="screenshots/Big-Piggy-Bank.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Big Piggy Bank</div>
+    <div class="meta">126KB</div>
+  </div>
+</div>
+<div class="card" data-file="Toymaker-Magic.jpg" onclick="toggle(this)">
+  <img src="screenshots/Toymaker-Magic.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Toymaker Magic</div>
+    <div class="meta">266KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rakin-Bacon-Jackpots-Bonus-Wheel.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rakin-Bacon-Jackpots-Bonus-Wheel.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rakin Bacon Jackpots Bonus Wheel</div>
+    <div class="meta">251KB</div>
+  </div>
+</div>
+<div class="card" data-file="European-Roulette-Pro.jpg" onclick="toggle(this)">
+  <img src="screenshots/European-Roulette-Pro.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">European Roulette Pro</div>
+    <div class="meta">167KB</div>
+  </div>
+</div>
+<div class="card" data-file="Star-Trek-The-Next-Generation.jpg" onclick="toggle(this)">
+  <img src="screenshots/Star-Trek-The-Next-Generation.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Star Trek The Next Generation</div>
+    <div class="meta">806KB</div>
+  </div>
+</div>
+<div class="card" data-file="Angels-Vs-Devils.jpg" onclick="toggle(this)">
+  <img src="screenshots/Angels-Vs-Devils.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Angels Vs Devils</div>
+    <div class="meta">746KB</div>
+  </div>
+</div>
+<div class="card" data-file="Road-To-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Road-To-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Road To Riches</div>
+    <div class="meta">96KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ragnar-First-Strike.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ragnar-First-Strike.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ragnar First Strike</div>
+    <div class="meta">148KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wings-Of-Horus.png" onclick="toggle(this)">
+  <img src="screenshots/Wings-Of-Horus.png" loading="lazy">
+  <div class="info">
+    <div class="name">Wings Of Horus</div>
+    <div class="meta">460KB</div>
+  </div>
+</div>
+<div class="card" data-file="Duo-Fu-Duo-Cai-Flower-Of-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Duo-Fu-Duo-Cai-Flower-Of-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Duo Fu Duo Cai Flower Of Riches</div>
+    <div class="meta">227KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rise-Of-Ymir.png" onclick="toggle(this)">
+  <img src="screenshots/Rise-Of-Ymir.png" loading="lazy">
+  <div class="info">
+    <div class="name">Rise Of Ymir</div>
+    <div class="meta">455KB</div>
+  </div>
+</div>
+<div class="card" data-file="Marlin-Masters.png" onclick="toggle(this)">
+  <img src="screenshots/Marlin-Masters.png" loading="lazy">
+  <div class="info">
+    <div class="name">Marlin Masters</div>
+    <div class="meta">430KB</div>
+  </div>
+</div>
+<div class="card" data-file="Le-Viking.png" onclick="toggle(this)">
+  <img src="screenshots/Le-Viking.png" loading="lazy">
+  <div class="info">
+    <div class="name">Le Viking</div>
+    <div class="meta">260KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dragon-Spin-Cross-Link-Water.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dragon-Spin-Cross-Link-Water.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dragon Spin Cross Link Water</div>
+    <div class="meta">979KB</div>
+  </div>
+</div>
+<div class="card" data-file="Frkn-Bananas.png" onclick="toggle(this)">
+  <img src="screenshots/Frkn-Bananas.png" loading="lazy">
+  <div class="info">
+    <div class="name">Frkn Bananas</div>
+    <div class="meta">270KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mayan-Stackways.png" onclick="toggle(this)">
+  <img src="screenshots/Mayan-Stackways.png" loading="lazy">
+  <div class="info">
+    <div class="name">Mayan Stackways</div>
+    <div class="meta">3274KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spear-Of-Athena.png" onclick="toggle(this)">
+  <img src="screenshots/Spear-Of-Athena.png" loading="lazy">
+  <div class="info">
+    <div class="name">Spear Of Athena</div>
+    <div class="meta">427KB</div>
+  </div>
+</div>
+<div class="card" data-file="The-Count.png" onclick="toggle(this)">
+  <img src="screenshots/The-Count.png" loading="lazy">
+  <div class="info">
+    <div class="name">The Count</div>
+    <div class="meta">422KB</div>
+  </div>
+</div>
+<div class="card" data-file="Sun-Princess.png" onclick="toggle(this)">
+  <img src="screenshots/Sun-Princess.png" loading="lazy">
+  <div class="info">
+    <div class="name">Sun Princess</div>
+    <div class="meta">440KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Little-Piggies-Meal-Ticket-Christmas-Edition.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Little-Piggies-Meal-Ticket-Christmas-Edition.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Little Piggies Meal Ticket Christmas Edition</div>
+    <div class="meta">1009KB</div>
+  </div>
+</div>
+<div class="card" data-file="Steamrunners.png" onclick="toggle(this)">
+  <img src="screenshots/Steamrunners.png" loading="lazy">
+  <div class="info">
+    <div class="name">Steamrunners</div>
+    <div class="meta">336KB</div>
+  </div>
+</div>
+<div class="card" data-file="Blazin-Hot-7s-Bigger-Bonus.jpg" onclick="toggle(this)">
+  <img src="screenshots/Blazin-Hot-7s-Bigger-Bonus.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Blazin Hot 7s Bigger Bonus</div>
+    <div class="meta">169KB</div>
+  </div>
+</div>
+<div class="card" data-file="Le-Cowboy.png" onclick="toggle(this)">
+  <img src="screenshots/Le-Cowboy.png" loading="lazy">
+  <div class="info">
+    <div class="name">Le Cowboy</div>
+    <div class="meta">432KB</div>
+  </div>
+</div>
+<div class="card" data-file="Quick-Hit-Ultra-Pays-Monkeys-Fortune.jpg" onclick="toggle(this)">
+  <img src="screenshots/Quick-Hit-Ultra-Pays-Monkeys-Fortune.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Quick Hit Ultra Pays Monkeys Fortune</div>
+    <div class="meta">154KB</div>
+  </div>
+</div>
+<div class="card" data-file="Army-Of-Ares.png" onclick="toggle(this)">
+  <img src="screenshots/Army-Of-Ares.png" loading="lazy">
+  <div class="info">
+    <div class="name">Army Of Ares</div>
+    <div class="meta">456KB</div>
+  </div>
+</div>
+<div class="card" data-file="Experi-Mental.jpg" onclick="toggle(this)">
+  <img src="screenshots/Experi-Mental.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Experi Mental</div>
+    <div class="meta">723KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tai-The-Toad.png" onclick="toggle(this)">
+  <img src="screenshots/Tai-The-Toad.png" loading="lazy">
+  <div class="info">
+    <div class="name">Tai The Toad</div>
+    <div class="meta">446KB</div>
+  </div>
+</div>
+<div class="card" data-file="Stellar-Cash-Chicken-Fox-5x.jpg" onclick="toggle(this)">
+  <img src="screenshots/Stellar-Cash-Chicken-Fox-5x.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Stellar Cash Chicken Fox 5x</div>
+    <div class="meta">172KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rusty-And-Curly.png" onclick="toggle(this)">
+  <img src="screenshots/Rusty-And-Curly.png" loading="lazy">
+  <div class="info">
+    <div class="name">Rusty And Curly</div>
+    <div class="meta">483KB</div>
+  </div>
+</div>
+<div class="card" data-file="Benny-The-Beer.png" onclick="toggle(this)">
+  <img src="screenshots/Benny-The-Beer.png" loading="lazy">
+  <div class="info">
+    <div class="name">Benny The Beer</div>
+    <div class="meta">487KB</div>
+  </div>
+</div>
+<div class="card" data-file="Freds-Food-Truck.png" onclick="toggle(this)">
+  <img src="screenshots/Freds-Food-Truck.png" loading="lazy">
+  <div class="info">
+    <div class="name">Freds Food Truck</div>
+    <div class="meta">205KB</div>
+  </div>
+</div>
+<div class="card" data-file="Drop-Em.png" onclick="toggle(this)">
+  <img src="screenshots/Drop-Em.png" loading="lazy">
+  <div class="info">
+    <div class="name">Drop Em</div>
+    <div class="meta">459KB</div>
+  </div>
+</div>
+<div class="card" data-file="Octo-Attack.png" onclick="toggle(this)">
+  <img src="screenshots/Octo-Attack.png" loading="lazy">
+  <div class="info">
+    <div class="name">Octo Attack</div>
+    <div class="meta">171KB</div>
+  </div>
+</div>
+<div class="card" data-file="Drop-And-Lock-Deep-Sea-Magic.jpg" onclick="toggle(this)">
+  <img src="screenshots/Drop-And-Lock-Deep-Sea-Magic.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Drop And Lock Deep Sea Magic</div>
+    <div class="meta">99KB</div>
+  </div>
+</div>
+<div class="card" data-file="Slayers-Inc.png" onclick="toggle(this)">
+  <img src="screenshots/Slayers-Inc.png" loading="lazy">
+  <div class="info">
+    <div class="name">Slayers Inc</div>
+    <div class="meta">367KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dragons-Domain.png" onclick="toggle(this)">
+  <img src="screenshots/Dragons-Domain.png" loading="lazy">
+  <div class="info">
+    <div class="name">Dragons Domain</div>
+    <div class="meta">357KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cash-Crew.png" onclick="toggle(this)">
+  <img src="screenshots/Cash-Crew.png" loading="lazy">
+  <div class="info">
+    <div class="name">Cash Crew</div>
+    <div class="meta">424KB</div>
+  </div>
+</div>
+<div class="card" data-file="Twisted-Lab.png" onclick="toggle(this)">
+  <img src="screenshots/Twisted-Lab.png" loading="lazy">
+  <div class="info">
+    <div class="name">Twisted Lab</div>
+    <div class="meta">461KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fist-Of-Destruction.png" onclick="toggle(this)">
+  <img src="screenshots/Fist-Of-Destruction.png" loading="lazy">
+  <div class="info">
+    <div class="name">Fist Of Destruction</div>
+    <div class="meta">389KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rip-City.png" onclick="toggle(this)">
+  <img src="screenshots/Rip-City.png" loading="lazy">
+  <div class="info">
+    <div class="name">Rip City</div>
+    <div class="meta">1571KB</div>
+  </div>
+</div>
+<div class="card" data-file="Xmas-Drop.png" onclick="toggle(this)">
+  <img src="screenshots/Xmas-Drop.png" loading="lazy">
+  <div class="info">
+    <div class="name">Xmas Drop</div>
+    <div class="meta">463KB</div>
+  </div>
+</div>
+<div class="card" data-file="Clue-Cash-Mystery.jpg" onclick="toggle(this)">
+  <img src="screenshots/Clue-Cash-Mystery.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Clue Cash Mystery</div>
+    <div class="meta">134KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ze-Zeus.png" onclick="toggle(this)">
+  <img src="screenshots/Ze-Zeus.png" loading="lazy">
+  <div class="info">
+    <div class="name">Ze Zeus</div>
+    <div class="meta">367KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wanted-Dead-Or-A-Wild.png" onclick="toggle(this)">
+  <img src="screenshots/Wanted-Dead-Or-A-Wild.png" loading="lazy">
+  <div class="info">
+    <div class="name">Wanted Dead Or A Wild</div>
+    <div class="meta">3635KB</div>
+  </div>
+</div>
+<div class="card" data-file="Snow-Slingers.png" onclick="toggle(this)">
+  <img src="screenshots/Snow-Slingers.png" loading="lazy">
+  <div class="info">
+    <div class="name">Snow Slingers</div>
+    <div class="meta">177KB</div>
+  </div>
+</div>
+<div class="card" data-file="Hurricane-Horse-Coin-Combo.jpg" onclick="toggle(this)">
+  <img src="screenshots/Hurricane-Horse-Coin-Combo.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Hurricane Horse Coin Combo</div>
+    <div class="meta">94KB</div>
+  </div>
+</div>
+<div class="card" data-file="Samba-Carnival.jpg" onclick="toggle(this)">
+  <img src="screenshots/Samba-Carnival.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Samba Carnival</div>
+    <div class="meta">294KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mission-Cash.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mission-Cash.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mission Cash</div>
+    <div class="meta">218KB</div>
+  </div>
+</div>
+<div class="card" data-file="Jolly-Roger.jpg" onclick="toggle(this)">
+  <img src="screenshots/Jolly-Roger.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Jolly Roger</div>
+    <div class="meta">245KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cat-Wilde-In-The-Eclipse-Of-The-Sun-God.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cat-Wilde-In-The-Eclipse-Of-The-Sun-God.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cat Wilde In The Eclipse Of The Sun God</div>
+    <div class="meta">235KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dragon-Ship.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dragon-Ship.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dragon Ship</div>
+    <div class="meta">193KB</div>
+  </div>
+</div>
+<div class="card" data-file="Coils-Of-Cash.jpg" onclick="toggle(this)">
+  <img src="screenshots/Coils-Of-Cash.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Coils Of Cash</div>
+    <div class="meta">159KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rainforest-Magic.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rainforest-Magic.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rainforest Magic</div>
+    <div class="meta">216KB</div>
+  </div>
+</div>
+<div class="card" data-file="Doom-Of-Egypt.jpg" onclick="toggle(this)">
+  <img src="screenshots/Doom-Of-Egypt.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Doom Of Egypt</div>
+    <div class="meta">248KB</div>
+  </div>
+</div>
+<div class="card" data-file="Divine-Showdown.jpg" onclick="toggle(this)">
+  <img src="screenshots/Divine-Showdown.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Divine Showdown</div>
+    <div class="meta">224KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dawn-Of-Egypt.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dawn-Of-Egypt.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dawn Of Egypt</div>
+    <div class="meta">249KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rage-To-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rage-To-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rage To Riches</div>
+    <div class="meta">260KB</div>
+  </div>
+</div>
+<div class="card" data-file="Charlie-Chance.jpg" onclick="toggle(this)">
+  <img src="screenshots/Charlie-Chance.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Charlie Chance</div>
+    <div class="meta">152KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wild-Melon.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wild-Melon.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wild Melon</div>
+    <div class="meta">172KB</div>
+  </div>
+</div>
+<div class="card" data-file="Jolly-Roger-2.jpg" onclick="toggle(this)">
+  <img src="screenshots/Jolly-Roger-2.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Jolly Roger 2</div>
+    <div class="meta">221KB</div>
+  </div>
+</div>
+<div class="card" data-file="Star-Joker.jpg" onclick="toggle(this)">
+  <img src="screenshots/Star-Joker.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Star Joker</div>
+    <div class="meta">203KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bull-In-A-China-Shop.jpg" onclick="toggle(this)">
+  <img src="screenshots/Bull-In-A-China-Shop.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Bull In A China Shop</div>
+    <div class="meta">220KB</div>
+  </div>
+</div>
+<div class="card" data-file="Banana-Rock.jpg" onclick="toggle(this)">
+  <img src="screenshots/Banana-Rock.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Banana Rock</div>
+    <div class="meta">249KB</div>
+  </div>
+</div>
+<div class="card" data-file="Gold-King.jpg" onclick="toggle(this)">
+  <img src="screenshots/Gold-King.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Gold King</div>
+    <div class="meta">188KB</div>
+  </div>
+</div>
+<div class="card" data-file="Troll-Hunters-2.jpg" onclick="toggle(this)">
+  <img src="screenshots/Troll-Hunters-2.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Troll Hunters 2</div>
+    <div class="meta">236KB</div>
+  </div>
+</div>
+<div class="card" data-file="Inferno-Star.jpg" onclick="toggle(this)">
+  <img src="screenshots/Inferno-Star.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Inferno Star</div>
+    <div class="meta">173KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fire-Toad.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fire-Toad.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fire Toad</div>
+    <div class="meta">187KB</div>
+  </div>
+</div>
+<div class="card" data-file="Golden-Caravan.jpg" onclick="toggle(this)">
+  <img src="screenshots/Golden-Caravan.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Golden Caravan</div>
+    <div class="meta">210KB</div>
+  </div>
+</div>
+<div class="card" data-file="Troll-Hunters.jpg" onclick="toggle(this)">
+  <img src="screenshots/Troll-Hunters.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Troll Hunters</div>
+    <div class="meta">247KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fat-Frankies.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fat-Frankies.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fat Frankies</div>
+    <div class="meta">187KB</div>
+  </div>
+</div>
+<div class="card" data-file="Crazy-Cows.jpg" onclick="toggle(this)">
+  <img src="screenshots/Crazy-Cows.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Crazy Cows</div>
+    <div class="meta">232KB</div>
+  </div>
+</div>
+<div class="card" data-file="Phoenix-Reborn.jpg" onclick="toggle(this)">
+  <img src="screenshots/Phoenix-Reborn.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Phoenix Reborn</div>
+    <div class="meta">208KB</div>
+  </div>
+</div>
+<div class="card" data-file="Animal-Madness.jpg" onclick="toggle(this)">
+  <img src="screenshots/Animal-Madness.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Animal Madness</div>
+    <div class="meta">207KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cash-Vandal.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cash-Vandal.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cash Vandal</div>
+    <div class="meta">200KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wizard-Of-Gems.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wizard-Of-Gems.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wizard Of Gems</div>
+    <div class="meta">245KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bao-Shi.jpg" onclick="toggle(this)">
+  <img src="screenshots/Bao-Shi.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Bao Shi</div>
+    <div class="meta">2008KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fate-Of-Dead-Blitzways.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fate-Of-Dead-Blitzways.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fate Of Dead Blitzways</div>
+    <div class="meta">1979KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bullion-Xpress.jpg" onclick="toggle(this)">
+  <img src="screenshots/Bullion-Xpress.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Bullion Xpress</div>
+    <div class="meta">1860KB</div>
+  </div>
+</div>
+<div class="card" data-file="Piggy-Blitz-Casino-Gold.jpg" onclick="toggle(this)">
+  <img src="screenshots/Piggy-Blitz-Casino-Gold.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Piggy Blitz Casino Gold</div>
+    <div class="meta">2136KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wild-North-Radiant-Skies-Go-Collect.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wild-North-Radiant-Skies-Go-Collect.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wild North Radiant Skies Go Collect</div>
+    <div class="meta">2334KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rise-Of-Olympus-Extreme.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rise-Of-Olympus-Extreme.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rise Of Olympus Extreme</div>
+    <div class="meta">228KB</div>
+  </div>
+</div>
+<div class="card" data-file="Book-Of-Dead-Go-Collect.jpg" onclick="toggle(this)">
+  <img src="screenshots/Book-Of-Dead-Go-Collect.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Book Of Dead Go Collect</div>
+    <div class="meta">2089KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tomb-Of-Gold-Reimagined.jpg" onclick="toggle(this)">
+  <img src="screenshots/Tomb-Of-Gold-Reimagined.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Tomb Of Gold Reimagined</div>
+    <div class="meta">2159KB</div>
+  </div>
+</div>
+<div class="card" data-file="Piggy-Heist.jpg" onclick="toggle(this)">
+  <img src="screenshots/Piggy-Heist.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Piggy Heist</div>
+    <div class="meta">1714KB</div>
+  </div>
+</div>
+<div class="card" data-file="Immortails-Of-Egypt.jpg" onclick="toggle(this)">
+  <img src="screenshots/Immortails-Of-Egypt.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Immortails Of Egypt</div>
+    <div class="meta">219KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spark-Of-Genius.jpg" onclick="toggle(this)">
+  <img src="screenshots/Spark-Of-Genius.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Spark Of Genius</div>
+    <div class="meta">1529KB</div>
+  </div>
+</div>
+<div class="card" data-file="Scroll-Of-Seth.jpg" onclick="toggle(this)">
+  <img src="screenshots/Scroll-Of-Seth.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Scroll Of Seth</div>
+    <div class="meta">2369KB</div>
+  </div>
+</div>
+<div class="card" data-file="Pearls-Of-India.jpg" onclick="toggle(this)">
+  <img src="screenshots/Pearls-Of-India.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Pearls Of India</div>
+    <div class="meta">220KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ring-Of-Odin.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ring-Of-Odin.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ring Of Odin</div>
+    <div class="meta">187KB</div>
+  </div>
+</div>
+<div class="card" data-file="Legion-Gold-Unleashed.jpg" onclick="toggle(this)">
+  <img src="screenshots/Legion-Gold-Unleashed.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Legion Gold Unleashed</div>
+    <div class="meta">1969KB</div>
+  </div>
+</div>
+<div class="card" data-file="Highway-Legends.jpg" onclick="toggle(this)">
+  <img src="screenshots/Highway-Legends.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Highway Legends</div>
+    <div class="meta">2270KB</div>
+  </div>
+</div>
+<div class="card" data-file="Piranha-Pays.jpg" onclick="toggle(this)">
+  <img src="screenshots/Piranha-Pays.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Piranha Pays</div>
+    <div class="meta">2164KB</div>
+  </div>
+</div>
+<div class="card" data-file="Legacy-Of-Dynasties.jpg" onclick="toggle(this)">
+  <img src="screenshots/Legacy-Of-Dynasties.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Legacy Of Dynasties</div>
+    <div class="meta">2161KB</div>
+  </div>
+</div>
+<div class="card" data-file="Safari-Of-Wealth.jpg" onclick="toggle(this)">
+  <img src="screenshots/Safari-Of-Wealth.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Safari Of Wealth</div>
+    <div class="meta">196KB</div>
+  </div>
+</div>
+<div class="card" data-file="Hotel-Yeti-Way.jpg" onclick="toggle(this)">
+  <img src="screenshots/Hotel-Yeti-Way.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Hotel Yeti Way</div>
+    <div class="meta">199KB</div>
+  </div>
+</div>
+<div class="card" data-file="Whispering-Winds.jpg" onclick="toggle(this)">
+  <img src="screenshots/Whispering-Winds.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Whispering Winds</div>
+    <div class="meta">1905KB</div>
+  </div>
+</div>
+<div class="card" data-file="Legacy-Of-Inca.jpg" onclick="toggle(this)">
+  <img src="screenshots/Legacy-Of-Inca.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Legacy Of Inca</div>
+    <div class="meta">2344KB</div>
+  </div>
+</div>
+<div class="card" data-file="Merlin-And-The-Ice-Queen-Morgana.jpg" onclick="toggle(this)">
+  <img src="screenshots/Merlin-And-The-Ice-Queen-Morgana.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Merlin And The Ice Queen Morgana</div>
+    <div class="meta">197KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Wilde-And-The-Wandering-City.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Wilde-And-The-Wandering-City.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Wilde And The Wandering City</div>
+    <div class="meta">231KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tomb-Of-Gold.jpg" onclick="toggle(this)">
+  <img src="screenshots/Tomb-Of-Gold.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Tomb Of Gold</div>
+    <div class="meta">1999KB</div>
+  </div>
+</div>
+<div class="card" data-file="Dio-Killing-The-Dragon.jpg" onclick="toggle(this)">
+  <img src="screenshots/Dio-Killing-The-Dragon.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Dio Killing The Dragon</div>
+    <div class="meta">215KB</div>
+  </div>
+</div>
+<div class="card" data-file="House-Of-Doom.jpg" onclick="toggle(this)">
+  <img src="screenshots/House-Of-Doom.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">House Of Doom</div>
+    <div class="meta">193KB</div>
+  </div>
+</div>
+<div class="card" data-file="Merlin-Realm-Of-Charm.jpg" onclick="toggle(this)">
+  <img src="screenshots/Merlin-Realm-Of-Charm.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Merlin Realm Of Charm</div>
+    <div class="meta">2100KB</div>
+  </div>
+</div>
+<div class="card" data-file="The-Sword-And-The-Grail-Excalibur.jpg" onclick="toggle(this)">
+  <img src="screenshots/The-Sword-And-The-Grail-Excalibur.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">The Sword And The Grail Excalibur</div>
+    <div class="meta">240KB</div>
+  </div>
+</div>
+<div class="card" data-file="Win-A-Beest.jpg" onclick="toggle(this)">
+  <img src="screenshots/Win-A-Beest.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Win A Beest</div>
+    <div class="meta">204KB</div>
+  </div>
+</div>
+<div class="card" data-file="Lady-Of-Fortune.jpg" onclick="toggle(this)">
+  <img src="screenshots/Lady-Of-Fortune.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Lady Of Fortune</div>
+    <div class="meta">202KB</div>
+  </div>
+</div>
+<div class="card" data-file="Boat-Bonanza-Christmas.jpg" onclick="toggle(this)">
+  <img src="screenshots/Boat-Bonanza-Christmas.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Boat Bonanza Christmas</div>
+    <div class="meta">1682KB</div>
+  </div>
+</div>
+<div class="card" data-file="Usa-Flip.jpg" onclick="toggle(this)">
+  <img src="screenshots/Usa-Flip.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Usa Flip</div>
+    <div class="meta">2408KB</div>
+  </div>
+</div>
+<div class="card" data-file="Pilgrim-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Pilgrim-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Pilgrim Of Dead</div>
+    <div class="meta">2133KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cat-Wilde-And-The-Incan-Quest.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cat-Wilde-And-The-Incan-Quest.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cat Wilde And The Incan Quest</div>
+    <div class="meta">2316KB</div>
+  </div>
+</div>
+<div class="card" data-file="Joker-Flip.jpg" onclick="toggle(this)">
+  <img src="screenshots/Joker-Flip.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Joker Flip</div>
+    <div class="meta">2224KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tower-Quest-Legacy.jpg" onclick="toggle(this)">
+  <img src="screenshots/Tower-Quest-Legacy.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Tower Quest Legacy</div>
+    <div class="meta">1716KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rise-Of-Athena.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rise-Of-Athena.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rise Of Athena</div>
+    <div class="meta">183KB</div>
+  </div>
+</div>
+<div class="card" data-file="Legion-Gold-And-The-Sphinx-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Legion-Gold-And-The-Sphinx-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Legion Gold And The Sphinx Of Dead</div>
+    <div class="meta">227KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ankh-Of-Anubis.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ankh-Of-Anubis.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ankh Of Anubis</div>
+    <div class="meta">207KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rise-Of-Merlin.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rise-Of-Merlin.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rise Of Merlin</div>
+    <div class="meta">208KB</div>
+  </div>
+</div>
+<div class="card" data-file="Chambers-Of-Ancients.jpg" onclick="toggle(this)">
+  <img src="screenshots/Chambers-Of-Ancients.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Chambers Of Ancients</div>
+    <div class="meta">2003KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rocco-Gallo.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rocco-Gallo.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rocco Gallo</div>
+    <div class="meta">2233KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cat-Wilde-And-The-Pyramids-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cat-Wilde-And-The-Pyramids-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cat Wilde And The Pyramids Of Dead</div>
+    <div class="meta">227KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ghost-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ghost-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ghost Of Dead</div>
+    <div class="meta">234KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cat-Wilde-And-The-Lost-Chapter.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cat-Wilde-And-The-Lost-Chapter.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cat Wilde And The Lost Chapter</div>
+    <div class="meta">248KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Wilde-And-The-Book-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Wilde-And-The-Book-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Wilde And The Book Of Dead</div>
+    <div class="meta">242KB</div>
+  </div>
+</div>
+<div class="card" data-file="Ternion.jpg" onclick="toggle(this)">
+  <img src="screenshots/Ternion.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Ternion</div>
+    <div class="meta">2012KB</div>
+  </div>
+</div>
+<div class="card" data-file="Zz-Top-Roadside-Riches.jpg" onclick="toggle(this)">
+  <img src="screenshots/Zz-Top-Roadside-Riches.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Zz Top Roadside Riches</div>
+    <div class="meta">183KB</div>
+  </div>
+</div>
+<div class="card" data-file="Alice-Cooper-And-The-Tome-Of-Madness.jpg" onclick="toggle(this)">
+  <img src="screenshots/Alice-Cooper-And-The-Tome-Of-Madness.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Alice Cooper And The Tome Of Madness</div>
+    <div class="meta">181KB</div>
+  </div>
+</div>
+<div class="card" data-file="Scroll-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Scroll-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Scroll Of Dead</div>
+    <div class="meta">230KB</div>
+  </div>
+</div>
+<div class="card" data-file="Temple-Of-Prosperity.jpg" onclick="toggle(this)">
+  <img src="screenshots/Temple-Of-Prosperity.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Temple Of Prosperity</div>
+    <div class="meta">1958KB</div>
+  </div>
+</div>
+<div class="card" data-file="Treats-Of-Terror.jpg" onclick="toggle(this)">
+  <img src="screenshots/Treats-Of-Terror.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Treats Of Terror</div>
+    <div class="meta">1875KB</div>
+  </div>
+</div>
+<div class="card" data-file="Idol-Of-Fortune.jpg" onclick="toggle(this)">
+  <img src="screenshots/Idol-Of-Fortune.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Idol Of Fortune</div>
+    <div class="meta">238KB</div>
+  </div>
+</div>
+<div class="card" data-file="Return-Of-The-Green-Knight.jpg" onclick="toggle(this)">
+  <img src="screenshots/Return-Of-The-Green-Knight.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Return Of The Green Knight</div>
+    <div class="meta">2506KB</div>
+  </div>
+</div>
+<div class="card" data-file="Kiss-Reels-Of-Rock.jpg" onclick="toggle(this)">
+  <img src="screenshots/Kiss-Reels-Of-Rock.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Kiss Reels Of Rock</div>
+    <div class="meta">238KB</div>
+  </div>
+</div>
+<div class="card" data-file="Love-Is-In-The-Fair.jpg" onclick="toggle(this)">
+  <img src="screenshots/Love-Is-In-The-Fair.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Love Is In The Fair</div>
+    <div class="meta">1955KB</div>
+  </div>
+</div>
+<div class="card" data-file="Banquet-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Banquet-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Banquet Of Dead</div>
+    <div class="meta">2376KB</div>
+  </div>
+</div>
+<div class="card" data-file="Prism-Of-Gems.jpg" onclick="toggle(this)">
+  <img src="screenshots/Prism-Of-Gems.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Prism Of Gems</div>
+    <div class="meta">190KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cash-Of-Command.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cash-Of-Command.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cash Of Command</div>
+    <div class="meta">198KB</div>
+  </div>
+</div>
+<div class="card" data-file="Wild-Bandolier.jpg" onclick="toggle(this)">
+  <img src="screenshots/Wild-Bandolier.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Wild Bandolier</div>
+    <div class="meta">1998KB</div>
+  </div>
+</div>
+<div class="card" data-file="Mirror-Joker.jpg" onclick="toggle(this)">
+  <img src="screenshots/Mirror-Joker.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Mirror Joker</div>
+    <div class="meta">183KB</div>
+  </div>
+</div>
+<div class="card" data-file="The-Sword-And-The-Grail.jpg" onclick="toggle(this)">
+  <img src="screenshots/The-Sword-And-The-Grail.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">The Sword And The Grail</div>
+    <div class="meta">219KB</div>
+  </div>
+</div>
+<div class="card" data-file="Midnight-Princess-Origins.jpg" onclick="toggle(this)">
+  <img src="screenshots/Midnight-Princess-Origins.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Midnight Princess Origins</div>
+    <div class="meta">229KB</div>
+  </div>
+</div>
+<div class="card" data-file="Midnight-Princess-Stargazing.jpg" onclick="toggle(this)">
+  <img src="screenshots/Midnight-Princess-Stargazing.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Midnight Princess Stargazing</div>
+    <div class="meta">233KB</div>
+  </div>
+</div>
+<div class="card" data-file="Forge-Of-Gems.jpg" onclick="toggle(this)">
+  <img src="screenshots/Forge-Of-Gems.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Forge Of Gems</div>
+    <div class="meta">212KB</div>
+  </div>
+</div>
+<div class="card" data-file="Legacy-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Legacy-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Legacy Of Dead</div>
+    <div class="meta">230KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Wilde-And-The-Tome-Of-Insanity.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Wilde-And-The-Tome-Of-Insanity.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Wilde And The Tome Of Insanity</div>
+    <div class="meta">222KB</div>
+  </div>
+</div>
+<div class="card" data-file="Spinnin-Records-Raving-Reels.jpg" onclick="toggle(this)">
+  <img src="screenshots/Spinnin-Records-Raving-Reels.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Spinnin Records Raving Reels</div>
+    <div class="meta">1914KB</div>
+  </div>
+</div>
+<div class="card" data-file="Tome-Of-Madness.jpg" onclick="toggle(this)">
+  <img src="screenshots/Tome-Of-Madness.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Tome Of Madness</div>
+    <div class="meta">208KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rich-Wilde-And-The-Tome-Of-Madness.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rich-Wilde-And-The-Tome-Of-Madness.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rich Wilde And The Tome Of Madness</div>
+    <div class="meta">208KB</div>
+  </div>
+</div>
+<div class="card" data-file="Medusas-Madness.jpg" onclick="toggle(this)">
+  <img src="screenshots/Medusas-Madness.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Medusas Madness</div>
+    <div class="meta">2178KB</div>
+  </div>
+</div>
+<div class="card" data-file="Book-Of-Dead.jpg" onclick="toggle(this)">
+  <img src="screenshots/Book-Of-Dead.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Book Of Dead</div>
+    <div class="meta">242KB</div>
+  </div>
+</div>
+<div class="card" data-file="Rise-Of-Olympus-100.jpg" onclick="toggle(this)">
+  <img src="screenshots/Rise-Of-Olympus-100.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Rise Of Olympus 100</div>
+    <div class="meta">228KB</div>
+  </div>
+</div>
+<div class="card" data-file="Lady-Of-Fortune-Destiny-Spins.jpg" onclick="toggle(this)">
+  <img src="screenshots/Lady-Of-Fortune-Destiny-Spins.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Lady Of Fortune Destiny Spins</div>
+    <div class="meta">1990KB</div>
+  </div>
+</div>
+<div class="card" data-file="Big-Win-Cat-Pawsperity.jpg" onclick="toggle(this)">
+  <img src="screenshots/Big-Win-Cat-Pawsperity.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Big Win Cat Pawsperity</div>
+    <div class="meta">215KB</div>
+  </div>
+</div>
+<div class="card" data-file="Banana-Rush.jpg" onclick="toggle(this)">
+  <img src="screenshots/Banana-Rush.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Banana Rush</div>
+    <div class="meta">1957KB</div>
+  </div>
+</div>
+<div class="card" data-file="Slingo-X-Scream.jpg" onclick="toggle(this)">
+  <img src="screenshots/Slingo-X-Scream.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Slingo X Scream</div>
+    <div class="meta">60KB</div>
+  </div>
+</div>
+<div class="card" data-file="Fire-Burner.jpg" onclick="toggle(this)">
+  <img src="screenshots/Fire-Burner.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Fire Burner</div>
+    <div class="meta">664KB</div>
+  </div>
+</div>
+<div class="card" data-file="Eggomatic.jpg" onclick="toggle(this)">
+  <img src="screenshots/Eggomatic.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Eggomatic</div>
+    <div class="meta">473KB</div>
+  </div>
+</div>
+<div class="card" data-file="Grand-Circus.jpg" onclick="toggle(this)">
+  <img src="screenshots/Grand-Circus.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Grand Circus</div>
+    <div class="meta">106KB</div>
+  </div>
+</div>
+<div class="card" data-file="Foxin-Wins-A-Very-Foxin-Christmas.jpg" onclick="toggle(this)">
+  <img src="screenshots/Foxin-Wins-A-Very-Foxin-Christmas.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Foxin Wins A Very Foxin Christmas</div>
+    <div class="meta">646KB</div>
+  </div>
+</div>
+<div class="card" data-file="Unicorn-Legend.png" onclick="toggle(this)">
+  <img src="screenshots/Unicorn-Legend.png" loading="lazy">
+  <div class="info">
+    <div class="name">Unicorn Legend</div>
+    <div class="meta">571KB</div>
+  </div>
+</div>
+<div class="card" data-file="Blood-Suckers-2.jpg" onclick="toggle(this)">
+  <img src="screenshots/Blood-Suckers-2.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Blood Suckers 2</div>
+    <div class="meta">337KB</div>
+  </div>
+</div>
+<div class="card" data-file="Cyberslot-Megaclusters.jpg" onclick="toggle(this)">
+  <img src="screenshots/Cyberslot-Megaclusters.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Cyberslot Megaclusters</div>
+    <div class="meta">101KB</div>
+  </div>
+</div>
+<div class="card" data-file="12-Coins-Grand-Gold-Edition.jpg" onclick="toggle(this)">
+  <img src="screenshots/12-Coins-Grand-Gold-Edition.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">12 Coins Grand Gold Edition</div>
+    <div class="meta">49KB</div>
+  </div>
+</div>
+<div class="card" data-file="Temple-Tumble.jpg" onclick="toggle(this)">
+  <img src="screenshots/Temple-Tumble.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Temple Tumble</div>
+    <div class="meta">652KB</div>
+  </div>
+</div>
+<div class="card" data-file="Zeus-2.jpg" onclick="toggle(this)">
+  <img src="screenshots/Zeus-2.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">Zeus 2</div>
+    <div class="meta">622KB</div>
+  </div>
+</div>
+<div class="card" data-file="King-Kong-Cash-Even-Bigger-Bananas.jpg" onclick="toggle(this)">
+  <img src="screenshots/King-Kong-Cash-Even-Bigger-Bananas.jpg" loading="lazy">
+  <div class="info">
+    <div class="name">King Kong Cash Even Bigger Bananas</div>
+    <div class="meta">71KB</div>
+  </div>
+</div>
+<div class="card" data-file="Bonanza-Megaways.png" onclick="toggle(this)">
+  <img src="screenshots/Bonanza-Megaways.png" loading="lazy">
+  <div class="info">
+    <div class="name">Bonanza Megaways</div>
+    <div class="meta">741KB</div>
+  </div>
+</div>
+</div>
+<script>
+const rejected = new Set();
+function toggle(card) {
+  const file = card.dataset.file;
+  if (rejected.has(file)) { rejected.delete(file); card.classList.remove('rejected'); }
+  else { rejected.add(file); card.classList.add('rejected'); }
+  document.getElementById('count').textContent = rejected.size;
+}
+function clearAll() {
+  rejected.clear();
+  document.querySelectorAll('.card.rejected').forEach(c => c.classList.remove('rejected'));
+  document.getElementById('count').textContent = '0';
+}
+function exportResults() {
+  const results = [];
+  document.querySelectorAll('.card').forEach(c => {
+    const file = c.dataset.file;
+    const game = file.replace(/.(png|jpg|webp)$/, '').replace(/-/g, ' ');
+    results.push({game, file, decision: rejected.has(file) ? 'not_gameplay' : 'ok'});
+  });
+  const json = JSON.stringify(results, null, 2);
+  const blob = new Blob([json], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = 'screenshot-review-2026-05-06.json';
+  a.click(); URL.revokeObjectURL(url);
+  // Also show in console for copy-paste
+  console.log(json);
+  alert('Exported ' + results.length + ' results (' + rejected.size + ' rejected). Check downloads.');
+}
+</script>
+</body></html>

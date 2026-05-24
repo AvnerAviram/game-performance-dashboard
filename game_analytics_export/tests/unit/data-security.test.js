@@ -3,11 +3,8 @@
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
-import { join, resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '../..');
+import { join } from 'path';
+import { ROOT } from '../helpers/paths.js';
 
 describe('Security - .gitignore', () => {
     const gitignorePath = join(ROOT, '.gitignore');

@@ -1,0 +1,602 @@
+[
+  {
+    "file": "Mirror-Joker.jpg",
+    "slug": "Mirror-Joker",
+    "classification": "gameplay",
+    "size_kb": 182
+  },
+  {
+    "file": "Ghosts-N-Gold.jpg",
+    "slug": "Ghosts-N-Gold",
+    "classification": "gameplay",
+    "size_kb": 452
+  },
+  {
+    "file": "cash-can-ultratap.webp",
+    "slug": "cash-can-ultratap",
+    "classification": "gameplay",
+    "size_kb": 86
+  },
+  {
+    "file": "beaver-las-vegas.jpg",
+    "slug": "beaver-las-vegas",
+    "classification": "gameplay",
+    "size_kb": 79
+  },
+  {
+    "file": "calavera-cash.webp",
+    "slug": "calavera-cash",
+    "classification": "gameplay",
+    "size_kb": 145
+  },
+  {
+    "file": "Spartan-Fire.png",
+    "slug": "Spartan-Fire",
+    "classification": "gameplay",
+    "size_kb": 295
+  },
+  {
+    "file": "Rising-Temple-Hold-And-Win.jpg",
+    "slug": "Rising-Temple-Hold-And-Win",
+    "classification": "rules_page",
+    "size_kb": 215
+  },
+  {
+    "file": "Coins-Of-Egypt.jpg",
+    "slug": "Coins-Of-Egypt",
+    "classification": "gameplay",
+    "size_kb": 738
+  },
+  {
+    "file": "Mighty-Medusa.jpg",
+    "slug": "Mighty-Medusa",
+    "classification": "gameplay",
+    "size_kb": 144
+  },
+  {
+    "file": "Holidays-Joker-Halloween.jpg",
+    "slug": "Holidays-Joker-Halloween",
+    "classification": "gameplay",
+    "size_kb": 128
+  },
+  {
+    "file": "Diamond-Inferno.jpg",
+    "slug": "Diamond-Inferno",
+    "classification": "gameplay",
+    "size_kb": 60
+  },
+  {
+    "file": "Slingo-Fluffy-Favourites.jpg",
+    "slug": "Slingo-Fluffy-Favourites",
+    "classification": "gameplay",
+    "size_kb": 103
+  },
+  {
+    "file": "Eagle-Dollar.jpg",
+    "slug": "Eagle-Dollar",
+    "classification": "gameplay",
+    "size_kb": 138
+  },
+  {
+    "file": "diamond-blitz-2.webp",
+    "slug": "diamond-blitz-2",
+    "classification": "gameplay",
+    "size_kb": 52
+  },
+  {
+    "file": "Legacy-Of-The-Wild-2.jpg",
+    "slug": "Legacy-Of-The-Wild-2",
+    "classification": "gameplay",
+    "size_kb": 162
+  },
+  {
+    "file": "beer-stein-bears.webp",
+    "slug": "beer-stein-bears",
+    "classification": "gameplay",
+    "size_kb": 72
+  },
+  {
+    "file": "Pharaohs-Daughter.jpg",
+    "slug": "Pharaohs-Daughter",
+    "classification": "gameplay",
+    "size_kb": 633
+  },
+  {
+    "file": "In-The-Rabbit-Hole.jpeg",
+    "slug": "In-The-Rabbit-Hole",
+    "classification": "gameplay",
+    "size_kb": 55
+  },
+  {
+    "file": "Tomb-Of-Nefertiti.jpg",
+    "slug": "Tomb-Of-Nefertiti",
+    "classification": "gameplay",
+    "size_kb": 566
+  },
+  {
+    "file": "cash-carts-western-wagons.jpg",
+    "slug": "cash-carts-western-wagons",
+    "classification": "gameplay",
+    "size_kb": 59
+  },
+  {
+    "file": "Loot-Boost.jpg",
+    "slug": "Loot-Boost",
+    "classification": "gameplay",
+    "size_kb": 55
+  },
+  {
+    "file": "Heart-Of-Romance.jpg",
+    "slug": "Heart-Of-Romance",
+    "classification": "gameplay",
+    "size_kb": 196
+  },
+  {
+    "file": "Choco-Reels.jpg",
+    "slug": "Choco-Reels",
+    "classification": "gameplay",
+    "size_kb": 140
+  },
+  {
+    "file": "big-catch-even-bigger-bass.webp",
+    "slug": "big-catch-even-bigger-bass",
+    "classification": "gameplay",
+    "size_kb": 168
+  },
+  {
+    "file": "Power-Of-Gods-Medusa.jpg",
+    "slug": "Power-Of-Gods-Medusa",
+    "classification": "promotional",
+    "size_kb": 145
+  },
+  {
+    "file": "Treasure-Hunter.jpg",
+    "slug": "Treasure-Hunter",
+    "classification": "gameplay",
+    "size_kb": 521
+  },
+  {
+    "file": "Dragon-Blast.jpg",
+    "slug": "Dragon-Blast",
+    "classification": "gameplay",
+    "size_kb": 450
+  },
+  {
+    "file": "Starstruck.jpg",
+    "slug": "Starstruck",
+    "classification": "splash_screen",
+    "size_kb": 215
+  },
+  {
+    "file": "Fishermans-Bounty.jpg",
+    "slug": "Fishermans-Bounty",
+    "classification": "gameplay",
+    "size_kb": 917
+  },
+  {
+    "file": "Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s.jpg",
+    "slug": "Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s",
+    "classification": "promotional",
+    "size_kb": 38
+  },
+  {
+    "file": "Outback-Walkabout.png",
+    "slug": "Outback-Walkabout",
+    "classification": "gameplay",
+    "size_kb": 1141
+  },
+  {
+    "file": "the-goonies-megaways.jpg",
+    "slug": "the-goonies-megaways",
+    "classification": "gameplay",
+    "size_kb": 71
+  },
+  {
+    "file": "elephants-vs-tigers.webp",
+    "slug": "elephants-vs-tigers",
+    "classification": "gameplay",
+    "size_kb": 130
+  },
+  {
+    "file": "Tower-Quest-Legacy.jpg",
+    "slug": "Tower-Quest-Legacy",
+    "classification": "gameplay",
+    "size_kb": 1715
+  },
+  {
+    "file": "gladiator-ways.webp",
+    "slug": "gladiator-ways",
+    "classification": "gameplay",
+    "size_kb": 89
+  },
+  {
+    "file": "Valkyrie-Returns.jpg",
+    "slug": "Valkyrie-Returns",
+    "classification": "gameplay",
+    "size_kb": 63
+  },
+  {
+    "file": "ted-afterparty.webp",
+    "slug": "ted-afterparty",
+    "classification": "gameplay",
+    "size_kb": 55
+  },
+  {
+    "file": "Mayan-Eagle.jpg",
+    "slug": "Mayan-Eagle",
+    "classification": "gameplay",
+    "size_kb": 102
+  },
+  {
+    "file": "Golden-Lucky-Fortune.jpg",
+    "slug": "Golden-Lucky-Fortune",
+    "classification": "gameplay",
+    "size_kb": 84
+  },
+  {
+    "file": "The-Goonies-Jackpot-Royale.jpg",
+    "slug": "The-Goonies-Jackpot-Royale",
+    "classification": "gameplay",
+    "size_kb": 547
+  },
+  {
+    "file": "Quadruple-Da-Vinci-Diamonds.jpg",
+    "slug": "Quadruple-Da-Vinci-Diamonds",
+    "classification": "gameplay",
+    "size_kb": 177
+  },
+  {
+    "file": "Sanctuary.jpeg",
+    "slug": "Sanctuary",
+    "classification": "gameplay",
+    "size_kb": 60
+  },
+  {
+    "file": "10x-minimum-big-bucks.webp",
+    "slug": "10x-minimum-big-bucks",
+    "classification": "gameplay",
+    "size_kb": 73
+  },
+  {
+    "file": "Stormforged.jpeg",
+    "slug": "Stormforged",
+    "classification": "gameplay",
+    "size_kb": 39
+  },
+  {
+    "file": "Mystery-Jack-Deluxe.jpg",
+    "slug": "Mystery-Jack-Deluxe",
+    "classification": "gameplay",
+    "size_kb": 519
+  },
+  {
+    "file": "Alexander-The-Great-World-Conqueror.jpeg",
+    "slug": "Alexander-The-Great-World-Conqueror",
+    "classification": "gameplay",
+    "size_kb": 65
+  },
+  {
+    "file": "Manhattan-Goes-Wild.jpg",
+    "slug": "Manhattan-Goes-Wild",
+    "classification": "gameplay",
+    "size_kb": 551
+  },
+  {
+    "file": "Prism-Of-Gems.jpg",
+    "slug": "Prism-Of-Gems",
+    "classification": "gameplay",
+    "size_kb": 190
+  },
+  {
+    "file": "Legacy-Of-Inca.jpg",
+    "slug": "Legacy-Of-Inca",
+    "classification": "gameplay",
+    "size_kb": 2343
+  },
+  {
+    "file": "The-Goonies.jpg",
+    "slug": "The-Goonies",
+    "classification": "gameplay",
+    "size_kb": 56
+  },
+  {
+    "file": "Joker-Fire-Frenzy.jpeg",
+    "slug": "Joker-Fire-Frenzy",
+    "classification": "gameplay",
+    "size_kb": 51
+  },
+  {
+    "file": "Annihilator.jpg",
+    "slug": "Annihilator",
+    "classification": "gameplay",
+    "size_kb": 840
+  },
+  {
+    "file": "Maya-Gold-IGT.jpg",
+    "slug": "Maya-Gold-IGT",
+    "classification": "gameplay",
+    "size_kb": 824
+  },
+  {
+    "file": "9-Coins.jpg",
+    "slug": "9-Coins",
+    "classification": "gameplay",
+    "size_kb": 43
+  },
+  {
+    "file": "Tomb-Of-Gold-Reimagined.jpg",
+    "slug": "Tomb-Of-Gold-Reimagined",
+    "classification": "gameplay",
+    "size_kb": 2158
+  },
+  {
+    "file": "thundering-eclipse.webp",
+    "slug": "thundering-eclipse",
+    "classification": "gameplay",
+    "size_kb": 106
+  },
+  {
+    "file": "Mayan-Cache.jpg",
+    "slug": "Mayan-Cache",
+    "classification": "gameplay",
+    "size_kb": 1335
+  },
+  {
+    "file": "Ring-Of-Odin.jpg",
+    "slug": "Ring-Of-Odin",
+    "classification": "gameplay",
+    "size_kb": 186
+  },
+  {
+    "file": "Aliyas-Wishes.jpg",
+    "slug": "Aliyas-Wishes",
+    "classification": "gameplay",
+    "size_kb": 1046
+  },
+  {
+    "file": "Fiesta-De-Toros.jpg",
+    "slug": "Fiesta-De-Toros",
+    "classification": "gameplay",
+    "size_kb": 91
+  },
+  {
+    "file": "The-Wild-Hatter.jpg",
+    "slug": "The-Wild-Hatter",
+    "classification": "gameplay",
+    "size_kb": 902
+  },
+  {
+    "file": "triple-turducken.webp",
+    "slug": "triple-turducken",
+    "classification": "gameplay",
+    "size_kb": 88
+  },
+  {
+    "file": "Love-Joker.jpg",
+    "slug": "Love-Joker",
+    "classification": "gameplay",
+    "size_kb": 35
+  },
+  {
+    "file": "Wilderland.jpg",
+    "slug": "Wilderland",
+    "classification": "gameplay",
+    "size_kb": 810
+  },
+  {
+    "file": "Tomb-Of-Akhenaten.jpg",
+    "slug": "Tomb-Of-Akhenaten",
+    "classification": "splash_screen",
+    "size_kb": 158
+  },
+  {
+    "file": "fa-fa-babies-2.webp",
+    "slug": "fa-fa-babies-2",
+    "classification": "gameplay",
+    "size_kb": 162
+  },
+  {
+    "file": "triple-pop-fireworks-festival.webp",
+    "slug": "triple-pop-fireworks-festival",
+    "classification": "promotional",
+    "size_kb": 16
+  },
+  {
+    "file": "Egyptian-Emeralds.jpg",
+    "slug": "Egyptian-Emeralds",
+    "classification": "splash_screen",
+    "size_kb": 169
+  },
+  {
+    "file": "Boat-Bonanza-Colossal-Catch.jpeg",
+    "slug": "Boat-Bonanza-Colossal-Catch",
+    "classification": "gameplay",
+    "size_kb": 37
+  },
+  {
+    "file": "Casino-War.jpg",
+    "slug": "Casino-War",
+    "classification": "gameplay",
+    "size_kb": 381
+  },
+  {
+    "file": "Slingo-Cleopatra.jpg",
+    "slug": "Slingo-Cleopatra",
+    "classification": "gameplay",
+    "size_kb": 71
+  },
+  {
+    "file": "cash-cascade-imperial-crown.webp",
+    "slug": "cash-cascade-imperial-crown",
+    "classification": "gameplay",
+    "size_kb": 89
+  },
+  {
+    "file": "Revved-Wilds.jpg",
+    "slug": "Revved-Wilds",
+    "classification": "gameplay",
+    "size_kb": 139
+  },
+  {
+    "file": "Wild-Frames.jpg",
+    "slug": "Wild-Frames",
+    "classification": "gameplay",
+    "size_kb": 825
+  },
+  {
+    "file": "double-beef-up-the-bonus.webp",
+    "slug": "double-beef-up-the-bonus",
+    "classification": "gameplay",
+    "size_kb": 49
+  },
+  {
+    "file": "Silver-Trails.jpg",
+    "slug": "Silver-Trails",
+    "classification": "gameplay",
+    "size_kb": 174
+  },
+  {
+    "file": "Wild-Wild-Gems.jpg",
+    "slug": "Wild-Wild-Gems",
+    "classification": "gameplay",
+    "size_kb": 427
+  },
+  {
+    "file": "El-Dorado.png",
+    "slug": "El-Dorado",
+    "classification": "gameplay",
+    "size_kb": 961
+  },
+  {
+    "file": "Cloud-Corsairs.jpg",
+    "slug": "Cloud-Corsairs",
+    "classification": "gameplay",
+    "size_kb": 50
+  },
+  {
+    "file": "Gallo-Gold-Brunos-Megaways.jpeg",
+    "slug": "Gallo-Gold-Brunos-Megaways",
+    "classification": "gameplay",
+    "size_kb": 67
+  },
+  {
+    "file": "Gold-Party-2-After-Hours.webp",
+    "slug": "Gold-Party-2-After-Hours",
+    "classification": "gameplay",
+    "size_kb": 68
+  },
+  {
+    "file": "Dwarfs-Fortune.jpg",
+    "slug": "Dwarfs-Fortune",
+    "classification": "gameplay",
+    "size_kb": 73
+  },
+  {
+    "file": "Prosperity-Twin.png",
+    "slug": "Prosperity-Twin",
+    "classification": "gameplay",
+    "size_kb": 917
+  },
+  {
+    "file": "gold-power.webp",
+    "slug": "gold-power",
+    "classification": "promotional",
+    "size_kb": 11
+  },
+  {
+    "file": "Cleopatra-Gold.jpg",
+    "slug": "Cleopatra-Gold",
+    "classification": "gameplay",
+    "size_kb": 1036
+  },
+  {
+    "file": "Wild-Catcher.jpg",
+    "slug": "Wild-Catcher",
+    "classification": "gameplay",
+    "size_kb": 528
+  },
+  {
+    "file": "Stormin-7s.jpg",
+    "slug": "Stormin-7s",
+    "classification": "gameplay",
+    "size_kb": 576
+  },
+  {
+    "file": "Blood-And-Gold.jpg",
+    "slug": "Blood-And-Gold",
+    "classification": "gameplay",
+    "size_kb": 41
+  },
+  {
+    "file": "Pearl-Catcher.jpg",
+    "slug": "Pearl-Catcher",
+    "classification": "gameplay",
+    "size_kb": 36
+  },
+  {
+    "file": "Stellar-Cash-Blown-Away.jpg",
+    "slug": "Stellar-Cash-Blown-Away",
+    "classification": "gameplay",
+    "size_kb": 57
+  },
+  {
+    "file": "Mythological-Mayhem-Supreme-Streaks.jpg",
+    "slug": "Mythological-Mayhem-Supreme-Streaks",
+    "classification": "gameplay",
+    "size_kb": 146
+  },
+  {
+    "file": "Gargantoonz.jpg",
+    "slug": "Gargantoonz",
+    "classification": "gameplay",
+    "size_kb": 57
+  },
+  {
+    "file": "Slingoooal.jpg",
+    "slug": "Slingoooal",
+    "classification": "gameplay",
+    "size_kb": 76
+  },
+  {
+    "file": "Undefeated-Xerxes.jpg",
+    "slug": "Undefeated-Xerxes",
+    "classification": "gameplay",
+    "size_kb": 61
+  },
+  {
+    "file": "Amazon-Kingdom.jpg",
+    "slug": "Amazon-Kingdom",
+    "classification": "gameplay",
+    "size_kb": 40
+  },
+  {
+    "file": "buffalo-untamed.webp",
+    "slug": "buffalo-untamed",
+    "classification": "gameplay",
+    "size_kb": 107
+  },
+  {
+    "file": "j-mania-loco-habanero.webp",
+    "slug": "j-mania-loco-habanero",
+    "classification": "gameplay",
+    "size_kb": 156
+  },
+  {
+    "file": "Fishin-Pots-Of-Gold-Gold-Blitz.jpeg",
+    "slug": "Fishin-Pots-Of-Gold-Gold-Blitz",
+    "classification": "gameplay",
+    "size_kb": 76
+  },
+  {
+    "file": "Jinse-Dao-Dragon.png",
+    "slug": "Jinse-Dao-Dragon",
+    "classification": "gameplay",
+    "size_kb": 1111
+  },
+  {
+    "file": "Hot-Blox.jpg",
+    "slug": "Hot-Blox",
+    "classification": "gameplay",
+    "size_kb": 67
+  }
+]

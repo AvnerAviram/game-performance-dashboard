@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Conflict Spot-Check — 40 Games (Screenshot vs Art Pipeline)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #f39c12; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 8px; }
+.context { color: #f39c12; font-size: 0.95em; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.size { color: #666; font-size: 0.7em; font-weight: normal; }
+.dims { margin-top: 12px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 8px; font-size: 1.1em; }
+.btns { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-gp, .btn-promo, .btn-splash, .btn-rules { padding: 8px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+.btn-gp { background: #2ecc71; color: #000; }
+.btn-promo { background: #e74c3c; color: #fff; }
+.btn-splash { background: #f39c12; color: #000; }
+.btn-rules { background: #3498db; color: #fff; }
+.btn-gp.selected { box-shadow: 0 0 0 3px #27ae60; transform: scale(1.08); }
+.btn-promo.selected { box-shadow: 0 0 0 3px #c0392b; transform: scale(1.08); }
+.btn-splash.selected { box-shadow: 0 0 0 3px #e67e22; transform: scale(1.08); }
+.btn-rules.selected { box-shadow: 0 0 0 3px #2980b9; transform: scale(1.08); }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; font-weight: normal; }
+.badge-conflict { background: #f39c12; color: #000; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold; }
+#export-area { width: 90%; height: 300px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; font-family: monospace; font-size: 0.85em; }
+.progress { text-align: center; font-size: 1.2em; color: #2ecc71; margin: 10px 0; position: sticky; top: 0; background: #1a1a2e; padding: 10px; z-index: 100; border-bottom: 1px solid #333; }
+</style></head><body>
+<h1>Conflict Spot-Check — Screenshot Classifier vs Art Pipeline</h1>
+<p class="summary">40 games where screenshot classifier says <b>gameplay</b> but art pipeline said <b>promotional</b>.<br>
+Stratified by file size (10 smallest, 10 small-mid, 10 mid-large, 10 largest).<br>
+<b>Unmarked = you haven't reviewed yet.</b> Click the correct category for each.</p>
+<div class="progress" id="progress">Reviewed: 0 / 40</div>
+
+<div class="game" id="g0">
+  <div class="game-title">#1: Boxes <span class="badge badge-conflict">CONFLICT</span> <span class="size">18KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Boxes.jpg" alt="Boxes">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(0,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(0,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(0,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(0,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-0"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g1">
+  <div class="game-title">#2: Blood-Suckers-Megaways <span class="badge badge-conflict">CONFLICT</span> <span class="size">26KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Blood-Suckers-Megaways.jpeg" alt="Blood-Suckers-Megaways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(1,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(1,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(1,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(1,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-1"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g2">
+  <div class="game-title">#3: launchx <span class="badge badge-conflict">CONFLICT</span> <span class="size">26KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/launchx.webp" alt="launchx">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(2,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(2,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(2,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(2,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-2"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g3">
+  <div class="game-title">#4: double-top-dollar <span class="badge badge-conflict">CONFLICT</span> <span class="size">28KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/double-top-dollar.webp" alt="double-top-dollar">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(3,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(3,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(3,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(3,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-3"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g4">
+  <div class="game-title">#5: Hop-N-Pop <span class="badge badge-conflict">CONFLICT</span> <span class="size">29KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Hop-N-Pop.jpg" alt="Hop-N-Pop">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(4,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(4,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(4,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(4,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-4"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g5">
+  <div class="game-title">#6: Wildfire-Wins <span class="badge badge-conflict">CONFLICT</span> <span class="size">31KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wildfire-Wins.jpg" alt="Wildfire-Wins">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(5,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(5,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(5,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(5,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-5"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g6">
+  <div class="game-title">#7: Cluster-Tumble <span class="badge badge-conflict">CONFLICT</span> <span class="size">31KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cluster-Tumble.jpg" alt="Cluster-Tumble">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(6,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(6,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(6,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(6,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-6"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g7">
+  <div class="game-title">#8: 5-Doggy-Dollars <span class="badge badge-conflict">CONFLICT</span> <span class="size">32KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/5-Doggy-Dollars.jpeg" alt="5-Doggy-Dollars">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(7,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(7,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(7,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(7,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-7"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g8">
+  <div class="game-title">#9: Fire-Blaze-Golden-Tundra-Wolf <span class="badge badge-conflict">CONFLICT</span> <span class="size">40KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fire-Blaze-Golden-Tundra-Wolf.jpg" alt="Fire-Blaze-Golden-Tundra-Wolf">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(8,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(8,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(8,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(8,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-8"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g9">
+  <div class="game-title">#10: Slingo-Sweet-Bonanza <span class="badge badge-conflict">CONFLICT</span> <span class="size">42KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Sweet-Bonanza.jpg" alt="Slingo-Sweet-Bonanza">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(9,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(9,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(9,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(9,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-9"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g10">
+  <div class="game-title">#11: Armadillo-Does-Christmas <span class="badge badge-conflict">CONFLICT</span> <span class="size">47KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Armadillo-Does-Christmas.jpg" alt="Armadillo-Does-Christmas">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(10,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(10,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(10,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(10,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-10"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g11">
+  <div class="game-title">#12: Gems-Infinity-Reels <span class="badge badge-conflict">CONFLICT</span> <span class="size">47KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gems-Infinity-Reels.jpg" alt="Gems-Infinity-Reels">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(11,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(11,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(11,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(11,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-11"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g12">
+  <div class="game-title">#13: Stargate-Megaways <span class="badge badge-conflict">CONFLICT</span> <span class="size">48KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Stargate-Megaways.jpg" alt="Stargate-Megaways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(12,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(12,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(12,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(12,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-12"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g13">
+  <div class="game-title">#14: Big-Scary-Fortune <span class="badge badge-conflict">CONFLICT</span> <span class="size">50KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Big-Scary-Fortune.jpg" alt="Big-Scary-Fortune">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(13,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(13,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(13,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(13,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-13"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g14">
+  <div class="game-title">#15: Aquatic-Treasures <span class="badge badge-conflict">CONFLICT</span> <span class="size">50KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Aquatic-Treasures.jpg" alt="Aquatic-Treasures">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(14,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(14,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(14,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(14,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-14"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g15">
+  <div class="game-title">#16: Thai-Flower-Megaways <span class="badge badge-conflict">CONFLICT</span> <span class="size">55KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Thai-Flower-Megaways.jpg" alt="Thai-Flower-Megaways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(15,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(15,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(15,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(15,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-15"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g16">
+  <div class="game-title">#17: 3-Clown-Monty <span class="badge badge-conflict">CONFLICT</span> <span class="size">58KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/3-Clown-Monty.jpg" alt="3-Clown-Monty">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(16,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(16,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(16,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(16,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-16"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g17">
+  <div class="game-title">#18: Absolutely-Mammoth <span class="badge badge-conflict">CONFLICT</span> <span class="size">58KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Absolutely-Mammoth.jpg" alt="Absolutely-Mammoth">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(17,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(17,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(17,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(17,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-17"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g18">
+  <div class="game-title">#19: Berryburst <span class="badge badge-conflict">CONFLICT</span> <span class="size">59KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Berryburst.jpg" alt="Berryburst">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(18,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(18,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(18,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(18,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-18"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g19">
+  <div class="game-title">#20: Bee-Frenzy <span class="badge badge-conflict">CONFLICT</span> <span class="size">65KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bee-Frenzy.jpg" alt="Bee-Frenzy">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(19,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(19,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(19,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(19,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-19"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g20">
+  <div class="game-title">#21: Buffalo-Hunter <span class="badge badge-conflict">CONFLICT</span> <span class="size">74KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Buffalo-Hunter.jpg" alt="Buffalo-Hunter">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(20,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(20,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(20,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(20,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-20"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g21">
+  <div class="game-title">#22: Bonus-Island <span class="badge badge-conflict">CONFLICT</span> <span class="size">75KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bonus-Island.jpg" alt="Bonus-Island">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(21,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(21,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(21,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(21,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-21"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g22">
+  <div class="game-title">#23: Hyper-Strike <span class="badge badge-conflict">CONFLICT</span> <span class="size">83KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Hyper-Strike.jpg" alt="Hyper-Strike">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(22,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(22,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(22,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(22,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-22"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g23">
+  <div class="game-title">#24: Telly-Reels <span class="badge badge-conflict">CONFLICT</span> <span class="size">84KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Telly-Reels.jpg" alt="Telly-Reels">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(23,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(23,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(23,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(23,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-23"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g24">
+  <div class="game-title">#25: Slingo-Capital-Gains <span class="badge badge-conflict">CONFLICT</span> <span class="size">87KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Capital-Gains.jpg" alt="Slingo-Capital-Gains">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(24,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(24,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(24,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(24,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-24"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g25">
+  <div class="game-title">#26: Epic-Riches <span class="badge badge-conflict">CONFLICT</span> <span class="size">88KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Epic-Riches.jpg" alt="Epic-Riches">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(25,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(25,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(25,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(25,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-25"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g26">
+  <div class="game-title">#27: Frozen-Gems <span class="badge badge-conflict">CONFLICT</span> <span class="size">89KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Frozen-Gems.jpg" alt="Frozen-Gems">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(26,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(26,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(26,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(26,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-26"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g27">
+  <div class="game-title">#28: Crystal-Vault <span class="badge badge-conflict">CONFLICT</span> <span class="size">98KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Crystal-Vault.jpg" alt="Crystal-Vault">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(27,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(27,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(27,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(27,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-27"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g28">
+  <div class="game-title">#29: Lightning-Zap <span class="badge badge-conflict">CONFLICT</span> <span class="size">104KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Lightning-Zap.jpg" alt="Lightning-Zap">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(28,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(28,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(28,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(28,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-28"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g29">
+  <div class="game-title">#30: Congo-Cash <span class="badge badge-conflict">CONFLICT</span> <span class="size">105KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Congo-Cash.jpg" alt="Congo-Cash">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(29,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(29,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(29,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(29,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-29"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g30">
+  <div class="game-title">#31: Force-Of-The-Gods <span class="badge badge-conflict">CONFLICT</span> <span class="size">123KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Force-Of-The-Gods.jpg" alt="Force-Of-The-Gods">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(30,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(30,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(30,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(30,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-30"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g31">
+  <div class="game-title">#32: Mercy-Of-The-Gods <span class="badge badge-conflict">CONFLICT</span> <span class="size">191KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mercy-Of-The-Gods.jpg" alt="Mercy-Of-The-Gods">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(31,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(31,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(31,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(31,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-31"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g32">
+  <div class="game-title">#33: Twin-Spin <span class="badge badge-conflict">CONFLICT</span> <span class="size">216KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Twin-Spin.jpg" alt="Twin-Spin">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(32,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(32,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(32,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(32,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-32"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g33">
+  <div class="game-title">#34: Jesters-Vegas-Experience <span class="badge badge-conflict">CONFLICT</span> <span class="size">269KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jesters-Vegas-Experience.jpg" alt="Jesters-Vegas-Experience">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(33,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(33,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(33,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(33,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-33"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g34">
+  <div class="game-title">#35: Golden-Ticket <span class="badge badge-conflict">CONFLICT</span> <span class="size">328KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Golden-Ticket.jpg" alt="Golden-Ticket">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(34,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(34,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(34,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(34,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-34"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g35">
+  <div class="game-title">#36: Rumble-Rhino <span class="badge badge-conflict">CONFLICT</span> <span class="size">402KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rumble-Rhino.jpg" alt="Rumble-Rhino">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(35,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(35,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(35,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(35,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-35"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g36">
+  <div class="game-title">#37: Lost-Relics <span class="badge badge-conflict">CONFLICT</span> <span class="size">441KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Lost-Relics.jpg" alt="Lost-Relics">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(36,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(36,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(36,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(36,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-36"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g37">
+  <div class="game-title">#38: Foxin-Wins <span class="badge badge-conflict">CONFLICT</span> <span class="size">712KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Foxin-Wins.png" alt="Foxin-Wins">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(37,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(37,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(37,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(37,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-37"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g38">
+  <div class="game-title">#39: Merlins-Magic-Respins <span class="badge badge-conflict">CONFLICT</span> <span class="size">823KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Merlins-Magic-Respins.png" alt="Merlins-Magic-Respins">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(38,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(38,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(38,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(38,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-38"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g39">
+  <div class="game-title">#40: Piggy-Heist <span class="badge badge-conflict">CONFLICT</span> <span class="size">1714KB</span></div>
+  <div class="context">Screenshot classifier: <b>gameplay</b> &nbsp;|&nbsp; Art pipeline: <b>promotional</b></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Piggy-Heist.jpg" alt="Piggy-Heist">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Is this real in-game gameplay?</div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(39,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(39,'promotional')">Promotional / Poster</button>
+        <button class="btn-splash" onclick="vote(39,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(39,'rules_page')">Rules Page</button>
+      </div>
+      <div class="fix-note" id="note-39"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="exportResults()">Export Results (JSON)</button>
+<textarea id="export-area" readonly></textarea>
+
+<script>
+const total = 40;
+const slugs = ["Boxes", "Blood-Suckers-Megaways", "launchx", "double-top-dollar", "Hop-N-Pop", "Wildfire-Wins", "Cluster-Tumble", "5-Doggy-Dollars", "Fire-Blaze-Golden-Tundra-Wolf", "Slingo-Sweet-Bonanza", "Armadillo-Does-Christmas", "Gems-Infinity-Reels", "Stargate-Megaways", "Big-Scary-Fortune", "Aquatic-Treasures", "Thai-Flower-Megaways", "3-Clown-Monty", "Absolutely-Mammoth", "Berryburst", "Bee-Frenzy", "Buffalo-Hunter", "Bonus-Island", "Hyper-Strike", "Telly-Reels", "Slingo-Capital-Gains", "Epic-Riches", "Frozen-Gems", "Crystal-Vault", "Lightning-Zap", "Congo-Cash", "Force-Of-The-Gods", "Mercy-Of-The-Gods", "Twin-Spin", "Jesters-Vegas-Experience", "Golden-Ticket", "Rumble-Rhino", "Lost-Relics", "Foxin-Wins", "Merlins-Magic-Respins", "Piggy-Heist"];
+const votes = {};
+
+function vote(idx, label) {
+  votes[idx] = label;
+  const card = document.getElementById('g' + idx);
+  card.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+  const noteDiv = document.getElementById('note-' + idx);
+  if (label !== 'gameplay') {
+    noteDiv.style.display = 'block';
+  } else {
+    noteDiv.style.display = 'none';
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const n = Object.keys(votes).length;
+  document.getElementById('progress').textContent = 'Reviewed: ' + n + ' / ' + total;
+}
+
+function exportResults() {
+  const results = [];
+  for (let i = 0; i < total; i++) {
+    const entry = { game: slugs[i] };
+    if (votes[i]) {
+      entry.quality = votes[i];
+    }
+    const noteEl = document.querySelector('#note-' + i + ' textarea');
+    if (noteEl && noteEl.value.trim()) {
+      entry.notes = { quality: noteEl.value.trim() };
+    } else {
+      entry.notes = {};
+    }
+    results.push(entry);
+  }
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(results, null, 2);
+  area.select();
+  navigator.clipboard.writeText(area.value).catch(() => {});
+}
+</script>
+</body></html>

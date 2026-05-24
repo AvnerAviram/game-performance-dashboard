@@ -50,7 +50,7 @@ EOF
 fi
 
 # ASK: Large classification runs (cost guard)
-if echo "$command" | grep -qE 'classify_art_v2\.py' ; then
+if echo "$command" | grep -qE 'classify_art\.py' ; then
   file_count=$(echo "$command" | grep -oE '\.html' | wc -l | tr -d ' ')
   if [ "$file_count" -gt 200 ]; then
     cost=$(echo "$file_count * 0.01" | bc 2>/dev/null || echo "?")

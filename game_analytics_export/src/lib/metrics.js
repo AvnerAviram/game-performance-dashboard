@@ -11,11 +11,39 @@
  */
 
 import { query, RELIABLE_GAME } from './db/duckdb-client.js';
-import { VOLATILITY_ORDER, MIN_PROVIDER_GAMES, MIN_QUALIFIED_GAMES, ELEMENT_CONSOLIDATION } from './shared-config.js';
+import {
+    VOLATILITY_ORDER,
+    MIN_PROVIDER_GAMES,
+    MIN_QUALIFIED_GAMES,
+    ELEMENT_CONSOLIDATION,
+    CHARACTER_CONSOLIDATION,
+} from './shared-config.js';
 import { F } from './game-fields.js';
 
 function catFilter(category) {
     return category ? `AND game_category = '${category.replace(/'/g, "''")}'` : '';
+}
+
+function consolidateCharacters(rows) {
+    const merged = {};
+    for (const r of rows) {
+        const canonical = CHARACTER_CONSOLIDATION[r.character] || r.character;
+        if (!merged[canonical]) {
+            merged[canonical] = { character: canonical, count: 0, totalTheo: 0, _sumForAvg: 0 };
+        }
+        const m = merged[canonical];
+        m.count += r.count;
+        m.totalTheo += r.totalTheo;
+        m._sumForAvg += r.avgTheo * r.count;
+    }
+    return Object.values(merged)
+        .map(m => ({
+            character: m.character,
+            count: m.count,
+            totalTheo: m.totalTheo,
+            avgTheo: m._sumForAvg / m.count,
+        }))
+        .sort((a, b) => b.count - a.count);
 }
 
 function consolidateElements(rows) {
@@ -297,7 +325,7 @@ export async function getArtNarrativeMetrics(category = null) {
  * @returns {Promise<{ character, count, totalTheo, avgTheo }[]>}
  */
 export async function getArtCharacterMetrics(category = null) {
-    return query(`
+    const rows = await query(`
         SELECT c AS character, COUNT(*) AS count,
                SUM(performance_theo_win) AS totalTheo,
                AVG(performance_theo_win) AS avgTheo
@@ -310,6 +338,7 @@ export async function getArtCharacterMetrics(category = null) {
         GROUP BY c
         ORDER BY count DESC
     `);
+    return consolidateCharacters(rows);
 }
 
 /**
@@ -496,7 +525,8 @@ export async function getArtRecipeMetrics(category = null, opts = {}) {
         entry.totalTheo += r.theo || 0;
         entry.mktShare += r.mkt || 0;
         const chars = Array.isArray(r.art_characters) ? r.art_characters : [];
-        for (const ch of chars) {
+        for (const rawCh of chars) {
+            const ch = CHARACTER_CONSOLIDATION[rawCh] || rawCh;
             if (ch) entry.charFreq[ch] = (entry.charFreq[ch] || 0) + 1;
         }
         const elems = Array.isArray(r.art_elements) ? r.art_elements : [];

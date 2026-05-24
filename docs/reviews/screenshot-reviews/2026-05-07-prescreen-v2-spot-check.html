@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Pre-screen Spot Check v2</title>
+<style>
+body { font-family: system-ui; background: #1a1a2e; color: #eee; padding: 20px; }
+h1 { color: #fff; }
+.info { background: #16213e; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.card { background: #16213e; border-radius: 8px; padding: 8px; cursor: pointer; border: 2px solid transparent; }
+.card img { width: 100%; border-radius: 4px; }
+.card.wrong { border-color: #e74c3c; background: #2c1010; }
+.card p { margin: 6px 0 0; font-size: 13px; }
+.lbl-gameplay { color: #2ecc71; font-weight: bold; }
+.lbl-not_gameplay { color: #e74c3c; font-weight: bold; }
+#export { margin-top: 20px; background: #2ecc71; color: #000; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+#results { margin-top: 10px; background: #16213e; padding: 10px; border-radius: 6px; white-space: pre-wrap; display: none; }
+</style></head>
+<body>
+<h1>Pre-screen Spot Check v2 (96% prompt)</h1>
+<div class="info">
+<b>Instructions:</b> Click any image where Claude got it WRONG. Green = Claude says gameplay. Red = Claude says not_gameplay.<br>
+When done, click Export to see your corrections.
+</div>
+<div class="grid"><div class="card" data-slug="Surging-7s" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Surging-7s.jpg" loading="lazy">
+  <p><b>Surging-7s</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Star-Jewels" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Star-Jewels.jpg" loading="lazy">
+  <p><b>Star-Jewels</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Jelly-Reels" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Jelly-Reels.jpg" loading="lazy">
+  <p><b>Jelly-Reels</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="3-porky-banks-christmas" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/3-porky-banks-christmas.jpg" loading="lazy">
+  <p><b>3-porky-banks-christmas</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Ariana" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Ariana.jpg" loading="lazy">
+  <p><b>Ariana</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="underworld-treasure" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/underworld-treasure.jpg" loading="lazy">
+  <p><b>underworld-treasure</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="50-Lions" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/50-Lions.jpg" loading="lazy">
+  <p><b>50-Lions</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Volcano-Eruption-Extreme" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Volcano-Eruption-Extreme.jpg" loading="lazy">
+  <p><b>Volcano-Eruption-Extreme</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Fortune-Pai-Gow-Poker" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Fortune-Pai-Gow-Poker.jpg" loading="lazy">
+  <p><b>Fortune-Pai-Gow-Poker</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Sword-Of-Destiny" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Sword-Of-Destiny.jpg" loading="lazy">
+  <p><b>Sword-Of-Destiny</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="san-xing-riches" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/san-xing-riches.jpg" loading="lazy">
+  <p><b>san-xing-riches</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Pyramidion" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Pyramidion.jpg" loading="lazy">
+  <p><b>Pyramidion</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Baking-Bonanza" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Baking-Bonanza.jpg" loading="lazy">
+  <p><b>Baking-Bonanza</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Monkey-God" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Monkey-God.jpg" loading="lazy">
+  <p><b>Monkey-God</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="3-plucky-hens" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/3-plucky-hens.jpg" loading="lazy">
+  <p><b>3-plucky-hens</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Munition-Mine" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Munition-Mine.jpg" loading="lazy">
+  <p><b>Munition-Mine</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Queen-Of-Riches" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Queen-Of-Riches.jpg" loading="lazy">
+  <p><b>Queen-Of-Riches</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="thundering-eclipse" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/thundering-eclipse.jpg" loading="lazy">
+  <p><b>thundering-eclipse</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Quick-Hit-Blitz-Red" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Quick-Hit-Blitz-Red.jpg" loading="lazy">
+  <p><b>Quick-Hit-Blitz-Red</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="pop-and-win" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/pop-and-win.jpg" loading="lazy">
+  <p><b>pop-and-win</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Crystal-Star" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Crystal-Star.jpg" loading="lazy">
+  <p><b>Crystal-Star</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Wildfire-Wins" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Wildfire-Wins.jpg" loading="lazy">
+  <p><b>Wildfire-Wins</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="merlwins-matchup" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/merlwins-matchup.jpg" loading="lazy">
+  <p><b>merlwins-matchup</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Shadow-Of-The-Panther-Infinity" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Shadow-Of-The-Panther-Infinity.jpg" loading="lazy">
+  <p><b>Shadow-Of-The-Panther-Infinity</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Fortunes-Of-Egypt" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Fortunes-Of-Egypt.jpg" loading="lazy">
+  <p><b>Fortunes-Of-Egypt</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div></div>
+<button id="export">Export Corrections</button>
+<pre id="results"></pre>
+<script>
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => card.classList.toggle("wrong"));
+});
+document.getElementById("export").addEventListener("click", () => {
+  const wrong = [...document.querySelectorAll(".card.wrong")].map(c => ({
+    slug: c.dataset.slug,
+    claude_said: c.dataset.label,
+    correct: c.dataset.label === "gameplay" ? "not_gameplay" : "gameplay"
+  }));
+  const el = document.getElementById("results");
+  el.style.display = "block";
+  el.textContent = wrong.length === 0
+    ? "No corrections — Claude got all " + document.querySelectorAll(".card").length + " right!"
+    : JSON.stringify(wrong, null, 2);
+});
+</script></body></html>

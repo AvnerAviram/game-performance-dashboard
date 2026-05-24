@@ -22,6 +22,7 @@ import { PROVIDER_URLS } from '../config/provider-urls.js';
 import { parseFeatures } from '../lib/parse-features.js';
 import { collapsibleList } from './collapsible-list.js';
 import { F, isReliableConfidence } from '../lib/game-fields.js';
+import { colorHex, textColorForBg } from '../lib/shared-config.js';
 
 export function showGameDetails(gameName) {
     const game = gameData.allGames.find(g => g.name === gameName);
@@ -728,10 +729,12 @@ export function showGameDetails(gameName) {
     // ===== ART DESIGN SECTION =====
     let artSection = '';
     const artTheme = F.artTheme(game);
-    if (artTheme) {
+    const artColors = F.artColorTone(game);
+    if (artTheme || artColors.length) {
         const artChars = F.artCharacters(game);
         const artElems = F.artElements(game);
         const artNarr = F.artNarrative(game);
+        const artPctData = F.artColorTonePct(game);
 
         const artPills = (items, bgClass) =>
             items
@@ -741,13 +744,46 @@ export function showGameDetails(gameName) {
                 )
                 .join('');
 
-        const artMetrics = [
-            {
+        const artMetrics = [];
+        if (artTheme) {
+            artMetrics.push({
                 label: 'Environment',
                 value: `<span class="font-bold text-gray-900 dark:text-white">${escapeHtml(artTheme)}</span>`,
-            },
-        ];
+            });
+        }
         if (artNarr) artMetrics.push({ label: 'Narrative', value: escapeHtml(artNarr) });
+
+        let colorPaletteHtml = '';
+        if (artPctData.length) {
+            const segments = artPctData
+                .map(({ color, pct }) => {
+                    const hex = colorHex(color);
+                    const txtColor = textColorForBg(hex);
+                    const p = typeof pct === 'number' ? Math.round(pct) : 0;
+                    const needsRing =
+                        color === 'Black' || color === 'Navy' || color === 'Dark' || color === 'Charcoal'
+                            ? ' border-r border-gray-500'
+                            : color === 'White' || color === 'Ivory' || color === 'Light'
+                              ? ' ring-1 ring-inset ring-gray-300 dark:ring-gray-600'
+                              : '';
+                    const label = p >= 25 ? `${escapeHtml(color)} ${p}%` : p >= 15 ? `${p}%` : '';
+                    return `<div title="${escapeAttr(color)} ${p}%" style="flex:${p};background:${hex};color:${txtColor}" class="flex items-center justify-center text-[10px] font-semibold h-7 min-w-[4px]${needsRing}">${label}</div>`;
+                })
+                .join('');
+            const ariaLabel = artPctData
+                .map(({ color, pct }) => `${color} ${typeof pct === 'number' ? Math.round(pct) : 0}%`)
+                .join(', ');
+            colorPaletteHtml = `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Color Palette</div>
+                <div class="w-full rounded-lg overflow-hidden flex" role="img" aria-label="Color palette: ${escapeAttr(ariaLabel)}">${segments}</div>
+                <div class="flex flex-wrap gap-2 mt-1.5">${artPctData.map(({ color, pct }) => `<span class="text-[10px] text-gray-500 dark:text-gray-400"><span class="inline-block w-2 h-2 rounded-full mr-0.5" style="background:${colorHex(color)}"></span>${escapeHtml(color)} ${typeof pct === 'number' ? Math.round(pct) : '?'}%</span>`).join('')}</div>
+            </div>`;
+        } else if (artColors.length) {
+            colorPaletteHtml = `<div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Color Palette</div>
+                <div class="flex flex-wrap">${artPills(artColors, 'bg-sky-100 text-sky-800 dark:bg-sky-900/50 dark:text-sky-300')}</div>
+            </div>`;
+        }
 
         const artContent =
             MetricGrid(artMetrics) +
@@ -762,7 +798,8 @@ export function showGameDetails(gameName) {
                        <div class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Visual Elements (${artElems.length})</div>
                        <div class="flex flex-wrap">${artPills(artElems, 'bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300')}</div>
                    </div>`
-                : '');
+                : '') +
+            colorPaletteHtml;
 
         artSection = PanelSection({
             title: 'Art Insights',

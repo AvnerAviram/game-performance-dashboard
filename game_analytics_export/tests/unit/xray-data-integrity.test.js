@@ -13,13 +13,9 @@
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
-import { join, resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 import { computeProviderMetrics, computeThemeMetrics, computeFeatureMetrics } from '../utils/test-aggregators.js';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '../..');
-const DATA_DIR = join(ROOT, 'data');
+import { MASTER_JSON, MAPPINGS, MATCHING } from '../helpers/paths.js';
 
 const {
     getExtractionMethod,
@@ -30,21 +26,20 @@ const {
 
 let games, confMap, rulesMatches;
 
-function loadJson(file) {
-    const p = join(DATA_DIR, file);
-    return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null;
+function loadJson(fullPath) {
+    return existsSync(fullPath) ? JSON.parse(readFileSync(fullPath, 'utf8')) : null;
 }
 
 function readRulesText(slug, maxChars = 12000) {
-    const p = join(DATA_DIR, 'rules_text', `${slug}.txt`);
+    const p = join(MATCHING.rulesText, `${slug}.txt`);
     if (!existsSync(p)) return null;
     return readFileSync(p, 'utf8').slice(0, maxChars);
 }
 
 beforeAll(() => {
-    games = loadJson('game_data_master.json');
-    confMap = loadJson('confidence_map.json');
-    rulesMatches = loadJson('rules_game_matches.json');
+    games = loadJson(MASTER_JSON);
+    confMap = loadJson(MAPPINGS.confidence);
+    rulesMatches = loadJson(MATCHING.rulesMatches);
 });
 
 describe('X-Ray data integrity: values match source files', () => {
@@ -94,7 +89,7 @@ describe('X-Ray data integrity: context windows are honest', () => {
             tested++;
         }
         // If no rules text files exist at all, skip gracefully
-        const hasRulesDir = existsSync(join(DATA_DIR, 'rules_text'));
+        const hasRulesDir = existsSync(MATCHING.rulesText);
         if (hasRulesDir) {
             expect(tested).toBeGreaterThanOrEqual(0);
         }

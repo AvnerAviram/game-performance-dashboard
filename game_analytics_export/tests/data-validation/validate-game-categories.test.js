@@ -1,14 +1,12 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON } from '../helpers/paths.js';
 
 describe('Game category validation', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     const VALID_CATEGORIES = new Set([
@@ -55,7 +53,7 @@ describe('Game count accuracy (DuckDB contract)', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('total master entries matches expected range', () => {

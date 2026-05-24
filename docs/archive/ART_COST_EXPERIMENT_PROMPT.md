@@ -18,7 +18,7 @@ This experiment will give us hard data to pick the optimal config for Batch 3 (1
 
 ### Step 1: Add token usage tracking to `classify_game()`
 
-In `classify_art_v2.py`, the `classify_game()` function (line ~1477) calls `client.messages.create()` but only uses `resp.content[0].text` and throws away `resp.usage`. Fix this:
+In `classify_art.py`, the `classify_game()` function (line ~1477) calls `client.messages.create()` but only uses `resp.content[0].text` and throws away `resp.usage`. Fix this:
 
 ```python
 # After resp = client.messages.create(...) around line 1477-1482
@@ -169,7 +169,7 @@ Report as percentage correct per dimension per test config.
 
 ## Deliverables
 
-1. Code changes in `classify_art_v2.py` (caching, token tracking, --no-masked, --no-cache, --cost-experiment)
+1. Code changes in `classify_art.py` (caching, token tracking, --no-masked, --no-cache, --cost-experiment)
 2. `art_pipeline/cost_experiment_results.json` with all raw data
 3. Summary table printed to stdout
 4. `--regression-full` output confirming no regressions

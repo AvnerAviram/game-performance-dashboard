@@ -12,9 +12,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { PROVIDER_NORMALIZATION_MAP, MIN_PROVIDER_GAMES } from '../../src/lib/shared-config.js';
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.resolve(__dirname, '../../data');
 const CREDS = { username: 'e2e_test_user', password: 'e2eTestPass123!' };
 
 function getProvider(game) {
@@ -27,8 +27,8 @@ test('Data Integrity: source JSON vs dashboard (all checks)', async ({ page, bas
   test.setTimeout(300000);
 
   // ─── Load raw data ───
-  const rawGames = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-  const themeMap = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
+  const rawGames = JSON.parse(fs.readFileSync(MASTER_JSON, 'utf-8'));
+  const themeMap = JSON.parse(fs.readFileSync(MAPPINGS.theme, 'utf-8'));
 
   function getConsolidatedTheme(g) { return themeMap[g.theme_primary] || g.theme_primary || 'Unknown'; }
 

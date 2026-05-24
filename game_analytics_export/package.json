@@ -1,6 +1,6 @@
 {
     "name": "games-analytics-tool",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "Games Analytics Tool",
     "scripts": {
         "start": "node server/server.cjs",
@@ -41,9 +41,9 @@
         "qa:ai": "node scripts/qa-ai-tester.mjs",
         "qa:ai:trends": "node scripts/qa-ai-tester.mjs --page trends",
         "qa:post-tickets": "node scripts/qa-post-tickets.mjs",
-        "verify": "node scripts/data/verify-and-correct-games.mjs",
-        "verify:dry": "node scripts/data/verify-and-correct-games.mjs --dry-run",
-        "verify:dry-skip-web": "node scripts/data/verify-and-correct-games.mjs --dry-run --skip-web"
+        "verify": "node scripts/verify-and-correct-games.mjs",
+        "verify:dry": "node scripts/verify-and-correct-games.mjs --dry-run",
+        "verify:dry-skip-web": "node scripts/verify-and-correct-games.mjs --dry-run --skip-web"
     },
     "devDependencies": {
         "@duckdb/duckdb-wasm": "^1.32.0",

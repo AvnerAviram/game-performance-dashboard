@@ -1,0 +1,5581 @@
+[
+  {
+    "timestamp": "2026-05-07 11:45:27",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": 8829,
+    "accuracy": 73.91304347826086,
+    "total": 23,
+    "correct": 17,
+    "wrong": 6,
+    "tp": 16,
+    "fp": 0,
+    "fn": 6,
+    "tn": 1,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 11:46:37",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": 6952,
+    "accuracy": 95.65217391304348,
+    "total": 23,
+    "correct": 22,
+    "wrong": 1,
+    "tp": 22,
+    "fp": 1,
+    "fn": 0,
+    "tn": 0,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:42:30",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "879a0872c1ca",
+    "accuracy": 85.71428571428571,
+    "total": 28,
+    "correct": 24,
+    "wrong": 4,
+    "tp": 23,
+    "fp": 2,
+    "fn": 2,
+    "tn": 1,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Buffalo Chief",
+        "slug": "Buffalo-Chief",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mega Money Catch",
+        "slug": "Mega-Money-Catch",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Cash Express Luxury Line Timber Wolf",
+        "slug": "cash-express-luxury-line-timber-wolf",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:43:52",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "1cc5cffed8c0",
+    "accuracy": 78.57142857142857,
+    "total": 28,
+    "correct": 22,
+    "wrong": 6,
+    "tp": 20,
+    "fp": 1,
+    "fn": 5,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Chief",
+        "slug": "Buffalo-Chief",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Mega Money Catch",
+        "slug": "Mega-Money-Catch",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Cash Express Luxury Line Timber Wolf",
+        "slug": "cash-express-luxury-line-timber-wolf",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:45:25",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "9e001a1729ff",
+    "accuracy": 85.71428571428571,
+    "total": 28,
+    "correct": 24,
+    "wrong": 4,
+    "tp": 22,
+    "fp": 1,
+    "fn": 3,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Chief",
+        "slug": "Buffalo-Chief",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mega Money Catch",
+        "slug": "Mega-Money-Catch",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Cash Express Luxury Line Timber Wolf",
+        "slug": "cash-express-luxury-line-timber-wolf",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:47:20",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "9e001a1729ff",
+    "accuracy": 88.0,
+    "total": 25,
+    "correct": 22,
+    "wrong": 3,
+    "tp": 20,
+    "fp": 1,
+    "fn": 2,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:49:13",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "f848da7d0ede",
+    "accuracy": 92.0,
+    "total": 25,
+    "correct": 23,
+    "wrong": 2,
+    "tp": 22,
+    "fp": 2,
+    "fn": 0,
+    "tn": 1,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:50:58",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "ad85f8eb9b69",
+    "accuracy": 88.0,
+    "total": 25,
+    "correct": 22,
+    "wrong": 3,
+    "tp": 22,
+    "fp": 3,
+    "fn": 0,
+    "tn": 0,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:52:22",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "8c8768aa0351",
+    "accuracy": 92.0,
+    "total": 25,
+    "correct": 23,
+    "wrong": 2,
+    "tp": 21,
+    "fp": 1,
+    "fn": 1,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:53:59",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "ef47946a7c5c",
+    "accuracy": 92.0,
+    "total": 25,
+    "correct": 23,
+    "wrong": 2,
+    "tp": 22,
+    "fp": 2,
+    "fn": 0,
+    "tn": 1,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 12:55:23",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "927bdcb9cc8f",
+    "accuracy": 96.0,
+    "total": 25,
+    "correct": 24,
+    "wrong": 1,
+    "tp": 22,
+    "fp": 1,
+    "fn": 0,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 13:17:30",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "8ccadd8f5556",
+    "accuracy": 96.15384615384616,
+    "total": 26,
+    "correct": 25,
+    "wrong": 1,
+    "tp": 22,
+    "fp": 1,
+    "fn": 0,
+    "tn": 3,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chocolate Cash Pots",
+        "slug": "Chocolate-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 13:25:42",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "41fea6c1dee9",
+    "accuracy": 90.0,
+    "total": 40,
+    "correct": 36,
+    "wrong": 4,
+    "tp": 35,
+    "fp": 4,
+    "fn": 0,
+    "tn": 1,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Chocolate Cash Pots",
+        "slug": "Chocolate-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ariana",
+        "slug": "Ariana",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Blitz Ii",
+        "slug": "Buffalo-Blitz-Ii",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Maximus Soldier Of Rome",
+        "slug": "Slingo-Maximus-Soldier-Of-Rome",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power Of Gods Valhalla",
+        "slug": "Power-Of-Gods-Valhalla",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mighty Griffin Megaways Jackpot Royale",
+        "slug": "Mighty-Griffin-Megaways-Jackpot-Royale",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Xmas Joker",
+        "slug": "Xmas-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fortunes Of The Dead",
+        "slug": "Fortunes-Of-The-Dead",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Great Book Of Magic Deluxe",
+        "slug": "Great-Book-Of-Magic-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon Tribe",
+        "slug": "Dragon-Tribe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cops N Robbers Big Money Trick Or Treat",
+        "slug": "Cops-N-Robbers-Big-Money-Trick-Or-Treat",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Shield Of Power",
+        "slug": "Shield-Of-Power",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "China Shores",
+        "slug": "China-Shores",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chaos Crew",
+        "slug": "Chaos-Crew",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragons Of The North Deluxe",
+        "slug": "Dragons-Of-The-North-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 13:28:03",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "41fea6c1dee9",
+    "accuracy": 92.5,
+    "total": 40,
+    "correct": 37,
+    "wrong": 3,
+    "tp": 35,
+    "fp": 3,
+    "fn": 0,
+    "tn": 2,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Chocolate Cash Pots",
+        "slug": "Chocolate-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ariana",
+        "slug": "Ariana",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Blitz Ii",
+        "slug": "Buffalo-Blitz-Ii",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Maximus Soldier Of Rome",
+        "slug": "Slingo-Maximus-Soldier-Of-Rome",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power Of Gods Valhalla",
+        "slug": "Power-Of-Gods-Valhalla",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mighty Griffin Megaways Jackpot Royale",
+        "slug": "Mighty-Griffin-Megaways-Jackpot-Royale",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Xmas Joker",
+        "slug": "Xmas-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fortunes Of The Dead",
+        "slug": "Fortunes-Of-The-Dead",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Great Book Of Magic Deluxe",
+        "slug": "Great-Book-Of-Magic-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon Tribe",
+        "slug": "Dragon-Tribe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cops N Robbers Big Money Trick Or Treat",
+        "slug": "Cops-N-Robbers-Big-Money-Trick-Or-Treat",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Shield Of Power",
+        "slug": "Shield-Of-Power",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "China Shores",
+        "slug": "China-Shores",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chaos Crew",
+        "slug": "Chaos-Crew",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragons Of The North Deluxe",
+        "slug": "Dragons-Of-The-North-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 14:50:03",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "5d6b14540eaa",
+    "accuracy": 85.71428571428571,
+    "total": 42,
+    "correct": 36,
+    "wrong": 6,
+    "tp": 31,
+    "fp": 3,
+    "fn": 3,
+    "tn": 5,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Chocolate Cash Pots",
+        "slug": "Chocolate-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ariana",
+        "slug": "Ariana",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Blitz Ii",
+        "slug": "Buffalo-Blitz-Ii",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Maximus Soldier Of Rome",
+        "slug": "Slingo-Maximus-Soldier-Of-Rome",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power Of Gods Valhalla",
+        "slug": "Power-Of-Gods-Valhalla",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Mighty Griffin Megaways Jackpot Royale",
+        "slug": "Mighty-Griffin-Megaways-Jackpot-Royale",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Xmas Joker",
+        "slug": "Xmas-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fortunes Of The Dead",
+        "slug": "Fortunes-Of-The-Dead",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Great Book Of Magic Deluxe",
+        "slug": "Great-Book-Of-Magic-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon Tribe",
+        "slug": "Dragon-Tribe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cops N Robbers Big Money Trick Or Treat",
+        "slug": "Cops-N-Robbers-Big-Money-Trick-Or-Treat",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Shield Of Power",
+        "slug": "Shield-Of-Power",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "China Shores",
+        "slug": "China-Shores",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chaos Crew",
+        "slug": "Chaos-Crew",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragons Of The North Deluxe",
+        "slug": "Dragons-Of-The-North-Deluxe",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      },
+      {
+        "game": "Christmas Cash Pots",
+        "slug": "Christmas-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Cash Pots",
+        "slug": "Rainbow-Cash-Pots",
+        "expected": "gameplay",
+        "predicted": "not_gameplay",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-07 14:52:24",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "c0f195999e37",
+    "accuracy": 88.09523809523809,
+    "total": 42,
+    "correct": 37,
+    "wrong": 5,
+    "tp": 34,
+    "fp": 5,
+    "fn": 0,
+    "tn": 3,
+    "details": [
+      {
+        "game": "Bonanza Megaways",
+        "slug": "Bonanza-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "King Kong Cash Even Bigger Bananas",
+        "slug": "King-Kong-Cash-Even-Bigger-Bananas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood Suckers 2",
+        "slug": "Blood-Suckers-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Unicorn Legend",
+        "slug": "Unicorn-Legend",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Foxin Wins A Very Foxin Christmas",
+        "slug": "Foxin-Wins-A-Very-Foxin-Christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand Circus",
+        "slug": "Grand-Circus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eggomatic",
+        "slug": "Eggomatic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire Burner",
+        "slug": "Fire-Burner",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo X Scream",
+        "slug": "Slingo-X-Scream",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Zulu Treasure",
+        "slug": "Zulu-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Riches Race Day",
+        "slug": "Rainbow-Riches-Race-Day",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Magic Rewards",
+        "slug": "Magic-Rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Knights Keep",
+        "slug": "Knights-Keep",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heads Up Hold Em",
+        "slug": "Heads-Up-Hold-Em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Money Frenzy Jackpot Royale Express",
+        "slug": "Big-Money-Frenzy-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire And Roses Joker 2 All In",
+        "slug": "Fire-And-Roses-Joker-2-All-In",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Extra Chilli Megaways",
+        "slug": "Extra-Chilli-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold Cash Freespins",
+        "slug": "Gold-Cash-Freespins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big Bucks Bandits Megaways",
+        "slug": "Big-Bucks-Bandits-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rick And Morty Strike Back Jackpot Royale Express",
+        "slug": "Rick-And-Morty-Strike-Back-Jackpot-Royale-Express",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Cleopatra",
+        "slug": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo Deal Or No Deal",
+        "slug": "Slingo-Deal-Or-No-Deal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots Wheel Of Fortune On Air",
+        "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Sugar Surge",
+        "slug": "Sugar-Surge",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Star Jewels",
+        "slug": "Star-Jewels",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Chocolate Cash Pots",
+        "slug": "Chocolate-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ariana",
+        "slug": "Ariana",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo Blitz Ii",
+        "slug": "Buffalo-Blitz-Ii",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Slingo Maximus Soldier Of Rome",
+        "slug": "Slingo-Maximus-Soldier-Of-Rome",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power Of Gods Valhalla",
+        "slug": "Power-Of-Gods-Valhalla",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mighty Griffin Megaways Jackpot Royale",
+        "slug": "Mighty-Griffin-Megaways-Jackpot-Royale",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Xmas Joker",
+        "slug": "Xmas-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fortunes Of The Dead",
+        "slug": "Fortunes-Of-The-Dead",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Great Book Of Magic Deluxe",
+        "slug": "Great-Book-Of-Magic-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon Tribe",
+        "slug": "Dragon-Tribe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cops N Robbers Big Money Trick Or Treat",
+        "slug": "Cops-N-Robbers-Big-Money-Trick-Or-Treat",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Shield Of Power",
+        "slug": "Shield-Of-Power",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "China Shores",
+        "slug": "China-Shores",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chaos Crew",
+        "slug": "Chaos-Crew",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragons Of The North Deluxe",
+        "slug": "Dragons-Of-The-North-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Christmas Cash Pots",
+        "slug": "Christmas-Cash-Pots",
+        "expected": "not_gameplay",
+        "predicted": "not_gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainbow Cash Pots",
+        "slug": "Rainbow-Cash-Pots",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-10 19:34:38",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "6f9f11020430",
+    "accuracy": 95.0,
+    "total": 20,
+    "correct": 19,
+    "wrong": 1,
+    "details": [
+      {
+        "game": "Royal-Mint-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Bakers-Treat",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Jinse-Dao-Tiger",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo-Blitz-Ii",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Jinfu-Xingyun",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Chicago-Gold",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Animals-Of-Africa",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Rio-Fever",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Outlaws",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Bear-Money",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Empress-Of-The-Nile",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Phoenix-Fa",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "dragon-power-triple-gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Pearl-Legend-Hold-And-Win",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "European-Roulette",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "1001-mystery-genie-fortunes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Candyblasted",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "kringle-cash",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rising-Tiger-Sheng-Qi-De-Laohu",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "12-bells",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-10 19:38:07",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "338958df2daf",
+    "accuracy": 90.0,
+    "total": 20,
+    "correct": 18,
+    "wrong": 2,
+    "details": [
+      {
+        "game": "Royal-Mint-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Bakers-Treat",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Jinse-Dao-Tiger",
+        "expected": "gameplay",
+        "predicted": "promotional",
+        "correct": false
+      },
+      {
+        "game": "Buffalo-Blitz-Ii",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Jinfu-Xingyun",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Chicago-Gold",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Animals-Of-Africa",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Rio-Fever",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Outlaws",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Bear-Money",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Empress-Of-The-Nile",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Phoenix-Fa",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "dragon-power-triple-gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Pearl-Legend-Hold-And-Win",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "European-Roulette",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "1001-mystery-genie-fortunes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Candyblasted",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "kringle-cash",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rising-Tiger-Sheng-Qi-De-Laohu",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "12-bells",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-11 20:19:09",
+    "model": "claude-sonnet-4-20250514",
+    "prompt_hash": "dda9f12d4700",
+    "accuracy": 96.95945945945947,
+    "total": 296,
+    "correct": 287,
+    "wrong": 9,
+    "details": [
+      {
+        "game": "Cops-N-Robbers-Big-Money",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Royal-Mint-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Pixies-Of-The-Forest",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Bakers-Treat",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Jinse-Dao-Tiger",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Buffalo-Blitz-Ii",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Deadliest-Catch",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Jinfu-Xingyun",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Chicago-Gold",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Animals-Of-Africa",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Rio-Fever",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "diamond-cash-mighty-elephant",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "mo-mummy-valley-of-riches",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Outlaws",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Bear-Money",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Empress-Of-The-Nile",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Digipays",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Phoenix-Fa",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "dragon-power-triple-gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Pearl-Legend-Hold-And-Win",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Invading-Vegas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "European-Roulette",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "1001-mystery-genie-fortunes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Superstars",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Candyblasted",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "kringle-cash",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rising-Tiger-Sheng-Qi-De-Laohu",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blobsters-Clusterbuster",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "12-bells",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "China-Gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Invaders-From-The-Planet-Moolah",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "diamond-cash-mighty-cleopatra",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Dazzle-Me",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mad-Hit-Wild-Alice",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Royale-With-Cheese-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Buffalo-Mania-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Giza-Infinity-Reels",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "jackrabbit-jackpots",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lit-Christmas-LuckyTap",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Desperados-Wild",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Hot-Slot-Mystery-Jackpot-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lion-Safari",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "10x-minimum-top-multiplier",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Secrets-Of-The-Forest-Extreme",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "wild-mining-xxxtreme",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rakin-Bacon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Midnight-Princess",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "ashoka-eternal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sevens-Staxx",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mystic-Fortune-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gigantoonz",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "book-of-sevens",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cops-N-Robbers-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "republic-empire-hold-and-win",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Monopoly-Mega-Movers",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Golden-Yang",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big-Shots",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold-Cash-Free-Spins-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "joker-rush-collect-em",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Outlaw-Waysfecta",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Flowers",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Five-Pirates",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rome-Fight-For-Gold-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Grand-Legacy",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Barnyard-Bonanza",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Shadow-Of-The-Panther-Infinity",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Legacy-Of-Dead",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "mighty-wild-jaguar",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "10x-minimum-extreme",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "3-porky-banks-christmas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Thunderstruck-Wild-Lightning",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Disco-Diamonds",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "texas-oil-riches",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fist-Of-Destruction",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Golden-Ox-Ainsworth",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "The-Race",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "arabian-wins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "big-bucks-canyon-10k-ways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Silverback-Multiplier-Mountain",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "millionaire",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Great-Tiger",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dark-King-Forbidden-Riches",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lucid-Fruits",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "triple-jelly",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Joker-Flip",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wild-Flower",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Laughing-Dragon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "piggy-riches-3-hog-heaven",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Teddys-Tavern",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Bloodlore-Wolf-Pack",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Hula-Magic",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "El-Dorado-Infinity-Reels",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "trinity-impact",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Immortal-Ways-Luva",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big-Spinner",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Cool-Loot",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Golden-Envelope",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "mr-porky-banker-cash-stash",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "go-high-gallina",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Tiki-Fruits",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold-Fish-Feeding-Time-Deluxe-Treasure",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Rainin-Money",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fish-Wishes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Starlite-Fruits",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Super-Crystal-7s",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "giga-match-bunny",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Burn-7s-Burn",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dinero-Loco-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "lucky-seven-spin",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "eternal-dawn",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Arctic-Sky",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Angels-Vs-Devils",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Thundering-Shenlong",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wild-Fire-Riches",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Spin-Em-Round",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Jade-Wins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cash-Cave",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Buffalo-Canyon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Triple-Monkey",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "diamond-cash-mighty-sevens",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Butterfly-Staxx",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dead-Canary",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fire-Vs-Ice",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fishing-Cash-Pots",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Witch-Pickings",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Paradise-Ticket",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "the-rise-of-the-tycoon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Big-Christmas-Present",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Army-Of-Ares",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "nugget-frenzy",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Last-Chance-Saloon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Outback-Riches",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power-Of-Gods-The-Pantheon",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Guardians-Of-The-Deep",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Book-Of-Halloween",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Buffalo-Blitz",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "inferno-fortunes-rising-rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Call-Of-The-Wild",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "give-me-gold-rising-rewards",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eagles-Flight-Power-Bet",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Ze-Zeus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lucky-Mrs-Patrick",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "spirit-of-mustang-deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Plinko",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Happy-Holidays",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots-Ocean-Belles",
+        "expected": "gameplay",
+        "predicted": "rules_page",
+        "correct": false
+      },
+      {
+        "game": "Ultimate-X-Poker-Triple-Play",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Fire-Blaze-Sisters-Gift",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Emperors-Garden",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Xmas-Joker",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Wixx",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Crazy-Fishin",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Maximus-Soldier-Of-Rome",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Astrocat",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Casinomeister",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "King-Of-The-Trident",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "red-zone-blitz",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lucky-Link-Beats",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Electric-Nights",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Capital-Gains",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sonic-Links",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lady-Merlin-Lightning-Chase",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Green-Machine-Deluxe-Vegas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Chicken-Fox",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Asgardian-Stones",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Breakout-Bob",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dungeons-And-Diamonds",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Barbarian-Fury",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "dancing-drums-link",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Multiply-Like-Bunnies",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon-Lines",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Book-Of-Itza",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Capital-Gains",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "viracocha",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Genie-Wild",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sweet-Success",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Showdown",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gorilla-Kingdom",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "cowboy-showdown",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fever-Spin-Megaways",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Rich-Wilde-And-The-Shield-Of-Athena",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Spin-Sorceress",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "piggy-prizes-wish-of-riches",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Megajackpots-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cleopatra-Plus",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Book-Of-Independence",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Cash-Volt",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Lion-Carnival",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mirror-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ghosts-N-Gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "cash-can-ultratap",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "beaver-las-vegas",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "calavera-cash",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Spartan-Fire",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Rising-Temple-Hold-And-Win",
+        "expected": "not_gameplay",
+        "predicted": "rules_page",
+        "correct": true
+      },
+      {
+        "game": "Coins-Of-Egypt",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mighty-Medusa",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Holidays-Joker-Halloween",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Diamond-Inferno",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Fluffy-Favourites",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Eagle-Dollar",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "diamond-blitz-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Legacy-Of-The-Wild-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "beer-stein-bears",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Pharaohs-Daughter",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "In-The-Rabbit-Hole",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Tomb-Of-Nefertiti",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "cash-carts-western-wagons",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Loot-Boost",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Heart-Of-Romance",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Choco-Reels",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "big-catch-even-bigger-bass",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Power-Of-Gods-Medusa",
+        "expected": "not_gameplay",
+        "predicted": "promotional",
+        "correct": true
+      },
+      {
+        "game": "Treasure-Hunter",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dragon-Blast",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Starstruck",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Fishermans-Bounty",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Outback-Walkabout",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "the-goonies-megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "elephants-vs-tigers",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Tower-Quest-Legacy",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "gladiator-ways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Valkyrie-Returns",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "ted-afterparty",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mayan-Eagle",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Golden-Lucky-Fortune",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "The-Goonies-Jackpot-Royale",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Quadruple-Da-Vinci-Diamonds",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Sanctuary",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "10x-minimum-big-bucks",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Stormforged",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mystery-Jack-Deluxe",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Alexander-The-Great-World-Conqueror",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Manhattan-Goes-Wild",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Prism-Of-Gems",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Legacy-Of-Inca",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "The-Goonies",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Joker-Fire-Frenzy",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Annihilator",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Maya-Gold-IGT",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "9-Coins",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Tomb-Of-Gold-Reimagined",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "thundering-eclipse",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mayan-Cache",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Ring-Of-Odin",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Aliyas-Wishes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fiesta-De-Toros",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "The-Wild-Hatter",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "triple-turducken",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Love-Joker",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wilderland",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Tomb-Of-Akhenaten",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "fa-fa-babies-2",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "triple-pop-fireworks-festival",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Egyptian-Emeralds",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Boat-Bonanza-Colossal-Catch",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Casino-War",
+        "expected": "gameplay",
+        "predicted": "rules_page",
+        "correct": false
+      },
+      {
+        "game": "Slingo-Cleopatra",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "cash-cascade-imperial-crown",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Revved-Wilds",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wild-Frames",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "double-beef-up-the-bonus",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Silver-Trails",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wild-Wild-Gems",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "El-Dorado",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Cloud-Corsairs",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gallo-Gold-Brunos-Megaways",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gold-Party-2-After-Hours",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Dwarfs-Fortune",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Prosperity-Twin",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "gold-power",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Cleopatra-Gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Wild-Catcher",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Stormin-7s",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Blood-And-Gold",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Pearl-Catcher",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Stellar-Cash-Blown-Away",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mythological-Mayhem-Supreme-Streaks",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Gargantoonz",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingoooal",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Undefeated-Xerxes",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Amazon-Kingdom",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "buffalo-untamed",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "j-mania-loco-habanero",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Fishin-Pots-Of-Gold-Gold-Blitz",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Jinse-Dao-Dragon",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Hot-Blox",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Mercy-Of-The-Gods",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Jesters-Vegas-Experience",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Golden-Ticket",
+        "expected": "not_gameplay",
+        "predicted": "gameplay",
+        "correct": false
+      },
+      {
+        "game": "Rumble-Rhino",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Lost-Relics",
+        "expected": "not_gameplay",
+        "predicted": "splash_screen",
+        "correct": true
+      },
+      {
+        "game": "Cluster-Tumble",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      },
+      {
+        "game": "Slingo-Sweet-Bonanza",
+        "expected": "gameplay",
+        "predicted": "gameplay",
+        "correct": true
+      }
+    ]
+  }
+]

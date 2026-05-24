@@ -12,8 +12,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DATA_DIR = path.join(__dirname, '..', 'data');
-const MASTER_PATH = path.join(DATA_DIR, 'game_data_master.json');
+const { MASTER_JSON: MASTER_PATH, DATA_DIR } = require('../src/lib/data-paths.cjs');
 const RESULTS_PATH = path.join(DATA_DIR, 'art_pipeline', 'results.json');
 
 const dryRun = process.argv.includes('--dry-run');

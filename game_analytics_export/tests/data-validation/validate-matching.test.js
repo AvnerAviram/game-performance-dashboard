@@ -1,8 +1,7 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync, statSync } from 'fs';
 import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MATCHING, VALIDATION } from '../helpers/paths.js';
 
 function norm(name) {
     let s = name.toLowerCase().trim();
@@ -21,8 +20,8 @@ function deepNorm(name) {
     return [...words].sort().join(' ');
 }
 
-const MATCH_PATH = resolve(DATA_DIR, 'rules_game_matches.json');
-const RI_PATH = resolve(DATA_DIR, 'rules_index.json');
+const MATCH_PATH = MATCHING.rulesMatches;
+const RI_PATH = MATCHING.rulesIndex;
 const HAS_RULES_DATA = existsSync(MATCH_PATH) && existsSync(RI_PATH);
 
 describe.skipIf(!HAS_RULES_DATA)('Matching integrity — title verification gate', () => {
@@ -123,10 +122,10 @@ describe.skipIf(!HAS_RULES_DATA)('Matching integrity — title verification gate
     });
 });
 
-const HAS_TEXT_DIR = existsSync(resolve(DATA_DIR, 'rules_text'));
+const HAS_TEXT_DIR = existsSync(MATCHING.rulesText);
 describe.skipIf(!HAS_RULES_DATA || !HAS_TEXT_DIR)('Matching integrity — data quality audit', () => {
     let matches;
-    const TEXT_DIR = resolve(DATA_DIR, 'rules_text');
+    const TEXT_DIR = MATCHING.rulesText;
 
     beforeAll(() => {
         matches = JSON.parse(readFileSync(MATCH_PATH, 'utf-8'));
@@ -243,7 +242,7 @@ describe.skipIf(!existsSync(MATCH_PATH))('Matching integrity — GT cross-check'
 
     beforeAll(() => {
         matches = JSON.parse(readFileSync(MATCH_PATH, 'utf-8'));
-        const gtPath = resolve(DATA_DIR, 'ground_truth_ags.json');
+        const gtPath = VALIDATION.groundTruthAgs;
         if (existsSync(gtPath)) {
             gt = JSON.parse(readFileSync(gtPath, 'utf-8'));
         }

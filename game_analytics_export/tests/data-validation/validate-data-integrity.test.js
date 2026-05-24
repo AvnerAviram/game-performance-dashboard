@@ -1,14 +1,15 @@
 import { describe, test, expect, beforeAll } from 'vitest';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
+import { DATA_DIR, MASTER_JSON } from '../helpers/paths.js';
 
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+const AGSVocabPathForIntegrity = resolve(DATA_DIR, '_legacy', 'ags_vocabulary.json');
 
 describe('Data integrity — completeness ratchets', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('total game count >= 1500', () => {
@@ -39,17 +40,19 @@ describe('Data integrity — feature quality', () => {
     let canonicalFeatures;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
         let vocab = {};
         try {
-            vocab = JSON.parse(readFileSync(resolve(DATA_DIR, '_legacy/ags_vocabulary.json'), 'utf-8'));
+            if (existsSync(AGSVocabPathForIntegrity)) {
+                vocab = JSON.parse(readFileSync(AGSVocabPathForIntegrity, 'utf-8'));
+            }
         } catch {
             vocab = {};
         }
         canonicalFeatures = new Set(vocab.features || []);
     });
 
-    test('all game features are from the canonical vocabulary', () => {
+    test.skipIf(!existsSync(AGSVocabPathForIntegrity))('all game features are from the canonical vocabulary', () => {
         const nonCanonical = [];
         for (const g of games) {
             if (!Array.isArray(g.features)) continue;
@@ -103,7 +106,7 @@ describe('Data integrity — spec sanity', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('RTP values are in [50, 100] range when present', () => {
@@ -146,7 +149,7 @@ describe('Data integrity — pipeline overwrite detection', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     // Will be re-tightened after rules extraction (nearly all games lack enrichment until extraction).
@@ -173,7 +176,7 @@ describe('Data integrity — no aggregate/summary rows', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('no game named "Total"', () => {
@@ -201,7 +204,7 @@ describe('Data integrity — numeric range sanity', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('theo_win is in [0, 200] range when present', () => {
@@ -240,7 +243,7 @@ describe('Data integrity — provider consistency', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('every game has a non-empty provider', () => {
@@ -265,7 +268,7 @@ describe('Data integrity — category sanity', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('game_category is never null or empty', () => {

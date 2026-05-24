@@ -19,7 +19,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(PROJECT_ROOT, 'data');
-const TICKETS_DIR = path.join(DATA_DIR, '_qa_tickets');
+const TICKETS_DIR = path.resolve(PROJECT_ROOT, '..', 'docs', 'qa-tickets');
 const SCREENSHOTS_DIR = path.join(DATA_DIR, '_qa_screenshots');
 
 // ── Config ──────────────────────────────────────────────────────────────

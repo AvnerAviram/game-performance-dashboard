@@ -25,7 +25,7 @@ All code lives under `game_analytics_export/`. Run commands from there.
 | Agent | Role file | What you own |
 |-------|-----------|-------------|
 | **Atlas** | `agents/atlas.md` | Orchestration, validation, prompts → `.cursor/rules/atlas-*.mdc` |
-| **Art** | `agents/art.md` | Art classification pipeline → `data/classify_art_v2.py` |
+| **Art** | `agents/art.md` | Art classification pipeline → `data/classify_art.py` |
 | **Features** | `agents/features.md` | Feature/theme extraction → `data/extract_game_profile.py`, `data/sc_extract.py` |
 | **Dev** | `agents/dev.md` | Dashboard UI, server, tests → `HANDOFF.md` has full schema |
 | **Security** | `agents/security.md` | Security audit, hardening → `server/server.cjs`, auth, CSP |
@@ -45,6 +45,6 @@ All code lives under `game_analytics_export/`. Run commands from there.
 ## Quality Gates (Code-Enforced)
 
 - **Features**: 95% micro F1 → `sc_extract.py --validate-features`
-- **Art**: theme ≥97% AND overall ≥95% → batch gate in `classify_art_v2.py`
+- **Art**: theme ≥97% AND overall ≥95% → batch gate in `classify_art.py`
 - **Tests**: 1,607 vitest tests, pre-commit enforced
 - **Formatting**: Prettier, pre-commit enforced

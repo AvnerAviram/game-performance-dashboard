@@ -150,7 +150,10 @@ export function calculateMechanicDistribution(games) {
     games.forEach(game => {
         const mechanicsToAdd = [];
         if (Array.isArray(game.features) && game.features.length > 0) {
-            mechanicsToAdd.push(...game.features);
+            game.features.forEach(f => {
+                const name = typeof f === 'string' ? f : f && f.name ? f.name : null;
+                if (name) mechanicsToAdd.push(name);
+            });
         }
         if (mechanicsToAdd.length === 0) return;
 

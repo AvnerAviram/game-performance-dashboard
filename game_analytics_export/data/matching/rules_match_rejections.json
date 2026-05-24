@@ -1,0 +1,764 @@
+[
+  {
+    "name": "Cash Eruption Slingo",
+    "page_title": "Slingo Cash Eruption",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'cash eruption slingo' != 'slingo cash eruption'"
+  },
+  {
+    "name": "Extra Chilli Megaways",
+    "page_title": "Extra Chilli",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'extra chilli megaways' != 'extra chilli'"
+  },
+  {
+    "name": "Bonanza Megaways",
+    "page_title": "Bonanza",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'bonanza megaways' != 'bonanza'"
+  },
+  {
+    "name": "Wild Turkey Megaways",
+    "page_title": "Wild Turkey\u2122",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'wild turkey megaways' != 'wild turkey'"
+  },
+  {
+    "name": "Temple Tumble",
+    "page_title": "Temple Tumble Megaways",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'temple tumble' != 'temple tumble megaways'"
+  },
+  {
+    "name": "Wolves Collect Em And Link",
+    "page_title": "Wolves Collect Em & Link",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'wolves collect em and link' != 'wolves collect em link'"
+  },
+  {
+    "name": "Bonanza Falls Megaways",
+    "page_title": "Bonanza Falls",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'bonanza falls megaways' != 'bonanza falls'"
+  },
+  {
+    "name": "China Shores Quick Strike",
+    "page_title": "China Shores Quick Strike Online",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'china shores quick strike' != 'china shores quick strike online'"
+  },
+  {
+    "name": "Invaders From The Planet Moolah",
+    "page_title": "Invaders from Planet Moolah",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'invaders from the planet moolah' != 'invaders from planet moolah'"
+  },
+  {
+    "name": "Mega Fire Blaze Dwarves And Goblins",
+    "page_title": "MEGA FIRE BLAZE: DWARVES & GOBLINS",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'mega fire blaze dwarves and goblins' != 'mega fire blaze dwarves goblins'"
+  },
+  {
+    "name": "Sweet Success",
+    "page_title": "Sweet Success Megaways",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'sweet success' != 'sweet success megaways'"
+  },
+  {
+    "name": "Cleopatra Megaways Hold And Win",
+    "page_title": "Cleopatra Megaways",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'cleopatra megaways hold and win' != 'cleopatra megaways'"
+  },
+  {
+    "name": "Imperial Wealth Quick Strike",
+    "page_title": "Imperial Wealth",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'imperial wealth quick strike' != 'imperial wealth'"
+  },
+  {
+    "name": "China Mystery Quick Strike",
+    "page_title": "China Mystery",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'china mystery quick strike' != 'china mystery'"
+  },
+  {
+    "name": "Space Invaders Win And Spin",
+    "page_title": "Space Invaders Win & Spin",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'space invaders win and spin' != 'space invaders win spin'"
+  },
+  {
+    "name": "Gypsy Fire Quick Strike",
+    "page_title": "Gypsy Fire",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'gypsy fire quick strike' != 'gypsy fire'"
+  },
+  {
+    "name": "Jumpin Jalapenos Quick Strike",
+    "page_title": "Jumpin' Jalapenos",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'jumpin jalapenos quick strike' != 'jumpin jalapenos'"
+  },
+  {
+    "name": "Stellar Jackpots Silver Pride",
+    "page_title": "Stellar Jackpots with Silver Pride",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'stellar jackpots silver pride' != 'stellar jackpots with silver pride'"
+  },
+  {
+    "name": "Raging Rhino Ultra Megadrop",
+    "page_title": "Raging Rhino Ultra",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'raging rhino ultra megadrop' != 'raging rhino ultra'"
+  },
+  {
+    "name": "10001 Nights Limited",
+    "page_title": "10001 Nights",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: '10001 nights limited' != '10001 nights'"
+  },
+  {
+    "name": "Bounty Raid Limited",
+    "page_title": "Bounty Raid",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'bounty raid limited' != 'bounty raid'"
+  },
+  {
+    "name": "Lotus Land Quick Strike",
+    "page_title": "Lotus Land",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'lotus land quick strike' != 'lotus land'"
+  },
+  {
+    "name": "Cairo Link And Win",
+    "page_title": "Cairo Link & Win",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'cairo link and win' != 'cairo link win'"
+  },
+  {
+    "name": "Diamonds Sapphires Rubies",
+    "page_title": "Diamonds Sapphires and Rubies",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'diamonds sapphires rubies' != 'diamonds sapphires and rubies'"
+  },
+  {
+    "name": "Scarab Fortunes Win And Spin",
+    "page_title": "Scarab Fortunes Win & Spin",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'scarab fortunes win and spin' != 'scarab fortunes win spin'"
+  },
+  {
+    "name": "Wild Wild West",
+    "page_title": "Wild West",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'wild wild west' != 'wild west'"
+  },
+  {
+    "name": "Shaolin Panda Chaos Reels",
+    "page_title": "Shaolin Panda Chaos Reels Unlimited",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'shaolin panda chaos reels' != 'shaolin panda chaos reels unlimited'"
+  },
+  {
+    "name": "Pyramid Quest For Immortality",
+    "page_title": "Pyramid: The Quest of Immortality!",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'pyramid quest for immortality' != 'pyramid the quest of immortality'"
+  },
+  {
+    "name": "Big Prize Bubblegum Deluxe",
+    "page_title": "Big Prize Bubblegum",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'big prize bubblegum deluxe' != 'big prize bubblegum'"
+  },
+  {
+    "name": "Treasure Tiles Of Scarab",
+    "page_title": "Treasure Tiles Scarab",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'treasure tiles of scarab' != 'treasure tiles scarab'"
+  },
+  {
+    "name": "Dr Wild And The Eye Of Dead",
+    "page_title": "Dr Wild and the Eye of the Dead",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'dr wild and the eye of dead' != 'dr wild and the eye of the dead'"
+  },
+  {
+    "name": "Mighty 777 With Sticky Credits",
+    "page_title": "Mighty 777 Sticky Credits",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'mighty 777 with sticky credits' != 'mighty 777 sticky credits'"
+  },
+  {
+    "name": "Mighty Empire Hold And Win",
+    "page_title": "Mighty Empire: Hold & Win",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'mighty empire hold and win' != 'mighty empire hold win'"
+  },
+  {
+    "name": "Secrets Of The Tiger Hold And Gold",
+    "page_title": "Secrets of the Tiger Hold & Gold",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'secrets of the tiger hold and gold' != 'secrets of the tiger hold gold'"
+  },
+  {
+    "name": "Valley Of The Fortunes",
+    "page_title": "Valley of Fortunes",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'valley of the fortunes' != 'valley of fortunes'"
+  },
+  {
+    "name": "Hansel And Gretel Candyhouse",
+    "page_title": "Hansel & Gretel Candyhouse",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'hansel and gretel candyhouse' != 'hansel gretel candyhouse'"
+  },
+  {
+    "name": "Eternal Clash",
+    "page_title": "Eternal Clash Unlimited",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'eternal clash' != 'eternal clash unlimited'"
+  },
+  {
+    "name": "Jane Jones Book Of Kings 2",
+    "page_title": "Jane Jones in Book of Kings 2",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'jane jones book of kings 2' != 'jane jones in book of kings 2'"
+  },
+  {
+    "name": "Dinero Loco Deluxe",
+    "page_title": "Dinero Loco",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'dinero loco deluxe' != 'dinero loco'"
+  },
+  {
+    "name": "Candy Mine",
+    "page_title": "Candy Mine Megaways",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'candy mine' != 'candy mine megaways'"
+  },
+  {
+    "name": "King Of The Jungle",
+    "page_title": "Jungle King",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'king of the jungle' != 'jungle king'"
+  },
+  {
+    "name": "King Of The Catch Splash",
+    "page_title": "King of Catch Splash",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'king of the catch splash' != 'king of catch splash'"
+  },
+  {
+    "name": "Gems And Riches",
+    "page_title": "Gems & Riches",
+    "method": "fuzzy_jaccard_1.0",
+    "reason": "norm mismatch: 'gems and riches' != 'gems riches'"
+  },
+  {
+    "name": "Book Of Relics Megadrop",
+    "page_title": "Book of Relics",
+    "method": "fuzzy_suffix_stripped_exact_1.0",
+    "reason": "norm mismatch: 'book of relics megadrop' != 'book of relics'"
+  },
+  {
+    "name": "Mighty Cash Long Teng Hu Xiao Dragon Files",
+    "page_title": "Mighty Cash Long Teng Hu Xiao Dragon",
+    "method": "fuzzy_jaccard_0.875",
+    "reason": "norm mismatch: 'mighty cash long teng hu xiao dragon files' != 'mighty cash long teng hu xiao dragon'"
+  },
+  {
+    "name": "Deal Or No Deal Whats In Your Case",
+    "page_title": "Deal or No Deal: What's In Your Case JPR",
+    "method": "fuzzy_jaccard_0.857",
+    "reason": "norm mismatch: 'deal or no deal whats in your case' != 'deal or no deal whats in your case jpr'"
+  },
+  {
+    "name": "Grand Link Express Hold And Win",
+    "page_title": "Grand Link Express Hold and Win Unlimited",
+    "method": "fuzzy_jaccard_0.833",
+    "reason": "norm mismatch: 'grand link express hold and win' != 'grand link express hold and win unlimited'"
+  },
+  {
+    "name": "3 Lucky Maneki Hold And Spin",
+    "page_title": "3 Lucky Maneki Hold N Spin",
+    "method": "fuzzy_jaccard_0.833",
+    "reason": "norm mismatch: '3 lucky maneki hold and spin' != '3 lucky maneki hold n spin'"
+  },
+  {
+    "name": "Chili Chili Fire Hot Rush Red",
+    "page_title": "Chili Chili Fire Hot Rush Red Fever",
+    "method": "fuzzy_jaccard_0.833",
+    "reason": "norm mismatch: 'chili chili fire hot rush red' != 'chili chili fire hot rush red fever'"
+  },
+  {
+    "name": "Hot Slot 777 Crown Xmas Edition",
+    "page_title": "Hot Slot: 777 Crown Xmas",
+    "method": "fuzzy_jaccard_0.833",
+    "reason": "norm mismatch: 'hot slot 777 crown xmas edition' != 'hot slot 777 crown xmas'"
+  },
+  {
+    "name": "Money Blast Quick Strike",
+    "page_title": "Money Blast with Quick Strike Online",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'money blast quick strike' != 'money blast with quick strike online'"
+  },
+  {
+    "name": "Irish Riches Megaways Jackpot Royale",
+    "page_title": "Irish Riches Jackpot Royale",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'irish riches megaways jackpot royale' != 'irish riches jackpot royale'"
+  },
+  {
+    "name": "Thriller Gorilla Cashpots Jackpot",
+    "page_title": "Thriller Gorilla Cashpots Jackpot Royale",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'thriller gorilla cashpots jackpot' != 'thriller gorilla cashpots jackpot royale'"
+  },
+  {
+    "name": "Millionaires Mile Hold And Win Riches",
+    "page_title": "Millionaire's Mile: Hold And Win",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'millionaires mile hold and win riches' != 'millionaires mile hold and win'"
+  },
+  {
+    "name": "Full Force Link Vegas Revue",
+    "page_title": "Full Force Vegas Revue",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'full force link vegas revue' != 'full force vegas revue'"
+  },
+  {
+    "name": "Full Force Link Good Deal",
+    "page_title": "Full Force Good Deal",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'full force link good deal' != 'full force good deal'"
+  },
+  {
+    "name": "Sizzling Kingdom Bison Xmas",
+    "page_title": "Sizzling Kingdom Bison Xmas Edition",
+    "method": "fuzzy_jaccard_0.8",
+    "reason": "norm mismatch: 'sizzling kingdom bison xmas' != 'sizzling kingdom bison xmas edition'"
+  },
+  {
+    "name": "Majestic Fury Megaways",
+    "page_title": "Majestic Fury Megaways Unleashed",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'majestic fury megaways' != 'majestic fury megaways unleashed'"
+  },
+  {
+    "name": "Big Win Cat Pawsperity",
+    "page_title": "Big Win Cat",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'big win cat pawsperity' != 'big win cat'"
+  },
+  {
+    "name": "Megajackpots Wheel Of Fortune On Air",
+    "page_title": "Wheel of Fortune On Air",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'megajackpots wheel of fortune on air' != 'wheel of fortune on air'"
+  },
+  {
+    "name": "Slingo Gold Cash Freespin",
+    "page_title": "Slingo Gold Cash",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'slingo gold cash freespin' != 'slingo gold cash'"
+  },
+  {
+    "name": "Flaming Hot Chili Pot Jackpot Royale Express",
+    "page_title": "Flaming Hot Chilli Pot Jackpot Royale Express",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'flaming hot chili pot jackpot royale express' != 'flaming hot chilli pot jackpot royale express'"
+  },
+  {
+    "name": "12 Coins Grand Platinum Edition Santas Jackpot",
+    "page_title": "12 Coins Grand Platinum Edition Santas Jackpots",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: '12 coins grand platinum edition santas jackpot' != '12 coins grand platinum edition santas jackpots'"
+  },
+  {
+    "name": "Fishin Pots Of Gold Gold Blitz",
+    "page_title": "Fishin' Pots of Gold",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'fishin pots of gold gold blitz' != 'fishin pots of gold'"
+  },
+  {
+    "name": "Raging Rhino Rampage Buypass",
+    "page_title": "Raging Rhino Rampage",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'raging rhino rampage buypass' != 'raging rhino rampage'"
+  },
+  {
+    "name": "Green Machine Deluxe Powerbet",
+    "page_title": "Green Machine Deluxe",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'green machine deluxe powerbet' != 'green machine deluxe'"
+  },
+  {
+    "name": "Fuzanglong Fire Wilds",
+    "page_title": "Fuzanglong \u2013 Fire Wilds",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'fuzanglong fire wilds' != 'fuzanglong \u2013 fire wilds'"
+  },
+  {
+    "name": "Sun Of Fortune Xmas Edition",
+    "page_title": "Sun of Fortune Xmas",
+    "method": "fuzzy_jaccard_0.75",
+    "reason": "norm mismatch: 'sun of fortune xmas edition' != 'sun of fortune xmas'"
+  },
+  {
+    "name": "Wheel Of Fortune Diamond Spins 2x Wild",
+    "page_title": "Wheel of Fortune Diamond Spins 2x Wilds",
+    "method": "fuzzy_jaccard_0.714",
+    "reason": "norm mismatch: 'wheel of fortune diamond spins 2x wild' != 'wheel of fortune diamond spins 2x wilds'"
+  },
+  {
+    "name": "Gonzos Quest 2 Return To El Dorado",
+    "page_title": "Gonzo's Quest II: Return to El Dorado",
+    "method": "fuzzy_jaccard_0.714",
+    "reason": "norm mismatch: 'gonzos quest 2 return to el dorado' != 'gonzos quest ii return to el dorado'"
+  },
+  {
+    "name": "Fu Gui Hao Men Splendid Fortune",
+    "page_title": "Fu Gui Hao Men Splendid Fortunes",
+    "method": "fuzzy_jaccard_0.714",
+    "reason": "norm mismatch: 'fu gui hao men splendid fortune' != 'fu gui hao men splendid fortunes'"
+  },
+  {
+    "name": "Quick Hit Ultra Pays Monkeys Fortune",
+    "page_title": "Quick Hit Ultra Pays Monkey\u2019s Fortune",
+    "method": "fuzzy_jaccard_0.714",
+    "reason": "norm mismatch: 'quick hit ultra pays monkeys fortune' != 'quick hit ultra pays monkey\u2019s fortune'"
+  },
+  {
+    "name": "Street Fighter 2 The World Warrior Slot",
+    "page_title": "Street Fighter II The World Warrior Slot",
+    "method": "fuzzy_jaccard_0.714",
+    "reason": "norm mismatch: 'street fighter 2 the world warrior slot' != 'street fighter ii the world warrior slot'"
+  },
+  {
+    "name": "Megajackpots Cash Eruption",
+    "page_title": "Cash Eruption",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots cash eruption' != 'cash eruption'"
+  },
+  {
+    "name": "Fire And Roses Joker 2 All In",
+    "page_title": "Fire and Roses Joker 2 All-In",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'fire and roses joker 2 all in' != 'fire and roses joker 2 allin'"
+  },
+  {
+    "name": "Links Of Ra 2",
+    "page_title": "Links of Ra",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'links of ra 2' != 'links of ra'"
+  },
+  {
+    "name": "Wheel Of Fortune Gold Spin Triple Red Hot 7s",
+    "page_title": "Wof Gold Spin Triple Red Hot 7s",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'wheel of fortune gold spin triple red hot 7s' != 'wof gold spin triple red hot 7s'"
+  },
+  {
+    "name": "Megajackpots Wolf Run",
+    "page_title": "Wolf Run",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots wolf run' != 'wolf run'"
+  },
+  {
+    "name": "Lightning Gorilla 2 Max Boltage",
+    "page_title": "Lightning Gorilla 2 Maximum Boltage",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'lightning gorilla 2 max boltage' != 'lightning gorilla 2 maximum boltage'"
+  },
+  {
+    "name": "Mega Fire Blaze Pigies And The Bank",
+    "page_title": "Mega Fire Blaze: Piggies and the Bank",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'mega fire blaze pigies and the bank' != 'mega fire blaze piggies and the bank'"
+  },
+  {
+    "name": "Megajackpots Ocean Spirit",
+    "page_title": "Ocean Spirit",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots ocean spirit' != 'ocean spirit'"
+  },
+  {
+    "name": "Crazy Wizard Classic",
+    "page_title": "Crazy Wizard",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'crazy wizard classic' != 'crazy wizard'"
+  },
+  {
+    "name": "Megajackpots Mistress Of Egypt",
+    "page_title": "Mistress of Egypt",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots mistress of egypt' != 'mistress of egypt'"
+  },
+  {
+    "name": "Megajackpots Ocean Belles",
+    "page_title": "Ocean Belles",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots ocean belles' != 'ocean belles'"
+  },
+  {
+    "name": "Eagle Storm Jackpot Royal Express",
+    "page_title": "Eagle Storm Jackpot Royale Express",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'eagle storm jackpot royal express' != 'eagle storm jackpot royale express'"
+  },
+  {
+    "name": "Brilliant Diamonds Hold And Win With Bonus Buy",
+    "page_title": "Brilliant Diamonds Hold and Win",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'brilliant diamonds hold and win with bonus buy' != 'brilliant diamonds hold and win'"
+  },
+  {
+    "name": "Blood Suckers 2",
+    "page_title": "Blood Suckers",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'blood suckers 2' != 'blood suckers'"
+  },
+  {
+    "name": "Immortal Romance 2",
+    "page_title": "Immortal Romance",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'immortal romance 2' != 'immortal romance'"
+  },
+  {
+    "name": "Secrets Of The Forest 2",
+    "page_title": "Secrets of the Forest",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'secrets of the forest 2' != 'secrets of the forest'"
+  },
+  {
+    "name": "Megajackpots Golden Goddess",
+    "page_title": "Golden Goddess",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'megajackpots golden goddess' != 'golden goddess'"
+  },
+  {
+    "name": "Slingo Carnival Bonus",
+    "page_title": "Slingo Carnival",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'slingo carnival bonus' != 'slingo carnival'"
+  },
+  {
+    "name": "Big Bang Boom",
+    "page_title": "Big Bang\u2122",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'big bang boom' != 'big bang'"
+  },
+  {
+    "name": "Wild Fury Jackpots",
+    "page_title": "Wild Fury",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'wild fury jackpots' != 'wild fury'"
+  },
+  {
+    "name": "A Visit From St Nick Power Bet",
+    "page_title": "A Visit from St Nick",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'a visit from st nick power bet' != 'a visit from st nick'"
+  },
+  {
+    "name": "Pixies Of The Forest 2",
+    "page_title": "Pixies of the Forest",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'pixies of the forest 2' != 'pixies of the forest'"
+  },
+  {
+    "name": "Diamond 777 Mutliplier Retro Roller",
+    "page_title": "Diamond 777 Multiplier Retro Roller",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'diamond 777 mutliplier retro roller' != 'diamond 777 multiplier retro roller'"
+  },
+  {
+    "name": "Warrior Graveyard Xnudge",
+    "page_title": "Warrior Graveyard",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'warrior graveyard xnudge' != 'warrior graveyard'"
+  },
+  {
+    "name": "Hyper Strike Hyper Spins",
+    "page_title": "Hyper Strike",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'hyper strike hyper spins' != 'hyper strike'"
+  },
+  {
+    "name": "Kings Of Crystals 2 Power Combo",
+    "page_title": "Kings of Crystals II Power Combo",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'kings of crystals 2 power combo' != 'kings of crystals ii power combo'"
+  },
+  {
+    "name": "Spinata Grande",
+    "page_title": "Spinata Grande Touch",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'spinata grande' != 'spinata grande touch'"
+  },
+  {
+    "name": "Fire Burner",
+    "page_title": "Fire Burner Slot",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'fire burner' != 'fire burner slot'"
+  },
+  {
+    "name": "Witch Pickings",
+    "page_title": "Witch Pickings SCRATCH",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'witch pickings' != 'witch pickings scratch'"
+  },
+  {
+    "name": "Monkeys Gold Xpays",
+    "page_title": "Monkey's Gold",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'monkeys gold xpays' != 'monkeys gold'"
+  },
+  {
+    "name": "Ms Robin Hood",
+    "page_title": "Robin Hood",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'ms robin hood' != 'robin hood'"
+  },
+  {
+    "name": "90k Yeti",
+    "page_title": "90k Yeti Gigablox",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: '90k yeti' != '90k yeti gigablox'"
+  },
+  {
+    "name": "Bonus 7s Wild",
+    "page_title": "7s Wild",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'bonus 7s wild' != '7s wild'"
+  },
+  {
+    "name": "Jack Hammer",
+    "page_title": "Jack Hammer Touch",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'jack hammer' != 'jack hammer touch'"
+  },
+  {
+    "name": "Light The Lamp",
+    "page_title": "Gretzky Light The Lamp",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'light the lamp' != 'gretzky light the lamp'"
+  },
+  {
+    "name": "Bounty Hunt Reloaded",
+    "page_title": "Bounty Hunt",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'bounty hunt reloaded' != 'bounty hunt'"
+  },
+  {
+    "name": "Dr Wildshock Mad Loot Lab",
+    "page_title": "Dr. Wildshock's Mad Loot Lab",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'dr wildshock mad loot lab' != 'dr wildshocks mad loot lab'"
+  },
+  {
+    "name": "Legion Gold Unleashed",
+    "page_title": "Legion Gold",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'legion gold unleashed' != 'legion gold'"
+  },
+  {
+    "name": "Coin Burst",
+    "page_title": "Coin Burst Craze",
+    "method": "fuzzy_jaccard_0.667",
+    "reason": "norm mismatch: 'coin burst' != 'coin burst craze'"
+  },
+  {
+    "name": "Porkin Cashpots Combo Frenzy Jackpot Royale",
+    "page_title": "Porkin Cash Pots Combo Frenzy Jackpot Royale",
+    "method": "fuzzy_jaccard_0.625",
+    "reason": "norm mismatch: 'porkin cashpots combo frenzy jackpot royale' != 'porkin cash pots combo frenzy jackpot royale'"
+  },
+  {
+    "name": "Big Catch Bass Fishing Megaways Jackpot Royale",
+    "page_title": "Big Catch Bass Fishing Megaways JPR",
+    "method": "fuzzy_jaccard_0.625",
+    "reason": "norm mismatch: 'big catch bass fishing megaways jackpot royale' != 'big catch bass fishing megaways jpr'"
+  },
+  {
+    "name": "Full Force Link Ch Ing Wa Sheng",
+    "page_title": "Full Force Link Ch'ing - Wa Sheng",
+    "method": "fuzzy_jaccard_0.625",
+    "reason": "norm mismatch: 'full force link ch ing wa sheng' != 'full force link ching wa sheng'"
+  },
+  {
+    "name": "333 Boom Banks Power Combo",
+    "page_title": "333 Boom Banks",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: '333 boom banks power combo' != '333 boom banks'"
+  },
+  {
+    "name": "Saint Nicked 3 Present Tense",
+    "page_title": "Saint Nicked 3",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'saint nicked 3 present tense' != 'saint nicked 3'"
+  },
+  {
+    "name": "Dragon Power 10k Ways",
+    "page_title": "Dragon Power 10000 Ways",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'dragon power 10k ways' != 'dragon power 10000 ways'"
+  },
+  {
+    "name": "Lucky Larry Lobstermania 2",
+    "page_title": "Lucky Larry\u2019s Lobstermania 2",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'lucky larry lobstermania 2' != 'lucky larry\u2019s lobstermania 2'"
+  },
+  {
+    "name": "Peaky Blinders 2 The Shelby Empire",
+    "page_title": "Peaky Blinders 2",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'peaky blinders 2 the shelby empire' != 'peaky blinders 2'"
+  },
+  {
+    "name": "Temple Tumble 2 Dream Drop",
+    "page_title": "Temple Tumble 2",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'temple tumble 2 dream drop' != 'temple tumble 2'"
+  },
+  {
+    "name": "333 Fat Frogs Power Combo",
+    "page_title": "333 Fat Frogs",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: '333 fat frogs power combo' != '333 fat frogs'"
+  },
+  {
+    "name": "3 Cherry Frenzy",
+    "page_title": "3 Cherry Frenzy Lock & Win",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: '3 cherry frenzy' != '3 cherry frenzy lock win'"
+  },
+  {
+    "name": "Slots O Luck",
+    "page_title": "Slots O Luck Free Spins",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'slots o luck' != 'slots o luck free spins'"
+  },
+  {
+    "name": "Majestic Mysteries Power Reel",
+    "page_title": "Majestic Mysteries Power Reels",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'majestic mysteries power reel' != 'majestic mysteries power reels'"
+  },
+  {
+    "name": "Wild Force Frosty Win",
+    "page_title": "Wild Force Frosty Wins",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'wild force frosty win' != 'wild force frosty wins'"
+  },
+  {
+    "name": "Reel Hot 7s Classic",
+    "page_title": "Reel Hot 7s Classics",
+    "method": "fuzzy_jaccard_0.6",
+    "reason": "norm mismatch: 'reel hot 7s classic' != 'reel hot 7s classics'"
+  }
+]

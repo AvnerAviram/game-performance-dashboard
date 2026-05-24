@@ -1,23 +1,28 @@
-import { describe, test, expect } from 'vitest';
-import { readFileSync } from 'fs';
+import { describe, test, expect, beforeAll } from 'vitest';
+import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
+import { DATA_DIR, MASTER_JSON } from '../helpers/paths.js';
 
-const DATA_DIR = resolve(__dirname, '../../data');
+const LEGACY_GAMES_MASTER_PATH = resolve(DATA_DIR, '_legacy/games_master.json');
+const SKIP_LIVE_LEGACY = !existsSync(LEGACY_GAMES_MASTER_PATH);
 
 function loadDashboard() {
-    return JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf8'));
+    return JSON.parse(readFileSync(MASTER_JSON, 'utf8'));
 }
 
 function loadMaster() {
-    const raw = JSON.parse(readFileSync(resolve(DATA_DIR, '_legacy/games_master.json'), 'utf8'));
+    const raw = JSON.parse(readFileSync(LEGACY_GAMES_MASTER_PATH, 'utf8'));
     return raw.games || raw;
 }
 
-describe('Live Games Data Quality', () => {
-    const dashboard = loadDashboard();
-    const master = loadMaster();
+describe.skipIf(SKIP_LIVE_LEGACY)('Live Games Data Quality', () => {
+    let dashboard;
+    let master;
 
-    // Will be re-tightened after rules extraction (dashboard may include zero-theo placeholders).
+    beforeAll(() => {
+        dashboard = loadDashboard();
+        master = loadMaster();
+    });
     test('no game should have null or zero theo_win', () => {
         const bad = dashboard.filter(g => g.theo_win === null || g.theo_win === undefined || g.theo_win === 0);
         expect(bad.length).toBeLessThanOrEqual(dashboard.length * 0.1);

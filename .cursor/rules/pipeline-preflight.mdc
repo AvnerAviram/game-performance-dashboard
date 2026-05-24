@@ -1,0 +1,22 @@
+---
+description: MANDATORY pre-flight reads before running any data pipeline, extraction, or classification script
+alwaysApply: true
+---
+
+# Pipeline Pre-flight — Read Before You Run
+
+**Before running ANY data pipeline script**, you MUST read these files first:
+
+1. `.cursor/rules/atlas-working-memory.mdc` — HARD STOP rules + project state
+2. `docs/pipelines/README.md` — Script index, inputs, outputs, costs
+3. `game_analytics_export/data/_archive/PHASE1_TRUTH_MASTER.md` — Schema, DO NOT rules
+4. `game_analytics_export/data/_archive/ART_PIPELINE_HANDOFF.md` — Art workflow, gate system
+5. `.cursor/rules/api-cost-control.mdc` — NEVER call APIs without user approval + cost estimate
+
+## Non-negotiable rules
+
+- **Approval**: STOP AND ASK before any write, API call, or file creation
+- **Cost**: Always use `--batch` for runs > 10 games. Estimate cost BEFORE running. Wait for user "yes".
+- **Staging**: Default to staging results. Only write to master with explicit user approval.
+- **Backups**: Always backup master before any write.
+- **Verification**: Run `npm run build:data` + tests after every master write.

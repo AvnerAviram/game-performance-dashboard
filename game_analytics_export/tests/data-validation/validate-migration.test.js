@@ -1,9 +1,7 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
 import { PROVIDER_NORMALIZATION_MAP } from '../../src/lib/shared-config.js';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON } from '../helpers/paths.js';
 
 const ID_REGEX = /^game-\d{4,}-[a-z0-9_]+$/;
 const KNOWN_CATEGORIES = [
@@ -29,7 +27,7 @@ describe('Migration Integrity', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('no duplicate IDs', () => {

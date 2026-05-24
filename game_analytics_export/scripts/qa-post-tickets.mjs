@@ -14,7 +14,7 @@ import { execSync } from 'child_process';
 import readline from 'readline';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const TICKETS_DIR = path.resolve(__dirname, '..', 'data', '_qa_tickets');
+const TICKETS_DIR = path.resolve(__dirname, '..', '..', 'docs', 'qa-tickets');
 
 function ask(question) {
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout });

@@ -37,6 +37,7 @@ import {
     EmptyState,
 } from '../../components/dashboard-components.js';
 import { collapsibleList } from '../collapsible-list.js';
+import { colorHex, colorBase } from '../../lib/shared-config.js';
 
 let chartInstances = {};
 
@@ -47,6 +48,53 @@ function destroyChart(key) {
         chartInstances[key].destroy();
         chartInstances[key] = null;
     }
+}
+
+function enrichColorMetricsWithWeights(colorToneMetrics, artGames) {
+    const weightMap = {};
+    const shadeBreakdown = {};
+    artGames.forEach(g => {
+        const pctData = F.artColorTonePct(g);
+        const colors = F.artColorTone(g);
+        if (pctData && pctData.length) {
+            pctData.forEach(({ color, pct }) => {
+                if (!color || typeof pct !== 'number' || pct <= 0) return;
+                const base = colorBase(color);
+                weightMap[base] = (weightMap[base] ?? 0) + pct / 100;
+                if (!shadeBreakdown[base]) shadeBreakdown[base] = {};
+                shadeBreakdown[base][color] = (shadeBreakdown[base][color] ?? 0) + 1;
+            });
+        } else if (colors && colors.length) {
+            const w = 1 / colors.length;
+            colors.forEach(c => {
+                if (!c) return;
+                const base = colorBase(c);
+                weightMap[base] = (weightMap[base] ?? 0) + w;
+                if (!shadeBreakdown[base]) shadeBreakdown[base] = {};
+                shadeBreakdown[base][c] = (shadeBreakdown[base][c] ?? 0) + 1;
+            });
+        }
+    });
+
+    const baseMap = {};
+    colorToneMetrics.forEach(m => {
+        const base = colorBase(m.colorTone);
+        if (!baseMap[base]) {
+            baseMap[base] = { colorTone: base, count: 0, totalTheo: 0, shades: {} };
+        }
+        baseMap[base].count += m.count;
+        baseMap[base].totalTheo += m.totalTheo || m.count * (m.avgTheo || 0);
+        baseMap[base].shades[m.colorTone] = m.count;
+    });
+
+    return Object.values(baseMap)
+        .map(m => ({
+            ...m,
+            avgTheo: m.count > 0 ? m.totalTheo / m.count : 0,
+            weightedCount: weightMap[m.colorTone] ?? 0,
+            shadeBreakdown: shadeBreakdown[m.colorTone] || m.shades,
+        }))
+        .sort((a, b) => b.count - a.count);
 }
 
 // ── Pill helpers ──
@@ -560,9 +608,11 @@ window.showArtColor = async function (tone) {
     });
 };
 window.showArtColorTone = async function (tone) {
-    await showArtFilteredGames(`Color tone: ${tone}`, g => (F.artColorTone(g) || []).includes(tone), {
-        excludeDimension: 'colorTone',
-    });
+    await showArtFilteredGames(
+        `Color tone: ${tone}`,
+        g => (F.artColorTone(g) || []).some(c => c === tone || colorBase(c) === tone),
+        { excludeDimension: 'colorTone' }
+    );
 };
 window.showArtRecipe = async function (theme) {
     await showArtFilteredGames(`Theme: ${theme}`, g => F.artTheme(g) === theme);
@@ -623,74 +673,17 @@ export async function renderArt() {
         c => c.element,
         'showArtElement'
     );
+    const enrichedColorTones = enrichColorMetricsWithWeights(colorTones, artGames);
     renderDimensionLandscape(
         'colors',
         'art-colors-landscape',
-        colorTones,
+        enrichedColorTones,
         'colorTone',
         c => c.colorTone,
         'showArtColor',
         {
-            colorFn: item => {
-                const colorMap = {
-                    Gold: '#EAB308',
-                    Silver: '#C0C0C0',
-                    Red: '#EF4444',
-                    Blue: '#3B82F6',
-                    Green: '#22C55E',
-                    Purple: '#A855F7',
-                    Pink: '#EC4899',
-                    Teal: '#14B8A6',
-                    Yellow: '#FFD700',
-                    Orange: '#F97316',
-                    Black: '#1F2937',
-                    White: '#F3F4F6',
-                    Beige: '#D2B48C',
-                    Brown: '#92400E',
-                    Crimson: '#DC143C',
-                    Magenta: '#FF00FF',
-                    Coral: '#FF7F50',
-                    Navy: '#000080',
-                    Turquoise: '#40E0D0',
-                    Ivory: '#FFFFF0',
-                    Lavender: '#E6E6FA',
-                    Indigo: '#4B0082',
-                    Maroon: '#800000',
-                    Olive: '#808000',
-                    Emerald: '#50C878',
-                    Ruby: '#E0115F',
-                    Sapphire: '#0F52BA',
-                    Amber: '#FFBF00',
-                    Copper: '#B87333',
-                    Bronze: '#CD7F32',
-                    Platinum: '#E5E4E2',
-                    Charcoal: '#36454F',
-                    Rose: '#FF007F',
-                    Burgundy: '#800020',
-                    Slate: '#708090',
-                    Tan: '#D2B48C',
-                    Peach: '#FFCBA4',
-                    Mint: '#98FB98',
-                    Aqua: '#00FFFF',
-                    Neon: '#39FF14',
-                    Pastel: '#FFD1DC',
-                    Earth: '#5C4033',
-                    Warm: '#FF6B35',
-                    Cool: '#4A90D9',
-                    Dark: '#2D2D2D',
-                    Light: '#F0F0F0',
-                    Bright: '#FFD700',
-                    Muted: '#9E9E9E',
-                    Metallic: '#AAA9AD',
-                    Rainbow: '#FF0000',
-                    Multi: '#FF69B4',
-                };
-                const name = item.name || '';
-                const firstName = name.split(/[\s/]/)[0];
-                if (colorMap[firstName]) return colorMap[firstName];
-                const hash = name.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
-                return '#' + ((hash & 0xffffff) | 0x404040).toString(16).slice(-6);
-            },
+            colorFn: item => colorHex(item.name || ''),
+            weightKey: 'weightedCount',
         }
     );
     renderDimensionLandscape(
@@ -702,7 +695,7 @@ export async function renderArt() {
         'showArtNarrative'
     );
     renderThemesChart(themes, artGames);
-    renderArtColorToneChart(colorTones);
+    renderArtColorToneChart(enrichedColorTones);
     renderCharactersChart(characters);
     renderElementsChart(elements);
     renderNarrativeChart(narratives);
@@ -801,20 +794,23 @@ function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, 
     destroyChart(key + 'Landscape');
     if (!metrics.length) return;
 
-    const maxCount = Math.max(...metrics.map(m => m.count), 1);
+    const { weightKey, ...restOpts } = extraOpts;
+    const sizeValues = metrics.map(m => (weightKey && m[weightKey] > 0 ? m[weightKey] : m.count));
+    const maxSize = Math.max(...sizeValues, 1);
     const medX = median(metrics.map(m => m.count));
     const medY = median(metrics.map(m => m.avgTheo));
 
-    const data = metrics.map(m => {
+    const data = metrics.map((m, i) => {
         const full = nameAccessor(m);
         let short = full.includes('/') ? full.split('/')[0].trim() : full;
         short = short.replace(/\s*\(.*?\)\s*$/, '').trim();
+        const sizeVal = sizeValues[i];
         return {
             name: full,
             shortName: short,
             x: m.count,
             y: m.avgTheo,
-            r: 6 + Math.sqrt(m.count / maxCount) * 34,
+            r: 6 + Math.sqrt(sizeVal / maxSize) * 34,
             _m: m,
         };
     });
@@ -829,12 +825,21 @@ function renderDimensionLandscape(key, canvasId, metrics, dimKey, nameAccessor, 
         tooltipFn: item => {
             const m = item._m;
             const q = quadrantLabel(m.count, m.avgTheo, medX, medY);
-            return [`Games: ${m.count}  |  Avg PI: ${m.avgTheo.toFixed(2)}  |  ${q}`];
+            const extra = weightKey && m[weightKey] != null ? `  |  Weight: ${m[weightKey].toFixed(1)}` : '';
+            const lines = [`Games: ${m.count}  |  Avg PI: ${m.avgTheo.toFixed(2)}${extra}  |  ${q}`];
+            if (m.shadeBreakdown && Object.keys(m.shadeBreakdown).length > 1) {
+                const shades = Object.entries(m.shadeBreakdown)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([shade, cnt]) => `${shade}: ${cnt}`)
+                    .join(', ');
+                lines.push(shades);
+            }
+            return lines;
         },
         onBubbleClick: item => {
             if (window[clickHandler]) window[clickHandler](item.name);
         },
-        ...extraOpts,
+        ...restOpts,
     });
 }
 
@@ -1498,7 +1503,17 @@ function renderArtTrends(artGames) {
 
 // ── Bar charts (gradient style matching overview) ──
 
-function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, onClickFn, displayLabelOverrides) {
+function createHorizontalBar(
+    canvasId,
+    labels,
+    values,
+    metric,
+    chartKey,
+    color,
+    onClickFn,
+    displayLabelOverrides,
+    customColors
+) {
     destroyChart(chartKey);
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
@@ -1512,7 +1527,7 @@ function createHorizontalBar(canvasId, labels, values, metric, chartKey, color, 
     const displayLabels = displayLabelOverrides
         ? displayLabelOverrides.slice(0, MAX_BARS)
         : topN.map(l => shortLabel(l));
-    const gradientColors = generateModernColors(ctx, topN.length);
+    const gradientColors = customColors ? customColors.slice(0, MAX_BARS) : generateModernColors(ctx, topN.length);
 
     const barCount = topN.length;
     canvas.parentElement.style.height = `${Math.max(320, barCount * 28 + 60)}px`;
@@ -1634,7 +1649,9 @@ function renderArtColorToneChart(colorTones) {
         'Games',
         'colorTones',
         '#06b6d4',
-        name => window.showArtColorTone(name)
+        name => window.showArtColorTone(name),
+        null,
+        colorTones.map(s => colorHex(s.colorTone))
     );
 }
 

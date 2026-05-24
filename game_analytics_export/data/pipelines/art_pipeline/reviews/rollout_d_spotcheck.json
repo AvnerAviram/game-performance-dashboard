@@ -1,0 +1,106 @@
+{
+  "batch": "rollout_d",
+  "date": "2026-05-14",
+  "reviews": [
+    {
+      "game": "Buffalo-Hunter",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "4-Secret-Pyramids",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Jokers-Riches",
+      "color": "fix",
+      "notes": "gold is less - like 15% top"
+    },
+    {
+      "game": "Hop-N-Pop",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gold-Volcano",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Cleopatra",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Bonus-Island",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "launchx",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Blazing-Mammoth",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Ted-Jackpot-Royale",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "5-Treasures",
+      "color": "fix",
+      "notes": "gold is less than 30%"
+    },
+    {
+      "game": "5-Doggy-Dollars",
+      "color": "fix",
+      "notes": "brown is less than 25%"
+    },
+    {
+      "game": "Bling-Bling-Penguin",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Go-Fish",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Green-Machine-Supreme",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Yucatans-Mystery",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Frozen-Gems",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Sweet-Alchemy-100",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gold-Blitz-Extreme",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "The-Wild-3",
+      "color": "ok",
+      "notes": ""
+    }
+  ]
+}

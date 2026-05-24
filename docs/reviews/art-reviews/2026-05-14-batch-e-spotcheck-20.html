@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Batch E Art Spot-Check — 20 Games</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;padding:24px}
+h1{text-align:center;margin-bottom:8px;color:#f1f5f9}
+.subtitle{text-align:center;margin-bottom:24px;color:#94a3b8;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px}
+.card{background:#1e293b;border-radius:12px;overflow:hidden;border:2px solid #334155}
+.card.ok{border-color:#22c55e}.card.fix{border-color:#ef4444}
+.card img{width:100%;height:200px;object-fit:cover;display:block}
+.card-body{padding:12px}
+.game-name{font-weight:600;font-size:15px;margin-bottom:4px;color:#f8fafc}
+.meta{font-size:12px;color:#94a3b8;margin-bottom:6px}
+.color-bar{display:flex;height:28px;border-radius:6px;overflow:hidden;margin-bottom:6px;border:1px solid #475569}
+.color-seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;min-width:18px}
+.filtered{font-size:12px;color:#94a3b8;margin-bottom:6px}
+.no-sc{height:200px;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#475569;font-size:13px}
+.controls{display:flex;gap:8px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid #334155}
+.btn{padding:5px 14px;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;cursor:pointer;font-size:12px;font-weight:600}
+.btn.active-ok{background:#22c55e;color:#fff;border-color:#22c55e}
+.btn.active-fix{background:#ef4444;color:#fff;border-color:#ef4444}
+.notes-input{flex:1;padding:5px 8px;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:12px}
+.toolbar{display:flex;justify-content:center;gap:12px;margin-bottom:20px;align-items:center}
+.toolbar button{padding:8px 16px;border-radius:8px;border:1px solid #475569;background:#1e293b;color:#e2e8f0;cursor:pointer;font-size:13px}
+.toolbar button:hover{background:#334155}
+.stats{font-size:13px;color:#94a3b8}
+</style></head><body>
+<h1>Batch E — Art Classification Spot-Check (20 Games)</h1>
+<p class="subtitle">672 newly-acquired screenshots, full art classification. Check theme + colors. | May 14, 2026</p>
+<div class="toolbar">
+<button onclick="exportJSON()">📋 Copy JSON</button>
+<button onclick="markAllOk()">✅ Mark remaining OK</button>
+<span class="stats" id="stats">0/20 reviewed</span>
+</div>
+<div class="grid">
+
+<div class="card" id="card-0" data-game="Winner-Of-The-West-Deluxe" data-idx="0">
+<img src="../../../game_analytics_export/data/screenshots/Winner-Of-The-West-Deluxe.jpg" alt="Winner-Of-The-West-Deluxe" loading="lazy">
+<div class="card-body">
+<div class="game-name">Winner-Of-The-West-Deluxe</div>
+<div class="meta">Theme: Wild West/Frontier | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 40%">Brown 40%</div><div class="color-seg" style="flex:30;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 30%">Gold 30%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Brown (40%), Gold (30%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(0,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(0,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-0" placeholder="Notes (theme/color issues)..." onchange="saveNote(0)">
+</div></div></div>
+<div class="card" id="card-1" data-game="Bufon-Fortuna" data-idx="1">
+<img src="../../../game_analytics_export/data/screenshots/Bufon-Fortuna.webp" alt="Bufon-Fortuna" loading="lazy">
+<div class="card-body">
+<div class="game-name">Bufon-Fortuna</div>
+<div class="meta">Theme: Classic Slots | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:65;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 65%">Purple 65%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (65%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(1,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(1,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-1" placeholder="Notes (theme/color issues)..." onchange="saveNote(1)">
+</div></div></div>
+<div class="card" id="card-2" data-game="4-Wild-Riches" data-idx="2">
+<img src="../../../game_analytics_export/data/screenshots/4-Wild-Riches.webp" alt="4-Wild-Riches" loading="lazy">
+<div class="card-body">
+<div class="game-name">4-Wild-Riches</div>
+<div class="meta">Theme: Luxury/VIP | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:65;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 65%">Purple 65%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (65%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(2,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(2,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-2" placeholder="Notes (theme/color issues)..." onchange="saveNote(2)">
+</div></div></div>
+<div class="card" id="card-3" data-game="Gerards-Gambit" data-idx="3">
+<img src="../../../game_analytics_export/data/screenshots/Gerards-Gambit.jpeg" alt="Gerards-Gambit" loading="lazy">
+<div class="card-body">
+<div class="game-name">Gerards-Gambit</div>
+<div class="meta">Theme: Quest/Adventure/Journey | Chars: Old Man</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 40%">Brown 40%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Brown (40%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(3,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(3,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-3" placeholder="Notes (theme/color issues)..." onchange="saveNote(3)">
+</div></div></div>
+<div class="card" id="card-4" data-game="Fionas-Fortune" data-idx="4">
+<img src="../../../game_analytics_export/data/screenshots/Fionas-Fortune.jpg" alt="Fionas-Fortune" loading="lazy">
+<div class="card-body">
+<div class="game-name">Fionas-Fortune</div>
+<div class="meta">Theme: Irish/Celtic Highlands | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 45%">Green 45%</div><div class="color-seg" style="flex:35;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 35%">Gold 35%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Green (45%), Gold (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(4,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(4,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-4" placeholder="Notes (theme/color issues)..." onchange="saveNote(4)">
+</div></div></div>
+<div class="card" id="card-5" data-game="Eggz-Power-Combo" data-idx="5">
+<img src="../../../game_analytics_export/data/screenshots/Eggz-Power-Combo.jpeg" alt="Eggz-Power-Combo" loading="lazy">
+<div class="card-body">
+<div class="game-name">Eggz-Power-Combo</div>
+<div class="meta">Theme: Prehistoric/Primordial | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 45%">Brown 45%</div><div class="color-seg" style="flex:25;background:#DD6B20;color:#1a202c;border:2px solid #f59e0b;" title="Orange: 25%">Orange 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Brown (45%), Orange (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(5,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(5,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-5" placeholder="Notes (theme/color issues)..." onchange="saveNote(5)">
+</div></div></div>
+<div class="card" id="card-6" data-game="Cash-Pots-Blazinator" data-idx="6">
+<img src="../../../game_analytics_export/data/screenshots/Cash-Pots-Blazinator.jpg" alt="Cash-Pots-Blazinator" loading="lazy">
+<div class="card-body">
+<div class="game-name">Cash-Pots-Blazinator</div>
+<div class="meta">Theme: Classic Slots | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#E53E3E;color:#f7fafc;border:2px solid #f59e0b;" title="Red: 45%">Red 45%</div><div class="color-seg" style="flex:25;background:#DD6B20;color:#1a202c;border:2px solid #f59e0b;" title="Orange: 25%">Orange 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Red (45%), Orange (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(6,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(6,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-6" placeholder="Notes (theme/color issues)..." onchange="saveNote(6)">
+</div></div></div>
+<div class="card" id="card-7" data-game="Break-Da-Bank-Retro-Roller" data-idx="7">
+<img src="../../../game_analytics_export/data/screenshots/Break-Da-Bank-Retro-Roller.jpg" alt="Break-Da-Bank-Retro-Roller" loading="lazy">
+<div class="card-body">
+<div class="game-name">Break-Da-Bank-Retro-Roller</div>
+<div class="meta">Theme: Classic Slots | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:70;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 70%">Purple 70%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (70%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(7,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(7,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-7" placeholder="Notes (theme/color issues)..." onchange="saveNote(7)">
+</div></div></div>
+<div class="card" id="card-8" data-game="Space-Invaders-Win-And-Spin" data-idx="8">
+<img src="../../../game_analytics_export/data/screenshots/Space-Invaders-Win-And-Spin.jpg" alt="Space-Invaders-Win-And-Spin" loading="lazy">
+<div class="card-body">
+<div class="game-name">Space-Invaders-Win-And-Spin</div>
+<div class="meta">Theme: Branded/Licensed / Outer Space | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#1E3A8A;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Blue: 60%">Dark Blue 60%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Dark Blue (60%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(8,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(8,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-8" placeholder="Notes (theme/color issues)..." onchange="saveNote(8)">
+</div></div></div>
+<div class="card" id="card-9" data-game="Bingo-Staxx-Rudolphs-Reign" data-idx="9">
+<img src="../../../game_analytics_export/data/screenshots/Bingo-Staxx-Rudolphs-Reign.jpg" alt="Bingo-Staxx-Rudolphs-Reign" loading="lazy">
+<div class="card-body">
+<div class="game-name">Bingo-Staxx-Rudolphs-Reign</div>
+<div class="meta">Theme: Festive/Holiday / Arctic/Snow | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 45%">Blue 45%</div><div class="color-seg" style="flex:25;background:#F7FAFC;color:#1a202c;border:2px solid #f59e0b;" title="White: 25%">White 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Blue (45%), White (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(9,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(9,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-9" placeholder="Notes (theme/color issues)..." onchange="saveNote(9)">
+</div></div></div>
+<div class="card" id="card-10" data-game="Thrill-To-Grill" data-idx="10">
+<img src="../../../game_analytics_export/data/screenshots/Thrill-To-Grill.jpg" alt="Thrill-To-Grill" loading="lazy">
+<div class="card-body">
+<div class="game-name">Thrill-To-Grill</div>
+<div class="meta">Theme: Tropical Island/Beach / Food/Cooking | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#319795;color:#f7fafc;border:2px solid #f59e0b;" title="Teal: 45%">Teal 45%</div><div class="color-seg" style="flex:25;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 25%">Brown 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Teal (45%), Brown (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(10,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(10,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-10" placeholder="Notes (theme/color issues)..." onchange="saveNote(10)">
+</div></div></div>
+<div class="card" id="card-11" data-game="Mighty-Marlin-Super-Reel" data-idx="11">
+<img src="../../../game_analytics_export/data/screenshots/Mighty-Marlin-Super-Reel.jpg" alt="Mighty-Marlin-Super-Reel" loading="lazy">
+<div class="card-body">
+<div class="game-name">Mighty-Marlin-Super-Reel</div>
+<div class="meta">Theme: Lakeside/River/Fishing Dock / Tropical Island/Beach | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 60%">Blue 60%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Blue (60%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(11,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(11,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-11" placeholder="Notes (theme/color issues)..." onchange="saveNote(11)">
+</div></div></div>
+<div class="card" id="card-12" data-game="9-Pearls-Of-Fortune" data-idx="12">
+<img src="../../../game_analytics_export/data/screenshots/9-Pearls-Of-Fortune.jpeg" alt="9-Pearls-Of-Fortune" loading="lazy">
+<div class="card-body">
+<div class="game-name">9-Pearls-Of-Fortune</div>
+<div class="meta">Theme: Deep Ocean/Underwater | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:50;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 50%">Blue 50%</div><div class="color-seg" style="flex:25;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 25%">Purple 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Blue (50%), Purple (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(12,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(12,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-12" placeholder="Notes (theme/color issues)..." onchange="saveNote(12)">
+</div></div></div>
+<div class="card" id="card-13" data-game="9-Hearts" data-idx="13">
+<img src="../../../game_analytics_export/data/screenshots/9-Hearts.webp" alt="9-Hearts" loading="lazy">
+<div class="card-body">
+<div class="game-name">9-Hearts</div>
+<div class="meta">Theme: Love Story/Romance | Chars: Lady</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 60%">Purple 60%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (60%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(13,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(13,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-13" placeholder="Notes (theme/color issues)..." onchange="saveNote(13)">
+</div></div></div>
+<div class="card" id="card-14" data-game="Blazing-Tiki" data-idx="14">
+<img src="../../../game_analytics_export/data/screenshots/Blazing-Tiki.webp" alt="Blazing-Tiki" loading="lazy">
+<div class="card-body">
+<div class="game-name">Blazing-Tiki</div>
+<div class="meta">Theme: Tropical Island/Beach | Chars: Cartoon/Mascot Character</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#DD6B20;color:#1a202c;border:2px solid #f59e0b;" title="Orange: 40%">Orange 40%</div><div class="color-seg" style="flex:25;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 25%">Purple 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Orange (40%), Purple (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(14,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(14,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-14" placeholder="Notes (theme/color issues)..." onchange="saveNote(14)">
+</div></div></div>
+<div class="card" id="card-15" data-game="Egglink-100x-Ra" data-idx="15">
+<img src="../../../game_analytics_export/data/screenshots/Egglink-100x-Ra.webp" alt="Egglink-100x-Ra" loading="lazy">
+<div class="card-body">
+<div class="game-name">Egglink-100x-Ra</div>
+<div class="meta">Theme: Egyptian/Pharaoh | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#DD6B20;color:#1a202c;border:2px solid #f59e0b;" title="Orange: 45%">Orange 45%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Orange (45%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(15,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(15,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-15" placeholder="Notes (theme/color issues)..." onchange="saveNote(15)">
+</div></div></div>
+<div class="card" id="card-16" data-game="Enchanted-Pegasus-Boom" data-idx="16">
+<img src="../../../game_analytics_export/data/screenshots/Enchanted-Pegasus-Boom.webp" alt="Enchanted-Pegasus-Boom" loading="lazy">
+<div class="card-body">
+<div class="game-name">Enchanted-Pegasus-Boom</div>
+<div class="meta">Theme: Ancient Greece/Rome | Chars: Pegasus</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 40%">Purple 40%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (40%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(16,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(16,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-16" placeholder="Notes (theme/color issues)..." onchange="saveNote(16)">
+</div></div></div>
+<div class="card" id="card-17" data-game="Rise-To-Power" data-idx="17">
+<img src="../../../game_analytics_export/data/screenshots/Rise-To-Power.jpg" alt="Rise-To-Power" loading="lazy">
+<div class="card-body">
+<div class="game-name">Rise-To-Power</div>
+<div class="meta">Theme: Fantasy/Fairy Tale / Ancient Greece/Rome | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 45%">Purple 45%</div><div class="color-seg" style="flex:30;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 30%">Blue 30%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (45%), Blue (30%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(17,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(17,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-17" placeholder="Notes (theme/color issues)..." onchange="saveNote(17)">
+</div></div></div>
+<div class="card" id="card-18" data-game="Triple-Cash-Eruption" data-idx="18">
+<img src="../../../game_analytics_export/data/screenshots/Triple-Cash-Eruption.webp" alt="Triple-Cash-Eruption" loading="lazy">
+<div class="card-body">
+<div class="game-name">Triple-Cash-Eruption</div>
+<div class="meta">Theme: Mountain/Volcano | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 40%">Purple 40%</div><div class="color-seg" style="flex:25;background:#E53E3E;color:#f7fafc;border:2px solid #f59e0b;" title="Red: 25%">Red 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Purple (40%), Red (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(18,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(18,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-18" placeholder="Notes (theme/color issues)..." onchange="saveNote(18)">
+</div></div></div>
+<div class="card" id="card-19" data-game="7s-Of-Luck" data-idx="19">
+<img src="../../../game_analytics_export/data/screenshots/7s-Of-Luck.jpg" alt="7s-Of-Luck" loading="lazy">
+<div class="card-body">
+<div class="game-name">7s-Of-Luck</div>
+<div class="meta">Theme: Irish/Celtic Highlands | Chars: No Characters (symbol-only game)</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 40%">Blue 40%</div><div class="color-seg" style="flex:25;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 25%">Green 25%</div></div>
+<div class="filtered"><b>Colors (≥25%):</b> Blue (40%), Green (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(19,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(19,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-19" placeholder="Notes (theme/color issues)..." onchange="saveNote(19)">
+</div></div></div>
+</div>
+<script>
+const reviews={};
+function mark(i,s){const c=document.getElementById('card-'+i);c.classList.remove('ok','fix');c.classList.add(s);c.querySelector('.btn-ok').classList.toggle('active-ok',s==='ok');c.querySelector('.btn-fix').classList.toggle('active-fix',s==='fix');reviews[c.dataset.game]={color:s,notes:document.getElementById('notes-'+i).value};updateStats()}
+function saveNote(i){const c=document.getElementById('card-'+i);reviews[c.dataset.game]=reviews[c.dataset.game]||{};reviews[c.dataset.game].notes=document.getElementById('notes-'+i).value}
+function markAllOk(){document.querySelectorAll('.card[data-idx]').forEach(c=>{if(!reviews[c.dataset.game]||!reviews[c.dataset.game].color)mark(parseInt(c.dataset.idx),'ok')})}
+function updateStats(){const r=Object.values(reviews).filter(x=>x.color).length;const ok=Object.values(reviews).filter(x=>x.color==='ok').length;document.getElementById('stats').textContent=r+'/20 reviewed ('+ok+' ok, '+(r-ok)+' fix)'}
+function exportJSON(){const a=[];document.querySelectorAll('.card[data-game]').forEach(c=>{const r=reviews[c.dataset.game]||{};a.push({game:c.dataset.game,color:r.color||'',notes:r.notes||''})});navigator.clipboard.writeText(JSON.stringify(a,null,2)).then(()=>alert('Copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre>'+JSON.stringify(a,null,2)+'</pre>')})}
+</script></body></html>

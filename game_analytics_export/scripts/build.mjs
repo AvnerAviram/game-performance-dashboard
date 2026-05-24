@@ -12,11 +12,11 @@
  */
 import { execSync } from 'child_process';
 import { cpSync, mkdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { createRequire } from 'module';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
+const require = createRequire(import.meta.url);
+const { ROOT, DATA_DIR, MASTER_JSON, MAPPINGS, STAGING } = require('../src/lib/data-paths.cjs');
 
 function run(cmd, label) {
     console.log(`\n▶ ${label}`);
@@ -33,29 +33,29 @@ run('npm run build:data', 'Generating game data (parquet + JSON)');
 // ─── Step 2: Copy data + config into public/ for Vite ────────────────────────
 step('Copying data files to public/data/');
 
+/** Each entry copies from `src` to public/data/`destFile` (flat URLs for the frontend). */
 const DATA_FILES = [
-    'games.parquet',
-    'games_processed.json',
-    'game_data_master.json',
-    'theme_consolidation_map.json',
-    'art_theme_consolidation_map.json',
-    'franchise_mapping.json',
-    'confidence_map.json',
-    'staged_art_characterization.json',
+    { destFile: 'games.parquet', src: join(DATA_DIR, 'games.parquet') },
+    { destFile: 'games_processed.json', src: join(DATA_DIR, 'games_processed.json') },
+    { destFile: 'game_data_master.json', src: MASTER_JSON },
+    { destFile: 'theme_consolidation_map.json', src: MAPPINGS.theme },
+    { destFile: 'art_theme_consolidation_map.json', src: MAPPINGS.artTheme },
+    { destFile: 'franchise_mapping.json', src: MAPPINGS.franchise },
+    { destFile: 'confidence_map.json', src: MAPPINGS.confidence },
+    { destFile: 'staged_art_characterization.json', src: STAGING.art },
 ];
 
 mkdirSync(join(ROOT, 'public', 'data'), { recursive: true });
 
-for (const file of DATA_FILES) {
-    const src = join(ROOT, 'data', file);
-    const dest = join(ROOT, 'public', 'data', file);
+for (const { destFile, src } of DATA_FILES) {
+    const dest = join(ROOT, 'public', 'data', destFile);
     if (!existsSync(src)) {
-        console.warn(`   ⚠️  ${file} not found in data/ — skipping`);
+        console.warn(`   ⚠️  ${destFile} (${src}) not found — skipping`);
         continue;
     }
     cpSync(src, dest);
     const size = (statSync(dest).size / 1024).toFixed(0);
-    console.log(`   ✓ ${file} (${size} KB)`);
+    console.log(`   ✓ ${destFile} (${size} KB)`);
 }
 
 step('Copying config files to public/src/config/');

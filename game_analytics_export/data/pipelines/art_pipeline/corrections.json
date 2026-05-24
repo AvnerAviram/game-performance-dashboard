@@ -1,0 +1,77 @@
+{
+  "Astrocat": {
+    "art_theme": "Asian Temple/Garden",
+    "art_characters": [],
+    "art_elements": [
+      "Stars",
+      "Moon",
+      "Sky",
+      "Asian Boats",
+      "Grass"
+    ]
+  },
+  "Bakers-Treat": {
+    "art_elements": [
+      "Kitchen",
+      "Appliances",
+      "Flowers/Blossoms",
+      "Food",
+      "Grass"
+    ]
+  },
+  "Dead-Or-Alive": {
+    "art_elements": [
+      "Western Town/Saloon",
+      "Sky",
+      "Clouds",
+      "Windmill",
+      "Lantern"
+    ]
+  },
+  "Dragon-Tribe": {
+    "art_elements": [
+      "Mountains",
+      "Rocks/Boulders",
+      "Sky",
+      "Coins/Treasure"
+    ]
+  },
+  "Immortal-Warlords": {
+    "art_elements": [
+      "Fire/Flames",
+      "Sky",
+      "Mountains"
+    ]
+  },
+  "Jane-Jones-Book-Of-Kings-2": {
+    "art_theme": "Quest/Adventure/Journey",
+    "_elements_note": "adventure style buildings, not Roman Architecture"
+  },
+  "King-Of-The-Trident": {
+    "art_theme": "Deep Ocean/Underwater",
+    "_note": "specifically Atlantis"
+  },
+  "Tractor-Beam": {
+    "art_elements": [
+      "Fields/Grassland",
+      "Trees",
+      "Sky",
+      "Electricity Pole"
+    ]
+  },
+  "Who-Wants-To-Be-A-Millionaire-Mystery-Box": {
+    "art_elements": [
+      "Neon Glow",
+      "TV Studio"
+    ]
+  },
+  "Zeus-Rush-Fever": {
+    "art_elements": [
+      "Columns/Pillars",
+      "Temples",
+      "Trees",
+      "Sky",
+      "Clouds"
+    ]
+  }
+}

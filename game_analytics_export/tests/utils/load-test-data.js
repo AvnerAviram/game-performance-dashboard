@@ -38,7 +38,7 @@ export function getActiveMechanics() {
 }
 
 export async function loadTestData() {
-    const module = await import('../../data/game_data_master.json', {
+    const module = await import('../../data/master/game_data_master.json', {
         assert: { type: 'json' },
     });
     const data = module.default;

@@ -97,6 +97,13 @@ export const ELEMENT_CONSOLIDATION = {
     Food: 'Food/Drinks',
 };
 
+/** Character name consolidation — merge legacy and vision pipeline variants. */
+export const CHARACTER_CONSOLIDATION = {
+    'Pharaoh/Egyptian Ruler': 'Pharaoh',
+    'Explorer/Adventurer': 'Explorer',
+    'Warrior/Knight': 'Warrior',
+};
+
 /** Features completely hidden from the dashboard (too ambiguous for users). */
 export const HIDDEN_FEATURES = new Set(['Multiplier', 'Multipliers']);
 
@@ -122,4 +129,99 @@ export function normalizeProvider(raw) {
 export function normalizeVolatility(raw) {
     if (!raw) return 'Unknown';
     return raw.replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// ── Color hex map ─────────────────────────────────────────────────────
+export const COLOR_HEX_MAP = {
+    Gold: '#EAB308',
+    Silver: '#C0C0C0',
+    Red: '#EF4444',
+    Blue: '#3B82F6',
+    Green: '#22C55E',
+    Purple: '#A855F7',
+    Pink: '#EC4899',
+    Teal: '#14B8A6',
+    Yellow: '#FFD700',
+    Orange: '#F97316',
+    Black: '#1F2937',
+    White: '#F3F4F6',
+    Beige: '#D2B48C',
+    Brown: '#92400E',
+    Crimson: '#DC143C',
+    Magenta: '#FF00FF',
+    Coral: '#FF7F50',
+    'Dark Blue': '#1E3A5F',
+    'Light Blue': '#87CEEB',
+    'Dark Green': '#1B5E20',
+    'Light Green': '#81C784',
+    Navy: '#000080',
+    Turquoise: '#40E0D0',
+    Ivory: '#FFFFF0',
+    Lavender: '#E6E6FA',
+    Indigo: '#4B0082',
+    Maroon: '#800000',
+    Olive: '#808000',
+    Emerald: '#50C878',
+    Ruby: '#E0115F',
+    Sapphire: '#0F52BA',
+    Amber: '#FFBF00',
+    Copper: '#B87333',
+    Bronze: '#CD7F32',
+    Platinum: '#E5E4E2',
+    Charcoal: '#36454F',
+    Rose: '#FF007F',
+    Burgundy: '#800020',
+    Slate: '#708090',
+    Tan: '#D2B48C',
+    Peach: '#FFCBA4',
+    Mint: '#98FB98',
+    Aqua: '#00FFFF',
+    Neon: '#39FF14',
+    Pastel: '#FFD1DC',
+    Earth: '#5C4033',
+    Warm: '#FF6B35',
+    Cool: '#4A90D9',
+    Dark: '#2D2D2D',
+    Light: '#F0F0F0',
+    Bright: '#FFD700',
+    Muted: '#9E9E9E',
+    Metallic: '#AAA9AD',
+    Rainbow: '#FF0000',
+    Multi: '#FF69B4',
+    Gray: '#9CA3AF',
+};
+
+/** Map shade variants to their base color for aggregation in bubble charts. */
+export const COLOR_BASE_MAP = {
+    'Dark Blue': 'Blue',
+    'Light Blue': 'Blue',
+    'Neon Blue': 'Blue',
+    'Dark Green': 'Green',
+    'Light Green': 'Green',
+    'Neon Green': 'Green',
+    'Neon Pink': 'Pink',
+    Crimson: 'Red',
+};
+
+/** Get the base color for aggregation (or return the color itself if already base). */
+export function colorBase(name) {
+    return COLOR_BASE_MAP[name] || name;
+}
+
+/** Get hex color for a color name, with hash-based fallback for unknown names. */
+export function colorHex(name) {
+    if (!name) return '#9CA3AF';
+    const first = name.split(/[\s/]/)[0];
+    if (COLOR_HEX_MAP[first]) return COLOR_HEX_MAP[first];
+    const hash = name.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
+    return '#' + ((hash & 0xffffff) | 0x404040).toString(16).slice(-6);
+}
+
+/** Return contrasting text color (dark or white) for a given background hex. */
+export function textColorForBg(hex) {
+    if (!hex || hex.length < 7) return '#FFFFFF';
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return (r * 299 + g * 587 + b * 114) / 1000 > 140 ? '#1F2937' : '#FFFFFF';
 }

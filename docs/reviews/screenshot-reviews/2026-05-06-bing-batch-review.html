@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html><head><title>Bing Batch Review - 198 Screenshots</title>
+<style>
+body { background: #1a1a2e; color: white; font-family: system-ui; padding: 20px; }
+h1 { text-align: center; }
+.stats { text-align: center; margin: 10px 0; font-size: 18px; }
+.rejected-count { color: #ff6b6b; font-weight: bold; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; max-width: 1600px; margin: 20px auto; }
+.card { background: #16213e; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.2s; }
+.card:hover { transform: scale(1.02); }
+.card.rejected { opacity: 0.3; border: 3px solid red; }
+.card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.card .name { padding: 8px; font-size: 12px; text-align: center; }
+.export-btn { display: block; margin: 20px auto; padding: 12px 30px; background: #4CAF50; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; }
+</style></head><body>
+<h1>Bing Screenshot Batch Review (198 games)</h1>
+<p class='stats'>Click screenshots that are NOT gameplay to reject them. <span class='rejected-count' id='count'>0 rejected</span></p>
+<button class='export-btn' onclick='exportResults()'>Export Review Results</button>
+<div class='grid'><div class='card' data-game='Live Vip Baccarat' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Vip-Baccarat.jpg' loading='lazy'>
+    <div class='name'>Live Vip Baccarat (Playtech)</div>
+  </div><div class='card' data-game='Live Dealer Speed Baccarat' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Speed-Baccarat.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Speed Baccarat (Evolution)</div>
+  </div><div class='card' data-game='Live Dealer Single Zero Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Single-Zero-Roulette.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Single Zero Roulette (Evolution)</div>
+  </div><div class='card' data-game='Blackjack Live' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blackjack-Live.jpg' loading='lazy'>
+    <div class='name'>Blackjack Live (Evolution)</div>
+  </div><div class='card' data-game='American Roulette Live' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/American-Roulette-Live.jpg' loading='lazy'>
+    <div class='name'>American Roulette Live (Evolution)</div>
+  </div><div class='card' data-game='Premium Blackjack Pro' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Premium-Blackjack-Pro.jpg' loading='lazy'>
+    <div class='name'>Premium Blackjack Pro (Playtech)</div>
+  </div><div class='card' data-game='Live Dealer Lightning Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Lightning-Roulette.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Lightning Roulette (Evolution)</div>
+  </div><div class='card' data-game='Live Dealer Crazy Time' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Crazy-Time.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Crazy Time (Evolution)</div>
+  </div><div class='card' data-game='Blackjack Surrender' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blackjack-Surrender.jpg' loading='lazy'>
+    <div class='name'>Blackjack Surrender (IGT)</div>
+  </div><div class='card' data-game='Live Dealer Craps' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Craps.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Craps (Evolution)</div>
+  </div><div class='card' data-game='Whirl Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Whirl-Win.jpg' loading='lazy'>
+    <div class='name'>Whirl Win (Bragg Gaming Group)</div>
+  </div><div class='card' data-game='Live Dealer Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Roulette.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Roulette (Evolution)</div>
+  </div><div class='card' data-game='Megajackpots Cash Eruption' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Cash-Eruption.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Cash Eruption (IGT)</div>
+  </div><div class='card' data-game='Cash Eruption High Stakes' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Eruption-High-Stakes.jpg' loading='lazy'>
+    <div class='name'>Cash Eruption High Stakes (IGT)</div>
+  </div><div class='card' data-game='Live Dealer Baccarat' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Baccarat.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Baccarat (Evolution)</div>
+  </div><div class='card' data-game='7s Fire Blitz Hot Stepper' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/7s-Fire-Blitz-Hot-Stepper.jpg' loading='lazy'>
+    <div class='name'>7s Fire Blitz Hot Stepper (White Hat Studios)</div>
+  </div><div class='card' data-game='Vip Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Vip-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Vip Blackjack (Playtech)</div>
+  </div><div class='card' data-game='Cash Eruption Slingo' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Eruption-Slingo.jpg' loading='lazy'>
+    <div class='name'>Cash Eruption Slingo (Gaming Realms)</div>
+  </div><div class='card' data-game='Heads Up Hold Em' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Heads-Up-Hold-Em.jpg' loading='lazy'>
+    <div class='name'>Heads Up Hold Em (Playtech)</div>
+  </div><div class='card' data-game='Adventures Beyond Wonderland Live' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Adventures-Beyond-Wonderland-Live.jpg' loading='lazy'>
+    <div class='name'>Adventures Beyond Wonderland Live (Playtech)</div>
+  </div><div class='card' data-game='7s Fire Blitz Power 5 Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/7s-Fire-Blitz-Power-5-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>7s Fire Blitz Power 5 Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Big Money Frenzy Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-Money-Frenzy-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Big Money Frenzy Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Single Player Blackjack - 3 Hands' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Single-Player-Blackjack-3-Hands.jpg' loading='lazy'>
+    <div class='name'>Single Player Blackjack - 3 Hands (Internal)</div>
+  </div><div class='card' data-game='Rakin Bacon Jackpots Bonus Wheel' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Rakin-Bacon-Jackpots-Bonus-Wheel.jpg' loading='lazy'>
+    <div class='name'>Rakin Bacon Jackpots Bonus Wheel (AGS)</div>
+  </div><div class='card' data-game='7s Fire Blitz Win Boost' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/7s-Fire-Blitz-Win-Boost.jpg' loading='lazy'>
+    <div class='name'>7s Fire Blitz Win Boost (White Hat Studios)</div>
+  </div><div class='card' data-game='Majestic Fury Megaways Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Majestic-Fury-Megaways-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Majestic Fury Megaways Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Adventures Beyond Wonderland' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Adventures-Beyond-Wonderland.jpg' loading='lazy'>
+    <div class='name'>Adventures Beyond Wonderland (Playtech)</div>
+  </div><div class='card' data-game='Cashback Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cashback-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Cashback Blackjack (Playtech)</div>
+  </div><div class='card' data-game='NFL Big Kick LuckyTap ™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/NFL-Big-Kick-LuckyTap.jpg' loading='lazy'>
+    <div class='name'>NFL Big Kick LuckyTap ™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Wheel Of Fortune Diamond Spins 2x Wild' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Wheel-Of-Fortune-Diamond-Spins-2x-Wild.jpg' loading='lazy'>
+    <div class='name'>Wheel Of Fortune Diamond Spins 2x Wild (IGT)</div>
+  </div><div class='card' data-game='Toymaker Magic' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Toymaker-Magic.jpg' loading='lazy'>
+    <div class='name'>Toymaker Magic (Light & Wonder)</div>
+  </div><div class='card' data-game='Gobble Gobble Gobble' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gobble-Gobble-Gobble.jpg' loading='lazy'>
+    <div class='name'>Gobble Gobble Gobble (Evolution)</div>
+  </div><div class='card' data-game='3 Hot Chilli Peppers' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/3-Hot-Chilli-Peppers.jpg' loading='lazy'>
+    <div class='name'>3 Hot Chilli Peppers (1x2 Network)</div>
+  </div><div class='card' data-game='Multihand Blackjack Poker Pairs With Surrender' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Multihand-Blackjack-Poker-Pairs-With-Surrender.jpg' loading='lazy'>
+    <div class='name'>Multihand Blackjack Poker Pairs With Surrender (IGT)</div>
+  </div><div class='card' data-game='Big Piggy Bank' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-Piggy-Bank.jpg' loading='lazy'>
+    <div class='name'>Big Piggy Bank (Inspired)</div>
+  </div><div class='card' data-game='Energy Joker Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Energy-Joker-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Energy Joker Hold And Win (Octoplay)</div>
+  </div><div class='card' data-game='Saint Nicked 3 Present Tense' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Saint-Nicked-3-Present-Tense.jpg' loading='lazy'>
+    <div class='name'>Saint Nicked 3 Present Tense (White Hat Studios)</div>
+  </div><div class='card' data-game='Fire And Roses Joker 2 All In' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fire-And-Roses-Joker-2-All-In.jpg' loading='lazy'>
+    <div class='name'>Fire And Roses Joker 2 All In (Games Global)</div>
+  </div><div class='card' data-game='Diamond Charge Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Diamond-Charge-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Diamond Charge Hold And Win (1x2 Network)</div>
+  </div><div class='card' data-game='European Roulette Vip' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/European-Roulette-Vip.jpg' loading='lazy'>
+    <div class='name'>European Roulette Vip (Evolution)</div>
+  </div><div class='card' data-game='Wheel Of Fortune Pink Diamond' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Wheel-Of-Fortune-Pink-Diamond.jpg' loading='lazy'>
+    <div class='name'>Wheel Of Fortune Pink Diamond (IGT)</div>
+  </div><div class='card' data-game='Extra Chilli Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Extra-Chilli-Megaways.jpg' loading='lazy'>
+    <div class='name'>Extra Chilli Megaways (Evolution)</div>
+  </div><div class='card' data-game='Cops And Robbers Bigger Big Money' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cops-And-Robbers-Bigger-Big-Money.jpg' loading='lazy'>
+    <div class='name'>Cops And Robbers Bigger Big Money (Inspired)</div>
+  </div><div class='card' data-game='Vip Bet Stacker Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Vip-Bet-Stacker-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Vip Bet Stacker Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Piggy Payouts Bank Buster LuckyTap ™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Piggy-Payouts-Bank-Buster-LuckyTap.jpg' loading='lazy'>
+    <div class='name'>Piggy Payouts Bank Buster LuckyTap ™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='5 Hand Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/5-Hand-Blackjack.jpg' loading='lazy'>
+    <div class='name'>5 Hand Blackjack (IGT)</div>
+  </div><div class='card' data-game='Infinite Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Infinite-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Infinite Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Breaking Bad Collect Em And Link' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Breaking-Bad-Collect-Em-And-Link.jpg' loading='lazy'>
+    <div class='name'>Breaking Bad Collect Em And Link (Playtech)</div>
+  </div><div class='card' data-game='Pop A Shot LuckyTap™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Pop-A-Shot-LuckyTap.jpg' loading='lazy'>
+    <div class='name'>Pop A Shot LuckyTap™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Ducky Bucks' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ducky-Bucks.jpg' loading='lazy'>
+    <div class='name'>Ducky Bucks (Gamecode)</div>
+  </div><div class='card' data-game='Grand Link Express Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Grand-Link-Express-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Grand Link Express Hold And Win (Octoplay)</div>
+  </div><div class='card' data-game='Links Of Ra 2' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Links-Of-Ra-2.jpg' loading='lazy'>
+    <div class='name'>Links Of Ra 2 (Games Global)</div>
+  </div><div class='card' data-game='Red Door Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Red-Door-Roulette.jpg' loading='lazy'>
+    <div class='name'>Red Door Roulette (Evolution)</div>
+  </div><div class='card' data-game='Blue Wizard Collect Em And Link' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blue-Wizard-Collect-Em-And-Link.jpg' loading='lazy'>
+    <div class='name'>Blue Wizard Collect Em And Link (Playtech)</div>
+  </div><div class='card' data-game='7s Fire Blitz Hotstepper Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/7s-Fire-Blitz-Hotstepper-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>7s Fire Blitz Hotstepper Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Gonzos Quest 2 Return To El Dorado' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gonzos-Quest-2-Return-To-El-Dorado.jpg' loading='lazy'>
+    <div class='name'>Gonzos Quest 2 Return To El Dorado (Evolution)</div>
+  </div><div class='card' data-game='Live Dealer Three Card Poker' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Three-Card-Poker.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Three Card Poker (Evolution)</div>
+  </div><div class='card' data-game='Bankin Even More Bacon Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Bankin-Even-More-Bacon-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Bankin Even More Bacon Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Mega Diamond' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Mega-Diamond.jpg' loading='lazy'>
+    <div class='name'>Mega Diamond (AGS)</div>
+  </div><div class='card' data-game='Gold Cash Freespins' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gold-Cash-Freespins.jpg' loading='lazy'>
+    <div class='name'>Gold Cash Freespins (Inspired)</div>
+  </div><div class='card' data-game='Platinum Blackjack Pro' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Platinum-Blackjack-Pro.jpg' loading='lazy'>
+    <div class='name'>Platinum Blackjack Pro (Evolution)</div>
+  </div><div class='card' data-game='Cash Machine Jackpots' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Machine-Jackpots.jpg' loading='lazy'>
+    <div class='name'>Cash Machine Jackpots (Everi)</div>
+  </div><div class='card' data-game='Side Bet Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Side-Bet-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Side Bet Blackjack (Internal)</div>
+  </div><div class='card' data-game='3 Lucky Maneki Hold And Spin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/3-Lucky-Maneki-Hold-And-Spin.jpg' loading='lazy'>
+    <div class='name'>3 Lucky Maneki Hold And Spin (Aristocrat)</div>
+  </div><div class='card' data-game='American Red Door Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/American-Red-Door-Roulette.jpg' loading='lazy'>
+    <div class='name'>American Red Door Roulette (Evolution)</div>
+  </div><div class='card' data-game='Blood Moon Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blood-Moon-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Blood Moon Hold And Win (1x2 Network)</div>
+  </div><div class='card' data-game='Blackjack Poker And Pairs' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blackjack-Poker-And-Pairs.jpg' loading='lazy'>
+    <div class='name'>Blackjack Poker And Pairs (IGT)</div>
+  </div><div class='card' data-game='3 Porky Banks Hold And Win Extra' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/3-Porky-Banks-Hold-And-Win-Extra.jpg' loading='lazy'>
+    <div class='name'>3 Porky Banks Hold And Win Extra (1x2 Network)</div>
+  </div><div class='card' data-game='Live Dealer Crazy Coin Flip' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Crazy-Coin-Flip.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Crazy Coin Flip (Evolution)</div>
+  </div><div class='card' data-game='War' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/War.jpg' loading='lazy'>
+    <div class='name'>War (AGS)</div>
+  </div><div class='card' data-game='Tiger And Dragon' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Tiger-And-Dragon.jpg' loading='lazy'>
+    <div class='name'>Tiger And Dragon (IGT)</div>
+  </div><div class='card' data-game='Lucky Larrys Lobstermania Slingo' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Lucky-Larrys-Lobstermania-Slingo.jpg' loading='lazy'>
+    <div class='name'>Lucky Larrys Lobstermania Slingo (Gaming Realms)</div>
+  </div><div class='card' data-game='Coin Trio Fortune Trails' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Coin-Trio-Fortune-Trails.jpg' loading='lazy'>
+    <div class='name'>Coin Trio Fortune Trails (Aristocrat)</div>
+  </div><div class='card' data-game='Triple Stones' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Triple-Stones.jpg' loading='lazy'>
+    <div class='name'>Triple Stones (Gamecode)</div>
+  </div><div class='card' data-game='The Flintstones Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/The-Flintstones-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>The Flintstones Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Golden Halloween Winner' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Golden-Halloween-Winner.jpg' loading='lazy'>
+    <div class='name'>Golden Halloween Winner (Inspired)</div>
+  </div><div class='card' data-game='Egglink Dolphin Gold' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Egglink-Dolphin-Gold.jpg' loading='lazy'>
+    <div class='name'>Egglink Dolphin Gold (Light & Wonder)</div>
+  </div><div class='card' data-game='Secrets Of The Phoenix Blaze' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Secrets-Of-The-Phoenix-Blaze.jpg' loading='lazy'>
+    <div class='name'>Secrets Of The Phoenix Blaze (Aristocrat)</div>
+  </div><div class='card' data-game='Blackjack Poker And Pairs With Surrender' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blackjack-Poker-And-Pairs-With-Surrender.jpg' loading='lazy'>
+    <div class='name'>Blackjack Poker And Pairs With Surrender (IGT)</div>
+  </div><div class='card' data-game='Thunder Cash Dolphins Pearl' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Thunder-Cash-Dolphins-Pearl.jpg' loading='lazy'>
+    <div class='name'>Thunder Cash Dolphins Pearl (Greentube)</div>
+  </div><div class='card' data-game='Zeus 2' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Zeus-2.jpg' loading='lazy'>
+    <div class='name'>Zeus 2 (Light & Wonder)</div>
+  </div><div class='card' data-game='Egglink Chicken Fox' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Egglink-Chicken-Fox.jpg' loading='lazy'>
+    <div class='name'>Egglink Chicken Fox (Light & Wonder)</div>
+  </div><div class='card' data-game='Big Bucks Bandits Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-Bucks-Bandits-Megaways.jpg' loading='lazy'>
+    <div class='name'>Big Bucks Bandits Megaways (Reel Play)</div>
+  </div><div class='card' data-game='Gobble Gobble Gobble Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gobble-Gobble-Gobble-Megaways.jpg' loading='lazy'>
+    <div class='name'>Gobble Gobble Gobble Megaways (Evolution)</div>
+  </div><div class='card' data-game='Prize Piggy Win And Spin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Prize-Piggy-Win-And-Spin.jpg' loading='lazy'>
+    <div class='name'>Prize Piggy Win And Spin (Inspired)</div>
+  </div><div class='card' data-game='Big City 5s' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-City-5s.jpg' loading='lazy'>
+    <div class='name'>Big City 5s (IGT)</div>
+  </div><div class='card' data-game='Porkin Cashpots Combo Frenzy Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Porkin-Cashpots-Combo-Frenzy-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Porkin Cashpots Combo Frenzy Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Lightning Gorilla 2 Maximum Boltage Xmas' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Lightning-Gorilla-2-Maximum-Boltage-Xmas.jpg' loading='lazy'>
+    <div class='name'>Lightning Gorilla 2 Maximum Boltage Xmas (Light & Wonder)</div>
+  </div><div class='card' data-game='The Walking Dead Collect Em' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/The-Walking-Dead-Collect-Em.jpg' loading='lazy'>
+    <div class='name'>The Walking Dead Collect Em (Playtech)</div>
+  </div><div class='card' data-game='Five Play Draw Poker' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Five-Play-Draw-Poker.jpg' loading='lazy'>
+    <div class='name'>Five Play Draw Poker (IGT)</div>
+  </div><div class='card' data-game='Coin Strike Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Coin-Strike-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Coin Strike Hold And Win (Playson)</div>
+  </div><div class='card' data-game='Triple Coin Treasures Shamrock Fortunes' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Triple-Coin-Treasures-Shamrock-Fortunes.jpg' loading='lazy'>
+    <div class='name'>Triple Coin Treasures Shamrock Fortunes (AGS)</div>
+  </div><div class='card' data-game='Dragon Power Super Orbs' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Dragon-Power-Super-Orbs.jpg' loading='lazy'>
+    <div class='name'>Dragon Power Super Orbs (Bragg Gaming Group)</div>
+  </div><div class='card' data-game='Free Bet Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Free-Bet-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Free Bet Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Prosperity Gems Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Prosperity-Gems-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Prosperity Gems Hold And Win (IGT)</div>
+  </div><div class='card' data-game='Mississippi Stud' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Mississippi-Stud.jpg' loading='lazy'>
+    <div class='name'>Mississippi Stud (Light & Wonder)</div>
+  </div><div class='card' data-game='Piggy Payouts 2 Pig Out Luckytap ™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Piggy-Payouts-2-Pig-Out-Luckytap.jpg' loading='lazy'>
+    <div class='name'>Piggy Payouts 2 Pig Out Luckytap ™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Rick And Morty Strike Back Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Rick-And-Morty-Strike-Back-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Rick And Morty Strike Back Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Live Dealer Ultimate Texas Hold Em' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Ultimate-Texas-Hold-Em.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Ultimate Texas Hold Em (Evolution)</div>
+  </div><div class='card' data-game='Ez Baccarat' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ez-Baccarat.jpg' loading='lazy'>
+    <div class='name'>Ez Baccarat (Evolution)</div>
+  </div><div class='card' data-game='Money Blast Quick Strike' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Money-Blast-Quick-Strike.jpg' loading='lazy'>
+    <div class='name'>Money Blast Quick Strike (Konami)</div>
+  </div><div class='card' data-game='Burn In Hell Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Burn-In-Hell-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Burn In Hell Hold And Win (1x2 Network)</div>
+  </div><div class='card' data-game='Megajackpots Fortune Coin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Fortune-Coin.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Fortune Coin (IGT)</div>
+  </div><div class='card' data-game='Vip Studio Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Vip-Studio-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Vip Studio Blackjack (Evolution)</div>
+  </div><div class='card' data-game='All Aboard Dynamite Dash' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/All-Aboard-Dynamite-Dash.jpg' loading='lazy'>
+    <div class='name'>All Aboard Dynamite Dash (Konami)</div>
+  </div><div class='card' data-game='Classic Bet Stacker Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Classic-Bet-Stacker-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Classic Bet Stacker Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Triple Double Patriot' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Triple-Double-Patriot.jpg' loading='lazy'>
+    <div class='name'>Triple Double Patriot (Everi)</div>
+  </div><div class='card' data-game='Almighty Buffalo Megaways Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Almighty-Buffalo-Megaways-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Almighty Buffalo Megaways Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Easy Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Easy-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Easy Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Triple Jackpot Gems Deluxe' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Triple-Jackpot-Gems-Deluxe.jpg' loading='lazy'>
+    <div class='name'>Triple Jackpot Gems Deluxe (Everi)</div>
+  </div><div class='card' data-game='Thundering Box Keno' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Thundering-Box-Keno.jpg' loading='lazy'>
+    <div class='name'>Thundering Box Keno (Light & Wonder)</div>
+  </div><div class='card' data-game='Crystal Star Deluxe' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Crystal-Star-Deluxe.jpg' loading='lazy'>
+    <div class='name'>Crystal Star Deluxe (Everi)</div>
+  </div><div class='card' data-game='Double Jackpot Gems Grand Wheel' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Double-Jackpot-Gems-Grand-Wheel.jpg' loading='lazy'>
+    <div class='name'>Double Jackpot Gems Grand Wheel (Everi)</div>
+  </div><div class='card' data-game='Azteca Collect Em' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Azteca-Collect-Em.jpg' loading='lazy'>
+    <div class='name'>Azteca Collect Em (Playtech)</div>
+  </div><div class='card' data-game='3 Sparkling Pearls' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/3-Sparkling-Pearls.jpg' loading='lazy'>
+    <div class='name'>3 Sparkling Pearls (Rising Digital)</div>
+  </div><div class='card' data-game='Live Dealer Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Blackjack (Evolution)</div>
+  </div><div class='card' data-game='First Person Lightning Dice' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/First-Person-Lightning-Dice.jpg' loading='lazy'>
+    <div class='name'>First Person Lightning Dice (Evolution)</div>
+  </div><div class='card' data-game='12 Loaded Pots Drums' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/12-Loaded-Pots-Drums.jpg' loading='lazy'>
+    <div class='name'>12 Loaded Pots Drums (Games Global)</div>
+  </div><div class='card' data-game='Flippin Rich Luckytap™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Flippin-Rich-Luckytap.jpg' loading='lazy'>
+    <div class='name'>Flippin Rich Luckytap™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Rich Little Piggies World Class Halloween Edition' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Rich-Little-Piggies-World-Class-Halloween-Edition.jpg' loading='lazy'>
+    <div class='name'>Rich Little Piggies World Class Halloween Edition (Light & Wonder)</div>
+  </div><div class='card' data-game='Ultimate X Poker Ten Play' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ultimate-X-Poker-Ten-Play.jpg' loading='lazy'>
+    <div class='name'>Ultimate X Poker Ten Play (IGT)</div>
+  </div><div class='card' data-game='Blazin Gems Deluxe' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blazin-Gems-Deluxe.jpg' loading='lazy'>
+    <div class='name'>Blazin Gems Deluxe (Everi)</div>
+  </div><div class='card' data-game='Wolves Collect Em And Link' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Wolves-Collect-Em-And-Link.jpg' loading='lazy'>
+    <div class='name'>Wolves Collect Em And Link (Playtech)</div>
+  </div><div class='card' data-game='Triple Double Gems' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Triple-Double-Gems.jpg' loading='lazy'>
+    <div class='name'>Triple Double Gems (Everi)</div>
+  </div><div class='card' data-game='Scorchin Hot Spins Wicked Wheel' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Scorchin-Hot-Spins-Wicked-Wheel.jpg' loading='lazy'>
+    <div class='name'>Scorchin Hot Spins Wicked Wheel (Everi)</div>
+  </div><div class='card' data-game='Secrets Of The Phoenix Elements' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Secrets-Of-The-Phoenix-Elements.jpg' loading='lazy'>
+    <div class='name'>Secrets Of The Phoenix Elements (Aristocrat)</div>
+  </div><div class='card' data-game='Megajackpots Cleopatra' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Cleopatra.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Cleopatra (IGT)</div>
+  </div><div class='card' data-game='Golden Catch Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Golden-Catch-Megaways.jpg' loading='lazy'>
+    <div class='name'>Golden Catch Megaways (Evolution)</div>
+  </div><div class='card' data-game='Ultimate X Poker Five Play' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ultimate-X-Poker-Five-Play.jpg' loading='lazy'>
+    <div class='name'>Ultimate X Poker Five Play (IGT)</div>
+  </div><div class='card' data-game='Slingo Deal Or No Deal' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Slingo-Deal-Or-No-Deal.jpg' loading='lazy'>
+    <div class='name'>Slingo Deal Or No Deal (Gaming Realms)</div>
+  </div><div class='card' data-game='Atlantic City Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Atlantic-City-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Atlantic City Blackjack (Aristocrat)</div>
+  </div><div class='card' data-game='Megajackpots Wheel Of Fortune On Air' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Wheel-Of-Fortune-On-Air.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Wheel Of Fortune On Air (IGT)</div>
+  </div><div class='card' data-game='Bull Blitz Fortunes Of The Orient' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Bull-Blitz-Fortunes-Of-The-Orient.jpg' loading='lazy'>
+    <div class='name'>Bull Blitz Fortunes Of The Orient (Konami)</div>
+  </div><div class='card' data-game='Witches Collect Em' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Witches-Collect-Em.jpg' loading='lazy'>
+    <div class='name'>Witches Collect Em (Playtech)</div>
+  </div><div class='card' data-game='Slingshot Roulette' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Slingshot-Roulette.jpg' loading='lazy'>
+    <div class='name'>Slingshot Roulette (Evolution)</div>
+  </div><div class='card' data-game='Mermaids Jackpot Win And Spin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Mermaids-Jackpot-Win-And-Spin.jpg' loading='lazy'>
+    <div class='name'>Mermaids Jackpot Win And Spin (Inspired)</div>
+  </div><div class='card' data-game='Live Dealer Blackjack Vip' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Blackjack-Vip.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Blackjack Vip (Evolution)</div>
+  </div><div class='card' data-game='Blazing 777 2x3x5x Cashways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blazing-777-2x3x5x-Cashways.jpg' loading='lazy'>
+    <div class='name'>Blazing 777 2x3x5x Cashways (Bang Bang Games)</div>
+  </div><div class='card' data-game='Bonanza Falls Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Bonanza-Falls-Megaways.jpg' loading='lazy'>
+    <div class='name'>Bonanza Falls Megaways (Evolution)</div>
+  </div><div class='card' data-game='Big Money Frenzy Golden Magnet' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-Money-Frenzy-Golden-Magnet.jpg' loading='lazy'>
+    <div class='name'>Big Money Frenzy Golden Magnet (White Hat Studios)</div>
+  </div><div class='card' data-game='Dragon Power 10k Ways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Dragon-Power-10k-Ways.jpg' loading='lazy'>
+    <div class='name'>Dragon Power 10k Ways (Bragg Gaming Group)</div>
+  </div><div class='card' data-game='Live Dealer Infinite Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Infinite-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Infinite Blackjack (Evolution)</div>
+  </div><div class='card' data-game='Egglink Silver Pride' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Egglink-Silver-Pride.jpg' loading='lazy'>
+    <div class='name'>Egglink Silver Pride (Light & Wonder)</div>
+  </div><div class='card' data-game='Vip Blackjack En Espanol' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Vip-Blackjack-En-Espanol.jpg' loading='lazy'>
+    <div class='name'>Vip Blackjack En Espanol (Evolution)</div>
+  </div><div class='card' data-game='Fu Bao Meow LuckyTap ™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fu-Bao-Meow-LuckyTap.jpg' loading='lazy'>
+    <div class='name'>Fu Bao Meow LuckyTap ™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Fire Blaze Blue Wizard' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fire-Blaze-Blue-Wizard.jpg' loading='lazy'>
+    <div class='name'>Fire Blaze Blue Wizard (Playtech)</div>
+  </div><div class='card' data-game='Premium Blackjack' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Premium-Blackjack.jpg' loading='lazy'>
+    <div class='name'>Premium Blackjack (Playtech)</div>
+  </div><div class='card' data-game='10000 Wolves 10k Ways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/10000-Wolves-10k-Ways.jpg' loading='lazy'>
+    <div class='name'>10000 Wolves 10k Ways (Reel Play)</div>
+  </div><div class='card' data-game='Cops N Robbers Trick Or Treat' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cops-N-Robbers-Trick-Or-Treat.jpg' loading='lazy'>
+    <div class='name'>Cops N Robbers Trick Or Treat (Inspired)</div>
+  </div><div class='card' data-game='Fly X Party' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fly-X-Party.jpg' loading='lazy'>
+    <div class='name'>Fly X Party (Games Global)</div>
+  </div><div class='card' data-game='7s Fire Blitz' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/7s-Fire-Blitz.jpg' loading='lazy'>
+    <div class='name'>7s Fire Blitz (White Hat Studios)</div>
+  </div><div class='card' data-game='Wheel Of Fortune Triple Gold Gold Spin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Wheel-Of-Fortune-Triple-Gold-Gold-Spin.jpg' loading='lazy'>
+    <div class='name'>Wheel Of Fortune Triple Gold Gold Spin (IGT)</div>
+  </div><div class='card' data-game='Lucky Larry Lobstermania 2' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Lucky-Larry-Lobstermania-2.jpg' loading='lazy'>
+    <div class='name'>Lucky Larry Lobstermania 2 (IGT)</div>
+  </div><div class='card' data-game='3 Card Stud' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/3-Card-Stud.jpg' loading='lazy'>
+    <div class='name'>3 Card Stud (IGT)</div>
+  </div><div class='card' data-game='Crazy Tiki Hold And Win' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Crazy-Tiki-Hold-And-Win.jpg' loading='lazy'>
+    <div class='name'>Crazy Tiki Hold And Win (1x2 Network)</div>
+  </div><div class='card' data-game='Fire And Roses Joker' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fire-And-Roses-Joker.jpg' loading='lazy'>
+    <div class='name'>Fire And Roses Joker (Games Global)</div>
+  </div><div class='card' data-game='Slingo Gold Cash Freespin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Slingo-Gold-Cash-Freespin.jpg' loading='lazy'>
+    <div class='name'>Slingo Gold Cash Freespin (Gaming Realms)</div>
+  </div><div class='card' data-game='Demons Gold' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Demons-Gold.jpg' loading='lazy'>
+    <div class='name'>Demons Gold (Inspired)</div>
+  </div><div class='card' data-game='Flaming Hot Chili Pot Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Flaming-Hot-Chili-Pot-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Flaming Hot Chili Pot Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Megajackpots Wolf Run' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Wolf-Run.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Wolf Run (IGT)</div>
+  </div><div class='card' data-game='Almighty 777 Deluxe Jackpot Royale Express' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Almighty-777-Deluxe-Jackpot-Royale-Express.jpg' loading='lazy'>
+    <div class='name'>Almighty 777 Deluxe Jackpot Royale Express (White Hat Studios)</div>
+  </div><div class='card' data-game='Lightning Gold 2' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Lightning-Gold-2.jpg' loading='lazy'>
+    <div class='name'>Lightning Gold 2 (White Hat Studios)</div>
+  </div><div class='card' data-game='Mega Fire Blaze Legacy Of The Tiger' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Mega-Fire-Blaze-Legacy-Of-The-Tiger.jpg' loading='lazy'>
+    <div class='name'>Mega Fire Blaze Legacy Of The Tiger (Playtech)</div>
+  </div><div class='card' data-game='Lightning Gorilla 2 Max Boltage' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Lightning-Gorilla-2-Max-Boltage.jpg' loading='lazy'>
+    <div class='name'>Lightning Gorilla 2 Max Boltage (Light & Wonder)</div>
+  </div><div class='card' data-game='Thunder Cash Senorita Suerte' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Thunder-Cash-Senorita-Suerte.jpg' loading='lazy'>
+    <div class='name'>Thunder Cash Senorita Suerte (Greentube)</div>
+  </div><div class='card' data-game='Hercules High And Mighty' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Hercules-High-And-Mighty.jpg' loading='lazy'>
+    <div class='name'>Hercules High And Mighty (Light & Wonder)</div>
+  </div><div class='card' data-game='Fly X' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fly-X.jpg' loading='lazy'>
+    <div class='name'>Fly X (Games Global)</div>
+  </div><div class='card' data-game='Cash Falls Add Em Up Rome' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Falls-Add-Em-Up-Rome.jpg' loading='lazy'>
+    <div class='name'>Cash Falls Add Em Up Rome (Light & Wonder)</div>
+  </div><div class='card' data-game='Pool Pong LuckyTap ™' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Pool-Pong-LuckyTap.jpg' loading='lazy'>
+    <div class='name'>Pool Pong LuckyTap ™ (Design Works Gaming)</div>
+  </div><div class='card' data-game='Cash Summit Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Summit-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Cash Summit Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Double Black Diamond' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Double-Black-Diamond.jpg' loading='lazy'>
+    <div class='name'>Double Black Diamond (Everi)</div>
+  </div><div class='card' data-game='Gritty Kitty Of Nitropolis' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gritty-Kitty-Of-Nitropolis.jpg' loading='lazy'>
+    <div class='name'>Gritty Kitty Of Nitropolis (Light & Wonder)</div>
+  </div><div class='card' data-game='China Shores Quick Strike' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/China-Shores-Quick-Strike.jpg' loading='lazy'>
+    <div class='name'>China Shores Quick Strike (Konami)</div>
+  </div><div class='card' data-game='Ba Fang Jin Bao Abundant Fortune' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ba-Fang-Jin-Bao-Abundant-Fortune.jpg' loading='lazy'>
+    <div class='name'>Ba Fang Jin Bao Abundant Fortune (Konami)</div>
+  </div><div class='card' data-game='Deal Or No Deal Bankers Boost Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Deal-Or-No-Deal-Bankers-Boost-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Deal Or No Deal Bankers Boost Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Live Dealer Football Studio' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Live-Dealer-Football-Studio.jpg' loading='lazy'>
+    <div class='name'>Live Dealer Football Studio (Evolution)</div>
+  </div><div class='card' data-game='Gold Stacks 88 Royal Monkey' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Gold-Stacks-88-Royal-Monkey.jpg' loading='lazy'>
+    <div class='name'>Gold Stacks 88 Royal Monkey (Aristocrat)</div>
+  </div><div class='card' data-game='Megajackpots Siberian Storm' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Megajackpots-Siberian-Storm.jpg' loading='lazy'>
+    <div class='name'>Megajackpots Siberian Storm (IGT)</div>
+  </div><div class='card' data-game='Deal Or No Deal The Big Hit Megaways Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Deal-Or-No-Deal-The-Big-Hit-Megaways-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Deal Or No Deal The Big Hit Megaways Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Grand Buzzer Beater Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Grand-Buzzer-Beater-Megaways.jpg' loading='lazy'>
+    <div class='name'>Grand Buzzer Beater Megaways (Evolution)</div>
+  </div><div class='card' data-game='Buffalo Blitz Live Slots' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Buffalo-Blitz-Live-Slots.jpg' loading='lazy'>
+    <div class='name'>Buffalo Blitz Live Slots (Playtech)</div>
+  </div><div class='card' data-game='Ted Cash Lock Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Ted-Cash-Lock-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Ted Cash Lock Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Times Machine Extra' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Times-Machine-Extra.jpg' loading='lazy'>
+    <div class='name'>Times Machine Extra (Boom Entertainment)</div>
+  </div><div class='card' data-game='All Aboard Go West' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/All-Aboard-Go-West.jpg' loading='lazy'>
+    <div class='name'>All Aboard Go West (Konami)</div>
+  </div><div class='card' data-game='Super Boom Boom Boom' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Super-Boom-Boom-Boom.jpg' loading='lazy'>
+    <div class='name'>Super Boom Boom Boom (Gamecode)</div>
+  </div><div class='card' data-game='Wolf Legend Megaways Jackpot Royale' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Wolf-Legend-Megaways-Jackpot-Royale.jpg' loading='lazy'>
+    <div class='name'>Wolf Legend Megaways Jackpot Royale (White Hat Studios)</div>
+  </div><div class='card' data-game='Truckers Vs Aliens' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Truckers-Vs-Aliens.jpg' loading='lazy'>
+    <div class='name'>Truckers Vs Aliens (Bragg Gaming Group)</div>
+  </div><div class='card' data-game='Beast Of Wealth' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Beast-Of-Wealth.jpg' loading='lazy'>
+    <div class='name'>Beast Of Wealth (Play'n GO)</div>
+  </div><div class='card' data-game='Fire And Roses Jolly Joker' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Fire-And-Roses-Jolly-Joker.jpg' loading='lazy'>
+    <div class='name'>Fire And Roses Jolly Joker (Games Global)</div>
+  </div><div class='card' data-game='Blackjack Single Deck' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Blackjack-Single-Deck.jpg' loading='lazy'>
+    <div class='name'>Blackjack Single Deck (AGS)</div>
+  </div><div class='card' data-game='Empire Of Wilds' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Empire-Of-Wilds.jpg' loading='lazy'>
+    <div class='name'>Empire Of Wilds (Design Works Gaming)</div>
+  </div><div class='card' data-game='Cash Flip Devils Coin' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Cash-Flip-Devils-Coin.jpg' loading='lazy'>
+    <div class='name'>Cash Flip Devils Coin (Games Global)</div>
+  </div><div class='card' data-game='Thor 10k Ways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Thor-10k-Ways.jpg' loading='lazy'>
+    <div class='name'>Thor 10k Ways (Reel Play)</div>
+  </div><div class='card' data-game='Slice Of Midnight' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Slice-Of-Midnight.jpg' loading='lazy'>
+    <div class='name'>Slice Of Midnight (Evolution)</div>
+  </div><div class='card' data-game='Big Money Frenzy Megaways' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Big-Money-Frenzy-Megaways.jpg' loading='lazy'>
+    <div class='name'>Big Money Frenzy Megaways (White Hat Studios)</div>
+  </div><div class='card' data-game='Stock Market Live' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Stock-Market-Live.jpg' loading='lazy'>
+    <div class='name'>Stock Market Live (Evolution)</div>
+  </div><div class='card' data-game='Slingo Stinkin Rich' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Slingo-Stinkin-Rich.jpg' loading='lazy'>
+    <div class='name'>Slingo Stinkin Rich (Gaming Realms)</div>
+  </div><div class='card' data-game='Flames Of Fortune' onclick='toggle(this)'>
+    <img src='file:///Users/avner/Projects/game-performace-dashboard/game_analytics_export/data/screenshots/Flames-Of-Fortune.jpg' loading='lazy'>
+    <div class='name'>Flames Of Fortune (Gamecode)</div>
+  </div></div>
+<script>
+const rejected = new Set();
+function toggle(card) {
+  const name = card.dataset.game;
+  if (rejected.has(name)) { rejected.delete(name); card.classList.remove('rejected'); }
+  else { rejected.add(name); card.classList.add('rejected'); }
+  document.getElementById('count').textContent = rejected.size + ' rejected';
+}
+function exportResults() {
+  const results = [];
+  document.querySelectorAll('.card').forEach(card => {
+    results.push({ game: card.dataset.game, decision: rejected.has(card.dataset.game) ? 'not_gameplay' : 'ok' });
+  });
+  const blob = new Blob([JSON.stringify(results, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'bing_batch_review.json'; a.click();
+}
+</script></body></html>

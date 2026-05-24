@@ -1,14 +1,12 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON } from '../helpers/paths.js';
 
 describe('release dates in game_data_master.json', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
     });
 
     test('existing release_year/release_month unchanged', () => {

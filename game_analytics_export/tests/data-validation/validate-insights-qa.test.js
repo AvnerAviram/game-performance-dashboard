@@ -8,10 +8,7 @@ import { F } from '../../src/lib/game-fields.js';
 import { parseFeatures } from '../../src/lib/parse-features.js';
 import { scoreFinding, assertNoDefiniteFindings } from '../utils/qa-scoring.js';
 import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../data');
+import { MAPPINGS } from '../helpers/paths.js';
 
 let allGames = [];
 let franchiseMap = {};
@@ -20,7 +17,7 @@ beforeAll(async () => {
     await loadTestData();
     allGames = gameData.allGames;
 
-    const fmPath = path.join(DATA_DIR, 'franchise_mapping.json');
+    const fmPath = MAPPINGS.franchise;
     if (fs.existsSync(fmPath)) {
         franchiseMap = JSON.parse(fs.readFileSync(fmPath, 'utf8'));
     }

@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const USERS_FILE = path.join(__dirname, 'users.json');
-const TICKETS_FILE = path.join(__dirname, 'tickets.json');
+const USERS_FILE = path.join(__dirname, 'data', 'users.json');
+const TICKETS_FILE = path.join(__dirname, 'data', 'tickets.json');
 
 function loadUsers() {
     try {

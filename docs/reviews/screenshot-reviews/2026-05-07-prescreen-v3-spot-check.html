@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Pre-screen Spot Check v3 (fixed paths)</title>
+<style>
+body { font-family: system-ui; background: #1a1a2e; color: #eee; padding: 20px; }
+h1 { color: #fff; }
+.info { background: #16213e; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card { background: #16213e; border-radius: 8px; padding: 8px; cursor: pointer; border: 2px solid transparent; }
+.card img { width: 100%; border-radius: 4px; }
+.card.wrong { border-color: #e74c3c; background: #2c1010; }
+.card p { margin: 6px 0 0; font-size: 13px; }
+.lbl-gameplay { color: #2ecc71; font-weight: bold; }
+.lbl-not_gameplay { color: #e74c3c; font-weight: bold; }
+#export { margin-top: 20px; background: #2ecc71; color: #000; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+#results { margin-top: 10px; background: #16213e; padding: 10px; border-radius: 6px; white-space: pre-wrap; display: none; }
+</style></head>
+<body>
+<h1>Pre-screen Spot Check v3 (fixed image paths)</h1>
+<div class="info">
+<b>Instructions:</b> Click any image where Claude got it WRONG. Green = Claude says gameplay. Red = Claude says not_gameplay.<br>
+All images should load now. When done, click Export.
+</div>
+<div class="grid"><div class="card" data-slug="Jelly-Reels" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Jelly-Reels.jpg" loading="lazy">
+  <p><b>Jelly-Reels</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Crystal-Star" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Crystal-Star.jpg" loading="lazy">
+  <p><b>Crystal-Star</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="7s-Wild" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/7s-Wild.jpg" loading="lazy">
+  <p><b>7s-Wild</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="piggy-riches-3-hog-heaven" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/piggy-riches-3-hog-heaven.webp" loading="lazy">
+  <p><b>piggy-riches-3-hog-heaven</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="turkey-fortune" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/turkey-fortune.webp" loading="lazy">
+  <p><b>turkey-fortune</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Triple-Gold-Bars" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Triple-Gold-Bars.jpg" loading="lazy">
+  <p><b>Triple-Gold-Bars</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="big-bounty-gold" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/big-bounty-gold.webp" loading="lazy">
+  <p><b>big-bounty-gold</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Chocolate-Cash-Pots" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Chocolate-Cash-Pots.jpg" loading="lazy">
+  <p><b>Chocolate-Cash-Pots</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Jumpin-Jack-First-Strike" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Jumpin-Jack-First-Strike.jpg" loading="lazy">
+  <p><b>Jumpin-Jack-First-Strike</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="savannah-pride" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/savannah-pride.webp" loading="lazy">
+  <p><b>savannah-pride</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Path-Of-Destiny" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Path-Of-Destiny.jpg" loading="lazy">
+  <p><b>Path-Of-Destiny</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Majestic-Megaways" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Majestic-Megaways.jpg" loading="lazy">
+  <p><b>Majestic-Megaways</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Oink-Oink-Oink" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Oink-Oink-Oink.webp" loading="lazy">
+  <p><b>Oink-Oink-Oink</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Great-Bear" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Great-Bear.jpg" loading="lazy">
+  <p><b>Great-Bear</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Lotus-Land" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Lotus-Land.jpg" loading="lazy">
+  <p><b>Lotus-Land</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Smokin-Triples" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Smokin-Triples.png" loading="lazy">
+  <p><b>Smokin-Triples</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Zillard-King" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Zillard-King.jpg" loading="lazy">
+  <p><b>Zillard-King</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="carnaval-drums" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/carnaval-drums.webp" loading="lazy">
+  <p><b>carnaval-drums</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Jackpot-Jester-50000" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Jackpot-Jester-50000.png" loading="lazy">
+  <p><b>Jackpot-Jester-50000</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Founding-Fortunes-Wins" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Founding-Fortunes-Wins.jpg" loading="lazy">
+  <p><b>Founding-Fortunes-Wins</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Rainbow-Jackpots" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Rainbow-Jackpots.jpg" loading="lazy">
+  <p><b>Rainbow-Jackpots</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Red-Alert" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Red-Alert.png" loading="lazy">
+  <p><b>Red-Alert</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Curse-Of-Anubis" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Curse-Of-Anubis.jpg" loading="lazy">
+  <p><b>Curse-Of-Anubis</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Cops-N-Robbers-Big-Money-Trick-Or-Treat" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Cops-N-Robbers-Big-Money-Trick-Or-Treat.jpg" loading="lazy">
+  <p><b>Cops-N-Robbers-Big-Money-Trick-Or-Treat</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Big-Bonus" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Big-Bonus.jpg" loading="lazy">
+  <p><b>Big-Bonus</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="devilicious" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/devilicious.webp" loading="lazy">
+  <p><b>devilicious</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="halloween-wins-3" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/halloween-wins-3.webp" loading="lazy">
+  <p><b>halloween-wins-3</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Magic-Tricks" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Magic-Tricks.jpeg" loading="lazy">
+  <p><b>Magic-Tricks</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Wheels-Go-Round-Orb-Legend" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Wheels-Go-Round-Orb-Legend.jpg" loading="lazy">
+  <p><b>Wheels-Go-Round-Orb-Legend</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Gold-Cash-Free-Spins-Megaways" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Gold-Cash-Free-Spins-Megaways.jpg" loading="lazy">
+  <p><b>Gold-Cash-Free-Spins-Megaways</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div>
+<div class="card" data-slug="Timeless-Rose" data-label="gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Timeless-Rose.jpeg" loading="lazy">
+  <p><b>Timeless-Rose</b><br>Claude: <span class="lbl-gameplay">gameplay</span></p>
+</div>
+<div class="card" data-slug="Def-Leppard-Hysteria" data-label="not_gameplay">
+  <img src="../../../game_analytics_export/data/screenshots/Def-Leppard-Hysteria.jpg" loading="lazy">
+  <p><b>Def-Leppard-Hysteria</b><br>Claude: <span class="lbl-not_gameplay">not_gameplay</span></p>
+</div></div>
+<button id="export">Export Corrections</button>
+<pre id="results"></pre>
+<script>
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => card.classList.toggle("wrong"));
+});
+document.getElementById("export").addEventListener("click", () => {
+  const wrong = [...document.querySelectorAll(".card.wrong")].map(c => ({
+    slug: c.dataset.slug,
+    claude_said: c.dataset.label,
+    correct: c.dataset.label === "gameplay" ? "not_gameplay" : "gameplay"
+  }));
+  const el = document.getElementById("results");
+  el.style.display = "block";
+  el.textContent = wrong.length === 0
+    ? "No corrections — Claude got all " + document.querySelectorAll(".card").length + " right!"
+    : JSON.stringify(wrong, null, 2);
+});
+</script></body></html>

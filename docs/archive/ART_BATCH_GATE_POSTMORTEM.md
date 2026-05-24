@@ -28,7 +28,7 @@ No automated enforcement existed to prevent starting a new batch before the prev
 
 ## The Fix — Three-Layer Batch Gate
 
-### Layer 1: Code Gate (`classify_art_v2.py`)
+### Layer 1: Code Gate (`classify_art.py`)
 
 New function `check_batch_gate()` runs before any batch >10 games:
 - Reads `art_pipeline/batch_gate.json`
@@ -37,7 +37,7 @@ New function `check_batch_gate()` runs before any batch >10 games:
 - Emergency override: `--force-gate` flag
 
 ```
-$ python3 classify_art_v2.py --select-batch 400
+$ python3 classify_art.py --select-batch 400
 
 ============================================================
 BATCH GATE CLOSED — cannot start new batch
@@ -97,7 +97,7 @@ Always-applied rule that tells any agent the exact protocol:
 ## What Atlas Should Review
 
 1. **`.cursor/rules/art-pipeline-gates.mdc`** — Is the rule clear enough? Should thresholds change?
-2. **`check_batch_gate()` in `classify_art_v2.py`** — Is the ≤10 bypass threshold right for re-verification?
+2. **`check_batch_gate()` in `classify_art.py`** — Is the ≤10 bypass threshold right for re-verification?
 3. **Gate file protocol** — Should the gate file be updated automatically by the script (e.g., `--regression-full` auto-opens if passing), or should it remain manual?
 4. **Batch 6 impact** — Batch 6 ran with old prompt. The Phase 5 re-classification of batches 1-2 will also cover batch 6 games that need the new vocab. Is this acceptable, or should batch 6 be re-classified now?
 
@@ -105,7 +105,7 @@ Always-applied rule that tells any agent the exact protocol:
 
 | File | Change |
 |------|--------|
-| `classify_art_v2.py` | Added `check_batch_gate()`, `--force-gate` flag, `BATCH_GATE_PATH` constant, gate checks before `--select-batch` and before classification |
+| `classify_art.py` | Added `check_batch_gate()`, `--force-gate` flag, `BATCH_GATE_PATH` constant, gate checks before `--select-batch` and before classification |
 | `art_pipeline/batch_gate.json` | NEW — gate state file |
 | `.cursor/rules/art-pipeline-gates.mdc` | NEW — always-applied cursor rule enforcing the stop-fix-verify cycle |
 | `.cursor/rules/atlas-working-memory.mdc` | Updated with session 6 progress, batch gate system docs |
@@ -213,5 +213,5 @@ The regression is useful for catching regressions (did theme drop below 97%?) bu
 
 | File | Change |
 |------|--------|
-| `classify_art_v2.py` | Added `_fix_resolved_characters()`, `_fix_resolved_elements()`, `_fix_resolved_color()`. Modified `run_expanded_regression()` to use all resolution functions. Report now shows unresolved details for all dimensions. |
+| `classify_art.py` | Added `_fix_resolved_characters()`, `_fix_resolved_elements()`, `_fix_resolved_color()`. Modified `run_expanded_regression()` to use all resolution functions. Report now shows unresolved details for all dimensions. |
 | `.cursor/rules/atlas-working-memory.mdc` | Updated accuracy numbers, added regression blind spot note |

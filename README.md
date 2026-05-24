@@ -52,7 +52,7 @@ node server/manage-users.cjs list
 │   ├── data/
 │   │   ├── game_data_master.json    #   Source of truth (4,550 games)
 │   │   ├── eilers_source.csv        #   Original Eilers performance CSV
-│   │   ├── classify_art_v2.py       #   Art classification pipeline (Claude Vision)
+│   │   ├── classify_art.py       #   Art classification pipeline (Claude Vision)
 │   │   ├── extract_game_profile.py  #   Features/themes extraction pipeline (Claude)
 │   │   ├── sc_extract.py            #   SlotCatalog extraction + 95% F1 gate
 │   │   ├── ground_truth_ags.json    #   Ground truth (228 games, 207 with features)
@@ -113,7 +113,7 @@ Test categories: unit (52), data-validation (35), enforcement (16), integration 
 
 ## AI Classification Pipelines
 
-### Art Pipeline (`classify_art_v2.py`)
+### Art Pipeline (`classify_art.py`)
 Classifies game visual art across 7 dimensions (theme, characters, elements, colors, mood, narrative, style) using Claude Vision. 2,701 games classified. Quality gate: theme ≥97% AND overall ≥95% adjusted accuracy.
 
 ### Features Pipeline (`extract_game_profile.py`)

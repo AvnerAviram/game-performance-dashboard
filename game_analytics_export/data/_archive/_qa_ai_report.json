@@ -1,0 +1,129 @@
+{
+  "timestamp": "2026-04-14T12:15:52.403Z",
+  "model": "claude-sonnet-4-20250514",
+  "pages": "all",
+  "findings": [
+    {
+      "page": "overview",
+      "bug_type": "count_mismatch",
+      "element": "Total games KPI card showing 3135 vs RTP chart toggle showing 3105",
+      "evidence": "The KPI card at the top shows 'TOTAL GAMES 3135 with verified data' but the RTP chart toggle shows 'Slot (3105)' - a difference of 30 games for what should be the same dataset",
+      "confidence": 5,
+      "severity": "MEDIUM",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The X-Ray panel confirms the Total Games KPI shows 3135 and describes it as 'COUNT of all games in the dashboard' from performance data CSV. However, I cannot see the RTP chart toggle showing 3105 in these screenshots to verify the discrepancy. The data source mentions games may have additional fields from multiple sources (rules HTML, SlotCatalog, ground truth), which could explain why different visualizations might show different counts if they have different filtering criteria.",
+      "xray_evidence": "X-Ray shows Total Games metric as 3135 with formula 'COUNT of all games in the dashboard' sourced from 'performance data CSV' with potential additional fields from multiple sources (rules HTML, SlotCatalog, ground truth)",
+      "action": "Need to examine the RTP chart toggle element with X-Ray to compare data sources and filtering logic. The 30-game difference could be legitimate if the RTP chart filters out games without RTP data, but this needs verification by checking both elements' provenance."
+    },
+    {
+      "page": "trends",
+      "bug_type": "trend_spike",
+      "element": "the Animals theme line in Theme Trends chart showing spike in 2013",
+      "evidence": "Animals theme shows a massive spike to ~15 in 2013, then drops to near 0 in 2014 and remains low. This is a 15x+ jump from adjacent years and appears to be based on a small sample size given the dramatic drop afterward.",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "FALSE_ALARM",
+      "explanation": "The X-Ray panel reveals this is not a data quality issue but rather a legitimate data point. The Animals theme classification is based on 466 games total with robust methodology (AI classification from thematic keywords in game rules text). The spike appears to be real data from 2013 when animal-themed games had unusually high theoretical win rates, with the top game 'Kong 3 Even Bigger Bonus' achieving a 17.46 theo win.",
+      "xray_evidence": "466 total games in the Animals theme category, AI classification method extracting from game rules HTML text, average theo win of 0.73, and a clear list of top-performing games led by 'Kong 3 Even Bigger Bonus' (17.46), 'Chicks In Vegas' (13.04), and others. The sample size is substantial and the extraction method is systematic.",
+      "action": "No action needed - this appears to be legitimate historical data showing that animal-themed slot games in 2013 had exceptionally high theoretical win rates, which then normalized in subsequent years."
+    },
+    {
+      "page": "trends",
+      "bug_type": "trend_spike",
+      "element": "the Free Spins mechanic line in Mechanic Trends chart showing spike in 2013",
+      "evidence": "Free Spins mechanic shows a sharp spike to ~5 in 2013, then drops significantly in 2014. This appears to be an isolated peak that doesn't follow the gradual trend patterns of other mechanics.",
+      "confidence": 4,
+      "severity": "MEDIUM",
+      "verdict": "CONFIRMED_ISSUE",
+      "explanation": "The X-Ray panel reveals critical data quality problems with the Free Spins mechanic detection. The panel shows 'No verbatim evidence captured for this feature' and relies on keyword matching against a feature taxonomy, but without source text evidence, we cannot verify the accuracy of the classification that created the 2013 spike.",
+      "xray_evidence": "The X-Ray shows: (1) Features identified via keyword matching against taxonomy, (2) 'No verbatim evidence captured for this feature' under the source text section, (3) Only shows one game example (Cash Eruption by IGT) but no actual text evidence of Free Spins classification, (4) 2435 games classified but no confidence score visible",
+      "action": "Review the keyword matching algorithm and feature taxonomy for Free Spins classification. Investigate why no source text evidence was captured, and audit the games classified as having Free Spins in 2013 to verify they actually contain this mechanic. Consider implementing stricter evidence requirements for feature classification."
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Fire panel: Games count mismatch",
+      "evidence": "Table shows 86 games, panel shows 189 games",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The game count differs by more than 100%, indicating a major data inconsistency"
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Fire panel: Market share mismatch",
+      "evidence": "Table shows 25.48%, panel shows 5.1%",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "Market share differs by approximately 400%, which is far beyond acceptable rounding differences"
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Fire panel: Average performance mismatch",
+      "evidence": "Table shows 5.14%, panel shows 1.21",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "Average performance differs by more than 300%, indicating a significant data inconsistency"
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Asian panel: Game count mismatch",
+      "evidence": "Table shows 223 games for Asian theme, but panel shows 298 games in statistics and game list sections",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The game count differs significantly between the table (223) and panel (298), which is more than a minor rounding difference"
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Asian panel: Market share percentage mismatch",
+      "evidence": "Table shows 24.13% market share for Asian theme, but panel shows 6.3% market share",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The market share percentages are completely different - 24.13% vs 6.3% is a massive discrepancy, not a rounding difference"
+    },
+    {
+      "page": "themes",
+      "bug_type": "panel_mismatch",
+      "element": "Asian panel: About section game count inconsistency",
+      "evidence": "About section states 'This theme has 223 games across 35 providers' but statistics section shows 298 games",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "Within the same panel, there are two different game counts provided (223 in About vs 298 in Statistics and game list)"
+    },
+    {
+      "page": "mechanics",
+      "bug_type": "panel_mismatch",
+      "element": "Static Jackpot panel: Panel title mismatch",
+      "evidence": "Table shows no 'Static Jackpot' row - visible rows include Cash On Reels, Hold and Spin, Free Spins, etc. Panel title is 'Static Jackpot'",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The panel opened for 'Static Jackpot' but this mechanic is not visible in the current table view, making it impossible to verify data consistency"
+    },
+    {
+      "page": "mechanics",
+      "bug_type": "panel_mismatch",
+      "element": "Hold and Spin panel: Market Share percentage",
+      "evidence": "Table shows 40.20% for Hold and Spin, but panel shows 22.2% market share",
+      "confidence": 5,
+      "severity": "HIGH",
+      "verdict": "NEEDS_REVIEW",
+      "explanation": "The market share values differ significantly - 40.20% vs 22.2% is more than a 40% difference, not a minor rounding discrepancy"
+    }
+  ],
+  "summary": {
+    "total": 11,
+    "confirmed": 1,
+    "needs_review": 9,
+    "false_alarms": 1
+  }
+}

@@ -7,7 +7,7 @@ alwaysApply: true
 
 The dashboard has a **three-layer data architecture**. All layers MUST stay in sync. If you change one layer, you MUST update the others.
 
-## Layer 1: JSON Source — `game_data_master.json`
+## Layer 1: JSON Source — `data/master/game_data_master.json`
 
 This is the single source of truth. **4,550 games**, flat objects. Canonical field names:
 
@@ -43,6 +43,7 @@ This is the single source of truth. **4,550 games**, flat objects. Canonical fie
 | `art_characters` | array | Character types — `VARCHAR[]` in DuckDB |
 | `art_elements` | array | Visual elements — `VARCHAR[]` in DuckDB |
 | `art_color_tone` | array | Color palette — `VARCHAR[]` in DuckDB |
+| `art_color_tone_pct` | array/null | Color palette with percentages `[{color, pct}]` — stored as JSON string `VARCHAR` in DuckDB |
 
 ## Layer 2: DuckDB Columns — `duckdb-client.js`
 
@@ -66,6 +67,7 @@ DuckDB uses **legacy prefixed names** for backward compatibility. The INSERT in 
 | `art_characters` | `art_characters` | `VARCHAR[]` (native array) |
 | `art_elements` | `art_elements` | `VARCHAR[]` (native array) |
 | `art_color_tone` | `art_color_tone` | `VARCHAR[]` (native array) |
+| `art_color_tone_pct` | `art_color_tone_pct` | `VARCHAR` (JSON string, parsed in accessor) |
 
 **DO NOT rename DuckDB columns** — every SQL query in the codebase uses these names.
 
@@ -79,17 +81,18 @@ F.provider(g)      // normalizeProvider(g.provider_studio || g.provider)
 F.marketShare(g)   // g.performance_market_share_percent ?? g.market_share_pct ?? ...
 F.rtp(g)           // parseFloat(g.specs_rtp || g.rtp || 0)
 F.volatility(g)    // g.specs_volatility || g.volatility
+F.artColorTonePct(g) // parses JSON string → [{color, pct}], filters valid entries
 ```
 
 **NEVER access game fields directly** — always use `F.xxx(game)`.
 
 ## Multi-Agent Coordination Rules
 
-1. **DO NOT rename JSON fields** in `game_data_master.json`. The current names are final.
+1. **DO NOT rename JSON fields** in `data/master/game_data_master.json`. The current names are final.
 2. **DO NOT rename DuckDB columns** in `duckdb-client.js`. SQL queries depend on them.
 3. **DO NOT rewrite `game-fields.js` accessors** — only ADD new ones if new fields are introduced.
 4. **Adding a new field** requires updating ALL THREE layers:
-   - Add to `game_data_master.json` (via extraction script)
+   - Add to `data/master/game_data_master.json` (via extraction script)
    - Add column to DuckDB CREATE TABLE + INSERT in `duckdb-client.js`
    - Add accessor to `F` in `game-fields.js`
 5. **Run `npm test` (1,605+ tests)** before declaring any change done.

@@ -1,0 +1,26 @@
+{
+  "gate_open": true,
+  "last_spot_check": {
+    "batch": "improved_element_check_v1",
+    "total": 80,
+    "ok": 69,
+    "fix": 11,
+    "accuracy": 86.2,
+    "fixes_applied": true,
+    "regression_post_fix": "93.9%",
+    "per_dimension": {
+      "theme": "93.9%",
+      "characters": "91.1%",
+      "elements": "64.3%",
+      "color_tone": "95.6%"
+    },
+    "overall_ok_pct": "86.2%"
+  },
+  "reason": "Opened by user request to classify remaining 463 games with screenshots",
+  "updated_at": "2026-05-06",
+  "last_batch": {
+    "batch": 101,
+    "games_classified": 196,
+    "completed_at": "2026-05-06T14:05:59.510369Z"
+  }
+}

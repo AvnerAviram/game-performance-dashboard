@@ -1,0 +1,1818 @@
+{
+  "timestamp": "2026-04-14T17:31:05",
+  "threshold": 0.97,
+  "aggregate_score": 0.9212195121951219,
+  "passed": false,
+  "games_tested": 41,
+  "vision": false,
+  "model": "claude-sonnet-4-20250514",
+  "cost_usd": 0.3823,
+  "per_game": {
+    "Big Catch Bass Fishing": {
+      "art_theme": {
+        "predicted": "Lakeside/River/Fishing Dock",
+        "truth": "Lakeside/River/Fishing Dock",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Serene/Calm/Peaceful",
+        "truth": "Serene/Calm/Peaceful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Fishing/Angling",
+        "truth": "Fishing/Angling",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Explorer/Adventurer",
+          "Sea Creatures (fish, octopus, shark)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "tp": [
+          "Animals (as reel elements, not characters)",
+          "Fishing/Tackle/Bait (rods, hooks, nets)",
+          "Vehicles (ships, planes, cars)"
+        ],
+        "fp": [
+          "Money/Cash/Bills"
+        ],
+        "fn": [
+          "Water/Waves/Rain"
+        ]
+      },
+      "aggregate_score": 0.95,
+      "dimensions_scored": 5
+    },
+    "Diamond Cash Mighty Viking": {
+      "art_theme": {
+        "predicted": "Norse/Viking Realm",
+        "truth": "Norse/Viking Realm",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Epic/Grand/Heroic",
+        "truth": "Epic/Grand/Heroic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Quest/Adventure/Journey",
+        "truth": "Quest/Adventure/Journey",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.667,
+        "tp": [
+          "Viking/Norse Warrior"
+        ],
+        "fp": [
+          "Norse Deity (Thor, Odin, Loki, Freya)"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.889,
+        "tp": [
+          "Gems/Jewels/Crystals",
+          "Lightning/Thunder/Electricity",
+          "Money/Cash/Bills",
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [],
+        "fn": [
+          "Gold Coins/Treasure"
+        ]
+      },
+      "aggregate_score": 0.911,
+      "dimensions_scored": 5
+    },
+    "Vikings Unchained Megaways": {
+      "art_theme": {
+        "predicted": "Norse/Viking Realm",
+        "truth": "Norse/Viking Realm",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Epic/Grand/Heroic",
+        "truth": "Epic/Grand/Heroic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Quest/Adventure/Journey",
+        "truth": "Quest/Adventure/Journey",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Viking/Norse Warrior"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.667,
+        "tp": [
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [],
+        "fn": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ]
+      },
+      "aggregate_score": 0.933,
+      "dimensions_scored": 5
+    },
+    "Thor 10k Ways": {
+      "art_theme": {
+        "predicted": "Norse/Viking Realm",
+        "truth": "Norse/Viking Realm",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Epic/Grand/Heroic",
+        "truth": "Epic/Grand/Heroic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Cultural/Mythological Story",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.667,
+        "tp": [
+          "Norse Deity (Thor, Odin, Loki, Freya)"
+        ],
+        "fp": [
+          "Greek/Roman God"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Lightning/Thunder/Electricity",
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.933,
+      "dimensions_scored": 5
+    },
+    "Irish Eyes 2": {
+      "art_theme": {
+        "predicted": "Irish/Celtic Highlands",
+        "truth": "Irish/Celtic Highlands",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Leprechaun"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Lucky Charms (horseshoe, clover, coin)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Leprechauns Luck Collect Em Megaways": {
+      "art_theme": {
+        "predicted": "Irish/Celtic Highlands",
+        "truth": "Irish/Celtic Highlands",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Leprechaun"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Lucky Charms (horseshoe, clover, coin)"
+        ],
+        "fp": [
+          "Gems/Jewels/Crystals"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.96,
+      "dimensions_scored": 5
+    },
+    "Shamrock Money Pot 10k Ways": {
+      "art_theme": {
+        "predicted": "Irish/Celtic Highlands",
+        "truth": "Irish/Celtic Highlands",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Leprechaun"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "f1": 0.8,
+        "tp": [
+          "Lucky Charms (horseshoe, clover, coin)",
+          "Money/Cash/Bills"
+        ],
+        "fp": [],
+        "fn": [
+          "Gold Coins/Treasure"
+        ]
+      },
+      "aggregate_score": 0.96,
+      "dimensions_scored": 5
+    },
+    "Christmas Cash Pots": {
+      "art_theme": {
+        "predicted": "Festive/Holiday",
+        "truth": "Festive/Holiday",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Festive/Holiday/Celebratory",
+        "truth": "Festive/Holiday/Celebratory",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Cartoon/Mascot Character"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "tp": [
+          "Nature/Flowers/Trees"
+        ],
+        "fp": [
+          "Money/Cash/Bills"
+        ],
+        "fn": [
+          "Gold Coins/Treasure"
+        ]
+      },
+      "aggregate_score": 0.9,
+      "dimensions_scored": 5
+    },
+    "Cleopatra Christmas": {
+      "art_theme": {
+        "predicted": "Festive/Holiday",
+        "truth": "Festive/Holiday",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Festive/Holiday/Celebratory",
+        "truth": "Festive/Holiday/Celebratory",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Celebration/Festival/Party",
+        "match": false
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Cartoon/Mascot Character",
+          "Mythical Creature (phoenix, unicorn, griffin)",
+          "Pharaoh/Egyptian Ruler"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.333,
+        "recall": 0.5,
+        "f1": 0.4,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ],
+        "fp": [
+          "Lucky Charms (horseshoe, clover, coin)",
+          "Religious/Spiritual Symbols"
+        ],
+        "fn": [
+          "Food/Candy/Drinks"
+        ]
+      },
+      "aggregate_score": 0.68,
+      "dimensions_scored": 5
+    },
+    "Double Dinosaur Deluxe": {
+      "art_theme": {
+        "predicted": "Prehistoric/Primordial",
+        "truth": "Prehistoric/Primordial",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "Discovery/Exploration",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Dinosaur/Prehistoric Beast"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Jimi Hendrix": {
+      "art_theme": {
+        "predicted": "Neon/Cyber City",
+        "truth": "Neon/Cyber City",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Intense/Action/Thrilling",
+        "truth": "Intense/Action/Thrilling",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Music/Performance/Concert",
+        "truth": "Music/Performance/Concert",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Celebrity/Licensed Character"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Musical Instruments",
+          "Nature/Flowers/Trees"
+        ],
+        "fp": [
+          "Lucky Charms (horseshoe, clover, coin)"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.96,
+      "dimensions_scored": 5
+    },
+    "Cops N Robbers Big Money": {
+      "art_theme": {
+        "predicted": "Urban/Modern City",
+        "truth": "Urban/Modern City",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Intense/Action/Thrilling",
+        "truth": "Intense/Action/Thrilling",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Crime/Mystery/Detective",
+        "truth": "Crime/Mystery/Detective",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Cowboy/Sheriff",
+          "Explorer/Adventurer"
+        ],
+        "fp": [
+          "Cartoon/Mascot Character"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Money/Cash/Bills",
+          "Vehicles (ships, planes, cars)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.96,
+      "dimensions_scored": 5
+    },
+    "Wild Wild West The Great Train Heist": {
+      "art_theme": {
+        "predicted": "Wild West/Frontier",
+        "truth": "Wild West/Frontier",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Intense/Action/Thrilling",
+        "truth": "Intense/Action/Thrilling",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Heist/Robbery/Escape",
+        "truth": "Heist/Robbery/Escape",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Cowboy/Sheriff"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 0.333,
+        "f1": 0.5,
+        "tp": [
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [],
+        "fn": [
+          "Gold Coins/Treasure",
+          "Vehicles (ships, planes, cars)"
+        ]
+      },
+      "aggregate_score": 0.9,
+      "dimensions_scored": 5
+    },
+    "Ace Ventura Pet Detective": {
+      "art_theme": {
+        "predicted": "Urban/Modern City",
+        "truth": "Urban/Modern City",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Cartoon/Playful/Fun",
+        "match": false
+      },
+      "art_narrative": {
+        "predicted": "Branded/Licensed Story (TV, movie, celebrity)",
+        "truth": "Branded/Licensed Story (TV, movie, celebrity)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.857,
+        "tp": [
+          "Celebrity/Licensed Character",
+          "Explorer/Adventurer",
+          "Sea Creatures (fish, octopus, shark)"
+        ],
+        "fp": [],
+        "fn": [
+          "Domestic Animals (cat, dog, horse, pig)"
+        ]
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Animals (as reel elements, not characters)",
+          "Sports Equipment (balls, trophies)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.771,
+      "dimensions_scored": 5
+    },
+    "88 Fortunes": {
+      "art_theme": {
+        "predicted": "Asian Temple/Garden",
+        "truth": "Asian Temple/Garden",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Luxurious/Elegant/Premium",
+        "truth": "Luxurious/Elegant/Premium",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Metallic/Jewel Tones (rich, shimmering)",
+        "truth": "Metallic/Jewel Tones (rich, shimmering)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.25,
+        "recall": 0.5,
+        "f1": 0.333,
+        "tp": [
+          "Gold Coins/Treasure"
+        ],
+        "fp": [
+          "Animals (as reel elements, not characters)",
+          "Religious/Spiritual Symbols",
+          "Vehicles (ships, planes, cars)"
+        ],
+        "fn": [
+          "Lucky Charms (horseshoe, clover, coin)"
+        ]
+      },
+      "aggregate_score": 0.889,
+      "dimensions_scored": 6
+    },
+    "Age Of The Gods": {
+      "art_theme": {
+        "predicted": "Ancient Greece",
+        "truth": "Ancient Greece",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Epic/Grand/Heroic",
+        "truth": "Epic/Grand/Heroic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Cultural/Mythological Story",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+          "Wizard/Sorcerer"
+        ],
+        "fp": [
+          "Greek/Roman God"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ],
+        "fp": [
+          "Religious/Spiritual Symbols"
+        ],
+        "fn": [
+          "Lightning/Thunder/Electricity"
+        ]
+      },
+      "aggregate_score": 0.86,
+      "dimensions_scored": 5
+    },
+    "Book Of Dead": {
+      "art_theme": {
+        "predicted": "Ancient Temple/Ruins",
+        "truth": "Ancient Temple/Ruins",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Dark/Mysterious",
+        "match": false
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Cultural/Mythological Story",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Explorer/Adventurer",
+          "Pharaoh/Egyptian Ruler"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)",
+          "Books/Scrolls/Maps",
+          "Religious/Spiritual Symbols"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.8,
+      "dimensions_scored": 5
+    },
+    "Buffalo": {
+      "art_theme": {
+        "predicted": "Prairie/Plains/Grassland",
+        "truth": "Prairie/Plains/Grassland",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Serene/Calm/Peaceful",
+        "truth": "Serene/Calm/Peaceful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "Discovery/Exploration",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Bird (peacock, parrot, owl)",
+          "Bull/Buffalo"
+        ],
+        "fp": [
+          "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "tp": [
+          "Animals (as reel elements, not characters)"
+        ],
+        "fp": [
+          "Gold Coins/Treasure"
+        ],
+        "fn": [
+          "Nature/Flowers/Trees"
+        ]
+      },
+      "aggregate_score": 0.86,
+      "dimensions_scored": 5
+    },
+    "Captain Riches": {
+      "art_theme": {
+        "predicted": "Pirate Ship/Port",
+        "truth": "Pirate Ship/Port",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Treasure Hunt/Gold Rush",
+        "truth": "Treasure Hunt/Gold Rush",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Bird (peacock, parrot, owl)",
+          "Monkey/Ape",
+          "Pirate/Captain"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Vehicles (ships, planes, cars)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Cleopatra": {
+      "art_theme": {
+        "predicted": "Ancient Temple/Ruins",
+        "truth": "Ancient Temple/Ruins",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Luxurious/Elegant/Premium",
+        "truth": "Luxurious/Elegant/Premium",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Cultural/Mythological Story",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Mythical Creature (phoenix, unicorn, griffin)",
+          "Pharaoh/Egyptian Ruler"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)",
+          "Religious/Spiritual Symbols"
+        ],
+        "fp": [
+          "Nature/Flowers/Trees"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.96,
+      "dimensions_scored": 5
+    },
+    "Double Diamond": {
+      "art_theme": {
+        "predicted": "Classic Slots",
+        "truth": "Classic Slots",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Retro/Nostalgic/Classic",
+        "truth": "Retro/Nostalgic/Classic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "No Narrative (classic/abstract)",
+        "truth": "No Narrative (classic/abstract)",
+        "match": true
+      },
+      "art_style": {
+        "predicted": "Minimalist/Classic",
+        "truth": "Minimalist/Classic",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Warm (golds, reds, ambers)",
+        "truth": "Warm (golds, reds, ambers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Fruits (cherry, lemon, watermelon)",
+          "Gems/Jewels/Crystals",
+          "Sevens/Bars/Bells (classic)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 7
+    },
+    "Fu Dao Le": {
+      "art_theme": {
+        "predicted": "Asian Temple/Garden",
+        "truth": "Asian Temple/Garden",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Luxurious/Elegant/Premium",
+        "truth": "Luxurious/Elegant/Premium",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Warm (golds, reds, ambers)",
+        "truth": "Warm (golds, reds, ambers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Lucky Charms (horseshoe, clover, coin)"
+        ],
+        "fp": [
+          "Religious/Spiritual Symbols"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.967,
+      "dimensions_scored": 6
+    },
+    "Pharaohs Fortune": {
+      "art_theme": {
+        "predicted": "Ancient Temple/Ruins",
+        "truth": "Ancient Temple/Ruins",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Luxurious/Elegant/Premium",
+        "match": false
+      },
+      "art_narrative": {
+        "predicted": "Treasure Hunt/Gold Rush",
+        "truth": "Treasure Hunt/Gold Rush",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Warm (golds, reds, ambers)",
+        "truth": "Warm (golds, reds, ambers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Pharaoh/Egyptian Ruler"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.333,
+        "recall": 0.5,
+        "f1": 0.4,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ],
+        "fp": [
+          "Money/Cash/Bills",
+          "Religious/Spiritual Symbols"
+        ],
+        "fn": [
+          "Gold Coins/Treasure"
+        ]
+      },
+      "aggregate_score": 0.733,
+      "dimensions_scored": 6
+    },
+    "Pirate Plunder": {
+      "art_theme": {
+        "predicted": "Pirate Ship/Port",
+        "truth": "Pirate Ship/Port",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Treasure Hunt/Gold Rush",
+        "truth": "Treasure Hunt/Gold Rush",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.5,
+        "recall": 1.0,
+        "f1": 0.667,
+        "tp": [
+          "Pirate/Captain"
+        ],
+        "fp": [
+          "Domestic Animals (cat, dog, horse, pig)"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [
+          "Vehicles (ships, planes, cars)"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.893,
+      "dimensions_scored": 5
+    },
+    "Atlantis Megaways": {
+      "art_theme": {
+        "predicted": "Deep Ocean/Underwater",
+        "truth": "Deep Ocean/Underwater",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Mystical/Magical/Ethereal",
+        "truth": "Mystical/Magical/Ethereal",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "Discovery/Exploration",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Cool (blues, purples, silvers)",
+        "truth": "Cool (blues, purples, silvers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Greek/Roman Deity (Zeus, Poseidon, Athena)",
+          "Sea Creatures (fish, octopus, shark)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.857,
+        "tp": [
+          "Animals (as reel elements, not characters)",
+          "Gold Coins/Treasure",
+          "Water/Waves/Rain"
+        ],
+        "fp": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.976,
+      "dimensions_scored": 6
+    },
+    "Starburst Galaxy": {
+      "art_theme": {
+        "predicted": "Outer Space",
+        "truth": "Outer Space",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "No Narrative (classic/abstract)",
+        "match": false
+      },
+      "art_color_tone": {
+        "predicted": "Bright/Vibrant (saturated, neon)",
+        "truth": "Bright/Vibrant (saturated, neon)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Gems/Jewels/Crystals",
+          "Sevens/Bars/Bells (classic)",
+          "Stars/Sparkles/Cosmic"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.833,
+      "dimensions_scored": 6
+    },
+    "Blood Suckers": {
+      "art_theme": {
+        "predicted": "Haunted Manor/Graveyard",
+        "truth": "Haunted Manor/Graveyard",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Spooky/Horror/Creepy",
+        "truth": "Spooky/Horror/Creepy",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Survival/Horror",
+        "truth": "Survival/Horror",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Dark (blacks, deep tones, shadows)",
+        "truth": "Dark (blacks, deep tones, shadows)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Vampire/Werewolf"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Magic/Spells (wands, potions, orbs)",
+          "Religious/Spiritual Symbols",
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 6
+    },
+    "Pixies Of The Forest": {
+      "art_theme": {
+        "predicted": "Fantasy/Fairy Tale",
+        "truth": "Fantasy/Fairy Tale",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Mystical/Magical/Ethereal",
+        "truth": "Mystical/Magical/Ethereal",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Fairy Tale/Storybook",
+        "truth": "Fairy Tale/Storybook",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Fairy/Elf/Pixie"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5,
+        "tp": [
+          "Magic/Spells (wands, potions, orbs)"
+        ],
+        "fp": [
+          "Gold Coins/Treasure"
+        ],
+        "fn": [
+          "Nature/Flowers/Trees"
+        ]
+      },
+      "aggregate_score": 0.9,
+      "dimensions_scored": 5
+    },
+    "Sweet Alchemy 100": {
+      "art_theme": {
+        "predicted": "Candy/Sweet World",
+        "truth": "Candy/Sweet World",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Cartoon/Playful/Fun",
+        "truth": "Cartoon/Playful/Fun",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Magic Show/Sorcery",
+        "truth": "Magic Show/Sorcery",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Bright/Vibrant (saturated, neon)",
+        "truth": "Bright/Vibrant (saturated, neon)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Wizard/Sorcerer"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Food/Candy/Drinks",
+          "Fruits (cherry, lemon, watermelon)",
+          "Magic/Spells (wands, potions, orbs)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 6
+    },
+    "Oink Farm": {
+      "art_theme": {
+        "predicted": "Farm/Countryside",
+        "truth": "Farm/Countryside",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Collection/Harvest/Gathering",
+        "truth": "Collection/Harvest/Gathering",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Domestic Animals (cat, dog, horse, pig)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Animals (as reel elements, not characters)",
+          "Gold Coins/Treasure"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Starmania": {
+      "art_theme": {
+        "predicted": "Outer Space",
+        "truth": "Outer Space",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Mystical/Magical/Ethereal",
+        "truth": "Mystical/Magical/Ethereal",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "Discovery/Exploration",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Stars/Sparkles/Cosmic"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Jumanji": {
+      "art_theme": {
+        "predicted": "Jungle/Rainforest",
+        "truth": "Jungle/Rainforest",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Branded/Licensed Story (TV, movie, celebrity)",
+        "truth": "Quest/Adventure/Journey",
+        "match": false
+      },
+      "art_color_tone": {
+        "predicted": "Earthy (greens, browns, natural)",
+        "truth": "Earthy (greens, browns, natural)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Bird (peacock, parrot, owl)",
+          "Monkey/Ape"
+        ],
+        "fp": [
+          "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+        ],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Animals (as reel elements, not characters)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.8,
+      "dimensions_scored": 6
+    },
+    "9 Masks Of Fire": {
+      "art_theme": {
+        "predicted": "Ancient Temple/Ruins",
+        "truth": "Ancient Temple/Ruins",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Mystical/Magical/Ethereal",
+        "truth": "Mystical/Magical/Ethereal",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Discovery/Exploration",
+        "match": false
+      },
+      "art_color_tone": {
+        "predicted": "Warm (golds, reds, ambers)",
+        "truth": "Warm (golds, reds, ambers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.2,
+        "recall": 0.5,
+        "f1": 0.286,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)"
+        ],
+        "fp": [
+          "Fruits (cherry, lemon, watermelon)",
+          "Money/Cash/Bills",
+          "Sevens/Bars/Bells (classic)",
+          "Weapons/Armor (swords, shields)"
+        ],
+        "fn": [
+          "Fire/Flames/Lava"
+        ]
+      },
+      "aggregate_score": 0.714,
+      "dimensions_scored": 6
+    },
+    "Starburst": {
+      "art_theme": {
+        "predicted": "Outer Space",
+        "truth": "Outer Space",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Bright/Fun/Cheerful",
+        "truth": "Bright/Fun/Cheerful",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "No Narrative (classic/abstract)",
+        "match": false
+      },
+      "art_color_tone": {
+        "predicted": "Bright/Vibrant (saturated, neon)",
+        "truth": "Bright/Vibrant (saturated, neon)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "No Characters (symbol-only game)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Gems/Jewels/Crystals",
+          "Sevens/Bars/Bells (classic)",
+          "Stars/Sparkles/Cosmic"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 0.833,
+      "dimensions_scored": 6
+    },
+    "Gonzos Quest": {
+      "art_theme": {
+        "predicted": "Ancient Temple/Ruins",
+        "truth": "Ancient Temple/Ruins",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Treasure Hunt/Gold Rush",
+        "truth": "Treasure Hunt/Gold Rush",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Explorer/Adventurer"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Ancient Artifacts (amulets, masks, relics)",
+          "Gold Coins/Treasure"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Immortal Romance": {
+      "art_theme": {
+        "predicted": "Haunted Manor/Graveyard",
+        "truth": "Haunted Manor/Graveyard",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Dark/Mysterious",
+        "truth": "Dark/Mysterious",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Love Story/Romance",
+        "truth": "Love Story/Romance",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Dark (blacks, deep tones, shadows)",
+        "truth": "Dark (blacks, deep tones, shadows)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Vampire/Werewolf"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 6
+    },
+    "Thunderstruck Ii": {
+      "art_theme": {
+        "predicted": "Norse/Viking Realm",
+        "truth": "Norse/Viking Realm",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Epic/Grand/Heroic",
+        "truth": "Epic/Grand/Heroic",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Cultural/Mythological Story",
+        "truth": "Cultural/Mythological Story",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Norse Deity (Thor, Odin, Loki, Freya)",
+          "Viking/Norse Warrior"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Lightning/Thunder/Electricity"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Jin Ji Bao Xi Endless Treasure": {
+      "art_theme": {
+        "predicted": "Asian Temple/Garden",
+        "truth": "Asian Temple/Garden",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Luxurious/Elegant/Premium",
+        "truth": "Luxurious/Elegant/Premium",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Wealth/Fortune/Prosperity",
+        "truth": "Wealth/Fortune/Prosperity",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Metallic/Jewel Tones (rich, shimmering)",
+        "truth": "Metallic/Jewel Tones (rich, shimmering)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Dragon",
+          "Mythical Creature (phoenix, unicorn, griffin)",
+          "Sea Creatures (fish, octopus, shark)",
+          "Wild Animals (lion, wolf, eagle, bear, moose, raccoon)"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 0.667,
+        "f1": 0.8,
+        "tp": [
+          "Animals (as reel elements, not characters)",
+          "Gold Coins/Treasure"
+        ],
+        "fp": [],
+        "fn": [
+          "Lucky Charms (horseshoe, clover, coin)"
+        ]
+      },
+      "aggregate_score": 0.967,
+      "dimensions_scored": 6
+    },
+    "Dino Pays": {
+      "art_theme": {
+        "predicted": "Prehistoric/Primordial",
+        "truth": "Prehistoric/Primordial",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Adventurous/Exciting",
+        "truth": "Adventurous/Exciting",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Discovery/Exploration",
+        "truth": "Discovery/Exploration",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Dinosaur/Prehistoric Beast"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Gold Coins/Treasure"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    },
+    "Blue Wizard Collect Em And Link": {
+      "art_theme": {
+        "predicted": "Magic/Fantasy",
+        "truth": "Magic/Fantasy",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Mystical/Magical/Ethereal",
+        "truth": "Mystical/Magical/Ethereal",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "Magic Show/Sorcery",
+        "truth": "Magic Show/Sorcery",
+        "match": true
+      },
+      "art_color_tone": {
+        "predicted": "Cool (blues, purples, silvers)",
+        "truth": "Cool (blues, purples, silvers)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Wizard/Sorcerer"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 0.667,
+        "recall": 1.0,
+        "f1": 0.8,
+        "tp": [
+          "Gold Coins/Treasure",
+          "Magic/Spells (wands, potions, orbs)"
+        ],
+        "fp": [
+          "Gems/Jewels/Crystals"
+        ],
+        "fn": []
+      },
+      "aggregate_score": 0.967,
+      "dimensions_scored": 6
+    },
+    "Reactoonz": {
+      "art_theme": {
+        "predicted": "Laboratory/Workshop",
+        "truth": "Laboratory/Workshop",
+        "match": true
+      },
+      "art_mood": {
+        "predicted": "Cartoon/Playful/Fun",
+        "truth": "Cartoon/Playful/Fun",
+        "match": true
+      },
+      "art_narrative": {
+        "predicted": "No Narrative (classic/abstract)",
+        "truth": "No Narrative (classic/abstract)",
+        "match": true
+      },
+      "art_characters": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Robot/Alien"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "art_elements": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": [
+          "Lightning/Thunder/Electricity"
+        ],
+        "fp": [],
+        "fn": []
+      },
+      "aggregate_score": 1.0,
+      "dimensions_scored": 5
+    }
+  }
+}

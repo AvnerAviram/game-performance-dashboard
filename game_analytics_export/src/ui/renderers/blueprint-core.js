@@ -449,36 +449,22 @@ export function initBlueprint() {
         });
     }
 
-    const allThemesTotal = categoryList.reduce((s, c) => s + c.total, 0);
-    els.categoryPills.innerHTML =
-        `<button class="bp-cat-pill bp-cat-all px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="__ALL__" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: '__ALL__' }))}'>All Themes <span class="text-xs text-gray-400 font-normal">${allThemesTotal}</span></button>` +
-        categoryList
-            .map(
-                c =>
-                    `<button class="bp-cat-pill px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="${escapeAttr(c.cat)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.cat }))}'>${escapeHtml(c.cat)} <span class="text-xs text-gray-400 font-normal">${c.total}</span></button>`
-            )
-            .join('');
-
-    let allThemesMode = false;
+    els.categoryPills.innerHTML = categoryList
+        .map(
+            c =>
+                `<button class="bp-cat-pill px-3 py-2 rounded-lg text-sm font-medium border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400 transition-all duration-150 cursor-pointer" data-cat="${escapeAttr(c.cat)}" data-xray='${escapeAttr(JSON.stringify({ dimension: 'theme', value: c.cat }))}'>${escapeHtml(c.cat)} <span class="text-xs text-gray-400 font-normal">${c.total}</span></button>`
+        )
+        .join('');
 
     function selectCategory(catName, forceOn) {
-        if (catName === '__ALL__') {
-            if (allThemesMode) {
-                allThemesMode = false;
-                selectedCategories.clear();
-            } else {
-                allThemesMode = true;
-                selectedCategories.clear();
-                categoryList.forEach(c => selectedCategories.add(c.cat));
-            }
+        if (forceOn) {
+            selectedCategories.clear();
+            selectedCategories.add(catName);
+        } else if (selectedCategories.has(catName)) {
+            selectedCategories.delete(catName);
         } else {
-            if (allThemesMode) {
-                allThemesMode = false;
-                selectedCategories.clear();
-            }
-            if (forceOn) selectedCategories.add(catName);
-            else if (selectedCategories.has(catName)) selectedCategories.delete(catName);
-            else selectedCategories.add(catName);
+            selectedCategories.clear();
+            selectedCategories.add(catName);
         }
         selectedSubThemes.clear();
         selectedFeatures.clear();
@@ -508,9 +494,8 @@ export function initBlueprint() {
     function refreshCategoryUI() {
         document.querySelectorAll('.bp-cat-pill').forEach(p => {
             const cat = p.dataset.cat;
-            const isSel = cat === '__ALL__' ? allThemesMode : selectedCategories.has(cat);
-            const extraCls = cat === '__ALL__' ? ' bp-cat-all' : '';
-            p.className = `bp-cat-pill${extraCls} px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 cursor-pointer ${
+            const isSel = selectedCategories.has(cat);
+            p.className = `bp-cat-pill px-3 py-2 rounded-lg text-sm font-medium border transition-all duration-150 cursor-pointer ${
                 isSel
                     ? 'bg-indigo-600 text-white border-indigo-600 dark:bg-indigo-500 dark:border-indigo-500 shadow-sm'
                     : 'border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:border-indigo-400'
@@ -523,12 +508,10 @@ export function initBlueprint() {
         }
 
         const allSubs = [];
-        if (!allThemesMode) {
-            selectedCategories.forEach(catName => {
-                const catData = categoryList.find(c => c.cat === catName);
-                if (catData) catData.subs.forEach(s => allSubs.push(s));
-            });
-        }
+        selectedCategories.forEach(catName => {
+            const catData = categoryList.find(c => c.cat === catName);
+            if (catData) catData.subs.forEach(s => allSubs.push(s));
+        });
 
         if (allSubs.length > 0) {
             els.subthemeRow.classList.remove('hidden');
@@ -648,7 +631,6 @@ export function initBlueprint() {
     });
 
     els.clearBtn.addEventListener('click', () => {
-        allThemesMode = false;
         selectedCategories.clear();
         selectedSubThemes.clear();
         selectedFeatures.clear();
@@ -762,7 +744,6 @@ export function initBlueprint() {
         const shuffled = [...featPool].sort(() => Math.random() - 0.5);
         const chosenFeats = shuffled.slice(0, numFeats);
 
-        allThemesMode = false;
         selectedCategories.clear();
         selectedSubThemes.clear();
         selectedFeatures.clear();
@@ -1074,7 +1055,7 @@ export function initBlueprint() {
     function _showOverlay() {
         const right = _ensureOverlay(els.resultsArea, OVERLAY_IDS[1]);
         if (right) right.classList.remove('hidden');
-        if (allThemesMode) {
+        if (selectedCategories.size === 0) {
             const left = _ensureOverlay(els.leftPanel, OVERLAY_IDS[0]);
             if (left) left.classList.remove('hidden');
         }
@@ -1265,7 +1246,6 @@ export function initBlueprint() {
         const game = allG.find(g => g.name === gameName);
         if (!game) return;
 
-        allThemesMode = false;
         selectedCategories.clear();
         selectedSubThemes.clear();
         selectedFeatures.clear();

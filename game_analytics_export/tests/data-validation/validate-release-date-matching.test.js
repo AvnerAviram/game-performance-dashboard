@@ -1,10 +1,8 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
+import { MASTER_JSON, VALIDATION } from '../helpers/paths.js';
 
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
-const MATCHES_PATH = resolve(DATA_DIR, '_release_date_matches.json');
-const MASTER_PATH = resolve(DATA_DIR, 'game_data_master.json');
+const MATCHES_PATH = VALIDATION.releaseDates;
 
 describe('release date matching validation', () => {
     let matches;
@@ -16,7 +14,7 @@ describe('release date matching validation', () => {
             throw new Error('_release_date_matches.json not found — run match_release_dates.py first');
         }
         matches = JSON.parse(readFileSync(MATCHES_PATH, 'utf-8'));
-        master = JSON.parse(readFileSync(MASTER_PATH, 'utf-8'));
+        master = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
         masterIds = new Set(master.map(g => g.id));
     });
 

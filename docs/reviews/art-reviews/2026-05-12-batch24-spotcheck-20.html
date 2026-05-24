@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Art Classification Batch 24 — Spot-Check (20 games)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #2ecc71; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.size { color: #666; font-size: 0.7em; font-weight: normal; }
+.dims { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 6px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.05em; margin-bottom: 8px; }
+.btns { display: flex; gap: 8px; }
+.btn-ok, .btn-fix { padding: 6px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; transform: scale(1.08); }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; transform: scale(1.08); }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; font-weight: normal; }
+.badge-gp { background: #2ecc71; color: #000; }
+.badge-promo { background: #e74c3c; color: #fff; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold; }
+#export-area { width: 90%; height: 300px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; font-family: monospace; font-size: 0.85em; }
+.progress { text-align: center; font-size: 1.2em; color: #2ecc71; margin: 10px 0; position: sticky; top: 0; background: #1a1a2e; padding: 10px; z-index: 100; border-bottom: 1px solid #333; }
+</style></head><body>
+<h1>Art Classification Batch 24 — Spot-Check</h1>
+<p class="summary">20 randomly sampled games from the 79 newly classified (smart-retry batch).<br>
+These were confirmed gameplay by V6 screenshot classifier, then art-classified.<br>
+Per-dimension OK/Fix review. Export at bottom.</p>
+<div class="progress" id="progress">Games reviewed: 0 / 20</div>
+
+<div class="game" id="g0">
+  <div class="game-title">#1: Astrocat <span class="badge badge-gp">gameplay</span> <span class="size">865KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Astrocat.png" alt="Astrocat">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Outer Space</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(0,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(0,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-0-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Purple, Gold, Blue</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(0,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(0,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-0-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Cat</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(0,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(0,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-0-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Stars, Planets, Clouds</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(0,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(0,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-0-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g1">
+  <div class="game-title">#2: Bakers-Treat <span class="badge badge-gp">gameplay</span> <span class="size">595KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bakers-Treat.jpg" alt="Bakers-Treat">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Food/Cooking</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(1,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(1,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-1-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Beige, Pink</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(1,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(1,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-1-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(1,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(1,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-1-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Kitchen, Appliances, Flowers/Blossoms, Food</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(1,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(1,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-1-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g2">
+  <div class="game-title">#3: Cyberslot-Megaclusters <span class="badge badge-gp">gameplay</span> <span class="size">144KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cyberslot-Megaclusters.jpg" alt="Cyberslot-Megaclusters">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Outer Space / Neon/Cyber City</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(2,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(2,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-2-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Purple, Blue, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(2,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(2,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-2-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(2,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(2,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-2-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Neon Glow, Lights/Spotlights</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(2,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(2,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-2-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g3">
+  <div class="game-title">#4: Dead-Or-Alive <span class="badge badge-gp">gameplay</span> <span class="size">489KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dead-Or-Alive.jpg" alt="Dead-Or-Alive">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Wild West/Frontier</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(3,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(3,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-3-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Brown, Gray, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(3,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(3,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-3-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(3,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(3,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-3-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Western Town/Saloon, Sky, Clouds</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(3,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(3,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-3-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g4">
+  <div class="game-title">#5: Deal-Or-No-Deal-Megaways-Jackpot-Royale <span class="badge badge-gp">gameplay</span> <span class="size">845KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Deal-Or-No-Deal-Megaways-Jackpot-Royale.jpg" alt="Deal-Or-No-Deal-Megaways-Jackpot-Royale">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Branded/Licensed</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(4,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(4,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-4-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Purple, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(4,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(4,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-4-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(4,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(4,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-4-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Stage Lights</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(4,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(4,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-4-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g5">
+  <div class="game-title">#6: Defenders-Of-Asgard <span class="badge badge-gp">gameplay</span> <span class="size">118KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Defenders-Of-Asgard.jpeg" alt="Defenders-Of-Asgard">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Norse/Viking Realm</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(5,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(5,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-5-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Purple, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(5,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(5,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-5-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(5,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(5,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-5-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Mountains, Sky, Ancient Stone Carvings</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(5,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(5,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-5-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g6">
+  <div class="game-title">#7: Dragon-Tribe <span class="badge badge-gp">gameplay</span> <span class="size">847KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dragon-Tribe.jpg" alt="Dragon-Tribe">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Prehistoric/Primordial</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(6,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(6,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-6-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Orange, Brown, Gray</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(6,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(6,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-6-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(6,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(6,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-6-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Mountains, Rocks/Boulders, Sky</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(6,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(6,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-6-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g7">
+  <div class="game-title">#8: Free-Reelin-Joker <span class="badge badge-gp">gameplay</span> <span class="size">44KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Free-Reelin-Joker.jpg" alt="Free-Reelin-Joker">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Classic Slots</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(7,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(7,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-7-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gold, Red, Orange</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(7,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(7,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-7-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Joker</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(7,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(7,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-7-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Curtains/Drapes, Stage Lights, Wallpaper/Decorative Pattern</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(7,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(7,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-7-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g8">
+  <div class="game-title">#9: Immortal-Warlords <span class="badge badge-gp">gameplay</span> <span class="size">105KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Immortal-Warlords.webp" alt="Immortal-Warlords">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Haunted Manor/Graveyard / Fantasy/Fairy Tale</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(8,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(8,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-8-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Orange, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(8,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(8,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-8-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(8,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(8,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-8-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Castle, Fire/Flames, Sky, Mountains</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(8,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(8,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-8-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g9">
+  <div class="game-title">#10: Jane-Jones-Book-Of-Kings-2 <span class="badge badge-gp">gameplay</span> <span class="size">157KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jane-Jones-Book-Of-Kings-2.jpg" alt="Jane-Jones-Book-Of-Kings-2">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Ancient Greece/Rome</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(9,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(9,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-9-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Light Blue, Gold, White</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(9,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(9,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-9-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(9,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(9,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-9-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Columns/Pillars, Sky, Clouds, Roman Architecture</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(9,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(9,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-9-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g10">
+  <div class="game-title">#11: Jonny-Ventura-And-The-Eye-Of-Ra <span class="badge badge-gp">gameplay</span> <span class="size">818KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jonny-Ventura-And-The-Eye-Of-Ra.jpg" alt="Jonny-Ventura-And-The-Eye-Of-Ra">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Egyptian/Pharaoh</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(10,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(10,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-10-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gold, Orange, Brown</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(10,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(10,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-10-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(10,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(10,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-10-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Columns/Pillars, Hieroglyphs/Ancient Writing, Ancient Stone Carvings, Temples, Wallpaper/Decorative Pattern</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(10,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(10,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-10-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g11">
+  <div class="game-title">#12: King-Of-The-Trident <span class="badge badge-gp">gameplay</span> <span class="size">547KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/King-Of-The-Trident.jpg" alt="King-Of-The-Trident">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Deep Ocean/Underwater / Ancient Greece/Rome</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(11,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(11,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-11-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Gold, Purple</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(11,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(11,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-11-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(11,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(11,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-11-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Coral Reef/Underwater, Water Effects, Plants</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(11,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(11,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-11-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g12">
+  <div class="game-title">#13: Megajackpots-Wheel-Of-Fortune-On-Air <span class="badge badge-gp">gameplay</span> <span class="size">387KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Megajackpots-Wheel-Of-Fortune-On-Air.jpg" alt="Megajackpots-Wheel-Of-Fortune-On-Air">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Luxury/VIP</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(12,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(12,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-12-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Purple, Blue, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(12,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(12,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-12-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(12,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(12,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-12-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Neon Glow, Stars</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(12,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(12,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-12-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g13">
+  <div class="game-title">#14: Phoenix-Fortune <span class="badge badge-gp">gameplay</span> <span class="size">1096KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Phoenix-Fortune.jpg" alt="Phoenix-Fortune">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(13,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(13,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-13-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Gold, Green</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(13,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(13,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-13-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(13,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(13,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-13-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Asian Decorations, Columns/Pillars</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(13,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(13,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-13-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g14">
+  <div class="game-title">#15: Rich-Wilde-And-The-Shield-Of-Athena <span class="badge badge-gp">gameplay</span> <span class="size">893KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rich-Wilde-And-The-Shield-Of-Athena.jpg" alt="Rich-Wilde-And-The-Shield-Of-Athena">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Ancient Greece/Rome</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(14,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(14,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-14-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Teal, Gold, Orange</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(14,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(14,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-14-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(14,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(14,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-14-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Columns/Pillars, Fire/Flames, Waterfall, Ancient Stone Carvings, Fog/Mist/Smoke</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(14,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(14,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-14-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g15">
+  <div class="game-title">#16: Shadow-Of-The-Panther-Power-Bet <span class="badge badge-gp">gameplay</span> <span class="size">823KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Shadow-Of-The-Panther-Power-Bet.jpg" alt="Shadow-Of-The-Panther-Power-Bet">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Jungle/Rainforest</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(15,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(15,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-15-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Gold, Brown</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(15,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(15,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-15-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(15,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(15,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-15-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Forest, Trees, Plants, Vines/Ivy, Fog/Mist/Smoke</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(15,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(15,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-15-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g16">
+  <div class="game-title">#17: Tractor-Beam <span class="badge badge-gp">gameplay</span> <span class="size">484KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tractor-Beam.jpg" alt="Tractor-Beam">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Farm/Countryside</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(16,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(16,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-16-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Teal, Blue, Green</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(16,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(16,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-16-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(16,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(16,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-16-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fields/Grassland, Trees, Sky</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(16,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(16,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-16-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g17">
+  <div class="game-title">#18: Twin-Happiness <span class="badge badge-gp">gameplay</span> <span class="size">422KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Twin-Happiness.jpg" alt="Twin-Happiness">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(17,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(17,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-17-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Purple, Gold</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(17,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(17,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-17-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(17,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(17,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-17-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Asian Lanterns</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(17,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(17,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-17-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g18">
+  <div class="game-title">#19: Who-Wants-To-Be-A-Millionaire-Mystery-Box <span class="badge badge-gp">gameplay</span> <span class="size">809KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Who-Wants-To-Be-A-Millionaire-Mystery-Box.jpg" alt="Who-Wants-To-Be-A-Millionaire-Mystery-Box">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Branded/Licensed</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(18,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(18,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-18-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Gold, Purple</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(18,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(18,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-18-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(18,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(18,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-18-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Neon Glow</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(18,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(18,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-18-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g19">
+  <div class="game-title">#20: Zeus-Rush-Fever <span class="badge badge-gp">gameplay</span> <span class="size">204KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Zeus-Rush-Fever.jpg" alt="Zeus-Rush-Fever">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Ancient Greece/Rome</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(19,'theme','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(19,'theme','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-19-theme"><textarea placeholder="What should theme be?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gold, Light Blue, Green</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(19,'color','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(19,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-19-color"><textarea placeholder="What colors are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Zeus</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(19,'chars','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(19,'chars','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-19-chars"><textarea placeholder="What characters are wrong/missing?"></textarea></div>
+    </div>
+    <div class="dim">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Columns/Pillars, Temples, Trees, Sky, Clouds</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(19,'elements','ok')">OK</button>
+        <button class="btn-fix" onclick="vote(19,'elements','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-19-elements"><textarea placeholder="What elements are wrong/missing?"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="exportResults()">Export Results (JSON)</button>
+<textarea id="export-area" readonly></textarea>
+
+<script>
+const total = 20;
+const slugs = ["Astrocat", "Bakers-Treat", "Cyberslot-Megaclusters", "Dead-Or-Alive", "Deal-Or-No-Deal-Megaways-Jackpot-Royale", "Defenders-Of-Asgard", "Dragon-Tribe", "Free-Reelin-Joker", "Immortal-Warlords", "Jane-Jones-Book-Of-Kings-2", "Jonny-Ventura-And-The-Eye-Of-Ra", "King-Of-The-Trident", "Megajackpots-Wheel-Of-Fortune-On-Air", "Phoenix-Fortune", "Rich-Wilde-And-The-Shield-Of-Athena", "Shadow-Of-The-Panther-Power-Bet", "Tractor-Beam", "Twin-Happiness", "Who-Wants-To-Be-A-Millionaire-Mystery-Box", "Zeus-Rush-Fever"];
+const votes = {};
+const reviewed = new Set();
+
+function vote(idx, dim, label) {
+  if (!votes[idx]) votes[idx] = {};
+  votes[idx][dim] = label;
+  const card = document.getElementById('g' + idx);
+  const dims = card.querySelectorAll('.dim');
+  const dimMap = ['theme', 'color', 'chars', 'elements'];
+  const dimIdx = dimMap.indexOf(dim);
+  if (dimIdx >= 0) {
+    const btns = dims[dimIdx].querySelectorAll('button');
+    btns.forEach(b => b.classList.remove('selected'));
+    event.target.classList.add('selected');
+    const noteDiv = document.getElementById('note-' + idx + '-' + dim);
+    noteDiv.style.display = label === 'fix' ? 'block' : 'none';
+  }
+  const v = votes[idx];
+  if (v.theme && v.color && v.chars && v.elements) {
+    reviewed.add(idx);
+  }
+  document.getElementById('progress').textContent = 'Games reviewed: ' + reviewed.size + ' / ' + total;
+}
+
+function exportResults() {
+  const results = [];
+  for (let i = 0; i < total; i++) {
+    const entry = { game: slugs[i] };
+    const v = votes[i] || {};
+    entry.theme = v.theme || '';
+    entry.color = v.color || '';
+    entry.chars = v.chars || '';
+    entry.elements = v.elements || '';
+    entry.notes = {};
+    for (const dim of ['theme', 'color', 'chars', 'elements']) {
+      const noteEl = document.querySelector('#note-' + i + '-' + dim + ' textarea');
+      if (noteEl && noteEl.value.trim()) {
+        entry.notes[dim] = noteEl.value.trim();
+      }
+    }
+    results.push(entry);
+  }
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(results, null, 2);
+  area.select();
+  navigator.clipboard.writeText(area.value).catch(() => {});
+}
+</script>
+</body></html>

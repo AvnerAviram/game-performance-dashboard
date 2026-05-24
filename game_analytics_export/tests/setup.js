@@ -23,7 +23,7 @@ beforeAll(() => {
             urlStr.includes('game_data_master.json') ||
             urlStr.includes('/data/game_data_master.json')
         ) {
-            const data = await import('../data/game_data_master.json', { assert: { type: 'json' } });
+            const data = await import('../data/master/game_data_master.json', { assert: { type: 'json' } });
             return {
                 ok: true,
                 status: 200,
@@ -32,7 +32,7 @@ beforeAll(() => {
             };
         }
         if (urlStr.includes('games_master.json') || urlStr.includes('games_complete.json')) {
-            const data = await import('../data/game_data_master.json', { assert: { type: 'json' } });
+            const data = await import('../data/master/game_data_master.json', { assert: { type: 'json' } });
             return {
                 ok: true,
                 status: 200,

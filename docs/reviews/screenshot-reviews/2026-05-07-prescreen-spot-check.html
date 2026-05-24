@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html><head><title>Pre-Screen Spot Check</title>
+<style>
+body{font-family:system-ui;background:#1a1a2e;color:#eee;padding:20px}
+h1{color:#fff}.info{color:#888;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#16213e;border-radius:8px;overflow:hidden;cursor:pointer;border:3px solid transparent;transition:all .2s}
+.card.disagreed{border-color:#f39c12;opacity:.7}
+.card img{width:100%;height:200px;object-fit:cover}
+.card .name{padding:8px 12px;font-size:13px;font-weight:600}
+.card .status{padding:4px 12px 8px;font-size:11px;color:#888}
+.actions{margin:20px 0}
+button{padding:10px 20px;border:none;border-radius:6px;cursor:pointer;font-size:14px;background:#2ecc71;color:#fff}
+textarea{display:block;margin-top:20px;background:#0a0a1a;color:#eee;border:1px solid #444;padding:10px;width:100%}
+</style></head><body>
+<h1>Pre-Screen Spot Check (30 samples)</h1>
+<p class="info">Claude classified 235 as gameplay, 89 as not_gameplay. Click any card where Claude got it WRONG.</p>
+<div class="actions"><button id="exportBtn">Export Corrections</button></div>
+<div class="grid">
+<div class="card" data-game="Towers-Of-Olympus" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Towers-Of-Olympus.jpg"><div class="name">Towers Of Olympus</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Sugar-Surge" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Sugar-Surge.jpg"><div class="name">Sugar Surge</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="divers-paradise" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/divers-paradise.webp"><div class="name">divers paradise</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="j-mania-maniac" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/j-mania-maniac.webp"><div class="name">j mania maniac</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="fruit-lightning" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/fruit-lightning.webp"><div class="name">fruit lightning</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Wishwood" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Wishwood.jpg"><div class="name">Wishwood</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Big-Bonus" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Big-Bonus.jpg"><div class="name">Big Bonus</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Blue-Diamond" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Blue-Diamond.jpg"><div class="name">Blue Diamond</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Bingo-Staxx-Amazon-Fury" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Bingo-Staxx-Amazon-Fury.jpg"><div class="name">Bingo Staxx Amazon Fury</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Black-Horse-Deluxe" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Black-Horse-Deluxe.jpg"><div class="name">Black Horse Deluxe</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Goldstruck" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Goldstruck.jpg"><div class="name">Goldstruck</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Cai-Fu-Emperor-Ways" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Cai-Fu-Emperor-Ways.jpg"><div class="name">Cai Fu Emperor Ways</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Pyramid-Jackpots" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Pyramid-Jackpots.jpg"><div class="name">Pyramid Jackpots</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="sky-raiders-power-combo" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/sky-raiders-power-combo.jpg"><div class="name">sky raiders power combo</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Star-Jewels" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Star-Jewels.jpg"><div class="name">Star Jewels</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Silver-Enchantress" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Silver-Enchantress.jpg"><div class="name">Silver Enchantress</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Super-Rich" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Super-Rich.jpg"><div class="name">Super Rich</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Nordic-Kings" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Nordic-Kings.jpg"><div class="name">Nordic Kings</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Tidal-Riches" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Tidal-Riches.jpg"><div class="name">Tidal Riches</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Slingo-Extreme" data-claude="gameplay"><img src="../../../game_analytics_export/data/screenshots/Slingo-Extreme.jpg"><div class="name">Slingo Extreme</div><div class="status">Claude: <span style="color:#2ecc71">GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Shah-Mat" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Shah-Mat.jpg"><div class="name">Shah Mat</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Honey-Rush-100" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Honey-Rush-100.jpeg"><div class="name">Honey Rush 100</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Buffalo-Chief" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Buffalo-Chief.jpg"><div class="name">Buffalo Chief</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Space-Invaders-Roulette" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Space-Invaders-Roulette.jpg"><div class="name">Space Invaders Roulette</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Smash-Nudge-Skillstar" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Smash-Nudge-Skillstar.jpg"><div class="name">Smash Nudge Skillstar</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Magic-Tricks" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Magic-Tricks.jpeg"><div class="name">Magic Tricks</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="Mega-Money-Catch" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/Mega-Money-Catch.jpg"><div class="name">Mega Money Catch</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="bass-cash-deluxe" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/bass-cash-deluxe.webp"><div class="name">bass cash deluxe</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="cash-express-luxury-line-timber-wolf" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/cash-express-luxury-line-timber-wolf.webp"><div class="name">cash express luxury line timber wolf</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+<div class="card" data-game="diamond-mystery-81-boosting-jokers" data-claude="not_gameplay"><img src="../../../game_analytics_export/data/screenshots/diamond-mystery-81-boosting-jokers.webp"><div class="name">diamond mystery 81 boosting jokers</div><div class="status">Claude: <span style="color:#e74c3c">NOT GAMEPLAY</span> | Click if WRONG</div></div>
+
+</div>
+<script>
+document.querySelectorAll('.card').forEach(function(card) {
+    card.addEventListener('click', function() { this.classList.toggle('disagreed'); });
+});
+document.getElementById('exportBtn').addEventListener('click', function() {
+    var cards = document.querySelectorAll('.card');
+    var corrections = [];
+    cards.forEach(function(c) {
+        if (c.classList.contains('disagreed')) {
+            var claude = c.getAttribute('data-claude');
+            corrections.push({ game: c.getAttribute('data-game'), claude_said: claude, correct_label: claude === 'gameplay' ? 'not_gameplay' : 'gameplay' });
+        }
+    });
+    var json = JSON.stringify(corrections, null, 2);
+    var ta = document.getElementById('output');
+    if (!ta) { ta = document.createElement('textarea'); ta.id = 'output'; ta.rows = 12; document.body.appendChild(ta); }
+    ta.value = corrections.length === 0 ? 'All correct! No disagreements.' : json;
+});
+</script>
+</body></html>

@@ -13,7 +13,7 @@ Before any API call:
 3. Wait for explicit "yes" / approval before proceeding
 
 This applies to:
-- `classify_art_v2.py` classification runs (both sequential and `--batch-api`)
+- `pipelines/art/classify_art.py` classification runs (both sequential and `--batch-api`)
 - `--regression` runs (each GT game = 1 API call)
 - Any new script that calls `client.messages.create()` or similar
 - Any `anthropic.Anthropic()` usage

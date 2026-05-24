@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Color Calibration R3 - Anti-Overestimation</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;padding:24px}
+h1{text-align:center;margin-bottom:8px;color:#f1f5f9}
+.subtitle{text-align:center;margin-bottom:24px;color:#94a3b8;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px}
+.card{background:#1e293b;border-radius:12px;overflow:hidden;border:2px solid #334155;transition:transform .15s}
+.card:hover{transform:translateY(-2px)}
+.card.ok{border-color:#22c55e}
+.card.fix{border-color:#ef4444}
+.card img{width:100%;height:200px;object-fit:cover;display:block}
+.card-body{padding:12px}
+.game-name{font-weight:600;font-size:15px;margin-bottom:8px;color:#f8fafc}
+.color-bar{display:flex;height:32px;border-radius:6px;overflow:hidden;margin-bottom:8px;border:1px solid #475569}
+.color-seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;min-width:20px}
+.filtered{font-size:12px;color:#94a3b8;margin-bottom:8px}
+.no-sc{height:200px;display:flex;align-items:center;justify-content:center;background:#0f172a;color:#475569;font-size:13px}
+.legend{text-align:center;margin-bottom:16px;font-size:12px;color:#94a3b8}
+.controls{display:flex;gap:8px;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid #334155}
+.btn{padding:5px 14px;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;cursor:pointer;font-size:12px;font-weight:600;transition:all .15s}
+.btn:hover{border-color:#60a5fa}
+.btn.active-ok{background:#22c55e;color:#fff;border-color:#22c55e}
+.btn.active-fix{background:#ef4444;color:#fff;border-color:#ef4444}
+.notes-input{flex:1;padding:5px 8px;border-radius:6px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:12px}
+.notes-input::placeholder{color:#64748b}
+.toolbar{display:flex;justify-content:center;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.toolbar button{padding:8px 16px;border-radius:8px;border:1px solid #475569;background:#1e293b;color:#e2e8f0;cursor:pointer;font-size:13px;font-weight:500}
+.toolbar button:hover{border-color:#60a5fa;background:#334155}
+.stats{font-size:13px;color:#94a3b8;margin-left:12px}
+</style></head><body>
+<h1>Color Calibration R3 — Anti-Overestimation</h1>
+<p class="subtitle">40 games • 20% threshold • + saturated accent bias correction</p>
+<p class="legend">Color bar = raw percentages. Gold border = ≥20%. Mark each OK or Fix, then Copy JSON.</p>
+<div class="toolbar">
+<button onclick="exportJSON()">📋 Copy JSON</button>
+<button onclick="markAllOk()">✅ Mark remaining OK</button>
+<span class="stats" id="stats">0 / 0 reviewed</span>
+</div>
+<div class="grid">
+
+<div class="card" id="card-0" data-game="Asgardian-Fire" data-idx="0">
+<img src="../../../game_analytics_export/data/screenshots/Asgardian-Fire.jpeg" alt="Asgardian-Fire" loading="lazy">
+<div class="card-body">
+<div class="game-name">Asgardian-Fire</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 40%">Orange 40%</div><div class="color-seg" style="flex:35;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 35%">Gold 35%</div><div class="color-seg" style="flex:15;background:#E53E3E;color:#f7fafc;" title="Red: 15%">Red 15%</div><div class="color-seg" style="flex:8;background:#805AD5;color:#f7fafc;" title="Purple: 8%">Purple 8%</div><div class="color-seg" style="flex:2;background:#8B4513;color:#f7fafc;" title="Brown: 2%">Brown 2%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Orange (40%), Gold (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(0,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(0,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-0" placeholder="Notes..." onchange="saveNote(0)">
+</div></div></div>
+<div class="card" id="card-1" data-game="Crown-Of-Egypt" data-idx="1">
+<img src="../../../game_analytics_export/data/screenshots/Crown-Of-Egypt.jpg" alt="Crown-Of-Egypt" loading="lazy">
+<div class="card-body">
+<div class="game-name">Crown-Of-Egypt</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 45%">Gold 45%</div><div class="color-seg" style="flex:25;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 25%">Orange 25%</div><div class="color-seg" style="flex:15;background:#8B4513;color:#f7fafc;" title="Brown: 15%">Brown 15%</div><div class="color-seg" style="flex:10;background:#319795;color:#f7fafc;" title="Teal: 10%">Teal 10%</div><div class="color-seg" style="flex:5;background:#E53E3E;color:#f7fafc;" title="Red: 5%">Red 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Gold (45%), Orange (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(1,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(1,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-1" placeholder="Notes..." onchange="saveNote(1)">
+</div></div></div>
+<div class="card" id="card-2" data-game="Gold-Pile-Orangutan" data-idx="2">
+<img src="../../../game_analytics_export/data/screenshots/Gold-Pile-Orangutan.jpg" alt="Gold-Pile-Orangutan" loading="lazy">
+<div class="card-body">
+<div class="game-name">Gold-Pile-Orangutan</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 45%">Gold 45%</div><div class="color-seg" style="flex:25;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 25%">Orange 25%</div><div class="color-seg" style="flex:20;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 20%">Brown 20%</div><div class="color-seg" style="flex:10;background:#E53E3E;color:#f7fafc;" title="Red: 10%">Red 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Gold (45%), Orange (25%), Brown (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(2,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(2,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-2" placeholder="Notes..." onchange="saveNote(2)">
+</div></div></div>
+<div class="card" id="card-3" data-game="Great-Gold" data-idx="3">
+<img src="../../../game_analytics_export/data/screenshots/Great-Gold.jpeg" alt="Great-Gold" loading="lazy">
+<div class="card-body">
+<div class="game-name">Great-Gold</div>
+<div class="color-bar"><div class="color-seg" style="flex:70;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 70%">Gold 70%</div><div class="color-seg" style="flex:20;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 20%">Brown 20%</div><div class="color-seg" style="flex:10;background:#1A202C;color:#f7fafc;" title="Black: 10%">Black 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> none</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(3,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(3,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-3" placeholder="Notes..." onchange="saveNote(3)">
+</div></div></div>
+<div class="card" id="card-4" data-game="Wonder-Hounds" data-idx="4">
+<img src="../../../game_analytics_export/data/screenshots/Wonder-Hounds.jpg" alt="Wonder-Hounds" loading="lazy">
+<div class="card-body">
+<div class="game-name">Wonder-Hounds</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 40%">Green 40%</div><div class="color-seg" style="flex:25;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 25%">Brown 25%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:10;background:#E53E3E;color:#f7fafc;" title="Red: 10%">Red 10%</div><div class="color-seg" style="flex:5;background:#3182CE;color:#f7fafc;" title="Blue: 5%">Blue 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Green (40%), Brown (25%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(4,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(4,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-4" placeholder="Notes..." onchange="saveNote(4)">
+</div></div></div>
+<div class="card" id="card-5" data-game="Black-Diamond" data-idx="5">
+<img src="../../../game_analytics_export/data/screenshots/Black-Diamond.jpg" alt="Black-Diamond" loading="lazy">
+<div class="card-body">
+<div class="game-name">Black-Diamond</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 60%">Black 60%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:10;background:#718096;color:#f7fafc;" title="Gray: 10%">Gray 10%</div><div class="color-seg" style="flex:3;background:#3182CE;color:#f7fafc;" title="Blue: 3%">Blue 3%</div><div class="color-seg" style="flex:2;background:#E53E3E;color:#f7fafc;" title="Red: 2%">Red 2%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Black (60%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(5,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(5,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-5" placeholder="Notes..." onchange="saveNote(5)">
+</div></div></div>
+<div class="card" id="card-6" data-game="Cash-Crew" data-idx="6">
+<img src="../../../game_analytics_export/data/screenshots/Cash-Crew.png" alt="Cash-Crew" loading="lazy">
+<div class="card-body">
+<div class="game-name">Cash-Crew</div>
+<div class="color-bar"><div class="color-seg" style="flex:50;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 50%">Black 50%</div><div class="color-seg" style="flex:25;background:#718096;color:#f7fafc;border:2px solid #f59e0b;" title="Gray: 25%">Gray 25%</div><div class="color-seg" style="flex:15;background:#E53E3E;color:#f7fafc;" title="Red: 15%">Red 15%</div><div class="color-seg" style="flex:10;background:#ECC94B;color:#1a202c;" title="Yellow: 10%">Yellow 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Black (50%), Gray (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(6,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(6,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-6" placeholder="Notes..." onchange="saveNote(6)">
+</div></div></div>
+<div class="card" id="card-7" data-game="Ghostbusters-Triple-Slime" data-idx="7">
+<img src="../../../game_analytics_export/data/screenshots/Ghostbusters-Triple-Slime.jpg" alt="Ghostbusters-Triple-Slime" loading="lazy">
+<div class="card-body">
+<div class="game-name">Ghostbusters-Triple-Slime</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 40%">Black 40%</div><div class="color-seg" style="flex:25;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 25%">Purple 25%</div><div class="color-seg" style="flex:20;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 20%">Green 20%</div><div class="color-seg" style="flex:10;background:#718096;color:#f7fafc;" title="Gray: 10%">Gray 10%</div><div class="color-seg" style="flex:5;background:#F7FAFC;color:#1a202c;" title="White: 5%">White 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Black (40%), Purple (25%), Green (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(7,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(7,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-7" placeholder="Notes..." onchange="saveNote(7)">
+</div></div></div>
+<div class="card" id="card-8" data-game="Sweet-16-Blackjack" data-idx="8">
+<img src="../../../game_analytics_export/data/screenshots/Sweet-16-Blackjack.jpg" alt="Sweet-16-Blackjack" loading="lazy">
+<div class="card-body">
+<div class="game-name">Sweet-16-Blackjack</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#718096;color:#f7fafc;border:2px solid #f59e0b;" title="Gray: 45%">Gray 45%</div><div class="color-seg" style="flex:25;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 25%">Black 25%</div><div class="color-seg" style="flex:15;background:#ED64A6;color:#1a202c;" title="Pink: 15%">Pink 15%</div><div class="color-seg" style="flex:10;background:#D69E2E;color:#1a202c;" title="Gold: 10%">Gold 10%</div><div class="color-seg" style="flex:5;background:#A0AEC0;color:#1a202c;" title="Silver: 5%">Silver 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Gray (45%), Black (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(8,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(8,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-8" placeholder="Notes..." onchange="saveNote(8)">
+</div></div></div>
+<div class="card" id="card-9" data-game="The-Wolfs-Bane" data-idx="9">
+<img src="../../../game_analytics_export/data/screenshots/The-Wolfs-Bane.jpg" alt="The-Wolfs-Bane" loading="lazy">
+<div class="card-body">
+<div class="game-name">The-Wolfs-Bane</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#718096;color:#f7fafc;border:2px solid #f59e0b;" title="Gray: 40%">Gray 40%</div><div class="color-seg" style="flex:25;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 25%">Black 25%</div><div class="color-seg" style="flex:20;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 20%">Orange 20%</div><div class="color-seg" style="flex:10;background:#8B4513;color:#f7fafc;" title="Brown: 10%">Brown 10%</div><div class="color-seg" style="flex:5;background:#3182CE;color:#f7fafc;" title="Blue: 5%">Blue 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Gray (40%), Black (25%), Orange (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(9,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(9,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-9" placeholder="Notes..." onchange="saveNote(9)">
+</div></div></div>
+<div class="card" id="card-10" data-game="Atlantis-Megaways" data-idx="10">
+<img src="../../../game_analytics_export/data/screenshots/Atlantis-Megaways.jpg" alt="Atlantis-Megaways" loading="lazy">
+<div class="card-body">
+<div class="game-name">Atlantis-Megaways</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 45%">Blue 45%</div><div class="color-seg" style="flex:25;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 25%">Purple 25%</div><div class="color-seg" style="flex:15;background:#319795;color:#f7fafc;" title="Teal: 15%">Teal 15%</div><div class="color-seg" style="flex:10;background:#D69E2E;color:#1a202c;" title="Gold: 10%">Gold 10%</div><div class="color-seg" style="flex:5;background:#ED64A6;color:#1a202c;" title="Pink: 5%">Pink 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (45%), Purple (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(10,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(10,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-10" placeholder="Notes..." onchange="saveNote(10)">
+</div></div></div>
+<div class="card" id="card-11" data-game="Aurora-Wilds" data-idx="11">
+<img src="../../../game_analytics_export/data/screenshots/Aurora-Wilds.jpg" alt="Aurora-Wilds" loading="lazy">
+<div class="card-body">
+<div class="game-name">Aurora-Wilds</div>
+<div class="color-bar"><div class="color-seg" style="flex:65;background:#1E3A8A;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Blue: 65%">Dark Blue 65%</div><div class="color-seg" style="flex:20;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 20%">Purple 20%</div><div class="color-seg" style="flex:10;background:#319795;color:#f7fafc;" title="Teal: 10%">Teal 10%</div><div class="color-seg" style="flex:5;background:#1A202C;color:#f7fafc;" title="Black: 5%">Black 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Dark Blue (65%), Purple (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(11,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(11,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-11" placeholder="Notes..." onchange="saveNote(11)">
+</div></div></div>
+<div class="card" id="card-12" data-game="Christmas-Gift-Rush" data-idx="12">
+<img src="../../../game_analytics_export/data/screenshots/Christmas-Gift-Rush.jpg" alt="Christmas-Gift-Rush" loading="lazy">
+<div class="card-body">
+<div class="game-name">Christmas-Gift-Rush</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 40%">Blue 40%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:20;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 20%">Green 20%</div><div class="color-seg" style="flex:10;background:#E53E3E;color:#f7fafc;" title="Red: 10%">Red 10%</div><div class="color-seg" style="flex:5;background:#DD6B20;color:#f7fafc;" title="Orange: 5%">Orange 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (40%), Gold (25%), Green (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(12,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(12,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-12" placeholder="Notes..." onchange="saveNote(12)">
+</div></div></div>
+<div class="card" id="card-13" data-game="Cloud-Corsairs" data-idx="13">
+<img src="../../../game_analytics_export/data/screenshots/Cloud-Corsairs.jpg" alt="Cloud-Corsairs" loading="lazy">
+<div class="card-body">
+<div class="game-name">Cloud-Corsairs</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 45%">Blue 45%</div><div class="color-seg" style="flex:25;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 25%">Brown 25%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:10;background:#DD6B20;color:#f7fafc;" title="Orange: 10%">Orange 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (45%), Brown (25%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(13,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(13,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-13" placeholder="Notes..." onchange="saveNote(13)">
+</div></div></div>
+<div class="card" id="card-14" data-game="Slingo-Wolf-Snowstorm" data-idx="14">
+<img src="../../../game_analytics_export/data/screenshots/Slingo-Wolf-Snowstorm.jpg" alt="Slingo-Wolf-Snowstorm" loading="lazy">
+<div class="card-body">
+<div class="game-name">Slingo-Wolf-Snowstorm</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 60%">Blue 60%</div><div class="color-seg" style="flex:25;background:#7DD3FC;color:#1a202c;border:2px solid #f59e0b;" title="Light Blue: 25%">Light Blue 25%</div><div class="color-seg" style="flex:10;background:#D69E2E;color:#1a202c;" title="Gold: 10%">Gold 10%</div><div class="color-seg" style="flex:5;background:#F7FAFC;color:#1a202c;" title="White: 5%">White 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (60%), Light Blue (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(14,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(14,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-14" placeholder="Notes..." onchange="saveNote(14)">
+</div></div></div>
+<div class="card" id="card-15" data-game="El-Dorado" data-idx="15">
+<img src="../../../game_analytics_export/data/screenshots/El-Dorado.png" alt="El-Dorado" loading="lazy">
+<div class="card-body">
+<div class="game-name">El-Dorado</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#166534;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Green: 45%">Dark Green 45%</div><div class="color-seg" style="flex:25;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 25%">Orange 25%</div><div class="color-seg" style="flex:15;background:#805AD5;color:#f7fafc;" title="Purple: 15%">Purple 15%</div><div class="color-seg" style="flex:10;background:#D69E2E;color:#1a202c;" title="Gold: 10%">Gold 10%</div><div class="color-seg" style="flex:5;background:#E53E3E;color:#f7fafc;" title="Red: 5%">Red 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Dark Green (45%), Orange (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(15,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(15,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-15" placeholder="Notes..." onchange="saveNote(15)">
+</div></div></div>
+<div class="card" id="card-16" data-game="Fate-Of-The-8-Power-Wheel" data-idx="16">
+<img src="../../../game_analytics_export/data/screenshots/Fate-Of-The-8-Power-Wheel.jpg" alt="Fate-Of-The-8-Power-Wheel" loading="lazy">
+<div class="card-body">
+<div class="game-name">Fate-Of-The-8-Power-Wheel</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#E53E3E;color:#f7fafc;border:2px solid #f59e0b;" title="Red: 45%">Red 45%</div><div class="color-seg" style="flex:30;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 30%">Gold 30%</div><div class="color-seg" style="flex:15;background:#38A169;color:#f7fafc;" title="Green: 15%">Green 15%</div><div class="color-seg" style="flex:10;background:#3182CE;color:#f7fafc;" title="Blue: 10%">Blue 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Red (45%), Gold (30%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(16,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(16,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-16" placeholder="Notes..." onchange="saveNote(16)">
+</div></div></div>
+<div class="card" id="card-17" data-game="Neon-Links" data-idx="17">
+<img src="../../../game_analytics_export/data/screenshots/Neon-Links.jpg" alt="Neon-Links" loading="lazy">
+<div class="card-body">
+<div class="game-name">Neon-Links</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 45%">Purple 45%</div><div class="color-seg" style="flex:25;background:#ED64A6;color:#1a202c;border:2px solid #f59e0b;" title="Pink: 25%">Pink 25%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:8;background:#E53E3E;color:#f7fafc;" title="Red: 8%">Red 8%</div><div class="color-seg" style="flex:2;background:#3182CE;color:#f7fafc;" title="Blue: 2%">Blue 2%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (45%), Pink (25%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(17,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(17,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-17" placeholder="Notes..." onchange="saveNote(17)">
+</div></div></div>
+<div class="card" id="card-18" data-game="777-hot-reels" data-idx="18">
+<img src="../../../game_analytics_export/data/screenshots/777-hot-reels.jpg" alt="777-hot-reels" loading="lazy">
+<div class="card-body">
+<div class="game-name">777-hot-reels</div>
+<div class="color-bar"><div class="color-seg" style="flex:65;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 65%">Purple 65%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:10;background:#3182CE;color:#f7fafc;" title="Blue: 10%">Blue 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (65%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(18,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(18,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-18" placeholder="Notes..." onchange="saveNote(18)">
+</div></div></div>
+<div class="card" id="card-19" data-game="Cyber-Wildz" data-idx="19">
+<img src="../../../game_analytics_export/data/screenshots/Cyber-Wildz.jpg" alt="Cyber-Wildz" loading="lazy">
+<div class="card-body">
+<div class="game-name">Cyber-Wildz</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 45%">Purple 45%</div><div class="color-seg" style="flex:25;background:#00BFFF;color:#1a202c;border:2px solid #f59e0b;" title="Neon Blue: 25%">Neon Blue 25%</div><div class="color-seg" style="flex:15;background:#ED64A6;color:#1a202c;" title="Pink: 15%">Pink 15%</div><div class="color-seg" style="flex:10;background:#1A202C;color:#f7fafc;" title="Black: 10%">Black 10%</div><div class="color-seg" style="flex:5;background:#DD6B20;color:#f7fafc;" title="Orange: 5%">Orange 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (45%), Neon Blue (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(19,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(19,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-19" placeholder="Notes..." onchange="saveNote(19)">
+</div></div></div>
+<div class="card" id="card-20" data-game="Mystery-Reels" data-idx="20">
+<img src="../../../game_analytics_export/data/screenshots/Mystery-Reels.jpg" alt="Mystery-Reels" loading="lazy">
+<div class="card-body">
+<div class="game-name">Mystery-Reels</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 45%">Black 45%</div><div class="color-seg" style="flex:25;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 25%">Purple 25%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:10;background:#DD6B20;color:#f7fafc;" title="Orange: 10%">Orange 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Black (45%), Purple (25%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(20,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(20,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-20" placeholder="Notes..." onchange="saveNote(20)">
+</div></div></div>
+<div class="card" id="card-21" data-game="Power-Prizes-Noble-Peacock" data-idx="21">
+<img src="../../../game_analytics_export/data/screenshots/Power-Prizes-Noble-Peacock.jpg" alt="Power-Prizes-Noble-Peacock" loading="lazy">
+<div class="card-body">
+<div class="game-name">Power-Prizes-Noble-Peacock</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#ED64A6;color:#1a202c;border:2px solid #f59e0b;" title="Pink: 45%">Pink 45%</div><div class="color-seg" style="flex:35;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 35%">Purple 35%</div><div class="color-seg" style="flex:15;background:#D69E2E;color:#1a202c;" title="Gold: 15%">Gold 15%</div><div class="color-seg" style="flex:5;background:#38A169;color:#f7fafc;" title="Green: 5%">Green 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Pink (45%), Purple (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(21,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(21,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-21" placeholder="Notes..." onchange="saveNote(21)">
+</div></div></div>
+<div class="card" id="card-22" data-game="Sparkling-Roses" data-idx="22">
+<img src="../../../game_analytics_export/data/screenshots/Sparkling-Roses.jpg" alt="Sparkling-Roses" loading="lazy">
+<div class="card-body">
+<div class="game-name">Sparkling-Roses</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 45%">Purple 45%</div><div class="color-seg" style="flex:35;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 35%">Gold 35%</div><div class="color-seg" style="flex:15;background:#DD6B20;color:#f7fafc;" title="Orange: 15%">Orange 15%</div><div class="color-seg" style="flex:5;background:#8B4513;color:#f7fafc;" title="Brown: 5%">Brown 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (45%), Gold (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(22,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(22,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-22" placeholder="Notes..." onchange="saveNote(22)">
+</div></div></div>
+<div class="card" id="card-23" data-game="Mad-Mad-Monkey" data-idx="23">
+<img src="../../../game_analytics_export/data/screenshots/Mad-Mad-Monkey.png" alt="Mad-Mad-Monkey" loading="lazy">
+<div class="card-body">
+<div class="game-name">Mad-Mad-Monkey</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#1E3A8A;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Blue: 60%">Dark Blue 60%</div><div class="color-seg" style="flex:25;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 25%">Green 25%</div><div class="color-seg" style="flex:10;background:#805AD5;color:#f7fafc;" title="Purple: 10%">Purple 10%</div><div class="color-seg" style="flex:5;background:#ECC94B;color:#1a202c;" title="Yellow: 5%">Yellow 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Dark Blue (60%), Green (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(23,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(23,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-23" placeholder="Notes..." onchange="saveNote(23)">
+</div></div></div>
+<div class="card" id="card-24" data-game="Poison-Eve" data-idx="24">
+<img src="../../../game_analytics_export/data/screenshots/Poison-Eve.jpg" alt="Poison-Eve" loading="lazy">
+<div class="card-body">
+<div class="game-name">Poison-Eve</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#319795;color:#f7fafc;border:2px solid #f59e0b;" title="Teal: 45%">Teal 45%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:15;background:#38A169;color:#f7fafc;" title="Green: 15%">Green 15%</div><div class="color-seg" style="flex:10;background:#8B4513;color:#f7fafc;" title="Brown: 10%">Brown 10%</div><div class="color-seg" style="flex:5;background:#805AD5;color:#f7fafc;" title="Purple: 5%">Purple 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Teal (45%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(24,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(24,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-24" placeholder="Notes..." onchange="saveNote(24)">
+</div></div></div>
+<div class="card" id="card-25" data-game="Rainbow-Trinkets" data-idx="25">
+<img src="../../../game_analytics_export/data/screenshots/Rainbow-Trinkets.jpg" alt="Rainbow-Trinkets" loading="lazy">
+<div class="card-body">
+<div class="game-name">Rainbow-Trinkets</div>
+<div class="color-bar"><div class="color-seg" style="flex:35;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 35%">Purple 35%</div><div class="color-seg" style="flex:25;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 25%">Green 25%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:15;background:#3182CE;color:#f7fafc;" title="Blue: 15%">Blue 15%</div><div class="color-seg" style="flex:5;background:#DD6B20;color:#f7fafc;" title="Orange: 5%">Orange 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (35%), Green (25%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(25,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(25,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-25" placeholder="Notes..." onchange="saveNote(25)">
+</div></div></div>
+<div class="card" id="card-26" data-game="Arcade-Bomb" data-idx="26">
+<img src="../../../game_analytics_export/data/screenshots/Arcade-Bomb.png" alt="Arcade-Bomb" loading="lazy">
+<div class="card-body">
+<div class="game-name">Arcade-Bomb</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#1E3A8A;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Blue: 60%">Dark Blue 60%</div><div class="color-seg" style="flex:15;background:#00BFFF;color:#1a202c;" title="Neon Blue: 15%">Neon Blue 15%</div><div class="color-seg" style="flex:12;background:#39FF14;color:#1a202c;" title="Neon Green: 12%">Neon Green 12%</div><div class="color-seg" style="flex:8;background:#D69E2E;color:#1a202c;" title="Gold: 8%">Gold 8%</div><div class="color-seg" style="flex:5;background:#805AD5;color:#f7fafc;" title="Purple: 5%">Purple 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Dark Blue (60%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(26,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(26,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-26" placeholder="Notes..." onchange="saveNote(26)">
+</div></div></div>
+<div class="card" id="card-27" data-game="Attack-On-Retro" data-idx="27">
+<img src="../../../game_analytics_export/data/screenshots/Attack-On-Retro.jpg" alt="Attack-On-Retro" loading="lazy">
+<div class="card-body">
+<div class="game-name">Attack-On-Retro</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 40%">Purple 40%</div><div class="color-seg" style="flex:25;background:#00BFFF;color:#1a202c;border:2px solid #f59e0b;" title="Neon Blue: 25%">Neon Blue 25%</div><div class="color-seg" style="flex:20;background:#ED64A6;color:#1a202c;border:2px solid #f59e0b;" title="Pink: 20%">Pink 20%</div><div class="color-seg" style="flex:10;background:#1A202C;color:#f7fafc;" title="Black: 10%">Black 10%</div><div class="color-seg" style="flex:5;background:#319795;color:#f7fafc;" title="Teal: 5%">Teal 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (40%), Neon Blue (25%), Pink (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(27,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(27,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-27" placeholder="Notes..." onchange="saveNote(27)">
+</div></div></div>
+<div class="card" id="card-28" data-game="Blazing-Planets" data-idx="28">
+<img src="../../../game_analytics_export/data/screenshots/Blazing-Planets.jpg" alt="Blazing-Planets" loading="lazy">
+<div class="card-body">
+<div class="game-name">Blazing-Planets</div>
+<div class="color-bar"><div class="color-seg" style="flex:70;background:#1E3A8A;color:#f7fafc;border:2px solid #f59e0b;" title="Dark Blue: 70%">Dark Blue 70%</div><div class="color-seg" style="flex:15;background:#319795;color:#f7fafc;" title="Teal: 15%">Teal 15%</div><div class="color-seg" style="flex:10;background:#A0AEC0;color:#1a202c;" title="Silver: 10%">Silver 10%</div><div class="color-seg" style="flex:3;background:#38A169;color:#f7fafc;" title="Green: 3%">Green 3%</div><div class="color-seg" style="flex:2;background:#E53E3E;color:#f7fafc;" title="Red: 2%">Red 2%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Dark Blue (70%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(28,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(28,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-28" placeholder="Notes..." onchange="saveNote(28)">
+</div></div></div>
+<div class="card" id="card-29" data-game="Trollpot-5000" data-idx="29">
+<img src="../../../game_analytics_export/data/screenshots/Trollpot-5000.jpg" alt="Trollpot-5000" loading="lazy">
+<div class="card-body">
+<div class="game-name">Trollpot-5000</div>
+<div class="color-bar"><div class="color-seg" style="flex:70;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 70%">Blue 70%</div><div class="color-seg" style="flex:15;background:#00BFFF;color:#1a202c;" title="Neon Blue: 15%">Neon Blue 15%</div><div class="color-seg" style="flex:10;background:#38A169;color:#f7fafc;" title="Green: 10%">Green 10%</div><div class="color-seg" style="flex:5;background:#8B4513;color:#f7fafc;" title="Brown: 5%">Brown 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (70%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(29,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(29,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-29" placeholder="Notes..." onchange="saveNote(29)">
+</div></div></div>
+<div class="card" id="card-30" data-game="10x-Minimum" data-idx="30">
+<img src="../../../game_analytics_export/data/screenshots/10x-Minimum.jpg" alt="10x-Minimum" loading="lazy">
+<div class="card-body">
+<div class="game-name">10x-Minimum</div>
+<div class="color-bar"><div class="color-seg" style="flex:75;background:#1A202C;color:#f7fafc;border:2px solid #f59e0b;" title="Black: 75%">Black 75%</div><div class="color-seg" style="flex:20;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 20%">Gold 20%</div><div class="color-seg" style="flex:5;background:#F7FAFC;color:#1a202c;" title="White: 5%">White 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Black (75%), Gold (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(30,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(30,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-30" placeholder="Notes..." onchange="saveNote(30)">
+</div></div></div>
+<div class="card" id="card-31" data-game="Desperados-Wild" data-idx="31">
+<img src="../../../game_analytics_export/data/screenshots/Desperados-Wild.jpg" alt="Desperados-Wild" loading="lazy">
+<div class="card-body">
+<div class="game-name">Desperados-Wild</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 40%">Orange 40%</div><div class="color-seg" style="flex:25;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 25%">Blue 25%</div><div class="color-seg" style="flex:20;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 20%">Brown 20%</div><div class="color-seg" style="flex:10;background:#E53E3E;color:#f7fafc;" title="Red: 10%">Red 10%</div><div class="color-seg" style="flex:5;background:#38A169;color:#f7fafc;" title="Green: 5%">Green 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Orange (40%), Blue (25%), Brown (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(31,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(31,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-31" placeholder="Notes..." onchange="saveNote(31)">
+</div></div></div>
+<div class="card" id="card-32" data-game="Mayhem" data-idx="32">
+<img src="../../../game_analytics_export/data/screenshots/Mayhem.jpg" alt="Mayhem" loading="lazy">
+<div class="card-body">
+<div class="game-name">Mayhem</div>
+<div class="color-bar"><div class="color-seg" style="flex:35;background:#805AD5;color:#f7fafc;border:2px solid #f59e0b;" title="Purple: 35%">Purple 35%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:20;background:#319795;color:#f7fafc;border:2px solid #f59e0b;" title="Teal: 20%">Teal 20%</div><div class="color-seg" style="flex:15;background:#ED64A6;color:#1a202c;" title="Pink: 15%">Pink 15%</div><div class="color-seg" style="flex:5;background:#1A202C;color:#f7fafc;" title="Black: 5%">Black 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Purple (35%), Gold (25%), Teal (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(32,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(32,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-32" placeholder="Notes..." onchange="saveNote(32)">
+</div></div></div>
+<div class="card" id="card-33" data-game="Rage-Of-The-Seas" data-idx="33">
+<img src="../../../game_analytics_export/data/screenshots/Rage-Of-The-Seas.jpg" alt="Rage-Of-The-Seas" loading="lazy">
+<div class="card-body">
+<div class="game-name">Rage-Of-The-Seas</div>
+<div class="color-bar"><div class="color-seg" style="flex:50;background:#8B4513;color:#f7fafc;border:2px solid #f59e0b;" title="Brown: 50%">Brown 50%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:15;background:#718096;color:#f7fafc;" title="Gray: 15%">Gray 15%</div><div class="color-seg" style="flex:10;background:#1A202C;color:#f7fafc;" title="Black: 10%">Black 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Brown (50%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(33,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(33,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-33" placeholder="Notes..." onchange="saveNote(33)">
+</div></div></div>
+<div class="card" id="card-34" data-game="Thors-Hammer-Strike" data-idx="34">
+<img src="../../../game_analytics_export/data/screenshots/Thors-Hammer-Strike.jpg" alt="Thors-Hammer-Strike" loading="lazy">
+<div class="card-body">
+<div class="game-name">Thors-Hammer-Strike</div>
+<div class="color-bar"><div class="color-seg" style="flex:40;background:#718096;color:#f7fafc;border:2px solid #f59e0b;" title="Gray: 40%">Gray 40%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:20;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 20%">Blue 20%</div><div class="color-seg" style="flex:10;background:#8B4513;color:#f7fafc;" title="Brown: 10%">Brown 10%</div><div class="color-seg" style="flex:5;background:#1A202C;color:#f7fafc;" title="Black: 5%">Black 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Gray (40%), Gold (25%), Blue (20%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(34,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(34,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-34" placeholder="Notes..." onchange="saveNote(34)">
+</div></div></div>
+<div class="card" id="card-35" data-game="Smash-The-Pig" data-idx="35">
+<img src="../../../game_analytics_export/data/screenshots/Smash-The-Pig.jpg" alt="Smash-The-Pig" loading="lazy">
+<div class="card-body">
+<div class="game-name">Smash-The-Pig</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#319795;color:#f7fafc;border:2px solid #f59e0b;" title="Teal: 45%">Teal 45%</div><div class="color-seg" style="flex:35;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 35%">Green 35%</div><div class="color-seg" style="flex:15;background:#D69E2E;color:#1a202c;" title="Gold: 15%">Gold 15%</div><div class="color-seg" style="flex:5;background:#F7FAFC;color:#1a202c;" title="White: 5%">White 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Teal (45%), Green (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(35,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(35,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-35" placeholder="Notes..." onchange="saveNote(35)">
+</div></div></div>
+<div class="card" id="card-36" data-game="Hyper-Gold" data-idx="36">
+<img src="../../../game_analytics_export/data/screenshots/Hyper-Gold.jpg" alt="Hyper-Gold" loading="lazy">
+<div class="card-body">
+<div class="game-name">Hyper-Gold</div>
+<div class="color-bar"><div class="color-seg" style="flex:55;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 55%">Green 55%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:15;background:#1A202C;color:#f7fafc;" title="Black: 15%">Black 15%</div><div class="color-seg" style="flex:5;background:#8B4513;color:#f7fafc;" title="Brown: 5%">Brown 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Green (55%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(36,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(36,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-36" placeholder="Notes..." onchange="saveNote(36)">
+</div></div></div>
+<div class="card" id="card-37" data-game="Gold-Fish-Feeding-Time-Deluxe-Treasure" data-idx="37">
+<img src="../../../game_analytics_export/data/screenshots/Gold-Fish-Feeding-Time-Deluxe-Treasure.jpg" alt="Gold-Fish-Feeding-Time-Deluxe-Treasure" loading="lazy">
+<div class="card-body">
+<div class="game-name">Gold-Fish-Feeding-Time-Deluxe-Treasure</div>
+<div class="color-bar"><div class="color-seg" style="flex:60;background:#3182CE;color:#f7fafc;border:2px solid #f59e0b;" title="Blue: 60%">Blue 60%</div><div class="color-seg" style="flex:25;background:#D69E2E;color:#1a202c;border:2px solid #f59e0b;" title="Gold: 25%">Gold 25%</div><div class="color-seg" style="flex:10;background:#38A169;color:#f7fafc;" title="Green: 10%">Green 10%</div><div class="color-seg" style="flex:5;background:#DD6B20;color:#f7fafc;" title="Orange: 5%">Orange 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Blue (60%), Gold (25%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(37,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(37,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-37" placeholder="Notes..." onchange="saveNote(37)">
+</div></div></div>
+<div class="card" id="card-38" data-game="Gems-Inferno-Megaways" data-idx="38">
+<img src="../../../game_analytics_export/data/screenshots/Gems-Inferno-Megaways.jpeg" alt="Gems-Inferno-Megaways" loading="lazy">
+<div class="card-body">
+<div class="game-name">Gems-Inferno-Megaways</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#DD6B20;color:#f7fafc;border:2px solid #f59e0b;" title="Orange: 45%">Orange 45%</div><div class="color-seg" style="flex:30;background:#E53E3E;color:#f7fafc;border:2px solid #f59e0b;" title="Red: 30%">Red 30%</div><div class="color-seg" style="flex:15;background:#D69E2E;color:#1a202c;" title="Gold: 15%">Gold 15%</div><div class="color-seg" style="flex:10;background:#805AD5;color:#f7fafc;" title="Purple: 10%">Purple 10%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Orange (45%), Red (30%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(38,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(38,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-38" placeholder="Notes..." onchange="saveNote(38)">
+</div></div></div>
+<div class="card" id="card-39" data-game="3-mad-frogs" data-idx="39">
+<img src="../../../game_analytics_export/data/screenshots/3-mad-frogs.webp" alt="3-mad-frogs" loading="lazy">
+<div class="card-body">
+<div class="game-name">3-mad-frogs</div>
+<div class="color-bar"><div class="color-seg" style="flex:45;background:#7DD3FC;color:#1a202c;border:2px solid #f59e0b;" title="Light Blue: 45%">Light Blue 45%</div><div class="color-seg" style="flex:35;background:#38A169;color:#f7fafc;border:2px solid #f59e0b;" title="Green: 35%">Green 35%</div><div class="color-seg" style="flex:15;background:#ED64A6;color:#1a202c;" title="Pink: 15%">Pink 15%</div><div class="color-seg" style="flex:5;background:#ECC94B;color:#1a202c;" title="Yellow: 5%">Yellow 5%</div></div>
+<div class="filtered"><b>Filtered (≥20%):</b> Light Blue (45%), Green (35%)</div>
+<div class="controls">
+<button class="btn btn-ok" onclick="mark(39,'ok')">👍 OK</button>
+<button class="btn btn-fix" onclick="mark(39,'fix')">🔧 Fix</button>
+<input class="notes-input" id="notes-39" placeholder="Notes..." onchange="saveNote(39)">
+</div></div></div>
+</div>
+<script>
+const reviews={};const total=40;
+function mark(i,s){const c=document.getElementById('card-'+i);c.classList.remove('ok','fix');c.classList.add(s);c.querySelector('.btn-ok').classList.toggle('active-ok',s==='ok');c.querySelector('.btn-fix').classList.toggle('active-fix',s==='fix');reviews[c.dataset.game]={color:s,notes:document.getElementById('notes-'+i).value};updateStats()}
+function saveNote(i){const c=document.getElementById('card-'+i);reviews[c.dataset.game]=reviews[c.dataset.game]||{};reviews[c.dataset.game].notes=document.getElementById('notes-'+i).value}
+function markAllOk(){document.querySelectorAll('.card[data-idx]').forEach(c=>{const g=c.dataset.game;if(!reviews[g]||!reviews[g].color)mark(parseInt(c.dataset.idx),'ok')})}
+function updateStats(){const r=Object.values(reviews).filter(x=>x.color).length;const ok=Object.values(reviews).filter(x=>x.color==='ok').length;const fx=Object.values(reviews).filter(x=>x.color==='fix').length;document.getElementById('stats').textContent=r+'/'+total+' reviewed ('+ok+' ok, '+fx+' fix)'}
+function exportJSON(){const a=[];document.querySelectorAll('.card[data-game]').forEach(c=>{const g=c.dataset.game;const r=reviews[g]||{};a.push({game:g,color:r.color||'',notes:r.notes||''})});navigator.clipboard.writeText(JSON.stringify(a,null,2)).then(()=>alert('Copied!')).catch(()=>{const w=window.open('','_blank');w.document.write('<pre>'+JSON.stringify(a,null,2)+'</pre>')})}
+</script></body></html>

@@ -3,45 +3,7 @@ import { getArtNarrativeMetrics, getArtColorToneMetrics } from '../lib/metrics.j
 import { F } from '../lib/game-fields.js';
 import { createBubbleLandscape, quadrantLabel, median, injectCoveragePill } from './chart-utils.js';
 import { chartInstances } from './chart-config.js';
-
-const COLOR_HEX = {
-    Gold: '#EAB308',
-    Silver: '#C0C0C0',
-    Red: '#EF4444',
-    Blue: '#3B82F6',
-    Green: '#22C55E',
-    Purple: '#A855F7',
-    Pink: '#EC4899',
-    Teal: '#14B8A6',
-    Yellow: '#FFD700',
-    Orange: '#F97316',
-    Black: '#1F2937',
-    White: '#F3F4F6',
-    Brown: '#92400E',
-    Crimson: '#DC143C',
-    Navy: '#000080',
-    Turquoise: '#40E0D0',
-    Lavender: '#E6E6FA',
-    Indigo: '#4B0082',
-    Emerald: '#50C878',
-    Amber: '#FFBF00',
-    Copper: '#B87333',
-    Bronze: '#CD7F32',
-    Charcoal: '#36454F',
-    Rose: '#FF007F',
-    Burgundy: '#800020',
-    Slate: '#708090',
-    Beige: '#D2B48C',
-    Coral: '#FF7F50',
-    Magenta: '#FF00FF',
-};
-
-function colorHex(name) {
-    const first = (name || '').split(/[\s/]/)[0];
-    if (COLOR_HEX[first]) return COLOR_HEX[first];
-    const hash = name.split('').reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0);
-    return '#' + ((hash & 0xffffff) | 0x404040).toString(16).slice(-6);
-}
+import { colorHex } from '../lib/shared-config.js';
 
 export async function createColorLandscapeChart() {
     try {

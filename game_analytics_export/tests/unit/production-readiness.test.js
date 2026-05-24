@@ -5,9 +5,8 @@
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync, readdirSync } from 'fs';
-import { join, resolve } from 'path';
-
-const ROOT = resolve(__dirname, '../..');
+import { join } from 'path';
+import { ROOT, MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 describe('Build Security', () => {
     const buildScript = readFileSync(join(ROOT, 'scripts', 'build.mjs'), 'utf-8');
@@ -60,7 +59,7 @@ describe('Build Security', () => {
 
 describe('Data Files', () => {
     it('game_data_master.json should exist and be valid JSON', () => {
-        const path = join(ROOT, 'data', 'game_data_master.json');
+        const path = MASTER_JSON;
         expect(existsSync(path)).toBe(true);
         const data = JSON.parse(readFileSync(path, 'utf-8'));
         expect(Array.isArray(data)).toBe(true);
@@ -68,7 +67,7 @@ describe('Data Files', () => {
     });
 
     it('theme_consolidation_map.json should exist and be valid JSON', () => {
-        const path = join(ROOT, 'data', 'theme_consolidation_map.json');
+        const path = MAPPINGS.theme;
         expect(existsSync(path)).toBe(true);
         const data = JSON.parse(readFileSync(path, 'utf-8'));
         expect(typeof data).toBe('object');
@@ -82,7 +81,7 @@ describe('Data Files', () => {
     });
 
     it('game_data_master.json should not contain API keys or secrets', () => {
-        const raw = readFileSync(join(ROOT, 'data', 'game_data_master.json'), 'utf-8');
+        const raw = readFileSync(MASTER_JSON, 'utf-8');
         expect(raw.toLowerCase()).not.toContain('api_key');
         expect(raw.toLowerCase()).not.toContain('apikey');
         expect(raw.toLowerCase()).not.toContain('anthropic');

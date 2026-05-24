@@ -5,16 +5,15 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { DATA_DIR, MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 let masterGames;
 let processedGames;
 let themeMap;
 
 beforeAll(() => {
-    masterGames = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-    themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
+    masterGames = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+    themeMap = JSON.parse(readFileSync(MAPPINGS.theme, 'utf-8'));
 
     const processedPath = resolve(DATA_DIR, 'games_processed.json');
     if (existsSync(processedPath)) {

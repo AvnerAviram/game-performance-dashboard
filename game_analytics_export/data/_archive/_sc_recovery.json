@@ -1,0 +1,2692 @@
+[
+  {
+    "id": "game-0003-cash_eruption",
+    "name": "Cash Eruption",
+    "provider": "IGT",
+    "sc_name": "cash eruption red hot joker",
+    "sc_year": 2024,
+    "sc_date": "2024-02-26",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-0025-mystery_of_the_lamp_enchanted_palace",
+    "name": "Mystery Of The Lamp Enchanted Palace",
+    "provider": "IGT",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0033-wolf_it_up_again",
+    "name": "Wolf It Up Again",
+    "provider": "Inspired",
+    "sc_name": "wolf it up",
+    "sc_year": 2024,
+    "sc_date": "2024-06-29",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0052-werewolf_it_up",
+    "name": "Werewolf It Up",
+    "provider": "Inspired",
+    "sc_name": "wolf it up",
+    "sc_year": 2024,
+    "sc_date": "2024-06-29",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0095-cops_and_robbers_bigger_big_money",
+    "name": "Cops And Robbers Bigger Big Money",
+    "provider": "Inspired",
+    "sc_name": "cops n robbers bigger big money",
+    "sc_year": 2024,
+    "sc_date": "2024-07-08",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0104-energy_coins_hold_and_win",
+    "name": "Energy Coins Hold And Win",
+    "provider": "Playson",
+    "sc_name": "fruit coins hold and win",
+    "sc_year": 2025,
+    "sc_date": "2025-06-18",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-0118-dragon_power",
+    "name": "Dragon Power",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "dragon power keno",
+    "sc_year": 2024,
+    "sc_date": "2024-04-09",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-0139-golden_winner_grand_chance",
+    "name": "Golden Winner Grand Chance",
+    "provider": "Inspired",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0166-3_porky_banks_hold_and_win_extra",
+    "name": "3 Porky Banks Hold And Win Extra",
+    "provider": "1x2 Network",
+    "sc_name": "3 porky banks hold and win",
+    "sc_year": 2024,
+    "sc_date": "2024-07-31",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0190-golden_halloween_winner",
+    "name": "Golden Halloween Winner",
+    "provider": "Inspired",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-0196-hot_offer_2",
+    "name": "Hot Offer 2",
+    "provider": "Bang Bang Games",
+    "sc_name": "monopoly hot offer",
+    "sc_year": 2024,
+    "sc_date": "2024-10-24",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0200-thunder_cash_sizzling_hot",
+    "name": "Thunder Cash Sizzling Hot",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2022,
+    "delta": -6
+  },
+  {
+    "id": "game-0203-thunder_cash_dolphins_pearl",
+    "name": "Thunder Cash Dolphins Pearl",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2022,
+    "delta": -6
+  },
+  {
+    "id": "game-0208-zeus_2",
+    "name": "Zeus 2",
+    "provider": "Light & Wonder",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-0212-triple_double_da_vinci_diamonds",
+    "name": "Triple Double Da Vinci Diamonds",
+    "provider": "High 5 Games",
+    "sc_name": "double da vinci diamonds",
+    "sc_year": 2015,
+    "sc_date": "2015-05-07",
+    "nj_year": 2021,
+    "delta": -6
+  },
+  {
+    "id": "game-0216-golden_winner",
+    "name": "Golden Winner",
+    "provider": "Inspired",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-0224-enchanted_wolf_rising_rewards",
+    "name": "Enchanted Wolf Rising Rewards",
+    "provider": "Games Global",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0225-long_bao_bao",
+    "name": "Long Bao Bao",
+    "provider": "AGS",
+    "sc_name": "dragon jin long jin bao",
+    "sc_year": 2024,
+    "sc_date": "2024-04-18",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0237-dancing_drums_link",
+    "name": "Dancing Drums Link",
+    "provider": "Light & Wonder",
+    "sc_name": "dancing drums",
+    "sc_year": 2017,
+    "sc_date": "2017-01-03",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0248-coin_strike_hold_and_win",
+    "name": "Coin Strike Hold And Win",
+    "provider": "Playson",
+    "sc_name": "wolf strike hold and win extra",
+    "sc_year": 2025,
+    "sc_date": "2025-06-11",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-0263-kitty_glitter_grand",
+    "name": "Kitty Glitter Grand",
+    "provider": "IGT",
+    "sc_name": "kitty glitter",
+    "sc_year": 2010,
+    "sc_date": "2010-03-10",
+    "nj_year": 2025,
+    "delta": -15
+  },
+  {
+    "id": "game-0283-megajackpots_fortune_coin",
+    "name": "Megajackpots Fortune Coin",
+    "provider": "IGT",
+    "sc_name": "fortune coin",
+    "sc_year": 2020,
+    "sc_date": "2020-01-23",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-0295-triple_double_patriot",
+    "name": "Triple Double Patriot",
+    "provider": "Everi",
+    "sc_name": "patriot",
+    "sc_year": 2021,
+    "sc_date": "2021-06-09",
+    "nj_year": 2023,
+    "delta": -2
+  },
+  {
+    "id": "game-0309-dragon_power_triple_gold",
+    "name": "Dragon Power Triple Gold",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "triple gold",
+    "sc_year": 2021,
+    "sc_date": "2021-05-11",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-0315-black_diamond_platinum",
+    "name": "Black Diamond Platinum",
+    "provider": "Everi",
+    "sc_name": "black diamond",
+    "sc_year": 2016,
+    "sc_date": "2016-08-16",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-0318-double_jackpot_gems_grand_wheel",
+    "name": "Double Jackpot Gems Grand Wheel",
+    "provider": "Everi",
+    "sc_name": "double jackpot gems",
+    "sc_year": 2020,
+    "sc_date": "2020-01-31",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-0319-azteca_collect_em",
+    "name": "Azteca Collect Em",
+    "provider": "Playtech",
+    "sc_name": "azteca gold collect",
+    "sc_year": 2025,
+    "sc_date": "2025-08-28",
+    "nj_year": 2024,
+    "delta": 1
+  },
+  {
+    "id": "game-0325-thunder_cash_charming_lady",
+    "name": "Thunder Cash Charming Lady",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2022,
+    "delta": -6
+  },
+  {
+    "id": "game-0332-zeus_gold_blitz_fortune_tower",
+    "name": "Zeus Gold Blitz Fortune Tower",
+    "provider": "Games Global",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0344-10x_minimum_top_multiplier",
+    "name": "10x Minimum Top Multiplier",
+    "provider": "Spinberry",
+    "sc_name": "10x minimum",
+    "sc_year": 2023,
+    "sc_date": "2023-06-01",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-0350-rich_little_piggies_world_class_hallowee",
+    "name": "Rich Little Piggies World Class Halloween Edition",
+    "provider": "Light & Wonder",
+    "sc_name": "rich little piggies world class",
+    "sc_year": 2025,
+    "sc_date": "2025-02-06",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-0374-megajackpots_cleopatra",
+    "name": "Megajackpots Cleopatra",
+    "provider": "IGT",
+    "sc_name": "cleopatra",
+    "sc_year": 2012,
+    "sc_date": "2012-01-08",
+    "nj_year": 2021,
+    "delta": -9
+  },
+  {
+    "id": "game-0380-cops_n_robbers_big_money",
+    "name": "Cops N Robbers Big Money",
+    "provider": "Inspired",
+    "sc_name": "cops n robbers bigger big money",
+    "sc_year": 2024,
+    "sc_date": "2024-07-08",
+    "nj_year": 2023,
+    "delta": 1
+  },
+  {
+    "id": "game-0383-fortune_coin_charm",
+    "name": "Fortune Coin Charm",
+    "provider": "IGT",
+    "sc_name": "fortune coin",
+    "sc_year": 2020,
+    "sc_date": "2020-01-23",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-0387-golden_money",
+    "name": "Golden Money",
+    "provider": "AGS",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0404-big_money_frenzy_golden_magnet",
+    "name": "Big Money Frenzy Golden Magnet",
+    "provider": "White Hat Studios",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0418-diamond_cash_mighty_cleopatra",
+    "name": "Diamond Cash Mighty Cleopatra",
+    "provider": "Greentube",
+    "sc_name": "cleopatra",
+    "sc_year": 2012,
+    "sc_date": "2012-01-08",
+    "nj_year": 2025,
+    "delta": -13
+  },
+  {
+    "id": "game-0434-wheel_of_fortune_triple_gold_gold_spin",
+    "name": "Wheel Of Fortune Triple Gold Gold Spin",
+    "provider": "IGT",
+    "sc_name": "triple gold",
+    "sc_year": 2021,
+    "sc_date": "2021-05-11",
+    "nj_year": 2022,
+    "delta": -1
+  },
+  {
+    "id": "game-0435-ultra_blazing_fire_link",
+    "name": "Ultra Blazing Fire Link",
+    "provider": "Light & Wonder",
+    "sc_name": "ultra blazing fire link india",
+    "sc_year": 2021,
+    "sc_date": "2021-07-13",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-0444-dancing_drums_explosion_mega_drop",
+    "name": "Dancing Drums Explosion Mega Drop",
+    "provider": "Light & Wonder",
+    "sc_name": "dancing drums explosion",
+    "sc_year": 2021,
+    "sc_date": "2021-06-29",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-0456-megajackpots_wolf_run",
+    "name": "Megajackpots Wolf Run",
+    "provider": "IGT",
+    "sc_name": "wolf run",
+    "sc_year": 2014,
+    "sc_date": "2014-03-10",
+    "nj_year": 2022,
+    "delta": -8
+  },
+  {
+    "id": "game-0463-chili_poppers",
+    "name": "Chili Poppers",
+    "provider": "Inspired",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-0471-thunder_cash_senorita_suerte",
+    "name": "Thunder Cash Senorita Suerte",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-0476-cash_falls_add_em_up_rome",
+    "name": "Cash Falls Add Em Up Rome",
+    "provider": "Light & Wonder",
+    "sc_name": "cash falls add em up chariots of rome",
+    "sc_year": 2024,
+    "sc_date": "2024-07-18",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0482-double_black_diamond",
+    "name": "Double Black Diamond",
+    "provider": "Everi",
+    "sc_name": "black diamond",
+    "sc_year": 2016,
+    "sc_date": "2016-08-16",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-0487-gritty_kitty_of_nitropolis",
+    "name": "Gritty Kitty Of Nitropolis",
+    "provider": "Light & Wonder",
+    "sc_name": "nitropolis",
+    "sc_year": 2020,
+    "sc_date": "2020-11-03",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-0495-ba_fang_jin_bao_abundant_fortune",
+    "name": "Ba Fang Jin Bao Abundant Fortune",
+    "provider": "Konami",
+    "sc_name": "ba fang jin bao fortune totems",
+    "sc_year": 2024,
+    "sc_date": "2024-02-12",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-0505-megajackpots_siberian_storm",
+    "name": "Megajackpots Siberian Storm",
+    "provider": "IGT",
+    "sc_name": "siberian storm",
+    "sc_year": 2011,
+    "sc_date": "2011-10-10",
+    "nj_year": 2021,
+    "delta": -10
+  },
+  {
+    "id": "game-0525-thunder_cash_golden_voodoo_magic",
+    "name": "Thunder Cash Golden Voodoo Magic",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-0526-wild_west",
+    "name": "Wild West",
+    "provider": "Evolution",
+    "sc_name": "wild west zone",
+    "sc_year": 2020,
+    "sc_date": "2020-04-30",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-0557-slingo_stinkin_rich",
+    "name": "Slingo Stinkin Rich",
+    "provider": "Gaming Realms",
+    "sc_name": "stinkin rich",
+    "sc_year": 2016,
+    "sc_date": "2016-04-10",
+    "nj_year": 2022,
+    "delta": -6
+  },
+  {
+    "id": "game-0569-thunder_cash_senor_muerte",
+    "name": "Thunder Cash Senor Muerte",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-0573-fire_blaze_golden_macaque",
+    "name": "Fire Blaze Golden Macaque",
+    "provider": "Playtech",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-0587-slingo_capital_gains",
+    "name": "Slingo Capital Gains",
+    "provider": "Gaming Realms",
+    "sc_name": "capital gains",
+    "sc_year": 2020,
+    "sc_date": "2020-04-17",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-0589-boom_boom_boom",
+    "name": "Boom Boom Boom",
+    "provider": "Gamecode",
+    "sc_name": "golden roar boom",
+    "sc_year": 2024,
+    "sc_date": "2024-09-25",
+    "nj_year": 2023,
+    "delta": 1
+  },
+  {
+    "id": "game-0597-peaky_blinders_2_the_shelby_empire",
+    "name": "Peaky Blinders 2 The Shelby Empire",
+    "provider": "White Hat Studios",
+    "sc_name": "peaky blinders",
+    "sc_year": 2020,
+    "sc_date": "2020-08-27",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-0608-slingo_deadliest_catch",
+    "name": "Slingo Deadliest Catch",
+    "provider": "Gaming Realms",
+    "sc_name": "deadliest catch",
+    "sc_year": 2024,
+    "sc_date": "2024-07-06",
+    "nj_year": 2022,
+    "delta": 2
+  },
+  {
+    "id": "game-0617-paddys_golden_fortune",
+    "name": "Paddys Golden Fortune",
+    "provider": "Spinberry",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0621-fire_blaze_sky_queen",
+    "name": "Fire Blaze Sky Queen",
+    "provider": "Playtech",
+    "sc_name": "sky queen",
+    "sc_year": 2019,
+    "sc_date": "2019-03-27",
+    "nj_year": 2023,
+    "delta": -4
+  },
+  {
+    "id": "game-0640-pop_and_win",
+    "name": "Pop And Win",
+    "provider": "High 5 Games",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-0645-blackjack_diamond_vip",
+    "name": "Blackjack Diamond Vip",
+    "provider": "Everi",
+    "sc_name": "blackjack",
+    "sc_year": 2017,
+    "sc_date": "2017-09-01",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-0652-sticky_stacked_fire_7s",
+    "name": "Sticky Stacked Fire 7s",
+    "provider": "Inspired",
+    "sc_name": "stacked fire 7s",
+    "sc_year": 2020,
+    "sc_date": "2020-03-10",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-0658-deal_or_no_deal_golden_case_megaways",
+    "name": "Deal Or No Deal Golden Case Megaways",
+    "provider": "White Hat Studios",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2022,
+    "delta": -5
+  },
+  {
+    "id": "game-0677-fire_blaze_golden_amazing_factory",
+    "name": "Fire Blaze Golden Amazing Factory",
+    "provider": "Playtech",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-0710-chicken_fox_5x_skillstar",
+    "name": "Chicken Fox 5x Skillstar",
+    "provider": "Light & Wonder",
+    "sc_name": "stellar cash chicken fox 5x skillstar",
+    "sc_year": 2023,
+    "sc_date": "2023-02-08",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-0711-catch_of_the_day_reeling_em_in",
+    "name": "Catch Of The Day Reeling Em In",
+    "provider": "Inspired",
+    "sc_name": "catch of the day",
+    "sc_year": 2022,
+    "sc_date": "2022-02-21",
+    "nj_year": 2023,
+    "delta": -1
+  },
+  {
+    "id": "game-0727-fire_blaze_golden_tundra_wolf",
+    "name": "Fire Blaze Golden Tundra Wolf",
+    "provider": "Playtech",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-0778-cops_n_robbers_big_money_christmas",
+    "name": "Cops N Robbers Big Money Christmas",
+    "provider": "Inspired",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2023,
+    "delta": -2
+  },
+  {
+    "id": "game-0779-scarab_link",
+    "name": "Scarab Link",
+    "provider": "IGT",
+    "sc_name": "scarab",
+    "sc_year": 2019,
+    "sc_date": "2019-04-25",
+    "nj_year": 2021,
+    "delta": -2
+  },
+  {
+    "id": "game-0787-fire_blaze_tsai_shens_gift",
+    "name": "Fire Blaze Tsai Shens Gift",
+    "provider": "Playtech",
+    "sc_name": "tsai shens gift",
+    "sc_year": 2019,
+    "sc_date": "2019-07-31",
+    "nj_year": 2023,
+    "delta": -4
+  },
+  {
+    "id": "game-0807-double_jackpot",
+    "name": "Double Jackpot",
+    "provider": "Everi",
+    "sc_name": "double jackpot gems",
+    "sc_year": 2020,
+    "sc_date": "2020-01-31",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-0813-christmas_cash_pots",
+    "name": "Christmas Cash Pots",
+    "provider": "Inspired",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-0830-shadow_of_the_panther",
+    "name": "Shadow Of The Panther",
+    "provider": "High 5 Games",
+    "sc_name": "shadow of the panther infinity",
+    "sc_year": 2023,
+    "sc_date": "2023-11-07",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-0868-big_jungle_bonanza_jackpot_royale_expres",
+    "name": "Big Jungle Bonanza Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2025,
+    "delta": -9
+  },
+  {
+    "id": "game-0875-chicken_fox",
+    "name": "Chicken Fox",
+    "provider": "Light & Wonder",
+    "sc_name": "chicken fox jr",
+    "sc_year": 2022,
+    "sc_date": "2022-05-25",
+    "nj_year": 2021,
+    "delta": 1
+  },
+  {
+    "id": "game-0884-sahara_riches_collect_em",
+    "name": "Sahara Riches Collect Em",
+    "provider": "Playtech",
+    "sc_name": "sahara riches megaways collect em",
+    "sc_year": 2024,
+    "sc_date": "2024-11-12",
+    "nj_year": 2024,
+    "delta": 0
+  },
+  {
+    "id": "game-0898-crazy_wizard_classic",
+    "name": "Crazy Wizard Classic",
+    "provider": "IGT",
+    "sc_name": "crazy wizard",
+    "sc_year": 2021,
+    "sc_date": "2021-02-22",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-0912-megajackpots_da_vinci_diamonds",
+    "name": "Megajackpots Da Vinci Diamonds",
+    "provider": "IGT",
+    "sc_name": "da vinci diamonds",
+    "sc_year": 2012,
+    "sc_date": "2012-01-21",
+    "nj_year": 2025,
+    "delta": -13
+  },
+  {
+    "id": "game-0913-dragon_palace",
+    "name": "Dragon Palace",
+    "provider": "Light & Wonder",
+    "sc_name": "stellar cash dragon palace",
+    "sc_year": 2023,
+    "sc_date": "2023-06-22",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-0922-majestic_sea_2",
+    "name": "Majestic Sea 2",
+    "provider": "High 5 Games",
+    "sc_name": "majestic sea",
+    "sc_year": 2016,
+    "sc_date": "2016-10-14",
+    "nj_year": 2021,
+    "delta": -5
+  },
+  {
+    "id": "game-0989-diamond_spins_cats",
+    "name": "Diamond Spins Cats",
+    "provider": "IGT",
+    "sc_name": "cats",
+    "sc_year": 2013,
+    "sc_date": "2013-08-23",
+    "nj_year": 2024,
+    "delta": -11
+  },
+  {
+    "id": "game-1002-big_catch_bass_fishing_christmas_jackpot",
+    "name": "Big Catch Bass Fishing Christmas Jackpot Royale",
+    "provider": "White Hat Studios",
+    "sc_name": "big catch bass fishing",
+    "sc_year": 2023,
+    "sc_date": "2023-06-27",
+    "nj_year": 2024,
+    "delta": -1
+  },
+  {
+    "id": "game-1012-5_treasures",
+    "name": "5 Treasures",
+    "provider": "Light & Wonder",
+    "sc_name": "5 treasures jackpot festival",
+    "sc_year": 2024,
+    "sc_date": "2024-12-02",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-1028-red_hot_joker_cascade_high_stakes",
+    "name": "Red Hot Joker Cascade High Stakes",
+    "provider": "IGT",
+    "sc_name": "red hot joker cascade",
+    "sc_year": 2024,
+    "sc_date": "2024-10-28",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-1047-egglink_100x_ra",
+    "name": "Egglink 100x Ra",
+    "provider": "Light & Wonder",
+    "sc_name": "100x ra",
+    "sc_year": 2021,
+    "sc_date": "2021-10-27",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-1048-a_visit_from_st_nick",
+    "name": "A Visit From St Nick",
+    "provider": "High 5 Games",
+    "sc_name": "a visit from st nick power bet",
+    "sc_year": 2024,
+    "sc_date": "2024-12-02",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-1054-green_machine_deluxe_racking_up_riches",
+    "name": "Green Machine Deluxe Racking Up Riches",
+    "provider": "High 5 Games",
+    "sc_name": "green machine racking up riches 2",
+    "sc_year": 2023,
+    "sc_date": "2023-11-30",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-1055-thunder_cash_voodoo_magic",
+    "name": "Thunder Cash Voodoo Magic",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2022,
+    "delta": -6
+  },
+  {
+    "id": "game-1060-zeus_3",
+    "name": "Zeus 3",
+    "provider": "Light & Wonder",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-1122-catch_of_the_christmas_day_respin_em_in",
+    "name": "Catch Of The Christmas Day Respin Em In",
+    "provider": "Inspired",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-1124-zeus_god_of_thunder",
+    "name": "Zeus God Of Thunder",
+    "provider": "Light & Wonder",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-1132-big_bad_buffalo_thunderstruck",
+    "name": "Big Bad Buffalo Thunderstruck",
+    "provider": "High 5 Games",
+    "sc_name": "big bad buffalo",
+    "sc_year": 2023,
+    "sc_date": "2023-07-20",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-1151-chili_chili_fire_hot_rush_red",
+    "name": "Chili Chili Fire Hot Rush Red",
+    "provider": "Konami",
+    "sc_name": "chili chili fire",
+    "sc_year": 2020,
+    "sc_date": "2020-03-08",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-1154-thunder_cash_golden_book_of_ra",
+    "name": "Thunder Cash Golden Book Of Ra",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-1181-tuna_overload_multiplier",
+    "name": "Tuna Overload Multiplier",
+    "provider": "Spinberry",
+    "sc_name": "tuna overload",
+    "sc_year": 2024,
+    "sc_date": "2024-09-17",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-1194-buffalo_blitz_ii",
+    "name": "Buffalo Blitz Ii",
+    "provider": "Playtech",
+    "sc_name": "buffalo blitz",
+    "sc_year": 2016,
+    "sc_date": "2016-07-01",
+    "nj_year": 2024,
+    "delta": -8
+  },
+  {
+    "id": "game-1210-golden_asp_of_fortune",
+    "name": "Golden Asp Of Fortune",
+    "provider": "High 5 Games",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-1217-kronos",
+    "name": "Kronos",
+    "provider": "Light & Wonder",
+    "sc_name": "kronos unleashed",
+    "sc_year": 2018,
+    "sc_date": "2018-05-22",
+    "nj_year": 2021,
+    "delta": -3
+  },
+  {
+    "id": "game-1243-slingo_starburst",
+    "name": "Slingo Starburst",
+    "provider": "Gaming Realms",
+    "sc_name": "starburst",
+    "sc_year": 2013,
+    "sc_date": "2013-11-12",
+    "nj_year": 2021,
+    "delta": -8
+  },
+  {
+    "id": "game-1249-wild_wild_7s",
+    "name": "Wild Wild 7s",
+    "provider": "Everi",
+    "sc_name": "wild animals",
+    "sc_year": 2020,
+    "sc_date": "2020-08-14",
+    "nj_year": 2022,
+    "delta": -2
+  },
+  {
+    "id": "game-1250-secrets_of_the_forest_2",
+    "name": "Secrets Of The Forest 2",
+    "provider": "High 5 Games",
+    "sc_name": "secrets of the forest",
+    "sc_year": 2017,
+    "sc_date": "2017-01-06",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-1252-mustang_money",
+    "name": "Mustang Money",
+    "provider": "Ainsworth",
+    "sc_name": "mustang money super",
+    "sc_year": 2020,
+    "sc_date": "2020-12-23",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-1262-raging_rhino_rampage_buypass",
+    "name": "Raging Rhino Rampage Buypass",
+    "provider": "Light & Wonder",
+    "sc_name": "raging rhino",
+    "sc_year": 2015,
+    "sc_date": "2015-08-15",
+    "nj_year": 2021,
+    "delta": -6
+  },
+  {
+    "id": "game-1270-panda_power_solstice_celebration",
+    "name": "Panda Power Solstice Celebration",
+    "provider": "Konami",
+    "sc_name": "panda pow",
+    "sc_year": 2017,
+    "sc_date": "2017-04-21",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-1275-super_dragon",
+    "name": "Super Dragon",
+    "provider": "Everi",
+    "sc_name": "dragon lines super",
+    "sc_year": 2021,
+    "sc_date": "2021-02-08",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-1282-enchanted_waysfecta",
+    "name": "Enchanted Waysfecta",
+    "provider": "Light & Wonder",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-1284-dragon_spin_cross_link_fire",
+    "name": "Dragon Spin Cross Link Fire",
+    "provider": "Light & Wonder",
+    "sc_name": "dragon spin",
+    "sc_year": 2015,
+    "sc_date": "2015-02-01",
+    "nj_year": 2025,
+    "delta": -10
+  },
+  {
+    "id": "game-1289-a_christmas_full_of_wilds",
+    "name": "A Christmas Full Of Wilds",
+    "provider": "Greentube",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2023,
+    "delta": -2
+  },
+  {
+    "id": "game-1296-gypsy_fire_quick_strike",
+    "name": "Gypsy Fire Quick Strike",
+    "provider": "Konami",
+    "sc_name": "gypsy",
+    "sc_year": 2014,
+    "sc_date": "2014-11-20",
+    "nj_year": 2021,
+    "delta": -7
+  },
+  {
+    "id": "game-1298-megajackpots_golden_goddess",
+    "name": "Megajackpots Golden Goddess",
+    "provider": "IGT",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-1311-golden_fire_link_buchae_blossom",
+    "name": "Golden Fire Link Buchae Blossom",
+    "provider": "Light & Wonder",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-1320-diamond_hunter_vip",
+    "name": "Diamond Hunter Vip",
+    "provider": "Bang Bang Games",
+    "sc_name": "vip",
+    "sc_year": 2024,
+    "sc_date": "2024-11-07",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-1328-cleopatra_ii",
+    "name": "Cleopatra Ii",
+    "provider": "IGT",
+    "sc_name": "cleopatra",
+    "sc_year": 2012,
+    "sc_date": "2012-01-08",
+    "nj_year": 2022,
+    "delta": -10
+  },
+  {
+    "id": "game-1353-burn_7s_burn",
+    "name": "Burn 7s Burn",
+    "provider": "Inspired",
+    "sc_name": "let it burn",
+    "sc_year": 2023,
+    "sc_date": "2023-03-10",
+    "nj_year": 2022,
+    "delta": 1
+  },
+  {
+    "id": "game-1384-golden_glimmer",
+    "name": "Golden Glimmer",
+    "provider": "Spinberry",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-1404-piggy_prizes_wand_of_riches",
+    "name": "Piggy Prizes Wand Of Riches",
+    "provider": "Greentube",
+    "sc_name": "piggy prizes wand of riches 2",
+    "sc_year": 2025,
+    "sc_date": "2025-03-25",
+    "nj_year": 2024,
+    "delta": 1
+  },
+  {
+    "id": "game-1408-rich_little_hens_world_class",
+    "name": "Rich Little Hens World Class",
+    "provider": "Light & Wonder",
+    "sc_name": "rich little piggies world class",
+    "sc_year": 2025,
+    "sc_date": "2025-02-06",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-1427-slingo_sweet_bonanza",
+    "name": "Slingo Sweet Bonanza",
+    "provider": "Gaming Realms",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2021,
+    "delta": -5
+  },
+  {
+    "id": "game-1457-crystal_star_platinum",
+    "name": "Crystal Star Platinum",
+    "provider": "Everi",
+    "sc_name": "crystal star",
+    "sc_year": 2020,
+    "sc_date": "2020-05-08",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-1462-fire_blaze_sky_queen_megaways",
+    "name": "Fire Blaze Sky Queen Megaways",
+    "provider": "Playtech",
+    "sc_name": "sky queen",
+    "sc_year": 2019,
+    "sc_date": "2019-03-27",
+    "nj_year": 2025,
+    "delta": -6
+  },
+  {
+    "id": "game-1465-raging_rhino_ultra_megadrop",
+    "name": "Raging Rhino Ultra Megadrop",
+    "provider": "Light & Wonder",
+    "sc_name": "raging rhino",
+    "sc_year": 2015,
+    "sc_date": "2015-08-15",
+    "nj_year": 2021,
+    "delta": -6
+  },
+  {
+    "id": "game-1478-fireworks_of_fortune",
+    "name": "Fireworks Of Fortune",
+    "provider": "Rogue",
+    "sc_name": "fortune fireworks",
+    "sc_year": 2019,
+    "sc_date": "2019-07-03",
+    "nj_year": 2025,
+    "delta": -6
+  },
+  {
+    "id": "game-1491-eggs_bonanza",
+    "name": "Eggs Bonanza",
+    "provider": "Games Global",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2024,
+    "delta": -8
+  },
+  {
+    "id": "game-1493-millionaire_mile_hold___win",
+    "name": "Millionaire Mile Hold & Win",
+    "provider": "IGT",
+    "sc_name": "millionaire",
+    "sc_year": 2024,
+    "sc_date": "2024-02-07",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-1552-10001_nights_limited",
+    "name": "10001 Nights Limited",
+    "provider": "Evolution",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-1559-pearls_pearls_pearls",
+    "name": "Pearls Pearls Pearls",
+    "provider": "Playtech",
+    "sc_name": "dragon treasure pearls",
+    "sc_year": 2022,
+    "sc_date": "2022-12-26",
+    "nj_year": 2024,
+    "delta": -2
+  },
+  {
+    "id": "game-1565-bounty_raid_limited",
+    "name": "Bounty Raid Limited",
+    "provider": "Evolution",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-1600-majestic_cats_deluxe_ways",
+    "name": "Majestic Cats Deluxe Ways",
+    "provider": "High 5 Games",
+    "sc_name": "cats",
+    "sc_year": 2013,
+    "sc_date": "2013-08-23",
+    "nj_year": 2024,
+    "delta": -11
+  },
+  {
+    "id": "game-1652-foxin_wins_hq",
+    "name": "Foxin Wins Hq",
+    "provider": "Light & Wonder",
+    "sc_name": "foxin wins football fever",
+    "sc_year": 2018,
+    "sc_date": "2018-03-19",
+    "nj_year": 2021,
+    "delta": -3
+  },
+  {
+    "id": "game-1656-shamrock",
+    "name": "Shamrock",
+    "provider": "Everi",
+    "sc_name": "shamrock surprise",
+    "sc_year": 2024,
+    "sc_date": "2024-03-13",
+    "nj_year": 2023,
+    "delta": 1
+  },
+  {
+    "id": "game-1680-smoking_hot_7s",
+    "name": "Smoking Hot 7s",
+    "provider": "Greentube",
+    "sc_name": "smoking hot fruits",
+    "sc_year": 2020,
+    "sc_date": "2020-10-02",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-1704-extra_cash",
+    "name": "Extra Cash",
+    "provider": "Light & Wonder",
+    "sc_name": "kanga cash extra",
+    "sc_year": 2020,
+    "sc_date": "2020-01-25",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-1746-burning_stars_3_halloween",
+    "name": "Burning Stars 3 Halloween",
+    "provider": "Wazdan",
+    "sc_name": "burning stars 3",
+    "sc_year": 2021,
+    "sc_date": "2021-03-23",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-1784-scarab_fortunes_win_and_spin",
+    "name": "Scarab Fortunes Win And Spin",
+    "provider": "Inspired",
+    "sc_name": "scarab",
+    "sc_year": 2019,
+    "sc_date": "2019-04-25",
+    "nj_year": 2023,
+    "delta": -4
+  },
+  {
+    "id": "game-1823-space_invaders",
+    "name": "Space Invaders",
+    "provider": "Inspired",
+    "sc_name": "slingo space invaders",
+    "sc_year": 2023,
+    "sc_date": "2023-11-19",
+    "nj_year": 2022,
+    "delta": 1
+  },
+  {
+    "id": "game-1829-crazy_money_ii",
+    "name": "Crazy Money Ii",
+    "provider": "Incredible Technologies",
+    "sc_name": "crazy money deluxe",
+    "sc_year": 2016,
+    "sc_date": "2016-01-29",
+    "nj_year": 2021,
+    "delta": -5
+  },
+  {
+    "id": "game-1858-sands_of_eternity",
+    "name": "Sands Of Eternity",
+    "provider": "Slotmill",
+    "sc_name": "sands of eternity 2",
+    "sc_year": 2024,
+    "sc_date": "2024-06-18",
+    "nj_year": 2024,
+    "delta": 0
+  },
+  {
+    "id": "game-1861-extreme_tuna_overload",
+    "name": "Extreme Tuna Overload",
+    "provider": "Spinberry",
+    "sc_name": "tuna overload",
+    "sc_year": 2024,
+    "sc_date": "2024-09-17",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-1868-diamond_cash_mighty_santa_boarded_up",
+    "name": "Diamond Cash Mighty Santa Boarded Up",
+    "provider": "Greentube",
+    "sc_name": "diamond link mighty santa boarded up",
+    "sc_year": 2024,
+    "sc_date": "2024-12-09",
+    "nj_year": 2024,
+    "delta": 0
+  },
+  {
+    "id": "game-1905-farmer_franks_golden_wins",
+    "name": "Farmer Franks Golden Wins",
+    "provider": "Spinberry",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-1912-tippys_golden_pot",
+    "name": "Tippys Golden Pot",
+    "provider": "Games Global",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-1924-vikings_unchained_megaways",
+    "name": "Vikings Unchained Megaways",
+    "provider": "White Hat Studios",
+    "sc_name": "vikings",
+    "sc_year": 2017,
+    "sc_date": "2017-02-25",
+    "nj_year": 2022,
+    "delta": -5
+  },
+  {
+    "id": "game-1927-wild_wild_west",
+    "name": "Wild Wild West",
+    "provider": "Evolution",
+    "sc_name": "wild west zone",
+    "sc_year": 2020,
+    "sc_date": "2020-04-30",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-1939-stellar_cash_chicken_fox_5x",
+    "name": "Stellar Cash Chicken Fox 5x",
+    "provider": "Light & Wonder",
+    "sc_name": "stellar cash chicken fox 5x skillstar",
+    "sc_year": 2023,
+    "sc_date": "2023-02-08",
+    "nj_year": 2023,
+    "delta": 0
+  },
+  {
+    "id": "game-1978-10x_minimum_collection",
+    "name": "10x Minimum Collection",
+    "provider": "Spinberry",
+    "sc_name": "10x minimum",
+    "sc_year": 2023,
+    "sc_date": "2023-06-01",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-1981-outlaw_waysfecta",
+    "name": "Outlaw Waysfecta",
+    "provider": "Evolution",
+    "sc_name": "outlaw",
+    "sc_year": 2020,
+    "sc_date": "2020-09-23",
+    "nj_year": 2022,
+    "delta": -2
+  },
+  {
+    "id": "game-1995-alice_riches",
+    "name": "Alice Riches",
+    "provider": "Aristocrat",
+    "sc_name": "alice mega riches",
+    "sc_year": 2022,
+    "sc_date": "2022-08-24",
+    "nj_year": 2022,
+    "delta": 0
+  },
+  {
+    "id": "game-2017-thundering_buffalo_golden_stampede",
+    "name": "Thundering Buffalo Golden Stampede",
+    "provider": "High 5 Games",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-2023-crazy_prospector_bonanza_jackpot_royale",
+    "name": "Crazy Prospector Bonanza Jackpot Royale",
+    "provider": "White Hat Studios",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-2044-mustang_money_2",
+    "name": "Mustang Money 2",
+    "provider": "Ainsworth",
+    "sc_name": "mustang money super",
+    "sc_year": 2020,
+    "sc_date": "2020-12-23",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-2055-total_meltdown",
+    "name": "Total Meltdown",
+    "provider": "Everi",
+    "sc_name": "meltdown",
+    "sc_year": 2020,
+    "sc_date": "2020-08-16",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-2063-foxin_wins_a_very_foxin_christmas",
+    "name": "Foxin Wins A Very Foxin Christmas",
+    "provider": "Light & Wonder",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-2080-dynamite_riches_megaways_limited",
+    "name": "Dynamite Riches Megaways Limited",
+    "provider": "Evolution",
+    "sc_name": "dynamite riches",
+    "sc_year": 2019,
+    "sc_date": "2019-11-21",
+    "nj_year": 2023,
+    "delta": -4
+  },
+  {
+    "id": "game-2091-fiesta_pop",
+    "name": "Fiesta Pop",
+    "provider": "Everi",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2025,
+    "delta": -4
+  },
+  {
+    "id": "game-2092-golden_ox",
+    "name": "Golden Ox",
+    "provider": "Ainsworth",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-2098-mega_fire_blaze_toltec_blocks",
+    "name": "Mega Fire Blaze Toltec Blocks",
+    "provider": "Playtech",
+    "sc_name": "fire blaze toltec blocks",
+    "sc_year": 2023,
+    "sc_date": "2023-04-26",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2102-1_can_2_can",
+    "name": "1 Can 2 Can",
+    "provider": "Light & Wonder",
+    "sc_name": "tin can cash",
+    "sc_year": 2022,
+    "sc_date": "2022-02-15",
+    "nj_year": 2021,
+    "delta": 1
+  },
+  {
+    "id": "game-2125-fat_cat_classix",
+    "name": "Fat Cat Classix",
+    "provider": "Light & Wonder",
+    "sc_name": "fat cat",
+    "sc_year": 2017,
+    "sc_date": "2017-12-18",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-2132-diamonds_by_da_vinci",
+    "name": "Diamonds By Da Vinci",
+    "provider": "High 5 Games",
+    "sc_name": "quadruple da vinci diamonds",
+    "sc_year": 2021,
+    "sc_date": "2021-03-31",
+    "nj_year": 2023,
+    "delta": -2
+  },
+  {
+    "id": "game-2136-mega_meltdown",
+    "name": "Mega Meltdown",
+    "provider": "Everi",
+    "sc_name": "meltdown",
+    "sc_year": 2020,
+    "sc_date": "2020-08-16",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-2155-wolf_canyon_hold_and_win",
+    "name": "Wolf Canyon Hold And Win",
+    "provider": "IGT",
+    "sc_name": "wolf strike hold and win extra",
+    "sc_year": 2025,
+    "sc_date": "2025-06-11",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-2178-joker_rush_collect_em",
+    "name": "Joker Rush Collect Em",
+    "provider": "Playtech",
+    "sc_name": "joker rush cash collect",
+    "sc_year": 2023,
+    "sc_date": "2023-10-23",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2195-foxin_wins",
+    "name": "Foxin Wins",
+    "provider": "Light & Wonder",
+    "sc_name": "foxin wins football fever",
+    "sc_year": 2018,
+    "sc_date": "2018-03-19",
+    "nj_year": 2021,
+    "delta": -3
+  },
+  {
+    "id": "game-2250-rich_n_wild",
+    "name": "Rich N Wild",
+    "provider": "Ainsworth",
+    "sc_name": "stinkin rich skunks gone wild",
+    "sc_year": 2024,
+    "sc_date": "2024-01-27",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-2261-jokers_bonanza",
+    "name": "Jokers Bonanza",
+    "provider": "Greentube",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2025,
+    "delta": -9
+  },
+  {
+    "id": "game-2284-fire_blaze_golden_buccaneer_bells",
+    "name": "Fire Blaze Golden Buccaneer Bells",
+    "provider": "Playtech",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-2293-guss_gold_christmas",
+    "name": "Guss Gold Christmas",
+    "provider": "IGT",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-2346-pyramid",
+    "name": "Pyramid",
+    "provider": "Evolution",
+    "sc_name": "the 100000 pyramid",
+    "sc_year": 2010,
+    "sc_date": "2010-12-10",
+    "nj_year": 2021,
+    "delta": -11
+  },
+  {
+    "id": "game-2354-archdragons_luck_power_reels",
+    "name": "Archdragons Luck Power Reels",
+    "provider": "Evolution",
+    "sc_name": "dragons luck",
+    "sc_year": 2016,
+    "sc_date": "2016-04-13",
+    "nj_year": 2024,
+    "delta": -8
+  },
+  {
+    "id": "game-2370-dolphins",
+    "name": "Dolphins",
+    "provider": "Ainsworth",
+    "sc_name": "dolphins ainsworth",
+    "sc_year": 2018,
+    "sc_date": "2018-10-05",
+    "nj_year": 2021,
+    "delta": -3
+  },
+  {
+    "id": "game-2398-golden_gateway",
+    "name": "Golden Gateway",
+    "provider": "Aruze",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-2410-wolf_fang_spear_of_fire",
+    "name": "Wolf Fang Spear Of Fire",
+    "provider": "Spinomenal",
+    "sc_name": "spear of fire",
+    "sc_year": 2023,
+    "sc_date": "2023-02-28",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2474-scarab_gold_bonus_buy",
+    "name": "Scarab Gold Bonus Buy",
+    "provider": "Inspired",
+    "sc_name": "scarab",
+    "sc_year": 2019,
+    "sc_date": "2019-04-25",
+    "nj_year": 2021,
+    "delta": -2
+  },
+  {
+    "id": "game-2486-kanga_cash",
+    "name": "Kanga Cash",
+    "provider": "Ainsworth",
+    "sc_name": "kanga cash extra",
+    "sc_year": 2020,
+    "sc_date": "2020-01-25",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-2502-treasure_hunter",
+    "name": "Treasure Hunter",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "treasure hunt",
+    "sc_year": 2022,
+    "sc_date": "2022-06-03",
+    "nj_year": 2024,
+    "delta": -2
+  },
+  {
+    "id": "game-2512-white_king_ii",
+    "name": "White King Ii",
+    "provider": "Playtech",
+    "sc_name": "white king",
+    "sc_year": 2014,
+    "sc_date": "2014-11-15",
+    "nj_year": 2021,
+    "delta": -7
+  },
+  {
+    "id": "game-2526-hop_n_pop",
+    "name": "Hop N Pop",
+    "provider": "Hacksaw Gaming",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2023,
+    "delta": -2
+  },
+  {
+    "id": "game-2531-golden_gals_cash_towers",
+    "name": "Golden Gals Cash Towers",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-2532-jungle_bonanza",
+    "name": "Jungle Bonanza",
+    "provider": "White Hat Studios",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-2537-millionaires_mile_hold_and_win_riches",
+    "name": "Millionaires Mile Hold And Win Riches",
+    "provider": "IGT",
+    "sc_name": "millionaire",
+    "sc_year": 2024,
+    "sc_date": "2024-02-07",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-2564-vortex",
+    "name": "Vortex",
+    "provider": "Everi",
+    "sc_name": "diamond vortex",
+    "sc_year": 2020,
+    "sc_date": "2020-08-20",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-2575-treasure_tiles_of_scarab",
+    "name": "Treasure Tiles Of Scarab",
+    "provider": "Games Global",
+    "sc_name": "scarab",
+    "sc_year": 2019,
+    "sc_date": "2019-04-25",
+    "nj_year": 2025,
+    "delta": -6
+  },
+  {
+    "id": "game-2580-christmas_cash_spins",
+    "name": "Christmas Cash Spins",
+    "provider": "Inspired",
+    "sc_name": "cash spin",
+    "sc_year": 2015,
+    "sc_date": "2015-06-23",
+    "nj_year": 2021,
+    "delta": -6
+  },
+  {
+    "id": "game-2603-secrets_of_the_forest_extreme",
+    "name": "Secrets Of The Forest Extreme",
+    "provider": "High 5 Games",
+    "sc_name": "secrets of the forest",
+    "sc_year": 2017,
+    "sc_date": "2017-01-06",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-2623-beehive_bonanza",
+    "name": "Beehive Bonanza",
+    "provider": "Evolution",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-2627-gypsy_riches",
+    "name": "Gypsy Riches",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "gypsy",
+    "sc_year": 2014,
+    "sc_date": "2014-11-20",
+    "nj_year": 2021,
+    "delta": -7
+  },
+  {
+    "id": "game-2643-j_mania_3_buffalo",
+    "name": "J Mania 3 Buffalo",
+    "provider": "Ruby Play",
+    "sc_name": "buffalo mania megaways",
+    "sc_year": 2023,
+    "sc_date": "2023-03-02",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2670-rich_little_piggies_meal_ticket_christma",
+    "name": "Rich Little Piggies Meal Ticket Christmas Edition",
+    "provider": "Light & Wonder",
+    "sc_name": "rich little piggies meal ticket",
+    "sc_year": 2023,
+    "sc_date": "2023-06-29",
+    "nj_year": 2024,
+    "delta": -1
+  },
+  {
+    "id": "game-2693-golden_horns",
+    "name": "Golden Horns",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-2701-guss_gold_mines",
+    "name": "Guss Gold Mines",
+    "provider": "IGT",
+    "sc_name": "mines",
+    "sc_year": 2021,
+    "sc_date": "2021-09-12",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-2713-ice_heist_2_the_museum_snatch_a_roo",
+    "name": "Ice Heist 2 The Museum Snatch A Roo",
+    "provider": "IGT",
+    "sc_name": "ice heist",
+    "sc_year": 2023,
+    "sc_date": "2023-03-30",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2720-magnificent_power_zeus",
+    "name": "Magnificent Power Zeus",
+    "provider": "Games Global",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-2774-jacks_haunted_wins",
+    "name": "Jacks Haunted Wins",
+    "provider": "Aruze",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-2844-diamond_spins_cleopatra",
+    "name": "Diamond Spins Cleopatra",
+    "provider": "IGT",
+    "sc_name": "cleopatra",
+    "sc_year": 2012,
+    "sc_date": "2012-01-08",
+    "nj_year": 2023,
+    "delta": -11
+  },
+  {
+    "id": "game-2856-cool_catch_2_license_2_krill",
+    "name": "Cool Catch 2 License 2 Krill",
+    "provider": "IGT",
+    "sc_name": "cool catch",
+    "sc_year": 2023,
+    "sc_date": "2023-05-15",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-2865-action_dragons_cash_stacks_gold",
+    "name": "Action Dragons Cash Stacks Gold",
+    "provider": "Ainsworth",
+    "sc_name": "action dragons",
+    "sc_year": 2020,
+    "sc_date": "2020-06-21",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-2884-thunder_cash_dollar_king",
+    "name": "Thunder Cash Dollar King",
+    "provider": "Greentube",
+    "sc_name": "thunder cash",
+    "sc_year": 2016,
+    "sc_date": "2016-01-15",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-2899-teddy_bears_picnic",
+    "name": "Teddy Bears Picnic",
+    "provider": "Light & Wonder",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-2905-dragon_spin_cross_link_water",
+    "name": "Dragon Spin Cross Link Water",
+    "provider": "Light & Wonder",
+    "sc_name": "dragon spin",
+    "sc_year": 2015,
+    "sc_date": "2015-02-01",
+    "nj_year": 2024,
+    "delta": -9
+  },
+  {
+    "id": "game-2942-mighty_empire_hold_and_win",
+    "name": "Mighty Empire Hold And Win",
+    "provider": "IGT",
+    "sc_name": "republic empire hold and win",
+    "sc_year": 2024,
+    "sc_date": "2024-05-28",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-2952-olympus_zeus_megaways",
+    "name": "Olympus Zeus Megaways",
+    "provider": "IGT",
+    "sc_name": "zeus",
+    "sc_year": 2017,
+    "sc_date": "2017-04-18",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-2953-wolves_wolves_wolves",
+    "name": "Wolves Wolves Wolves",
+    "provider": "Playtech",
+    "sc_name": "golden wolves",
+    "sc_year": 2021,
+    "sc_date": "2021-04-12",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-2976-fu_bao_chang_2play",
+    "name": "Fu Bao Chang 2play",
+    "provider": "Design Works Gaming",
+    "sc_name": "fu bao chang",
+    "sc_year": 2020,
+    "sc_date": "2020-03-19",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-2988-bay_bounty_bonanza",
+    "name": "Bay Bounty Bonanza",
+    "provider": "Betixon",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2025,
+    "delta": -9
+  },
+  {
+    "id": "game-3008-enchanted_kingdom_mega_drop",
+    "name": "Enchanted Kingdom Mega Drop",
+    "provider": "Light & Wonder",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3019-kokeshi_pop",
+    "name": "Kokeshi Pop",
+    "provider": "Avatarux",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-3020-book_of_christmas",
+    "name": "Book Of Christmas",
+    "provider": "Inspired",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2021,
+    "delta": 0
+  },
+  {
+    "id": "game-3027-vegas_cash_spins",
+    "name": "Vegas Cash Spins",
+    "provider": "Inspired",
+    "sc_name": "cash spin",
+    "sc_year": 2015,
+    "sc_date": "2015-06-23",
+    "nj_year": 2021,
+    "delta": -6
+  },
+  {
+    "id": "game-3028-super_20_stars",
+    "name": "Super 20 Stars",
+    "provider": "Red Rake Gaming",
+    "sc_name": "super 12 stars",
+    "sc_year": 2019,
+    "sc_date": "2019-05-29",
+    "nj_year": 2025,
+    "delta": -6
+  },
+  {
+    "id": "game-3045-fishin_bonanza",
+    "name": "Fishin Bonanza",
+    "provider": "Playtech",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2023,
+    "delta": -7
+  },
+  {
+    "id": "game-3084-diamond_lights",
+    "name": "Diamond Lights",
+    "provider": "Games Global",
+    "sc_name": "lights",
+    "sc_year": 2014,
+    "sc_date": "2014-05-22",
+    "nj_year": 2023,
+    "delta": -9
+  },
+  {
+    "id": "game-3152-white_tiger_palace",
+    "name": "White Tiger Palace",
+    "provider": "Design Works Gaming",
+    "sc_name": "tiger palace",
+    "sc_year": 2020,
+    "sc_date": "2020-03-05",
+    "nj_year": 2025,
+    "delta": -5
+  },
+  {
+    "id": "game-3165-jingle_bells_limited",
+    "name": "Jingle Bells Limited",
+    "provider": "Evolution",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-3166-tiger_palace_2_play",
+    "name": "Tiger Palace 2 Play",
+    "provider": "Design Works Gaming",
+    "sc_name": "tiger palace",
+    "sc_year": 2020,
+    "sc_date": "2020-03-05",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-3183-eagles_flight_power_bet",
+    "name": "Eagles Flight Power Bet",
+    "provider": "High 5 Games",
+    "sc_name": "eagles flight",
+    "sc_year": 2019,
+    "sc_date": "2019-02-14",
+    "nj_year": 2024,
+    "delta": -5
+  },
+  {
+    "id": "game-3193-golden_yak",
+    "name": "Golden Yak",
+    "provider": "Light & Wonder",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-3194-mustang_spirit_cash_stacks_gold",
+    "name": "Mustang Spirit Cash Stacks Gold",
+    "provider": "Ainsworth",
+    "sc_name": "mustang spirit",
+    "sc_year": 2018,
+    "sc_date": "2018-02-20",
+    "nj_year": 2023,
+    "delta": -5
+  },
+  {
+    "id": "game-3245-lucky_reels",
+    "name": "Lucky Reels",
+    "provider": "Wazdan",
+    "sc_name": "lucky twins 5x 4tune reels",
+    "sc_year": 2024,
+    "sc_date": "2024-09-16",
+    "nj_year": 2023,
+    "delta": 1
+  },
+  {
+    "id": "game-3269-riddle_of_riches",
+    "name": "Riddle Of Riches",
+    "provider": "High 5 Games",
+    "sc_name": "riddle of riches mystery cruise",
+    "sc_year": 2024,
+    "sc_date": "2024-07-08",
+    "nj_year": 2021,
+    "delta": 3
+  },
+  {
+    "id": "game-3309-enchanted_eyes",
+    "name": "Enchanted Eyes",
+    "provider": "Ainsworth",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3341-who_wants_to_be_a_millionaire_mystery_bo",
+    "name": "Who Wants To Be A Millionaire Mystery Box",
+    "provider": "Evolution",
+    "sc_name": "millionaire",
+    "sc_year": 2024,
+    "sc_date": "2024-02-07",
+    "nj_year": 2025,
+    "delta": -1
+  },
+  {
+    "id": "game-3355-candyblasted",
+    "name": "Candyblasted",
+    "provider": "High 5 Games",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3365-golden_dollars",
+    "name": "Golden Dollars",
+    "provider": "Ainsworth",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3370-mystery_fox_christmas_party",
+    "name": "Mystery Fox Christmas Party",
+    "provider": "Aristocrat",
+    "sc_name": "mystery fox",
+    "sc_year": 2020,
+    "sc_date": "2020-05-06",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-3374-bonus_7s_wild",
+    "name": "Bonus 7s Wild",
+    "provider": "Light & Wonder",
+    "sc_name": "7s wild",
+    "sc_year": 2022,
+    "sc_date": "2022-05-12",
+    "nj_year": 2025,
+    "delta": -3
+  },
+  {
+    "id": "game-3376-piggy_bank_fortune",
+    "name": "Piggy Bank Fortune",
+    "provider": "Spinberry",
+    "sc_name": "piggy bank fortune pusher",
+    "sc_year": 2025,
+    "sc_date": "2025-09-02",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-3421-dangerous_beauty_blades_edge",
+    "name": "Dangerous Beauty Blades Edge",
+    "provider": "High 5 Games",
+    "sc_name": "dangerous beauty",
+    "sc_year": 2018,
+    "sc_date": "2018-08-22",
+    "nj_year": 2023,
+    "delta": -5
+  },
+  {
+    "id": "game-3435-the_hot_offer_deluxe",
+    "name": "The Hot Offer Deluxe",
+    "provider": "Light & Wonder",
+    "sc_name": "hot offer deluxe",
+    "sc_year": 2023,
+    "sc_date": "2023-09-07",
+    "nj_year": 2024,
+    "delta": -1
+  },
+  {
+    "id": "game-3443-wild_west_zone_dynamic_ways",
+    "name": "Wild West Zone Dynamic Ways",
+    "provider": "Oddsworks",
+    "sc_name": "wild west zone",
+    "sc_year": 2020,
+    "sc_date": "2020-04-30",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-3450-girl_with_the_golden_eyes",
+    "name": "Girl With The Golden Eyes",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-3462-golden_sunshine",
+    "name": "Golden Sunshine",
+    "provider": "Spinberry",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-3465-golden_mane",
+    "name": "Golden Mane",
+    "provider": "Light & Wonder",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3481-magic_stars_3_xmas",
+    "name": "Magic Stars 3 Xmas",
+    "provider": "Wazdan",
+    "sc_name": "magic stars 3",
+    "sc_year": 2018,
+    "sc_date": "2018-02-06",
+    "nj_year": 2024,
+    "delta": -6
+  },
+  {
+    "id": "game-3493-golden_magic",
+    "name": "Golden Magic",
+    "provider": "Aruze",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3513-hot_hot_777",
+    "name": "Hot Hot 777",
+    "provider": "Aristocrat",
+    "sc_name": "hot 777 deluxe",
+    "sc_year": 2018,
+    "sc_date": "2018-10-10",
+    "nj_year": 2022,
+    "delta": -4
+  },
+  {
+    "id": "game-3528-anaconda_wild_2",
+    "name": "Anaconda Wild 2",
+    "provider": "Playtech",
+    "sc_name": "anaconda wild",
+    "sc_year": 2018,
+    "sc_date": "2018-10-12",
+    "nj_year": 2023,
+    "delta": -5
+  },
+  {
+    "id": "game-3565-1849_gold_bonanza",
+    "name": "1849 Gold Bonanza",
+    "provider": "Spearhead Studios",
+    "sc_name": "bonanza",
+    "sc_year": 2016,
+    "sc_date": "2016-12-07",
+    "nj_year": 2024,
+    "delta": -8
+  },
+  {
+    "id": "game-3579-flame",
+    "name": "Flame",
+    "provider": "Light & Wonder",
+    "sc_name": "diamond desire flame",
+    "sc_year": 2025,
+    "sc_date": "2025-07-10",
+    "nj_year": 2021,
+    "delta": 4
+  },
+  {
+    "id": "game-3584-10x_minimum_lucky_clover",
+    "name": "10x Minimum Lucky Clover",
+    "provider": "Spinberry",
+    "sc_name": "10x minimum",
+    "sc_year": 2023,
+    "sc_date": "2023-06-01",
+    "nj_year": 2025,
+    "delta": -2
+  },
+  {
+    "id": "game-3619-midnight_princess_christmas_kingdom",
+    "name": "Midnight Princess Christmas Kingdom",
+    "provider": "Play'n GO",
+    "sc_name": "christmas",
+    "sc_year": 2021,
+    "sc_date": "2021-12-13",
+    "nj_year": 2024,
+    "delta": -3
+  },
+  {
+    "id": "game-3626-super_hot_7s",
+    "name": "Super Hot 7s",
+    "provider": "Ainsworth",
+    "sc_name": "super hot joker",
+    "sc_year": 2022,
+    "sc_date": "2022-02-10",
+    "nj_year": 2021,
+    "delta": 1
+  },
+  {
+    "id": "game-3636-teddys_tavern",
+    "name": "Teddys Tavern",
+    "provider": "Aristocrat",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2023,
+    "delta": -6
+  },
+  {
+    "id": "game-3640-golden_plunder",
+    "name": "Golden Plunder",
+    "provider": "Spinberry",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2025,
+    "delta": -8
+  },
+  {
+    "id": "game-3674-diamond_rush_fortune",
+    "name": "Diamond Rush Fortune",
+    "provider": "Betixon",
+    "sc_name": "diamond rush",
+    "sc_year": 2018,
+    "sc_date": "2018-11-26",
+    "nj_year": 2025,
+    "delta": -7
+  },
+  {
+    "id": "game-3676-drop_the_wilds",
+    "name": "Drop The Wilds",
+    "provider": "Spinberry",
+    "sc_name": "mega drop the wilds",
+    "sc_year": 2024,
+    "sc_date": "2024-12-17",
+    "nj_year": 2023,
+    "delta": 1
+  },
+  {
+    "id": "game-3702-the_asp_of_cleopatra",
+    "name": "The Asp Of Cleopatra",
+    "provider": "Red Rake Gaming",
+    "sc_name": "cleopatra",
+    "sc_year": 2012,
+    "sc_date": "2012-01-08",
+    "nj_year": 2024,
+    "delta": -12
+  },
+  {
+    "id": "game-3727-golden_three_kingdom",
+    "name": "Golden Three Kingdom",
+    "provider": "High 5 Games",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3746-split_dragon_power_bet",
+    "name": "Split Dragon Power Bet",
+    "provider": "High 5 Games",
+    "sc_name": "split dragon",
+    "sc_year": 2018,
+    "sc_date": "2018-12-19",
+    "nj_year": 2025,
+    "delta": -7
+  },
+  {
+    "id": "game-3750-power_potz_ultranudge",
+    "name": "Power Potz Ultranudge",
+    "provider": "Bang Bang Games",
+    "sc_name": "rainbow power potz ultranudge",
+    "sc_year": 2022,
+    "sc_date": "2022-12-08",
+    "nj_year": 2025,
+    "delta": -3
+  },
+  {
+    "id": "game-3751-jane_jones_book_of_kings_2",
+    "name": "Jane Jones Book Of Kings 2",
+    "provider": "Playtech",
+    "sc_name": "book of kings",
+    "sc_year": 2020,
+    "sc_date": "2020-03-13",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-3760-golden_scrolls",
+    "name": "Golden Scrolls",
+    "provider": "Slotmill",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-3775-gold_cash",
+    "name": "Gold Cash",
+    "provider": "Inspired",
+    "sc_name": "gold cash free spins megaways",
+    "sc_year": 2023,
+    "sc_date": "2023-05-28",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-3800-golden_avalanche",
+    "name": "Golden Avalanche",
+    "provider": "Bragg Gaming Group",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2024,
+    "delta": -7
+  },
+  {
+    "id": "game-3808-crazy_coin",
+    "name": "Crazy Coin",
+    "provider": "Aruze",
+    "sc_name": "crazy coin flip",
+    "sc_year": 2022,
+    "sc_date": "2022-06-14",
+    "nj_year": 2024,
+    "delta": -2
+  },
+  {
+    "id": "game-3811-thunder_power",
+    "name": "Thunder Power",
+    "provider": "Oddsworks",
+    "sc_name": "bingo staxx thunder power",
+    "sc_year": 2022,
+    "sc_date": "2022-12-15",
+    "nj_year": 2025,
+    "delta": -3
+  },
+  {
+    "id": "game-3853-bee_frenzy_thundershots",
+    "name": "Bee Frenzy Thundershots",
+    "provider": "Playtech",
+    "sc_name": "bee frenzy",
+    "sc_year": 2020,
+    "sc_date": "2020-11-20",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-3878-golden_knight_ii",
+    "name": "Golden Knight Ii",
+    "provider": "High 5 Games",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-3979-prospector_wilds_hold_and_win",
+    "name": "Prospector Wilds Hold And Win",
+    "provider": "1x2 Network",
+    "sc_name": "cleopatra wilds hold and win",
+    "sc_year": 2025,
+    "sc_date": "2025-05-14",
+    "nj_year": 2025,
+    "delta": 0
+  },
+  {
+    "id": "game-3994-space_spins",
+    "name": "Space Spins",
+    "provider": "Wazdan",
+    "sc_name": "space spins wazdan",
+    "sc_year": 2019,
+    "sc_date": "2019-05-09",
+    "nj_year": 2023,
+    "delta": -4
+  },
+  {
+    "id": "game-4213-candy_blasted",
+    "name": "Candy Blasted",
+    "provider": "High 5 Games",
+    "sc_name": "ted",
+    "sc_year": 2017,
+    "sc_date": "2017-03-13",
+    "nj_year": 2022,
+    "delta": -5
+  },
+  {
+    "id": "game-4229-eagle_strike",
+    "name": "Eagle Strike",
+    "provider": "1x2 Network",
+    "sc_name": "eagle strike lucky cache",
+    "sc_year": 2024,
+    "sc_date": "2024-08-29",
+    "nj_year": 2024,
+    "delta": 0
+  },
+  {
+    "id": "game-4351-rocket_man",
+    "name": "Rocket Man",
+    "provider": "High 5 Games",
+    "sc_name": "rocket man high 5 games",
+    "sc_year": 2019,
+    "sc_date": "2019-05-13",
+    "nj_year": 2021,
+    "delta": -2
+  },
+  {
+    "id": "game-4356-iron_county_outlaw",
+    "name": "Iron County Outlaw",
+    "provider": "Games Global",
+    "sc_name": "outlaw",
+    "sc_year": 2020,
+    "sc_date": "2020-09-23",
+    "nj_year": 2024,
+    "delta": -4
+  },
+  {
+    "id": "game-4417-coin_burst",
+    "name": "Coin Burst",
+    "provider": "Aristocrat",
+    "sc_name": "coin trio piggy burst",
+    "sc_year": 2025,
+    "sc_date": "2025-12-17",
+    "nj_year": 2024,
+    "delta": 1
+  },
+  {
+    "id": "game-4418-road_to_riches",
+    "name": "Road To Riches",
+    "provider": "Light & Wonder",
+    "sc_name": "silk road riches",
+    "sc_year": 2020,
+    "sc_date": "2020-05-28",
+    "nj_year": 2021,
+    "delta": -1
+  },
+  {
+    "id": "game-4429-relic_hunters_and_the_book_of_faith",
+    "name": "Relic Hunters And The Book Of Faith",
+    "provider": "Wazdan",
+    "sc_name": "faith",
+    "sc_year": 2020,
+    "sc_date": "2020-12-07",
+    "nj_year": 2023,
+    "delta": -3
+  },
+  {
+    "id": "game-4491-golden_vault_of_the_pharaohs_power_bet",
+    "name": "Golden Vault Of The Pharaohs Power Bet",
+    "provider": "High 5 Games",
+    "sc_name": "golden",
+    "sc_year": 2017,
+    "sc_date": "2017-01-17",
+    "nj_year": 2021,
+    "delta": -4
+  },
+  {
+    "id": "game-4504-goldstruck",
+    "name": "Goldstruck",
+    "provider": "High 5 Games",
+    "sc_name": "goldstruck blasts",
+    "sc_year": 2023,
+    "sc_date": "2023-03-24",
+    "nj_year": 2021,
+    "delta": 2
+  },
+  {
+    "id": "game-4509-reefpop",
+    "name": "Reefpop",
+    "provider": "Light & Wonder",
+    "sc_name": "pop",
+    "sc_year": 2021,
+    "sc_date": "2021-03-08",
+    "nj_year": 2024,
+    "delta": -3
+  }
+]

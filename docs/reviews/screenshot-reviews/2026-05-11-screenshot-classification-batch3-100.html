@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Screenshot Classification — Batch 3 Spot-Check (100 games)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #2ecc71; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.counts { text-align: center; margin: 16px 0; font-size: 0.95em; }
+.counts span { display: inline-block; padding: 4px 12px; border-radius: 4px; margin: 0 4px; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.size { color: #666; font-size: 0.7em; font-weight: normal; }
+.dims { margin-top: 12px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 8px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.05em; margin-bottom: 8px; }
+.btns { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-gp, .btn-promo, .btn-splash, .btn-rules, .btn-ok { padding: 6px 18px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+.btn-gp { background: #2ecc71; color: #000; }
+.btn-promo { background: #e74c3c; color: #fff; }
+.btn-splash { background: #f39c12; color: #000; }
+.btn-rules { background: #3498db; color: #fff; }
+.btn-ok { background: #555; color: #fff; }
+.btn-gp.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-promo.selected { box-shadow: 0 0 0 3px #c0392b; }
+.btn-splash.selected { box-shadow: 0 0 0 3px #e67e22; }
+.btn-rules.selected { box-shadow: 0 0 0 3px #2980b9; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #888; }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; font-weight: normal; }
+.badge-gp { background: #2ecc71; color: #000; }
+.badge-promo { background: #e74c3c; color: #fff; }
+.badge-splash { background: #f39c12; color: #000; }
+.badge-rules { background: #3498db; color: #fff; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold; }
+#export-area { width: 90%; height: 250px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; font-family: monospace; font-size: 0.85em; }
+</style></head><body>
+<h1>Screenshot Classification — Batch 3 (V5 Prompt)</h1>
+<p class="summary">100 fresh images (not in previous reviews). V5 prompt: 97.4% on 189 GT. This batch brings GT to ~290.</p>
+<p class="summary">Unmarked = gameplay. Click correct category or OK if Claude is right. Export at bottom.</p>
+<div class="counts">
+  <span style="background:#2ecc71;color:#000">gameplay: 92</span>
+  <span style="background:#e74c3c;color:#fff">promotional: 4</span>
+  <span style="background:#3498db;color:#fff">rules_page: 1</span>
+  <span style="background:#f39c12;color:#000">splash_screen: 3</span>
+</div>
+
+<div class="game" id="g0">
+  <div class="game-title">#1: Mirror-Joker <span class="badge badge-gp">gameplay</span> <span class="size">182KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mirror-Joker.jpg" alt="Mirror-Joker">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(0,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(0,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(0,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(0,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(0,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-0"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g1">
+  <div class="game-title">#2: Ghosts-N-Gold <span class="badge badge-gp">gameplay</span> <span class="size">452KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Ghosts-N-Gold.jpg" alt="Ghosts-N-Gold">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(1,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(1,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(1,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(1,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(1,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-1"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g2">
+  <div class="game-title">#3: cash-can-ultratap <span class="badge badge-gp">gameplay</span> <span class="size">86KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/cash-can-ultratap.webp" alt="cash-can-ultratap">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(2,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(2,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(2,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(2,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(2,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-2"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g3">
+  <div class="game-title">#4: beaver-las-vegas <span class="badge badge-gp">gameplay</span> <span class="size">79KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/beaver-las-vegas.jpg" alt="beaver-las-vegas">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(3,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(3,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(3,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(3,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(3,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-3"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g4">
+  <div class="game-title">#5: calavera-cash <span class="badge badge-gp">gameplay</span> <span class="size">145KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/calavera-cash.webp" alt="calavera-cash">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(4,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(4,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(4,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(4,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(4,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-4"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g5">
+  <div class="game-title">#6: Spartan-Fire <span class="badge badge-gp">gameplay</span> <span class="size">295KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Spartan-Fire.png" alt="Spartan-Fire">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(5,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(5,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(5,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(5,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(5,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-5"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g6">
+  <div class="game-title">#7: Rising-Temple-Hold-And-Win <span class="badge badge-rules">rules_page</span> <span class="size">215KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rising-Temple-Hold-And-Win.jpg" alt="Rising-Temple-Hold-And-Win">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>rules_page</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(6,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(6,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(6,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(6,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(6,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-6"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g7">
+  <div class="game-title">#8: Coins-Of-Egypt <span class="badge badge-gp">gameplay</span> <span class="size">738KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Coins-Of-Egypt.jpg" alt="Coins-Of-Egypt">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(7,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(7,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(7,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(7,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(7,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-7"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g8">
+  <div class="game-title">#9: Mighty-Medusa <span class="badge badge-gp">gameplay</span> <span class="size">144KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mighty-Medusa.jpg" alt="Mighty-Medusa">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(8,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(8,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(8,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(8,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(8,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-8"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g9">
+  <div class="game-title">#10: Holidays-Joker-Halloween <span class="badge badge-gp">gameplay</span> <span class="size">128KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Holidays-Joker-Halloween.jpg" alt="Holidays-Joker-Halloween">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(9,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(9,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(9,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(9,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(9,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-9"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g10">
+  <div class="game-title">#11: Diamond-Inferno <span class="badge badge-gp">gameplay</span> <span class="size">60KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Diamond-Inferno.jpg" alt="Diamond-Inferno">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(10,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(10,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(10,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(10,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(10,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-10"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g11">
+  <div class="game-title">#12: Slingo-Fluffy-Favourites <span class="badge badge-gp">gameplay</span> <span class="size">103KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Fluffy-Favourites.jpg" alt="Slingo-Fluffy-Favourites">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(11,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(11,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(11,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(11,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(11,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-11"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g12">
+  <div class="game-title">#13: Eagle-Dollar <span class="badge badge-gp">gameplay</span> <span class="size">138KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Eagle-Dollar.jpg" alt="Eagle-Dollar">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(12,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(12,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(12,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(12,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(12,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-12"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g13">
+  <div class="game-title">#14: diamond-blitz-2 <span class="badge badge-gp">gameplay</span> <span class="size">52KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/diamond-blitz-2.webp" alt="diamond-blitz-2">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(13,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(13,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(13,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(13,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(13,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-13"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g14">
+  <div class="game-title">#15: Legacy-Of-The-Wild-2 <span class="badge badge-gp">gameplay</span> <span class="size">162KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Legacy-Of-The-Wild-2.jpg" alt="Legacy-Of-The-Wild-2">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(14,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(14,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(14,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(14,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(14,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-14"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g15">
+  <div class="game-title">#16: beer-stein-bears <span class="badge badge-gp">gameplay</span> <span class="size">72KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/beer-stein-bears.webp" alt="beer-stein-bears">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(15,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(15,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(15,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(15,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(15,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-15"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g16">
+  <div class="game-title">#17: Pharaohs-Daughter <span class="badge badge-gp">gameplay</span> <span class="size">633KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Pharaohs-Daughter.jpg" alt="Pharaohs-Daughter">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(16,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(16,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(16,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(16,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(16,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-16"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g17">
+  <div class="game-title">#18: In-The-Rabbit-Hole <span class="badge badge-gp">gameplay</span> <span class="size">55KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/In-The-Rabbit-Hole.jpeg" alt="In-The-Rabbit-Hole">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(17,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(17,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(17,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(17,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(17,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-17"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g18">
+  <div class="game-title">#19: Tomb-Of-Nefertiti <span class="badge badge-gp">gameplay</span> <span class="size">566KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tomb-Of-Nefertiti.jpg" alt="Tomb-Of-Nefertiti">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(18,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(18,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(18,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(18,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(18,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-18"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g19">
+  <div class="game-title">#20: cash-carts-western-wagons <span class="badge badge-gp">gameplay</span> <span class="size">59KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/cash-carts-western-wagons.jpg" alt="cash-carts-western-wagons">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(19,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(19,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(19,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(19,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(19,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-19"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g20">
+  <div class="game-title">#21: Loot-Boost <span class="badge badge-gp">gameplay</span> <span class="size">55KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Loot-Boost.jpg" alt="Loot-Boost">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(20,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(20,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(20,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(20,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(20,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-20"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g21">
+  <div class="game-title">#22: Heart-Of-Romance <span class="badge badge-gp">gameplay</span> <span class="size">196KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Heart-Of-Romance.jpg" alt="Heart-Of-Romance">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(21,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(21,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(21,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(21,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(21,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-21"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g22">
+  <div class="game-title">#23: Choco-Reels <span class="badge badge-gp">gameplay</span> <span class="size">140KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Choco-Reels.jpg" alt="Choco-Reels">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(22,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(22,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(22,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(22,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(22,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-22"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g23">
+  <div class="game-title">#24: big-catch-even-bigger-bass <span class="badge badge-gp">gameplay</span> <span class="size">168KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/big-catch-even-bigger-bass.webp" alt="big-catch-even-bigger-bass">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(23,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(23,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(23,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(23,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(23,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-23"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g24">
+  <div class="game-title">#25: Power-Of-Gods-Medusa <span class="badge badge-promo">promotional</span> <span class="size">145KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Power-Of-Gods-Medusa.jpg" alt="Power-Of-Gods-Medusa">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>promotional</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(24,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(24,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(24,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(24,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(24,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-24"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g25">
+  <div class="game-title">#26: Treasure-Hunter <span class="badge badge-gp">gameplay</span> <span class="size">521KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Treasure-Hunter.jpg" alt="Treasure-Hunter">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(25,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(25,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(25,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(25,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(25,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-25"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g26">
+  <div class="game-title">#27: Dragon-Blast <span class="badge badge-gp">gameplay</span> <span class="size">450KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dragon-Blast.jpg" alt="Dragon-Blast">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(26,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(26,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(26,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(26,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(26,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-26"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g27">
+  <div class="game-title">#28: Starstruck <span class="badge badge-splash">splash_screen</span> <span class="size">215KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Starstruck.jpg" alt="Starstruck">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>splash_screen</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(27,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(27,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(27,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(27,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(27,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-27"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g28">
+  <div class="game-title">#29: Fishermans-Bounty <span class="badge badge-gp">gameplay</span> <span class="size">917KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fishermans-Bounty.jpg" alt="Fishermans-Bounty">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(28,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(28,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(28,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(28,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(28,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-28"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g29">
+  <div class="game-title">#30: Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s <span class="badge badge-promo">promotional</span> <span class="size">38KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s.jpg" alt="Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>promotional</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(29,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(29,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(29,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(29,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(29,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-29"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g30">
+  <div class="game-title">#31: Outback-Walkabout <span class="badge badge-gp">gameplay</span> <span class="size">1141KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Outback-Walkabout.png" alt="Outback-Walkabout">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(30,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(30,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(30,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(30,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(30,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-30"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g31">
+  <div class="game-title">#32: the-goonies-megaways <span class="badge badge-gp">gameplay</span> <span class="size">71KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/the-goonies-megaways.jpg" alt="the-goonies-megaways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(31,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(31,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(31,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(31,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(31,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-31"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g32">
+  <div class="game-title">#33: elephants-vs-tigers <span class="badge badge-gp">gameplay</span> <span class="size">130KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/elephants-vs-tigers.webp" alt="elephants-vs-tigers">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(32,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(32,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(32,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(32,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(32,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-32"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g33">
+  <div class="game-title">#34: Tower-Quest-Legacy <span class="badge badge-gp">gameplay</span> <span class="size">1715KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tower-Quest-Legacy.jpg" alt="Tower-Quest-Legacy">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(33,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(33,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(33,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(33,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(33,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-33"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g34">
+  <div class="game-title">#35: gladiator-ways <span class="badge badge-gp">gameplay</span> <span class="size">89KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/gladiator-ways.webp" alt="gladiator-ways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(34,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(34,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(34,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(34,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(34,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-34"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g35">
+  <div class="game-title">#36: Valkyrie-Returns <span class="badge badge-gp">gameplay</span> <span class="size">63KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Valkyrie-Returns.jpg" alt="Valkyrie-Returns">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(35,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(35,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(35,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(35,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(35,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-35"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g36">
+  <div class="game-title">#37: ted-afterparty <span class="badge badge-gp">gameplay</span> <span class="size">55KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/ted-afterparty.webp" alt="ted-afterparty">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(36,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(36,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(36,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(36,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(36,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-36"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g37">
+  <div class="game-title">#38: Mayan-Eagle <span class="badge badge-gp">gameplay</span> <span class="size">102KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mayan-Eagle.jpg" alt="Mayan-Eagle">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(37,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(37,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(37,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(37,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(37,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-37"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g38">
+  <div class="game-title">#39: Golden-Lucky-Fortune <span class="badge badge-gp">gameplay</span> <span class="size">84KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Golden-Lucky-Fortune.jpg" alt="Golden-Lucky-Fortune">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(38,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(38,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(38,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(38,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(38,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-38"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g39">
+  <div class="game-title">#40: The-Goonies-Jackpot-Royale <span class="badge badge-gp">gameplay</span> <span class="size">547KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/The-Goonies-Jackpot-Royale.jpg" alt="The-Goonies-Jackpot-Royale">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(39,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(39,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(39,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(39,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(39,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-39"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g40">
+  <div class="game-title">#41: Quadruple-Da-Vinci-Diamonds <span class="badge badge-gp">gameplay</span> <span class="size">177KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Quadruple-Da-Vinci-Diamonds.jpg" alt="Quadruple-Da-Vinci-Diamonds">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(40,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(40,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(40,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(40,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(40,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-40"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g41">
+  <div class="game-title">#42: Sanctuary <span class="badge badge-gp">gameplay</span> <span class="size">60KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Sanctuary.jpeg" alt="Sanctuary">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(41,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(41,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(41,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(41,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(41,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-41"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g42">
+  <div class="game-title">#43: 10x-minimum-big-bucks <span class="badge badge-gp">gameplay</span> <span class="size">73KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/10x-minimum-big-bucks.webp" alt="10x-minimum-big-bucks">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(42,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(42,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(42,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(42,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(42,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-42"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g43">
+  <div class="game-title">#44: Stormforged <span class="badge badge-gp">gameplay</span> <span class="size">39KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Stormforged.jpeg" alt="Stormforged">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(43,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(43,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(43,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(43,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(43,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-43"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g44">
+  <div class="game-title">#45: Mystery-Jack-Deluxe <span class="badge badge-gp">gameplay</span> <span class="size">519KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mystery-Jack-Deluxe.jpg" alt="Mystery-Jack-Deluxe">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(44,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(44,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(44,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(44,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(44,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-44"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g45">
+  <div class="game-title">#46: Alexander-The-Great-World-Conqueror <span class="badge badge-gp">gameplay</span> <span class="size">65KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Alexander-The-Great-World-Conqueror.jpeg" alt="Alexander-The-Great-World-Conqueror">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(45,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(45,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(45,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(45,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(45,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-45"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g46">
+  <div class="game-title">#47: Manhattan-Goes-Wild <span class="badge badge-gp">gameplay</span> <span class="size">551KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Manhattan-Goes-Wild.jpg" alt="Manhattan-Goes-Wild">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(46,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(46,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(46,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(46,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(46,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-46"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g47">
+  <div class="game-title">#48: Prism-Of-Gems <span class="badge badge-gp">gameplay</span> <span class="size">190KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Prism-Of-Gems.jpg" alt="Prism-Of-Gems">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(47,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(47,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(47,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(47,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(47,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-47"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g48">
+  <div class="game-title">#49: Legacy-Of-Inca <span class="badge badge-gp">gameplay</span> <span class="size">2343KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Legacy-Of-Inca.jpg" alt="Legacy-Of-Inca">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(48,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(48,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(48,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(48,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(48,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-48"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g49">
+  <div class="game-title">#50: The-Goonies <span class="badge badge-gp">gameplay</span> <span class="size">56KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/The-Goonies.jpg" alt="The-Goonies">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(49,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(49,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(49,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(49,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(49,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-49"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g50">
+  <div class="game-title">#51: Joker-Fire-Frenzy <span class="badge badge-gp">gameplay</span> <span class="size">51KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Joker-Fire-Frenzy.jpeg" alt="Joker-Fire-Frenzy">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(50,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(50,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(50,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(50,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(50,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-50"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g51">
+  <div class="game-title">#52: Annihilator <span class="badge badge-gp">gameplay</span> <span class="size">840KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Annihilator.jpg" alt="Annihilator">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(51,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(51,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(51,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(51,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(51,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-51"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g52">
+  <div class="game-title">#53: Maya-Gold-IGT <span class="badge badge-gp">gameplay</span> <span class="size">824KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Maya-Gold-IGT.jpg" alt="Maya-Gold-IGT">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(52,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(52,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(52,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(52,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(52,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-52"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g53">
+  <div class="game-title">#54: 9-Coins <span class="badge badge-gp">gameplay</span> <span class="size">43KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/9-Coins.jpg" alt="9-Coins">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(53,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(53,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(53,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(53,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(53,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-53"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g54">
+  <div class="game-title">#55: Tomb-Of-Gold-Reimagined <span class="badge badge-gp">gameplay</span> <span class="size">2158KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tomb-Of-Gold-Reimagined.jpg" alt="Tomb-Of-Gold-Reimagined">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(54,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(54,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(54,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(54,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(54,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-54"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g55">
+  <div class="game-title">#56: thundering-eclipse <span class="badge badge-gp">gameplay</span> <span class="size">106KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/thundering-eclipse.webp" alt="thundering-eclipse">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(55,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(55,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(55,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(55,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(55,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-55"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g56">
+  <div class="game-title">#57: Mayan-Cache <span class="badge badge-gp">gameplay</span> <span class="size">1335KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mayan-Cache.jpg" alt="Mayan-Cache">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(56,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(56,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(56,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(56,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(56,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-56"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g57">
+  <div class="game-title">#58: Ring-Of-Odin <span class="badge badge-gp">gameplay</span> <span class="size">186KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Ring-Of-Odin.jpg" alt="Ring-Of-Odin">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(57,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(57,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(57,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(57,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(57,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-57"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g58">
+  <div class="game-title">#59: Aliyas-Wishes <span class="badge badge-gp">gameplay</span> <span class="size">1046KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Aliyas-Wishes.jpg" alt="Aliyas-Wishes">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(58,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(58,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(58,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(58,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(58,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-58"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g59">
+  <div class="game-title">#60: Fiesta-De-Toros <span class="badge badge-gp">gameplay</span> <span class="size">91KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fiesta-De-Toros.jpg" alt="Fiesta-De-Toros">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(59,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(59,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(59,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(59,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(59,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-59"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g60">
+  <div class="game-title">#61: The-Wild-Hatter <span class="badge badge-gp">gameplay</span> <span class="size">902KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/The-Wild-Hatter.jpg" alt="The-Wild-Hatter">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(60,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(60,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(60,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(60,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(60,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-60"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g61">
+  <div class="game-title">#62: triple-turducken <span class="badge badge-gp">gameplay</span> <span class="size">88KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/triple-turducken.webp" alt="triple-turducken">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(61,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(61,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(61,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(61,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(61,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-61"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g62">
+  <div class="game-title">#63: Love-Joker <span class="badge badge-gp">gameplay</span> <span class="size">35KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Love-Joker.jpg" alt="Love-Joker">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(62,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(62,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(62,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(62,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(62,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-62"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g63">
+  <div class="game-title">#64: Wilderland <span class="badge badge-gp">gameplay</span> <span class="size">810KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wilderland.jpg" alt="Wilderland">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(63,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(63,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(63,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(63,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(63,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-63"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g64">
+  <div class="game-title">#65: Tomb-Of-Akhenaten <span class="badge badge-splash">splash_screen</span> <span class="size">158KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tomb-Of-Akhenaten.jpg" alt="Tomb-Of-Akhenaten">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>splash_screen</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(64,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(64,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(64,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(64,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(64,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-64"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g65">
+  <div class="game-title">#66: fa-fa-babies-2 <span class="badge badge-gp">gameplay</span> <span class="size">162KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/fa-fa-babies-2.webp" alt="fa-fa-babies-2">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(65,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(65,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(65,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(65,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(65,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-65"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g66">
+  <div class="game-title">#67: triple-pop-fireworks-festival <span class="badge badge-promo">promotional</span> <span class="size">16KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/triple-pop-fireworks-festival.webp" alt="triple-pop-fireworks-festival">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>promotional</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(66,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(66,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(66,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(66,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(66,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-66"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g67">
+  <div class="game-title">#68: Egyptian-Emeralds <span class="badge badge-splash">splash_screen</span> <span class="size">169KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Egyptian-Emeralds.jpg" alt="Egyptian-Emeralds">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>splash_screen</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(67,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(67,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(67,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(67,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(67,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-67"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g68">
+  <div class="game-title">#69: Boat-Bonanza-Colossal-Catch <span class="badge badge-gp">gameplay</span> <span class="size">37KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Boat-Bonanza-Colossal-Catch.jpeg" alt="Boat-Bonanza-Colossal-Catch">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(68,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(68,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(68,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(68,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(68,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-68"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g69">
+  <div class="game-title">#70: Casino-War <span class="badge badge-gp">gameplay</span> <span class="size">381KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Casino-War.jpg" alt="Casino-War">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(69,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(69,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(69,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(69,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(69,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-69"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g70">
+  <div class="game-title">#71: Slingo-Cleopatra <span class="badge badge-gp">gameplay</span> <span class="size">71KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Cleopatra.jpg" alt="Slingo-Cleopatra">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(70,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(70,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(70,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(70,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(70,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-70"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g71">
+  <div class="game-title">#72: cash-cascade-imperial-crown <span class="badge badge-gp">gameplay</span> <span class="size">89KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/cash-cascade-imperial-crown.webp" alt="cash-cascade-imperial-crown">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(71,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(71,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(71,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(71,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(71,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-71"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g72">
+  <div class="game-title">#73: Revved-Wilds <span class="badge badge-gp">gameplay</span> <span class="size">139KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Revved-Wilds.jpg" alt="Revved-Wilds">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(72,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(72,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(72,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(72,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(72,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-72"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g73">
+  <div class="game-title">#74: Wild-Frames <span class="badge badge-gp">gameplay</span> <span class="size">825KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wild-Frames.jpg" alt="Wild-Frames">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(73,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(73,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(73,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(73,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(73,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-73"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g74">
+  <div class="game-title">#75: double-beef-up-the-bonus <span class="badge badge-gp">gameplay</span> <span class="size">49KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/double-beef-up-the-bonus.webp" alt="double-beef-up-the-bonus">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(74,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(74,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(74,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(74,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(74,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-74"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g75">
+  <div class="game-title">#76: Silver-Trails <span class="badge badge-gp">gameplay</span> <span class="size">174KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Silver-Trails.jpg" alt="Silver-Trails">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(75,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(75,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(75,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(75,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(75,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-75"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g76">
+  <div class="game-title">#77: Wild-Wild-Gems <span class="badge badge-gp">gameplay</span> <span class="size">427KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wild-Wild-Gems.jpg" alt="Wild-Wild-Gems">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(76,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(76,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(76,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(76,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(76,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-76"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g77">
+  <div class="game-title">#78: El-Dorado <span class="badge badge-gp">gameplay</span> <span class="size">961KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/El-Dorado.png" alt="El-Dorado">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(77,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(77,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(77,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(77,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(77,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-77"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g78">
+  <div class="game-title">#79: Cloud-Corsairs <span class="badge badge-gp">gameplay</span> <span class="size">50KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cloud-Corsairs.jpg" alt="Cloud-Corsairs">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(78,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(78,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(78,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(78,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(78,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-78"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g79">
+  <div class="game-title">#80: Gallo-Gold-Brunos-Megaways <span class="badge badge-gp">gameplay</span> <span class="size">67KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gallo-Gold-Brunos-Megaways.jpeg" alt="Gallo-Gold-Brunos-Megaways">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(79,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(79,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(79,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(79,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(79,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-79"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g80">
+  <div class="game-title">#81: Gold-Party-2-After-Hours <span class="badge badge-gp">gameplay</span> <span class="size">68KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gold-Party-2-After-Hours.webp" alt="Gold-Party-2-After-Hours">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(80,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(80,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(80,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(80,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(80,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-80"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g81">
+  <div class="game-title">#82: Dwarfs-Fortune <span class="badge badge-gp">gameplay</span> <span class="size">73KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dwarfs-Fortune.jpg" alt="Dwarfs-Fortune">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(81,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(81,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(81,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(81,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(81,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-81"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g82">
+  <div class="game-title">#83: Prosperity-Twin <span class="badge badge-gp">gameplay</span> <span class="size">917KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Prosperity-Twin.png" alt="Prosperity-Twin">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(82,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(82,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(82,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(82,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(82,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-82"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g83">
+  <div class="game-title">#84: gold-power <span class="badge badge-promo">promotional</span> <span class="size">11KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/gold-power.webp" alt="gold-power">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>promotional</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(83,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(83,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(83,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(83,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(83,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-83"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g84">
+  <div class="game-title">#85: Cleopatra-Gold <span class="badge badge-gp">gameplay</span> <span class="size">1036KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cleopatra-Gold.jpg" alt="Cleopatra-Gold">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(84,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(84,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(84,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(84,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(84,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-84"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g85">
+  <div class="game-title">#86: Wild-Catcher <span class="badge badge-gp">gameplay</span> <span class="size">528KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wild-Catcher.jpg" alt="Wild-Catcher">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(85,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(85,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(85,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(85,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(85,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-85"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g86">
+  <div class="game-title">#87: Stormin-7s <span class="badge badge-gp">gameplay</span> <span class="size">576KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Stormin-7s.jpg" alt="Stormin-7s">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(86,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(86,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(86,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(86,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(86,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-86"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g87">
+  <div class="game-title">#88: Blood-And-Gold <span class="badge badge-gp">gameplay</span> <span class="size">41KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Blood-And-Gold.jpg" alt="Blood-And-Gold">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(87,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(87,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(87,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(87,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(87,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-87"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g88">
+  <div class="game-title">#89: Pearl-Catcher <span class="badge badge-gp">gameplay</span> <span class="size">36KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Pearl-Catcher.jpg" alt="Pearl-Catcher">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(88,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(88,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(88,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(88,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(88,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-88"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g89">
+  <div class="game-title">#90: Stellar-Cash-Blown-Away <span class="badge badge-gp">gameplay</span> <span class="size">57KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Stellar-Cash-Blown-Away.jpg" alt="Stellar-Cash-Blown-Away">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(89,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(89,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(89,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(89,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(89,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-89"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g90">
+  <div class="game-title">#91: Mythological-Mayhem-Supreme-Streaks <span class="badge badge-gp">gameplay</span> <span class="size">146KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mythological-Mayhem-Supreme-Streaks.jpg" alt="Mythological-Mayhem-Supreme-Streaks">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(90,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(90,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(90,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(90,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(90,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-90"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g91">
+  <div class="game-title">#92: Gargantoonz <span class="badge badge-gp">gameplay</span> <span class="size">57KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gargantoonz.jpg" alt="Gargantoonz">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(91,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(91,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(91,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(91,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(91,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-91"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g92">
+  <div class="game-title">#93: Slingoooal <span class="badge badge-gp">gameplay</span> <span class="size">76KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingoooal.jpg" alt="Slingoooal">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(92,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(92,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(92,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(92,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(92,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-92"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g93">
+  <div class="game-title">#94: Undefeated-Xerxes <span class="badge badge-gp">gameplay</span> <span class="size">61KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Undefeated-Xerxes.jpg" alt="Undefeated-Xerxes">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(93,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(93,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(93,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(93,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(93,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-93"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g94">
+  <div class="game-title">#95: Amazon-Kingdom <span class="badge badge-gp">gameplay</span> <span class="size">40KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Amazon-Kingdom.jpg" alt="Amazon-Kingdom">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(94,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(94,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(94,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(94,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(94,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-94"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g95">
+  <div class="game-title">#96: buffalo-untamed <span class="badge badge-gp">gameplay</span> <span class="size">107KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/buffalo-untamed.webp" alt="buffalo-untamed">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(95,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(95,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(95,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(95,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(95,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-95"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g96">
+  <div class="game-title">#97: j-mania-loco-habanero <span class="badge badge-gp">gameplay</span> <span class="size">156KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/j-mania-loco-habanero.webp" alt="j-mania-loco-habanero">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(96,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(96,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(96,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(96,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(96,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-96"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g97">
+  <div class="game-title">#98: Fishin-Pots-Of-Gold-Gold-Blitz <span class="badge badge-gp">gameplay</span> <span class="size">76KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fishin-Pots-Of-Gold-Gold-Blitz.jpeg" alt="Fishin-Pots-Of-Gold-Gold-Blitz">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(97,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(97,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(97,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(97,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(97,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-97"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g98">
+  <div class="game-title">#99: Jinse-Dao-Dragon <span class="badge badge-gp">gameplay</span> <span class="size">1111KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jinse-Dao-Dragon.png" alt="Jinse-Dao-Dragon">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(98,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(98,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(98,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(98,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(98,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-98"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g99">
+  <div class="game-title">#100: Hot-Blox <span class="badge badge-gp">gameplay</span> <span class="size">67KB</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Hot-Blox.jpg" alt="Hot-Blox">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Screenshot Classification</div>
+      <div class="dim-value">Claude says: <b>gameplay</b></div>
+      <div class="btns">
+        <button class="btn-gp" onclick="vote(99,'gameplay')">Gameplay</button>
+        <button class="btn-promo" onclick="vote(99,'promotional')">Promotional</button>
+        <button class="btn-splash" onclick="vote(99,'splash_screen')">Splash Screen</button>
+        <button class="btn-rules" onclick="vote(99,'rules_page')">Rules Page</button>
+        <button class="btn-ok" onclick="vote(99,'ok')">OK (agree)</button>
+      </div>
+      <div class="fix-note" id="note-99"><textarea placeholder="Notes (optional)"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="exportResults()">Export Review JSON</button>
+<textarea id="export-area"></textarea>
+<script>
+const votes = {};
+const games = ["Mirror-Joker", "Ghosts-N-Gold", "cash-can-ultratap", "beaver-las-vegas", "calavera-cash", "Spartan-Fire", "Rising-Temple-Hold-And-Win", "Coins-Of-Egypt", "Mighty-Medusa", "Holidays-Joker-Halloween", "Diamond-Inferno", "Slingo-Fluffy-Favourites", "Eagle-Dollar", "diamond-blitz-2", "Legacy-Of-The-Wild-2", "beer-stein-bears", "Pharaohs-Daughter", "In-The-Rabbit-Hole", "Tomb-Of-Nefertiti", "cash-carts-western-wagons", "Loot-Boost", "Heart-Of-Romance", "Choco-Reels", "big-catch-even-bigger-bass", "Power-Of-Gods-Medusa", "Treasure-Hunter", "Dragon-Blast", "Starstruck", "Fishermans-Bounty", "Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s", "Outback-Walkabout", "the-goonies-megaways", "elephants-vs-tigers", "Tower-Quest-Legacy", "gladiator-ways", "Valkyrie-Returns", "ted-afterparty", "Mayan-Eagle", "Golden-Lucky-Fortune", "The-Goonies-Jackpot-Royale", "Quadruple-Da-Vinci-Diamonds", "Sanctuary", "10x-minimum-big-bucks", "Stormforged", "Mystery-Jack-Deluxe", "Alexander-The-Great-World-Conqueror", "Manhattan-Goes-Wild", "Prism-Of-Gems", "Legacy-Of-Inca", "The-Goonies", "Joker-Fire-Frenzy", "Annihilator", "Maya-Gold-IGT", "9-Coins", "Tomb-Of-Gold-Reimagined", "thundering-eclipse", "Mayan-Cache", "Ring-Of-Odin", "Aliyas-Wishes", "Fiesta-De-Toros", "The-Wild-Hatter", "triple-turducken", "Love-Joker", "Wilderland", "Tomb-Of-Akhenaten", "fa-fa-babies-2", "triple-pop-fireworks-festival", "Egyptian-Emeralds", "Boat-Bonanza-Colossal-Catch", "Casino-War", "Slingo-Cleopatra", "cash-cascade-imperial-crown", "Revved-Wilds", "Wild-Frames", "double-beef-up-the-bonus", "Silver-Trails", "Wild-Wild-Gems", "El-Dorado", "Cloud-Corsairs", "Gallo-Gold-Brunos-Megaways", "Gold-Party-2-After-Hours", "Dwarfs-Fortune", "Prosperity-Twin", "gold-power", "Cleopatra-Gold", "Wild-Catcher", "Stormin-7s", "Blood-And-Gold", "Pearl-Catcher", "Stellar-Cash-Blown-Away", "Mythological-Mayhem-Supreme-Streaks", "Gargantoonz", "Slingoooal", "Undefeated-Xerxes", "Amazon-Kingdom", "buffalo-untamed", "j-mania-loco-habanero", "Fishin-Pots-Of-Gold-Gold-Blitz", "Jinse-Dao-Dragon", "Hot-Blox"];
+const preds = ["gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "rules_page", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "promotional", "gameplay", "gameplay", "splash_screen", "gameplay", "promotional", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "splash_screen", "gameplay", "promotional", "splash_screen", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "promotional", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay", "gameplay"];
+function vote(i, v) {
+  votes[i] = v;
+  const btns = document.querySelectorAll('#g' + i + ' button');
+  btns.forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+  const noteEl = document.getElementById('note-' + i);
+  noteEl.style.display = (v !== 'ok' && v !== preds[i]) ? 'block' : 'none';
+}
+function exportResults() {
+  const out = games.map((slug, i) => {
+    const v = votes[i];
+    const note = document.querySelector('#note-' + i + ' textarea');
+    const entry = {game: slug, claude_said: preds[i]};
+    if (v === 'ok' || !v) entry.verdict = 'ok';
+    else entry.verdict = v;
+    if (note && note.value) entry.notes = note.value;
+    return entry;
+  });
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(out.filter(e => e.verdict !== 'ok' || e.notes), null, 2);
+}
+</script></body></html>

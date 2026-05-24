@@ -1,0 +1,73 @@
+{
+  "Carnaval Drums": {
+    "source": "microgaming_official",
+    "rtp": 96.94,
+    "volatility": "Low",
+    "min_bet": 0.25,
+    "max_bet": 225.0,
+    "reels": 5,
+    "rows": 3,
+    "paylines": 9
+  },
+  "Basketball Star": {
+    "source": "microgaming_official",
+    "rtp": 96.45,
+    "volatility": "High",
+    "min_bet": 0.5,
+    "max_bet": 125.0
+  },
+  "Pizza Fiesta": {
+    "source": "microgaming_official",
+    "rtp": 96.08,
+    "volatility": "High"
+  },
+  "Reign Of Fire": {
+    "source": "microgaming_official",
+    "rtp": 96.01,
+    "volatility": "Medium"
+  },
+  "Basketball Star On Fire": {
+    "source": "microgaming_official",
+    "rtp": 96.45,
+    "volatility": "High",
+    "min_bet": 0.5,
+    "max_bet": 125.0
+  },
+  "Bronco Big Bounty": {
+    "source": "microgaming_official",
+    "rtp": 96.24,
+    "volatility": "High",
+    "reels": 6,
+    "rows": 4,
+    "paylines": 4096
+  },
+  "Luck Of The Devil Power Combo": {
+    "source": "microgaming_official",
+    "rtp": 96.2,
+    "volatility": "High",
+    "min_bet": 0.2,
+    "max_bet": 20.0,
+    "reels": 5,
+    "rows": 3,
+    "paylines": 40
+  },
+  "Lucky Twins 5x 4tune Reels": {
+    "source": "microgaming_official",
+    "rtp": 96.94,
+    "volatility": "Low",
+    "min_bet": 0.09,
+    "max_bet": 225.0
+  },
+  "Dragons Rhythm Link And Win": {
+    "source": "microgaming_official",
+    "rtp": 96.05,
+    "volatility": "High",
+    "paylines": 24
+  },
+  "Hades Lost Treasures": {
+    "source": "microgaming_official",
+    "rtp": 96.23,
+    "volatility": "High",
+    "paylines": 125
+  }
+}

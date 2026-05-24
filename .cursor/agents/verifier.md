@@ -14,8 +14,8 @@ When invoked, run ALL applicable checks:
 2. Run `npm run format:check` — formatting must be clean
 3. Check `git diff --stat` — confirm only expected files were modified
 
-## After art pipeline edits (classify_art_v2.py)
-4. Run `python3 game_analytics_export/data/classify_art_v2.py --regression-full`
+## After art pipeline edits (classify_art.py)
+4. Run `python3 game_analytics_export/data/classify_art.py --regression-full`
 5. Confirm theme ≥97% adjusted AND overall ≥95% adjusted
 6. Check batch gate: `cat game_analytics_export/data/art_pipeline/batch_gate.json`
 7. Count results: `python3 -c "import json; r=json.load(open('game_analytics_export/data/art_pipeline/results.json')); print(len(r['games']), 'classified')"` 

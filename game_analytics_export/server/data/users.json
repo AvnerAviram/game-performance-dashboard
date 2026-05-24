@@ -1,0 +1,42 @@
+[
+  {
+    "username": "avner",
+    "passwordHash": "$2b$12$BTsl.S5Xs3mGbYBQKQZIWOcYxgT18Wmae/ddd5opJjsEHSSaAp2OG",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_test_user",
+    "passwordHash": "$2b$10$coxPo7aKI5O/nj4v2l1mPehWY3u95LuQVZssfkomTN1jbhGXwA0F6",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_xray_surface",
+    "passwordHash": "$2b$10$9uWdfd6lu4hfApBSrTuBT.rUcFLgY/K/fdsBqX0qv9sdHClPfkXKS",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_data_driven",
+    "passwordHash": "$2b$10$ekdQMQ4MbbiCY/AqJssI2.12L7T5fj5qRNGucQ1jYvn5j1iCXpHlG",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_art_debug",
+    "passwordHash": "$2b$10$4VM0Y63HaaIXLDe04cIEJusx9QN61CU0XeyEiDoXJjvw7pIayTXfe",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_art_debug2",
+    "passwordHash": "$2b$10$OFC7I00MGdl55oaql.D7oubPDxplT/uhIXJYLkIAUnh1E4v.s5mj2",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_art_debug3",
+    "passwordHash": "$2b$10$jxovhJl432CNBo8OMqw3puQMCwHv9I8vQPiulpHZ8c5gXDzttcqjS",
+    "role": "admin"
+  },
+  {
+    "username": "e2e_expand_test",
+    "passwordHash": "$2b$10$pKjgseDVSKYQwsYuJiJYA.N.chbiYdUqqVjPSTuNmjJuMzx1r9ybm",
+    "role": "admin"
+  }
+]

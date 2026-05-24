@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Poster Detection — Interactive Spot-Check (30 games)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #2ecc71; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+.results-table { max-width: 700px; margin: 16px auto; border-collapse: collapse; }
+.results-table td, .results-table th { padding: 6px 14px; text-align: left; border-bottom: 1px solid #333; font-size: 0.95em; }
+.results-table th { color: #888; font-weight: normal; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.context { color: #aaa; font-size: 0.9em; margin-bottom: 8px; }
+.dims { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 8px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.05em; margin-bottom: 8px; }
+.btns { margin-top: 8px; }
+.btn-ok, .btn-fix, .btn-other { padding: 6px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; margin-right: 8px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-other { background: #f39c12; color: #000; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; }
+.btn-other.selected { box-shadow: 0 0 0 3px #e67e22; }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold; }
+#export-area { width: 90%; height: 200px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; }
+.ss-quality { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 8px; }
+.ss-gameplay { background: #2ecc71; color: #000; }
+.ss-promotional { background: #e74c3c; color: #fff; }
+</style></head><body>
+<h1>Poster Detection — Interactive Spot-Check</h1>
+<p class="summary">30 images from poster ground truth (15 posters + 15 gameplay). Baseline accuracy: 93.3%</p>
+<p class="summary">For each image: click Gameplay / Poster / Rules Page / Borderline. Add notes if needed. Export at bottom.</p>
+
+<table class="results-table">
+<tr><th>Prompt</th><th>Accuracy</th><th>Posters Missed</th><th>Gameplay Rejected</th></tr>
+<tr><td>Baseline (current)</td><td><b>93.3%</b></td><td>1/15</td><td>1/15</td></tr>
+<tr><td>v2-v5 (tightened)</td><td>83-90%</td><td>1-3/15</td><td>2/15</td></tr>
+</table>
+
+<div class="game" id="g0">
+  <div class="game-title">#1: Cops-N-Robbers-Big-Money <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | known miss - classifier said gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cops-N-Robbers-Big-Money.jpg" alt="Cops-N-Robbers-Big-Money">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(0,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(0,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(0,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(0,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-0-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g1">
+  <div class="game-title">#2: Royal-Mint-Megaways <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | known miss - classifier said gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Royal-Mint-Megaways.jpg" alt="Royal-Mint-Megaways">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(1,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(1,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(1,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(1,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-1-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g2">
+  <div class="game-title">#3: Pixies-Of-The-Forest <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | known miss - classifier said gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Pixies-Of-The-Forest.jpg" alt="Pixies-Of-The-Forest">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(2,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(2,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(2,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(2,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-2-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g3">
+  <div class="game-title">#4: Bakers-Treat <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bakers-Treat.jpg" alt="Bakers-Treat">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(3,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(3,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(3,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(3,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-3-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g4">
+  <div class="game-title">#5: Jinse-Dao-Tiger <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jinse-Dao-Tiger.jpg" alt="Jinse-Dao-Tiger">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(4,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(4,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(4,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(4,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-4-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g5">
+  <div class="game-title">#6: Buffalo-Blitz-Ii <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Buffalo-Blitz-Ii.jpg" alt="Buffalo-Blitz-Ii">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(5,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(5,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(5,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(5,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-5-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g6">
+  <div class="game-title">#7: Slingo-Deadliest-Catch <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Deadliest-Catch.jpg" alt="Slingo-Deadliest-Catch">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(6,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(6,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(6,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(6,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-6-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g7">
+  <div class="game-title">#8: Jinfu-Xingyun <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jinfu-Xingyun.jpg" alt="Jinfu-Xingyun">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(7,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(7,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(7,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(7,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-7-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g8">
+  <div class="game-title">#9: Chicago-Gold <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Chicago-Gold.jpg" alt="Chicago-Gold">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(8,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(8,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(8,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(8,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-8-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g9">
+  <div class="game-title">#10: Animals-Of-Africa <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Animals-Of-Africa.jpg" alt="Animals-Of-Africa">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(9,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(9,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(9,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(9,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-9-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g10">
+  <div class="game-title">#11: Rio-Fever <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rio-Fever.jpg" alt="Rio-Fever">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(10,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(10,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(10,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(10,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-10-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g11">
+  <div class="game-title">#12: diamond-cash-mighty-elephant <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/diamond-cash-mighty-elephant.webp" alt="diamond-cash-mighty-elephant">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(11,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(11,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(11,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(11,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-11-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g12">
+  <div class="game-title">#13: mo-mummy-valley-of-riches <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/mo-mummy-valley-of-riches.webp" alt="mo-mummy-valley-of-riches">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(12,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(12,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(12,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(12,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-12-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g13">
+  <div class="game-title">#14: Nitropolis <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Nitropolis.jpg" alt="Nitropolis">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(13,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(13,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(13,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(13,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-13-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g14">
+  <div class="game-title">#15: Outlaws <span class="ss-quality ss-promotional">POSTER (expected)</span></div>
+  <div class="context">GT label: not_gameplay | correctly caught promotional</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Outlaws.jpg" alt="Outlaws">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(14,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(14,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(14,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(14,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-14-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g15">
+  <div class="game-title">#16: Bear-Money <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bear-Money.jpg" alt="Bear-Money">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(15,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(15,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(15,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(15,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-15-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g16">
+  <div class="game-title">#17: Empress-Of-The-Nile <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Empress-Of-The-Nile.jpg" alt="Empress-Of-The-Nile">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(16,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(16,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(16,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(16,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-16-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g17">
+  <div class="game-title">#18: Digipays <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Digipays.jpg" alt="Digipays">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(17,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(17,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(17,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(17,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-17-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g18">
+  <div class="game-title">#19: Phoenix-Fa <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Phoenix-Fa.jpg" alt="Phoenix-Fa">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(18,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(18,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(18,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(18,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-18-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g19">
+  <div class="game-title">#20: dragon-power-triple-gold <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/dragon-power-triple-gold.webp" alt="dragon-power-triple-gold">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(19,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(19,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(19,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(19,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-19-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g20">
+  <div class="game-title">#21: Pearl-Legend-Hold-And-Win <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Pearl-Legend-Hold-And-Win.jpg" alt="Pearl-Legend-Hold-And-Win">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(20,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(20,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(20,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(20,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-20-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g21">
+  <div class="game-title">#22: Invading-Vegas <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Invading-Vegas.jpeg" alt="Invading-Vegas">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(21,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(21,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(21,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(21,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-21-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g22">
+  <div class="game-title">#23: European-Roulette <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/European-Roulette.jpg" alt="European-Roulette">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(22,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(22,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(22,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(22,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-22-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g23">
+  <div class="game-title">#24: 1001-mystery-genie-fortunes <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/1001-mystery-genie-fortunes.webp" alt="1001-mystery-genie-fortunes">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(23,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(23,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(23,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(23,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-23-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g24">
+  <div class="game-title">#25: Superstars <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Superstars.jpeg" alt="Superstars">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(24,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(24,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(24,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(24,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-24-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g25">
+  <div class="game-title">#26: Candyblasted <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Candyblasted.jpg" alt="Candyblasted">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(25,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(25,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(25,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(25,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-25-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g26">
+  <div class="game-title">#27: kringle-cash <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/kringle-cash.webp" alt="kringle-cash">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(26,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(26,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(26,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(26,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-26-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g27">
+  <div class="game-title">#28: Rising-Tiger-Sheng-Qi-De-Laohu <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rising-Tiger-Sheng-Qi-De-Laohu.jpg" alt="Rising-Tiger-Sheng-Qi-De-Laohu">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(27,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(27,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(27,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(27,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-27-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g28">
+  <div class="game-title">#29: Blobsters-Clusterbuster <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Blobsters-Clusterbuster.jpeg" alt="Blobsters-Clusterbuster">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(28,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(28,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(28,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(28,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-28-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div><div class="game" id="g29">
+  <div class="game-title">#30: 12-bells <span class="ss-quality ss-gameplay">GAMEPLAY (expected)</span></div>
+  <div class="context">GT label: gameplay | confirmed gameplay</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/12-bells.webp" alt="12-bells">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Screenshot Quality</div>
+      <div class="dim-value">Is this a gameplay screenshot or a poster/promotional image?</div>
+      <div class="btns">
+        <button class="btn-ok" onclick="vote(29,'quality','gameplay')">Gameplay</button>
+        <button class="btn-fix" onclick="vote(29,'quality','poster')">Poster / Promo</button>
+        <button class="btn-other" onclick="vote(29,'quality','rules_page')">Rules Page</button>
+        <button class="btn-other" onclick="vote(29,'quality','borderline')">Borderline</button>
+      </div>
+      <div class="fix-note" id="fix-29-quality"><textarea placeholder="Notes (optional) — what makes this borderline or hard to classify?"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="exportResults()">Export Review JSON</button>
+<textarea id="export-area"></textarea>
+<script>
+const votes = {};
+const games = ["Cops-N-Robbers-Big-Money", "Royal-Mint-Megaways", "Pixies-Of-The-Forest", "Bakers-Treat", "Jinse-Dao-Tiger", "Buffalo-Blitz-Ii", "Slingo-Deadliest-Catch", "Jinfu-Xingyun", "Chicago-Gold", "Animals-Of-Africa", "Rio-Fever", "diamond-cash-mighty-elephant", "mo-mummy-valley-of-riches", "Nitropolis", "Outlaws", "Bear-Money", "Empress-Of-The-Nile", "Digipays", "Phoenix-Fa", "dragon-power-triple-gold", "Pearl-Legend-Hold-And-Win", "Invading-Vegas", "European-Roulette", "1001-mystery-genie-fortunes", "Superstars", "Candyblasted", "kringle-cash", "Rising-Tiger-Sheng-Qi-De-Laohu", "Blobsters-Clusterbuster", "12-bells"];
+function vote(i, dim, v) {
+  if (!votes[i]) votes[i] = {};
+  votes[i][dim] = v;
+  const btns = event.target.parentElement.querySelectorAll('button');
+  btns.forEach(b => b.classList.remove('selected'));
+  event.target.classList.add('selected');
+  const noteEl = document.getElementById('fix-' + i + '-' + dim);
+  noteEl.style.display = (v !== 'gameplay') ? 'block' : 'none';
+}
+function exportResults() {
+  const results = games.map((name, i) => {
+    const v = votes[i] || {};
+    const notes = {};
+    ['quality'].forEach(dim => {
+      const ta = document.querySelector('#fix-' + i + '-' + dim + ' textarea');
+      if (ta && ta.value) notes[dim] = ta.value;
+    });
+    return {game: name, ...v, notes};
+  });
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(results, null, 2);
+}
+</script></body></html>

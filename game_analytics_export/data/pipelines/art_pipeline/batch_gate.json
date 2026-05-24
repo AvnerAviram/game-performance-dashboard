@@ -1,0 +1,10 @@
+{
+  "gate_open": false,
+  "reason": "Batch 36 (644 games) completed. Spot-check required before next batch.",
+  "updated_at": "2026-05-14",
+  "last_batch": {
+    "batch": 36,
+    "games_classified": 644,
+    "completed_at": "2026-05-14T12:53:49.222201Z"
+  }
+}

@@ -1,0 +1,1146 @@
+[
+  {
+    "name": "3 Porky Banks Hold And Win",
+    "provider": "1x2 Network",
+    "specs": {
+      "rtp": 93.0,
+      "max_win": "15000.00x",
+      "paylines": "25",
+      "min_bet": 0.2,
+      "max_bet": 25.0
+    },
+    "slug": "3-Porky-Banks-Hold-And-Win"
+  },
+  {
+    "name": "J Mania Loco Habanero",
+    "provider": "Ruby Play",
+    "specs": {
+      "rtp": 96.49,
+      "max_win": "5000.00x",
+      "paylines": "50",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    },
+    "slug": "J-Mania-Loco-Habanero"
+  },
+  {
+    "name": "Pyramid",
+    "provider": "Evolution",
+    "specs": {
+      "rtp": 70.0,
+      "max_win": "1000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    },
+    "slug": "Pyramid"
+  },
+  {
+    "name": "Bee Frenzy",
+    "provider": "Playtech",
+    "specs": {
+      "rtp": 96.14,
+      "max_win": "1000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 30.0
+    },
+    "slug": "Bee-Frenzy"
+  },
+  {
+    "name": "Monkey God",
+    "provider": "Kalamba Games",
+    "specs": {
+      "rtp": 96.56,
+      "max_win": "3910.00x",
+      "paylines": "243",
+      "min_bet": 0.08,
+      "max_bet": 57.0
+    },
+    "slug": "Monkey-God"
+  },
+  {
+    "name": "Fortuna Carnivale",
+    "provider": "Skillzz Gaming",
+    "specs": {
+      "rtp": 96.0,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 100.0
+    },
+    "slug": "Fortuna-Carnivale"
+  },
+  {
+    "name": "Viking Raid Zone",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 95.82,
+      "paylines": "3125[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Viking-Raid-Zone"
+  },
+  {
+    "name": "Djinn Of Storms",
+    "provider": "Playtech",
+    "specs": {
+      "rtp": 96.49,
+      "max_win": "2500.00x",
+      "paylines": "25",
+      "min_bet": 0.5,
+      "max_bet": 500.0
+    },
+    "slug": "Djinn-Of-Storms"
+  },
+  {
+    "name": "Safari Spirit",
+    "provider": "Ainsworth",
+    "specs": {
+      "rtp": 94.32,
+      "paylines": "30",
+      "min_bet": 0.01,
+      "max_bet": 3000.0
+    },
+    "slug": "Safari-Spirit"
+  },
+  {
+    "name": "Samurai Fury",
+    "provider": "Playtech",
+    "specs": {
+      "rtp": 94.5,
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    },
+    "slug": "Samurai-Fury"
+  },
+  {
+    "name": "Shamaria",
+    "provider": "Betixon",
+    "specs": {
+      "rtp": 95.05,
+      "max_win": "1000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "Shamaria"
+  },
+  {
+    "name": "Wild Nights",
+    "provider": "Ainsworth",
+    "specs": {
+      "rtp": 94.02,
+      "paylines": "25",
+      "min_bet": 1.25,
+      "max_bet": 25.0
+    },
+    "slug": "Wild-Nights"
+  },
+  {
+    "name": "Magic Stars 3",
+    "provider": "Wazdan",
+    "specs": {
+      "rtp": 96.59,
+      "max_win": "200.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Magic-Stars-3"
+  },
+  {
+    "name": "Titan Storm",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 95.45,
+      "paylines": "243",
+      "min_bet": 0.25,
+      "max_bet": 625.0
+    },
+    "slug": "Titan-Storm"
+  },
+  {
+    "name": "Flaming Chilies",
+    "provider": "Aruze",
+    "specs": {
+      "rtp": 95.48,
+      "max_win": "20000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "Flaming-Chilies"
+  },
+  {
+    "name": "Poseidons Rising",
+    "provider": "Spinomenal",
+    "specs": {
+      "rtp": 96.1,
+      "max_win": "1000.00x",
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 500.0
+    },
+    "slug": "Poseidons-Rising"
+  },
+  {
+    "name": "Monkeys Journey",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 94.99,
+      "max_win": "1000.00x",
+      "paylines": "40",
+      "min_bet": 0.4,
+      "max_bet": 80.0
+    },
+    "slug": "Monkeys-Journey"
+  },
+  {
+    "name": "Jacks Beanstalk",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 95.46,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 625.0
+    },
+    "slug": "Jacks-Beanstalk"
+  },
+  {
+    "name": "Silver Enchantress Extreme",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "5589.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    },
+    "slug": "Silver-Enchantress-Extreme"
+  },
+  {
+    "name": "Fiery Kirin",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.03,
+      "paylines": "243[ i ]",
+      "min_bet": 0.3,
+      "max_bet": 30.0
+    },
+    "slug": "Fiery-Kirin"
+  },
+  {
+    "name": "Smoking Hot Fortunes",
+    "provider": "1x2 Network",
+    "specs": {
+      "rtp": 93.0,
+      "max_win": "500.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "smoking-hot-fortunes"
+  },
+  {
+    "name": "Bonanza Town Sheriff Sam",
+    "provider": "Aruze",
+    "specs": {
+      "rtp": 96.28,
+      "paylines": "30",
+      "min_bet": 0.65,
+      "max_bet": 6.5
+    },
+    "slug": "Bonanza-Town-Sheriff-Sam"
+  },
+  {
+    "name": "Griffins Quest",
+    "provider": "Kalamba Games",
+    "specs": {
+      "rtp": 96.5,
+      "max_win": "26032.00x",
+      "paylines": "2400",
+      "min_bet": 0.6,
+      "max_bet": 100.0
+    },
+    "slug": "Griffins-Quest"
+  },
+  {
+    "name": "Reel Joke",
+    "provider": "Wazdan",
+    "specs": {
+      "rtp": 96.2,
+      "max_win": "9500.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Reel-Joke"
+  },
+  {
+    "name": "Crab Attack",
+    "provider": "Betixon",
+    "specs": {
+      "rtp": 95.2,
+      "paylines": "5625",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "crab-attack"
+  },
+  {
+    "name": "Beer Stein Bears",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 95.98,
+      "max_win": "10000.00x",
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 100.0
+    },
+    "slug": "beer-stein-bears"
+  },
+  {
+    "name": "Paradise Ticket",
+    "provider": "Bragg Gaming Group",
+    "specs": {
+      "rtp": 95.64,
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Paradise-Ticket"
+  },
+  {
+    "name": "Royal Fortunes",
+    "provider": "Bragg Gaming Group",
+    "specs": {
+      "rtp": 89.24,
+      "paylines": "8",
+      "min_bet": 0.08,
+      "max_bet": 16.0
+    },
+    "slug": "Royal-Fortunes"
+  },
+  {
+    "name": "Dinero Loco Deluxe",
+    "provider": "Incredible Technologies",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "3333.00x",
+      "paylines": "15",
+      "min_bet": 0.6,
+      "max_bet": 30.0
+    },
+    "slug": "Dinero-Loco-Deluxe"
+  },
+  {
+    "name": "Dyn A Miners",
+    "provider": "IGT",
+    "specs": {
+      "rtp": 96.53,
+      "max_win": "10000.00x",
+      "paylines": "15",
+      "min_bet": 0.15,
+      "max_bet": 150.0
+    },
+    "slug": "Dyn-A-Miners"
+  },
+  {
+    "name": "Aesir Treasures",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 93.89,
+      "max_win": "2000.00x",
+      "paylines": "243",
+      "min_bet": 0.3,
+      "max_bet": 60.0
+    },
+    "slug": "Aesir-Treasures"
+  },
+  {
+    "name": "Cyber Wildz",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 94.99,
+      "max_win": "20000.00x",
+      "paylines": "15",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    },
+    "slug": "Cyber-Wildz"
+  },
+  {
+    "name": "Candy Mine",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 94.35,
+      "max_win": "10000.00x",
+      "paylines": "3125"
+    },
+    "slug": "candy-mine"
+  },
+  {
+    "name": "Giant Riches",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.06,
+      "max_win": "1200.00x",
+      "paylines": "60",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    },
+    "slug": "Giant-Riches"
+  },
+  {
+    "name": "Howdy Cupid",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 94.86,
+      "paylines": "17",
+      "min_bet": 0.2,
+      "max_bet": 30.0
+    },
+    "slug": "howdy-cupid"
+  },
+  {
+    "name": "Magic Fruits Deluxe",
+    "provider": "Wazdan",
+    "specs": {
+      "rtp": 96.41,
+      "max_win": "40.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Magic-Fruits-Deluxe"
+  },
+  {
+    "name": "Action Bank Plus",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 96.04,
+      "max_win": "1250.00x",
+      "paylines": "4096",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "Action-Bank-Plus"
+  },
+  {
+    "name": "15 Armadillos",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 94.7,
+      "paylines": "243",
+      "min_bet": 0.25,
+      "max_bet": 100.0
+    },
+    "slug": "15-Armadillos"
+  },
+  {
+    "name": "Nemos Voyage",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 95.01,
+      "paylines": "40",
+      "min_bet": 0.4,
+      "max_bet": 200.0
+    },
+    "slug": "Nemos-Voyage"
+  },
+  {
+    "name": "Vivaldis Seasons",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1000.00x",
+      "paylines": "40",
+      "min_bet": 0.8,
+      "max_bet": 40.0
+    },
+    "slug": "Vivaldis-Seasons"
+  },
+  {
+    "name": "Joker Classic",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 94.1,
+      "max_win": "1556.00x",
+      "paylines": "10[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Joker-Classic"
+  },
+  {
+    "name": "Wishwood",
+    "provider": "IGT",
+    "specs": {
+      "rtp": 94.3,
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    },
+    "slug": "Wishwood"
+  },
+  {
+    "name": "Classic Fortunes",
+    "provider": "King Show Games",
+    "specs": {
+      "rtp": 96.0,
+      "paylines": "8",
+      "min_bet": 0.08,
+      "max_bet": 1.6
+    },
+    "slug": "Classic-Fortunes"
+  },
+  {
+    "name": "Celinderella",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 96.1,
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "celinderella"
+  },
+  {
+    "name": "Magic Stars 9",
+    "provider": "Wazdan",
+    "specs": {
+      "rtp": 96.21,
+      "max_win": "10500.00x",
+      "paylines": "3 or more same symbols pays",
+      "min_bet": 10.0,
+      "max_bet": 100.0
+    },
+    "slug": "Magic-Stars-9"
+  },
+  {
+    "name": "Kitsunes Scrolls",
+    "provider": "Spinomenal",
+    "specs": {
+      "rtp": 95.8,
+      "max_win": "2000.00x",
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 250.0
+    },
+    "slug": "Kitsunes-Scrolls"
+  },
+  {
+    "name": "Enchanting Spells",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 95.98,
+      "max_win": "750.00x",
+      "paylines": "N/A",
+      "min_bet": 0.4,
+      "max_bet": 400.0
+    },
+    "slug": "Enchanting-Spells"
+  },
+  {
+    "name": "Rome The Conquerors",
+    "provider": "Peter & Sons",
+    "specs": {
+      "rtp": 96.17,
+      "max_win": "5000.00x",
+      "paylines": "1024[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    },
+    "slug": "Rome-The-Conquerors"
+  },
+  {
+    "name": "Reign Of The Mountain King",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "10000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    },
+    "slug": "Reign-Of-The-Mountain-King"
+  },
+  {
+    "name": "Lady Helsing",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 94.9,
+      "max_win": "1168.00x",
+      "paylines": "40",
+      "min_bet": 0.4,
+      "max_bet": 10.0
+    },
+    "slug": "Lady-Helsing"
+  },
+  {
+    "name": "Old Mac Dollars",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.9,
+      "max_win": "1255.00x",
+      "paylines": "N/A",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Old-Mac-Dollars"
+  },
+  {
+    "name": "Rocket Man",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 94.9,
+      "max_win": "289.00x",
+      "paylines": "99",
+      "min_bet": 0.99,
+      "max_bet": 49.0
+    },
+    "slug": "Rocket-Man-High-5-Games"
+  },
+  {
+    "name": "Sheik Yer Money",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 96.2,
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    },
+    "slug": "Sheik-Yer-Money"
+  },
+  {
+    "name": "Iron County Outlaw",
+    "provider": "Games Global",
+    "specs": {
+      "rtp": 96.23,
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 30.0
+    },
+    "slug": "Iron-County-Outlaw"
+  },
+  {
+    "name": "Wild Krakatoa",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.03,
+      "paylines": "30",
+      "min_bet": 0.3,
+      "max_bet": 30.0
+    },
+    "slug": "Wild-Krakatoa"
+  },
+  {
+    "name": "Western Champions",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1158.00x",
+      "paylines": "40",
+      "min_bet": 0.4,
+      "max_bet": 10.0
+    },
+    "slug": "Western-Champions"
+  },
+  {
+    "name": "Grand Pepper Party",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 94.04,
+      "max_win": "5000.00x",
+      "paylines": "50",
+      "min_bet": 0.25,
+      "max_bet": 100.0
+    },
+    "slug": "Grand-Pepper-Party"
+  },
+  {
+    "name": "Jesters Wilds",
+    "provider": "1x2 Network",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "2900.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Jesters-Wilds"
+  },
+  {
+    "name": "Cherry 8",
+    "provider": "Crucible Gaming",
+    "specs": {
+      "rtp": 96.0,
+      "paylines": "8",
+      "min_bet": 0.1,
+      "max_bet": 16.0
+    },
+    "slug": "cherry-8"
+  },
+  {
+    "name": "Viking Reign",
+    "provider": "Ainsworth",
+    "specs": {
+      "rtp": 96.62,
+      "max_win": "2400.00x",
+      "paylines": "30",
+      "min_bet": 1.2,
+      "max_bet": 48.0
+    },
+    "slug": "Viking-Reign"
+  },
+  {
+    "name": "Reel Holidays",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.01,
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Reel-Holidays"
+  },
+  {
+    "name": "Star Candy",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "840.00x",
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 20.0
+    },
+    "slug": "Star-Candy"
+  },
+  {
+    "name": "Fu Friends",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 96.15,
+      "max_win": "1024.00x",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.25,
+      "max_bet": 100.0
+    },
+    "slug": "fu-friends"
+  },
+  {
+    "name": "Reel Star",
+    "provider": "Relax Gaming",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "8000.00x",
+      "paylines": "15",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Reel-Star"
+  },
+  {
+    "name": "Wild West Zone",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 93.78,
+      "max_win": "12500.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "Wild-West-Zone"
+  },
+  {
+    "name": "Outback Riches",
+    "provider": "Spinberry",
+    "specs": {
+      "rtp": 95.11,
+      "max_win": "270.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 250.0
+    },
+    "slug": "Outback-Riches"
+  },
+  {
+    "name": "Pegasus Power",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1633.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 300.0
+    },
+    "slug": "Pegasus-Power"
+  },
+  {
+    "name": "Magic Target Deluxe",
+    "provider": "Wazdan",
+    "specs": {
+      "rtp": 96.63,
+      "max_win": "1250.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Magic-Target-Deluxe"
+  },
+  {
+    "name": "Empire Of Dead",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 94.0,
+      "paylines": "10",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "empire-of-dead"
+  },
+  {
+    "name": "Shuang Long Fu",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 93.99,
+      "max_win": "1000.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Shuang-Long-Fu"
+  },
+  {
+    "name": "Surging 7s",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 93.79,
+      "max_win": "1000.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Surging-7s"
+  },
+  {
+    "name": "Silk Road Riches",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 93.64,
+      "max_win": "486.53x",
+      "paylines": "117649[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "Silk-Road-Riches"
+  },
+  {
+    "name": "Agent Valkyrie",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 95.99,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 25.0
+    },
+    "slug": "Agent-Valkyrie"
+  },
+  {
+    "name": "Xing Xing",
+    "provider": "Betixon",
+    "specs": {
+      "rtp": 95.05,
+      "max_win": "5000.00x",
+      "paylines": "15625",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "xing-xing"
+  },
+  {
+    "name": "Spinberry Wilds",
+    "provider": "Spinberry",
+    "specs": {
+      "rtp": 95.14,
+      "max_win": "2500.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Spinberry-Wilds"
+  },
+  {
+    "name": "Fruit Lightning",
+    "provider": "1x2 Network",
+    "specs": {
+      "rtp": 93.0,
+      "max_win": "5000.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "fruit-lightning"
+  },
+  {
+    "name": "Lucky Stars Scatter Reactors",
+    "provider": "Pixiu Gaming",
+    "specs": {
+      "rtp": 95.63,
+      "max_win": "4108.00x",
+      "paylines": "Pay anywhere",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Lucky-Stars-Scatter-Reactors"
+  },
+  {
+    "name": "Fugitive Gold",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "2365.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    },
+    "slug": "Fugitive-Gold"
+  },
+  {
+    "name": "Celtic Goddess",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 93.99,
+      "max_win": "2000.00x",
+      "paylines": "30",
+      "min_bet": 0.3,
+      "max_bet": 30.0
+    },
+    "slug": "Celtic-Goddess"
+  },
+  {
+    "name": "Golden Tides",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.04,
+      "paylines": "40",
+      "min_bet": 0.4,
+      "max_bet": 400.0
+    },
+    "slug": "Golden-Tides"
+  },
+  {
+    "name": "Outback Walkabout",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.5,
+      "max_win": "375.00x",
+      "paylines": "243",
+      "min_bet": 0.5,
+      "max_bet": 50.0
+    },
+    "slug": "Outback-Walkabout"
+  },
+  {
+    "name": "Jingle Wins",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 93.99,
+      "max_win": "1126.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Jingle-Wins"
+  },
+  {
+    "name": "Lucha Chilli",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 95.17,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 40.0
+    },
+    "slug": "Lucha-Chilli"
+  },
+  {
+    "name": "Goldorado",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 95.99,
+      "max_win": "111265.00x",
+      "paylines": "25",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "Goldorado"
+  },
+  {
+    "name": "Parrots Gold",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 95.98,
+      "max_win": "1053.00x",
+      "paylines": "50",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "Parrots-Gold"
+  },
+  {
+    "name": "Spear Of Fire",
+    "provider": "Spinomenal",
+    "specs": {
+      "rtp": 96.04,
+      "max_win": "3000.00x",
+      "paylines": "100[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Spear-Of-Fire"
+  },
+  {
+    "name": "Smoking Hot Fruits",
+    "provider": "1x2 Network",
+    "specs": {
+      "rtp": 96.3,
+      "max_win": "5000.00x",
+      "paylines": "5",
+      "min_bet": 0.05,
+      "max_bet": 100.0
+    },
+    "slug": "Smoking-Hot-Fruits"
+  },
+  {
+    "name": "Build Your Empire",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1035.00x",
+      "paylines": "cluster pays (4 or more identical symbols pay)",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "Build-Your-Empire"
+  },
+  {
+    "name": "Zombies Gone Wild",
+    "provider": "Aristocrat",
+    "specs": {
+      "rtp": 95.88,
+      "max_win": "541.00x",
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 25.0
+    },
+    "slug": "Zombies-Gone-Wild"
+  },
+  {
+    "name": "Gummy Galaxy",
+    "provider": "Spearhead Studios",
+    "specs": {
+      "rtp": 96.03,
+      "paylines": "10",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Gummy-Galaxy"
+  },
+  {
+    "name": "Cosmic Gems",
+    "provider": "Oddsworks",
+    "specs": {
+      "rtp": 96.02,
+      "max_win": "200.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "Cosmic-Gems"
+  },
+  {
+    "name": "Fiesta De Toros",
+    "provider": "Ainsworth",
+    "specs": {
+      "rtp": 95.77,
+      "paylines": "432[ i ]",
+      "min_bet": 0.3,
+      "max_bet": 1.5
+    },
+    "slug": "Fiesta-De-Toros"
+  },
+  {
+    "name": "The Great Gambinis Night Magic",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 95.02,
+      "max_win": "1432.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 160.0
+    },
+    "slug": "The-Great-Gambinis-Night-Magic"
+  },
+  {
+    "name": "Lucky 8 Reactors",
+    "provider": "Light & Wonder",
+    "specs": {
+      "rtp": 95.75,
+      "paylines": "Cluster pays",
+      "min_bet": 0.2,
+      "max_bet": 12.0
+    },
+    "slug": "Lucky-8-Reactors"
+  },
+  {
+    "name": "Tiki Time Exotic Wilds",
+    "provider": "Everymatrix",
+    "specs": {
+      "rtp": 94.02,
+      "max_win": "1000.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Tiki-Time-Exotic-Wilds"
+  },
+  {
+    "name": "Silver Enchantress",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "4386.00x",
+      "paylines": "243",
+      "min_bet": 0.5,
+      "max_bet": 50.0
+    },
+    "slug": "Silver-Enchantress"
+  },
+  {
+    "name": "Golden Safari",
+    "provider": "Greentube",
+    "specs": {
+      "rtp": 94.98,
+      "max_win": "1000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.2,
+      "max_bet": 8.0
+    },
+    "slug": "Golden-Safari"
+  },
+  {
+    "name": "Da Vinci Muse",
+    "provider": "High 5 Games",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "4237.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "Da-Vinci-Muse"
+  }
+]

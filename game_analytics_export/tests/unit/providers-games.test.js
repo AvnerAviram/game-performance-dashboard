@@ -1,11 +1,12 @@
 import { describe, it, expect, beforeAll } from 'vitest';
+import { readFileSync } from 'fs';
+import { MASTER_JSON } from '../helpers/paths.js';
 
 describe('Providers and Games Pages - Unit Tests', () => {
     let games;
 
     beforeAll(async () => {
-        const fs = await import('fs/promises');
-        const data = await fs.readFile('./data/game_data_master.json', 'utf-8');
+        const data = readFileSync(MASTER_JSON, 'utf-8');
         const parsed = JSON.parse(data);
         games = Array.isArray(parsed) ? parsed : parsed.games || [];
     });

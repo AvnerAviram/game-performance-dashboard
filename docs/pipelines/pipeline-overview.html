@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pipeline Overview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #111827; color: #e5e7eb; padding: 60px 80px; line-height: 1.6; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .tagline { font-size: 16px; color: #9ca3af; margin-bottom: 56px; }
+  h2 { font-size: 22px; font-weight: 600; color: #fff; margin-top: 64px; margin-bottom: 24px; }
+  p { font-size: 14px; color: #9ca3af; max-width: 700px; margin-bottom: 16px; }
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 0; }
+  .flow-row { display: flex; align-items: center; gap: 0; }
+  .step { background: #1f2937; border: 1px solid #374151; border-radius: 10px; padding: 16px 20px; width: 200px; }
+  .step-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .step-desc { font-size: 11px; color: #9ca3af; line-height: 1.4; }
+  .arrow-r { font-size: 20px; color: #4b5563; padding: 0 10px; }
+  .arrow-d { font-size: 20px; color: #4b5563; padding: 6px 0; margin-left: 90px; }
+  .arrow-loop { display: flex; align-items: center; gap: 8px; margin-left: 20px; margin-top: 8px; margin-bottom: 8px; }
+  .arrow-loop span { font-size: 11px; color: #6b7280; }
+  .loop-line { border-left: 2px dashed #374151; height: 30px; margin-left: 90px; }
+  .loop-back { display: flex; align-items: center; margin-top: 8px; }
+  .loop-back-line { width: 100%; border-top: 2px dashed #374151; }
+  .loop-label { font-size: 11px; color: #6b7280; white-space: nowrap; padding: 0 8px; }
+  hr { border: none; border-top: 1px solid #1f2937; margin: 56px 0; }
+  table { border-collapse: collapse; margin: 20px 0; font-size: 13px; width: 100%; max-width: 800px; }
+  th { text-align: left; padding: 10px 16px; background: #1f2937; color: #fff; font-weight: 600; border-bottom: 1px solid #374151; }
+  td { padding: 10px 16px; border-bottom: 1px solid #1f2937; color: #d1d5db; }
+  .stats-row { display: flex; gap: 48px; margin: 24px 0; }
+  .stat { text-align: center; }
+  .stat-val { font-size: 32px; font-weight: 700; color: #fff; }
+  .stat-lbl { font-size: 12px; color: #6b7280; margin-top: 4px; }
+  .pipeline-section { margin-top: 48px; padding: 32px; background: #1a2234; border: 1px solid #2a3a5c; border-radius: 12px; }
+  .pipeline-section h3 { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .pipeline-section .desc { font-size: 13px; color: #9ca3af; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<h1>Pipeline Overview</h1>
+<p class="tagline">How we classify 5,124 games — from raw sources to dashboard.</p>
+
+<!-- ===== MATCHING ===== -->
+<div class="pipeline-section">
+  <h3>1. Matching</h3>
+  <p class="desc">Connect each game name to its data sources (screenshot + rules page).</p>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="step">
+        <div class="step-title">Game List</div>
+        <div class="step-desc">5,124 game names from master</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Smart Match</div>
+        <div class="step-desc">Normalize names, strip punctuation, fuzzy match</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Screenshot URL</div>
+        <div class="step-desc">SlotCatalog page identified</div>
+      </div>
+    </div>
+    <div class="flow-row" style="margin-top: 12px;">
+      <div class="step" style="margin-left: 230px;">
+        <div class="step-title">Rules Match</div>
+        <div class="step-desc">Exact title match only. Zero false positives.</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Rules HTML</div>
+        <div class="step-desc">~8,800 paytable pages linked</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREENSHOT + PRE-SCREEN ===== -->
+<div class="pipeline-section">
+  <h3>2. Screenshot Acquisition + Pre-Screen</h3>
+  <p class="desc">Download screenshots, filter out non-gameplay images.</p>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="step">
+        <div class="step-title">Download</div>
+        <div class="step-desc">Playwright grabs highest-res image from SlotCatalog</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Size Gate</div>
+        <div class="step-desc">≥60KB pass, &lt;60KB reject (free, catches 50%)</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Claude Vision</div>
+        <div class="step-desc">512px · "Is this gameplay?" · $0.0002/img</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Pass / Reject</div>
+        <div class="step-desc">Gameplay → art pipeline. Splash → rejected.</div>
+      </div>
+    </div>
+    <div class="arrow-d">↓ training loop</div>
+    <div class="flow-row">
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Spot-Check</div>
+        <div class="step-desc">Review sample results. Mark correct / incorrect.</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Update Rules</div>
+        <div class="step-desc">Edit classification prompt based on errors found</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Claude: Regression</div>
+        <div class="step-desc">Re-run on all GT images (62). Accuracy improved?</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Better? ✓ Keep / ✗ Revert</div>
+        <div class="step-desc">If worse → revert rules, try again. 5 iterations done.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ART CLASSIFICATION ===== -->
+<div class="pipeline-section">
+  <h3>3. Art Classification</h3>
+  <p class="desc">Classify visual style — theme, colors, characters, elements — using Claude Vision on two images.</p>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="step">
+        <div class="step-title">Preprocess</div>
+        <div class="step-desc">Downscale ≤1568px, JPEG q85, create masked copy</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Claude Vision</div>
+        <div class="step-desc">Full img → theme, colors, chars. Masked img → elements.</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Post-Process</div>
+        <div class="step-desc">Normalize, remove reel symbols, apply corrections</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Art Profile</div>
+        <div class="step-desc">Theme, colors, characters, elements, narrative</div>
+      </div>
+    </div>
+    <div class="arrow-d">↓ training loop</div>
+    <div class="flow-row">
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Spot-Check</div>
+        <div class="step-desc">Review results per dimension. Mark OK or Fix + notes.</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Update Rules</div>
+        <div class="step-desc">Add vocabulary, tighten wording, fix hallucination patterns</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Claude: Regression</div>
+        <div class="step-desc">Re-classify all 20 GT games with new rules. Improved?</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Better? ✓ Keep / ✗ Revert</div>
+        <div class="step-desc">If worse → revert rules, try again. 8+ iterations done.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FEATURE EXTRACTION ===== -->
+<div class="pipeline-section">
+  <h3>4. Feature Extraction</h3>
+  <p class="desc">Extract game mechanics (features, RTP, volatility) from HTML rules pages using Claude Text.</p>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="step">
+        <div class="step-title">Clean HTML</div>
+        <div class="step-desc">Strip nav/scripts, preserve headers and tables</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Claude Text</div>
+        <div class="step-desc">Reads rules page, maps to 30 canonical features</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Normalize</div>
+        <div class="step-desc">Deduplicate, enforce vocabulary, confidence scores</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step">
+        <div class="step-title">Game Profile</div>
+        <div class="step-desc">Features, RTP, volatility, symbols, description</div>
+      </div>
+    </div>
+    <div class="arrow-d">↓ training loop</div>
+    <div class="flow-row">
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Spot-Check</div>
+        <div class="step-desc">Review extracted features vs actual rules page</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Human: Update Rules</div>
+        <div class="step-desc">Adjust vocabulary, fix missed/incorrect features</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Claude: Regression</div>
+        <div class="step-desc">Re-extract all 228 GT games. F1 improved?</div>
+      </div>
+      <span class="arrow-r">→</span>
+      <div class="step" style="border-color: #4b5563;">
+        <div class="step-title">Better? ✓ Keep / ✗ Revert</div>
+        <div class="step-desc">Hard gate: blocks if F1 &lt; 95%. Currently 97%.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ===== KEY NUMBERS ===== -->
+<h2>Key Numbers</h2>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-val">5,124</div><div class="stat-lbl">Total Games</div></div>
+  <div class="stat"><div class="stat-val">3,400</div><div class="stat-lbl">Have Screenshots</div></div>
+  <div class="stat"><div class="stat-val">8,800</div><div class="stat-lbl">Rules Pages</div></div>
+  <div class="stat"><div class="stat-val">$0.008</div><div class="stat-lbl">Per Game (Art)</div></div>
+  <div class="stat"><div class="stat-val">97%</div><div class="stat-lbl">Feature F1</div></div>
+</div>
+
+<hr>
+
+<h2>What Comes Out (per game)</h2>
+
+<table>
+  <tr><th>Field</th><th>Source</th><th>Example</th></tr>
+  <tr><td>Theme</td><td>Art Classification</td><td>Egyptian/Pharaoh</td></tr>
+  <tr><td>Colors (2–4)</td><td>Art Classification</td><td>Gold, Deep Blue, Sand</td></tr>
+  <tr><td>Characters</td><td>Art Classification</td><td>Egyptian Deity, Explorer</td></tr>
+  <tr><td>Elements (≤5)</td><td>Art Classification</td><td>Pyramids, Sand Dunes, Hieroglyphs</td></tr>
+  <tr><td>Narrative</td><td>Art Classification</td><td>Adventure</td></tr>
+  <tr><td>Features</td><td>Feature Extraction</td><td>Free Spins, Expanding Wilds, Megaways</td></tr>
+  <tr><td>RTP</td><td>Feature Extraction</td><td>96.5%</td></tr>
+  <tr><td>Volatility</td><td>Feature Extraction</td><td>High</td></tr>
+  <tr><td>Symbols</td><td>Feature Extraction</td><td>Scarab, Ankh, Cleopatra, A, K, Q</td></tr>
+</table>
+
+</body>
+</html>

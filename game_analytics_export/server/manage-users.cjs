@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 
-const USERS_FILE = path.join(__dirname, 'users.json');
+const USERS_FILE = path.join(__dirname, 'data', 'users.json');
 const BCRYPT_ROUNDS = 12;
 
 function loadUsers() {

@@ -40,7 +40,7 @@ Use **T3** for ALL classification in this sprint:
 
 **Problem**: `load_screenshot()`, `create_masked_screenshot()`, `select_new_batch()`, and `repair_screenshots()` listing only check `.jpg/.png/.webp` — NOT `.jpeg`. **118 unclassified games** with `.jpeg` screenshots are invisible to batch selection and classification.
 
-**Fix**: In `classify_art_v2.py`, add `.jpeg` to the extension list in these 4 locations:
+**Fix**: In `classify_art.py`, add `.jpeg` to the extension list in these 4 locations:
 
 1. **`load_screenshot()`** (line ~671): Change `for ext in ['.jpg', '.png', '.webp']:` → `for ext in ['.jpg', '.jpeg', '.png', '.webp']:`
 2. **`create_masked_screenshot()`** (line ~687): Same change
@@ -54,7 +54,7 @@ Also fix 2 stale comments:
 **Verify after fix**:
 ```bash
 python3 -c "
-from classify_art_v2 import select_new_batch
+from classify_art import select_new_batch
 games = select_new_batch(9999)
 print(f'{len(games)} selectable games')
 # Should be ~1,778, NOT ~1,660
@@ -67,13 +67,13 @@ print(f'{len(games)} selectable games')
 cd game_analytics_export/data
 
 # Select 450 unclassified games (includes .jpeg games after Phase 0 fix)
-python3 classify_art_v2.py --select-batch 450
+python3 classify_art.py --select-batch 450
 
 # Classify them (T3 config: cached, no masked)
-python3 classify_art_v2.py [FILES...] --no-masked
+python3 classify_art.py [FILES...] --no-masked
 
 # Run expanded regression (offline, no API calls)
-python3 classify_art_v2.py --regression-full
+python3 classify_art.py --regression-full
 ```
 
 **After batch 4:**
@@ -87,9 +87,9 @@ python3 classify_art_v2.py --regression-full
 ### Phase 2: Batch 5 (~450 games, ~$4.50) + Spot-Check
 
 ```bash
-python3 classify_art_v2.py --select-batch 450
-python3 classify_art_v2.py [FILES...] --no-masked
-python3 classify_art_v2.py --regression-full
+python3 classify_art.py --select-batch 450
+python3 classify_art.py [FILES...] --no-masked
+python3 classify_art.py --regression-full
 ```
 
 **After batch 5:**
@@ -101,9 +101,9 @@ python3 classify_art_v2.py --regression-full
 ### Phase 3: Batch 6 (~450 games, ~$4.50) + Spot-Check
 
 ```bash
-python3 classify_art_v2.py --select-batch 450
-python3 classify_art_v2.py [FILES...] --no-masked
-python3 classify_art_v2.py --regression-full
+python3 classify_art.py --select-batch 450
+python3 classify_art.py [FILES...] --no-masked
+python3 classify_art.py --regression-full
 ```
 
 **After batch 6:**
@@ -116,9 +116,9 @@ python3 classify_art_v2.py --regression-full
 
 ```bash
 # Select ALL remaining unclassified
-python3 classify_art_v2.py --select-batch 9999
-python3 classify_art_v2.py [FILES...] --no-masked
-python3 classify_art_v2.py --regression-full
+python3 classify_art.py --select-batch 9999
+python3 classify_art.py [FILES...] --no-masked
+python3 classify_art.py --regression-full
 ```
 
 **After batch 7:**
@@ -157,8 +157,8 @@ for f in files: print(f)
 " > /tmp/batch12_files.txt
 
 # Then re-classify with current prompt
-python3 classify_art_v2.py [FILES_FROM_LIST...] --no-masked
-python3 classify_art_v2.py --regression-full
+python3 classify_art.py [FILES_FROM_LIST...] --no-masked
+python3 classify_art.py --regression-full
 ```
 
 **After phase 5:**
@@ -235,7 +235,7 @@ BATCH N COMPLETE
 
 ```
 game_analytics_export/data/
-├── classify_art_v2.py              ← Main pipeline
+├── classify_art.py              ← Main pipeline
 ├── art_pipeline/
 │   ├── results.json                ← Classification results (currently 2,645 games)
 │   ├── user_reviews.json           ← 296 entries (232 human, 64 auto)
@@ -254,9 +254,9 @@ game_analytics_export/data/
 ## CLI Quick Reference
 
 ```bash
-python3 classify_art_v2.py --select-batch N       # Select N unclassified games
-python3 classify_art_v2.py FILE... --no-masked     # Classify (T3 config)
-python3 classify_art_v2.py --regression-full       # 232-game expanded regression (offline)
-python3 classify_art_v2.py --stats                 # Pipeline stats
-python3 classify_art_v2.py --repair-screenshots    # Find + fix bad screenshots
+python3 classify_art.py --select-batch N       # Select N unclassified games
+python3 classify_art.py FILE... --no-masked     # Classify (T3 config)
+python3 classify_art.py --regression-full       # 232-game expanded regression (offline)
+python3 classify_art.py --stats                 # Pipeline stats
+python3 classify_art.py --repair-screenshots    # Find + fix bad screenshots
 ```

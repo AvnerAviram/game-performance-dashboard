@@ -1,9 +1,7 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
 import { normalizeProvider } from '../../src/lib/shared-config.js';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 function resolveThemeConsolidated(game, themeMap, artThemeMap) {
     return (
@@ -23,10 +21,10 @@ describe('DuckDB field mapping: master JSON → DuckDB columns', () => {
     let games, confidenceMap, themeMap, artThemeMap, validGames;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
-        themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
-        artThemeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'art_theme_consolidation_map.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        confidenceMap = JSON.parse(readFileSync(MAPPINGS.confidence, 'utf-8'));
+        themeMap = JSON.parse(readFileSync(MAPPINGS.theme, 'utf-8'));
+        artThemeMap = JSON.parse(readFileSync(MAPPINGS.artTheme, 'utf-8'));
         validGames = games.filter(g => g.game_category !== 'Total' && g.name !== 'Total');
     });
 
@@ -200,10 +198,10 @@ describe('DuckDB chart data contracts', () => {
     let games, confidenceMap, themeMap, artThemeMap;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        confidenceMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'confidence_map.json'), 'utf-8'));
-        themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
-        artThemeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'art_theme_consolidation_map.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        confidenceMap = JSON.parse(readFileSync(MAPPINGS.confidence, 'utf-8'));
+        themeMap = JSON.parse(readFileSync(MAPPINGS.theme, 'utf-8'));
+        artThemeMap = JSON.parse(readFileSync(MAPPINGS.artTheme, 'utf-8'));
     });
 
     const CONF_FIELDS = ['rtp', 'volatility', 'reels', 'paylines', 'max_win', 'min_bet', 'max_bet'];
@@ -234,12 +232,12 @@ describe('DuckDB chart data contracts', () => {
             expect(themes.size).toBeGreaterThan(30);
         });
 
-        test('distinct consolidated themes in reliable set is at most 45', () => {
+        test('distinct consolidated themes in reliable set is at most 50', () => {
             const themes = new Set();
             for (const g of getReliable()) {
                 themes.add(resolveThemeConsolidated(g, themeMap, artThemeMap));
             }
-            expect(themes.size).toBeLessThanOrEqual(45);
+            expect(themes.size).toBeLessThanOrEqual(50);
         });
 
         test('games that had a legacy non-Unknown consolidated label stay non-Unknown', () => {

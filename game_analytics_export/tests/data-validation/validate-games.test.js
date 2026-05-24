@@ -9,7 +9,7 @@ describe('Game Data Validation', () => {
     let games;
 
     beforeAll(async () => {
-        const module = await import('../../data/game_data_master.json', {
+        const module = await import('../../data/master/game_data_master.json', {
             assert: { type: 'json' },
         });
         const data = module.default;
@@ -187,7 +187,7 @@ describe('Game Data Statistics', () => {
     let games;
 
     beforeAll(async () => {
-        const module = await import('../../data/game_data_master.json', {
+        const module = await import('../../data/master/game_data_master.json', {
             assert: { type: 'json' },
         });
         const data = module.default;

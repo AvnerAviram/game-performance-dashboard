@@ -1,0 +1,1421 @@
+{
+  "Cherry Blossoms": {
+    "features": [
+      "Free Spins"
+    ],
+    "provider": "Light & Wonder",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games Feature",
+          "context": "H2 section 'FREE GAMES FEATURE'",
+          "description": "3, 4 or 5 Scattered Cherry Blossoms award 15, 20 or 25 free games respectively. All free games wins are tripled and the feature can be retriggered.",
+          "characteristics": [
+            "tripled wins",
+            "retriggerable",
+            "3-5 scatters trigger"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Asian",
+      "themes_all": [
+        "Asian"
+      ],
+      "specs": {
+        "rtp": 93.488,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": 3,
+        "paylines": "1-20 (selectable)",
+        "grid_config": "5x3",
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "1/31/2017",
+        "description": "Cherry Blossoms is a 5-reel, 20-payline Asian-themed video slot featuring Geisha wilds that double wins and Cherry Blossom scatters that trigger free games with tripled wins. The game offers selectable paylines and retriggerable free spins for enhanced winning potential."
+      },
+      "functional_symbols": [
+        {
+          "name": "Geisha",
+          "type": "wild",
+          "description": "Substitutes for all symbols except Scattered Cherry Blossoms and doubles the prize when substituting into a winning combination"
+        },
+        {
+          "name": "Scattered Cherry Blossoms",
+          "type": "scatter",
+          "description": "3, 4 or 5 symbols trigger 15, 20 or 25 free games respectively. Pays anywhere on the reels and cannot be substituted by wilds"
+        }
+      ]
+    }
+  },
+  "Billionaires Bank": {
+    "features": [
+      "Cash On Reels",
+      "Hold and Spin",
+      "Hold and Spin",
+      "Static Jackpot",
+      "Expanding Reels",
+      "Persistence"
+    ],
+    "provider": "High 5 Games",
+    "result": {
+      "features": [
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Scatter Pay Symbols",
+          "context": "GAME RULES section describing scatter pay symbols with credit values",
+          "description": "Scatter Pay Symbols appear with credit values from 10-400 and are awarded when a Scatter Pay Activator Symbol appears on the reels.",
+          "characteristics": [
+            "Credit values range from 10-400",
+            "Activated by Scatter Pay Activator Symbol"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Hold and Spin",
+          "operator_name": "Loot Link Feature",
+          "context": "LOOT LINK FEATURE section",
+          "description": "A hold and spin feature where scatter pay symbols lock in a 40-position independent reels matrix with 3 respins that reset when new symbols land.",
+          "characteristics": [
+            "40-position matrix",
+            "Unlocks additional rows by collecting symbols",
+            "3 respins reset on new symbols"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Hold and Spin",
+          "operator_name": "Billionaire's Loot Link Feature",
+          "context": "BILLIONAIRE'S LOOT LINK FEATURE section",
+          "description": "A separate hold and spin feature triggered by collecting 6+ Collection Row Scatter Pay Symbols, played on a 24-position matrix with multipliers and scatter increase symbols.",
+          "characteristics": [
+            "24-position matrix",
+            "Requires 6+ Collection Row symbols to trigger",
+            "Features multiplier and scatter increase symbols"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "Jackpot Symbols",
+          "context": "LOOT LINK FEATURE section describing jackpot values",
+          "description": "Fixed jackpot tiers including Mini (500), Minor (2000), Major (20000), and Grand (50000) credits awarded through the Loot Link features.",
+          "characteristics": [
+            "Mini: 500 credits",
+            "Minor: 2000 credits",
+            "Major: 20000 credits",
+            "Grand: 50000 credits"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Expanding Reels",
+          "operator_name": "Matrix Row Unlocking",
+          "context": "LOOT LINK FEATURE section describing row unlocking mechanism",
+          "description": "The Loot Link feature starts with 20 active positions and unlocks additional rows of 5 reels each as more symbols are collected, expanding to 40 total positions.",
+          "characteristics": [
+            "Starts with 20 positions",
+            "Unlocks 5 new positions at thresholds of 10, 15, 20, and 25 symbols",
+            "Expands to 40 total positions"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Persistence",
+          "operator_name": "Collection Row and Scatter Pay Activator Lock",
+          "context": "GAME RULES section describing collection mechanics",
+          "description": "Collection Row consists of 6 positions that fill with symbols over multiple spins, and Scatter Pay Activator Symbol can lock for up to 2-4 spins depending on Power Bet settings.",
+          "characteristics": [
+            "Collection Row fills over multiple spins",
+            "Activator symbol locks for multiple spins",
+            "State maintained between spins"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Money",
+      "themes_all": [
+        "Money",
+        "Gold"
+      ],
+      "specs": {
+        "rtp": 96.0,
+        "volatility": "Medium to High (varies by Power Bet)",
+        "max_win": null,
+        "reels": 5,
+        "rows": null,
+        "paylines": null,
+        "grid_config": "5 reels",
+        "win_evaluation": "ways",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": {
+          "Mini": "500 credits",
+          "Minor": "2000 credits",
+          "Major": "20000 credits",
+          "Grand": "50000 credits"
+        },
+        "last_modified_date": "10/30/2024",
+        "description": "Billionaire's Bank is a 1024 ways slot featuring dual hold and spin mechanics called Loot Link and Billionaire's Loot Link features. Players collect scatter pay symbols with credit values to trigger expanding matrix bonuses with multipliers and fixed jackpots up to 50,000 credits."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild Symbol",
+          "type": "wild",
+          "description": "Substitutes for all symbols except scatter symbols, appears on reels 2-5 only"
+        },
+        {
+          "name": "Scatter Pay Activator Symbol",
+          "type": "special",
+          "description": "Awards all Scatter Pay Symbol values when it appears, can lock for up to 2-4 spins"
+        },
+        {
+          "name": "Scatter Pay Symbol",
+          "type": "scatter",
+          "description": "Scatter symbols with credit values from 10-400 that are awarded by the Activator Symbol"
+        },
+        {
+          "name": "Collection Row Scatter Pay Symbol",
+          "type": "scatter",
+          "description": "Special scatter symbols that fill the collection row positions, requiring 6+ to trigger Billionaire's Loot Link"
+        },
+        {
+          "name": "Jackpot Symbols",
+          "type": "scatter",
+          "description": "Mini, Minor, Major, and Grand jackpot symbols that award fixed credit amounts"
+        }
+      ]
+    }
+  },
+  "Quadruple Da Vinci Diamonds": {
+    "features": [
+      "Free Spins",
+      "Cascading Reels",
+      "Persistence"
+    ],
+    "provider": "High 5 Games",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games Bonus",
+          "context": "H3 section under Free Games bonus",
+          "description": "Triggered by 3 Free Games Bonus symbols on reels 1, 2, and 3, awarding 11 or 12 free games with different reels and tumbling mechanics.",
+          "characteristics": [
+            "11-12 free games",
+            "different reel set",
+            "tumbling after wins",
+            "wild substitution"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cascading Reels",
+          "operator_name": "tumbling reels",
+          "context": "Free Games bonus section describing symbol removal and falling",
+          "description": "During Free Games, winning symbols disappear and remaining symbols tumble down to fill gaps, creating new winning opportunities until no more wins occur.",
+          "characteristics": [
+            "winning symbols disappear",
+            "symbols fall from above",
+            "continues until no wins",
+            "free games only"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Persistence",
+          "operator_name": "Spin-crease feature",
+          "context": "Game Rules section describing unlocking symbols through betting",
+          "description": "Symbol upgrades unlock permanently based on cumulative betting amounts across all sessions, progressively adding Double, Triple, and Quadruple versions of portrait symbols.",
+          "characteristics": [
+            "cumulative betting tracker",
+            "permanent unlocks",
+            "symbol upgrades",
+            "cross-session persistence"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Classic",
+      "themes_all": [
+        "Classic",
+        "Gems & Crystals"
+      ],
+      "specs": {
+        "rtp": "92.0% - 97.0%",
+        "volatility": "16.4",
+        "max_win": null,
+        "reels": 5,
+        "rows": null,
+        "paylines": null,
+        "grid_config": null,
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "6/7/2022",
+        "description": "A classic slot featuring Da Vinci's famous artworks with a unique Spin-crease progression system that permanently unlocks upgraded portrait symbols through cumulative betting. The Free Games bonus includes tumbling reels mechanics for cascading wins."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except Free Games Bonus, with different substitution ratios for portraits vs jewels, appears on reels 2-4"
+        },
+        {
+          "name": "Free Games Bonus",
+          "type": "scatter",
+          "description": "Scatter symbol appearing only on reels 1-3 that triggers 11-12 free games with tumbling mechanics"
+        },
+        {
+          "name": "Free Games Wild",
+          "type": "wild",
+          "description": "Wild symbol during free games that substitutes for all symbols with different ratios, appears on reels 2-4"
+        }
+      ]
+    }
+  },
+  "Shadow Of The Panther Power Bet": {
+    "features": [
+      "Free Spins",
+      "Mystery Symbols",
+      "Stacked Symbols"
+    ],
+    "provider": "High 5 Games",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games Bonus",
+          "context": "H2 section 'Game Rules'",
+          "description": "Free Games Bonus triggered by scatter symbols, uses different reels than base game. Does not retrigger and automatically plays at same bet as triggering game.",
+          "characteristics": [
+            "different reels",
+            "no retrigger",
+            "same bet multiplier"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Mystery Symbols",
+          "operator_name": "Super Stacks mystery symbol",
+          "context": "H2 section 'Power Bet feature'",
+          "description": "Super Stacks mystery symbol positions transform into specific symbols based on Power Bet selection, with enhanced versions in Free Games.",
+          "characteristics": [
+            "transforms based on power bet",
+            "enhanced in free games"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Stacked Symbols",
+          "operator_name": "Super Stacks",
+          "context": "H2 section 'Power Bet feature'",
+          "description": "Super Stacks positions on the reels that can be enhanced through the Power Bet feature to transform into selected symbols.",
+          "characteristics": [
+            "enhanced by power bet",
+            "mystery transformation"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Animals",
+      "themes_all": [
+        "Animals",
+        "Adventure"
+      ],
+      "specs": {
+        "rtp": 96.5,
+        "volatility": "8.7",
+        "max_win": null,
+        "reels": null,
+        "rows": null,
+        "paylines": null,
+        "grid_config": null,
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "9/28/2021",
+        "description": "Shadow of the Panther Power Bet is an animal-themed slot featuring a unique Power Bet system where players can enhance their next 30 spins by selecting specific animal symbols. The game includes Super Stacks mystery symbols that transform based on Power Bet choices and a Free Games Bonus with different reels."
+      },
+      "functional_symbols": [
+        {
+          "name": "Scatter",
+          "type": "scatter",
+          "description": "Awards in any position on the reels and triggers Free Games Bonus"
+        },
+        {
+          "name": "Super Stacks mystery symbol",
+          "type": "special",
+          "description": "Mystery symbol positions that transform into selected animal symbols based on Power Bet feature"
+        },
+        {
+          "name": "Purple Cheetah Symbol",
+          "type": "special",
+          "description": "High-value symbol that can be selected in Power Bet feature for enhanced transformation"
+        },
+        {
+          "name": "Green Leopard Symbol",
+          "type": "special",
+          "description": "High-value symbol that can be selected in Power Bet feature for enhanced transformation"
+        },
+        {
+          "name": "Blue Panther Symbol",
+          "type": "special",
+          "description": "High-value symbol that can be selected in Power Bet feature for enhanced transformation"
+        },
+        {
+          "name": "Yellow Man Symbol",
+          "type": "special",
+          "description": "High-value symbol that can be selected in Power Bet feature for enhanced transformation"
+        }
+      ]
+    }
+  },
+  "Mustang Money Triple Shot": {
+    "features": [
+      "Free Spins",
+      "Sticky Wilds",
+      "Static Jackpot"
+    ],
+    "provider": "Ainsworth",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games",
+          "context": "Multiple sections describing STICKY WILD FREE GAMES, BONUS FREE GAMES, and EXTRA FREE GAMES",
+          "description": "8 Free Games randomly triggered by 1 or more scatter symbols. Features three different types that can combine: Sticky Wild (wilds held in position), Bonus Free Games (collect symbols for bonus prizes), and Extra Free Games (additional spins awarded).",
+          "characteristics": [
+            "Random trigger",
+            "Multiple free spin types",
+            "Can combine features",
+            "8 free games awarded"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Sticky Wilds",
+          "operator_name": "STICKY WILD FREE GAMES",
+          "context": "STICKY WILD FREE GAMES section",
+          "description": "During Sticky Wild Free Games, wild symbols that appear are held in position until the feature is complete.",
+          "characteristics": [
+            "Only during free spins",
+            "Wilds held until feature ends",
+            "Substitutes for all symbols"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "Bonus prizes",
+          "context": "BONUS FREE GAMES section describing collecting symbols to win bonuses",
+          "description": "Collect 2, 3, 4, 5 or 6 symbols to win respective bonus prizes. Bonus prizes may be won multiple times during the feature.",
+          "characteristics": [
+            "Fixed bonus tiers based on collection count",
+            "Multiple wins possible",
+            "Collection-based awards"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Animals",
+      "themes_all": [
+        "Animals",
+        "Western"
+      ],
+      "specs": {
+        "rtp": 94.39,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": null,
+        "paylines": "50",
+        "grid_config": null,
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "8/12/2025",
+        "description": "Mustang Money Triple Shot is a Western-themed slot with wild mustangs featuring 50 fixed paylines. The game offers multiple types of free spins that can combine together, including sticky wilds that remain in place and bonus collection mechanics for fixed prize awards."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except scatters and bonus symbols"
+        },
+        {
+          "name": "Scatter",
+          "type": "scatter",
+          "description": "Coins that pay in any position and randomly trigger 8 Free Games"
+        },
+        {
+          "name": "Bonus symbols",
+          "type": "bonus",
+          "description": "Collection symbols that appear during Bonus Free Games to award bonus prizes"
+        }
+      ]
+    }
+  },
+  "San Fa Coins": {
+    "features": [
+      "Free Spins",
+      "Sticky Wilds",
+      "Cash On Reels"
+    ],
+    "provider": "Ainsworth",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games",
+          "context": "GAME RULES section",
+          "description": "Any combination of 1 or more coins may randomly trigger 8 Free Games. Different free game variations are available with different features active.",
+          "characteristics": [
+            "Randomly triggered by coin symbols",
+            "8 free games awarded",
+            "Multiple variations available"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Sticky Wilds",
+          "operator_name": "Held Wilds",
+          "context": "GAME RULES section under various feature descriptions",
+          "description": "Wild symbols that appear during certain free game features will be HELD in that position until the feature is complete.",
+          "characteristics": [
+            "Wilds held for duration of feature",
+            "Available in specific free game variations"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Bonus Prizes",
+          "context": "GAME RULES section under feature descriptions",
+          "description": "Coins display bonus prize values that can be collected during certain free game features. Bonus prizes may be won multiple times during the feature.",
+          "characteristics": [
+            "Bonus prizes on coin symbols",
+            "Collectable during free games",
+            "Multiple wins possible"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Asian",
+      "themes_all": [
+        "Asian",
+        "Gold",
+        "Money"
+      ],
+      "specs": {
+        "rtp": 94.39,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": null,
+        "paylines": "50",
+        "grid_config": null,
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "12/18/2024",
+        "description": "San Fa Coins is an Asian-themed slot featuring the legend of magical coins that bring prosperity. The game offers multiple free game variations with different features including sticky wilds and bonus prize collection mechanics."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except coins and bonus symbols. Can be held in position during certain free game features."
+        },
+        {
+          "name": "Coins",
+          "type": "scatter",
+          "description": "Scatter symbols that randomly trigger free games and carry bonus prize values during certain features. Appear on specific reels depending on the game mode."
+        }
+      ]
+    }
+  },
+  "Whirl Win": {
+    "features": [
+      "Wheel",
+      "Multiplier Wild"
+    ],
+    "provider": "Bragg Gaming Group",
+    "result": {
+      "features": [
+        {
+          "name": "Wheel",
+          "operator_name": "Wheel Bonus",
+          "context": "WHEEL BONUS RULES section",
+          "description": "A bonus wheel triggered by 1-3 BONUS symbols appearing on or within 1 position of line 1. Player spins the wheel to win credit prizes with values that differ based on whether playing 5 or 9 lines.",
+          "characteristics": [
+            "triggered by bonus symbols near line 1",
+            "different wedge values for 5-line vs 9-line play",
+            "values multiplied by bet per line"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Multiplier Wild",
+          "operator_name": "Double Wild",
+          "context": "BASIC RULES section describing DOUBLE WILD mechanics",
+          "description": "DOUBLE WILD symbols substitute for other symbols and multiply wins. 1 DOUBLE WILD multiplies the pay by 2x, while 2 DOUBLE WILD symbols multiply the pay by 4x.",
+          "characteristics": [
+            "1 wild = 2x multiplier",
+            "2 wilds = 4x multiplier",
+            "3 wilds pay fixed amount",
+            "substitutes for all symbols except BONUS"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Classic",
+      "themes_all": [
+        "Classic"
+      ],
+      "specs": {
+        "rtp": 94.1,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": 3,
+        "paylines": "5 or 9",
+        "grid_config": "5x3",
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "10/28/2025",
+        "description": "A classic 5-reel slot with traditional symbols and payline gameplay. Features a wheel bonus triggered by bonus symbols and Double Wild symbols that multiply wins by 2x or 4x depending on how many appear in a winning combination."
+      },
+      "functional_symbols": [
+        {
+          "name": "Double Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except BONUS and multiplies wins by 2x (1 wild) or 4x (2 wilds)"
+        },
+        {
+          "name": "Bonus",
+          "type": "bonus",
+          "description": "Triggers the wheel bonus when 1-3 symbols appear on or within 1 position of line 1"
+        }
+      ]
+    }
+  },
+  "Thunder Blitz": {
+    "features": [
+      "Buy Bonus",
+      "Cash On Reels",
+      "Collect Feature",
+      "Hold and Spin",
+      "Respin",
+      "Static Jackpot"
+    ],
+    "provider": "Bragg Gaming Group",
+    "result": {
+      "features": [
+        {
+          "name": "Buy Bonus",
+          "operator_name": "Buy Bonus",
+          "context": "Buy Bonus section",
+          "description": "The Random Respin Feature can be instantly triggered during the base game by purchasing it for a cost of 100x current total bet.",
+          "characteristics": [
+            "100x bet cost",
+            "triggers Random Respin Bonus"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Cash symbols",
+          "context": "Cash Collect Feature and Collection Respin Bonus sections",
+          "description": "Cash symbols appear with values of 1, 2, 3, 5, 7, 10, 15 or 20 times the bet level, or with GRAND, MAJOR, MINOR, MINI bonus labels.",
+          "characteristics": [
+            "appears on reels with credit values",
+            "collected by Collection symbols",
+            "various multiplier values"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Collect Feature",
+          "operator_name": "Collection symbols and Cash Collect Feature",
+          "context": "Cash Collect Feature section",
+          "description": "Collection symbols on reel 2 collect all values from Cash symbols on reels 1 or 3. All values from Cash symbols are added to Collection symbols and awarded to the player.",
+          "characteristics": [
+            "Collection symbols gather Cash symbol values",
+            "triggers when Collection on reel 2 with Cash on reel 1 or 3"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Hold and Spin",
+          "operator_name": "Collection Respin Bonus",
+          "context": "Collection Respin Bonus section",
+          "description": "Triggered by Cash symbols on reels 1 and 3 plus Collection symbols on reel 2. Awards 3 respins with symbols locking in place. Additional symbols reset respins to 3.",
+          "characteristics": [
+            "3 initial respins",
+            "symbols lock in place",
+            "counter resets on new symbols",
+            "independent reels during feature"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Respin",
+          "operator_name": "Random Respin Bonus",
+          "context": "Random Respin Bonus section",
+          "description": "Any Cash or Collection symbols on the reels may randomly trigger the Respin Bonus feature, which substitutes symbols and follows the same rules as Collection Respin Bonus.",
+          "characteristics": [
+            "randomly triggered",
+            "substitutes symbols with Cash symbols",
+            "follows Collection Respin rules"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "GRAND, MAJOR, MINOR, MINI bonuses",
+          "context": "Cash Collect Feature section",
+          "description": "Fixed jackpot tiers awarded when corresponding labels appear on Cash symbols: GRAND (3000x), MAJOR (200x), MINOR (100x), MINI (50x) times bet level.",
+          "characteristics": [
+            "four named tiers",
+            "fixed multiplier values",
+            "awarded through Cash symbols"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Lightning",
+      "themes_all": [
+        "Lightning"
+      ],
+      "specs": {
+        "rtp": 93.99,
+        "volatility": null,
+        "max_win": "9945x",
+        "reels": 3,
+        "rows": 3,
+        "paylines": "9 lines",
+        "grid_config": "3x3",
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": {
+          "GRAND": "3000x",
+          "MAJOR": "200x",
+          "MINOR": "100x",
+          "MINI": "50x"
+        },
+        "last_modified_date": "11/5/2025",
+        "description": "Thunder Blitz is a 3x3 grid slot with 9 lines featuring Cash symbols with credit values and Collection symbols that gather those values. The game includes Hold and Spin mechanics through the Collection Respin Bonus and offers four fixed jackpot tiers."
+      },
+      "functional_symbols": [
+        {
+          "name": "Cash symbol",
+          "type": "special",
+          "description": "Appears with credit values (1-20x bet) or jackpot labels (GRAND, MAJOR, MINOR, MINI)"
+        },
+        {
+          "name": "Collection symbol",
+          "type": "special",
+          "description": "Collects values from Cash symbols and triggers respin bonuses"
+        }
+      ]
+    }
+  },
+  "Dragon Power": {
+    "features": [
+      "Free Spins",
+      "Hold and Spin",
+      "Cash On Reels",
+      "Static Jackpot",
+      "Wild Reels"
+    ],
+    "provider": "Bragg Gaming Group",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Games Feature",
+          "context": "Free Games Feature Rules section",
+          "description": "3, 4, or 5 scatter symbols award 8, 15, or 25 free spins respectively. During free spins, all wins are multiplied by random multipliers of 2x, 3x, 5x, 8x, 10x, 20x, or 25x.",
+          "characteristics": [
+            "random multipliers",
+            "retriggerable",
+            "scatter triggered"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Hold and Spin",
+          "operator_name": "Dragon Power Feature",
+          "context": "Dragon Power Feature Rules section",
+          "description": "6 or more blue or gold orb symbols trigger the respin feature with 3 initial respins. Landing additional orbs resets respins to 3, and all orb prizes are awarded at the end.",
+          "characteristics": [
+            "3 respins",
+            "orb lock mechanism",
+            "grand prize for full screen"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Blue Orb and Gold Orb prizes",
+          "context": "Dragon Power Feature Rules section",
+          "description": "Blue orbs and gold orbs display credit values that are awarded when collected during the Dragon Power Feature.",
+          "characteristics": [
+            "credit values on orb symbols"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "GRAND",
+          "context": "Dragon Power Feature Rules page 02",
+          "description": "GRAND jackpot is awarded when all positions are filled with blue orbs or gold orbs during the Dragon Power Feature.",
+          "characteristics": [
+            "full screen completion prize"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Wild Reels",
+          "operator_name": "Golden Orb Feature",
+          "context": "Golden Orb Feature Rules section",
+          "description": "Randomly in base game, the middle reel turns to all gold orbs which act as both wild symbols and blue orbs.",
+          "characteristics": [
+            "random trigger",
+            "middle reel only",
+            "dual function symbols"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Asian",
+      "themes_all": [
+        "Asian",
+        "Dragons",
+        "Mythical"
+      ],
+      "specs": {
+        "rtp": 95.7,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": 3,
+        "paylines": "50",
+        "grid_config": "3x5",
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": {
+          "Grand": "awarded when all positions filled with orbs"
+        },
+        "last_modified_date": "2/3/2021",
+        "description": "Dragon Power is a 3x5, 50-line Asian-themed slot featuring dragons and mystical orbs. The main attraction is the Dragon Power Feature where 6+ orbs trigger respins with locked symbols, while the Golden Orb Feature can randomly turn the middle reel wild."
+      },
+      "functional_symbols": [
+        {
+          "name": "Blue Orb",
+          "type": "special",
+          "description": "Triggers Dragon Power Feature and displays credit values"
+        },
+        {
+          "name": "Gold Orb",
+          "type": "special",
+          "description": "Acts as both wild and blue orb, appears in Golden Orb Feature"
+        },
+        {
+          "name": "Scatter",
+          "type": "scatter",
+          "description": "Triggers free games when 3+ land on adjacent reels from left"
+        }
+      ]
+    }
+  },
+  "Magic Spins": {
+    "features": [
+      "Hold and Spin",
+      "Static Jackpot",
+      "Cash On Reels",
+      "Collect Feature",
+      "Gamble Feature",
+      "Mystery Symbols"
+    ],
+    "provider": "Wazdan",
+    "result": {
+      "features": [
+        {
+          "name": "Hold and Spin",
+          "operator_name": "Hold the Jackpot Bonus Game",
+          "context": "HOLD THE JACKPOT BONUS GAME section",
+          "description": "Triggered by 6+ Bonus symbols, locks triggering symbols in place with 3 respins. New Bonus symbols reset respins to 3 and also lock in place.",
+          "characteristics": [
+            "3 initial respins",
+            "resets to 3 on new symbol",
+            "symbols lock in place",
+            "continues until respins end or all positions filled"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "MINI, MINOR, MAJOR, GRAND and MAGIC Jackpots",
+          "context": "HOLD THE JACKPOT BONUS GAME section and paytable references",
+          "description": "Features named jackpot tiers including MINI, MINOR, MAJOR, GRAND (2500x) and MAGIC jackpots awarded through the Hold the Jackpot bonus.",
+          "characteristics": [
+            "MINI jackpot",
+            "MINOR jackpot",
+            "MAJOR jackpot",
+            "GRAND jackpot 2500x",
+            "MAGIC jackpot",
+            "multiple same-tier jackpots possible"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Cash symbols and Increasing Value Cash symbols",
+          "context": "HOLD THE JACKPOT BONUS GAME section",
+          "description": "Cash symbols appear on small reels with values 1x-5x bet, while Increasing Value Cash symbols award 3x-7x bet and Mega versions award 5x-10x bet.",
+          "characteristics": [
+            "Cash symbols 1x-5x",
+            "Increasing Value Cash 3x-7x",
+            "Mega Increasing Value Cash 5x-10x",
+            "values increase with countdown"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Collect Feature",
+          "operator_name": "Collector and Mega Collector symbols",
+          "context": "HOLD THE JACKPOT BONUS GAME section",
+          "description": "Collector and Mega Collector symbols accumulate all values from Cash symbols on adjacent small reels, with countdown or Collect to Infinity feature.",
+          "characteristics": [
+            "accumulates adjacent cash values",
+            "countdown mechanism",
+            "Collect to Infinity option"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Gamble Feature",
+          "operator_name": "Gamble Feature",
+          "context": "GAMBLE FEATURE section",
+          "description": "Players can risk wins for a chance to double them by selecting one of two symbols. Features seven rounds and allows ending after each round.",
+          "characteristics": [
+            "double or nothing",
+            "symbol selection",
+            "seven rounds maximum",
+            "can end after each round"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Mystery Symbols",
+          "operator_name": "Mystery symbol and Magic Mystery symbol",
+          "context": "HOLD THE JACKPOT BONUS GAME section",
+          "description": "Mystery symbols can transform into any other Bonus symbol, while Magic Mystery symbols specifically transform into jackpot symbols.",
+          "characteristics": [
+            "Mystery transforms to any Bonus symbol",
+            "Magic Mystery transforms to jackpots",
+            "reveal at end of bonus"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Fantasy",
+      "themes_all": [
+        "Fantasy",
+        "Magic"
+      ],
+      "specs": {
+        "rtp": null,
+        "volatility": "Variable (Low/Standard/High)",
+        "max_win": "2500x",
+        "reels": 29,
+        "rows": null,
+        "paylines": null,
+        "grid_config": "29 reels with big and mega reels",
+        "win_evaluation": "cluster",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": {
+          "MINI": null,
+          "MINOR": null,
+          "MAJOR": null,
+          "GRAND": "2500x",
+          "MAGIC": null
+        },
+        "last_modified_date": null,
+        "description": "Magic Spins is a unique 29-reel cluster-pay slot featuring the Hold the Jackpot bonus with collecting mechanics. Players need 10+ matching symbols for wins, with special Bonus symbols triggering the main feature where Cash symbols and Collectors accumulate values across multiple jackpot tiers."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except Bonus symbols"
+        },
+        {
+          "name": "Bonus symbols",
+          "type": "bonus",
+          "description": "6+ of any type activate Hold the Jackpot Bonus Game, stick to reels for up to 10 re-spins"
+        },
+        {
+          "name": "Cash symbols",
+          "type": "special",
+          "description": "Award prizes ranging from 1x-5x player's bet, appear on small reels only"
+        },
+        {
+          "name": "Collector symbols",
+          "type": "special",
+          "description": "Accumulate values from Cash symbols on adjacent small reels"
+        },
+        {
+          "name": "Mystery symbols",
+          "type": "special",
+          "description": "Transform into any other Bonus symbol at end of bonus game"
+        }
+      ]
+    }
+  },
+  "Sizzling Eggs": {
+    "features": [
+      "Free Spins",
+      "Collect Feature",
+      "Cash On Reels",
+      "Static Jackpot",
+      "Buy Bonus",
+      "Gamble Feature"
+    ],
+    "provider": "Wazdan",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Spins",
+          "context": "H3 section describing scatter symbol triggering",
+          "description": "Drawing 3, 4 or 5 Scatter symbols anywhere on the reels awards 10, 20 or 30 Free Spins respectively. Additional free spins can be awarded during the feature.",
+          "characteristics": [
+            "Retrigger possible",
+            "Collector symbols persist from base game",
+            "Special modifier symbols appear"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Collect Feature",
+          "operator_name": "Collector symbols",
+          "context": "H3 section describing Collector symbols mechanics",
+          "description": "Collector symbols appear on the top row with countdown values from 1-10. They accumulate all values from Cash and Jackpot symbols below until countdown reaches 0.",
+          "characteristics": [
+            "Random countdown values",
+            "Accumulates cash and jackpot values",
+            "Special modifiers in free spins"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Cash On Reels",
+          "operator_name": "Cash symbols",
+          "context": "H3 section describing Cash symbols",
+          "description": "Cash symbols award prizes ranging from 1x-10x player's bet. Values can only be won when collected by the Collector symbol.",
+          "characteristics": [
+            "Requires Collector symbol to award",
+            "Range 1x-10x bet"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "MINI, MINOR, MAJOR and MEGA Jackpot symbols",
+          "context": "H3 section describing Jackpot symbols",
+          "description": "MINI, MINOR, MAJOR and MEGA Jackpot symbols award corresponding fixed Jackpots when collected by Collector symbols.",
+          "characteristics": [
+            "Four tier system",
+            "Requires Collector symbol to award"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Buy Bonus",
+          "operator_name": "Buy Feature",
+          "context": "H3 section mentioning Ultra and Extreme Volatility",
+          "description": "Using the Buy Feature, Free Spins can be activated on Ultra or Extreme Volatility level, characterized by even bigger wins.",
+          "characteristics": [
+            "Ultra volatility option",
+            "Extreme volatility option"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Gamble Feature",
+          "operator_name": "Gamble feature",
+          "context": "H2 section describing Gamble Feature",
+          "description": "The Gamble feature gives a chance to double each win by selecting one of two symbols. Has seven rounds maximum.",
+          "characteristics": [
+            "Seven rounds maximum",
+            "Double or nothing",
+            "Can end after each round"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Classic",
+      "themes_all": [
+        "Classic",
+        "Food"
+      ],
+      "specs": {
+        "rtp": 96.24,
+        "volatility": "Multiple levels (Low/Standard/High/Ultra/Extreme)",
+        "max_win": "2500x bet",
+        "reels": 5,
+        "rows": 3,
+        "paylines": "5 fixed",
+        "grid_config": "5x3 with additional top row",
+        "win_evaluation": "lines",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": {
+          "MINI": "Fixed value",
+          "MINOR": "Fixed value",
+          "MAJOR": "Fixed value",
+          "MEGA": "Fixed value"
+        },
+        "last_modified_date": "1/6/2026",
+        "description": "Sizzling Eggs is a 5-reel, 3-row classic slot with an innovative Collector feature where special symbols on the top row accumulate cash and jackpot values from below. Features multiple volatility levels, Buy Feature for instant Free Spins access, and a Gamble feature for doubling wins."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols except for Scatters and Special symbols"
+        },
+        {
+          "name": "Scatter",
+          "type": "scatter",
+          "description": "3, 4 or 5 Scatter symbols anywhere awards 10, 20 or 30 Free Spins respectively"
+        },
+        {
+          "name": "Collector",
+          "type": "special",
+          "description": "Appears on top row with countdown values 1-10, accumulates cash and jackpot values from symbols below"
+        },
+        {
+          "name": "Cash symbols",
+          "type": "special",
+          "description": "Award prizes ranging from 1x-10x bet when collected by Collector symbols"
+        },
+        {
+          "name": "Jackpot symbols",
+          "type": "special",
+          "description": "MINI, MINOR, MAJOR and MEGA symbols that award corresponding jackpots when collected"
+        }
+      ]
+    }
+  },
+  "Reactoonz 100": {
+    "features": [
+      "Cascading Reels",
+      "Mystery Symbols",
+      "Symbol Transformation"
+    ],
+    "provider": "Play'n GO",
+    "result": {
+      "features": [
+        {
+          "name": "Cascading Reels",
+          "operator_name": "Cascading",
+          "context": "Game Rules section",
+          "description": "Winning symbols are removed and new symbols drop in to fill up the grid. The game continues to cascade until no new winning combinations can be created.",
+          "characteristics": [
+            "symbols drop down",
+            "continues until no new wins"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Mystery Symbols",
+          "operator_name": "Quantum Features",
+          "context": "Game Rules section under quantum features",
+          "description": "Five quantum features are randomly triggered when charge meters are filled: Implosion, Alteration, Demolition, Incision, and Gargantoon.",
+          "characteristics": [
+            "transforms symbols",
+            "adds wilds",
+            "destroys symbols",
+            "random selection"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Symbol Transformation",
+          "operator_name": "Fluctuating Symbol",
+          "context": "Game Rules section",
+          "description": "One random one-eyed symbol type is marked as fluctuating each spin. If marked symbols are part of a winning combination, they leave 2 wild symbols behind.",
+          "characteristics": [
+            "random symbol marked",
+            "leaves wilds behind",
+            "one-eyed symbols only"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Space",
+      "themes_all": [
+        "Space",
+        "Fantasy"
+      ],
+      "specs": {
+        "rtp": 94.2,
+        "volatility": null,
+        "max_win": null,
+        "reels": 7,
+        "rows": 7,
+        "paylines": null,
+        "grid_config": "7x7",
+        "win_evaluation": "cluster",
+        "min_bet": 0.1,
+        "max_bet": 100.0,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "10/15/2025",
+        "description": "Reactoonz 100 is a cascading cluster pays game played on a 7x7 grid featuring quantum features that transform symbols and add wilds. The game includes a win multiplier system and fluctuating symbols that leave wild symbols behind when part of winning combinations."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all normal symbols. Created by quantum features and fluctuating symbols."
+        },
+        {
+          "name": "Energized Toon",
+          "type": "special",
+          "description": "Randomly selected position each cascade. Win multiplier is applied only to wins where this symbol is part of winning cluster."
+        },
+        {
+          "name": "Fluctuating Symbol",
+          "type": "special",
+          "description": "One random one-eyed symbol type marked each spin. Leaves 2 wild symbols behind when part of winning combination."
+        }
+      ]
+    }
+  },
+  "Rise Of Olympus 100": {
+    "features": [
+      "Cascading Reels",
+      "Free Spins",
+      "Mystery Symbols"
+    ],
+    "provider": "Play'n GO",
+    "result": {
+      "features": [
+        {
+          "name": "Cascading Reels",
+          "operator_name": "Cascade/Drop",
+          "context": "Game Rules section - 'Winning combinations are removed after being collected, and remaining symbols drop down to possibly form new winning combinations'",
+          "description": "After wins, winning symbols are removed and remaining symbols drop down to create new winning combinations. This continues until no new wins are formed.",
+          "characteristics": [
+            "Continuous cascades until no wins",
+            "Win multiplier increases with each cascade"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Spins",
+          "context": "Game Rules section under Wrath of Olympus and Free Spins features",
+          "description": "Triggered by completely clearing the grid during Wrath of Olympus feature. Player chooses between 3 gods offering different spin counts (Hades 4, Poseidon 5, Zeus 8).",
+          "characteristics": [
+            "God selection determines initial spins",
+            "Hand of God powers trigger on non-winning spins",
+            "Maximum 100 spins",
+            "Win multiplier carries over and can reach x100"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Mystery Symbols",
+          "operator_name": "Hand of God",
+          "context": "Game Rules section - Hand of God feature description",
+          "description": "Random feature on non-winning spins where active gods perform abilities: Hades converts symbols, Poseidon adds wilds, Zeus removes symbol sets.",
+          "characteristics": [
+            "Random trigger on non-wins",
+            "Three different god powers",
+            "Hades-Poseidon-Zeus rotation"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Greek",
+      "themes_all": [
+        "Greek",
+        "Mythical"
+      ],
+      "specs": {
+        "rtp": null,
+        "volatility": null,
+        "max_win": null,
+        "reels": 5,
+        "rows": 5,
+        "paylines": null,
+        "grid_config": "5x5",
+        "win_evaluation": "cluster",
+        "min_bet": null,
+        "max_bet": null,
+        "default_bet": null,
+        "jackpot_structure": null,
+        "last_modified_date": "5/24/2023",
+        "description": "Rise of Olympus 100 is a Greek mythology-themed cluster pays slot played on a 5x5 grid. Features cascading reels with increasing multipliers, random Hand of God powers from three gods, and Free Spins with god selection offering different spin counts and maximum x100 multipliers."
+      },
+      "functional_symbols": [
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for all symbols and appears in the middle position when a 3-symbol winning combination is removed"
+        },
+        {
+          "name": "God Symbols",
+          "type": "special",
+          "description": "Winning combinations containing God symbols fill the Wrath of Olympus meter to trigger the feature"
+        }
+      ]
+    }
+  },
+  "Buildin Bucks": {
+    "features": [
+      "Free Spins",
+      "Respin",
+      "Static Jackpot",
+      "Symbol Upgrade",
+      "Wheel"
+    ],
+    "provider": "Play'n GO",
+    "result": {
+      "features": [
+        {
+          "name": "Free Spins",
+          "operator_name": "Free Spins",
+          "context": "Game Rules section",
+          "description": "Triggered by 3+ Hard Hat Scatters, awards 6 initial free spins with different frame types based on trigger symbols. Can be retriggered by Bonus Scatter on middle reel.",
+          "characteristics": [
+            "retriggerable",
+            "initial frame rewards",
+            "capped at 70 spins"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Respin",
+          "operator_name": "re-spins",
+          "context": "Character features section in Game Rules",
+          "description": "Character features award 6 re-spins where Hard Hat Scatters transform into character frames. No retrigger available.",
+          "characteristics": [
+            "6 re-spins",
+            "no retrigger",
+            "character frame transformation"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Static Jackpot",
+          "operator_name": "Minor, Major, Grand",
+          "context": "Wheel prizes section in Game Rules",
+          "description": "Fixed jackpot prizes available from the wheel: Minor (x30), Major (x50), and Grand (x100).",
+          "characteristics": [
+            "Minor x30",
+            "Major x50",
+            "Grand x100"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Symbol Upgrade",
+          "operator_name": "frame upgrades",
+          "context": "Character features and Free Spins sections",
+          "description": "Frames progressively upgrade from wood to brick to gold when Hard Hat Scatters land on them. Gold frames transform into houses with instant prizes.",
+          "characteristics": [
+            "wood to brick to gold progression",
+            "house transformation",
+            "instant prize reveals"
+          ],
+          "confidence": 5
+        },
+        {
+          "name": "Wheel",
+          "operator_name": "wheel",
+          "context": "Base game section in Game Rules",
+          "description": "Wheel above reels stops on random prizes awarded when Bonus Scatter lands on middle reel. Contains character features and instant prizes.",
+          "characteristics": [
+            "6 possible prizes",
+            "requires Bonus Scatter trigger",
+            "character features and instant prizes"
+          ],
+          "confidence": 5
+        }
+      ],
+      "theme_primary": "Adventure",
+      "themes_all": [
+        "Adventure",
+        "Fantasy"
+      ],
+      "specs": {
+        "rtp": 94.2,
+        "volatility": null,
+        "max_win": "5000x",
+        "reels": 5,
+        "rows": null,
+        "paylines": null,
+        "grid_config": "5x3",
+        "win_evaluation": "ways",
+        "min_bet": 0.2,
+        "max_bet": 50.0,
+        "default_bet": null,
+        "jackpot_structure": {
+          "Minor": "30x",
+          "Major": "50x",
+          "Grand": "100x"
+        },
+        "last_modified_date": "11/12/2024",
+        "description": "Buildin' Bucks is a 5-reel, 243 ways construction-themed slot featuring character-based respin features and progressive frame upgrades. Players can trigger character features through a wheel mechanism or enter Free Spins where frames upgrade from wood to brick to gold, ultimately transforming into houses with instant prize reveals."
+      },
+      "functional_symbols": [
+        {
+          "name": "Hard Hat Scatter",
+          "type": "scatter",
+          "description": "Triggers Free Spins when 3+ land, transforms into character frames during features"
+        },
+        {
+          "name": "Bonus Scatter",
+          "type": "bonus",
+          "description": "Awards wheel prizes when landing on middle reel, can retrigger Free Spins"
+        },
+        {
+          "name": "Wild",
+          "type": "wild",
+          "description": "Substitutes for other symbols to create winning combinations"
+        }
+      ]
+    }
+  }
+}

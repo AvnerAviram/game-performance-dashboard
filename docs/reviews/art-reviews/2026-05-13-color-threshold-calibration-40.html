@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color Threshold Calibration — 40 Games (20% threshold)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #2ecc71; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; line-height: 1.5; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; display: block; }
+.screenshot:hover { max-width: 1100px; }
+.dims { margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 6px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.15em; font-weight: 600; margin-bottom: 8px; }
+.dim-raw { color: #888; font-size: 0.92em; margin-bottom: 10px; }
+.color-bar { width: 400px; max-width: 100%; margin-top: 6px; }
+.color-bar-stack { position: relative; width: 100%; }
+.color-bar-track { width: 100%; border-radius: 4px; border: 1px solid #444; }
+.color-bar-inner { display: flex; width: 100%; overflow: hidden; border-radius: 3px; }
+.threshold-line {
+  position: absolute; top: -2px; bottom: -2px; left: 20%; width: 0;
+  border-left: 2px dashed rgba(255,255,255,0.9); pointer-events: none; z-index: 2;
+}
+.threshold-label-row { font-size: 0.72em; color: #bbb; margin-bottom: 2px; }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-ok, .btn-fix { padding: 6px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; transform: scale(1.08); }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; transform: scale(1.08); }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea {
+  width: 95%; min-height: 50px; background: #0f3460; color: #e0e0e0; border: 1px solid #555;
+  border-radius: 4px; padding: 8px; font-size: 0.95em; font-family: ui-monospace, monospace;
+}
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px; font-weight: normal; }
+.badge-gp { background: #2ecc71; color: #000; }
+.export-btn {
+  display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000;
+  border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold;
+}
+#export-area {
+  width: 90%; min-height: 300px; margin: 20px auto; display: none;
+  background: #0f3460; color: #e0e0e0; border: 1px solid #555; padding: 12px;
+  font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; resize: vertical;
+}
+.progress {
+  text-align: center; font-size: 1.2em; color: #2ecc71; margin: 10px 0;
+  position: sticky; top: 0; background: #1a1a2e; padding: 10px; z-index: 100;
+  border-bottom: 1px solid #333;
+}
+</style></head><body>
+<h1>Color Threshold Calibration — 40 Games (20% threshold)</h1>
+<p class="summary">40 stratified games testing the new 20% area-threshold color classification.<br>
+Only colors covering >=20% of visible screen area are included.<br>
+Review if the filtered colors correctly represent each game's dominant palette.<br>
+The color bar shows Claude's raw estimates — the threshold line shows the 20% cutoff.</p>
+<div class="progress" id="progress">Games reviewed: 0 / 40</div>
+
+<div class="game" id="g0">
+  <div class="game-title">#1: Asgardian-Fire <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Asgardian-Fire.png" alt="Asgardian-Fire" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Orange</div>
+      <div class="dim-raw">Raw: Gold:45%, Orange:25%, Red:15%, Brown:10%, Purple:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 45%" style="flex:45;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 25%" style="flex:25;min-width:2px;background:#F97316;height:28px;"></div><div title="Red 15%" style="flex:15;min-width:2px;background:#DC143C;height:28px;"></div><div title="Brown 10%" style="flex:10;min-width:2px;background:#92400E;height:28px;"></div><div title="Purple 5%" style="flex:5;min-width:2px;background:#8B5CF6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(0,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(0,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-0-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g1">
+  <div class="game-title">#2: Crown-Of-Egypt <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Crown-Of-Egypt.png" alt="Crown-Of-Egypt" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Orange</div>
+      <div class="dim-raw">Raw: Gold:45%, Orange:25%, Brown:15%, Red:10%, Blue:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 45%" style="flex:45;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 25%" style="flex:25;min-width:2px;background:#F97316;height:28px;"></div><div title="Brown 15%" style="flex:15;min-width:2px;background:#92400E;height:28px;"></div><div title="Red 10%" style="flex:10;min-width:2px;background:#DC143C;height:28px;"></div><div title="Blue 5%" style="flex:5;min-width:2px;background:#4169E1;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(1,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(1,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-1-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g2">
+  <div class="game-title">#3: Gold-Pile-Orangutan <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gold-Pile-Orangutan.png" alt="Gold-Pile-Orangutan" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Orange</div>
+      <div class="dim-raw">Raw: Gold:45%, Orange:25%, Red:15%, Brown:10%, Green:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 45%" style="flex:45;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 25%" style="flex:25;min-width:2px;background:#F97316;height:28px;"></div><div title="Red 15%" style="flex:15;min-width:2px;background:#DC143C;height:28px;"></div><div title="Brown 10%" style="flex:10;min-width:2px;background:#92400E;height:28px;"></div><div title="Green 5%" style="flex:5;min-width:2px;background:#22C55E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(2,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(2,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-2-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g3">
+  <div class="game-title">#4: Great-Gold <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Great-Gold.png" alt="Great-Gold" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Brown</div>
+      <div class="dim-raw">Raw: Gold:70%, Brown:20%, Black:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 70%" style="flex:70;min-width:2px;background:#FFD700;height:28px;"></div><div title="Brown 20%" style="flex:20;min-width:2px;background:#92400E;height:28px;"></div><div title="Black 10%" style="flex:10;min-width:2px;background:#1a1a1a;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(3,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(3,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-3-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g4">
+  <div class="game-title">#5: Wonder-Hounds <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wonder-Hounds.png" alt="Wonder-Hounds" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Green</div>
+      <div class="dim-raw">Raw: Gold:40%, Green:35%, Brown:15%, Red:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 40%" style="flex:40;min-width:2px;background:#FFD700;height:28px;"></div><div title="Green 35%" style="flex:35;min-width:2px;background:#22C55E;height:28px;"></div><div title="Brown 15%" style="flex:15;min-width:2px;background:#92400E;height:28px;"></div><div title="Red 10%" style="flex:10;min-width:2px;background:#DC143C;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(4,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(4,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-4-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g5">
+  <div class="game-title">#6: Black-Diamond <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Black-Diamond.png" alt="Black-Diamond" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Black, Gold</div>
+      <div class="dim-raw">Raw: Black:60%, Gold:25%, Brown:15%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Black 60%" style="flex:60;min-width:2px;background:#1a1a1a;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Brown 15%" style="flex:15;min-width:2px;background:#92400E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(5,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(5,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-5-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g6">
+  <div class="game-title">#7: Cash-Crew <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cash-Crew.png" alt="Cash-Crew" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gray, Black</div>
+      <div class="dim-raw">Raw: Gray:45%, Black:35%, Red:12%, Yellow:8%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gray 45%" style="flex:45;min-width:2px;background:#9CA3AF;height:28px;"></div><div title="Black 35%" style="flex:35;min-width:2px;background:#1a1a1a;height:28px;"></div><div title="Red 12%" style="flex:12;min-width:2px;background:#DC143C;height:28px;"></div><div title="Yellow 8%" style="flex:8;min-width:2px;background:#EAB308;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(6,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(6,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-6-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g7">
+  <div class="game-title">#8: Ghostbusters-Triple-Slime <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Ghostbusters-Triple-Slime.png" alt="Ghostbusters-Triple-Slime" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gray, Purple, Green</div>
+      <div class="dim-raw">Raw: Gray:40%, Purple:25%, Green:20%, Red:10%, Yellow:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gray 40%" style="flex:40;min-width:2px;background:#9CA3AF;height:28px;"></div><div title="Purple 25%" style="flex:25;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Green 20%" style="flex:20;min-width:2px;background:#22C55E;height:28px;"></div><div title="Red 10%" style="flex:10;min-width:2px;background:#DC143C;height:28px;"></div><div title="Yellow 5%" style="flex:5;min-width:2px;background:#EAB308;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(7,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(7,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-7-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g8">
+  <div class="game-title">#9: Sweet-16-Blackjack <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Sweet-16-Blackjack.png" alt="Sweet-16-Blackjack" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Black, Silver</div>
+      <div class="dim-raw">Raw: Black:50%, Silver:25%, Pink:15%, Yellow:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Black 50%" style="flex:50;min-width:2px;background:#1a1a1a;height:28px;"></div><div title="Silver 25%" style="flex:25;min-width:2px;background:#C0C0C0;height:28px;"></div><div title="Pink 15%" style="flex:15;min-width:2px;background:#EC4899;height:28px;"></div><div title="Yellow 10%" style="flex:10;min-width:2px;background:#EAB308;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(8,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(8,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-8-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g9">
+  <div class="game-title">#10: The-Wolfs-Bane <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/The-Wolfs-Bane.png" alt="The-Wolfs-Bane" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gray, Brown, Orange</div>
+      <div class="dim-raw">Raw: Gray:40%, Brown:25%, Orange:20%, Blue:10%, Black:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gray 40%" style="flex:40;min-width:2px;background:#9CA3AF;height:28px;"></div><div title="Brown 25%" style="flex:25;min-width:2px;background:#92400E;height:28px;"></div><div title="Orange 20%" style="flex:20;min-width:2px;background:#F97316;height:28px;"></div><div title="Blue 10%" style="flex:10;min-width:2px;background:#4169E1;height:28px;"></div><div title="Black 5%" style="flex:5;min-width:2px;background:#1a1a1a;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(9,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(9,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-9-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g10">
+  <div class="game-title">#11: Atlantis-Megaways <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Atlantis-Megaways.png" alt="Atlantis-Megaways" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Purple</div>
+      <div class="dim-raw">Raw: Blue:45%, Purple:25%, Teal:15%, Gold:10%, Pink:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 45%" style="flex:45;min-width:2px;background:#4169E1;height:28px;"></div><div title="Purple 25%" style="flex:25;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Teal 15%" style="flex:15;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Gold 10%" style="flex:10;min-width:2px;background:#FFD700;height:28px;"></div><div title="Pink 5%" style="flex:5;min-width:2px;background:#EC4899;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(10,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(10,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-10-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g11">
+  <div class="game-title">#12: Aurora-Wilds <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Aurora-Wilds.png" alt="Aurora-Wilds" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Teal</div>
+      <div class="dim-raw">Raw: Blue:60%, Teal:25%, Purple:10%, Gold:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 60%" style="flex:60;min-width:2px;background:#4169E1;height:28px;"></div><div title="Teal 25%" style="flex:25;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Purple 10%" style="flex:10;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 5%" style="flex:5;min-width:2px;background:#FFD700;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(11,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(11,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-11-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g12">
+  <div class="game-title">#13: Christmas-Gift-Rush <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Christmas-Gift-Rush.png" alt="Christmas-Gift-Rush" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Gold</div>
+      <div class="dim-raw">Raw: Blue:45%, Gold:25%, Green:15%, Red:10%, Purple:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 45%" style="flex:45;min-width:2px;background:#4169E1;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Green 15%" style="flex:15;min-width:2px;background:#22C55E;height:28px;"></div><div title="Red 10%" style="flex:10;min-width:2px;background:#DC143C;height:28px;"></div><div title="Purple 5%" style="flex:5;min-width:2px;background:#8B5CF6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(12,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(12,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-12-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g13">
+  <div class="game-title">#14: Cloud-Corsairs <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cloud-Corsairs.png" alt="Cloud-Corsairs" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Brown, Orange</div>
+      <div class="dim-raw">Raw: Blue:45%, Brown:25%, Orange:20%, Purple:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 45%" style="flex:45;min-width:2px;background:#4169E1;height:28px;"></div><div title="Brown 25%" style="flex:25;min-width:2px;background:#92400E;height:28px;"></div><div title="Orange 20%" style="flex:20;min-width:2px;background:#F97316;height:28px;"></div><div title="Purple 10%" style="flex:10;min-width:2px;background:#8B5CF6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(13,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(13,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-13-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g14">
+  <div class="game-title">#15: Slingo-Wolf-Snowstorm <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slingo-Wolf-Snowstorm.png" alt="Slingo-Wolf-Snowstorm" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Light Blue</div>
+      <div class="dim-raw">Raw: Blue:65%, Light Blue:20%, Gold:10%, White:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 65%" style="flex:65;min-width:2px;background:#4169E1;height:28px;"></div><div title="Light Blue 20%" style="flex:20;min-width:2px;background:#93C5FD;height:28px;"></div><div title="Gold 10%" style="flex:10;min-width:2px;background:#FFD700;height:28px;"></div><div title="White 5%" style="flex:5;min-width:2px;background:#FFFFFF;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(14,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(14,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-14-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g15">
+  <div class="game-title">#16: El-Dorado <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/El-Dorado.png" alt="El-Dorado" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Green, Orange, Purple</div>
+      <div class="dim-raw">Raw: Green:35%, Orange:30%, Purple:20%, Gold:15%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Green 35%" style="flex:35;min-width:2px;background:#22C55E;height:28px;"></div><div title="Orange 30%" style="flex:30;min-width:2px;background:#F97316;height:28px;"></div><div title="Purple 20%" style="flex:20;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 15%" style="flex:15;min-width:2px;background:#FFD700;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(15,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(15,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-15-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g16">
+  <div class="game-title">#17: Fate-Of-The-8-Power-Wheel <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fate-Of-The-8-Power-Wheel.png" alt="Fate-Of-The-8-Power-Wheel" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Red, Gold</div>
+      <div class="dim-raw">Raw: Red:45%, Gold:30%, Green:15%, Blue:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Red 45%" style="flex:45;min-width:2px;background:#DC143C;height:28px;"></div><div title="Gold 30%" style="flex:30;min-width:2px;background:#FFD700;height:28px;"></div><div title="Green 15%" style="flex:15;min-width:2px;background:#22C55E;height:28px;"></div><div title="Blue 10%" style="flex:10;min-width:2px;background:#4169E1;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(16,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(16,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-16-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g17">
+  <div class="game-title">#18: Neon-Links <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Neon-Links.png" alt="Neon-Links" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Gold, Pink</div>
+      <div class="dim-raw">Raw: Purple:40%, Gold:25%, Pink:20%, Red:10%, Teal:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 40%" style="flex:40;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Pink 20%" style="flex:20;min-width:2px;background:#EC4899;height:28px;"></div><div title="Red 10%" style="flex:10;min-width:2px;background:#DC143C;height:28px;"></div><div title="Teal 5%" style="flex:5;min-width:2px;background:#14B8A6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(17,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(17,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-17-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g18">
+  <div class="game-title">#19: 777-hot-reels <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/777-hot-reels.png" alt="777-hot-reels" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Gold</div>
+      <div class="dim-raw">Raw: Purple:60%, Gold:25%, Orange:10%, Blue:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 60%" style="flex:60;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 10%" style="flex:10;min-width:2px;background:#F97316;height:28px;"></div><div title="Blue 5%" style="flex:5;min-width:2px;background:#4169E1;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(18,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(18,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-18-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g19">
+  <div class="game-title">#20: Cyber-Wildz <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cyber-Wildz.png" alt="Cyber-Wildz" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Neon Pink</div>
+      <div class="dim-raw">Raw: Purple:45%, Neon Pink:25%, Blue:15%, Teal:10%, Orange:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 45%" style="flex:45;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Neon Pink 25%" style="flex:25;min-width:2px;background:#FF6EC7;height:28px;"></div><div title="Blue 15%" style="flex:15;min-width:2px;background:#4169E1;height:28px;"></div><div title="Teal 10%" style="flex:10;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Orange 5%" style="flex:5;min-width:2px;background:#F97316;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(19,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(19,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-19-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g20">
+  <div class="game-title">#21: Mystery-Reels <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mystery-Reels.png" alt="Mystery-Reels" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Brown, Purple, Gold</div>
+      <div class="dim-raw">Raw: Brown:40%, Purple:25%, Gold:20%, Orange:10%, Black:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Brown 40%" style="flex:40;min-width:2px;background:#92400E;height:28px;"></div><div title="Purple 25%" style="flex:25;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 20%" style="flex:20;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 10%" style="flex:10;min-width:2px;background:#F97316;height:28px;"></div><div title="Black 5%" style="flex:5;min-width:2px;background:#1a1a1a;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(20,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(20,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-20-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g21">
+  <div class="game-title">#22: Power-Prizes-Noble-Peacock <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Power-Prizes-Noble-Peacock.png" alt="Power-Prizes-Noble-Peacock" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Pink, Purple, Gold</div>
+      <div class="dim-raw">Raw: Pink:45%, Purple:25%, Gold:20%, Blue:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Pink 45%" style="flex:45;min-width:2px;background:#EC4899;height:28px;"></div><div title="Purple 25%" style="flex:25;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 20%" style="flex:20;min-width:2px;background:#FFD700;height:28px;"></div><div title="Blue 10%" style="flex:10;min-width:2px;background:#4169E1;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(21,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(21,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-21-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g22">
+  <div class="game-title">#23: Sparkling-Roses <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Sparkling-Roses.png" alt="Sparkling-Roses" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Gold</div>
+      <div class="dim-raw">Raw: Purple:40%, Gold:35%, Orange:15%, Brown:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 40%" style="flex:40;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 35%" style="flex:35;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 15%" style="flex:15;min-width:2px;background:#F97316;height:28px;"></div><div title="Brown 10%" style="flex:10;min-width:2px;background:#92400E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(22,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(22,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-22-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g23">
+  <div class="game-title">#24: Mad-Mad-Monkey <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mad-Mad-Monkey.png" alt="Mad-Mad-Monkey" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Green</div>
+      <div class="dim-raw">Raw: Blue:45%, Green:35%, Purple:15%, Brown:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 45%" style="flex:45;min-width:2px;background:#4169E1;height:28px;"></div><div title="Green 35%" style="flex:35;min-width:2px;background:#22C55E;height:28px;"></div><div title="Purple 15%" style="flex:15;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Brown 5%" style="flex:5;min-width:2px;background:#92400E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(23,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(23,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-23-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g24">
+  <div class="game-title">#25: Poison-Eve <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Poison-Eve.png" alt="Poison-Eve" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Green, Gold, Brown</div>
+      <div class="dim-raw">Raw: Green:40%, Gold:25%, Brown:20%, Purple:10%, Blue:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Green 40%" style="flex:40;min-width:2px;background:#22C55E;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Brown 20%" style="flex:20;min-width:2px;background:#92400E;height:28px;"></div><div title="Purple 10%" style="flex:10;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Blue 5%" style="flex:5;min-width:2px;background:#4169E1;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(24,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(24,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-24-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g25">
+  <div class="game-title">#26: Rainbow-Trinkets <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rainbow-Trinkets.png" alt="Rainbow-Trinkets" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Blue, Green</div>
+      <div class="dim-raw">Raw: Purple:40%, Blue:25%, Green:20%, Gold:10%, Orange:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 40%" style="flex:40;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Blue 25%" style="flex:25;min-width:2px;background:#4169E1;height:28px;"></div><div title="Green 20%" style="flex:20;min-width:2px;background:#22C55E;height:28px;"></div><div title="Gold 10%" style="flex:10;min-width:2px;background:#FFD700;height:28px;"></div><div title="Orange 5%" style="flex:5;min-width:2px;background:#F97316;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(25,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(25,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-25-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g26">
+  <div class="game-title">#27: Arcade-Bomb <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Arcade-Bomb.png" alt="Arcade-Bomb" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Green</div>
+      <div class="dim-raw">Raw: Blue:60%, Green:20%, Purple:15%, Gold:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 60%" style="flex:60;min-width:2px;background:#4169E1;height:28px;"></div><div title="Green 20%" style="flex:20;min-width:2px;background:#22C55E;height:28px;"></div><div title="Purple 15%" style="flex:15;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 5%" style="flex:5;min-width:2px;background:#FFD700;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(26,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(26,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-26-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g27">
+  <div class="game-title">#28: Attack-On-Retro <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Attack-On-Retro.png" alt="Attack-On-Retro" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Neon Blue</div>
+      <div class="dim-raw">Raw: Purple:45%, Neon Blue:25%, Pink:15%, Teal:10%, Black:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 45%" style="flex:45;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Neon Blue 25%" style="flex:25;min-width:2px;background:#00BFFF;height:28px;"></div><div title="Pink 15%" style="flex:15;min-width:2px;background:#EC4899;height:28px;"></div><div title="Teal 10%" style="flex:10;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Black 5%" style="flex:5;min-width:2px;background:#1a1a1a;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(27,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(27,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-27-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g28">
+  <div class="game-title">#29: Blazing-Planets <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Blazing-Planets.png" alt="Blazing-Planets" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Teal</div>
+      <div class="dim-raw">Raw: Blue:65%, Teal:20%, Silver:10%, Purple:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 65%" style="flex:65;min-width:2px;background:#4169E1;height:28px;"></div><div title="Teal 20%" style="flex:20;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Silver 10%" style="flex:10;min-width:2px;background:#C0C0C0;height:28px;"></div><div title="Purple 5%" style="flex:5;min-width:2px;background:#8B5CF6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(28,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(28,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-28-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g29">
+  <div class="game-title">#30: Trollpot-5000 <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Trollpot-5000.png" alt="Trollpot-5000" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue</div>
+      <div class="dim-raw">Raw: Blue:70%, Teal:15%, Green:10%, Gold:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 70%" style="flex:70;min-width:2px;background:#4169E1;height:28px;"></div><div title="Teal 15%" style="flex:15;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Green 10%" style="flex:10;min-width:2px;background:#22C55E;height:28px;"></div><div title="Gold 5%" style="flex:5;min-width:2px;background:#FFD700;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(29,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(29,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-29-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g30">
+  <div class="game-title">#31: 10x-Minimum <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/10x-Minimum.png" alt="10x-Minimum" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Black</div>
+      <div class="dim-raw">Raw: Gold:50%, Black:40%, White:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 50%" style="flex:50;min-width:2px;background:#FFD700;height:28px;"></div><div title="Black 40%" style="flex:40;min-width:2px;background:#1a1a1a;height:28px;"></div><div title="White 10%" style="flex:10;min-width:2px;background:#FFFFFF;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(30,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(30,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-30-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g31">
+  <div class="game-title">#32: Desperados-Wild <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Desperados-Wild.png" alt="Desperados-Wild" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Brown, Blue, Orange</div>
+      <div class="dim-raw">Raw: Brown:40%, Blue:25%, Orange:20%, Gold:10%, Red:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Brown 40%" style="flex:40;min-width:2px;background:#92400E;height:28px;"></div><div title="Blue 25%" style="flex:25;min-width:2px;background:#4169E1;height:28px;"></div><div title="Orange 20%" style="flex:20;min-width:2px;background:#F97316;height:28px;"></div><div title="Gold 10%" style="flex:10;min-width:2px;background:#FFD700;height:28px;"></div><div title="Red 5%" style="flex:5;min-width:2px;background:#DC143C;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(31,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(31,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-31-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g32">
+  <div class="game-title">#33: Mayhem <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mayhem.png" alt="Mayhem" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Purple, Gold, Teal</div>
+      <div class="dim-raw">Raw: Purple:35%, Gold:25%, Teal:20%, Brown:15%, Orange:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Purple 35%" style="flex:35;min-width:2px;background:#8B5CF6;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Teal 20%" style="flex:20;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Brown 15%" style="flex:15;min-width:2px;background:#92400E;height:28px;"></div><div title="Orange 5%" style="flex:5;min-width:2px;background:#F97316;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(32,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(32,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-32-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g33">
+  <div class="game-title">#34: Rage-Of-The-Seas <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rage-Of-The-Seas.png" alt="Rage-Of-The-Seas" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Brown, Gold</div>
+      <div class="dim-raw">Raw: Brown:45%, Gold:25%, Black:15%, Yellow:10%, Gray:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Brown 45%" style="flex:45;min-width:2px;background:#92400E;height:28px;"></div><div title="Gold 25%" style="flex:25;min-width:2px;background:#FFD700;height:28px;"></div><div title="Black 15%" style="flex:15;min-width:2px;background:#1a1a1a;height:28px;"></div><div title="Yellow 10%" style="flex:10;min-width:2px;background:#EAB308;height:28px;"></div><div title="Gray 5%" style="flex:5;min-width:2px;background:#9CA3AF;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(33,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(33,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-33-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g34">
+  <div class="game-title">#35: Thors-Hammer-Strike <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Thors-Hammer-Strike.png" alt="Thors-Hammer-Strike" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Gold, Gray, Blue</div>
+      <div class="dim-raw">Raw: Gold:40%, Gray:25%, Blue:20%, Brown:10%, Red:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Gold 40%" style="flex:40;min-width:2px;background:#FFD700;height:28px;"></div><div title="Gray 25%" style="flex:25;min-width:2px;background:#9CA3AF;height:28px;"></div><div title="Blue 20%" style="flex:20;min-width:2px;background:#4169E1;height:28px;"></div><div title="Brown 10%" style="flex:10;min-width:2px;background:#92400E;height:28px;"></div><div title="Red 5%" style="flex:5;min-width:2px;background:#DC143C;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(34,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(34,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-34-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g35">
+  <div class="game-title">#36: Smash-The-Pig <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Smash-The-Pig.png" alt="Smash-The-Pig" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Light Blue, Green</div>
+      <div class="dim-raw">Raw: Light Blue:45%, Green:35%, White:15%, Yellow:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Light Blue 45%" style="flex:45;min-width:2px;background:#93C5FD;height:28px;"></div><div title="Green 35%" style="flex:35;min-width:2px;background:#22C55E;height:28px;"></div><div title="White 15%" style="flex:15;min-width:2px;background:#FFFFFF;height:28px;"></div><div title="Yellow 5%" style="flex:5;min-width:2px;background:#EAB308;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(35,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(35,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-35-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g36">
+  <div class="game-title">#37: Hyper-Gold <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Hyper-Gold.png" alt="Hyper-Gold" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Green, Gold</div>
+      <div class="dim-raw">Raw: Green:70%, Gold:20%, Brown:10%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Green 70%" style="flex:70;min-width:2px;background:#22C55E;height:28px;"></div><div title="Gold 20%" style="flex:20;min-width:2px;background:#FFD700;height:28px;"></div><div title="Brown 10%" style="flex:10;min-width:2px;background:#92400E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(36,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(36,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-36-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g37">
+  <div class="game-title">#38: Gold-Fish-Feeding-Time-Deluxe-Treasure <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gold-Fish-Feeding-Time-Deluxe-Treasure.png" alt="Gold-Fish-Feeding-Time-Deluxe-Treasure" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Gold</div>
+      <div class="dim-raw">Raw: Blue:60%, Gold:20%, Teal:15%, Green:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 60%" style="flex:60;min-width:2px;background:#4169E1;height:28px;"></div><div title="Gold 20%" style="flex:20;min-width:2px;background:#FFD700;height:28px;"></div><div title="Teal 15%" style="flex:15;min-width:2px;background:#14B8A6;height:28px;"></div><div title="Green 5%" style="flex:5;min-width:2px;background:#22C55E;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(37,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(37,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-37-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g38">
+  <div class="game-title">#39: Gems-Inferno-Megaways <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gems-Inferno-Megaways.png" alt="Gems-Inferno-Megaways" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Orange, Red</div>
+      <div class="dim-raw">Raw: Orange:45%, Red:35%, Gold:15%, Black:5%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Orange 45%" style="flex:45;min-width:2px;background:#F97316;height:28px;"></div><div title="Red 35%" style="flex:35;min-width:2px;background:#DC143C;height:28px;"></div><div title="Gold 15%" style="flex:15;min-width:2px;background:#FFD700;height:28px;"></div><div title="Black 5%" style="flex:5;min-width:2px;background:#1a1a1a;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(38,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(38,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-38-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+<div class="game" id="g39">
+  <div class="game-title">#40: 3-mad-frogs <span class="badge badge-gp">gameplay</span></div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/3-mad-frogs.png" alt="3-mad-frogs" onerror="this.onerror=function(){this.onerror=null;this.src=this.src.replace('.jpg','.jpeg')};this.src=this.src.replace('.png','.jpg')">
+  <div class="dims">
+    <div class="dim">
+      <div class="dim-label">Colors (20% threshold)</div>
+      <div class="dim-value">Blue, Green</div>
+      <div class="dim-raw">Raw: Blue:45%, Green:35%, Pink:12%, Teal:8%</div>
+      <div class="color-bar">
+        <div class="threshold-label-row">20% threshold</div>
+        <div class="color-bar-stack"><div class="threshold-line" title="20% cutoff"></div><div class="color-bar-track"><div class="color-bar-inner"><div title="Blue 45%" style="flex:45;min-width:2px;background:#4169E1;height:28px;"></div><div title="Green 35%" style="flex:35;min-width:2px;background:#22C55E;height:28px;"></div><div title="Pink 12%" style="flex:12;min-width:2px;background:#EC4899;height:28px;"></div><div title="Teal 8%" style="flex:8;min-width:2px;background:#14B8A6;height:28px;"></div></div></div></div>
+      </div>
+      <div class="btns" style="margin-top:14px">
+        <button type="button" class="btn-ok" onclick="vote(39,'color','ok')">OK</button>
+        <button type="button" class="btn-fix" onclick="vote(39,'color','fix')">Fix</button>
+      </div>
+      <div class="fix-note" id="note-39-color"><textarea placeholder="Correct colors / calibration notes"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="exportResults()">Export Results (JSON)</button>
+<textarea id="export-area" readonly></textarea>
+
+<script>
+const total = 40;
+const slugs = ["Asgardian-Fire", "Crown-Of-Egypt", "Gold-Pile-Orangutan", "Great-Gold", "Wonder-Hounds", "Black-Diamond", "Cash-Crew", "Ghostbusters-Triple-Slime", "Sweet-16-Blackjack", "The-Wolfs-Bane", "Atlantis-Megaways", "Aurora-Wilds", "Christmas-Gift-Rush", "Cloud-Corsairs", "Slingo-Wolf-Snowstorm", "El-Dorado", "Fate-Of-The-8-Power-Wheel", "Neon-Links", "777-hot-reels", "Cyber-Wildz", "Mystery-Reels", "Power-Prizes-Noble-Peacock", "Sparkling-Roses", "Mad-Mad-Monkey", "Poison-Eve", "Rainbow-Trinkets", "Arcade-Bomb", "Attack-On-Retro", "Blazing-Planets", "Trollpot-5000", "10x-Minimum", "Desperados-Wild", "Mayhem", "Rage-Of-The-Seas", "Thors-Hammer-Strike", "Smash-The-Pig", "Hyper-Gold", "Gold-Fish-Feeding-Time-Deluxe-Treasure", "Gems-Inferno-Megaways", "3-mad-frogs"];
+const votes = {};
+const reviewed = new Set();
+
+function vote(idx, dim, label) {
+  if (!votes[idx]) votes[idx] = {};
+  votes[idx][dim] = label;
+  const card = document.getElementById('g' + idx);
+  const dimWrap = card.querySelector('.dim');
+  const btns = dimWrap.querySelectorAll('.btns button');
+  btns.forEach(b => b.classList.remove('selected'));
+  if (typeof event !== 'undefined' && event && event.target) {
+    event.target.classList.add('selected');
+  }
+  const noteDiv = document.getElementById('note-' + idx + '-color');
+  if (noteDiv) {
+    noteDiv.style.display = label === 'fix' ? 'block' : 'none';
+  }
+  if (votes[idx].color === 'ok' || votes[idx].color === 'fix') {
+    reviewed.add(idx);
+  }
+  document.getElementById('progress').textContent = 'Games reviewed: ' + reviewed.size + ' / ' + total;
+}
+
+function exportResults() {
+  const results = [];
+  for (let i = 0; i < total; i++) {
+    const v = (votes[i] && votes[i].color) ? votes[i].color : '';
+    const noteEl = document.querySelector('#note-' + i + '-color textarea');
+    const notes = (noteEl && noteEl.value.trim()) ? noteEl.value.trim() : '';
+    results.push({ game: slugs[i], color: v, notes: notes });
+  }
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(results, null, 2);
+  area.select();
+  navigator.clipboard.writeText(area.value).catch(() => {});
+}
+</script>
+</body></html>
+

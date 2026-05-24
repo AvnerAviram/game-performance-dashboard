@@ -1,0 +1,737 @@
+{
+  "total_needed": 455,
+  "have_sc_slug": 91,
+  "no_sc_slug": 364,
+  "sc_games": [
+    {
+      "slug": "9k-Yeti",
+      "sc_slug": "9K-Yeti"
+    },
+    {
+      "slug": "Age-Of-The-Gods-God-Of-Storms",
+      "sc_slug": "Age-of-the-Gods-God-of-Storms"
+    },
+    {
+      "slug": "Animals-Of-Africa",
+      "sc_slug": "Animals-of-Africa"
+    },
+    {
+      "slug": "Around-The-Reels-In-80-Wilds",
+      "sc_slug": "Around-the-Reels-in-80-Wilds"
+    },
+    {
+      "slug": "Astrocat",
+      "sc_slug": "Astro-Cat"
+    },
+    {
+      "slug": "Bakers-Treat",
+      "sc_slug": "Bakers-Treat"
+    },
+    {
+      "slug": "Bonanza-Megaways",
+      "sc_slug": "Bonanza"
+    },
+    {
+      "slug": "Book-Of-Itza",
+      "sc_slug": "Book-of-Itza"
+    },
+    {
+      "slug": "Bookie-Of-Odds",
+      "sc_slug": "Bookie-of-Odds"
+    },
+    {
+      "slug": "Buffalo-Blitz-Ii",
+      "sc_slug": "Buffalo-Blitz-II"
+    },
+    {
+      "slug": "Cleopatra-Plus",
+      "sc_slug": "Cleopatra-PLUS"
+    },
+    {
+      "slug": "Crown-Of-Egypt",
+      "sc_slug": "Crown-of-Egypt"
+    },
+    {
+      "slug": "Cyberslot-Megaclusters",
+      "sc_slug": "Cyberslot-Megaclusters"
+    },
+    {
+      "slug": "Dead-Or-Alive",
+      "sc_slug": "Dead-or-Alive"
+    },
+    {
+      "slug": "Deal-Or-No-Deal-Megaways-Jackpot-Royale",
+      "sc_slug": "Deal-or-No-Deal-Megaways"
+    },
+    {
+      "slug": "Defenders-Of-Asgard",
+      "sc_slug": "Defenders-of-Asgard"
+    },
+    {
+      "slug": "Diamond-Wild",
+      "sc_slug": "Diamond-Wild"
+    },
+    {
+      "slug": "Double-Play-Superbet",
+      "sc_slug": "Double-Play-SuperBet"
+    },
+    {
+      "slug": "Double-Play-Superbet-Hq",
+      "sc_slug": "DoublePlay-SuperBet-HQ"
+    },
+    {
+      "slug": "Dragon-Tribe",
+      "sc_slug": "Dragon-Tribe"
+    },
+    {
+      "slug": "East-Sea-Dragon-King",
+      "sc_slug": "East-Sea-Dragon-King"
+    },
+    {
+      "slug": "Egyptian-Rise",
+      "sc_slug": "Egyptian-Rise"
+    },
+    {
+      "slug": "Extra-Chilli-Megaways",
+      "sc_slug": "Extra-Chilli"
+    },
+    {
+      "slug": "Fate-Of-The-8-Power-Wheel",
+      "sc_slug": "Fate-of-the-8-Power-Wheel"
+    },
+    {
+      "slug": "Fortunes-Of-Egypt",
+      "sc_slug": "Fortunes-of-Egypt"
+    },
+    {
+      "slug": "Fortunes-Of-The-Dead",
+      "sc_slug": "Fortunes-of-the-Dead"
+    },
+    {
+      "slug": "Foxin-Wins-Again",
+      "sc_slug": "Foxin-Wins-Again"
+    },
+    {
+      "slug": "Frog-Of-Riches",
+      "sc_slug": "Frog-of-Riches"
+    },
+    {
+      "slug": "Fu-Gui-Hao-Men-Splendid-Fortune",
+      "sc_slug": "fu-gui-hao-men-splendid-fortune"
+    },
+    {
+      "slug": "Goddess-Of-Fortunes",
+      "sc_slug": "Goddess-of-Fortunes"
+    },
+    {
+      "slug": "Gods-Of-Gold-Infinireels",
+      "sc_slug": "Gods-of-Gold-Infinireels"
+    },
+    {
+      "slug": "Great-Book-Of-Magic-Deluxe",
+      "sc_slug": "Great-Book-of-Magic-Deluxe"
+    },
+    {
+      "slug": "Immortal-Warlords",
+      "sc_slug": "immortal-warlords"
+    },
+    {
+      "slug": "Jack-And-The-Beanstalk",
+      "sc_slug": "Jack-and-the-Beanstalk"
+    },
+    {
+      "slug": "Jack-Hammer",
+      "sc_slug": "Jack-Hammer"
+    },
+    {
+      "slug": "Jane-Jones-Book-Of-Kings-2",
+      "sc_slug": "Jane-Jones-Book-of-Kings-2"
+    },
+    {
+      "slug": "Jonny-Ventura-And-The-Eye-Of-Ra",
+      "sc_slug": "Jonny-Ventura-and-The-Eye-of-Ra"
+    },
+    {
+      "slug": "King-Of-Babylon",
+      "sc_slug": "King-of-Babylon"
+    },
+    {
+      "slug": "King-Of-The-Trident",
+      "sc_slug": "King-of-the-Trident"
+    },
+    {
+      "slug": "Legend-Of-9-Suns",
+      "sc_slug": "Legend-of-9-Suns"
+    },
+    {
+      "slug": "Lets-Get-Ready-To-Rumble",
+      "sc_slug": "Lets-Get-Ready-to-Rumble"
+    },
+    {
+      "slug": "Medusa-2",
+      "sc_slug": "Medusa-2"
+    },
+    {
+      "slug": "Megajackpots-Siberian-Storm",
+      "sc_slug": "MegaJackpots-Siberian-Storm"
+    },
+    {
+      "slug": "Megajackpots-Wheel-Of-Fortune-On-Air",
+      "sc_slug": "Mega-Jackpots-Wheel-of-Fortune-on-Air"
+    },
+    {
+      "slug": "Megajackpots-Wolf-Run",
+      "sc_slug": "MegaJackpots-Wolf-Run"
+    },
+    {
+      "slug": "Mighty-Griffin-Megaways-Jackpot-Royale",
+      "sc_slug": "Mighty-Griffin-Megaways"
+    },
+    {
+      "slug": "Monopoly-On-The-Money",
+      "sc_slug": "MONOPOLY-On-The-Money"
+    },
+    {
+      "slug": "Oink-Oink-Oink-Pharaohs",
+      "sc_slug": "oink-oink-oink-pharaohs"
+    },
+    {
+      "slug": "Peaky-Blinders-Jackpot-Royale",
+      "sc_slug": "Peaky-Blinders"
+    },
+    {
+      "slug": "Phoenix-Fortune",
+      "sc_slug": "Phoenix-Fortune"
+    },
+    {
+      "slug": "Pixies-Of-The-Forest-2",
+      "sc_slug": "Pixies-of-the-Forest-2"
+    },
+    {
+      "slug": "Power-Of-Gods-The-Pantheon",
+      "sc_slug": "Power-of-Gods-The-Pantheon"
+    },
+    {
+      "slug": "Pyramid-Quest-For-Immortality",
+      "sc_slug": "Pyramid-Quest-for-Immortality"
+    },
+    {
+      "slug": "Rich-Wilde-And-The-Shield-Of-Athena",
+      "sc_slug": "Rich-Wilde-and-the-Shield-of-Athena"
+    },
+    {
+      "slug": "Rick-And-Morty-Megaways",
+      "sc_slug": "Rick-and-Morty-Megaways"
+    },
+    {
+      "slug": "Rise-Of-Maya",
+      "sc_slug": "Rise-of-Maya"
+    },
+    {
+      "slug": "Royal-Mint-Megaways",
+      "sc_slug": "Royal-Mint-Megaways"
+    },
+    {
+      "slug": "Sands-Of-Eternity",
+      "sc_slug": "Sands-of-Eternity"
+    },
+    {
+      "slug": "Santa-Stacked-Freespins",
+      "sc_slug": "Santa-Stacked-Free-Spins"
+    },
+    {
+      "slug": "Santa-Vs-Rudolf",
+      "sc_slug": "Santa-vs-Rudolf"
+    },
+    {
+      "slug": "Santas-Riches",
+      "sc_slug": "Santa-s-Riches"
+    },
+    {
+      "slug": "Shadow-Of-The-Panther",
+      "sc_slug": "Shadow-of-the-Panther"
+    },
+    {
+      "slug": "Shadow-Of-The-Panther-Power-Bet",
+      "sc_slug": "Shadow-of-the-Panther-Power-Bet"
+    },
+    {
+      "slug": "Shield-Of-Power",
+      "sc_slug": "Shield-of-Power"
+    },
+    {
+      "slug": "Shields-Of-The-Wild",
+      "sc_slug": "Shields-of-the-Wild"
+    },
+    {
+      "slug": "Slingo-Maximus-Soldier-Of-Rome",
+      "sc_slug": "Slingo-Maximus-Soldier-of-Rome"
+    },
+    {
+      "slug": "Slots-O-Luck-Freespins",
+      "sc_slug": "Slots-O-Luck-Free-Spins"
+    },
+    {
+      "slug": "Soldier-Of-Rome",
+      "sc_slug": "Soldier-of-Rome"
+    },
+    {
+      "slug": "Spartacus-Call-To-Arms",
+      "sc_slug": "Spartacus-Call-to-Arms"
+    },
+    {
+      "slug": "Spirit-Of-The-Lamp",
+      "sc_slug": "Spirit-of-the-Lamp"
+    },
+    {
+      "slug": "Star-Stacks",
+      "sc_slug": "Starstacks"
+    },
+    {
+      "slug": "Starstruck",
+      "sc_slug": "Starstruck"
+    },
+    {
+      "slug": "Stumpy-Mcdoodles",
+      "sc_slug": "Stumpy-McDoodles"
+    },
+    {
+      "slug": "Ted-Jackpot-Royale",
+      "sc_slug": "ted"
+    },
+    {
+      "slug": "Teddys-Tavern",
+      "sc_slug": "Teddy-s-Tavern"
+    },
+    {
+      "slug": "Temple-Of-Fire",
+      "sc_slug": "Temple-of-Fire"
+    },
+    {
+      "slug": "Temple-Of-Wealth",
+      "sc_slug": "Temple-of-Wealth"
+    },
+    {
+      "slug": "Tesla-Jolt",
+      "sc_slug": "Tesla-jolt"
+    },
+    {
+      "slug": "Tractor-Beam",
+      "sc_slug": "Tractor-Beam"
+    },
+    {
+      "slug": "Treasures-Of-The-Count",
+      "sc_slug": "Treasures-of-the-Count"
+    },
+    {
+      "slug": "Twin-Happiness",
+      "sc_slug": "Twin-Happiness"
+    },
+    {
+      "slug": "Vault-Of-Anubis",
+      "sc_slug": "Vault-of-Anubis"
+    },
+    {
+      "slug": "White-Rabbit-Megaways",
+      "sc_slug": "White-Rabbit"
+    },
+    {
+      "slug": "Who-Wants-To-Be-A-Millionaire-Mystery-Box",
+      "sc_slug": "Who-Wants-to-Be-a-Millionaire-Mystery-Box"
+    },
+    {
+      "slug": "Wild-Play-Superbet",
+      "sc_slug": "Wild-Play-SuperBet"
+    },
+    {
+      "slug": "Wish-Upon-A-Star",
+      "sc_slug": "Wish-Upon-a-Star"
+    },
+    {
+      "slug": "Wixx",
+      "sc_slug": "Wixx"
+    },
+    {
+      "slug": "Wolf-Legend-Megaways-Jackpot-Royale",
+      "sc_slug": "Wolf-Legend-Megaways"
+    },
+    {
+      "slug": "Yule-Be-Rich",
+      "sc_slug": "Yule-Be-Rich"
+    },
+    {
+      "slug": "Zeus-God-Of-Thunder",
+      "sc_slug": "Zeus-God-of-Thunder"
+    },
+    {
+      "slug": "Zeus-Rush-Fever",
+      "sc_slug": "Zeus-Rush-Fever"
+    }
+  ],
+  "no_sc_games": [
+    "1-Can-2-Can",
+    "300-Shields-Extreme",
+    "4-Fantastic-Lobsters",
+    "5-Dragons",
+    "5-Dragons-Gold",
+    "50-Lions",
+    "888-Panda",
+    "90k-Yeti-Gigablox",
+    "A-Dragons-Story",
+    "A-While-On-The-Nile",
+    "Acorn-Pixie",
+    "Aesir-Treasures",
+    "African-Diamond",
+    "Age-Of-The-Gods-Ruler-Of-The-Sky",
+    "Age-Of-The-Gods-Wonder-Warriors",
+    "Agent-Jane-Blonde-Max-Volume",
+    "Agent-Valkyrie",
+    "Aladdins-Legacy",
+    "American-Roulette",
+    "Anaconda-Wild",
+    "Angels-Touch",
+    "Anubis-Wild-Megaways",
+    "Arabian-Rose",
+    "Ariana",
+    "Arthur-Pendragon",
+    "Athenas-Glory",
+    "Baccarat",
+    "Bankin-Bacon",
+    "Basketball-King-Hold-And-Win",
+    "Big-Red",
+    "Bloodlore-Wolf-Pack",
+    "Boo",
+    "Book-Of-Christmas",
+    "Book-Of-Deities",
+    "Book-Of-Halloween",
+    "Book-Of-Independence",
+    "Book-Of-The-Irish",
+    "Brilliant-Gems",
+    "Buccaneers-Bay",
+    "Buffalo-Blitz",
+    "Buffalo-Chief",
+    "Cabaret-Royale",
+    "Capital-Gains",
+    "Captain-Riches",
+    "Case-Closed",
+    "Cash-Cave",
+    "Cash-Machine",
+    "Cash-Spin",
+    "Casino-War",
+    "Casinomeister",
+    "Catch-Of-The-Day",
+    "Chaos-Crew",
+    "Cherries-Gone-Rich",
+    "Chicago-Gold",
+    "Chicken-Fox",
+    "China-Shores",
+    "Chocolate-Cash-Pots",
+    "Christmas-Cash-Pots",
+    "Classic-Fortunes",
+    "Coin-Quest",
+    "Colt-Cash-Hold-And-Win",
+    "Cops-N-Robbers-Big-Money",
+    "Cops-N-Robbers-Big-Money-Christmas",
+    "Cops-N-Robbers-Big-Money-Trick-Or-Treat",
+    "Cops-N-Robbers-Megaways",
+    "Crabbin-Crazy-2",
+    "Crazy-Wizard",
+    "Crocodile-Blitz",
+    "Crowning-Glory",
+    "Crystal-Cash",
+    "Crystal-Mirror",
+    "Destiny-Of-Athena",
+    "Deuces-Wild",
+    "Doctor-Love-On-Vacation",
+    "Double-Diamond",
+    "Dragon-Born",
+    "Dragon-Diamond",
+    "Dragon-Drop",
+    "Dragon-Palace",
+    "Dragon-Ways-Multiplier",
+    "Dragons-Blessings-Loot-Link",
+    "Dragons-Of-The-North",
+    "Dragons-Of-The-North-Deluxe",
+    "Dragons-Of-The-North-Megaways",
+    "Drakes-Treasure",
+    "Druidess-Gold",
+    "Eagles-Flight-Power-Bet",
+    "Eggomatic",
+    "Egyptian-Emeralds",
+    "Elemental-Deluxeways",
+    "Emerald-Isle",
+    "Emperors-Garden",
+    "Energy-Coins-Hold-And-Win",
+    "Fever-Spin-Megaways",
+    "Finn-And-The-Swirly-Spin",
+    "Fire-Blaze-Sisters-Gift",
+    "First-Person-Lightning-Roulette",
+    "Flame-Queen",
+    "Flamenco-Stacks",
+    "Flaming-Reels",
+    "Football-Champions-Cup",
+    "Fortune-Bao-Bao-Jackpot-Win-And-Spin",
+    "Foxin-Wins-Football-Fever",
+    "Foxpot",
+    "Frankie-Dettoris-Magic-Seven",
+    "Frogged-Up",
+    "From-Dusk-Till-Dawn",
+    "Frozen-Inferno",
+    "Fruit-Spin",
+    "Fun-On-The-Seafront",
+    "Gem-Heat",
+    "Genie-Nights",
+    "Genie-Wild",
+    "Giant-Gems",
+    "Gods-Of-Troy-Megaways",
+    "Gold-Inferno",
+    "Gold-Megaways",
+    "Gold-O-Plenty",
+    "Golden",
+    "Golden-Chief",
+    "Golden-Horns",
+    "Golden-Macaque",
+    "Gorilla-Go-Wild",
+    "Gorilla-Go-Wilder",
+    "Grand-Royale",
+    "Grand-Spinn-Superpot",
+    "Great-Blue",
+    "Great-Wild-Elk",
+    "Guardians-Of-The-Deep",
+    "Guss-Gold-Christmas",
+    "Halloween-Fortune",
+    "Hansel-And-Gretel-Candyhouse",
+    "Happy-Holidays",
+    "Harlequin-Wins",
+    "Hawaii-Surf",
+    "Hen-Heist-Hold-And-Win",
+    "Highwayman-Gold-Hold-And-Win",
+    "Hot-Gems",
+    "Hot-Slot-777-Crown-Xmas-Edition",
+    "Howling-Treasures",
+    "Hula-Hula-Nights",
+    "Huolong-Valley",
+    "Imperial-Luck",
+    "Infinity-Hero",
+    "Irish-Eyes-2",
+    "Iron-Bank",
+    "Jackpot-Hitz",
+    "Jacks-Beanstalk",
+    "Jade-Emperor",
+    "Jagrs-Super-Slot",
+    "Jaguar-Princess",
+    "Jinfu-Xingyun",
+    "Jingle-Bells-Power-Reels",
+    "Johns-Quest",
+    "Jokers-Royal-Riches",
+    "Jollys-Gifts",
+    "Jumpin-Jack-First-Strike",
+    "Jungle-Giants",
+    "Keystone-Kops",
+    "King-Of-Slots",
+    "Kingdom-Of-Gold-Mystic-Ways",
+    "Kiss-Of-The-Rose",
+    "Kong-3-Even-Bigger-Bonus",
+    "Kronos-Unleashed",
+    "Legends-Of-Troy-The-Siege",
+    "Lights",
+    "Lion-Safari",
+    "Lock-It-Link-Night-Life",
+    "Lone-Star-Jackpots",
+    "Lucky-88",
+    "Lucky-Link-Beats",
+    "Magic-Fruits-Deluxe",
+    "Magic-Of-The-Ring-Deluxe",
+    "Magic-Rewards",
+    "Manic-Millions",
+    "Masks-Of-Fortune-Megaways",
+    "Maximus-Soldier-Of-Rome",
+    "Medusa-Queen-Of-Stone",
+    "Mega-Money-Catch",
+    "Mighty-Symbols-Jokers-Santas-Jackpots",
+    "Miss-Fortune",
+    "Miss-Midas",
+    "Money-Rain",
+    "Monkeys-Gold-Xpays",
+    "Monopoly-250k",
+    "Monopoly-Hot-Property",
+    "Motorhead",
+    "Muerto-En-Mictlan",
+    "Multihand-Blackjack",
+    "Murder-Mystery",
+    "Mystery-Fox-Christmas-Party",
+    "Oink-Farm",
+    "Olympus-4",
+    "Olympus-Thunder",
+    "Olympus-Zeus-Megaways",
+    "Om-Nom",
+    "Opal-Fruits",
+    "Outlaws",
+    "Owl-Eyes",
+    "Ozzy-Osbourne",
+    "Pandamania",
+    "Parthenon-Quest-For-Immortality",
+    "Pearl-River",
+    "Pearls-Pearls-Pearls",
+    "Perfect-Gems",
+    "Pirate-Plunder",
+    "Pixies-Of-The-Forest",
+    "Polar-Wilds",
+    "Pompeii",
+    "Pot-O-Gold",
+    "Power-Of-Gods-Hades",
+    "Power-Of-Gods-Medusa",
+    "Power-Of-Gods-Valhalla",
+    "Power-Of-Sun-Svarog",
+    "Primate-King",
+    "Prosperity-Palace",
+    "Punk-Rocker",
+    "Pyramid",
+    "Queen-Of-Riches",
+    "Queen-Of-The-Castle",
+    "Rainbow-Jackpots-Megaways",
+    "Reel-Star",
+    "Respin-Rhino",
+    "Rich-Little-Hens-Rule-The-Roost",
+    "Riddle-Of-Riches",
+    "Rio-Fever",
+    "Ripleys-Big-Wheel",
+    "Rise-Of-The-Mountain-King",
+    "Rising-Temple-Hold-And-Win",
+    "Robin-Hood-Prince-Of-Tweets",
+    "Robin-Hoods-Wild-Forest",
+    "Rocky",
+    "Roulette",
+    "Roulette-Classic",
+    "Roulette-Deluxe-Playtech",
+    "Royal-Masquerade",
+    "Royal-Mint",
+    "Royale-With-Cheese-Megaways",
+    "Santa-Surprise",
+    "Secrets-Of-The-Phoenix",
+    "Shamrock-Money-Pot-10k-Ways",
+    "Shields-Of-Rome",
+    "Silverback-Multiplier-Mountain",
+    "Slingo-Piggy-Bank",
+    "Slingo-Xing-Yun-Xian",
+    "Spin-Party",
+    "Spin-Sorceress",
+    "Stacked-Fire-7s",
+    "Stacked-Valentine-Hearts",
+    "Star-Jewels",
+    "Starmania",
+    "Stars-Ablaze",
+    "Super-Fire-7s",
+    "Super-Flip",
+    "Super-Safari",
+    "Sweet-Alchemy",
+    "Temple-Quest-Spinfinity",
+    "The-Flintstones",
+    "The-Good-The-Bad-And-The-Wild",
+    "The-Great-Albini",
+    "The-Sand-Princess",
+    "The-Walking-Dead",
+    "Thors-Lightning",
+    "Tiger-Lord",
+    "Tiki-Reward",
+    "Timber-Wolf",
+    "Tomb-Of-Akhenaten",
+    "Tombstone-Rip",
+    "Top-Strike-Championship",
+    "Treasure-Mine",
+    "Treasures-Of-The-Lamps",
+    "Triple-Diamond",
+    "Triple-Gold-Bars",
+    "Triple-Wild-Thanksgiving",
+    "Ultimate-X-Poker-Triple-Play",
+    "Viking-Runecraft",
+    "Voodoo-Temple",
+    "Warrior-Graveyard-Xnudge",
+    "Ways-Of-The-Phoenix",
+    "Wedding-Party",
+    "Wheel-Of-Fortune-Gold-Spin-Triple-Red-Hot-7s",
+    "White-Rabbit",
+    "Wild-Dodo",
+    "Wild-Lines-American-Eagle",
+    "Wild-Panda",
+    "Wild-Streets",
+    "Wild-Unicorns",
+    "Wild-Water",
+    "Wild-West",
+    "Wild-Wild-West",
+    "Wild-Worlds",
+    "Wings-Of-Ra",
+    "Witch-Pickings",
+    "Wolf-Cub",
+    "Wolf-Fang-Spear-Of-Fire",
+    "Wolf-Howl",
+    "Wolf-Run",
+    "Wolfpack-Pays",
+    "Wonders-Of-The-Deep",
+    "Xmas-Joker",
+    "Zeus-2",
+    "bao-zhu-zhao-fu-blue-festival",
+    "bao-zhu-zhao-fu-jade-celebration",
+    "bao-zhu-zhao-fu-red-festival",
+    "buffalo-and-friends",
+    "buffalo-gold-max-power",
+    "cash-express-luxury-line-buffalo",
+    "cash-express-luxury-line-pelican-pete",
+    "cash-express-luxury-line-timber-wolf",
+    "chaoji-caishen",
+    "charming-lady-win-ways",
+    "chili-poppers",
+    "coin-trio-piggy-burst",
+    "cyber-dragon",
+    "diamond-cash-almighty-kraken",
+    "diamond-cash-mighty-buffalo",
+    "diamond-cash-mighty-cleopatra",
+    "diamond-cash-mighty-elephant",
+    "diamond-cash-mighty-emperor",
+    "diamond-cash-mighty-santa-boarded-up",
+    "diamond-cash-mighty-sevens",
+    "diamond-cash-mighty-sevens-win-ways",
+    "diamond-cash-mighty-viking",
+    "dubble-bubble-luckytap",
+    "fu-dai-lian-lian-dragon",
+    "fu-dai-lian-lian-panda",
+    "gold-power",
+    "greenback-attack",
+    "gridiron-goal",
+    "high-seas-jackpots",
+    "hot-rockin-super-7s",
+    "hypercharged-pyramids-of-ra",
+    "infinite-fun-fun-21-blackjack",
+    "jackpot-carnival-buffalo",
+    "jackpot-carnival-the-power-of-88",
+    "majestic-fury-megaways",
+    "merlwins-matchup",
+    "mo-mummy-valley-of-riches",
+    "mr-gold",
+    "party-parrots",
+    "race-track",
+    "shrimp-on-the-barbie",
+    "silver-lux-coin-stacks",
+    "star-hit-jackpots",
+    "ted",
+    "the-jungle-house-win-ways",
+    "thunder-cash-charming-lady",
+    "thunder-cash-golden-book-of-ra",
+    "thunder-cash-golden-voodoo-magic",
+    "thunder-cash-sizzling-hot",
+    "thunder-cash-voodoo-magic",
+    "timber-wolf-gold",
+    "timber-wolf-triple-power",
+    "touchdown-cash",
+    "triple-jelly",
+    "triple-pop-bubblegum",
+    "triple-pop-fireworks-festival",
+    "triple-supreme-xtreme-grand-prosperity",
+    "ultimate-pong-luckytap",
+    "upshot-brilliant-7s",
+    "wealthy-pig-luckytap",
+    "white-tiger-palace",
+    "winfall-wishes",
+    "zeus-gold-blitz-fortune-tower"
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "batch": "calibration_r3_25pct",
+  "prompt_version": "shade-aware-v2 + anti-overest + 25% threshold",
+  "date": "2026-05-13",
+  "reviews": [
+    {
+      "game": "Asgardian-Fire",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Crown-Of-Egypt",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gold-Pile-Orangutan",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Great-Gold",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Wonder-Hounds",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Black-Diamond",
+      "color": "fix",
+      "notes": "here we still missed gray/silver - there is not much gold"
+    },
+    {
+      "game": "Cash-Crew",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Ghostbusters-Triple-Slime",
+      "color": "fix",
+      "notes": "didnt really help here - purple is still over estimated"
+    },
+    {
+      "game": "Sweet-16-Blackjack",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "The-Wolfs-Bane",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Atlantis-Megaways",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Aurora-Wilds",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Christmas-Gift-Rush",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Cloud-Corsairs",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Slingo-Wolf-Snowstorm",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "El-Dorado",
+      "color": "fix",
+      "notes": "there isnt a lot of orange here"
+    },
+    {
+      "game": "Fate-Of-The-8-Power-Wheel",
+      "color": "fix",
+      "notes": "you missed green"
+    },
+    {
+      "game": "Neon-Links",
+      "color": "fix",
+      "notes": "purple is over estimated"
+    },
+    {
+      "game": "777-hot-reels",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Cyber-Wildz",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mystery-Reels",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Power-Prizes-Noble-Peacock",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Sparkling-Roses",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mad-Mad-Monkey",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Poison-Eve",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Rainbow-Trinkets",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Arcade-Bomb",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Attack-On-Retro",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Blazing-Planets",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Trollpot-5000",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "10x-Minimum",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Desperados-Wild",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Mayhem",
+      "color": "fix",
+      "notes": "should have teal"
+    },
+    {
+      "game": "Rage-Of-The-Seas",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Thors-Hammer-Strike",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Smash-The-Pig",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Hyper-Gold",
+      "color": "fix",
+      "notes": "gold is over estimated"
+    },
+    {
+      "game": "Gold-Fish-Feeding-Time-Deluxe-Treasure",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "Gems-Inferno-Megaways",
+      "color": "ok",
+      "notes": ""
+    },
+    {
+      "game": "3-mad-frogs",
+      "color": "ok",
+      "notes": ""
+    }
+  ]
+}

@@ -68,7 +68,7 @@ cache/
 tests/screenshots/
 tests/comparison/
 tests/baseline-screenshots/
-screenshots/
+ui-screenshots/
 verification-screenshots/
 
 # Data backups (keep games_master.json only)
@@ -128,3 +128,8 @@ data/*.xlsx
 
 # Python test scripts (not part of app)
 data/test_extract_game_profile.py
+
+# Session files
+server/.sessions/
+__pycache__/
+ui-screenshots/

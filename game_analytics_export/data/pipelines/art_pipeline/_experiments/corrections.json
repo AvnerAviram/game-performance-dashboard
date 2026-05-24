@@ -1,0 +1,1567 @@
+{
+  "version": "1.1",
+  "description": "Persistent user corrections for art classification. Injected into prompts and enforced in post-processing.",
+  "corrections": {
+    "Tomb-Of-Mirrors.html": {
+      "must_have_elements": [
+        "Statues/Sculptures",
+        "Ancient Stone Carvings"
+      ],
+      "must_not_elements": [
+        "Ships/Boats"
+      ],
+      "notes": "Egyptian god/animal-like statues flanking the reels. Ships/Boats is wrong. User corrected in fresh batch v11."
+    },
+    "san-fa-pandas.html": {
+      "must_have_elements": [
+        "Asian Decorations",
+        "Asian Architecture"
+      ],
+      "notes": "Bamboo plants/trees visible in background. User corrected twice."
+    },
+    "fortune-coin-fever-spins.html": {
+      "must_have_elements": [
+        "Bamboo/Tropical Plants"
+      ],
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "notes": "Dragon is decorative/symbol, not a character. Bamboo visible in background."
+    },
+    "Tiger-7s.html": {
+      "override_colors_remove": [
+        "Purple"
+      ],
+      "notes": "Purple is from the game UI, not the art. Tiger is above the reels."
+    },
+    "giga-match-moolah.html": {
+      "override_theme": "Luxury/VIP",
+      "notes": "Theme is Luxury/VIP/Bank, not Steampunk. Magician character with crystal ball above reels."
+    },
+    "Buffalo.html": {
+      "must_have_elements": [
+        "Mountains"
+      ],
+      "notes": "Mountains visible in background."
+    },
+    "88-Fortunes.html": {
+      "must_not_elements": [
+        "Ships/Boats",
+        "Animals (decorative)"
+      ],
+      "notes": "Animals and ship are symbols, not background elements."
+    },
+    "Cash-Eruption.html": {
+      "must_not_elements": [
+        "Mountains"
+      ],
+      "notes": "Mountain/volcano is a reel symbol, not a background element."
+    },
+    "Stinkin-Rich.html": {
+      "must_have_elements": [
+        "Casino Interior"
+      ],
+      "notes": "Slot machines visible in the casino background setting."
+    },
+    "Way-Out-Wilds.html": {
+      "must_have_elements": [
+        "Colored Frame"
+      ],
+      "notes": "Has a purple frame around the reels."
+    },
+    "san-fa-tigers.html": {
+      "must_have_elements": [
+        "Bamboo/Tropical Plants"
+      ],
+      "notes": "Bamboo/tropical plants visible in background of Asian-themed game."
+    },
+    "Gonzos-Quest.html": {
+      "override_characters": [
+        "Knight"
+      ],
+      "must_not_elements": [
+        "Torches"
+      ],
+      "notes": "User confirmed: no torches in this game"
+    },
+    "Cash-Eruption-Vegas.html": {
+      "must_have_elements": [
+        "City Landmarks"
+      ],
+      "override_theme": "Casino Floor",
+      "notes": "Vegas outdoor backdrop with Statue of Liberty, Eiffel Tower landmarks. Post-process rule adds Urban/Modern City secondary. User corrected in fresh batch v11."
+    },
+    "Super-25-Stars.html": {
+      "must_have_elements": [
+        "Casino Interior"
+      ],
+      "override_theme_secondary": "Casino Floor",
+      "notes": "Classic slot in casino floor setting. Casino Interior visible. User corrected in fresh batch v11."
+    },
+    "London-Tube.html": {
+      "must_have_elements": [
+        "Train/Railway Station"
+      ],
+      "notes": "London Underground train/station visible. User corrected in fresh batch v11."
+    },
+    "Jimi-Hendrix.html": {
+      "override_characters": [
+        "Jimi Hendrix"
+      ],
+      "notes": "Jimi Hendrix character visible. Claude missed. User corrected in fresh batch v11."
+    },
+    "Aloha-Christmas.html": {
+      "must_have_elements": [
+        "Gifts/Wrapped Presents"
+      ],
+      "must_not_elements": [
+        "Christmas Decorations"
+      ],
+      "notes": "Gifts/wrapped presents visible, not generic Christmas decorations. User corrected in fresh batch v11."
+    },
+    "Armadillo-Does-Christmas.html": {
+      "must_not_elements": [
+        "Torches/Lanterns/Candles"
+      ],
+      "notes": "Game has candles specifically, not torches. Compound label too vague. User corrected in fresh batch v11."
+    },
+    "big-bounty-gold.html": {
+      "must_have_elements": [
+        "Coin Stacks"
+      ],
+      "notes": "Visible coin stacks as treasure. User corrected in fresh batch v11."
+    },
+    "jungle-jim-gold-blitz.html": {
+      "must_have_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "Temple/ruins statues visible in jungle setting. User corrected in fresh batch v11."
+    },
+    "Captain-Glum-Pirate-Hunter.html": {
+      "must_not_elements": [
+        "Ships/Boats"
+      ],
+      "notes": "Ship/boat is only a reel symbol, not a background element"
+    },
+    "Cleopatra-Gold.html": {
+      "must_have_elements": [
+        "Ancient Stone Carvings",
+        "Hieroglyphs/Ancient Writing",
+        "Stone Arch/Gateway"
+      ],
+      "notes": "Only stone carvings, hieroglyphs, stone arc - rest are symbols",
+      "override_elements": [
+        "Ancient Stone Carvings",
+        "Hieroglyphs/Ancient Writing",
+        "Stone Arch/Gateway"
+      ]
+    },
+    "Dino-Pays.html": {
+      "override_characters": [],
+      "notes": "Dinosaur is in the logo only, not a real character outside reels"
+    },
+    "Finns-Golden-Tavern.html": {
+      "override_characters": [],
+      "notes": "No real characters outside reels"
+    },
+    "Basketball-Star-On-Fire.html": {
+      "must_have_elements": [
+        "Basketball Court"
+      ],
+      "notes": "Basketball is the specific sport",
+      "override_theme_secondary": "Sports"
+    },
+    "Cosmic-Cash.html": {
+      "must_have_elements": [
+        "Stars",
+        "Planets"
+      ],
+      "notes": "Stars and planets are key visual elements"
+    },
+    "Fishin-Bonanza.html": {
+      "must_have_elements": [
+        "Rope Frame"
+      ],
+      "notes": "Frame is specifically a rope frame"
+    },
+    "Fortune-Temple.html": {
+      "must_have_elements": [
+        "Stairs/Steps"
+      ],
+      "notes": "Torches (separate from lanterns/candles) and stairs are key elements"
+    },
+    "Chicken-Fox.html": {
+      "must_have_elements": [
+        "Coin Stacks"
+      ],
+      "notes": "Cash/coin stacks visible in game"
+    },
+    "10001-Nights.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Lanterns"
+      ],
+      "notes": "Arabian theme uses hanging lanterns, not wall torches"
+    },
+    "Manic-Potions.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Candles"
+      ],
+      "notes": "Potion laboratory uses candles, not torches"
+    },
+    "Oceans-Treasure.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "notes": "Underwater setting - torches impossible"
+    },
+    "Royal-Masquerade.html": {
+      "must_not_elements": [
+        "Torches"
+      ],
+      "must_have_elements": [
+        "Candles"
+      ],
+      "notes": "Royal palace uses candles/candelabras, not torches"
+    },
+    "3-Clown-Monty.html": {
+      "override_theme_secondary": "Haunted Manor/Graveyard",
+      "notes": "Spooky/scary circus - primary Circus, secondary Haunted"
+    },
+    "Age-Of-The-Gods-Maze-Keeper.html": {
+      "must_have_colors": [
+        "Red"
+      ],
+      "notes": "Red is prominent, not just orange"
+    },
+    "Diamond-Safari.html": {
+      "override_colors": [
+        "Blue",
+        "Brown",
+        "Green"
+      ],
+      "notes": "Blue, brown earth, green - not red/gold"
+    },
+    "Cornelius.html": {
+      "must_have_elements": [
+        "Farmhouse/Barn"
+      ],
+      "notes": "User flagged: gems, farm house, barn missing"
+    },
+    "Casinomeister.html": {
+      "must_have_elements": [
+        "Mountains",
+        "Fields/Grassland"
+      ],
+      "notes": "User: also mountains, grass"
+    },
+    "Elements-The-Awakening.html": {
+      "must_have_elements": [
+        "Coral Reef"
+      ],
+      "notes": "User: also coral reef"
+    },
+    "Thunder-Cash.html": {
+      "must_have_elements": [
+        "Slot Machines"
+      ],
+      "notes": "User: slot machines, table games"
+    },
+    "Happy-Lucky.html": {
+      "must_have_elements": [
+        "Torches"
+      ],
+      "notes": "User: also torches"
+    },
+    "olympus-strikes-ultratap.html": {
+      "must_have_elements": [
+        "Viking Ship/Village"
+      ],
+      "notes": "User: also a viking city/village"
+    },
+    "splash-of-gold.html": {
+      "must_have_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "User: Egyptian man/animal statues"
+    },
+    "thundering-blaze.html": {
+      "must_have_elements": [
+        "Underwater Structures"
+      ],
+      "notes": "User: also underwater structures"
+    },
+    "Dancing-Drums-Explosion-Mega-Drop.html": {
+      "must_have_elements": [
+        "Christmas Decorations",
+        "Snowflakes/Snow"
+      ],
+      "notes": "User: christmas trees, snowflakes"
+    },
+    "Star-Candy.html": {
+      "override_theme": "Candy/Sweet World",
+      "override_theme_secondary": "",
+      "must_have_elements": [
+        "Candy/Sweets/Lollipops"
+      ],
+      "notes": "Theme is Candy/Sweet World only, NOT Outer Space. Missing candy/lollipop/cake/frosting elements."
+    },
+    "magnificent-power-wolf-fire-spirit.html": {
+      "override_theme": "Inferno/Fire",
+      "notes": "Theme is purely fire/inferno, not Forest/Woodland. Fire dominates the visual."
+    },
+    "j-mania-maniac.html": {
+      "must_not_elements": [
+        "Rope Frame"
+      ],
+      "must_have_elements": [
+        "Caution Tape/Crime Scene Frame"
+      ],
+      "notes": "Frame is crime scene / caution tape, not rope."
+    },
+    "Fire-Blaze-Fire-Fighter.html": {
+      "override_theme": "Fire Station/Emergency",
+      "must_not_elements": [
+        "Speakers/DJ Equipment"
+      ],
+      "notes": "Fire station theme, not generic. Has firefighter gear and pipes, not speakers."
+    },
+    "golden-roar-boom.html": {
+      "must_not_elements": [
+        "Gold Coins/Treasure"
+      ],
+      "notes": "No coins visible. Character is Asian Lady specifically."
+    },
+    "turtle-paradise.html": {
+      "must_not_elements": [
+        "Rope Frame"
+      ],
+      "notes": "No rope frame. Stop suggesting Rope Frame for tropical/ocean themes."
+    },
+    "gold-gobblers.html": {
+      "must_not_elements": [
+        "Safe/Vault/Chest"
+      ],
+      "must_have_elements": [
+        "Mountains"
+      ],
+      "notes": "No chest visible, but mountains are in background."
+    },
+    "Indiana-Bones.html": {
+      "must_not_elements": [
+        "Safe/Vault/Chest",
+        "Torches"
+      ]
+    },
+    "4-Fantastic-Lobsters.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "5-Dragons.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Baccarat.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Buffalo-Chief.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Deuces-Wild.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jackpot-Hitz.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Golden-Toad.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Tree.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Mega-Money-Catch.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Roulette-Classic.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Lines-American-Eagle.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "bao-zhu-zhao-fu-red-festival.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "buffalo-and-friends.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-cleopatra.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-elephant.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-sevens.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "high-seas-jackpots.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "hot-rockin-super-7s.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "infinite-fun-fun-21-blackjack.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "majestic-fury-megaways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "mo-mummy-valley-of-riches.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "shrimp-on-the-barbie.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "star-hit-jackpots.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-charming-lady.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-golden-book-of-ra.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "timber-wolf-gold.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "timber-wolf-triple-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "triple-pop-fireworks-festival.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "white-tiger-palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "winfall-wishes.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "300-Shields-Extreme.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Aesir-Treasures.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Age-Of-The-Gods-Wonder-Warriors.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Agent-Jane-Blonde-Max-Volume.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Angels-Touch.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Ariana.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Arthur-Pendragon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Bankin-Bacon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Case-Closed.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cash-Cave.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Catch-Of-The-Day.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Chicago-Gold.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Coin-Quest.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Crystal-Mirror.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Dragon-Palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Flaming-Reels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Football-Champions-Cup.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Foxin-Wins-Football-Fever.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "From-Dusk-Till-Dawn.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Frozen-Inferno.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gem-Heat.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Genie-Nights.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gold-Megaways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Great-Blue.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Hot-Gems.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Iron-Bank.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jade-Emperor.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jingle-Bells-Power-Reels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jumpin-Jack-First-Strike.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jungle-Giants.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Keystone-Kops.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lion-Safari.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-88.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Muerto-En-Mictlan.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Pearl-River.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Pearls-Pearls-Pearls.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Primate-King.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Prosperity-Palace.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Respin-Rhino.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Rio-Fever.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Slingo-Piggy-Bank.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Stacked-Valentine-Hearts.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Star-Jewels.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Starmania.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Super-Flip.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Temple-Quest-Spinfinity.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "The-Sand-Princess.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Thors-Lightning.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Voodoo-Temple.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wedding-Party.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wolf-Run.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "buffalo-gold-max-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "coin-trio-piggy-burst.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cyber-dragon.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-santa-boarded-up.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-sevens-win-ways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-sizzling-hot.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "thunder-cash-voodoo-magic.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "ultimate-pong-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "zeus-gold-blitz-fortune-tower.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Gold-Cash.html": {
+      "override_elements": [
+        "Minimal/No Frame"
+      ]
+    },
+    "Mystical-Forest.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_not_elements": [
+        "Statues/Sculptures"
+      ]
+    },
+    "Fu-Bao-Chang.html": {
+      "must_not_elements": [
+        "Asian Architecture"
+      ]
+    },
+    "vip.html": {
+      "override_theme_secondary": "Luxury/VIP"
+    },
+    "queens-of-ra-coin-collect.html": {
+      "must_not_elements": [
+        "Statues/Sculptures"
+      ]
+    },
+    "Aladdins-Legacy.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "American-Roulette.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cabaret-Royale.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Cherries-Gone-Rich.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Emerald-Isle.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Jollys-Gifts.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lucky-Link-Beats.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Mystery-Fox-Christmas-Party.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Olympus-4.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Sweet-Alchemy.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "The-Great-Albini.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Top-Strike-Championship.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Dodo.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wild-Water.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Wolf-Howl.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cash-express-luxury-line-pelican-pete.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "cash-express-luxury-line-timber-wolf.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "diamond-cash-mighty-buffalo.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "dubble-bubble-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "gold-power.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "gridiron-goal.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "race-track.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "the-jungle-house-win-ways.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "wealthy-pig-luckytap.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Oink-Oink-Oink.html": {
+      "override_characters": [
+        "Piggy Bank"
+      ],
+      "override_elements": [
+        "Safe/Vault"
+      ],
+      "note": "Character is a piggy bank; coins are pick-bonus symbols not elements"
+    },
+    "Tokens-Of-Fortune.html": {
+      "must_not_elements": [
+        "Asian Lanterns"
+      ],
+      "note": "Has Asian decorations but no lanterns specifically"
+    },
+    "Jade-Tiger.html": {
+      "override_elements": [
+        "Wallpaper/Decorative Pattern",
+        "Asian Architecture"
+      ],
+      "note": "Just an Asian pattern/wallpaper, not distinct architectural/lantern elements"
+    },
+    "Kronos.html": {
+      "must_have_elements": [
+        "Sky/Clouds"
+      ],
+      "note": "Sky and clouds visible in background"
+    },
+    "crystal-hall.html": {
+      "must_not_elements": [
+        "Casino Interior",
+        "Disco Ball"
+      ],
+      "note": "No Casino Interior setting nor actual Disco Ball"
+    },
+    "Chaos-Crew-2.html": {
+      "override_theme": "Crime/Heist",
+      "override_theme_secondary": "Cartoon/Animated World",
+      "must_have_elements": [
+        "Graffiti"
+      ],
+      "note": "Cartoony crime theme with graffiti on walls"
+    },
+    "temple-of-tollan.html": {
+      "must_have_elements": [
+        "Coin Stacks"
+      ],
+      "char_detail": "Aztec Warrior",
+      "notes": "coin piles"
+    },
+    "Bison-Moon.html": {
+      "must_have_elements": [
+        "Trees"
+      ],
+      "notes": "tree"
+    },
+    "return-of-ahmun-ra.html": {
+      "must_not_elements": [
+        "Torches",
+        "Columns/Pillars",
+        "Statues/Sculptures"
+      ],
+      "must_have_elements": [
+        "Pyramids"
+      ],
+      "notes": "no torches no pillars no statues. sand, pyramids, mountains, sky"
+    },
+    "Fire-Blaze-Green-Wizard.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ]
+    },
+    "Slingo-Racing.html": {
+      "must_not_elements": [
+        "Basketball Court"
+      ],
+      "must_have_elements": [
+        "Fields/Grassland"
+      ],
+      "notes": "thats not a basketball court, thats a grass field"
+    },
+    "gold-boom.html": {
+      "override_elements": [
+        "Cave/Cavern",
+        "Rocks/Boulders"
+      ],
+      "notes": "those are symbols. there is rocks, wood bars/pillars, cave"
+    },
+    "Golden-Wins.html": {
+      "must_have_elements": [
+        "Asian Decorations"
+      ],
+      "notes": "Asian Decoration / asian pattern + fireworks"
+    },
+    "dynamite-fishing.html": {
+      "must_have_elements": [
+        "Fish",
+        "Dynamite"
+      ],
+      "notes": "add: fish, dynamite sticks"
+    },
+    "top-multiplier.html": {
+      "override_elements": [],
+      "notes": "nothing here - just a pattern"
+    },
+    "Dynamite-Riches-Megaways.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_have_elements": [
+        "Lanterns",
+        "Gold Coins/Treasure"
+      ],
+      "notes": "Lanterns, Gold Coins/Treasure + gold nuggets + wooden bars/pillars/mine"
+    },
+    "Full-Force-Link-Mystical-Owl.html": {
+      "must_have_elements": [
+        "Sky",
+        "Stars"
+      ],
+      "must_not_elements": [
+        "Clouds"
+      ],
+      "notes": "Sky + moon + stars (no clouds)"
+    },
+    "Cluster-Tumble.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "merlwins-matchup.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Mammoth-Mayhem.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Golden-Macaque.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "not an in game screenshot"
+    },
+    "Valkyrie-Returns.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "megawin screenshot - not usable"
+    },
+    "Ultra-Rush-Sky-Fire.html": {
+      "override_elements": [
+        "Asian Decorations",
+        "Fire/Flames"
+      ],
+      "notes": "only Asian Decorations, Fire/Flames"
+    },
+    "Break-Da-Bank-Again-Respin.html": {
+      "override_elements": [
+        "Wallpaper/Decorative Pattern"
+      ],
+      "notes": "its symbols - no elements really other than a pattern bg"
+    },
+    "cash-can-ultratap.html": {
+      "override_theme": "Urban/Modern City",
+      "override_elements": [
+        "Office Chair",
+        "Trash Can",
+        "Computer Monitor"
+      ],
+      "notes": "yes but be specific - office chair, trash can, computer monitor"
+    },
+    "Gorilla-Riches.html": {
+      "must_not_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "correct but no Statues/Sculptures"
+    },
+    "Ozzy-Osbourne.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Classic-Fortunes.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Manic-Millions.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Queen-Of-The-Castle.html": {
+      "bad_screenshot_unfixable": true
+    },
+    "Lavish-Lifestyles.html": {
+      "must_have_elements": [
+        "Apartment/Penthouse"
+      ],
+      "notes": "apartment"
+    },
+    "boitata-the-fire-guardian.html": {
+      "must_not_elements": [
+        "Ancient Stone Carvings",
+        "Statues/Sculptures"
+      ],
+      "char_detail": "Baby Dragon",
+      "notes": "no Ancient Stone Carvings, Statues/Sculptures"
+    },
+    "dangerous-beauty-power-bet.html": {
+      "must_not_elements": [
+        "Asian Lanterns",
+        "Bamboo"
+      ],
+      "notes": "no Asian Lanterns or bamboo"
+    },
+    "Da-Vinci-Extreme.html": {
+      "override_elements": [],
+      "notes": "no elements - its the reels frame"
+    },
+    "Winstones.html": {
+      "must_not_elements": [
+        "Mountains"
+      ],
+      "notes": "correct but no Mountains"
+    },
+    "Shamrock.html": {
+      "override_elements": [],
+      "notes": "just a pattern bg"
+    },
+    "Dragon-Power.html": {
+      "override_elements": [
+        "Asian Decorations",
+        "Wallpaper/Decorative Pattern"
+      ],
+      "notes": "only Asian Decorations / pattern-wallpaper"
+    },
+    "Grand-Emperor.html": {
+      "override_elements": [
+        "Asian Decorations"
+      ],
+      "notes": "only Asian Decorations"
+    },
+    "lure-of-the-lamp-megaways.html": {
+      "must_have_elements": [
+        "Arabian Architecture"
+      ],
+      "notes": "arabian buildings/structures"
+    },
+    "3-leprechaun-charms.html": {
+      "must_not_elements": [
+        "Vines/Ivy/Plants"
+      ],
+      "must_have_elements": [
+        "Fields/Grassland",
+        "Trees",
+        "Flowers/Blossoms",
+        "Sky"
+      ],
+      "notes": "no vines/ivy - has plants, flowers, rainbow, sky",
+      "override_elements": [
+        "Plants",
+        "Flowers/Blossoms",
+        "Rainbow",
+        "Sky"
+      ]
+    },
+    "3x-2x-fire-and-roses-joker.html": {
+      "override_elements": [
+        "Curtains/Drapes"
+      ],
+      "notes": "just a curtain bg, no chandeliers or gold coins"
+    },
+    "Big-Size-Fishin.html": {
+      "must_not_elements": [
+        "Mountains",
+        "Trees"
+      ],
+      "notes": "no mountains no trees, just water and coral reef"
+    },
+    "Blackjack-Players-Choice.html": {
+      "override_elements": [],
+      "notes": "just a blackjack table, no city landmarks"
+    },
+    "Blood-Suckers-Megaways.html": {
+      "must_not_elements": [
+        "Skulls/Bones",
+        "Candles",
+        "Torches"
+      ],
+      "notes": "no skulls/bones, candles, torches visible - just fog and ancient stone carvings"
+    },
+    "Boss-Level.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "city bg - not a slot game screenshot"
+    },
+    "Fire-Blaze-Toltec-Blocks.html": {
+      "must_not_elements": [
+        "Pyramids",
+        "Torches"
+      ],
+      "notes": "no pyramids or torches visible - temples, trees, ancient stone carvings, vines ok"
+    },
+    "Foxpot.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "not an ingame screenshot"
+    },
+    "Golden-Harvest.html": {
+      "override_elements": [
+        "Trees",
+        "Fields/Grassland"
+      ],
+      "notes": "only trees and fields/grassland correct, no wood frame or farmhouse"
+    },
+    "Mystic-Fortune-Deluxe.html": {
+      "must_not_elements": [
+        "Bamboo"
+      ],
+      "must_have_elements": [
+        "Candles"
+      ],
+      "notes": "no bamboo, has candle/paper lanterns (almost torches), Asian architecture ok"
+    },
+    "Smokin-Triples.html": {
+      "override_elements": [],
+      "notes": "just a background pattern, fire/flames is from reel symbols not background"
+    },
+    "Ultra-Stack-Feature-Rose.html": {
+      "override_elements": [
+        "Roses",
+        "Sparkles/Glitter"
+      ],
+      "notes": "rose + sparkles, no colored frame or vines"
+    },
+    "Wild-Whopper.html": {
+      "must_not_elements": [
+        "Underwater Structures"
+      ],
+      "notes": "fish missing, no underwater structures - water effects, coral reef, bubbles ok",
+      "must_have_elements": [
+        "Fish"
+      ]
+    },
+    "ramosis-treasures.html": {
+      "must_have_elements": [
+        "Torches"
+      ],
+      "notes": "missed the torches"
+    },
+    "Big-Wheel-Bonus.html": {
+      "override_elements": [
+        "Stars"
+      ],
+      "notes": "only stars, no casino interior"
+    },
+    "Excalibur.html": {
+      "override_elements": [
+        "Candles"
+      ],
+      "notes": "candles not torches, no banners"
+    },
+    "Flowers.html": {
+      "override_elements": [
+        "Vines/Ivy"
+      ],
+      "notes": "all symbols, just wooden frame and leaves"
+    },
+    "Lucky-Otter.html": {
+      "override_elements": [
+        "Treasure Chest",
+        "Coral Reef"
+      ],
+      "notes": "no underwater structures, missed treasure chest, separate coral reef from underwater"
+    },
+    "Majestic-Cats.html": {
+      "override_elements": [
+        "Hay/Straw"
+      ],
+      "notes": "also hay/dry straw"
+    },
+    "Mayan-Eagle.html": {
+      "override_elements": [
+        "Plants",
+        "Waterfall"
+      ],
+      "notes": "no torches, missing plants and waterfall"
+    },
+    "Neon-Staxx.html": {
+      "override_elements": [
+        "City/Skyline"
+      ],
+      "notes": "also city/cityscape"
+    },
+    "Slingo-Hot-Roll.html": {
+      "override_elements": [
+        "Multipliers"
+      ],
+      "notes": "multipliers in the bg"
+    },
+    "Trial-By-Fire.html": {
+      "override_elements": [
+        "Spider Web",
+        "Skulls/Bones",
+        "Ancient Stone Carvings",
+        "Lava/Magma"
+      ],
+      "notes": "also spider web, skull, ancient structure/stones and lava"
+    },
+    "Zodiac-Lantern-Tiger.html": {
+      "override_elements": [],
+      "notes": "no Bamboo, dragon character present"
+    },
+    "centurion-big-money.html": {
+      "override_elements": [
+        "Roman Architecture"
+      ],
+      "notes": "also roman structure, split vines/ivy from plants"
+    },
+    "myth-of-dead.html": {
+      "override_elements": [
+        "River/Stream"
+      ],
+      "notes": "no torches, columns/pillars, statues/sculptures; missed river"
+    },
+    "slingo-day-of-the-dab.html": {
+      "override_elements": [
+        "Candles",
+        "Lights/Spotlights"
+      ],
+      "notes": "also candles and lights"
+    },
+    "Ancient-Disco.html": {
+      "notes": "hieroglyphs are missing",
+      "must_have_elements": [
+        "Hieroglyphs/Ancient Writing"
+      ]
+    },
+    "Basketball-Star.html": {
+      "notes": "basketball court should be in elements",
+      "must_have_elements": [
+        "Basketball Court"
+      ]
+    },
+    "Irish-Eyes-2.html": {
+      "notes": "also trees, pyramid",
+      "must_have_elements": [
+        "Trees",
+        "Pyramids"
+      ]
+    },
+    "Lone-Star-Jackpots.html": {
+      "notes": "also farm/tree/field",
+      "must_have_elements": [
+        "Trees",
+        "Fields/Grassland"
+      ]
+    },
+    "Viking-Raid-Zone.html": {
+      "notes": "chandeliers, high class expensive house",
+      "must_have_elements": [
+        "Chandeliers"
+      ]
+    },
+    "Viking-Runecraft.html": {
+      "notes": "also asian statue and house"
+    },
+    "88-Fortunes-Jackpot-Festival.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Boomtown-Gold-Mine.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Fire-Joker.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Gold-Volcano.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Golden.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Ice-Joker.html": {
+      "notes": "INVALID: incorrect screenshot shows rules page, not gameplay Claude says gameplay but user says not ingame",
+      "bad_screenshot_unfixable": true
+    },
+    "Scatters-Matter.html": {
+      "notes": "Remove redundant bloat elements"
+    },
+    "Big-Foot.html": {
+      "notes": "raccoon, owl missing as animals",
+      "must_have_elements": [
+        "Animals (decorative)"
+      ]
+    },
+    "Circus-Riches.html": {
+      "notes": "curtains missed",
+      "must_have_elements": [
+        "Curtains/Drapes"
+      ]
+    },
+    "Queenie.html": {
+      "notes": "hearts",
+      "must_have_elements": [
+        "Hearts/Love Symbols"
+      ]
+    },
+    "Renegades.html": {
+      "notes": "snowy mountains missed",
+      "must_have_elements": [
+        "Mountains",
+        "Snowflakes/Snow"
+      ]
+    },
+    "Chaos-Crew.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Re-downloaded alternative from SC, still promotional."
+    },
+    "Tombstone.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Re-downloaded alternative from SC, still promotional."
+    },
+    "Christmas-Cash-Pots.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Re-downloaded from SC, Claude says gameplay but user says not ingame."
+    },
+    "Crystal-Sun.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Claude says gameplay but user says not ingame"
+    },
+    "Money-Maker.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Claude says gameplay but user says not ingame"
+    },
+    "Tsai-Shens-Gift.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Claude says gameplay but user says not ingame"
+    },
+    "Wolf-Cub.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Claude says gameplay but user says not ingame"
+    },
+    "5-Doggy-Dollars.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Pick game screen, not regular ingame. Already flagged promotional."
+    },
+    "5-Treasures.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Pick game screen, not regular gameplay. Claude said gameplay."
+    },
+    "Blazing-Mammoth.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "Wheel feature screen, not regular gameplay. Claude said gameplay."
+    },
+    "Stormforged.html": {
+      "override_theme": "Inferno/Fire",
+      "override_theme_secondary": null,
+      "override_characters": [
+        "Satan"
+      ],
+      "must_not_elements": [
+        "Viking Ship"
+      ],
+      "notes": "User: its inferno/fire not Norse/Viking, its satan not Surtur, no Viking Ship"
+    },
+    "Wild-Falls.html": {
+      "override_theme": "Forest/Woodland",
+      "override_theme_secondary": null,
+      "notes": "User: waterfall/nature theme, not Wild West"
+    },
+    "Great-Balloon-Adventure.html": {
+      "override_theme": "Fantasy/Fairy Tale",
+      "notes": "User: Sky is not a theme. Balloon/adventure is fantasy."
+    },
+    "Cloud-Corsairs.html": {
+      "override_theme": "Fantasy/Fairy Tale",
+      "notes": "User: Sky is not a theme. Airship/steampunk is fantasy."
+    },
+    "balls-of-fire.html": {
+      "override_characters": [
+        "Soccer Player"
+      ],
+      "must_not_elements": [
+        "Basketball Court"
+      ],
+      "must_have_elements": [
+        "Sports Arena/Stadium"
+      ],
+      "notes": "User: soccer player, soccer field not basketball"
+    },
+    "Patricks-Jackpot.html": {
+      "notes": "User: correct chars but also Irish Lady missed"
+    },
+    "dragon-unleashed-prosperity-packets.html": {
+      "must_not_elements": [
+        "Asian Lanterns",
+        "Bamboo"
+      ],
+      "notes": "User: no Asian Lanterns, no Bamboo visible"
+    },
+    "dreamy-divas.html": {
+      "must_have_elements": [
+        "Pool"
+      ],
+      "notes": "User: also pool visible"
+    },
+    "the-goonies-megaways.html": {
+      "must_have_elements": [
+        "Skulls/Bones"
+      ],
+      "notes": "User: also skeleton visible"
+    },
+    "Gold-Blitz-Extreme.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "User: weird screenshot, looks like a win animation - not regular gameplay"
+    },
+    "What-The-Fox-Megaways.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "User: wheel bonus game, not regular in-game screenshot"
+    },
+    "Black-Mamba.html": {
+      "char_detail": "Guitar Player (not just Woman)",
+      "notes": "User: correct but she is a guitar player"
+    },
+    "Cirque-Du-Soleil-Amaluna.html": {
+      "char_detail": "Warrior Lady (not just Lady)",
+      "notes": "User: she is a warrior lady or something like that"
+    },
+    "Blazing-7s-Blackjack.html": {
+      "notes": "User: this is a blackjack table, not a slot. Theme/elements classification off.",
+      "override_elements": [
+        "Blackjack Table",
+        "Casino Interior"
+      ]
+    },
+    "Enchanted-Manor.html": {
+      "must_have_elements": [
+        "Moon"
+      ],
+      "notes": "User: also moon visible"
+    },
+    "Mighty-Medusa.html": {
+      "must_have_elements": [
+        "Ancient Ruins"
+      ],
+      "notes": "User: also greek/roman ruins"
+    },
+    "Million-Vegas.html": {
+      "must_not_elements": [
+        "City Landmarks"
+      ],
+      "notes": "User: no City Landmarks. Looks like a show/concert hall, maybe in a casino."
+    },
+    "Nemos-Voyage.html": {
+      "must_not_elements": [
+        "Underwater Structures",
+        "Bubbles"
+      ],
+      "notes": "User: no Underwater Structures or Bubbles. Looks like a ship interior/engine room."
+    },
+    "Shamrock-Miner.html": {
+      "must_have_elements": [
+        "Rocks/Boulders"
+      ],
+      "notes": "User: also rocks"
+    },
+    "Split-Dragon.html": {
+      "must_not_elements": [
+        "Asian Lanterns"
+      ],
+      "notes": "User: no Asian Lanterns visible"
+    },
+    "Twice-The-Money.html": {
+      "must_not_elements": [
+        "Dynamite"
+      ],
+      "must_have_elements": [
+        "Mine Cart"
+      ],
+      "notes": "User: no Dynamite, there is a gold cart that takes gold in a mine"
+    },
+    "championship-fortunes.html": {
+      "override_characters": [
+        "Basketball Player (male)",
+        "Basketball Player (female)"
+      ],
+      "notes": "User: a man and a woman basketball players. Sports should specifically say basketball."
+    },
+    "dragon-unleashed-three-legends.html": {
+      "must_not_elements": [
+        "Bamboo",
+        "Asian Lanterns",
+        "Magic Energy/Spell Effects"
+      ],
+      "notes": "User: no Bamboo, no Asian Lanterns, no Magic Energy/Spell Effects"
+    },
+    "upshot-brilliant-7s.html": {
+      "bad_screenshot_unfixable": true,
+      "notes": "User: not an ingame screenshot, its a poster"
+    },
+    "3-porky-banks-christmas.html": {
+      "must_have_elements": [
+        "Snowman"
+      ],
+      "notes": "User: also snowman visible"
+    },
+    "5-Lion-Festival.html": {
+      "must_not_elements": [
+        "Magic Energy/Spell Effects"
+      ],
+      "notes": "User: no Magic Energy/Spell Effects"
+    },
+    "Bounty-Raid.html": {
+      "notes": "User: also cowboys visible in background"
+    },
+    "Cai-Fu-Emperor-Ways.html": {
+      "must_not_elements": [
+        "Columns/Pillars",
+        "Gold Coins/Treasure"
+      ],
+      "notes": "User: no Columns/Pillars, no Gold Coins/Treasure"
+    },
+    "Fortune-Pai-Gow-Poker.html": {
+      "notes": "User: this is a blackjack/poker table game, not a slot"
+    },
+    "Gladiator-Legends.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "notes": "User: gladiator is a symbol, not a character"
+    },
+    "Halloween-Jack.html": {
+      "must_have_elements": [
+        "Skulls/Bones"
+      ],
+      "notes": "User: also skeleton/evil skeleton visible"
+    },
+    "Piggy-Riches-Megaways.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_have_elements": [
+        "Fountain"
+      ],
+      "notes": "User: pig fountain is just background, not a character. Also fountain visible."
+    },
+    "Sweet-Spotz.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_have_elements": [
+        "Moon",
+        "Plants"
+      ],
+      "notes": "User: cupcake is a symbol not character. Also moon and grass/plants visible."
+    },
+    "Wolf-Guardian.html": {
+      "must_have_elements": [
+        "Tent/Teepee"
+      ],
+      "notes": "User: also tents/indian tents visible"
+    },
+    "get-the-cheese.html": {
+      "override_characters": [
+        "Mouse"
+      ],
+      "notes": "User: only Mouse, bird is a symbol. Elements should specifically say cheese."
+    },
+    "getaway-gangsters.html": {
+      "char_detail": "Gangsters/Mob (not generic Man/Woman)",
+      "notes": "User: gangsters/mob more accurately"
+    },
+    "Love-Is-In-The-Fair.html": {
+      "must_have_elements": [
+        "Cars/Vehicles"
+      ],
+      "notes": "Spot check: also has cars. User corrected 2026-05-06."
+    },
+    "The-Sword-And-The-Grail.html": {
+      "must_have_elements": [
+        "Banners/Flags"
+      ],
+      "notes": "Spot check: also has banners. User corrected 2026-05-06."
+    },
+    "Bull-In-A-China-Shop.html": {
+      "override_theme": "Classic Slots",
+      "override_theme_secondary": null,
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "must_not_elements": [
+        "Asian Architecture",
+        "Asian Lanterns",
+        "Asian Decorations"
+      ],
+      "must_have_elements": [
+        "Porcelain/Crockery"
+      ],
+      "notes": "Not Asian Temple — its a china (porcelain) shop. Old Man is a symbol not a character. User corrected 2026-05-06."
+    },
+    "Rich-Wilde-And-The-Book-Of-Dead.html": {
+      "override_characters": [
+        "Man"
+      ],
+      "notes": "Spot check: Rich Wilde is a character, not symbol-only. User corrected 2026-05-06."
+    },
+    "Usa-Flip.html": {
+      "override_characters": [
+        "Bird"
+      ],
+      "must_have_elements": [
+        "Crowd/Spectators"
+      ],
+      "notes": "Spot check: a bird on a motorcycle is the character. Also has a crowd. User corrected 2026-05-06."
+    },
+    "Eggomatic.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "notes": "Spot check: rooster is not a real character here, decorative. User corrected 2026-05-06."
+    },
+    "Ring-Of-Odin.html": {
+      "override_characters": [
+        "Dwarf"
+      ],
+      "notes": "Spot check: 2 dwarf statues visible. User corrected 2026-05-06."
+    },
+    "House-Of-Doom.html": {
+      "must_have_elements": [
+        "Churches/Steeples"
+      ],
+      "notes": "Spot check: also has churches. User corrected 2026-05-06."
+    },
+    "Cat-Wilde-And-The-Incan-Quest.html": {
+      "must_have_elements": [
+        "Statues/Sculptures"
+      ],
+      "notes": "Spot check: also has aztec statue. User corrected 2026-05-06."
+    },
+    "Wild-Bandolier.html": {
+      "override_characters": [
+        "No Characters (symbol-only game)"
+      ],
+      "notes": "Spot check: cowboy is a symbol not a character. User corrected 2026-05-06."
+    },
+    "Divine-Showdown.html": {
+      "must_have_elements": [
+        "Swords/Weapons"
+      ],
+      "notes": "Spot check: also has swords. User corrected 2026-05-06."
+    }
+  }
+}

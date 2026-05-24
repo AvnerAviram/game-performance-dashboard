@@ -1,16 +1,14 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 describe('game_data_master.json schema validation', () => {
     let games;
     let themeMap;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        themeMap = JSON.parse(readFileSync(MAPPINGS.theme, 'utf-8'));
     });
 
     test('file is a flat JSON array', () => {

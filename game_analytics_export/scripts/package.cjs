@@ -15,6 +15,10 @@ const { execSync } = require('child_process');
 const ROOT = path.join(__dirname, '..');
 const RELEASE = path.join(ROOT, 'release');
 const PKG_PATH = path.join(ROOT, 'package.json');
+const {
+    MASTER_JSON,
+    MAPPINGS,
+} = require('../src/lib/data-paths.cjs');
 
 // ── 1. Bump patch version ───────────────────────────────────────────────
 const pkg = JSON.parse(fs.readFileSync(PKG_PATH, 'utf-8'));
@@ -80,14 +84,14 @@ function copyServerDir(src, dest) {
 }
 copyServerDir(path.join(ROOT, 'server'), path.join(RELEASE, 'server'));
 
-// data/ (only the 3 API JSON files)
-const DATA_FILES = [
-    'game_data_master.json',
-    'theme_consolidation_map.json',
-    'franchise_mapping.json',
+// data/ (only the 3 API JSON files; flat names under release/data/)
+const DATA_RELEASE_FILES = [
+    { src: MASTER_JSON, destName: 'game_data_master.json' },
+    { src: MAPPINGS.theme, destName: 'theme_consolidation_map.json' },
+    { src: MAPPINGS.franchise, destName: 'franchise_mapping.json' },
 ];
-for (const f of DATA_FILES) {
-    copyFile(path.join(ROOT, 'data', f), path.join(RELEASE, 'data', f));
+for (const { src, destName } of DATA_RELEASE_FILES) {
+    copyFile(src, path.join(RELEASE, 'data', destName));
 }
 
 // src/config/theme-breakdowns.json

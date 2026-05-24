@@ -1,8 +1,6 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
+import { MASTER_JSON, STAGING } from '../helpers/paths.js';
 
 /** Full art dimension keys on master (post-pipeline merge). */
 const ART_FIELD_KEYS = [
@@ -24,10 +22,8 @@ describe('Art data integrity', () => {
     let staged;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8')).filter(
-            g => g.name !== 'Total'
-        );
-        staged = JSON.parse(readFileSync(resolve(DATA_DIR, 'staged_art_characterization.json'), 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8')).filter(g => g.name !== 'Total');
+        staged = JSON.parse(readFileSync(STAGING.art, 'utf-8'));
     });
 
     test('art_theme populated for >= 2700 games (absolute count during migration)', () => {
@@ -90,9 +86,7 @@ describe('Theme system consistency', () => {
     let games;
 
     beforeAll(() => {
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8')).filter(
-            g => g.name !== 'Total'
-        );
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8')).filter(g => g.name !== 'Total');
     });
 
     test('art_theme count is between 30 and 80', () => {

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Art Classification Spot-Check — Batch 457 (Gameplay Only)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #2ecc71; text-align: center; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.dims { margin-top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.dim { background: #0f3460; padding: 16px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #2ecc71; margin-bottom: 8px; font-size: 1.1em; }
+.dim-value { color: #fff; font-size: 1.05em; margin-bottom: 8px; }
+.btns { margin-top: 8px; }
+.btn-ok, .btn-fix { padding: 6px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; margin-right: 8px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; }
+.fix-note { display: none; margin-top: 8px; }
+.fix-note textarea { width: 95%; height: 50px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 6px; font-size: 0.95em; }
+.export-btn { display: block; margin: 30px auto; padding: 14px 50px; background: #2ecc71; color: #000; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; font-weight: bold; }
+#export-area { width: 90%; height: 200px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+</style></head><body>
+<h1>Art Classification Spot Check — 20 / 457 Batch (Gameplay Only)</h1>
+<p class="summary">Only showing games with confirmed gameplay screenshots. Posters/splash excluded.</p>
+<p class="summary">Review each dimension. Click OK or Fix. For fixes, type what's wrong. Then Export at bottom.</p>
+<div class="game" id="g0">
+  <div class="game-title">#1: Rich N Wild</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rich-N-Wild.jpg" alt="Rich N Wild">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Jungle/Rainforest / Aztec/Mayan</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(0,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(0,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-0-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Green, Orange, Yellow</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(0,'color','ok')">OK</button><button class="btn-fix" onclick="vote(0,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-0-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(0,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(0,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-0-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Forest, Tropical Plants, Vines/Ivy</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(0,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(0,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-0-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g1">
+  <div class="game-title">#2: Professor Clanks Combinator</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Professor-Clanks-Combinator.jpg" alt="Professor Clanks Combinator">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Laboratory/Workshop / Steampunk/Victorian</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(1,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(1,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-1-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Purple, Bronze, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(1,'color','ok')">OK</button><button class="btn-fix" onclick="vote(1,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-1-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">Professor</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(1,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(1,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-1-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Clocks/Gears/Mechanical, Speakers, Office Items</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(1,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(1,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-1-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g2">
+  <div class="game-title">#3: Fishermans Bounty Deluxe</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fishermans-Bounty-Deluxe.jpg" alt="Fishermans Bounty Deluxe">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Deep Ocean/Underwater / Pirate Ship/Port</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(2,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(2,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-2-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Blue, Brown, Light Blue</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(2,'color','ok')">OK</button><button class="btn-fix" onclick="vote(2,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-2-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(2,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(2,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-2-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Ships/Boats, Sky, Clouds, Water Effects</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(2,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(2,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-2-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g3">
+  <div class="game-title">#4: El Dorado Infinity Reels</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/El-Dorado-Infinity-Reels.jpg" alt="El Dorado Infinity Reels">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Aztec/Mayan / Jungle/Rainforest</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(3,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(3,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-3-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Teal, Green, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(3,'color','ok')">OK</button><button class="btn-fix" onclick="vote(3,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-3-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(3,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(3,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-3-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Waterfall, Trees, Tropical Plants, Mountains, Sky</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(3,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(3,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-3-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g4">
+  <div class="game-title">#5: Gods Of Ireland</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gods-Of-Ireland.jpg" alt="Gods Of Ireland">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Irish/Celtic Highlands</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(4,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(4,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-4-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Green, Brown, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(4,'color','ok')">OK</button><button class="btn-fix" onclick="vote(4,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-4-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(4,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(4,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-4-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Fields/Grassland, Sky, Trees</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(4,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(4,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-4-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g5">
+  <div class="game-title">#6: Grizzly Gold</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Grizzly-Gold.jpg" alt="Grizzly Gold">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Treasure Cave/Mine</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(5,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(5,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-5-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Brown, Gold, Orange</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(5,'color','ok')">OK</button><button class="btn-fix" onclick="vote(5,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-5-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(5,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(5,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-5-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Cave/Cavern, Rocks/Boulders</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(5,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(5,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-5-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g6">
+  <div class="game-title">#7: Cops N Robbers Big Money</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cops-N-Robbers-Big-Money.jpg" alt="Cops N Robbers Big Money">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Crime/Heist</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(6,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(6,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-6-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Pink, Green, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(6,'color','ok')">OK</button><button class="btn-fix" onclick="vote(6,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-6-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(6,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(6,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-6-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">City/Skyline, Wallpaper/Decorative Pattern</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(6,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(6,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-6-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g7">
+  <div class="game-title">#8: Book Of The Sphinx</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Book-Of-The-Sphinx.jpg" alt="Book Of The Sphinx">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Egyptian/Pharaoh</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(7,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(7,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-7-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Orange, Gold, Red</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(7,'color','ok')">OK</button><button class="btn-fix" onclick="vote(7,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-7-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(7,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(7,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-7-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Fire/Flames, Ancient Stone Carvings, Gold Coins/Treasure</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(7,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(7,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-7-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g8">
+  <div class="game-title">#9: Grizzly Strike</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Grizzly-Strike.jpg" alt="Grizzly Strike">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Forest/Woodland</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(8,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(8,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-8-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Brown, Gold, Purple</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(8,'color','ok')">OK</button><button class="btn-fix" onclick="vote(8,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-8-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(8,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(8,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-8-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Trees, Forest, Ancient Stone Carvings, Plants, Tribal Art</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(8,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(8,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-8-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g9">
+  <div class="game-title">#10: Queens Of Ra Power Combo</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Queens-Of-Ra-Power-Combo.jpeg" alt="Queens Of Ra Power Combo">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Egyptian/Pharaoh</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(9,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(9,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-9-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Gold, Brown, Orange</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(9,'color','ok')">OK</button><button class="btn-fix" onclick="vote(9,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-9-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(9,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(9,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-9-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Columns/Pillars, Hieroglyphs/Ancient Writing, Ancient Stone Carvings, Temples, Sand/Desert</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(9,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(9,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-9-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g10">
+  <div class="game-title">#11: Wild Wild Chest</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wild-Wild-Chest.jpg" alt="Wild Wild Chest">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Wild West/Frontier</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(10,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(10,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-10-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Brown, Gold, Beige</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(10,'color','ok')">OK</button><button class="btn-fix" onclick="vote(10,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-10-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(10,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(10,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-10-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Western Town/Saloon, Sky, Rocks/Boulders</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(10,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(10,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-10-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g11">
+  <div class="game-title">#12: Wish Upon A Leprechaun Jackpot Royale</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wish-Upon-A-Leprechaun-Jackpot-Royale.jpg" alt="Wish Upon A Leprechaun Jackpot Royale">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Irish/Celtic Highlands</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(11,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(11,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-11-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Green, Brown, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(11,'color','ok')">OK</button><button class="btn-fix" onclick="vote(11,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-11-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">Leprechaun</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(11,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(11,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-11-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Trees, Fields/Grassland, Rainbow, Lanterns, Gold Coins/Treasure</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(11,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(11,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-11-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g12">
+  <div class="game-title">#13: Book Of Toro</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Book-Of-Toro.jpg" alt="Book Of Toro">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Egyptian/Pharaoh</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(12,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(12,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-12-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Gold, Purple, Brown</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(12,'color','ok')">OK</button><button class="btn-fix" onclick="vote(12,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-12-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(12,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(12,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-12-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Columns/Pillars, Hieroglyphs/Ancient Writing, Ancient Stone Carvings, Temples</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(12,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(12,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-12-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g13">
+  <div class="game-title">#14: Thunderstruck Ii</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Thunderstruck-Ii.jpg" alt="Thunderstruck Ii">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Norse/Viking Realm</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(13,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(13,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-13-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Blue, Silver, Gold</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(13,'color','ok')">OK</button><button class="btn-fix" onclick="vote(13,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-13-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(13,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(13,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-13-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Ancient Stone Carvings</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(13,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(13,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-13-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g14">
+  <div class="game-title">#15: Royal Mint Megaways</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Royal-Mint-Megaways.jpg" alt="Royal Mint Megaways">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Royal Palace/Court</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(14,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(14,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-14-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Gold, Orange, Brown</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(14,'color','ok')">OK</button><button class="btn-fix" onclick="vote(14,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-14-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(14,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(14,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-14-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Columns/Pillars, Royal Jewelry, Safe/Vault, Crowns, Ancient Stone Carvings</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(14,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(14,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-14-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g15">
+  <div class="game-title">#16: Gates Of Babylon</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gates-Of-Babylon.jpg" alt="Gates Of Babylon">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Arabian Palace/Bazaar</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(15,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(15,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-15-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Gold, Green, Purple</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(15,'color','ok')">OK</button><button class="btn-fix" onclick="vote(15,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-15-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(15,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(15,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-15-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Arabian Architecture, Ancient Stone Carvings, Gold Coins/Treasure</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(15,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(15,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-15-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g16">
+  <div class="game-title">#17: Pixies Of The Forest</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Pixies-Of-The-Forest.jpg" alt="Pixies Of The Forest">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Fantasy/Fairy Tale / Forest/Woodland</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(16,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(16,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-16-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Green, Purple, Blue</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(16,'color','ok')">OK</button><button class="btn-fix" onclick="vote(16,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-16-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">Pixie, Pixie, Pixie</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(16,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(16,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-16-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Forest, Trees, Magic Energy/Spell Effects</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(16,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(16,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-16-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g17">
+  <div class="game-title">#18: Rage Of The Seas</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rage-Of-The-Seas.jpg" alt="Rage Of The Seas">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Pirate Ship/Port</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(17,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(17,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-17-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Brown, Gold, Amber</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(17,'color','ok')">OK</button><button class="btn-fix" onclick="vote(17,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-17-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(17,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(17,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-17-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Ships/Boats, Lanterns, Skulls/Bones, Chains/Locks/Keys</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(17,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(17,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-17-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g18">
+  <div class="game-title">#19: Fu Wu Shi Gold Blitz Ultimate</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fu-Wu-Shi-Gold-Blitz-Ultimate.webp" alt="Fu Wu Shi Gold Blitz Ultimate">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Asian Temple/Garden</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(18,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(18,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-18-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Red, Gold, Purple</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(18,'color','ok')">OK</button><button class="btn-fix" onclick="vote(18,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-18-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(18,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(18,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-18-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Asian Architecture, Curtains/Drapes, Columns/Pillars, Asian Decorations, Gold Coins/Treasure</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(18,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(18,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-18-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+<div class="game" id="g19">
+  <div class="game-title">#20: Dancing Lions</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dancing-Lions.jpg" alt="Dancing Lions">
+  <div class="dims">
+    <div class="dim"><div class="dim-label">Theme</div><div class="dim-value">Asian Temple/Garden</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(19,'theme','ok')">OK</button><button class="btn-fix" onclick="vote(19,'theme','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-19-theme"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Colors</div><div class="dim-value">Red, Gold, Brown</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(19,'color','ok')">OK</button><button class="btn-fix" onclick="vote(19,'color','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-19-color"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Characters</div><div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(19,'chars','ok')">OK</button><button class="btn-fix" onclick="vote(19,'chars','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-19-chars"><textarea placeholder="What should it be?"></textarea></div></div>
+    <div class="dim"><div class="dim-label">Elements</div><div class="dim-value">Asian Decorations, Gold Coins/Treasure</div>
+      <div class="btns"><button class="btn-ok" onclick="vote(19,'elements','ok')">OK</button><button class="btn-fix" onclick="vote(19,'elements','fix')">Fix</button></div>
+      <div class="fix-note" id="fix-19-elements"><textarea placeholder="What should it be?"></textarea></div></div>
+  </div>
+</div>
+
+<button class="export-btn" onclick="doExport()">Export Results</button>
+<textarea id="export-area"></textarea>
+
+<script>
+const games = ["Rich-N-Wild", "Professor-Clanks-Combinator", "Fishermans-Bounty-Deluxe", "El-Dorado-Infinity-Reels", "Gods-Of-Ireland", "Grizzly-Gold", "Cops-N-Robbers-Big-Money", "Book-Of-The-Sphinx", "Grizzly-Strike", "Queens-Of-Ra-Power-Combo", "Wild-Wild-Chest", "Wish-Upon-A-Leprechaun-Jackpot-Royale", "Book-Of-Toro", "Thunderstruck-Ii", "Royal-Mint-Megaways", "Gates-Of-Babylon", "Pixies-Of-The-Forest", "Rage-Of-The-Seas", "Fu-Wu-Shi-Gold-Blitz-Ultimate", "Dancing-Lions"];
+const votes = {};
+
+function vote(idx, dim, v) {
+  const key = games[idx];
+  if (!votes[key]) votes[key] = {};
+  votes[key][dim] = v;
+  
+  const el = document.getElementById('g'+idx);
+  const dims = el.querySelectorAll('.dim');
+  const dimMap = ['theme','color','chars','elements'];
+  const dimIdx = dimMap.indexOf(dim);
+  const btns = dims[dimIdx].querySelectorAll('button');
+  btns[0].className = 'btn-ok' + (v==='ok' ? ' selected' : '');
+  btns[1].className = 'btn-fix' + (v==='fix' ? ' selected' : '');
+  
+  const noteEl = document.getElementById('fix-'+idx+'-'+dim);
+  noteEl.style.display = v==='fix' ? 'block' : 'none';
+}
+
+function doExport() {
+  const out = games.map((slug, i) => {
+    const v = votes[slug] || {};
+    const notes = {};
+    ['theme','color','chars','elements'].forEach(dim => {
+      const ta = document.querySelector('#fix-'+i+'-'+dim+' textarea');
+      if (ta && ta.value.trim()) notes[dim] = ta.value.trim();
+    });
+    return { game: slug, ...v, notes };
+  });
+  const area = document.getElementById('export-area');
+  area.style.display = 'block';
+  area.value = JSON.stringify(out, null, 2);
+  area.select();
+}
+</script>
+</body></html>

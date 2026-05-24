@@ -1,10 +1,8 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { MASTER_JSON, MAPPINGS, STAGING } from '../helpers/paths.js';
 
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
-
-/** Must match classify_art_v2.py VALID_THEMES (authoritative art vocabulary). */
+/** Must match classify_art.py VALID_THEMES (authoritative art vocabulary). */
 const VALID_THEMES = [
     'Egyptian/Pharaoh',
     'Ancient Greece/Rome',
@@ -18,6 +16,7 @@ const VALID_THEMES = [
     'Irish/Celtic Highlands',
     'Jungle/Rainforest',
     'Deep Ocean/Underwater',
+    'Atlantis/Lost City',
     'Tropical Island/Beach',
     'Arctic/Snow',
     'Desert/Sahara',
@@ -54,6 +53,11 @@ const VALID_THEMES = [
     'Laboratory/Workshop',
     'Festive/Holiday',
     'Inferno/Fire',
+    'American Patriotic',
+    'Love Story/Romance',
+    'Quest/Adventure/Journey',
+    'Suburban/Residential',
+    'Train/Railway Station',
 ];
 
 describe('art_theme_consolidation_map contract', () => {
@@ -63,10 +67,10 @@ describe('art_theme_consolidation_map contract', () => {
     let stagedArt;
 
     beforeAll(() => {
-        artThemeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'art_theme_consolidation_map.json'), 'utf-8'));
-        themeMap = JSON.parse(readFileSync(resolve(DATA_DIR, 'theme_consolidation_map.json'), 'utf-8'));
-        games = JSON.parse(readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8'));
-        stagedArt = JSON.parse(readFileSync(resolve(DATA_DIR, 'staged_art_characterization.json'), 'utf-8'));
+        artThemeMap = JSON.parse(readFileSync(MAPPINGS.artTheme, 'utf-8'));
+        themeMap = JSON.parse(readFileSync(MAPPINGS.theme, 'utf-8'));
+        games = JSON.parse(readFileSync(MASTER_JSON, 'utf-8'));
+        stagedArt = JSON.parse(readFileSync(STAGING.art, 'utf-8'));
     });
 
     test('every canonical VALID_THEMES entry has a row in the art map', () => {

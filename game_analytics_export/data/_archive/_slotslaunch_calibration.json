@@ -1,0 +1,263 @@
+[
+  {
+    "name": "Golden Wins",
+    "gt": "2019-03-19",
+    "sl": "July 4, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 107,
+    "yrOk": true
+  },
+  {
+    "name": "Jade Wins",
+    "gt": "2019-04-04",
+    "sl": "July 4, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 91,
+    "yrOk": true
+  },
+  {
+    "name": "Longhorn Jackpots",
+    "gt": "2019-05-07",
+    "sl": "July 4, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 58,
+    "yrOk": true
+  },
+  {
+    "name": "Fu Nan Fu Nu",
+    "gt": "2019-06-06",
+    "sl": "July 4, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 28,
+    "yrOk": true
+  },
+  {
+    "name": "Rakin' Bacon",
+    "gt": "2019-06-20",
+    "sl": "July 4, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 14,
+    "yrOk": true
+  },
+  {
+    "name": "Olympus Strikes",
+    "gt": "2019-07-25",
+    "sl": "July 23, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": -2,
+    "yrOk": true
+  },
+  {
+    "name": "River Dragons",
+    "gt": "2019-10-03",
+    "sl": "September 26, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": -7,
+    "yrOk": true
+  },
+  {
+    "name": "Forest Dragons",
+    "gt": "2019-10-17",
+    "sl": "October 17, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Fire Wolf II",
+    "gt": "2019-10-17",
+    "sl": "October 17, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Pharaoh Sun",
+    "gt": "2019-10-31",
+    "sl": "November 14, 2019",
+    "slYear": 2019,
+    "gtYear": 2019,
+    "daysDiff": 14,
+    "yrOk": true
+  },
+  {
+    "name": "Bonanza Blast",
+    "gt": "2020-01-09",
+    "sl": "January 9, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Wolf Queen",
+    "gt": "2020-03-19",
+    "sl": "March 19, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Capital Gains",
+    "gt": "2020-04-03",
+    "sl": "April 16, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 13,
+    "yrOk": true
+  },
+  {
+    "name": "Apollo Stacks",
+    "gt": "2020-05-15",
+    "sl": "May 20, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 5,
+    "yrOk": true
+  },
+  {
+    "name": "Crystal Magic",
+    "gt": "2020-07-01",
+    "sl": "June 25, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": -6,
+    "yrOk": true
+  },
+  {
+    "name": "Jade Dragon",
+    "gt": "2020-07-23",
+    "sl": "July 23, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Grand Royale",
+    "gt": "2020-07-23",
+    "sl": "July 23, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Vegas Stacks",
+    "gt": "2020-08-17",
+    "sl": "August 31, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 14,
+    "yrOk": true
+  },
+  {
+    "name": "Flamenco Stacks",
+    "gt": "2020-10-01",
+    "sl": "October 1, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Red Silk",
+    "gt": "2020-12-17",
+    "sl": "January 14, 2021",
+    "slYear": 2021,
+    "gtYear": 2020,
+    "daysDiff": 28,
+    "yrOk": false
+  },
+  {
+    "name": "Golden Ram",
+    "gt": "2021-01-07",
+    "sl": "January 7, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 0,
+    "yrOk": true
+  },
+  {
+    "name": "Goddess Treasures",
+    "gt": "2021-02-11",
+    "sl": "February 25, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 14,
+    "yrOk": true
+  },
+  {
+    "name": "Blazing Luck",
+    "gt": "2021-04-09",
+    "sl": "April 15, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 6,
+    "yrOk": true
+  },
+  {
+    "name": "Aztec Chief",
+    "gt": "2021-04-29",
+    "sl": "May 12, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 13,
+    "yrOk": true
+  },
+  {
+    "name": "Dragon Fa",
+    "gt": "2021-05-13",
+    "sl": "May 26, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 13,
+    "yrOk": true
+  },
+  {
+    "name": "Imperial Luck",
+    "gt": "2021-06-16",
+    "sl": "June 17, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 1,
+    "yrOk": true
+  },
+  {
+    "name": "Luck & Luxury",
+    "gt": "2020-09-03",
+    "sl": "September 10, 2020",
+    "slYear": 2020,
+    "gtYear": 2020,
+    "daysDiff": 7,
+    "yrOk": true
+  },
+  {
+    "name": "Peacock Beauty",
+    "gt": "2021-06-24",
+    "sl": "July 1, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 7,
+    "yrOk": true
+  },
+  {
+    "name": "Golden Wins Deluxe",
+    "gt": "2021-08-11",
+    "sl": "August 12, 2021",
+    "slYear": 2021,
+    "gtYear": 2021,
+    "daysDiff": 1,
+    "yrOk": true
+  }
+]

@@ -21,5 +21,7 @@ export function parseFeatures(val) {
             return [];
         }
     }
-    return arr.filter(f => !HIDDEN_FEATURES.has(f));
+    return arr
+        .map(f => (typeof f === 'string' ? f : f && f.name ? f.name : null))
+        .filter(f => f && !HIDDEN_FEATURES.has(f));
 }

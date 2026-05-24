@@ -7,12 +7,8 @@
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
-import { join, resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '../..');
-const DATA_DIR = join(ROOT, 'data');
+import { join } from 'path';
+import { MASTER_JSON, MAPPINGS, MATCHING, STAGING } from '../helpers/paths.js';
 
 const {
     diagnoseField,
@@ -25,13 +21,12 @@ const {
 
 let games, confMap, rulesMatches;
 
-function loadJson(file) {
-    const p = join(DATA_DIR, file);
-    return existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : null;
+function loadJson(fullPath) {
+    return existsSync(fullPath) ? JSON.parse(readFileSync(fullPath, 'utf8')) : null;
 }
 
 function readRulesText(slug, maxChars = 12000) {
-    const p = join(DATA_DIR, 'rules_text', `${slug}.txt`);
+    const p = join(MATCHING.rulesText, `${slug}.txt`);
     if (!existsSync(p)) return null;
     return readFileSync(p, 'utf8').slice(0, maxChars);
 }
@@ -102,10 +97,10 @@ function getProvenance(gameName, focusField) {
 
 let bestOfSources;
 beforeAll(() => {
-    games = loadJson('game_data_master.json');
-    confMap = loadJson('confidence_map.json');
-    rulesMatches = loadJson('rules_game_matches.json');
-    bestOfSources = loadJson('staged_best_of_sources.json');
+    games = loadJson(MASTER_JSON);
+    confMap = loadJson(MAPPINGS.confidence);
+    rulesMatches = loadJson(MATCHING.rulesMatches);
+    bestOfSources = loadJson(STAGING.bestOf);
 });
 
 describe('X-Ray provenance API coverage', () => {
@@ -511,7 +506,7 @@ describe('X-Ray provenance API coverage', () => {
     describe('data_source from staged_best_of_sources', () => {
         let bestOf;
         beforeAll(() => {
-            bestOf = loadJson('staged_best_of_sources.json');
+            bestOf = loadJson(STAGING.bestOf);
         });
 
         it('best_of_sources file exists and has entries', () => {

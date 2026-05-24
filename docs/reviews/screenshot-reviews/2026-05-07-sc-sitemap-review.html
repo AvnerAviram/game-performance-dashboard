@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SC Sitemap Batch - 24 Games Review</title>
+<style>
+body { font-family: system-ui; background: #1a1a2e; color: #eee; padding: 20px; }
+h1 { color: #fff; }
+.info { color: #888; margin-bottom: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.card { background: #16213e; border-radius: 8px; overflow: hidden; cursor: pointer; border: 3px solid transparent; transition: all 0.2s; }
+.card.rejected { border-color: #e74c3c; opacity: 0.5; }
+.card img { width: 100%; height: 200px; object-fit: cover; }
+.card .name { padding: 8px 12px; font-size: 13px; font-weight: 600; }
+.card .status { padding: 4px 12px 8px; font-size: 11px; color: #888; }
+.actions { margin: 20px 0; }
+button { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; background: #2ecc71; color: #fff; }
+textarea { display: block; margin-top: 20px; background: #0a0a1a; color: #eee; border: 1px solid #444; padding: 10px; width: 100%; }
+</style>
+</head>
+<body>
+<h1>SC Sitemap Match - 24 Screenshots</h1>
+<p class="info">96% hit rate using sitemap matching. Click to reject bad ones, then export.</p>
+<div class="actions"><button id="exportBtn">Export Decisions</button></div>
+<div class="grid">
+<div class="card" data-game="Heads Up Hold Em"><img src="../../../game_analytics_export/data/screenshots/Heads-Up-Hold-Em.jpg"><div class="name">Heads Up Hold Em (459KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Big Money Frenzy Jackpot Royale Express"><img src="../../../game_analytics_export/data/screenshots/Big-Money-Frenzy-Jackpot-Royale-Express.jpg"><div class="name">Big Money Frenzy Jackpot Royale Express (87KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Rakin Bacon Jackpots Bonus Wheel"><img src="../../../game_analytics_export/data/screenshots/Rakin-Bacon-Jackpots-Bonus-Wheel.webp"><div class="name">Rakin Bacon Jackpots Bonus Wheel (40KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Majestic Fury Megaways Jackpot Royale Express"><img src="../../../game_analytics_export/data/screenshots/Majestic-Fury-Megaways-Jackpot-Royale-Express.webp"><div class="name">Majestic Fury Megaways Jackpot Royale Express (17KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="3 Hot Chilli Peppers"><img src="../../../game_analytics_export/data/screenshots/3-Hot-Chilli-Peppers.webp"><div class="name">3 Hot Chilli Peppers (15KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Energy Joker Hold And Win"><img src="../../../game_analytics_export/data/screenshots/Energy-Joker-Hold-And-Win.webp"><div class="name">Energy Joker Hold And Win (41KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Fire And Roses Joker 2 All In"><img src="../../../game_analytics_export/data/screenshots/Fire-And-Roses-Joker-2-All-In.webp"><div class="name">Fire And Roses Joker 2 All In (68KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Extra Chilli Megaways"><img src="../../../game_analytics_export/data/screenshots/Extra-Chilli-Megaways.jpg"><div class="name">Extra Chilli Megaways (765KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Bonanza Megaways"><img src="../../../game_analytics_export/data/screenshots/Bonanza-Megaways.png"><div class="name">Bonanza Megaways (741KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Gold Cash Freespins"><img src="../../../game_analytics_export/data/screenshots/Gold-Cash-Freespins.jpg"><div class="name">Gold Cash Freespins (862KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Egglink Dolphin Gold"><img src="../../../game_analytics_export/data/screenshots/Egglink-Dolphin-Gold.webp"><div class="name">Egglink Dolphin Gold (23KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Thunder Cash Dolphins Pearl"><img src="../../../game_analytics_export/data/screenshots/Thunder-Cash-Dolphins-Pearl.webp"><div class="name">Thunder Cash Dolphins Pearl (17KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Egglink Chicken Fox"><img src="../../../game_analytics_export/data/screenshots/Egglink-Chicken-Fox.webp"><div class="name">Egglink Chicken Fox (27KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Big Bucks Bandits Megaways"><img src="../../../game_analytics_export/data/screenshots/Big-Bucks-Bandits-Megaways.jpg"><div class="name">Big Bucks Bandits Megaways (938KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Big City 5s"><img src="../../../game_analytics_export/data/screenshots/Big-City-5s.jpg"><div class="name">Big City 5s (44KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Coin Strike Hold And Win"><img src="../../../game_analytics_export/data/screenshots/Coin-Strike-Hold-And-Win.jpg"><div class="name">Coin Strike Hold And Win (44KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Rick And Morty Strike Back Jackpot Royale Express"><img src="../../../game_analytics_export/data/screenshots/Rick-And-Morty-Strike-Back-Jackpot-Royale-Express.webp"><div class="name">Rick And Morty Strike Back Jackpot Royale Express (62KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Burn In Hell Hold And Win"><img src="../../../game_analytics_export/data/screenshots/Burn-In-Hell-Hold-And-Win.webp"><div class="name">Burn In Hell Hold And Win (20KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Almighty Buffalo Megaways Jackpot Royale"><img src="../../../game_analytics_export/data/screenshots/Almighty-Buffalo-Megaways-Jackpot-Royale.webp"><div class="name">Almighty Buffalo Megaways Jackpot Royale (55KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Megajackpots Cleopatra"><img src="../../../game_analytics_export/data/screenshots/Megajackpots-Cleopatra.jpg"><div class="name">Megajackpots Cleopatra (190KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Golden Catch Megaways"><img src="../../../game_analytics_export/data/screenshots/Golden-Catch-Megaways.jpg"><div class="name">Golden Catch Megaways (40KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Slingo Deal Or No Deal"><img src="../../../game_analytics_export/data/screenshots/Slingo-Deal-Or-No-Deal.jpg"><div class="name">Slingo Deal Or No Deal (332KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Megajackpots Wheel Of Fortune On Air"><img src="../../../game_analytics_export/data/screenshots/Megajackpots-Wheel-Of-Fortune-On-Air.jpg"><div class="name">Megajackpots Wheel Of Fortune On Air (329KB)</div><div class="status">Click to reject</div></div>
+<div class="card" data-game="Blazing 777 2x3x5x Cashways"><img src="../../../game_analytics_export/data/screenshots/Blazing-777-2x3x5x-Cashways.webp"><div class="name">Blazing 777 2x3x5x Cashways (33KB)</div><div class="status">Click to reject</div></div>
+</div>
+<script>
+document.querySelectorAll('.card').forEach(function(card) {
+    card.addEventListener('click', function() {
+        this.classList.toggle('rejected');
+    });
+});
+
+document.getElementById('exportBtn').addEventListener('click', function() {
+    var cards = document.querySelectorAll('.card');
+    var decisions = [];
+    cards.forEach(function(c) {
+        decisions.push({
+            game: c.getAttribute('data-game'),
+            decision: c.classList.contains('rejected') ? 'not_gameplay' : 'ok'
+        });
+    });
+    var json = JSON.stringify(decisions, null, 2);
+    var ta = document.getElementById('output');
+    if (!ta) {
+        ta = document.createElement('textarea');
+        ta.id = 'output';
+        ta.rows = 12;
+        ta.cols = 80;
+        document.body.appendChild(ta);
+    }
+    ta.value = json;
+});
+</script>
+</body>
+</html>

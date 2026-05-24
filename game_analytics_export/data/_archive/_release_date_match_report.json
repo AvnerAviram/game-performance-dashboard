@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-04-07T17:25:25.806192",
+  "total_master": 4551,
+  "total_slots": 4201,
+  "total_matched": 974,
+  "matched_slots": 964,
+  "total_unmatched": 3577,
+  "unmatched_by_reason": {
+    "no_name_match": 3545,
+    "matched_but_no_date": 32
+  },
+  "match_methods": {
+    "unique_name": 932,
+    "name_plus_provider_multi": 5,
+    "name_only_multi": 3,
+    "name_plus_provider": 2
+  },
+  "flagged_count": 3,
+  "flagged_entries": [
+    {
+      "id": "game-0393-american_roulette",
+      "name": "American Roulette",
+      "flags": [
+        "staged_disagrees:sr=2022,staged=2016"
+      ],
+      "sr_date": "2022-06-15",
+      "iso_date": "2022-06-15"
+    },
+    {
+      "id": "game-0709-plinko",
+      "name": "Plinko",
+      "flags": [
+        "staged_disagrees:sr=2019,staged=2025"
+      ],
+      "sr_date": "2019-01-28",
+      "iso_date": "2019-01-28"
+    },
+    {
+      "id": "game-2867-bruce_lee",
+      "name": "Bruce Lee",
+      "flags": [
+        "staged_disagrees:sr=2012,staged=2020"
+      ],
+      "sr_date": "2012-06-15",
+      "iso_date": "2012-06-15"
+    }
+  ],
+  "known_date_checks": 10,
+  "known_date_pass": 8,
+  "known_date_failures": [
+    {
+      "name": "Bonanza",
+      "matched_year": 2019,
+      "expected_year": 2016,
+      "sr_date": "2019-01-01"
+    }
+  ],
+  "year_distribution": {
+    "2003": 1,
+    "2008": 1,
+    "2009": 2,
+    "2010": 5,
+    "2011": 8,
+    "2012": 6,
+    "2013": 6,
+    "2014": 10,
+    "2015": 14,
+    "2016": 25,
+    "2017": 23,
+    "2018": 34,
+    "2019": 79,
+    "2020": 112,
+    "2021": 110,
+    "2022": 132,
+    "2023": 149,
+    "2024": 169,
+    "2025": 87,
+    "2026": 1
+  }
+}

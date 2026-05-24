@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Expansion v3 - 28 Games (Verified Screenshots)</title>
+<style>
+body { font-family: Arial, sans-serif; background: #111; color: #eee; padding: 20px; }
+.summary { background: #222; padding: 15px; border-radius: 8px; margin-bottom: 20px; position: sticky; top: 0; z-index: 100; }
+.count { font-weight: bold; font-size: 1.2em; }
+.game { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; margin-bottom: 20px; padding: 15px; }
+.game-name { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: #4fc3f7; }
+.vision-badge { background: #2e7d32; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
+.no-vision { background: #555; color: #ccc; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; }
+.screenshot { max-width: 600px; max-height: 400px; border-radius: 6px; cursor: pointer; display: block; margin-bottom: 10px; }
+.screenshot.zoomed { max-width: 100%; max-height: none; }
+.dims { display: flex; flex-wrap: wrap; gap: 8px; }
+.dim { background: #252525; padding: 8px 12px; border-radius: 6px; min-width: 120px; }
+.dim-label { color: #888; font-size: 0.8em; text-transform: uppercase; }
+.dim-value { color: #eee; font-weight: bold; }
+.btn-row { margin-top: 8px; }
+.btn-ok, .btn-fix { padding: 4px 12px; border: none; border-radius: 4px; cursor: pointer; margin-right: 4px; }
+.btn-ok { background: #2e7d32; color: white; }
+.btn-fix { background: #c62828; color: white; }
+.btn-ok.active { outline: 3px solid #4caf50; }
+.btn-fix.active { outline: 3px solid #ef5350; }
+.fix-input { display: none; margin-top: 4px; width: 100%; background: #333; border: 1px solid #555; color: #eee; padding: 4px; border-radius: 4px; }
+.fix-input.show { display: block; }
+.links { margin-top: 8px; font-size: 0.85em; }
+.links a { color: #4fc3f7; margin-right: 12px; }
+</style>
+<script>
+function toggleZoom(img) { img.classList.toggle('zoomed'); }
+let okCount = 0, fixCount = 0;
+function markOk(id) {
+  const el = document.getElementById(id);
+  const wasOk = el.dataset.status === 'ok';
+  if (el.dataset.status === 'fix') { fixCount--; }
+  if (wasOk) { okCount--; el.dataset.status = ''; }
+  else { okCount++; el.dataset.status = 'ok'; }
+  el.querySelector('.btn-ok').classList.toggle('active', !wasOk);
+  el.querySelector('.btn-fix').classList.remove('active');
+  el.querySelector('.fix-input').classList.remove('show');
+  updateCounts();
+}
+function markFix(id) {
+  const el = document.getElementById(id);
+  const wasFix = el.dataset.status === 'fix';
+  if (el.dataset.status === 'ok') { okCount--; }
+  if (wasFix) { fixCount--; el.dataset.status = ''; }
+  else { fixCount++; el.dataset.status = 'fix'; }
+  el.querySelector('.btn-fix').classList.toggle('active', !wasFix);
+  el.querySelector('.btn-ok').classList.remove('active');
+  el.querySelector('.fix-input').classList.toggle('show', !wasFix);
+  updateCounts();
+}
+function updateCounts() {
+  document.getElementById('ok-count').textContent = okCount;
+  document.getElementById('fix-count').textContent = fixCount;
+  document.getElementById('total-reviewed').textContent = okCount + fixCount;
+}
+function exportResults() {
+  let text = 'EXPANSION v3 CORRECTIONS\n';
+  text += 'Total: ' + (okCount+fixCount) + ' | OK: ' + okCount + ' | Fix: ' + fixCount + '\n';
+  text += 'Accuracy: ' + (okCount/(okCount+fixCount)*100).toFixed(1) + '%\n\nCORRECTIONS:\n';
+  document.querySelectorAll('.dim').forEach(d => {
+    if (d.dataset.status === 'fix') {
+      const input = d.querySelector('.fix-input');
+      if (input && input.value) { text += d.id + ': ' + input.value + '\n'; }
+    }
+  });
+  const blob = new Blob([text], {type: 'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'expansion_v3_corrections.txt'; a.click();
+}
+</script></head><body>
+<div class="summary">
+  <b>EXPANSION v3 - 28 GAMES (Verified Gameplay Screenshots)</b> |
+  Reviewed: <span class="count" id="total-reviewed">0</span> |
+  OK: <span class="count" id="ok-count" style="color:#4caf50">0</span> |
+  Fix: <span class="count" id="fix-count" style="color:#ef4444">0</span> |
+  <button onclick="exportResults()" style="padding:4px 12px;background:#1976d2;color:white;border:none;border-radius:4px;cursor:pointer">Export</button>
+</div>
+
+<div class="game" id="g0">
+  <div class="game-name">#0 Play 15 Armadillos Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/15-Armadillos.png" onclick="toggleZoom(this)" alt="15-Armadillos">
+  <div class="dims">
+    <div class="dim" id="g0-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Savanna/Wildlife</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g0-theme')">OK</button><button class="btn-fix" onclick="markFix('g0-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-0-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g0-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Teal, Gold, Green</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g0-color')">OK</button><button class="btn-fix" onclick="markFix('g0-color')">FIX</button></div>
+      <input class="fix-input" id="fix-0-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g0-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g0-chars')">OK</button><button class="btn-fix" onclick="markFix('g0-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-0-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g0-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Trees/Forest Background, Gold/Gilded Ornate Frame, Glow/Aura</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g0-elems')">OK</button><button class="btn-fix" onclick="markFix('g0-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-0-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/15-Armadillos" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=15+Armadillos+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g1">
+  <div class="game-name">#1 888 Panda (Maverick) Slot ᐈ RTP, Review and Where to play🥇 <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/888-Panda.jpg" onclick="toggleZoom(this)" alt="888-Panda">
+  <div class="dims">
+    <div class="dim" id="g1-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g1-theme')">OK</button><button class="btn-fix" onclick="markFix('g1-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-1-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g1-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Blue, White</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g1-color')">OK</button><button class="btn-fix" onclick="markFix('g1-color')">FIX</button></div>
+      <input class="fix-input" id="fix-1-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g1-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Panda [Panda:Panda/Bear]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g1-chars')">OK</button><button class="btn-fix" onclick="markFix('g1-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-1-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g1-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Trees/Forest Background, Bamboo/Tropical Plants, Mountains/Landscape Background, Minimal/No Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g1-elems')">OK</button><button class="btn-fix" onclick="markFix('g1-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-1-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/888-Panda" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=888+Panda+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g2">
+  <div class="game-name">#2 9 Coins Demo & Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/9-Coins.jpg" onclick="toggleZoom(this)" alt="9-Coins">
+  <div class="dims">
+    <div class="dim" id="g2-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Classic Slots</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g2-theme')">OK</button><button class="btn-fix" onclick="markFix('g2-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-2-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g2-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gold, Blue, Purple</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g2-color')">OK</button><button class="btn-fix" onclick="markFix('g2-color')">FIX</button></div>
+      <input class="fix-input" id="fix-2-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g2-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g2-chars')">OK</button><button class="btn-fix" onclick="markFix('g2-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-2-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g2-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Coins/Gold Piles, Glow/Aura, Sparkles/Glitter</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g2-elems')">OK</button><button class="btn-fix" onclick="markFix('g2-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-2-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/9-Coins" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=9+Coins+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g3">
+  <div class="game-name">#3 Agent Blitz: Mission Moneymaker Slot by All For One Studios  <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Agent-Blitz-Mission-Moneymaker.png" onclick="toggleZoom(this)" alt="Agent-Blitz-Mission-Moneymaker">
+  <div class="dims">
+    <div class="dim" id="g3-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Luxury/VIP</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g3-theme')">OK</button><button class="btn-fix" onclick="markFix('g3-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-3-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g3-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Brown, Gold, Red</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g3-color')">OK</button><button class="btn-fix" onclick="markFix('g3-color')">FIX</button></div>
+      <input class="fix-input" id="fix-3-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g3-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Spy [Spy:Detective/Spy]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g3-chars')">OK</button><button class="btn-fix" onclick="markFix('g3-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-3-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g3-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Columns/Pillars, Weapons (swords/shields), Chandeliers/Luxury Fixtures</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g3-elems')">OK</button><button class="btn-fix" onclick="markFix('g3-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-3-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Agent-Blitz-Mission-Moneymaker" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Agent+Blitz+Mission+Moneymaker+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g4">
+  <div class="game-name">#4 Play Aliyas Wishes Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Aliyas-Wishes.jpg" onclick="toggleZoom(this)" alt="Aliyas-Wishes">
+  <div class="dims">
+    <div class="dim" id="g4-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Arabian Palace/Bazaar</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g4-theme')">OK</button><button class="btn-fix" onclick="markFix('g4-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-4-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g4-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Orange, Gold, Blue</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g4-color')">OK</button><button class="btn-fix" onclick="markFix('g4-color')">FIX</button></div>
+      <input class="fix-input" id="fix-4-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g4-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g4-chars')">OK</button><button class="btn-fix" onclick="markFix('g4-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-4-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g4-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Carved Stone Frame, Columns/Pillars</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g4-elems')">OK</button><button class="btn-fix" onclick="markFix('g4-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-4-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Aliyas-Wishes" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Aliyas+Wishes+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g5">
+  <div class="game-name">#5 Play Casinomeister Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Casinomeister.png" onclick="toggleZoom(this)" alt="Casinomeister">
+  <div class="dims">
+    <div class="dim" id="g5-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Casino Floor</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g5-theme')">OK</button><button class="btn-fix" onclick="markFix('g5-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-5-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g5-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Gold, Brown</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g5-color')">OK</button><button class="btn-fix" onclick="markFix('g5-color')">FIX</button></div>
+      <input class="fix-input" id="fix-5-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g5-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Man, Robot, Man [Man:Human Character, Robot:Robot/Android]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g5-chars')">OK</button><button class="btn-fix" onclick="markFix('g5-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-5-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g5-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Badge/Star/Shield Emblem, Coins/Gold Piles</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g5-elems')">OK</button><button class="btn-fix" onclick="markFix('g5-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-5-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Casinomeister" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Casinomeister+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g6">
+  <div class="game-name">#6 Play Chocolate Cash Pots Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Chocolate-Cash-Pots.jpg" onclick="toggleZoom(this)" alt="Chocolate-Cash-Pots">
+  <div class="dims">
+    <div class="dim" id="g6-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Candy/Sweet World + Festive/Holiday</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g6-theme')">OK</button><button class="btn-fix" onclick="markFix('g6-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-6-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g6-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Green, Pink</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g6-color')">OK</button><button class="btn-fix" onclick="markFix('g6-color')">FIX</button></div>
+      <input class="fix-input" id="fix-6-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g6-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g6-chars')">OK</button><button class="btn-fix" onclick="markFix('g6-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-6-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g6-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fields/Grassland/Meadow, Sparkles/Glitter, Light Rays/Beams, Gold/Gilded Ornate Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g6-elems')">OK</button><button class="btn-fix" onclick="markFix('g6-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-6-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Chocolate-Cash-Pots" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Chocolate+Cash+Pots+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g7">
+  <div class="game-name">#7 Play Cornelius Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Cornelius.png" onclick="toggleZoom(this)" alt="Cornelius">
+  <div class="dims">
+    <div class="dim" id="g7-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Food/Cooking</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g7-theme')">OK</button><button class="btn-fix" onclick="markFix('g7-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-7-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g7-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Orange, Brown</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g7-color')">OK</button><button class="btn-fix" onclick="markFix('g7-color')">FIX</button></div>
+      <input class="fix-input" id="fix-7-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g7-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Cat [Cat:Domestic Animals]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g7-chars')">OK</button><button class="btn-fix" onclick="markFix('g7-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-7-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g7-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Food/Drinks, Wood/Rustic Frame, Minimal/No Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g7-elems')">OK</button><button class="btn-fix" onclick="markFix('g7-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-7-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Cornelius" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Cornelius+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g8">
+  <div class="game-name">#8 Play Dancing Drums Explosion Mega Drop Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Dancing-Drums-Explosion-Mega-Drop.jpg" onclick="toggleZoom(this)" alt="Dancing-Drums-Explosion-Mega-Drop">
+  <div class="dims">
+    <div class="dim" id="g8-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g8-theme')">OK</button><button class="btn-fix" onclick="markFix('g8-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-8-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g8-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Orange, Gold, Red</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g8-color')">OK</button><button class="btn-fix" onclick="markFix('g8-color')">FIX</button></div>
+      <input class="fix-input" id="fix-8-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g8-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g8-chars')">OK</button><button class="btn-fix" onclick="markFix('g8-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-8-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g8-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Light Rays/Beams, Glow/Aura, Coins/Gold Piles</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g8-elems')">OK</button><button class="btn-fix" onclick="markFix('g8-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-8-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Dancing-Drums-Explosion-Mega-Drop" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Dancing+Drums+Explosion+Mega+Drop+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g9">
+  <div class="game-name">#9 Play Elements: The Awakening Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Elements-The-Awakening.jpg" onclick="toggleZoom(this)" alt="Elements-The-Awakening">
+  <div class="dims">
+    <div class="dim" id="g9-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Fantasy/Fairy Tale</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g9-theme')">OK</button><button class="btn-fix" onclick="markFix('g9-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-9-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g9-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Orange, Blue</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g9-color')">OK</button><button class="btn-fix" onclick="markFix('g9-color')">FIX</button></div>
+      <input class="fix-input" id="fix-9-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g9-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g9-chars')">OK</button><button class="btn-fix" onclick="markFix('g9-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-9-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g9-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fire/Flames, Glow/Aura, Light Rays/Beams, Magic Energy/Spell Effects, Vines/Ivy/Plants, Trees/Forest Background... (+1)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g9-elems')">OK</button><button class="btn-fix" onclick="markFix('g9-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-9-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Elements-The-Awakening" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Elements+The+Awakening+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g10">
+  <div class="game-name">#10 Play Fortunium Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Fortunium.jpg" onclick="toggleZoom(this)" alt="Fortunium">
+  <div class="dims">
+    <div class="dim" id="g10-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Steampunk/Victorian</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g10-theme')">OK</button><button class="btn-fix" onclick="markFix('g10-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-10-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g10-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Brown, Gold, Yellow</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g10-color')">OK</button><button class="btn-fix" onclick="markFix('g10-color')">FIX</button></div>
+      <input class="fix-input" id="fix-10-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g10-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Lady, Man [Lady:Human Character, Man:Human Character]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g10-chars')">OK</button><button class="btn-fix" onclick="markFix('g10-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-10-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g10-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Light Rays/Beams, Ornate Scrollwork/Filigree</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g10-elems')">OK</button><button class="btn-fix" onclick="markFix('g10-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-10-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Fortunium" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Fortunium+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g11">
+  <div class="game-name">#11 Play Happy Lucky (Ready Play Gaming) Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Happy-Lucky.jpg" onclick="toggleZoom(this)" alt="Happy-Lucky">
+  <div class="dims">
+    <div class="dim" id="g11-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g11-theme')">OK</button><button class="btn-fix" onclick="markFix('g11-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-11-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g11-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Purple, Blue, Gold</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g11-color')">OK</button><button class="btn-fix" onclick="markFix('g11-color')">FIX</button></div>
+      <input class="fix-input" id="fix-11-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g11-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g11-chars')">OK</button><button class="btn-fix" onclick="markFix('g11-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-11-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g11-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Fog/Mist/Smoke, Ornate Scrollwork/Filigree, Mountains/Landscape Background</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g11-elems')">OK</button><button class="btn-fix" onclick="markFix('g11-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-11-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Happy-Lucky" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Happy+Lucky+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g12">
+  <div class="game-name">#12 Play Irish Eyes 2 Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Irish-Eyes-2.png" onclick="toggleZoom(this)" alt="Irish-Eyes-2">
+  <div class="dims">
+    <div class="dim" id="g12-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Irish/Celtic Highlands</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g12-theme')">OK</button><button class="btn-fix" onclick="markFix('g12-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-12-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g12-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Orange, Red, Gold</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g12-color')">OK</button><button class="btn-fix" onclick="markFix('g12-color')">FIX</button></div>
+      <input class="fix-input" id="fix-12-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g12-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Lady [Lady:Human Character]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g12-chars')">OK</button><button class="btn-fix" onclick="markFix('g12-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-12-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g12-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Ornate Scrollwork/Filigree, Gold/Gilded Ornate Frame, Glow/Aura</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g12-elems')">OK</button><button class="btn-fix" onclick="markFix('g12-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-12-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Irish-Eyes-2" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Irish+Eyes+2+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g13">
+  <div class="game-name">#13 Play It's Time Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Its-Time.jpg" onclick="toggleZoom(this)" alt="Its-Time">
+  <div class="dims">
+    <div class="dim" id="g13-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Sports [BRANDED]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g13-theme')">OK</button><button class="btn-fix" onclick="markFix('g13-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-13-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g13-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Purple, Red</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g13-color')">OK</button><button class="btn-fix" onclick="markFix('g13-color')">FIX</button></div>
+      <input class="fix-input" id="fix-13-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g13-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g13-chars')">OK</button><button class="btn-fix" onclick="markFix('g13-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-13-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g13-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Metal/Iron/Steel Frame, Light Rays/Beams, Glow/Aura</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g13-elems')">OK</button><button class="btn-fix" onclick="markFix('g13-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-13-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Its-Time" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Its+Time+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g14">
+  <div class="game-name">#14 Play Jade Wins Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Jade-Wins.jpg" onclick="toggleZoom(this)" alt="Jade-Wins">
+  <div class="dims">
+    <div class="dim" id="g14-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Asian Temple/Garden</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g14-theme')">OK</button><button class="btn-fix" onclick="markFix('g14-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-14-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g14-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Green, Gold, Red</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g14-color')">OK</button><button class="btn-fix" onclick="markFix('g14-color')">FIX</button></div>
+      <input class="fix-input" id="fix-14-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g14-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g14-chars')">OK</button><button class="btn-fix" onclick="markFix('g14-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-14-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g14-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Ornate Scrollwork/Filigree, Glow/Aura, Coins/Gold Piles</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g14-elems')">OK</button><button class="btn-fix" onclick="markFix('g14-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-14-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Jade-Wins" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Jade+Wins+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g15">
+  <div class="game-name">#15 Play Lone Star Jackpots Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Lone-Star-Jackpots.jpg" onclick="toggleZoom(this)" alt="Lone-Star-Jackpots">
+  <div class="dims">
+    <div class="dim" id="g15-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Wild West/Frontier</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g15-theme')">OK</button><button class="btn-fix" onclick="markFix('g15-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-15-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g15-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Orange, Blue, Gold</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g15-color')">OK</button><button class="btn-fix" onclick="markFix('g15-color')">FIX</button></div>
+      <input class="fix-input" id="fix-15-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g15-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g15-chars')">OK</button><button class="btn-fix" onclick="markFix('g15-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-15-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g15-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Mountains/Landscape Background, Bamboo/Tropical Plants, Gold/Gilded Ornate Frame, Light Rays/Beams</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g15-elems')">OK</button><button class="btn-fix" onclick="markFix('g15-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-15-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Lone-Star-Jackpots" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Lone+Star+Jackpots+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g16">
+  <div class="game-name">#16 Play Monopoly Money Grab Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Monopoly-Money-Grab.jpg" onclick="toggleZoom(this)" alt="Monopoly-Money-Grab">
+  <div class="dims">
+    <div class="dim" id="g16-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Branded/Licensed + Luxury/VIP [BRANDED]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g16-theme')">OK</button><button class="btn-fix" onclick="markFix('g16-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-16-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g16-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gold, Blue, Green</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g16-color')">OK</button><button class="btn-fix" onclick="markFix('g16-color')">FIX</button></div>
+      <input class="fix-input" id="fix-16-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g16-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Man [Man:Human Character]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g16-chars')">OK</button><button class="btn-fix" onclick="markFix('g16-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-16-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g16-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Coins/Gold Piles, Gold/Gilded Ornate Frame, Mansion/Palace/Grand Building, Sparkles/Glitter</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g16-elems')">OK</button><button class="btn-fix" onclick="markFix('g16-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-16-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Monopoly-Money-Grab" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Monopoly+Money+Grab+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g17">
+  <div class="game-name">#17 Play Vegas No Limit Wins Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Vegas-No-Limit-Wins.jpg" onclick="toggleZoom(this)" alt="Vegas-No-Limit-Wins">
+  <div class="dims">
+    <div class="dim" id="g17-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Casino Floor</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g17-theme')">OK</button><button class="btn-fix" onclick="markFix('g17-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-17-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g17-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Purple, Gold, Green</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g17-color')">OK</button><button class="btn-fix" onclick="markFix('g17-color')">FIX</button></div>
+      <input class="fix-input" id="fix-17-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g17-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g17-chars')">OK</button><button class="btn-fix" onclick="markFix('g17-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-17-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g17-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Gold/Gilded Ornate Frame, Sparkles/Glitter, Light Rays/Beams, Neon Glow</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g17-elems')">OK</button><button class="btn-fix" onclick="markFix('g17-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-17-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Vegas-No-Limit-Wins" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Vegas+No+Limit+Wins+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g18">
+  <div class="game-name">#18 Viking Raid Zone Slot ᐈ Demo + Review ⭐ <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Viking-Raid-Zone.jpg" onclick="toggleZoom(this)" alt="Viking-Raid-Zone">
+  <div class="dims">
+    <div class="dim" id="g18-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Norse/Viking Realm</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g18-theme')">OK</button><button class="btn-fix" onclick="markFix('g18-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-18-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g18-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Brown, Red, Purple</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g18-color')">OK</button><button class="btn-fix" onclick="markFix('g18-color')">FIX</button></div>
+      <input class="fix-input" id="fix-18-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g18-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g18-chars')">OK</button><button class="btn-fix" onclick="markFix('g18-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-18-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g18-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fire/Flames, Ships/Boats, Weapons (swords/shields), Wood/Rustic Frame, Ancient Stone Carvings/Reliefs</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g18-elems')">OK</button><button class="btn-fix" onclick="markFix('g18-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-18-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Viking-Raid-Zone" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Viking+Raid+Zone+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g19">
+  <div class="game-name">#19 Play Viking Runecraft Slot <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/Viking-Runecraft.jpg" onclick="toggleZoom(this)" alt="Viking-Runecraft">
+  <div class="dims">
+    <div class="dim" id="g19-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Norse/Viking Realm</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g19-theme')">OK</button><button class="btn-fix" onclick="markFix('g19-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-19-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g19-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Gold, Brown</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g19-color')">OK</button><button class="btn-fix" onclick="markFix('g19-color')">FIX</button></div>
+      <input class="fix-input" id="fix-19-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g19-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">Thor [Thor:Norse Deity]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g19-chars')">OK</button><button class="btn-fix" onclick="markFix('g19-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-19-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g19-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Metal/Iron/Steel Frame, Ancient Stone Carvings/Reliefs, Glow/Aura, Light Rays/Beams, Weapons (swords/shields), Chains/Locks/Keys</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g19-elems')">OK</button><button class="btn-fix" onclick="markFix('g19-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-19-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/Viking-Runecraft" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=Viking+Runecraft+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g20">
+  <div class="game-name">#20 A Visit From St. Nick Power Bet Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/a-visit-from-st-nick-power-bet.jpg" onclick="toggleZoom(this)" alt="a-visit-from-st-nick-power-bet">
+  <div class="dims">
+    <div class="dim" id="g20-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Festive/Holiday</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g20-theme')">OK</button><button class="btn-fix" onclick="markFix('g20-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-20-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g20-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Yellow, Black, White</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g20-color')">OK</button><button class="btn-fix" onclick="markFix('g20-color')">FIX</button></div>
+      <input class="fix-input" id="fix-20-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g20-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g20-chars')">OK</button><button class="btn-fix" onclick="markFix('g20-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-20-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g20-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Minimal/No Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g20-elems')">OK</button><button class="btn-fix" onclick="markFix('g20-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-20-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/a-visit-from-st-nick-power-bet" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=a+visit+from+st+nick+power+bet+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g21">
+  <div class="game-name">#21 Fire Joker 100 Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/fire-joker-100.jpg" onclick="toggleZoom(this)" alt="fire-joker-100">
+  <div class="dims">
+    <div class="dim" id="g21-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Classic Slots</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g21-theme')">OK</button><button class="btn-fix" onclick="markFix('g21-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-21-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g21-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Black, Yellow, Gray</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g21-color')">OK</button><button class="btn-fix" onclick="markFix('g21-color')">FIX</button></div>
+      <input class="fix-input" id="fix-21-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g21-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g21-chars')">OK</button><button class="btn-fix" onclick="markFix('g21-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-21-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g21-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fire/Flames, Minimal/No Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g21-elems')">OK</button><button class="btn-fix" onclick="markFix('g21-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-21-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/fire-joker-100" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=fire+joker+100+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g22">
+  <div class="game-name">#22 Mad Hit Diamonds Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/mad-hit-diamonds.jpg" onclick="toggleZoom(this)" alt="mad-hit-diamonds">
+  <div class="dims">
+    <div class="dim" id="g22-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Classic Slots</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g22-theme')">OK</button><button class="btn-fix" onclick="markFix('g22-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-22-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g22-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Black, Gray, White</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g22-color')">OK</button><button class="btn-fix" onclick="markFix('g22-color')">FIX</button></div>
+      <input class="fix-input" id="fix-22-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g22-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g22-chars')">OK</button><button class="btn-fix" onclick="markFix('g22-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-22-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g22-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Minimal/No Frame, Sparkles/Glitter</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g22-elems')">OK</button><button class="btn-fix" onclick="markFix('g22-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-22-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/mad-hit-diamonds" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=mad+hit+diamonds+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g23">
+  <div class="game-name">#23 Mad Hit Gorillatron Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/mad-hit-gorillatron.jpg" onclick="toggleZoom(this)" alt="mad-hit-gorillatron">
+  <div class="dims">
+    <div class="dim" id="g23-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Branded/Licensed + Urban/Modern City [BRANDED]</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g23-theme')">OK</button><button class="btn-fix" onclick="markFix('g23-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-23-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g23-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Yellow, Gray, Black</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g23-color')">OK</button><button class="btn-fix" onclick="markFix('g23-color')">FIX</button></div>
+      <input class="fix-input" id="fix-23-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g23-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g23-chars')">OK</button><button class="btn-fix" onclick="markFix('g23-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-23-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g23-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Minimal/No Frame, Office Items (desk, pencils, mugs), Glow/Aura</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g23-elems')">OK</button><button class="btn-fix" onclick="markFix('g23-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-23-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/mad-hit-gorillatron" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=mad+hit+gorillatron+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g24">
+  <div class="game-name">#24 Olympus Strikes UltraTap Demo & Game Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/olympus-strikes-ultratap.webp" onclick="toggleZoom(this)" alt="olympus-strikes-ultratap">
+  <div class="dims">
+    <div class="dim" id="g24-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Ancient Greece/Rome</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g24-theme')">OK</button><button class="btn-fix" onclick="markFix('g24-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-24-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g24-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Blue, Gold, White</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g24-color')">OK</button><button class="btn-fix" onclick="markFix('g24-color')">FIX</button></div>
+      <input class="fix-input" id="fix-24-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g24-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g24-chars')">OK</button><button class="btn-fix" onclick="markFix('g24-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-24-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g24-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Lightning/Electricity, Fire/Flames, Gold/Gilded Ornate Frame, Light Rays/Beams</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g24-elems')">OK</button><button class="btn-fix" onclick="markFix('g24-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-24-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/olympus-strikes-ultratap" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=olympus+strikes+ultratap+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g25">
+  <div class="game-name">#25 Spartacus Lightning Blitz Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/spartacus-lightning-blitz.jpg" onclick="toggleZoom(this)" alt="spartacus-lightning-blitz">
+  <div class="dims">
+    <div class="dim" id="g25-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Ancient Greece/Rome</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g25-theme')">OK</button><button class="btn-fix" onclick="markFix('g25-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-25-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g25-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Gray, White, Yellow</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g25-color')">OK</button><button class="btn-fix" onclick="markFix('g25-color')">FIX</button></div>
+      <input class="fix-input" id="fix-25-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g25-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g25-chars')">OK</button><button class="btn-fix" onclick="markFix('g25-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-25-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g25-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Lightning/Electricity, Minimal/No Frame</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g25-elems')">OK</button><button class="btn-fix" onclick="markFix('g25-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-25-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/spartacus-lightning-blitz" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=spartacus+lightning+blitz+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g26">
+  <div class="game-name">#26 Splash of Gold Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/splash-of-gold.jpg" onclick="toggleZoom(this)" alt="splash-of-gold">
+  <div class="dims">
+    <div class="dim" id="g26-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Irish/Celtic Highlands</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g26-theme')">OK</button><button class="btn-fix" onclick="markFix('g26-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-26-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g26-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Yellow, Gold, Black</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g26-color')">OK</button><button class="btn-fix" onclick="markFix('g26-color')">FIX</button></div>
+      <input class="fix-input" id="fix-26-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g26-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g26-chars')">OK</button><button class="btn-fix" onclick="markFix('g26-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-26-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g26-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Minimal/No Frame, Gold/Gilded Ornate Frame, Coins/Gold Piles</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g26-elems')">OK</button><button class="btn-fix" onclick="markFix('g26-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-26-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/splash-of-gold" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=splash+of+gold+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div>
+<div class="game" id="g27">
+  <div class="game-name">#27 Thundering Blaze Demo & Slot Review <span class="vision-badge">VISION</span></div>
+  <img class="screenshot" src="../screenshots/thundering-blaze.webp" onclick="toggleZoom(this)" alt="thundering-blaze">
+  <div class="dims">
+    <div class="dim" id="g27-theme" data-status="">
+      <div class="dim-label">Theme</div>
+      <div class="dim-value">Classic Slots</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g27-theme')">OK</button><button class="btn-fix" onclick="markFix('g27-theme')">FIX</button></div>
+      <input class="fix-input" id="fix-27-theme" placeholder="Correct theme...">
+    </div>
+    <div class="dim" id="g27-color" data-status="">
+      <div class="dim-label">Colors</div>
+      <div class="dim-value">Red, Gold, Orange</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g27-color')">OK</button><button class="btn-fix" onclick="markFix('g27-color')">FIX</button></div>
+      <input class="fix-input" id="fix-27-color" placeholder="Correct colors...">
+    </div>
+    <div class="dim" id="g27-chars" data-status="">
+      <div class="dim-label">Characters</div>
+      <div class="dim-value">No Characters (symbol-only game)</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g27-chars')">OK</button><button class="btn-fix" onclick="markFix('g27-chars')">FIX</button></div>
+      <input class="fix-input" id="fix-27-chars" placeholder="Correct characters...">
+    </div>
+    <div class="dim" id="g27-elems" data-status="">
+      <div class="dim-label">Elements</div>
+      <div class="dim-value">Fire/Flames, Lightning/Electricity, Gold/Gilded Ornate Frame, Sparkles/Glitter</div>
+      <div class="btn-row"><button class="btn-ok" onclick="markOk('g27-elems')">OK</button><button class="btn-fix" onclick="markFix('g27-elems')">FIX</button></div>
+      <input class="fix-input" id="fix-27-elems" placeholder="Correct elements...">
+    </div>
+  </div>
+  <div class="links"><a href="https://slotcatalog.com/en/slots/thundering-blaze" target="_blank">SlotCatalog</a>
+    <a href="https://www.google.com/search?q=thundering+blaze+slot+game&tbm=isch" target="_blank">Google Images</a></div>
+</div></body></html>

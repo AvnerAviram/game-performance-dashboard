@@ -1,0 +1,882 @@
+[
+  {
+    "name": "Cash Eruption",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    },
+    "slug": "Cash-Eruption"
+  },
+  {
+    "name": "12 Fortune Dragons",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "3000.00x",
+      "paylines": "20[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 80.0
+    },
+    "slug": "12-Fortune-Dragons"
+  },
+  {
+    "name": "Lion Link Wealth Of The Dragon",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "5000.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    },
+    "slug": "Lion-Link-Wealth-Of-The-Dragon"
+  },
+  {
+    "name": "Capital Gains",
+    "specs": {
+      "rtp": 95.96,
+      "max_win": "2000.00x",
+      "paylines": "243",
+      "min_bet": 0.5,
+      "max_bet": 50.0
+    },
+    "slug": "Capital-Gains"
+  },
+  {
+    "name": "Mo Mummy Mighty Pyramid",
+    "specs": {
+      "rtp": 95.06,
+      "max_win": "2118.00x",
+      "paylines": "20",
+      "min_bet": 0.5,
+      "max_bet": 150.0
+    },
+    "slug": "Mo-Mummy-Mighty-Pyramid"
+  },
+  {
+    "name": "Super Crystal 7s",
+    "specs": {
+      "rtp": 94.5,
+      "max_win": "2000.00x",
+      "paylines": "40",
+      "min_bet": 1.0,
+      "max_bet": 100.0
+    },
+    "slug": "Super-Crystal-7s"
+  },
+  {
+    "name": "3x Ultra Diamond",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "555.00x",
+      "paylines": "9",
+      "min_bet": 0.05,
+      "max_bet": 360.0
+    },
+    "slug": "3x-ultra-diamond"
+  },
+  {
+    "name": "333 Boom Banks Power Combo",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "12500.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    },
+    "slug": "333-boom-banks-power-combo"
+  },
+  {
+    "name": "Mystery Of The Lamp Treasure Oasis",
+    "specs": {
+      "rtp": 96.22,
+      "paylines": "50",
+      "min_bet": 0.8,
+      "max_bet": 400.0
+    },
+    "slug": "mystery-of-the-lamp-treasure-oasis"
+  },
+  {
+    "name": "Mad Hit Devil",
+    "specs": {
+      "rtp": 96.33,
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "Mad-Hit-Devil"
+  },
+  {
+    "name": "777 Hot Reels Supercharged",
+    "specs": {
+      "rtp": 95.74,
+      "max_win": "8000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "777-hot-reels-supercharged"
+  },
+  {
+    "name": "Double Top Dollar",
+    "specs": {
+      "rtp": 96.24,
+      "max_win": "4000.00x",
+      "paylines": "9",
+      "min_bet": 0.1,
+      "max_bet": 70.0
+    },
+    "slug": "double-top-dollar"
+  },
+  {
+    "name": "Money Link The Great Immortals",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "2189.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "Money-Link-The-Great-Immortals"
+  },
+  {
+    "name": "Wolf Strike Hold And Win Extra",
+    "specs": {
+      "rtp": 95.1,
+      "max_win": "5000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "wolf-strike-hold-and-win-extra"
+  },
+  {
+    "name": "Charming Ladys Boom",
+    "specs": {
+      "rtp": 94.9,
+      "max_win": "9000.00x",
+      "paylines": "10",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    },
+    "slug": "Charming-Ladys-Boom"
+  },
+  {
+    "name": "10x Cash",
+    "specs": {
+      "rtp": 94.0,
+      "paylines": "1",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "10x-cash"
+  },
+  {
+    "name": "Majestic Fury Megaways",
+    "specs": {
+      "rtp": 93.0,
+      "max_win": "10000.00x",
+      "paylines": "15625",
+      "min_bet": 0.1,
+      "max_bet": 25.0
+    },
+    "slug": "majestic-fury-megaways"
+  },
+  {
+    "name": "88 Fortunes Jackpot Festival",
+    "specs": {
+      "rtp": 96.0,
+      "paylines": "243",
+      "min_bet": 0.18,
+      "max_bet": 88.0
+    },
+    "slug": "88-Fortunes-Jackpot-Festival"
+  },
+  {
+    "name": "3 Wild Aliens",
+    "specs": {
+      "rtp": 95.15,
+      "max_win": "5000.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "3-wild-aliens"
+  },
+  {
+    "name": "Black Diamond Deluxe",
+    "specs": {
+      "rtp": 95.94,
+      "paylines": "9",
+      "min_bet": 0.05,
+      "max_bet": 5.0
+    },
+    "slug": "Black-Diamond-Deluxe"
+  },
+  {
+    "name": "Whitney Houston",
+    "specs": {
+      "rtp": 96.32,
+      "max_win": "2250.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "whitney-houston"
+  },
+  {
+    "name": "Buffalo",
+    "specs": {
+      "rtp": 94.85,
+      "paylines": "N/A",
+      "min_bet": 0.4,
+      "max_bet": 8.0
+    },
+    "slug": "Buffalo"
+  },
+  {
+    "name": "Ultimate Fire Link Cash Falls Olvera Street",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "10000.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 45.0
+    },
+    "slug": "Ultimate-Fire-Link-Cash-Falls-Olvera-Street"
+  },
+  {
+    "name": "Cops N Robbers Bigger Big Money",
+    "specs": {
+      "rtp": 94.5,
+      "max_win": "2083.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 120.0
+    },
+    "slug": "cops-n-robbers-bigger-big-money"
+  },
+  {
+    "name": "Platinum 8x8x8x",
+    "specs": {
+      "rtp": 94.95,
+      "max_win": "1000.00x",
+      "paylines": "9[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 180.0
+    },
+    "slug": "Platinum-8x8x8x"
+  },
+  {
+    "name": "Thunder Cash Sizzling Hot",
+    "specs": {
+      "rtp": 95.65,
+      "max_win": "5000.00x",
+      "paylines": "5"
+    },
+    "slug": "thunder-cash-sizzling-hot"
+  },
+  {
+    "name": "Liberty Diamond",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "5000.00x",
+      "paylines": "9",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    },
+    "slug": "liberty-diamond"
+  },
+  {
+    "name": "Golden Winner",
+    "specs": {
+      "rtp": 94.5,
+      "max_win": "2500.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 90.0
+    },
+    "slug": "Golden-Winner"
+  },
+  {
+    "name": "Sapphire Sorceress",
+    "specs": {
+      "rtp": 95.9,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 200.0
+    },
+    "slug": "Sapphire-Sorceress"
+  },
+  {
+    "name": "Buffalo Of Wealth",
+    "specs": {
+      "rtp": 94.2,
+      "max_win": "7000.00x",
+      "paylines": "32768",
+      "min_bet": 0.05,
+      "max_bet": 100.0
+    },
+    "slug": "Buffalo-Of-Wealth"
+  },
+  {
+    "name": "Cash Eruption Red Hot Joker",
+    "specs": {
+      "rtp": 96.08,
+      "max_win": "5000.00x",
+      "paylines": "10",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    },
+    "slug": "cash-eruption-red-hot-joker"
+  },
+  {
+    "name": "Long Bao Bao",
+    "specs": {
+      "rtp": 94.01,
+      "max_win": "5000.00x",
+      "paylines": "30[ i ]",
+      "min_bet": 0.8,
+      "max_bet": 40.0
+    },
+    "slug": "long-bao-bao"
+  },
+  {
+    "name": "Triple Monkey",
+    "specs": {
+      "rtp": 94.9,
+      "max_win": "5001.00x",
+      "paylines": "720",
+      "min_bet": 0.5,
+      "max_bet": 50.0
+    },
+    "slug": "Triple-Monkey"
+  },
+  {
+    "name": "3 Cheeky Chimps",
+    "specs": {
+      "rtp": 95.06,
+      "max_win": "10000.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 25.0
+    },
+    "slug": "3-cheeky-chimps"
+  },
+  {
+    "name": "Prosperity Link Wan Shi Ru Yi",
+    "specs": {
+      "rtp": 95.92,
+      "paylines": "243",
+      "min_bet": 0.88,
+      "max_bet": 88.0
+    },
+    "slug": "Prosperity-Link-Wan-Shi-Ru-Yi"
+  },
+  {
+    "name": "Cash Flip Medusa",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "4100.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    },
+    "slug": "cash-flip-medusa"
+  },
+  {
+    "name": "100x Fortune",
+    "specs": {
+      "rtp": 93.84,
+      "paylines": "5",
+      "min_bet": 0.3,
+      "max_bet": 150.0
+    },
+    "slug": "100x-fortune"
+  },
+  {
+    "name": "Blazin Bank Run",
+    "specs": {
+      "rtp": 95.01,
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "blazin-bank-run"
+  },
+  {
+    "name": "Amazing Catch Power Combo",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "5000.00x",
+      "paylines": "4096[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    },
+    "slug": "amazing-catch-power-combo"
+  },
+  {
+    "name": "Almighty Buffalo Megaways",
+    "specs": {
+      "rtp": 97.14,
+      "max_win": "10000.00x",
+      "paylines": "Up to 117649",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    },
+    "slug": "almighty-buffalo-megaways"
+  },
+  {
+    "name": "Quick Hit Ultra Pays Sun Dragon",
+    "specs": {
+      "rtp": 95.97,
+      "paylines": "243[ i ]",
+      "min_bet": 0.5,
+      "max_bet": 100.0
+    },
+    "slug": "Quick-Hit-Ultra-Pays-Sun-Dragon"
+  },
+  {
+    "name": "Buffalo Gold Revolution",
+    "specs": {
+      "rtp": 95.05,
+      "max_win": "1000.00x",
+      "paylines": "1024",
+      "min_bet": 0.75,
+      "max_bet": 375.0
+    },
+    "slug": "buffalo-gold-revolution"
+  },
+  {
+    "name": "Prosperity Link Cai Yun Heng Tong",
+    "specs": {
+      "rtp": 95.92,
+      "max_win": "2840.00x",
+      "paylines": "243",
+      "min_bet": 0.88,
+      "max_bet": 88.0
+    },
+    "slug": "prosperity-link-cai-yun-heng-tong"
+  },
+  {
+    "name": "Triple Treasure",
+    "specs": {
+      "rtp": 93.95,
+      "paylines": "15",
+      "min_bet": 0.15,
+      "max_bet": 75.0
+    },
+    "slug": "Triple-Treasure"
+  },
+  {
+    "name": "Dragon Power Triple Gold",
+    "specs": {
+      "rtp": 95.62,
+      "max_win": "19100.00x",
+      "paylines": "50",
+      "min_bet": 0.6,
+      "max_bet": 240.0
+    },
+    "slug": "dragon-power-triple-gold"
+  },
+  {
+    "name": "Lucky 88",
+    "specs": {
+      "rtp": 97.0,
+      "paylines": "25[ i ]",
+      "min_bet": 0.01,
+      "max_bet": 5.0
+    },
+    "slug": "Lucky-88"
+  },
+  {
+    "name": "Ultra Blazing Fire Link India",
+    "specs": {
+      "rtp": 96.31,
+      "max_win": "10070.00x",
+      "paylines": "50",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    },
+    "slug": "Ultra-Blazing-Fire-Link-India"
+  },
+  {
+    "name": "Cash Eruption Hephaestus",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "5000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    },
+    "slug": "Cash-Eruption-Hephaestus"
+  },
+  {
+    "name": "Triple Jelly",
+    "specs": {
+      "rtp": 95.0,
+      "paylines": "9",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    },
+    "slug": "triple-jelly"
+  },
+  {
+    "name": "Irish Eyes 2",
+    "specs": {
+      "rtp": 95.04,
+      "max_win": "5000.00x",
+      "paylines": "25[ i ]",
+      "min_bet": 0.01,
+      "max_bet": 200.0
+    },
+    "slug": "Irish-Eyes-2"
+  },
+  {
+    "name": "Genie Wild",
+    "specs": {
+      "rtp": 95.34,
+      "max_win": "5000.00x",
+      "paylines": "25[ i ]",
+      "min_bet": 0.01,
+      "max_bet": 250.0
+    },
+    "slug": "Genie-Wild"
+  },
+  {
+    "name": "Mighty Black Knight",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "1000.00x",
+      "paylines": "100",
+      "min_bet": 0.1,
+      "max_bet": 250.0
+    },
+    "slug": "Mighty-Black-Knight"
+  },
+  {
+    "name": "Smokin Hot Gems",
+    "specs": {
+      "rtp": 95.84,
+      "max_win": "60.00x",
+      "paylines": "9",
+      "min_bet": 2.25,
+      "max_bet": 180.0
+    },
+    "slug": "Smokin-Hot-Gems"
+  },
+  {
+    "name": "Big Catch Bass Fishing",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "10000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Big-Catch-Bass-Fishing"
+  },
+  {
+    "name": "Pompeii",
+    "specs": {
+      "rtp": 95.45,
+      "paylines": "243",
+      "min_bet": 0.02,
+      "max_bet": 1.0
+    },
+    "slug": "Pompeii"
+  },
+  {
+    "name": "Capital Reels",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "1944.00x",
+      "paylines": "9",
+      "min_bet": 0.05,
+      "max_bet": 225.0
+    },
+    "slug": "capital-reels"
+  },
+  {
+    "name": "3 Crazy Tikis",
+    "specs": {
+      "rtp": 93.0,
+      "max_win": "5000.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    },
+    "slug": "3-crazy-tikis"
+  },
+  {
+    "name": "Triple Turducken",
+    "specs": {
+      "rtp": 96.5,
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 200.0
+    },
+    "slug": "triple-turducken"
+  },
+  {
+    "name": "Vip",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "600.00x",
+      "paylines": "5",
+      "min_bet": 0.05,
+      "max_bet": 250.0
+    },
+    "slug": "vip"
+  },
+  {
+    "name": "Pinball Double Gold",
+    "specs": {
+      "rtp": 96.41,
+      "max_win": "2000.00x",
+      "paylines": "9",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "pinball-double-gold"
+  },
+  {
+    "name": "Apex Strike Lucky Cache",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "10000.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 25.0
+    },
+    "slug": "apex-strike-lucky-cache"
+  },
+  {
+    "name": "Wolf Legend Gold Megaways",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "10000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 25.0
+    },
+    "slug": "wolf-legend-gold-megaways"
+  },
+  {
+    "name": "Da Vinci Diamonds Dual Play",
+    "specs": {
+      "rtp": 94.3,
+      "max_win": "7500.00x",
+      "paylines": "40[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 1000.0
+    },
+    "slug": "Da-Vinci-Diamonds-Dual-Play"
+  },
+  {
+    "name": "Caichen Triple Blossom",
+    "specs": {
+      "rtp": 95.0,
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 30.0
+    },
+    "slug": "caichen-triple-blossom"
+  },
+  {
+    "name": "Centurion Bigger Big Money",
+    "specs": {
+      "rtp": 94.5,
+      "max_win": "8333.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 30.0
+    },
+    "slug": "centurion-bigger-big-money"
+  },
+  {
+    "name": "Cash Eruption Hoggin Cash",
+    "specs": {
+      "rtp": 96.25,
+      "max_win": "5000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    },
+    "slug": "cash-eruption-hoggin-cash"
+  },
+  {
+    "name": "Piggy Prizes Wand Of Riches 2",
+    "specs": {
+      "rtp": 93.7,
+      "max_win": "1000.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    },
+    "slug": "piggy-prizes-wand-of-riches-2"
+  },
+  {
+    "name": "Crazy Chilli",
+    "specs": {
+      "rtp": 95.0,
+      "max_win": "2000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    },
+    "slug": "Crazy-Chilli"
+  },
+  {
+    "name": "Dancing Drums Explosion Mega Drop",
+    "specs": {
+      "rtp": 96.0,
+      "max_win": "2841.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.18,
+      "max_bet": 88.0
+    },
+    "slug": "Dancing-Drums-Explosion-Mega-Drop"
+  },
+  {
+    "name": "Penny Roulette",
+    "specs": {
+      "rtp": 97.3,
+      "max_win": "35.00x",
+      "paylines": "N/A",
+      "min_bet": 0.01,
+      "max_bet": 100.0
+    },
+    "slug": "Penny-Roulette"
+  },
+  {
+    "name": "White Orchid",
+    "specs": {
+      "rtp": 92.9,
+      "max_win": "5000.00x",
+      "paylines": "1024[ i ]",
+      "min_bet": 0.4,
+      "max_bet": 800.0
+    },
+    "slug": "White-Orchid"
+  },
+  {
+    "name": "Triple Diamond",
+    "specs": {
+      "rtp": 95.06,
+      "max_win": "1199.00x",
+      "paylines": "9[ i ]",
+      "min_bet": 0.25,
+      "max_bet": 900.0
+    },
+    "slug": "Triple-Diamond"
+  },
+  {
+    "name": "Queen Of Shadows",
+    "specs": {
+      "rtp": 92.0,
+      "max_win": "2000.00x",
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 25.0
+    },
+    "slug": "queen-of-shadows"
+  },
+  {
+    "name": "The Wild Life Extreme",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "1000.00x",
+      "paylines": "5[ i ](Bothway)",
+      "min_bet": 0.5,
+      "max_bet": 2000.0
+    },
+    "slug": "The-Wild-Life-Extreme"
+  },
+  {
+    "name": "My Slot Studio",
+    "specs": {
+      "rtp": 96.0,
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    },
+    "slug": "my-slot-studio"
+  },
+  {
+    "name": "Diamond Explosion Sweet Love",
+    "specs": {
+      "rtp": 96.82,
+      "max_win": "800.00x",
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 30.0
+    },
+    "slug": "Diamond-Explosion-Sweet-Love"
+  },
+  {
+    "name": "Panda Pots",
+    "specs": {
+      "rtp": 95.57,
+      "max_win": "1700.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.88,
+      "max_bet": 220.0
+    },
+    "slug": "panda-pots"
+  },
+  {
+    "name": "Goons Gone Wild",
+    "specs": {
+      "rtp": 96.02,
+      "max_win": "5000.00x",
+      "paylines": "7776",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    },
+    "slug": "goons-gone-wild"
+  },
+  {
+    "name": "Wild Winner",
+    "specs": {
+      "rtp": 94.5,
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    },
+    "slug": "Wild-Winner"
+  },
+  {
+    "name": "8x Crystal Bells",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "1000.00x",
+      "paylines": "9[ i ]",
+      "min_bet": 0.05,
+      "max_bet": 180.0
+    },
+    "slug": "8x-Crystal-Bells"
+  },
+  {
+    "name": "Bankin More Bacon",
+    "specs": {
+      "rtp": 94.0,
+      "max_win": "10000.00x",
+      "paylines": "4096",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    },
+    "slug": "Bankin-More-Bacon"
+  },
+  {
+    "name": "Black Diamond",
+    "specs": {
+      "rtp": 95.85,
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 125.0
+    },
+    "slug": "Black-Diamond"
+  }
+]

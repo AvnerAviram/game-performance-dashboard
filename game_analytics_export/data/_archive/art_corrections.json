@@ -1,0 +1,51 @@
+{
+    "version": "1.1",
+    "description": "Persistent user corrections for art classification. Injected into prompts and enforced in post-processing.",
+    "corrections": {
+        "Tomb-Of-Mirrors.html": {
+            "must_have_elements": ["Statues/Sculptures", "Ancient Stone Carvings"],
+            "notes": "Egyptian god/animal-like statues flanking the reels. User corrected twice."
+        },
+        "san-fa-pandas.html": {
+            "must_have_elements": ["Bamboo/Tropical Plants"],
+            "notes": "Bamboo plants/trees visible in background. User corrected twice."
+        },
+        "fortune-coin-fever-spins.html": {
+            "must_have_elements": ["Bamboo/Tropical Plants"],
+            "override_characters": ["No Characters (symbol-only game)"],
+            "notes": "Dragon is decorative/symbol, not a character. Bamboo visible in background."
+        },
+        "Tiger-7s.html": {
+            "override_colors_remove": ["Purple"],
+            "notes": "Purple is from the game UI, not the art. Tiger is above the reels."
+        },
+        "giga-match-moolah.html": {
+            "override_theme": "Luxury/VIP",
+            "notes": "Theme is Luxury/VIP/Bank, not Steampunk. Magician character with crystal ball above reels."
+        },
+        "Buffalo.html": {
+            "must_have_elements": ["Mountains"],
+            "notes": "Mountains visible in background."
+        },
+        "88-Fortunes.html": {
+            "must_not_elements": ["Ships/Boats", "Animals (decorative)"],
+            "notes": "Animals and ship are symbols, not background elements."
+        },
+        "Cash-Eruption.html": {
+            "must_not_elements": ["Mountains"],
+            "notes": "Mountain/volcano is a reel symbol, not a background element."
+        },
+        "Stinkin-Rich.html": {
+            "must_have_elements": ["Casino Interior"],
+            "notes": "Slot machines visible in the casino background setting."
+        },
+        "Way-Out-Wilds.html": {
+            "must_have_elements": ["Colored Frame"],
+            "notes": "Has a purple frame around the reels."
+        },
+        "san-fa-tigers.html": {
+            "must_have_elements": ["Bamboo/Tropical Plants"],
+            "notes": "Bamboo/tropical plants visible in background of Asian-themed game."
+        }
+    }
+}

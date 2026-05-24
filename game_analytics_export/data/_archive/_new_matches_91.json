@@ -1,0 +1,912 @@
+[
+  {
+    "game_name": "Wheel Of Fortune Diamond Spins 2x Wild",
+    "slug": "igtwofdiamondspin2xwilds",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/igtwofdiamondspin2xwilds",
+    "page_title": "Wheel of Fortune Diamond Spins 2x Wilds",
+    "provider": "IGT",
+    "match_type": "safe-ambiguous",
+    "text_length": 6384,
+    "in_gt": false
+  },
+  {
+    "game_name": "Fire And Roses Joker 2 All In",
+    "slug": "eusmdfireandrosesj2a",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdfireandrosesj2a",
+    "page_title": "Fire and Roses Joker 2 All-In",
+    "provider": "Games Global",
+    "match_type": "exact",
+    "text_length": 12587,
+    "in_gt": false
+  },
+  {
+    "game_name": "Links Of Ra 2",
+    "slug": "eusmdlinksofra2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdlinksofra2",
+    "page_title": "Links of Ra II",
+    "provider": "Games Global",
+    "match_type": "exact",
+    "text_length": 13355,
+    "in_gt": false
+  },
+  {
+    "game_name": "Blue Wizard Collect Em And Link",
+    "slug": "playtechbluewizardceml",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechbluewizardceml",
+    "page_title": "Blue Wizard: Collect'Em and Link",
+    "provider": "Playtech",
+    "match_type": "exact",
+    "text_length": 8205,
+    "in_gt": false
+  },
+  {
+    "game_name": "3 Lucky Maneki Hold And Spin",
+    "slug": "pariplay3luckymanekih",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplay3luckymanekih",
+    "page_title": "3 Lucky Maneki Hold N Spin",
+    "provider": "Aristocrat",
+    "match_type": "safe-ambiguous",
+    "text_length": 6751,
+    "in_gt": false
+  },
+  {
+    "game_name": "Buffalo",
+    "slug": "pariplaybuffalo",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplaybuffalo",
+    "page_title": "Buffalo",
+    "provider": "Aristocrat",
+    "match_type": "exact",
+    "text_length": 1509,
+    "in_gt": false
+  },
+  {
+    "game_name": "Zeus 2",
+    "slug": "nyxzeus2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxzeus2",
+    "page_title": "Zeus II",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 3380,
+    "in_gt": false
+  },
+  {
+    "game_name": "Mighty Black Knight",
+    "slug": "nyxmightyblacknight",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxmightyblacknight",
+    "page_title": "Mighty Black Knight",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1710,
+    "in_gt": false
+  },
+  {
+    "game_name": "Flaming Hot Chili Pot Jackpot Royale Express",
+    "slug": "whitehatflamnotchilpotjre",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/whitehatflamnotchilpotjre",
+    "page_title": "Flaming Hot Chilli Pot Jackpot Royale Express",
+    "provider": "White Hat Studios",
+    "match_type": "safe-ambiguous",
+    "text_length": 6623,
+    "in_gt": false
+  },
+  {
+    "game_name": "China Shores Quick Strike",
+    "slug": "konamichinashoresqsonline",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/konamichinashoresqsonline",
+    "page_title": "China Shores Quick Strike Online",
+    "provider": "Konami",
+    "match_type": "minor-safe",
+    "text_length": 2248,
+    "in_gt": false
+  },
+  {
+    "game_name": "Starlight Jackpots Odds Of The God 2",
+    "slug": "novostarlightjackptog2jp",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/novostarlightjackptog2jp",
+    "page_title": "Starlight Jackpots Odds of the Gods 2",
+    "provider": "Greentube",
+    "match_type": "safe-ambiguous",
+    "text_length": 2894,
+    "in_gt": false
+  },
+  {
+    "game_name": "12 Coins Grand Platinum Edition Santas Jackpot",
+    "slug": "nyx12coinsgrandpeditionsj",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyx12coinsgrandpeditionsj",
+    "page_title": "12 Coins Grand Platinum Edition Santas Jackpots",
+    "provider": "Wazdan",
+    "match_type": "safe-ambiguous",
+    "text_length": 8540,
+    "in_gt": false
+  },
+  {
+    "game_name": "Lil Demon Mega Collect Em",
+    "slug": "playtechlildemonmegacolem",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechlildemonmegacolem",
+    "page_title": "Lil Demon: Mega Collect'Em",
+    "provider": "Playtech",
+    "match_type": "exact",
+    "text_length": 9617,
+    "in_gt": false
+  },
+  {
+    "game_name": "Jack O Lantern Jackpots",
+    "slug": "everijackolanternjackpots",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/everijackolanternjackpots",
+    "page_title": "Jack o'Lantern Jackpots",
+    "provider": "Everi",
+    "match_type": "exact",
+    "text_length": 2481,
+    "in_gt": false
+  },
+  {
+    "game_name": "Mega Fire Blaze Pigies And The Bank",
+    "slug": "playtechpiggiesbankmfbit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechpiggiesbankmfbit",
+    "page_title": "Mega Fire Blaze: Piggies and the Bank",
+    "provider": "Playtech",
+    "match_type": "safe-ambiguous",
+    "text_length": 6558,
+    "in_gt": false
+  },
+  {
+    "game_name": "Silent Samurai Mega Collect Em",
+    "slug": "playtechsilentsamuraimega",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechsilentsamuraimega",
+    "page_title": "Silent Samurai: Mega Collect'Em",
+    "provider": "Playtech",
+    "match_type": "exact",
+    "text_length": 9039,
+    "in_gt": false
+  },
+  {
+    "game_name": "Lucky Larry Lobstermania",
+    "slug": "igtluckylattyslobstrmania",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtluckylattyslobstrmania",
+    "page_title": "Lucky Larry's Lobstermania",
+    "provider": "IGT",
+    "match_type": "minor-safe",
+    "text_length": 2685,
+    "in_gt": false
+  },
+  {
+    "game_name": "Spin Vention",
+    "slug": "nyxspinvention",
+    "url": "https://help.on.betmgm.ca/en/casino-help/slots/nyxspinvention",
+    "page_title": "Spin-vention",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 5798,
+    "in_gt": false
+  },
+  {
+    "game_name": "Shadow Of The Panther",
+    "slug": "nyxshadowofthepanther",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxshadowofthepanther",
+    "page_title": "Shadow of the Panther",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 2524,
+    "in_gt": false
+  },
+  {
+    "game_name": "Invaders From The Planet Moolah",
+    "slug": "wmsinvadersfromtheplanetmoolah",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/wmsinvadersfromtheplanetmoolah",
+    "page_title": "Invaders from Planet Moolah",
+    "provider": "Light & Wonder",
+    "match_type": "minor-safe",
+    "text_length": 1837,
+    "in_gt": false
+  },
+  {
+    "game_name": "Robocop Collect Em",
+    "slug": "playtechrobocopcollectem",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechrobocopcollectem",
+    "page_title": "Robocop: Collect'em",
+    "provider": "Playtech",
+    "match_type": "exact",
+    "text_length": 6684,
+    "in_gt": false
+  },
+  {
+    "game_name": "Hoot Loot",
+    "slug": "nyxhootloot",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxhootloot",
+    "page_title": "Hoot Loot",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1075,
+    "in_gt": false
+  },
+  {
+    "game_name": "Fu Gui Hao Men Splendid Fortune",
+    "slug": "igtfghmensplfortunes",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtfghmensplfortunes",
+    "page_title": "Fu Gui Hao Men Splendid Fortunes",
+    "provider": "IGT",
+    "match_type": "safe-ambiguous",
+    "text_length": 13253,
+    "in_gt": false
+  },
+  {
+    "game_name": "Zeus 3",
+    "slug": "nyxzeusiii",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxzeusiii",
+    "page_title": "Zeus III",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 2182,
+    "in_gt": false
+  },
+  {
+    "game_name": "Dangerous Beauty",
+    "slug": "nyxdangerousbeauty",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxdangerousbeauty",
+    "page_title": "Dangerous Beauty",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1693,
+    "in_gt": false
+  },
+  {
+    "game_name": "Lotus Land",
+    "slug": "spinlotusland",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinlotusland",
+    "page_title": "Lotus Land",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 996,
+    "in_gt": false
+  },
+  {
+    "game_name": "Blood Suckers 2",
+    "slug": "evoossbloodsuck2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/evoossbloodsuck2",
+    "page_title": "Blood Suckers II",
+    "provider": "Evolution",
+    "match_type": "exact",
+    "text_length": 7327,
+    "in_gt": false
+  },
+  {
+    "game_name": "Gypsy Fire",
+    "slug": "konamigypsyfire",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/konamigypsyfire",
+    "page_title": "Gypsy Fire",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1952,
+    "in_gt": false
+  },
+  {
+    "game_name": "Gold O Plenty",
+    "slug": "nyxgoldoplenty",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxgoldoplenty",
+    "page_title": "Gold O'Plenty",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 5802,
+    "in_gt": false
+  },
+  {
+    "game_name": "Kronos",
+    "slug": "nyxkronoshtml",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxkronoshtml",
+    "page_title": "Kronos",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1550,
+    "in_gt": false
+  },
+  {
+    "game_name": "One Red Cent Deluxe",
+    "slug": "everioneredcentdeluxe",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/everioneredcentdeluxe",
+    "page_title": "One Red Cent Deluxe",
+    "provider": "Everi",
+    "match_type": "exact",
+    "text_length": 2143,
+    "in_gt": false
+  },
+  {
+    "game_name": "Double Fancy 7s",
+    "slug": "nyxdoublefancy7s1",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/nyxdoublefancy7s1",
+    "page_title": "Double Fancy 7s",
+    "provider": "Design Works Gaming",
+    "match_type": "exact",
+    "text_length": 1358,
+    "in_gt": false
+  },
+  {
+    "game_name": "Valkyrie Queen",
+    "slug": "nyxvalkyriequeen",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/nyxvalkyriequeen",
+    "page_title": "Valkyrie Queen",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1793,
+    "in_gt": false
+  },
+  {
+    "game_name": "Loki Wild Tiles",
+    "slug": "oddsworkslokiwildtiles",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/oddsworkslokiwildtiles",
+    "page_title": "Loki Wild-Tiles",
+    "provider": "Oddsworks",
+    "match_type": "exact",
+    "text_length": 4325,
+    "in_gt": false
+  },
+  {
+    "game_name": "Xtension Cash Snow Kingdom",
+    "slug": "ainsworthxtensioncsnkgd",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/ainsworthxtensioncsnkgd",
+    "page_title": "Xtension Cash-Snow Kingdom",
+    "provider": "Ainsworth",
+    "match_type": "exact",
+    "text_length": 5222,
+    "in_gt": false
+  },
+  {
+    "game_name": "Zeus",
+    "slug": "wmszeus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/wmszeus",
+    "page_title": "Zeus",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1263,
+    "in_gt": false
+  },
+  {
+    "game_name": "Pixies Of The Forest 2",
+    "slug": "igtpixiesoftheforesttwo",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/igtpixiesoftheforesttwo",
+    "page_title": "Pixies of the Forest II",
+    "provider": "IGT",
+    "match_type": "exact",
+    "text_length": 10335,
+    "in_gt": false
+  },
+  {
+    "game_name": "Castle Of Terror 2",
+    "slug": "evoosscastleofterror2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/evoosscastleofterror2",
+    "page_title": "Castle of terror II",
+    "provider": "Evolution",
+    "match_type": "exact",
+    "text_length": 7317,
+    "in_gt": false
+  },
+  {
+    "game_name": "Rawhide",
+    "slug": "spinkonamirawhide",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamirawhide",
+    "page_title": "Rawhide",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1510,
+    "in_gt": false
+  },
+  {
+    "game_name": "Xtension Cash Stars Up",
+    "slug": "ainsworthxtensioncstarsup",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/ainsworthxtensioncstarsup",
+    "page_title": "Xtension Cash-Stars Up",
+    "provider": "Ainsworth",
+    "match_type": "exact",
+    "text_length": 3876,
+    "in_gt": false
+  },
+  {
+    "game_name": "White Falls",
+    "slug": "nyxwhitefalls",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/nyxwhitefalls",
+    "page_title": "White Falls",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1722,
+    "in_gt": false
+  },
+  {
+    "game_name": "Michelangelo",
+    "slug": "high5michelangelo",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/high5michelangelo",
+    "page_title": "Michelangelo",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1828,
+    "in_gt": false
+  },
+  {
+    "game_name": "Double Da Vinci Diamonds",
+    "slug": "nyxdoubledavincidiamonds",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxdoubledavincidiamonds",
+    "page_title": "Double Da Vinci Diamonds",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 2771,
+    "in_gt": false
+  },
+  {
+    "game_name": "Dr Jekyll Goes Wild",
+    "slug": "nyxdrjekyiigoeswild",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxdrjekyiigoeswild",
+    "page_title": "Dr Jekyll Goes Wild",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1388,
+    "in_gt": false
+  },
+  {
+    "game_name": "Mighty Cash Long Teng Hu Xiao Dragon Files",
+    "slug": "roxormightycashltnghxdfs",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxormightycashltnghxdfs",
+    "page_title": "Mighty Cash Long Teng Hu Xiao Dragon",
+    "provider": "Aristocrat",
+    "match_type": "web-verified",
+    "text_length": 3208,
+    "in_gt": false
+  },
+  {
+    "game_name": "Crazy Money Ii",
+    "slug": "spinitcrazymoney2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinitcrazymoney2",
+    "page_title": "Crazy Money II",
+    "provider": "Incredible Technologies",
+    "match_type": "exact",
+    "text_length": 1260,
+    "in_gt": false
+  },
+  {
+    "game_name": "Hot Slot 777 Crown Xmas Edition",
+    "slug": "nyxhotslot777crownxmasus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxhotslot777crownxmasus",
+    "page_title": "Hot Slot: 777 Crown Xmas",
+    "provider": "Wazdan",
+    "match_type": "minor-safe",
+    "text_length": 3716,
+    "in_gt": false
+  },
+  {
+    "game_name": "Red Fortune",
+    "slug": "spinkonamiredfortune",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamiredfortune",
+    "page_title": "Red Fortune",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1817,
+    "in_gt": false
+  },
+  {
+    "game_name": "China Mystery",
+    "slug": "konamichinamystery94",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/konamichinamystery94",
+    "page_title": "China Mystery",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1783,
+    "in_gt": false
+  },
+  {
+    "game_name": "Tomb Of Gold 2",
+    "slug": "pngtombofgold2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pngtombofgold2",
+    "page_title": "Tomb of Gold II",
+    "provider": "Play'n GO",
+    "match_type": "exact",
+    "text_length": 5252,
+    "in_gt": false
+  },
+  {
+    "game_name": "Diamond Cash Mighty Dwarves Inc",
+    "slug": "novodiamndcshmigtydwres",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/novodiamndcshmigtydwres",
+    "page_title": "Diamond Cash Mighty Dwarves",
+    "provider": "Greentube",
+    "match_type": "minor-safe",
+    "text_length": 3282,
+    "in_gt": false
+  },
+  {
+    "game_name": "Jaguar Princess",
+    "slug": "nyxjaguarprincess",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxjaguarprincess",
+    "page_title": "Jaguar Princess",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1504,
+    "in_gt": false
+  },
+  {
+    "game_name": "Down The Chimney",
+    "slug": "spinchristmasdowntchimney",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/spinchristmasdowntchimney",
+    "page_title": "Down the Chimney",
+    "provider": "Bragg Gaming Group",
+    "match_type": "exact",
+    "text_length": 4834,
+    "in_gt": false
+  },
+  {
+    "game_name": "Crystal Forest Hd",
+    "slug": "nyxcrystalforest",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxcrystalforest",
+    "page_title": "Crystal Forest HD",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1889,
+    "in_gt": false
+  },
+  {
+    "game_name": "Thundering Buffalo",
+    "slug": "nyxthunderingbuffalo",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/nyxthunderingbuffalo",
+    "page_title": "Thundering Buffalo",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1608,
+    "in_gt": false
+  },
+  {
+    "game_name": "Experi Mental",
+    "slug": "nyxexperimental",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxexperimental",
+    "page_title": "Experi-Mental",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 3694,
+    "in_gt": false
+  },
+  {
+    "game_name": "Xtension Cash Red Dreams",
+    "slug": "ainsworthxtcashrdreams",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/ainsworthxtcashrdreams",
+    "page_title": "Xtension Cash-Red Dreams",
+    "provider": "Ainsworth",
+    "match_type": "exact",
+    "text_length": 4919,
+    "in_gt": false
+  },
+  {
+    "game_name": "Street Fighter 2 The World Warrior Slot",
+    "slug": "netentstreetfiitwws",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentstreetfiitwws",
+    "page_title": "Street Fighter II The World Warrior Slot",
+    "provider": "Evolution",
+    "match_type": "exact",
+    "text_length": 14759,
+    "in_gt": false
+  },
+  {
+    "game_name": "Halloween Fortune Ii",
+    "slug": "playtechhalloweenfortune2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/playtechhalloweenfortune2",
+    "page_title": "Halloween Fortune 2",
+    "provider": "Playtech",
+    "match_type": "exact",
+    "text_length": 5336,
+    "in_gt": false
+  },
+  {
+    "game_name": "Kings Of Crystals 2 Power Combo",
+    "slug": "eusmdkoc2pc",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/eusmdkoc2pc",
+    "page_title": "Kings of Crystals II Power Combo",
+    "provider": "Games Global",
+    "match_type": "exact",
+    "text_length": 9511,
+    "in_gt": false
+  },
+  {
+    "game_name": "Night Of The Wolf",
+    "slug": "nyxnightofthewolf",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/nyxnightofthewolf",
+    "page_title": "Night of the Wolf",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 2524,
+    "in_gt": false
+  },
+  {
+    "game_name": "Secrets Of The Forest",
+    "slug": "nyxsecretsoftheforest",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsecretsoftheforest",
+    "page_title": "Secrets of the Forest",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 1231,
+    "in_gt": false
+  },
+  {
+    "game_name": "Armadillo Artie Gone Wild",
+    "slug": "nyxarmadilloartiegwild",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxarmadilloartiegwild",
+    "page_title": "Armadillo Artie Gone Wild",
+    "provider": "Design Works Gaming",
+    "match_type": "exact",
+    "text_length": 1639,
+    "in_gt": false
+  },
+  {
+    "game_name": "Ice Heist 2 The Museum Snatch A Roo",
+    "slug": "igticeheist2themusestaroo",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igticeheist2themusestaroo",
+    "page_title": "Ice Heist 2: The Museum Snatch-a-roo",
+    "provider": "IGT",
+    "match_type": "exact",
+    "text_length": 5728,
+    "in_gt": false
+  },
+  {
+    "game_name": "Golden Wolves",
+    "slug": "spinkonamigoldenwolves",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamigoldenwolves",
+    "page_title": "Golden Wolves",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1755,
+    "in_gt": false
+  },
+  {
+    "game_name": "Sun Of Fortune Xmas Edition",
+    "slug": "nyxsunoffortunexmas",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsunoffortunexmas",
+    "page_title": "Sun of Fortune Xmas",
+    "provider": "Wazdan",
+    "match_type": "minor-safe",
+    "text_length": 5171,
+    "in_gt": false
+  },
+  {
+    "game_name": "Monopoly Bring The House Down",
+    "slug": "wmsmonopolybthd",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/wmsmonopolybthd",
+    "page_title": "MONOPOLY Bring The House Down",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 1686,
+    "in_gt": false
+  },
+  {
+    "game_name": "Mighty 777 With Sticky Credits",
+    "slug": "spinmighty777stickycredit",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinmighty777stickycredit",
+    "page_title": "Mighty 777 Sticky Credits",
+    "provider": "Incredible Technologies",
+    "match_type": "safe-ambiguous",
+    "text_length": 2469,
+    "in_gt": false
+  },
+  {
+    "game_name": "Great Moai",
+    "slug": "spinkonamigreatmoai",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamigreatmoai",
+    "page_title": "Great Moai",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1907,
+    "in_gt": false
+  },
+  {
+    "game_name": "Age Of The Gods Glorius Griffin",
+    "slug": "playtechaotggloriousgrifi",
+    "url": "https://help.borgataonline.com/en/casino-help/jackpot-slots/playtechaotggloriousgrifi",
+    "page_title": "Age of the Gods: Glorious Griffin",
+    "provider": "Playtech",
+    "match_type": "safe-ambiguous",
+    "text_length": 5221,
+    "in_gt": false
+  },
+  {
+    "game_name": "Cash A Cabana",
+    "slug": "pngcashacabanaus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pngcashacabanaus",
+    "page_title": "Cash-A-Cabana",
+    "provider": "Play'n GO",
+    "match_type": "exact",
+    "text_length": 3503,
+    "in_gt": false
+  },
+  {
+    "game_name": "Artemis Rising Expand N Win",
+    "slug": "whitehatartemisrisingenw",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/whitehatartemisrisingenw",
+    "page_title": "Artemis Rising Expand'N Win",
+    "provider": "White Hat Studios",
+    "match_type": "exact",
+    "text_length": 4193,
+    "in_gt": false
+  },
+  {
+    "game_name": "Golden Knight",
+    "slug": "nyxgoldenknight",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxgoldenknight",
+    "page_title": "Golden Knight",
+    "provider": "High 5 Games",
+    "match_type": "exact",
+    "text_length": 2878,
+    "in_gt": false
+  },
+  {
+    "game_name": "Slingo X Scream",
+    "slug": "spinslingoxscream",
+    "url": "https://help.borgataonline.com/en/casino-help/instantwin/spinslingoxscream",
+    "page_title": "Slingo X-Scream",
+    "provider": "Gaming Realms",
+    "match_type": "exact",
+    "text_length": 3651,
+    "in_gt": false
+  },
+  {
+    "game_name": "Full Force Link Ch Ing Wa Sheng",
+    "slug": "spinfforcechlngwasheng",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinfforcechlngwasheng",
+    "page_title": "Full Force Link Ch'ing - Wa Sheng",
+    "provider": "Incredible Technologies",
+    "match_type": "exact",
+    "text_length": 2240,
+    "in_gt": false
+  },
+  {
+    "game_name": "Wild Explosion Get Cha Money",
+    "slug": "nyxwildexplosiongchamoney",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxwildexplosiongchamoney",
+    "page_title": "Wild Explosion Get'cha Money",
+    "provider": "Aruze",
+    "match_type": "exact",
+    "text_length": 3991,
+    "in_gt": false
+  },
+  {
+    "game_name": "Sizzling Kingdom Bison Xmas",
+    "slug": "nyxsizzlkinbxmasedition",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxsizzlkinbxmasedition",
+    "page_title": "Sizzling Kingdom Bison Xmas Edition",
+    "provider": "Wazdan",
+    "match_type": "minor-safe",
+    "text_length": 9761,
+    "in_gt": false
+  },
+  {
+    "game_name": "Top O The Bonus",
+    "slug": "nyxtopothebonus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxtopothebonus",
+    "page_title": "Top O'The Bonus",
+    "provider": "Inspired",
+    "match_type": "exact",
+    "text_length": 3838,
+    "in_gt": false
+  },
+  {
+    "game_name": "Light The Lamp",
+    "slug": "pariplaygretzkylighttlamp",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplaygretzkylighttlamp",
+    "page_title": "Gretzky Light The Lamp",
+    "provider": "Spinberry",
+    "match_type": "web-verified",
+    "text_length": 10551,
+    "in_gt": false
+  },
+  {
+    "game_name": "Medusa 2",
+    "slug": "amayamedusa2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/amayamedusa2",
+    "page_title": "Medusa II",
+    "provider": "Light & Wonder",
+    "match_type": "exact",
+    "text_length": 2831,
+    "in_gt": false
+  },
+  {
+    "game_name": "Stick Em",
+    "slug": "nyxstickemus",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/nyxstickemus",
+    "page_title": "Stick'Em",
+    "provider": "Hacksaw Gaming",
+    "match_type": "exact",
+    "text_length": 5100,
+    "in_gt": false
+  },
+  {
+    "game_name": "Top Of The Money Pots Of Wealth",
+    "slug": "novotopothemoneypow",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/novotopothemoneypow",
+    "page_title": "Top o' the Money - Pots of Wealth",
+    "provider": "Greentube",
+    "match_type": "safe-ambiguous",
+    "text_length": 2845,
+    "in_gt": false
+  },
+  {
+    "game_name": "Win A Beest",
+    "slug": "pngwinabeest",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/pngwinabeest",
+    "page_title": "Win-a-Beest",
+    "provider": "Play'n GO",
+    "match_type": "exact",
+    "text_length": 2956,
+    "in_gt": false
+  },
+  {
+    "game_name": "Scudamore Super Stakes",
+    "slug": "netentscudamoressuperstakes",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentscudamoressuperstakes",
+    "page_title": "Scudamore's Super Stakes",
+    "provider": "Evolution",
+    "match_type": "minor-safe",
+    "text_length": 8658,
+    "in_gt": false
+  },
+  {
+    "game_name": "Wings Of The Phoenix",
+    "slug": "spinkonamiwingsofthephoenix",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spinkonamiwingsofthephoenix",
+    "page_title": "Wings of the Phoenix",
+    "provider": "Konami",
+    "match_type": "exact",
+    "text_length": 1902,
+    "in_gt": false
+  },
+  {
+    "game_name": "Pot O Gold",
+    "slug": "pariplaypotogold",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/pariplaypotogold",
+    "page_title": "Pot O'Gold",
+    "provider": "Aristocrat",
+    "match_type": "exact",
+    "text_length": 6052,
+    "in_gt": false
+  },
+  {
+    "game_name": "Wild O Tron 3000",
+    "slug": "netentwildotron3000",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/netentwildotron3000",
+    "page_title": "Wild-O-Tron 3000",
+    "provider": "Evolution",
+    "match_type": "exact",
+    "text_length": 5081,
+    "in_gt": false
+  },
+  {
+    "game_name": "Lara Jones Treasure Of Egypt 2",
+    "slug": "spearheadljiscleopatra2",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/spearheadljiscleopatra2",
+    "page_title": "Lara Jones: Treasures of Egypt  II",
+    "provider": "Spearhead Studios",
+    "match_type": "safe-ambiguous",
+    "text_length": 5618,
+    "in_gt": false
+  },
+  {
+    "game_name": "Hotel Yeti Way",
+    "slug": "pnghotelyetiway",
+    "url": "https://help.mi.betmgm.com/en/casino-help/slots/pnghotelyetiway",
+    "page_title": "Hotel Yeti-Way",
+    "provider": "Play'n GO",
+    "match_type": "exact",
+    "text_length": 3752,
+    "in_gt": false
+  },
+  {
+    "game_name": "Dyn A Miners",
+    "slug": "igtdynaminers1",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/igtdynaminers1",
+    "page_title": "Dyn-a-Miners",
+    "provider": "IGT",
+    "match_type": "exact",
+    "text_length": 5874,
+    "in_gt": false
+  },
+  {
+    "game_name": "King Of The Catch Splash",
+    "slug": "roxorkngfdcatchspl",
+    "url": "https://help.borgataonline.com/en/casino-help/slots/roxorkngfdcatchspl",
+    "page_title": "King of Catch Splash",
+    "provider": "Aristocrat",
+    "match_type": "minor-safe",
+    "text_length": 1345,
+    "in_gt": false
+  }
+]

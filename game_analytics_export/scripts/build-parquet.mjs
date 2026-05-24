@@ -7,36 +7,37 @@
  * + 4500 sequential INSERT statements.
  */
 import { readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join, basename } from 'path';
+import { createRequire } from 'module';
 import { PROVIDER_NORMALIZATION_MAP, HIDDEN_FEATURES } from '../src/lib/shared-config.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = join(__dirname, '..', 'data');
+const require = createRequire(import.meta.url);
+const { DATA_DIR, MASTER_JSON, MAPPINGS, STAGING } = require('../src/lib/data-paths.cjs');
 
 function normalizeProvider(raw) {
     if (!raw) return 'Unknown';
     return PROVIDER_NORMALIZATION_MAP[raw] || raw;
 }
 
-function readJSON(filename) {
+function readJSONAt(fullPath, emptyFallback) {
     try {
-        return JSON.parse(readFileSync(join(DATA_DIR, filename), 'utf8'));
+        return JSON.parse(readFileSync(fullPath, 'utf8'));
     } catch {
-        console.warn(`⚠️  Could not read ${filename}, using empty fallback`);
-        return filename.endsWith('.json') && !filename.includes('master') ? {} : [];
+        const label = basename(fullPath);
+        console.warn(`⚠️  Could not read ${label}, using empty fallback`);
+        return emptyFallback === 'object' ? {} : [];
     }
 }
 
 async function main() {
     console.log('📦 Building games.parquet...');
 
-    const games = readJSON('game_data_master.json');
-    const themeMap = readJSON('theme_consolidation_map.json');
-    const artThemeMap = readJSON('art_theme_consolidation_map.json');
-    const franchiseMap = readJSON('franchise_mapping.json');
-    const confidenceMap = readJSON('confidence_map.json');
-    const artMap = readJSON('staged_art_characterization.json');
+    const games = readJSONAt(MASTER_JSON, 'array');
+    const themeMap = readJSONAt(MAPPINGS.theme, 'object');
+    const artThemeMap = readJSONAt(MAPPINGS.artTheme, 'object');
+    const franchiseMap = readJSONAt(MAPPINGS.franchise, 'object');
+    const confidenceMap = readJSONAt(MAPPINGS.confidence, 'object');
+    const artMap = readJSONAt(STAGING.art, 'object');
 
     console.log(`   ${games.length} games, ${Object.keys(themeMap).length} theme mappings`);
     console.log(`   ${Object.keys(artThemeMap).length} art theme mappings`);
@@ -149,6 +150,7 @@ async function main() {
             art_elements: Array.isArray(art.art_elements) && art.art_elements.length > 0 ? art.art_elements : null,
             art_narrative: art.art_narrative || null,
             art_color_tone: Array.isArray(art.art_color_tone) && art.art_color_tone.length > 0 ? art.art_color_tone : null,
+            art_color_tone_pct: Array.isArray(art.art_color_tone_pct) && art.art_color_tone_pct.length > 0 ? JSON.stringify(art.art_color_tone_pct) : null,
             art_confidence: art.art_confidence || null,
             data_confidence: game.data_confidence || null,
             extraction_date: game.extraction_date || null,

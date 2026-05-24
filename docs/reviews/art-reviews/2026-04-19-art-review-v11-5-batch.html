@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>V11.5 Reclassified Review</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #00d2ff; text-align: center; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 20px; margin: 20px 0; background: #16213e; }
+.game-title { font-size: 1.4em; font-weight: bold; color: #00d2ff; margin-bottom: 12px; }
+.screenshot { max-width: 720px; cursor: pointer; border-radius: 8px; transition: max-width 0.3s; }
+.screenshot:hover { max-width: 1100px; }
+.dims { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.dim { background: #0f3460; padding: 12px; border-radius: 8px; }
+.dim-label { font-weight: bold; color: #e94560; margin-bottom: 4px; }
+.dim-value { color: #fff; }
+.btns { margin-top: 8px; }
+.btn-ok, .btn-fix { padding: 4px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-right: 6px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-fix { background: #e74c3c; color: #fff; }
+.btn-ok.selected { box-shadow: 0 0 0 3px #27ae60; }
+.btn-fix.selected { box-shadow: 0 0 0 3px #c0392b; }
+.fix-note { display: none; margin-top: 6px; }
+.fix-note textarea { width: 90%; height: 40px; background: #1a1a2e; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 4px; }
+.export-btn { display: block; margin: 30px auto; padding: 12px 40px; background: #00d2ff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+.prev-note { color: #f39c12; font-size: 0.85em; margin-top: 4px; font-style: italic; }
+#export-area { width: 90%; height: 200px; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; font-size: 1.1em; }
+</style></head><body>
+<h1>V11.5 Reclassified Review (v11.4 batch re-run with fixes)</h1>
+<p class="summary">25 games reclassified with: Torches/Lanterns/Candles split, new vocab (Basketball Court, Rope Frame, Stairs/Steps, Stars/Planets), logo-char fix, ship symbol exclusion, operator header color guidance</p>
+<p class="summary">Review each dimension. Click OK or Fix. For fixes, type what's wrong. Then click Export at bottom.</p>
+<div class="game" id="g0">
+<div class="game-title">#0: 3 Clown Monty</div>
+<img class="screenshot" src="../screenshots/3-Clown-Monty.jpg" alt="3 Clown Monty">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Circus/Carnival</div>
+  <div class="prev-note">Previous fix: spooky/scary Circus</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Brown, Red, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Metal Frame, Chains/Locks/Keys, Stage Lights</div>
+  <div class="prev-note">Previous fix: weird cart/windows element, also Theme should be spooky/scary Circus</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g0','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g0','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g0-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g1">
+<div class="game-title">#1: Age Of The Gods Maze Keeper</div>
+<img class="screenshot" src="../screenshots/Age-Of-The-Gods-Maze-Keeper.jpg" alt="Age Of The Gods Maze Keeper">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Ancient Greece/Rome</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Purple, Gold, Orange</div>
+  <div class="prev-note">Previous fix: also red</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fire/Flames, Columns/Pillars, Stone Frame, Ancient Stone Carvings</div>
+  <div class="prev-note">Previous fix: Torches/Lanterns/Candles should be separated - not the same thing</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g1','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g1','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g1-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g2">
+<div class="game-title">#2: Arctic Enchantress</div>
+<img class="screenshot" src="../screenshots/Arctic-Enchantress.jpg" alt="Arctic Enchantress">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Arctic/Snow / Fantasy/Fairy Tale</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Purple, Pink</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Castle/Fortress/Tower, Snow/Ice Effects, Colored Frame, Crystal/Glass Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g2','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g2','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g2-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g3">
+<div class="game-title">#3: Ashoka</div>
+<img class="screenshot" src="../screenshots/Ashoka.jpg" alt="Ashoka">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Indian/South Asian</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Gold, Teal</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Emperor</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Stone Frame, Skulls/Bones, Columns/Pillars, Ancient Stone Carvings</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g3','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g3','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g3-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g4">
+<div class="game-title">#4: Basketball Star On Fire</div>
+<img class="screenshot" src="../screenshots/Basketball-Star-On-Fire.jpg" alt="Basketball Star On Fire">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Sports</div>
+  <div class="prev-note">Previous fix: should also say basketball</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Orange, Blue, Brown</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Basketball Court, Sports Arena/Stadium</div>
+  <div class="prev-note">Previous fix: basketball court should be in elements</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g4','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g4','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g4-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g5">
+<div class="game-title">#5: Bonus Bunnies</div>
+<img class="screenshot" src="../screenshots/Bonus-Bunnies.jpg" alt="Bonus Bunnies">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Farm/Countryside</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Brown, Light Blue</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Wood Frame, Fields/Grassland, Farmhouse/Barn, Trees/Forest</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g5','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g5','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g5-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g6">
+<div class="game-title">#6: Buckin Bucks</div>
+<img class="screenshot" src="../screenshots/Buckin-Bucks.jpg" alt="Buckin Bucks">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Wild West/Frontier</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g6','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g6','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g6-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Brown, Red, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g6','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g6','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g6-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g6','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g6','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g6-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Wood Frame, Metal Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g6','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g6','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g6-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g7">
+<div class="game-title">#7: Buffalo Blitz</div>
+<img class="screenshot" src="../screenshots/Buffalo-Blitz.jpg" alt="Buffalo Blitz">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Savanna/Wildlife</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g7','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g7','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g7-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Purple, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g7','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g7','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g7-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g7','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g7','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g7-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Mountains, Fields/Grassland, Colored Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g7','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g7','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g7-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g8">
+<div class="game-title">#8: Buffalo</div>
+<img class="screenshot" src="../screenshots/Buffalo.jpg" alt="Buffalo">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Savanna/Wildlife</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g8','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g8','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g8-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Purple, Blue, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g8','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g8','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g8-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g8','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g8','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g8-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Mountains, Minimal/No Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g8','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g8','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g8-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g9">
+<div class="game-title">#9: Captain Glum Pirate Hunter</div>
+<img class="screenshot" src="../screenshots/Captain-Glum-Pirate-Hunter.jpg" alt="Captain Glum Pirate Hunter">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Pirate Ship/Port / Tropical Island/Beach</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g9','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g9','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g9-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Teal, Brown, Beige</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g9','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g9','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g9-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g9','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g9','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g9-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Water Effects, Wood Frame, Bamboo/Tropical Plants, Stone Arch/Gateway</div>
+  <div class="prev-note">Previous fix: ship/boat is only a symbol, not element</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g9','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g9','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g9-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g10">
+<div class="game-title">#10: Chicken Fox</div>
+<img class="screenshot" src="../screenshots/Chicken-Fox.jpg" alt="Chicken Fox">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Farm/Countryside</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g10','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g10','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g10-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Red, Brown, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g10','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g10','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g10-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g10','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g10','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g10-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Wood Frame, Farmhouse/Barn, Coin Stacks, Fields/Grassland, Trees/Forest</div>
+  <div class="prev-note">Previous fix: missed all the cash elements</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g10','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g10','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g10-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g11">
+<div class="game-title">#11: Chili Chili Fire</div>
+<img class="screenshot" src="../screenshots/Chili-Chili-Fire.jpg" alt="Chili Chili Fire">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Mexican/Latin Village</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g11','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g11','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g11-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Orange, Blue, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g11','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g11','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g11-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g11','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g11','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g11-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Wood Frame, Colored Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g11','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g11','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g11-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g12">
+<div class="game-title">#12: Cleopatra Gold</div>
+<img class="screenshot" src="../screenshots/Cleopatra-Gold.jpg" alt="Cleopatra Gold">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Egyptian/Pharaoh</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g12','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g12','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g12-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Gold, Purple</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g12','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g12','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g12-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Cleopatra</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g12','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g12','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g12-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Stone Arch/Gateway, Hieroglyphs/Ancient Writing, Stone Frame, Pyramids/Temples, Torches, Columns/Pillars, Statues/Sculptures, Ancient Stone Carvings</div>
+  <div class="prev-note">Previous fix: only Ancient Stone Carvings, Hieroglyphs, stone Arc - rest are symbols</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g12','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g12','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g12-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g13">
+<div class="game-title">#13: Cosmic Cash</div>
+<img class="screenshot" src="../screenshots/Cosmic-Cash.jpg" alt="Cosmic Cash">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Outer Space</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g13','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g13','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g13-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Purple, Gold</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g13','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g13','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g13-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Alien</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g13','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g13','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g13-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Stars/Planets, Neon Glow, Minimal/No Frame</div>
+  <div class="prev-note">Previous fix: add specifically stars and planets</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g13','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g13','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g13-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g14">
+<div class="game-title">#14: Crazy Wizard</div>
+<img class="screenshot" src="../screenshots/Crazy-Wizard.jpg" alt="Crazy Wizard">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Fantasy/Fairy Tale</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g14','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g14','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g14-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Orange, Brown, Green</div>
+  <div class="prev-note">Previous fix: no blue - its the operators header, not the game</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g14','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g14','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g14-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g14','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g14','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g14-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fire/Flames, Metal Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g14','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g14','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g14-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g15">
+<div class="game-title">#15: Da Vinci Diamonds</div>
+<img class="screenshot" src="../screenshots/Da-Vinci-Diamonds.jpg" alt="Da Vinci Diamonds">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Luxury/VIP</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g15','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g15','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g15-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Gold, Black, Blue</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g15','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g15','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g15-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g15','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g15','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g15-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Crystal/Glass Frame, Colored Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g15','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g15','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g15-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g16">
+<div class="game-title">#16: Diamond Safari</div>
+<img class="screenshot" src="../screenshots/Diamond-Safari.jpg" alt="Diamond Safari">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Savanna/Wildlife</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g16','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g16','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g16-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Red, Blue, Gold</div>
+  <div class="prev-note">Previous fix: more like blue, brown earth colors + green</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g16','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g16','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g16-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">Lion</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g16','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g16','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g16-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Trees/Forest, Mountains, Colored Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g16','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g16','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g16-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g17">
+<div class="game-title">#17: Dino Pays</div>
+<img class="screenshot" src="../screenshots/Dino-Pays.jpg" alt="Dino Pays">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Prehistoric/Primordial</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g17','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g17','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g17-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Brown, Beige</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g17','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g17','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g17-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value"></div>
+  <div class="prev-note">Previous fix: not a real char - its in the logo</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g17','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g17','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g17-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Trees/Forest, Vines/Ivy/Plants, Skulls/Bones, Stone Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g17','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g17','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g17-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g18">
+<div class="game-title">#18: Fairy Fantasy Exotic Wilds</div>
+<img class="screenshot" src="../screenshots/Fairy-Fantasy-Exotic-Wilds.jpg" alt="Fairy Fantasy Exotic Wilds">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Fantasy/Fairy Tale / Forest/Woodland</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g18','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g18','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g18-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Green, Gold, Purple</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g18','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g18','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g18-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g18','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g18','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g18-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Trees/Forest, Vines/Ivy/Plants, Wood Frame, Magic Energy/Spell Effects</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g18','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g18','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g18-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g19">
+<div class="game-title">#19: Finns Golden Tavern</div>
+<img class="screenshot" src="../screenshots/Finns-Golden-Tavern.jpg" alt="Finns Golden Tavern">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Irish/Celtic Highlands / Tavern/Saloon</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g19','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g19','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g19-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Brown, Gold, Purple</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g19','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g19','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g19-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value"></div>
+  <div class="prev-note">Previous fix: no char</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g19','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g19','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g19-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Wood Frame, Rope Frame, Clocks/Gears/Mechanical, Candles, Stone Arch/Gateway, Books/Scrolls/Maps</div>
+  <div class="prev-note">Previous fix: separate Torches/Lanterns/Candles - asked multiple times</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g19','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g19','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g19-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g20">
+<div class="game-title">#20: Fishin Bonanza</div>
+<img class="screenshot" src="../screenshots/Fishin-Bonanza.jpg" alt="Fishin Bonanza">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Deep Ocean/Underwater / Lakeside/River/Fishing Dock</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g20','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g20','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g20-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Gold, Light Blue</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g20','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g20','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g20-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g20','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g20','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g20-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Rope Frame, Coral Reef/Underwater, Vines/Ivy/Plants</div>
+  <div class="prev-note">Previous fix: frame is more like a rope frame</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g20','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g20','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g20-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g21">
+<div class="game-title">#21: Flame</div>
+<img class="screenshot" src="../screenshots/Flame.jpg" alt="Flame">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Fantasy/Fairy Tale</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g21','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g21','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g21-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Purple, Teal</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g21','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g21','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g21-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g21','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g21','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g21-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Fire/Flames, Magic Energy/Spell Effects, Neon/LED Frame</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g21','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g21','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g21-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g22">
+<div class="game-title">#22: Fortune Temple</div>
+<img class="screenshot" src="../screenshots/Fortune-Temple.jpg" alt="Fortune Temple">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Aztec/Mayan</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g22','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g22','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g22-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Gold, Red, Orange</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g22','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g22','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g22-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g22','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g22','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g22-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Torches, Stairs/Steps, Fire/Flames, Pyramids/Temples, Ancient Stone Carvings</div>
+  <div class="prev-note">Previous fix: Torches should be separated from Lanterns/Candles, also stairs missing</div>
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g22','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g22','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g22-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g23">
+<div class="game-title">#23: Giza Infinity Reels</div>
+<img class="screenshot" src="../screenshots/Giza-Infinity-Reels.jpg" alt="Giza Infinity Reels">
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Egyptian/Pharaoh / Desert/Sahara</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g23','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g23','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g23-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Orange, Gold, Purple</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g23','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g23','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g23-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g23','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g23','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g23-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Pyramids/Temples, Mountains, Trees/Forest, Stone Frame, Hieroglyphs/Ancient Writing, Torches, Columns/Pillars, Statues/Sculptures</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g23','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g23','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g23-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+<div class="game" id="g24">
+<div class="game-title">#24: Gold Blitz</div>
+<p style="color:#e74c3c">No screenshot available</p>
+<div class="dims">
+<div class="dim">
+  <div class="dim-label">Theme</div>
+  <div class="dim-value">Classic Slots</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g24','art_theme','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g24','art_theme','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g24-art_theme-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Colors</div>
+  <div class="dim-value">Blue, Gold, Purple</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g24','art_color_tone','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g24','art_color_tone','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g24-art_color_tone-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Characters</div>
+  <div class="dim-value">No Characters (symbol-only game)</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g24','art_characters','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g24','art_characters','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g24-art_characters-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+<div class="dim">
+  <div class="dim-label">Elements</div>
+  <div class="dim-value">Lightning/Electricity, Stars/Planets</div>
+  
+  <div class="btns">
+    <button class="btn-ok" onclick="mark(this,'g24','art_elements','ok')">OK</button>
+    <button class="btn-fix" onclick="mark(this,'g24','art_elements','fix')">Fix</button>
+  </div>
+  <div class="fix-note" id="g24-art_elements-note">
+    <textarea placeholder="What's wrong?"></textarea>
+  </div>
+</div>
+</div></div>
+
+<button class="export-btn" onclick="exportAll()">Export Corrections</button>
+<textarea id="export-area" readonly></textarea>
+
+<script>
+const verdicts = {};
+
+function mark(btn, gid, dim, status) {
+    const key = gid + '-' + dim;
+    verdicts[key] = status;
+    const parent = btn.parentElement;
+    parent.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const noteDiv = document.getElementById(key + '-note');
+    noteDiv.style.display = status === 'fix' ? 'block' : 'none';
+}
+
+function exportAll() {
+    let ok = 0, fix = 0;
+    const corrections = [];
+    for (const [key, status] of Object.entries(verdicts)) {
+        if (status === 'ok') ok++;
+        else {
+            fix++;
+            const noteEl = document.getElementById(key + '-note');
+            const note = noteEl ? noteEl.querySelector('textarea').value : '';
+            corrections.push(key + ': ' + note);
+        }
+    }
+    const total = ok + fix;
+    let text = `V11.5 RECLASSIFIED REVIEW\nTotal: ${total} | OK: ${ok} | Fix: ${fix}\nAccuracy: ${total ? (100*ok/total).toFixed(1) : 0}%\n\nCORRECTIONS:\n`;
+    text += corrections.join('\n');
+    
+    const area = document.getElementById('export-area');
+    area.style.display = 'block';
+    area.value = text;
+    area.select();
+}
+</script>
+</body></html>

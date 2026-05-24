@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Hacksaw Gaming Screenshots (28 games)</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #00d2ff; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1600px; margin: 0 auto; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 15px; background: #16213e; }
+.game-title { font-size: 1.1em; font-weight: bold; color: #00d2ff; margin-bottom: 8px; }
+.game-meta { font-size: 0.85em; color: #888; margin-bottom: 8px; }
+.screenshot { width: 100%; border-radius: 8px; }
+.btns { margin-top: 8px; }
+.btn { padding: 6px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-right: 6px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-wrong { background: #e74c3c; color: #fff; }
+.btn-notgp { background: #f39c12; color: #000; }
+.btn.selected { box-shadow: 0 0 0 3px #fff; }
+.export-btn { display: block; margin: 30px auto; padding: 12px 40px; background: #00d2ff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+#results { width: 90%; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; min-height: 100px; }
+</style></head><body>
+<h1>Hacksaw Gaming Screenshots (28 games)</h1>
+<p class="summary">28 games. Review each screenshot.</p>
+<div class="grid">
+<div class="game" id="g0">
+  <div class="game-title">#1: Snow Slingers</div>
+  <div class="game-meta">Size: 177KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Snow-Slingers.png" alt="Snow Slingers">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(0,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(0,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(0,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g1">
+  <div class="game-title">#2: Wanted Dead Or A Wild</div>
+  <div class="game-meta">Size: 3635KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wanted-Dead-Or-A-Wild.png" alt="Wanted Dead Or A Wild">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(1,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(1,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(1,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g2">
+  <div class="game-title">#3: Ze Zeus</div>
+  <div class="game-meta">Size: 367KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Ze-Zeus.png" alt="Ze Zeus">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(2,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(2,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(2,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g3">
+  <div class="game-title">#4: Xmas Drop</div>
+  <div class="game-meta">Size: 463KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Xmas-Drop.png" alt="Xmas Drop">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(3,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(3,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(3,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g4">
+  <div class="game-title">#5: Rip City</div>
+  <div class="game-meta">Size: 1571KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rip-City.png" alt="Rip City">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(4,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(4,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(4,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g5">
+  <div class="game-title">#6: Fist Of Destruction</div>
+  <div class="game-meta">Size: 389KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fist-Of-Destruction.png" alt="Fist Of Destruction">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(5,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(5,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(5,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g6">
+  <div class="game-title">#7: Twisted Lab</div>
+  <div class="game-meta">Size: 461KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Twisted-Lab.png" alt="Twisted Lab">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(6,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(6,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(6,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g7">
+  <div class="game-title">#8: Cash Crew</div>
+  <div class="game-meta">Size: 424KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cash-Crew.png" alt="Cash Crew">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(7,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(7,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(7,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g8">
+  <div class="game-title">#9: Dragons Domain</div>
+  <div class="game-meta">Size: 357KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Dragons-Domain.png" alt="Dragons Domain">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(8,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(8,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(8,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g9">
+  <div class="game-title">#10: Slayers Inc</div>
+  <div class="game-meta">Size: 367KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Slayers-Inc.png" alt="Slayers Inc">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(9,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(9,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(9,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g10">
+  <div class="game-title">#11: Octo Attack</div>
+  <div class="game-meta">Size: 171KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Octo-Attack.png" alt="Octo Attack">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(10,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(10,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(10,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g11">
+  <div class="game-title">#12: Drop Em</div>
+  <div class="game-meta">Size: 459KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Drop-Em.png" alt="Drop Em">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(11,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(11,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(11,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g12">
+  <div class="game-title">#13: Freds Food Truck</div>
+  <div class="game-meta">Size: 205KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Freds-Food-Truck.png" alt="Freds Food Truck">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(12,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(12,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(12,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g13">
+  <div class="game-title">#14: Benny The Beer</div>
+  <div class="game-meta">Size: 487KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Benny-The-Beer.png" alt="Benny The Beer">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(13,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(13,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(13,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g14">
+  <div class="game-title">#15: Rusty And Curly</div>
+  <div class="game-meta">Size: 483KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rusty-And-Curly.png" alt="Rusty And Curly">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(14,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(14,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(14,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g15">
+  <div class="game-title">#16: Tai The Toad</div>
+  <div class="game-meta">Size: 446KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Tai-The-Toad.png" alt="Tai The Toad">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(15,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(15,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(15,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g16">
+  <div class="game-title">#17: Army Of Ares</div>
+  <div class="game-meta">Size: 456KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Army-Of-Ares.png" alt="Army Of Ares">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(16,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(16,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(16,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g17">
+  <div class="game-title">#18: Le Cowboy</div>
+  <div class="game-meta">Size: 432KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Le-Cowboy.png" alt="Le Cowboy">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(17,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(17,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(17,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g18">
+  <div class="game-title">#19: Steamrunners</div>
+  <div class="game-meta">Size: 336KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Steamrunners.png" alt="Steamrunners">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(18,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(18,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(18,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g19">
+  <div class="game-title">#20: Sun Princess</div>
+  <div class="game-meta">Size: 440KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Sun-Princess.png" alt="Sun Princess">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(19,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(19,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(19,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g20">
+  <div class="game-title">#21: The Count</div>
+  <div class="game-meta">Size: 422KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/The-Count.png" alt="The Count">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(20,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(20,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(20,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g21">
+  <div class="game-title">#22: Spear Of Athena</div>
+  <div class="game-meta">Size: 427KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Spear-Of-Athena.png" alt="Spear Of Athena">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(21,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(21,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(21,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g22">
+  <div class="game-title">#23: Mayan Stackways</div>
+  <div class="game-meta">Size: 3274KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Mayan-Stackways.png" alt="Mayan Stackways">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(22,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(22,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(22,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g23">
+  <div class="game-title">#24: Frkn Bananas</div>
+  <div class="game-meta">Size: 270KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Frkn-Bananas.png" alt="Frkn Bananas">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(23,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(23,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(23,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g24">
+  <div class="game-title">#25: Le Viking</div>
+  <div class="game-meta">Size: 260KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Le-Viking.png" alt="Le Viking">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(24,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(24,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(24,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g25">
+  <div class="game-title">#26: Marlin Masters</div>
+  <div class="game-meta">Size: 430KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Marlin-Masters.png" alt="Marlin Masters">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(25,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(25,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(25,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g26">
+  <div class="game-title">#27: Rise Of Ymir</div>
+  <div class="game-meta">Size: 455KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Rise-Of-Ymir.png" alt="Rise Of Ymir">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(26,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(26,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(26,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g27">
+  <div class="game-title">#28: Wings Of Horus</div>
+  <div class="game-meta">Size: 460KB | Source: hacksaw</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wings-Of-Horus.png" alt="Wings Of Horus">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(27,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(27,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(27,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div></div>
+<button class="export-btn" onclick="exportResults()">Export Review Results</button>
+<textarea id="results" readonly></textarea>
+<script>
+const decisions = {};
+function mark(i, decision, btn) {
+  decisions[i] = { game: document.querySelector('#g'+i+' .game-title').textContent.replace(/^#\d+: /, ''), decision };
+  btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function exportResults() {
+  const el = document.getElementById('results');
+  el.style.display = 'block';
+  el.value = JSON.stringify(Object.values(decisions), null, 2);
+}
+</script></body></html>

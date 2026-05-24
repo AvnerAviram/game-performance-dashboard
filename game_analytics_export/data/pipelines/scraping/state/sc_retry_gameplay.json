@@ -1,0 +1,3452 @@
+[
+  {
+    "name": "1 2 3 Bingo",
+    "slug": "1-2-3-Bingo",
+    "scSlug": "1-2-3-Bingo"
+  },
+  {
+    "name": "1.21 Gigawatts",
+    "slug": "1.21-Gigawatts",
+    "scSlug": "1-21-Gigawatts"
+  },
+  {
+    "name": "10000 Bc Jurassic 10k Ways",
+    "slug": "10000-Bc-Jurassic-10k-Ways",
+    "scSlug": "10-000-bc-jurassic-10k-ways"
+  },
+  {
+    "name": "10000 Lions 10k Ways",
+    "slug": "10000-Lions-10k-Ways",
+    "scSlug": "10-000-lions-10k-ways"
+  },
+  {
+    "name": "101 Candies",
+    "slug": "101-Candies",
+    "scSlug": "101-Candies"
+  },
+  {
+    "name": "101 Diamonds",
+    "slug": "101-Diamonds",
+    "scSlug": "101-diamonds"
+  },
+  {
+    "name": "10x Minimum Take It Or Build It",
+    "slug": "10x-Minimum-Take-It-Or-Build-It",
+    "scSlug": "10x-minimum-take-it-or-build-it"
+  },
+  {
+    "name": "11 Coins Of Fire",
+    "slug": "11-Coins-Of-Fire",
+    "scSlug": "11-Coins-of-Fire"
+  },
+  {
+    "name": "12 Super Hot Diamonds Ultimate",
+    "slug": "12-Super-Hot-Diamonds-Ultimate",
+    "scSlug": "12-super-hot-diamonds-ultimate"
+  },
+  {
+    "name": "15 Crystal Roses A Tale Of Love",
+    "slug": "15-Crystal-Roses-A-Tale-Of-Love",
+    "scSlug": "15-Crystal-Roses-A-Tale-of-Love"
+  },
+  {
+    "name": "2 Kings Of Africa",
+    "slug": "2-Kings-Of-Africa",
+    "scSlug": "2-Kings-of-Africa"
+  },
+  {
+    "name": "20 Armadillos",
+    "slug": "20-Armadillos",
+    "scSlug": "20-armadillos"
+  },
+  {
+    "name": "20 Coins",
+    "slug": "20-Coins",
+    "scSlug": "20-Coins"
+  },
+  {
+    "name": "243 Top Multiplier",
+    "slug": "243-Top-Multiplier",
+    "scSlug": "243-top-multiplier"
+  },
+  {
+    "name": "3 Golden Baskets Treasure Tides",
+    "slug": "3-Golden-Baskets-Treasure-Tides",
+    "scSlug": "3-golden-baskets-treasure-tides"
+  },
+  {
+    "name": "3 Hot Chilli Peppers",
+    "slug": "3-Hot-Chilli-Peppers",
+    "scSlug": "3-hot-chilli-peppers"
+  },
+  {
+    "name": "3 Mystic Lamps",
+    "slug": "3-Mystic-Lamps",
+    "scSlug": "3-mystic-lamps"
+  },
+  {
+    "name": "3 Pinatas",
+    "slug": "3-Pinatas",
+    "scSlug": "3-pinatas"
+  },
+  {
+    "name": "3 Pot Surge",
+    "slug": "3-Pot-Surge",
+    "scSlug": "3-pot-surge"
+  },
+  {
+    "name": "3 Pyramids Of Gold Hold And Win",
+    "slug": "3-Pyramids-Of-Gold-Hold-And-Win",
+    "scSlug": "3-pyramids-of-gold"
+  },
+  {
+    "name": "3 Skulls Of Voodoo",
+    "slug": "3-Skulls-Of-Voodoo",
+    "scSlug": "3-skulls-of-voodoo"
+  },
+  {
+    "name": "3 Wicked Devils",
+    "slug": "3-Wicked-Devils",
+    "scSlug": "3-wicked-devils"
+  },
+  {
+    "name": "3 Wonders The Good Miner",
+    "slug": "3-Wonders-The-Good-Miner",
+    "scSlug": "3-wonders-the-good-miner"
+  },
+  {
+    "name": "30 Coins",
+    "slug": "30-Coins",
+    "scSlug": "30-coins"
+  },
+  {
+    "name": "333 Fat Frogs Power Combo",
+    "slug": "333-Fat-Frogs-Power-Combo",
+    "scSlug": "333-fat-frogs-power-combo"
+  },
+  {
+    "name": "4 Hat Riches Burst",
+    "slug": "4-Hat-Riches-Burst",
+    "scSlug": "4-hat-riches-burst"
+  },
+  {
+    "name": "4 Wild Riches",
+    "slug": "4-Wild-Riches",
+    "scSlug": "4-wild-riches"
+  },
+  {
+    "name": "7s Luck",
+    "slug": "7s-Luck",
+    "scSlug": "7-s-luck"
+  },
+  {
+    "name": "7s Of Luck",
+    "slug": "7s-Of-Luck",
+    "scSlug": "7-s-of-Luck"
+  },
+  {
+    "name": "888 Empress",
+    "slug": "888-Empress",
+    "scSlug": "888-empress"
+  },
+  {
+    "name": "9 Bells",
+    "slug": "9-Bells",
+    "scSlug": "9-Bells"
+  },
+  {
+    "name": "9 Hearts",
+    "slug": "9-Hearts",
+    "scSlug": "9-hearts"
+  },
+  {
+    "name": "9 Masks Of Fire Hyper Spins",
+    "slug": "9-Masks-Of-Fire-Hyper-Spins",
+    "scSlug": "9-Masks-of-Fire-HyperSpins"
+  },
+  {
+    "name": "9 Pearls Of Fortune",
+    "slug": "9-Pearls-Of-Fortune",
+    "scSlug": "9-Pearls-of-Fortune"
+  },
+  {
+    "name": "9 Races To Glory",
+    "slug": "9-Races-To-Glory",
+    "scSlug": "9-Races-to-Glory"
+  },
+  {
+    "name": "A Christmas Full Of Wilds",
+    "slug": "A-Christmas-Full-Of-Wilds",
+    "scSlug": "A-Christmas-Full-of-Wilds"
+  },
+  {
+    "name": "A Mummy Full Of Wilds",
+    "slug": "A-Mummy-Full-Of-Wilds",
+    "scSlug": "a-mummy-full-of-wilds"
+  },
+  {
+    "name": "Age Of Beasts Infinity Reels",
+    "slug": "Age-Of-Beasts-Infinity-Reels",
+    "scSlug": "Age-of-Beasts-Infinity-Reels"
+  },
+  {
+    "name": "Age Of The Gods",
+    "slug": "Age-Of-The-Gods",
+    "scSlug": "Age-of-the-Gods"
+  },
+  {
+    "name": "Age Of The Gods Furious Four",
+    "slug": "Age-Of-The-Gods-Furious-Four",
+    "scSlug": "Age-of-the-Gods-Furious-Four"
+  },
+  {
+    "name": "Age Of The Gods King Of Olympus Fire Blaze Xtreme",
+    "slug": "Age-Of-The-Gods-King-Of-Olympus-Fire-Blaze-Xtreme",
+    "scSlug": "age-of-the-gods-king-of-olympus-fire-blaze-xtreme"
+  },
+  {
+    "name": "Age Of The Gods Wheels Of Olympus",
+    "slug": "Age-Of-The-Gods-Wheels-Of-Olympus",
+    "scSlug": "Age-of-the-Gods-Wheels-of-Olympus"
+  },
+  {
+    "name": "Ahoy Royale",
+    "slug": "Ahoy-Royale",
+    "scSlug": "ahoy-royale"
+  },
+  {
+    "name": "Akiva Claws Of Power",
+    "slug": "Akiva-Claws-Of-Power",
+    "scSlug": "Akiva-Claws-of-Power"
+  },
+  {
+    "name": "Aladdins Rollover Respins",
+    "slug": "Aladdins-Rollover-Respins",
+    "scSlug": "Aladdin-s-Rollover-Respins"
+  },
+  {
+    "name": "Alice In Vegasland",
+    "slug": "Alice-In-Vegasland",
+    "scSlug": "Alice-in-Vegasland"
+  },
+  {
+    "name": "Alices Mad Fortune",
+    "slug": "Alices-Mad-Fortune",
+    "scSlug": "Alice-s-Mad-Fortune"
+  },
+  {
+    "name": "All About The Wilds",
+    "slug": "All-About-The-Wilds",
+    "scSlug": "All-About-the-Wilds"
+  },
+  {
+    "name": "All Rocked Up",
+    "slug": "All-Rocked-Up",
+    "scSlug": "all-rocked-up"
+  },
+  {
+    "name": "Almighty Buffalo Megaways Jackpot Royale",
+    "slug": "Almighty-Buffalo-Megaways-Jackpot-Royale",
+    "scSlug": "almighty-buffalo-megaways"
+  },
+  {
+    "name": "Amped Up",
+    "slug": "Amped-Up",
+    "scSlug": "amped-up"
+  },
+  {
+    "name": "Amulets Of Horus",
+    "slug": "Amulets-Of-Horus",
+    "scSlug": "Amulets-of-Horus"
+  },
+  {
+    "name": "Ancient Tigers Legacy",
+    "slug": "Ancient-Tigers-Legacy",
+    "scSlug": "ancient-tiger-s-legacy"
+  },
+  {
+    "name": "Anika Axton Inferno",
+    "slug": "Anika-Axton-Inferno",
+    "scSlug": "anika-axton-inferno"
+  },
+  {
+    "name": "Apex Strike Megaways",
+    "slug": "Apex-Strike-Megaways",
+    "scSlug": "Apex-Strike-Megaways"
+  },
+  {
+    "name": "Ark Of Ra",
+    "slug": "Ark-Of-Ra",
+    "scSlug": "Ark-of-Ra"
+  },
+  {
+    "name": "Arrr 10k Ways",
+    "slug": "Arrr-10k-Ways",
+    "scSlug": "ARRR-10K-Ways"
+  },
+  {
+    "name": "Asian Fusion",
+    "slug": "Asian-Fusion",
+    "scSlug": "asian-fusion"
+  },
+  {
+    "name": "Astro Dogfight 10k Ways",
+    "slug": "Astro-Dogfight-10k-Ways",
+    "scSlug": "astro-dogfight-10k-ways"
+  },
+  {
+    "name": "Astronaut",
+    "slug": "Astronaut",
+    "scSlug": "Astronaut"
+  },
+  {
+    "name": "Astros",
+    "slug": "Astros",
+    "scSlug": "Astros"
+  },
+  {
+    "name": "Aztec Inferno Gold Eruption",
+    "slug": "Aztec-Inferno-Gold-Eruption",
+    "scSlug": "aztec-inferno-gold-eruption"
+  },
+  {
+    "name": "Babylon Riches",
+    "slug": "Babylon-Riches",
+    "scSlug": "babylon-riches"
+  },
+  {
+    "name": "Backstreet Wilds",
+    "slug": "Backstreet-Wilds",
+    "scSlug": "backstreet-wilds"
+  },
+  {
+    "name": "Bananaz 10k Ways",
+    "slug": "Bananaz-10k-Ways",
+    "scSlug": "Bananaz-10K-Ways"
+  },
+  {
+    "name": "Bank Busters The Big Score",
+    "slug": "Bank-Busters-The-Big-Score",
+    "scSlug": "bank-busters-the-big-score"
+  },
+  {
+    "name": "Bankin Bacon Jackpot Royale",
+    "slug": "Bankin-Bacon-Jackpot-Royale",
+    "scSlug": "Bankin-Bacon"
+  },
+  {
+    "name": "Bao Zhu Zhao Fu Purple Celebration",
+    "slug": "Bao-Zhu-Zhao-Fu-Purple-Celebration",
+    "scSlug": "bao-zhu-zhao-fu-purple-celebration"
+  },
+  {
+    "name": "Baozang The Legend Of 3 Coins",
+    "slug": "Baozang-The-Legend-Of-3-Coins",
+    "scSlug": "baozang-the-legend-of-3-coins"
+  },
+  {
+    "name": "Barn Busters",
+    "slug": "Barn-Busters",
+    "scSlug": "barn-busters"
+  },
+  {
+    "name": "Barnyard Bash Chicken Chase",
+    "slug": "Barnyard-Bash-Chicken-Chase",
+    "scSlug": "barnyard-bash-chicken-chase"
+  },
+  {
+    "name": "Bass Cash Christmas X Up",
+    "slug": "Bass-Cash-Christmas-X-Up",
+    "scSlug": "bass-cash-christmas-x-up"
+  },
+  {
+    "name": "Battle For Booty LuckyTap \u2122",
+    "slug": "Battle-For-Booty-LuckyTap-\u2122",
+    "scSlug": "battle-for-booty-luckytap"
+  },
+  {
+    "name": "Beach Invaders",
+    "slug": "Beach-Invaders",
+    "scSlug": "Beach-Invaders"
+  },
+  {
+    "name": "Beasts Of Fire",
+    "slug": "Beasts-Of-Fire",
+    "scSlug": "Beasts-of-Fire"
+  },
+  {
+    "name": "Beehive Bonanza",
+    "slug": "Beehive-Bonanza",
+    "scSlug": "Bee-Hive-Bonanza"
+  },
+  {
+    "name": "Bells And Holly Multiplier Retro Roller",
+    "slug": "Bells-And-Holly-Multiplier-Retro-Roller",
+    "scSlug": "bells-and-holly-multiplier-retro-roller"
+  },
+  {
+    "name": "Bells Of Fire",
+    "slug": "Bells-Of-Fire",
+    "scSlug": "bells-of-fire"
+  },
+  {
+    "name": "Big Bang Boom",
+    "slug": "Big-Bang-Boom",
+    "scSlug": "Big-Bang-Boom"
+  },
+  {
+    "name": "Big Bounty Cash Boom",
+    "slug": "Big-Bounty-Cash-Boom",
+    "scSlug": "big-bounty-cash-boom"
+  },
+  {
+    "name": "Big Catch Bass Fishing Christmas Jackpot Royale",
+    "slug": "Big-Catch-Bass-Fishing-Christmas-Jackpot-Royale",
+    "scSlug": "big-catch-bass-fishing-christmas"
+  },
+  {
+    "name": "Big City 5s",
+    "slug": "Big-City-5s",
+    "scSlug": "Big-City-5-s"
+  },
+  {
+    "name": "Big Fishing Net Fortune",
+    "slug": "Big-Fishing-Net-Fortune",
+    "scSlug": "big-fishing-net-fortune"
+  },
+  {
+    "name": "Big Hot Flaming Pots Tasty Treasures",
+    "slug": "Big-Hot-Flaming-Pots-Tasty-Treasures",
+    "scSlug": "big-hot-flaming-pots-tasty-treasures"
+  },
+  {
+    "name": "Big Money Bass",
+    "slug": "Big-Money-Bass",
+    "scSlug": "Big-Money-Bass"
+  },
+  {
+    "name": "Big Money Wheel",
+    "slug": "Big-Money-Wheel",
+    "scSlug": "big-money-wheel"
+  },
+  {
+    "name": "Bigger Catch Bass Fishing Jackpot Royale Express",
+    "slug": "Bigger-Catch-Bass-Fishing-Jackpot-Royale-Express",
+    "scSlug": "bigger-catch-bass-fishing"
+  },
+  {
+    "name": "Bigger Piggy Christmas Bank",
+    "slug": "Bigger-Piggy-Christmas-Bank",
+    "scSlug": "bigger-piggy-christmas-bank"
+  },
+  {
+    "name": "Biggest Vault",
+    "slug": "Biggest-Vault",
+    "scSlug": "biggest-vault"
+  },
+  {
+    "name": "Bikers Bounty",
+    "slug": "Bikers-Bounty",
+    "scSlug": "Biker-s-Bounty"
+  },
+  {
+    "name": "Billionaires Bank",
+    "slug": "Billionaires-Bank",
+    "scSlug": "billionaire-s-bank"
+  },
+  {
+    "name": "Billionaires Bank Deluxeways",
+    "slug": "Billionaires-Bank-Deluxeways",
+    "scSlug": "billionaire-s-bank-deluxeways"
+  },
+  {
+    "name": "Billionaires Bank Prize Path",
+    "slug": "Billionaires-Bank-Prize-Path",
+    "scSlug": "billionaire-s-bank-prize-path"
+  },
+  {
+    "name": "Bingo Staxx Rudolphs Reign",
+    "slug": "Bingo-Staxx-Rudolphs-Reign",
+    "scSlug": "Bingo-Staxx-Rudolph-s-Reign"
+  },
+  {
+    "name": "Black Eagle Triple Shot",
+    "slug": "Black-Eagle-Triple-Shot",
+    "scSlug": "black-eagle-triple-shot"
+  },
+  {
+    "name": "Blaze And Frost",
+    "slug": "Blaze-And-Frost",
+    "scSlug": "Blaze-and-Frost"
+  },
+  {
+    "name": "Blazing 777 2x3x5x",
+    "slug": "Blazing-777-2x3x5x",
+    "scSlug": "Blazing-777-2x-3x-5x"
+  },
+  {
+    "name": "Blazing 777 2x3x5x Cashways",
+    "slug": "Blazing-777-2x3x5x-Cashways",
+    "scSlug": "blazing-777-2x-3x-5x-cashways"
+  },
+  {
+    "name": "Blazing Stampede",
+    "slug": "Blazing-Stampede",
+    "scSlug": "blazing-stampede"
+  },
+  {
+    "name": "Blazing Tiki",
+    "slug": "Blazing-Tiki",
+    "scSlug": "blazing-tiki"
+  },
+  {
+    "name": "Boat Bonanza",
+    "slug": "Boat-Bonanza",
+    "scSlug": "Boat-Bonanza"
+  },
+  {
+    "name": "Bon Bomb Lux Pots",
+    "slug": "Bon-Bomb-Lux-Pots",
+    "scSlug": "Bon-Bomb-Luxpots"
+  },
+  {
+    "name": "Bone Appetit",
+    "slug": "Bone-Appetit",
+    "scSlug": "bone-appetit"
+  },
+  {
+    "name": "Book Of Blackeyes Bounty",
+    "slug": "Book-Of-Blackeyes-Bounty",
+    "scSlug": "Book-of-Blackeye-s-Bounty"
+  },
+  {
+    "name": "Book Of Captain Silver",
+    "slug": "Book-Of-Captain-Silver",
+    "scSlug": "Book-of-Captain-Silver"
+  },
+  {
+    "name": "Book Of Riches Deluxe Chapter 2",
+    "slug": "Book-Of-Riches-Deluxe-Chapter-2",
+    "scSlug": "Book-of-Riches-Deluxe-Chapter-2"
+  },
+  {
+    "name": "Boom Star Fruits",
+    "slug": "Boom-Star-Fruits",
+    "scSlug": "boom-star-fruits"
+  },
+  {
+    "name": "Bounty Hunt Reloaded",
+    "slug": "Bounty-Hunt-Reloaded",
+    "scSlug": "bounty-hunt-reloaded"
+  },
+  {
+    "name": "Break Da Bank Retro Roller",
+    "slug": "Break-Da-Bank-Retro-Roller",
+    "scSlug": "Break-da-Bank-Retro-Roller"
+  },
+  {
+    "name": "Break The Piggy Bank (Octoplay)",
+    "slug": "Break-The-Piggy-Bank-(Octoplay)",
+    "scSlug": "break-the-piggy-bank-octoplay"
+  },
+  {
+    "name": "Break The Vault",
+    "slug": "Break-The-Vault",
+    "scSlug": "break-the-vault"
+  },
+  {
+    "name": "Brunos Vegas Gold Blitz",
+    "slug": "Brunos-Vegas-Gold-Blitz",
+    "scSlug": "bruno-s-vegas-gold-blitz"
+  },
+  {
+    "name": "Brute Force",
+    "slug": "Brute-Force",
+    "scSlug": "Brute-Force"
+  },
+  {
+    "name": "Bubblin Riches",
+    "slug": "Bubblin-Riches",
+    "scSlug": "bubblin-riches"
+  },
+  {
+    "name": "Bucks And Doe 10k Ways",
+    "slug": "Bucks-And-Doe-10k-Ways",
+    "scSlug": "Bucks-And-Doe-10K-Ways"
+  },
+  {
+    "name": "Buckshot Wilds",
+    "slug": "Buckshot-Wilds",
+    "scSlug": "Buckshot-Wilds"
+  },
+  {
+    "name": "Buffalo Blaze Wild Wealth",
+    "slug": "Buffalo-Blaze-Wild-Wealth",
+    "scSlug": "buffalo-blaze-wild-wealth"
+  },
+  {
+    "name": "Buffalo Smash",
+    "slug": "Buffalo-Smash",
+    "scSlug": "Buffalo-Smash"
+  },
+  {
+    "name": "Bufon Fortuna",
+    "slug": "Bufon-Fortuna",
+    "scSlug": "bufon-fortuna"
+  },
+  {
+    "name": "Buggy Zap Luckytap\u2122",
+    "slug": "Buggy-Zap-Luckytap\u2122",
+    "scSlug": "buggyzap-luckytap"
+  },
+  {
+    "name": "Bugsys Bar",
+    "slug": "Bugsys-Bar",
+    "scSlug": "Bugsy-s-Bar"
+  },
+  {
+    "name": "Buildin More Bucks",
+    "slug": "Buildin-More-Bucks",
+    "scSlug": "buildin-more-bucks"
+  },
+  {
+    "name": "Bullion Bars Grab The Gold",
+    "slug": "Bullion-Bars-Grab-The-Gold",
+    "scSlug": "Bullion-Bars-Grab-the-Gold"
+  },
+  {
+    "name": "Bunny Loot",
+    "slug": "Bunny-Loot",
+    "scSlug": "bunny-loot"
+  },
+  {
+    "name": "Burn Burn Burn",
+    "slug": "Burn-Burn-Burn",
+    "scSlug": "burn-burn-burn"
+  },
+  {
+    "name": "Burn In Hell Hold And Win",
+    "slug": "Burn-In-Hell-Hold-And-Win",
+    "scSlug": "burn-in-hell"
+  },
+  {
+    "name": "Busters Bones",
+    "slug": "Busters-Bones",
+    "scSlug": "Buster-s-Bones"
+  },
+  {
+    "name": "Buy A Ball Keno",
+    "slug": "Buy-A-Ball-Keno",
+    "scSlug": "buy-a-ball-keno"
+  },
+  {
+    "name": "Cairo Link And Win",
+    "slug": "Cairo-Link-And-Win",
+    "scSlug": "Cairo-Link-and-Win"
+  },
+  {
+    "name": "Cake And Ice Cream",
+    "slug": "Cake-And-Ice-Cream",
+    "scSlug": "Cake-and-Ice-Cream"
+  },
+  {
+    "name": "Candy Blast",
+    "slug": "Candy-Blast",
+    "scSlug": "candy-blast"
+  },
+  {
+    "name": "Candy Combo Power Combo",
+    "slug": "Candy-Combo-Power-Combo",
+    "scSlug": "candy-combo-power-combo"
+  },
+  {
+    "name": "Candy Mine Megaways",
+    "slug": "Candy-Mine-Megaways",
+    "scSlug": "candy-mine-megaways"
+  },
+  {
+    "name": "Candy Treasures",
+    "slug": "Candy-Treasures",
+    "scSlug": "candy-treasures"
+  },
+  {
+    "name": "Candy Treasures Cash Towers",
+    "slug": "Candy-Treasures-Cash-Towers",
+    "scSlug": "candy-treasures-cash-towers"
+  },
+  {
+    "name": "Captain Swashbuckle Triple Collect",
+    "slug": "Captain-Swashbuckle-Triple-Collect",
+    "scSlug": "captain-swashbuckle-triple-collect"
+  },
+  {
+    "name": "Captain Xenos Earth Adventure",
+    "slug": "Captain-Xenos-Earth-Adventure",
+    "scSlug": "Captain-Xenos-Earth-Adventure"
+  },
+  {
+    "name": "Carnival Riches",
+    "slug": "Carnival-Riches",
+    "scSlug": "carnival-riches"
+  },
+  {
+    "name": "Carts Of Cash",
+    "slug": "Carts-Of-Cash",
+    "scSlug": "Carts-of-Cash"
+  },
+  {
+    "name": "Cash Cascade 100 Charming 7s",
+    "slug": "Cash-Cascade-100-Charming-7s",
+    "scSlug": "cash-cascade-100-charming-7-s"
+  },
+  {
+    "name": "Cash Eruption Big Bank Breakout",
+    "slug": "Cash-Eruption-Big-Bank-Breakout",
+    "scSlug": "cash-eruption-big-bank-breakout"
+  },
+  {
+    "name": "Cash Eruption Rey Picante Del Pollo",
+    "slug": "Cash-Eruption-Rey-Picante-Del-Pollo",
+    "scSlug": "cash-eruption-rey-picante-del-pollo"
+  },
+  {
+    "name": "Cash Express Legend Buffalo",
+    "slug": "Cash-Express-Legend-Buffalo",
+    "scSlug": "cash-express-legend-buffalo"
+  },
+  {
+    "name": "Cash Hit Blaze To 1000x",
+    "slug": "Cash-Hit-Blaze-To-1000x",
+    "scSlug": "cash-hit-blaze-to-1000x"
+  },
+  {
+    "name": "Cash Jackpot Hitz 2",
+    "slug": "Cash-Jackpot-Hitz-2",
+    "scSlug": "cash-jackpot-hitz-2"
+  },
+  {
+    "name": "Cash Or Nothing",
+    "slug": "Cash-Or-Nothing",
+    "scSlug": "Cash-or-Nothing"
+  },
+  {
+    "name": "Cash Pong Instant Tap",
+    "slug": "Cash-Pong-Instant-Tap",
+    "scSlug": "Cash-Pong-Instant-Tap"
+  },
+  {
+    "name": "Cash Pots Blazinator",
+    "slug": "Cash-Pots-Blazinator",
+    "scSlug": "cashpots-blazinator"
+  },
+  {
+    "name": "Cash Spree Dragon",
+    "slug": "Cash-Spree-Dragon",
+    "scSlug": "cash-spree-dragon"
+  },
+  {
+    "name": "Cash Squares Instant Tap",
+    "slug": "Cash-Squares-Instant-Tap",
+    "scSlug": "Cash-Squares-Instant-Tap"
+  },
+  {
+    "name": "Cash Summit Jackpot Royale",
+    "slug": "Cash-Summit-Jackpot-Royale",
+    "scSlug": "cash-summit"
+  },
+  {
+    "name": "Cash Volt Supercharged",
+    "slug": "Cash-Volt-Supercharged",
+    "scSlug": "cash-volt-supercharged"
+  },
+  {
+    "name": "Casino Night",
+    "slug": "Casino-Night",
+    "scSlug": "casino-night"
+  },
+  {
+    "name": "Castle Cash 10k Ways",
+    "slug": "Castle-Cash-10k-Ways",
+    "scSlug": "castle-cash-10k-ways"
+  },
+  {
+    "name": "Cat And Mouse Collect",
+    "slug": "Cat-And-Mouse-Collect",
+    "scSlug": "cat-and-mouse-collect"
+  },
+  {
+    "name": "Catch Of The Christmas Day Respin Em In",
+    "slug": "Catch-Of-The-Christmas-Day-Respin-Em-In",
+    "scSlug": "Catch-of-the-Christmas-Day-Respin-Em-In"
+  },
+  {
+    "name": "Catch Of The Day Reeling Em In",
+    "slug": "Catch-Of-The-Day-Reeling-Em-In",
+    "scSlug": "Catch-of-the-Day-Reeling-Em-In"
+  },
+  {
+    "name": "Celestial Flash Of Zeus",
+    "slug": "Celestial-Flash-Of-Zeus",
+    "scSlug": "celestial-flash-of-zeus"
+  },
+  {
+    "name": "Celtic Coins Cashways",
+    "slug": "Celtic-Coins-Cashways",
+    "scSlug": "celtic-coins-cashways"
+  },
+  {
+    "name": "Champions Of Olympus",
+    "slug": "Champions-Of-Olympus",
+    "scSlug": "Champions-of-Olympus"
+  },
+  {
+    "name": "Charming Hearts",
+    "slug": "Charming-Hearts",
+    "scSlug": "Charming-Hearts"
+  },
+  {
+    "name": "Chests Of Gold Power Combo",
+    "slug": "Chests-Of-Gold-Power-Combo",
+    "scSlug": "Chests-of-Gold-Power-Combo"
+  },
+  {
+    "name": "Chicken Burst Megaways",
+    "slug": "Chicken-Burst-Megaways",
+    "scSlug": "chicken-burst-megaways"
+  },
+  {
+    "name": "Christmas Megapots",
+    "slug": "Christmas-Megapots",
+    "scSlug": "christmas-megapots"
+  },
+  {
+    "name": "Christmas Wins 2",
+    "slug": "Christmas-Wins-2",
+    "scSlug": "christmas-wins-2"
+  },
+  {
+    "name": "Cleopatra Megaways Hold And Win",
+    "slug": "Cleopatra-Megaways-Hold-And-Win",
+    "scSlug": "Cleopatra-Megaways"
+  },
+  {
+    "name": "Coconut Climb LuckyTap \u2122",
+    "slug": "Coconut-Climb-LuckyTap-\u2122",
+    "scSlug": "coconut-climb-luckytap"
+  },
+  {
+    "name": "Coin Inferno Step N Stack",
+    "slug": "Coin-Inferno-Step-N-Stack",
+    "scSlug": "coin-inferno-step-n-stack"
+  },
+  {
+    "name": "Coin Kingdom Aztec",
+    "slug": "Coin-Kingdom-Aztec",
+    "scSlug": "coin-kingdom-aztec"
+  },
+  {
+    "name": "Coin Kingdom Egyptian",
+    "slug": "Coin-Kingdom-Egyptian",
+    "scSlug": "coin-kingdom-egyptian"
+  },
+  {
+    "name": "Coin Strike Hold And Win",
+    "slug": "Coin-Strike-Hold-And-Win",
+    "scSlug": "Coin-Strike-Hold-and-Win"
+  },
+  {
+    "name": "Coins Of The Hood 10000 Ways",
+    "slug": "Coins-Of-The-Hood-10000-Ways",
+    "scSlug": "coins-of-the-hood-10-000-ways"
+  },
+  {
+    "name": "Cop The Lot Megaways Power Play",
+    "slug": "Cop-The-Lot-Megaways-Power-Play",
+    "scSlug": "cop-the-lot-megaways"
+  },
+  {
+    "name": "Cops N Robbers Grand Chance",
+    "slug": "Cops-N-Robbers-Grand-Chance",
+    "scSlug": "cops-n-robbers-grand-chance"
+  },
+  {
+    "name": "Cossacks The Wild Hunt",
+    "slug": "Cossacks-The-Wild-Hunt",
+    "scSlug": "Cossacks-the-Wild-Hunt"
+  },
+  {
+    "name": "Crab Trap",
+    "slug": "Crab-Trap",
+    "scSlug": "Crab-Trap"
+  },
+  {
+    "name": "Crabbin Crazy Hold And Win",
+    "slug": "Crabbin-Crazy-Hold-And-Win",
+    "scSlug": "Crabbin-Crazy"
+  },
+  {
+    "name": "Crabbin For Cash Extra Big Catch Jackpot Royale",
+    "slug": "Crabbin-For-Cash-Extra-Big-Catch-Jackpot-Royale",
+    "scSlug": "Crabbin-For-Cash-Extra-Big-Catch"
+  },
+  {
+    "name": "Crabbin For Cash Extra Big Splash Jackpot Royale",
+    "slug": "Crabbin-For-Cash-Extra-Big-Splash-Jackpot-Royale",
+    "scSlug": "Crabbin-For-Cash-Extra-Big-Splash"
+  },
+  {
+    "name": "Crabbys Gold",
+    "slug": "Crabbys-Gold",
+    "scSlug": "crabby-s-gold"
+  },
+  {
+    "name": "Crack The Code  Instant Tap",
+    "slug": "Crack-The-Code-Instant-Tap",
+    "scSlug": "Crack-The-Code-Instant-Tap"
+  },
+  {
+    "name": "Crazy Digginz Its All Mine",
+    "slug": "Crazy-Digginz-Its-All-Mine",
+    "scSlug": "Crazy-Digginz-It-s-all-Mine"
+  },
+  {
+    "name": "Creepy Christmas",
+    "slug": "Creepy-Christmas",
+    "scSlug": "creepy-christmas"
+  },
+  {
+    "name": "Cursed Treasure",
+    "slug": "Cursed-Treasure",
+    "scSlug": "Cursed-Treasure"
+  },
+  {
+    "name": "Cyber Attack",
+    "slug": "Cyber-Attack",
+    "scSlug": "Cyber-Attack"
+  },
+  {
+    "name": "Da Vinci 77",
+    "slug": "Da-Vinci-77",
+    "scSlug": "da-vinci-77"
+  },
+  {
+    "name": "Da Vinci Deluxe Ways 2",
+    "slug": "Da-Vinci-Deluxe-Ways-2",
+    "scSlug": "da-vinci-deluxeways-2"
+  },
+  {
+    "name": "Da Vinci Loot Link",
+    "slug": "Da-Vinci-Loot-Link",
+    "scSlug": "da-vinci-loot-link"
+  },
+  {
+    "name": "Da Vinci X 1000",
+    "slug": "Da-Vinci-X-1000",
+    "scSlug": "da-vinci-x-1000"
+  },
+  {
+    "name": "Dan Marino Gunslinger",
+    "slug": "Dan-Marino-Gunslinger",
+    "scSlug": "Dan-Marino-Gunslinger"
+  },
+  {
+    "name": "Dangerous Beauty Blades Edge",
+    "slug": "Dangerous-Beauty-Blades-Edge",
+    "scSlug": "Dangerous-Beauty-Blade-s-Edge"
+  },
+  {
+    "name": "Dark Waters 2 Power Combo",
+    "slug": "Dark-Waters-2-Power-Combo",
+    "scSlug": "dark-waters-2-power-combo"
+  },
+  {
+    "name": "Dawn Of The Vikings Power Combo",
+    "slug": "Dawn-Of-The-Vikings-Power-Combo",
+    "scSlug": "Dawn-of-the-Vikings-Power-Combo"
+  },
+  {
+    "name": "Dazzle Me Christmas",
+    "slug": "Dazzle-Me-Christmas",
+    "scSlug": "dazzle-me-christmas"
+  },
+  {
+    "name": "Dead Mans Gold",
+    "slug": "Dead-Mans-Gold",
+    "scSlug": "Dead-Man-s-Gold"
+  },
+  {
+    "name": "Dead West",
+    "slug": "Dead-West",
+    "scSlug": "dead-west"
+  },
+  {
+    "name": "Deal Or No Deal Bankers Bonanza",
+    "slug": "Deal-Or-No-Deal-Bankers-Bonanza",
+    "scSlug": "Deal-Or-No-Deal-Banker-s-Bonanza"
+  },
+  {
+    "name": "Deal Or No Deal Golden Case Megaways",
+    "slug": "Deal-Or-No-Deal-Golden-Case-Megaways",
+    "scSlug": "Deal-or-No-Deal-Golden-Case-Megaways"
+  },
+  {
+    "name": "Deal Or No Deal The Big Hit Megaways Jackpot Royale",
+    "slug": "Deal-Or-No-Deal-The-Big-Hit-Megaways-Jackpot-Royale",
+    "scSlug": "Deal-Or-No-Deal-The-Big-Hit-Megaways"
+  },
+  {
+    "name": "Dear Santa",
+    "slug": "Dear-Santa",
+    "scSlug": "dear-santa"
+  },
+  {
+    "name": "Deco Diamonds Elite",
+    "slug": "Deco-Diamonds-Elite",
+    "scSlug": "deco-diamonds-elite"
+  },
+  {
+    "name": "Demons Gold",
+    "slug": "Demons-Gold",
+    "scSlug": "demon-s-gold"
+  },
+  {
+    "name": "Devils Fruit Inferno",
+    "slug": "Devils-Fruit-Inferno",
+    "scSlug": "devil-s-fruit-inferno"
+  },
+  {
+    "name": "Devils Lock",
+    "slug": "Devils-Lock",
+    "scSlug": "Devil-s-Lock"
+  },
+  {
+    "name": "Diamond Diamond Diamond",
+    "slug": "Diamond-Diamond-Diamond",
+    "scSlug": "diamond-diamond-diamond"
+  },
+  {
+    "name": "Diamond Explosion Christmas Tango",
+    "slug": "Diamond-Explosion-Christmas-Tango",
+    "scSlug": "diamond-explosion-christmas-tango"
+  },
+  {
+    "name": "Diamond Mystery 40 Charming 7s",
+    "slug": "Diamond-Mystery-40-Charming-7s",
+    "scSlug": "diamond-mystery-40-charming-7-s"
+  },
+  {
+    "name": "Diamond Mystery Fruitilicious Deluxe",
+    "slug": "Diamond-Mystery-Fruitilicious-Deluxe",
+    "scSlug": "Diamond-Mystery-Fruitilicious-deluxe"
+  },
+  {
+    "name": "Diamond Pups",
+    "slug": "Diamond-Pups",
+    "scSlug": "diamond-pups"
+  },
+  {
+    "name": "Diamond Supercharge",
+    "slug": "Diamond-Supercharge",
+    "scSlug": "diamond-supercharge"
+  },
+  {
+    "name": "Digging For Wilds",
+    "slug": "Digging-For-Wilds",
+    "scSlug": "digging-for-wilds"
+  },
+  {
+    "name": "Dinero N Oro Superbonus",
+    "slug": "Dinero-N-Oro-Superbonus",
+    "scSlug": "dinero-n-oro-superbonus"
+  },
+  {
+    "name": "Disco Beats",
+    "slug": "Disco-Beats",
+    "scSlug": "Disco-Beats"
+  },
+  {
+    "name": "Dont Eat The Candy",
+    "slug": "Dont-Eat-The-Candy",
+    "scSlug": "Don-t-Eat-the-Candy"
+  },
+  {
+    "name": "Double Honey Money",
+    "slug": "Double-Honey-Money",
+    "scSlug": "double-honey-money"
+  },
+  {
+    "name": "Double Rainbow",
+    "slug": "Double-Rainbow",
+    "scSlug": "Double-Rainbow"
+  },
+  {
+    "name": "Down The Chimney",
+    "slug": "Down-The-Chimney",
+    "scSlug": "Down-the-Chimney"
+  },
+  {
+    "name": "Dragon Spin Cross Link Fire",
+    "slug": "Dragon-Spin-Cross-Link-Fire",
+    "scSlug": "dragon-spin-crosslink-fire"
+  },
+  {
+    "name": "Dragons Aura LuckyTap \u2122",
+    "slug": "Dragons-Aura-LuckyTap-\u2122",
+    "scSlug": "dragon-s-aura-luckytap"
+  },
+  {
+    "name": "Dragons Blessings",
+    "slug": "Dragons-Blessings",
+    "scSlug": "Dragon-s-Blessings"
+  },
+  {
+    "name": "Dragons Blessings Prosperity",
+    "slug": "Dragons-Blessings-Prosperity",
+    "scSlug": "Dragon-s-Blessings-Prosperity"
+  },
+  {
+    "name": "Dragons Erupt",
+    "slug": "Dragons-Erupt",
+    "scSlug": "dragons-erupt"
+  },
+  {
+    "name": "Dragons Keep",
+    "slug": "Dragons-Keep",
+    "scSlug": "Dragon-s-Keep"
+  },
+  {
+    "name": "Dragons Keeper",
+    "slug": "Dragons-Keeper",
+    "scSlug": "Dragon-s-Keeper"
+  },
+  {
+    "name": "Dragons Mirror",
+    "slug": "Dragons-Mirror",
+    "scSlug": "Dragon-s-Mirror"
+  },
+  {
+    "name": "Dragons Vs Pandas",
+    "slug": "Dragons-Vs-Pandas",
+    "scSlug": "Dragons-vs-Pandas"
+  },
+  {
+    "name": "Drop The Wilds",
+    "slug": "Drop-The-Wilds",
+    "scSlug": "Drop-the-Wilds"
+  },
+  {
+    "name": "Druids Magic",
+    "slug": "Druids-Magic",
+    "scSlug": "Druid-s-Magic"
+  },
+  {
+    "name": "Easy Gold",
+    "slug": "Easy-Gold",
+    "scSlug": "Easy-Gold"
+  },
+  {
+    "name": "Egglink 100x Ra",
+    "slug": "Egglink-100x-Ra",
+    "scSlug": "egglink-100x-ra"
+  },
+  {
+    "name": "Egglink Astro Cat",
+    "slug": "Egglink-Astro-Cat",
+    "scSlug": "egglink-astro-cat"
+  },
+  {
+    "name": "Egglink Chicken Fox",
+    "slug": "Egglink-Chicken-Fox",
+    "scSlug": "egglink-chicken-fox"
+  },
+  {
+    "name": "Egglink Dolphin Gold",
+    "slug": "Egglink-Dolphin-Gold",
+    "scSlug": "egglink-dolphin-gold"
+  },
+  {
+    "name": "Egglink Silver Pride",
+    "slug": "Egglink-Silver-Pride",
+    "scSlug": "egglink-silver-pride"
+  },
+  {
+    "name": "Eggz Power Combo",
+    "slug": "Eggz-Power-Combo",
+    "scSlug": "Eggz-Power-Combo"
+  },
+  {
+    "name": "Egypt Clusterbuster",
+    "slug": "Egypt-Clusterbuster",
+    "scSlug": "egypt-clusterbuster"
+  },
+  {
+    "name": "Egypt Megaways",
+    "slug": "Egypt-Megaways",
+    "scSlug": "Egypt-Megaways"
+  },
+  {
+    "name": "Egyptian Magic Keno",
+    "slug": "Egyptian-Magic-Keno",
+    "scSlug": "egyptian-magic-keno"
+  },
+  {
+    "name": "Egyptian Marvel",
+    "slug": "Egyptian-Marvel",
+    "scSlug": "egyptian-marvel"
+  },
+  {
+    "name": "El Gran Chiguiro",
+    "slug": "El-Gran-Chiguiro",
+    "scSlug": "El-Gran-Chiguiro"
+  },
+  {
+    "name": "El Ranchero Cash Collect Diamond Path",
+    "slug": "El-Ranchero-Cash-Collect-Diamond-Path",
+    "scSlug": "el-ranchero-cash-collect-diamond-path"
+  },
+  {
+    "name": "Elk Hunter",
+    "slug": "Elk-Hunter",
+    "scSlug": "Elk-Hunter"
+  },
+  {
+    "name": "Emberfall",
+    "slug": "Emberfall",
+    "scSlug": "emberfall"
+  },
+  {
+    "name": "Emeralds Of Oz",
+    "slug": "Emeralds-Of-Oz",
+    "scSlug": "Emeralds-of-Oz"
+  },
+  {
+    "name": "Empire Of Wilds",
+    "slug": "Empire-Of-Wilds",
+    "scSlug": "Empire-of-Wilds"
+  },
+  {
+    "name": "Enchanted Pegasus Boom",
+    "slug": "Enchanted-Pegasus-Boom",
+    "scSlug": "enchanted-pegasus-boom"
+  },
+  {
+    "name": "Endless Fortune",
+    "slug": "Endless-Fortune",
+    "scSlug": "endless-fortune"
+  },
+  {
+    "name": "Energy Joker Hold And Win",
+    "slug": "Energy-Joker-Hold-And-Win",
+    "scSlug": "energy-joker"
+  },
+  {
+    "name": "Euphoria Megaways",
+    "slug": "Euphoria-Megaways",
+    "scSlug": "Euphoria-Megaways"
+  },
+  {
+    "name": "Eye Of Anubis",
+    "slug": "Eye-Of-Anubis",
+    "scSlug": "Eye-of-Anubis"
+  },
+  {
+    "name": "Fa Fa Tree",
+    "slug": "Fa-Fa-Tree",
+    "scSlug": "fa-fa-tree"
+  },
+  {
+    "name": "Farmtastic",
+    "slug": "Farmtastic",
+    "scSlug": "farmtastic"
+  },
+  {
+    "name": "Fat Stacks Miami Cash",
+    "slug": "Fat-Stacks-Miami-Cash",
+    "scSlug": "FatStacks-Miami-Cash"
+  },
+  {
+    "name": "Feather Of The Nile",
+    "slug": "Feather-Of-The-Nile",
+    "scSlug": "Feather-of-the-Nile"
+  },
+  {
+    "name": "Feng Shui Flip",
+    "slug": "Feng-Shui-Flip",
+    "scSlug": "feng-shui-flip"
+  },
+  {
+    "name": "Festival 10k Ways",
+    "slug": "Festival-10k-Ways",
+    "scSlug": "Festival-10K-Ways"
+  },
+  {
+    "name": "Find The Diamonds",
+    "slug": "Find-The-Diamonds",
+    "scSlug": "Find-the-Diamonds"
+  },
+  {
+    "name": "Finn And The Candy Spin",
+    "slug": "Finn-And-The-Candy-Spin",
+    "scSlug": "Finn-and-The-Candy-Spin"
+  },
+  {
+    "name": "Fionas Fortune",
+    "slug": "Fionas-Fortune",
+    "scSlug": "Fiona-s-Fortune"
+  },
+  {
+    "name": "Fire And Roses Joker",
+    "slug": "Fire-And-Roses-Joker",
+    "scSlug": "Fire-and-Roses-Joker"
+  },
+  {
+    "name": "Fire And Roses Jolly Joker",
+    "slug": "Fire-And-Roses-Jolly-Joker",
+    "scSlug": "Fire-and-Roses-Jolly-Joker"
+  },
+  {
+    "name": "Fire Derby",
+    "slug": "Fire-Derby",
+    "scSlug": "fire-derby"
+  },
+  {
+    "name": "Fire In The Hole 2",
+    "slug": "Fire-In-The-Hole-2",
+    "scSlug": "fire-in-the-hole-2"
+  },
+  {
+    "name": "Fisherdogs Fortune",
+    "slug": "Fisherdogs-Fortune",
+    "scSlug": "fisherdog-s-fortune"
+  },
+  {
+    "name": "Fishermans Bounty Big Game Fishing",
+    "slug": "Fishermans-Bounty-Big-Game-Fishing",
+    "scSlug": "fisherman-s-bounty-big-game-fishing"
+  },
+  {
+    "name": "Fishing Deeper Floats Of Cash",
+    "slug": "Fishing-Deeper-Floats-Of-Cash",
+    "scSlug": "Fishing-Deeper-Floats-of-Cash"
+  },
+  {
+    "name": "Fishing Floats Of Cash",
+    "slug": "Fishing-Floats-Of-Cash",
+    "scSlug": "Fishing-Floats-of-Cash"
+  },
+  {
+    "name": "Fizzy Penny Slot",
+    "slug": "Fizzy-Penny-Slot",
+    "scSlug": "Fizzy-Pennyslot"
+  },
+  {
+    "name": "Flanagans Riches Multiplier Retro Roller",
+    "slug": "Flanagans-Riches-Multiplier-Retro-Roller",
+    "scSlug": "flanagan-s-riches-multiplier-retro-roller"
+  },
+  {
+    "name": "Floating Tiger Gold Blitz Fortunes",
+    "slug": "Floating-Tiger-Gold-Blitz-Fortunes",
+    "scSlug": "floating-tiger-gold-blitz-fortunes"
+  },
+  {
+    "name": "Flock Me",
+    "slug": "Flock-Me",
+    "scSlug": "flock-me"
+  },
+  {
+    "name": "Fly X",
+    "slug": "Fly-X",
+    "scSlug": "FlyX"
+  },
+  {
+    "name": "Fort Knox Cats",
+    "slug": "Fort-Knox-Cats",
+    "scSlug": "fort-knox-cats"
+  },
+  {
+    "name": "Fort Knox Cleopatra",
+    "slug": "Fort-Knox-Cleopatra",
+    "scSlug": "fort-knox-cleopatra"
+  },
+  {
+    "name": "Fortune Bolts",
+    "slug": "Fortune-Bolts",
+    "scSlug": "fortune-bolts"
+  },
+  {
+    "name": "Fortune Freespins",
+    "slug": "Fortune-Freespins",
+    "scSlug": "Fortune-Free-Spins"
+  },
+  {
+    "name": "Fortune Kingfisher",
+    "slug": "Fortune-Kingfisher",
+    "scSlug": "fortune-kingfisher"
+  },
+  {
+    "name": "Fortune Pandas",
+    "slug": "Fortune-Pandas",
+    "scSlug": "fortune-pandas"
+  },
+  {
+    "name": "Foxy Fortunes",
+    "slug": "Foxy-Fortunes",
+    "scSlug": "foxy-fortunes"
+  },
+  {
+    "name": "Free Reelin Joker 1000",
+    "slug": "Free-Reelin-Joker-1000",
+    "scSlug": "Free-Reelin-Joker-1000"
+  },
+  {
+    "name": "Freeway 7",
+    "slug": "Freeway-7",
+    "scSlug": "Freeway-7"
+  },
+  {
+    "name": "Fright Before Xmas",
+    "slug": "Fright-Before-Xmas",
+    "scSlug": "fright-before-xmas"
+  },
+  {
+    "name": "Fruit Double Wins",
+    "slug": "Fruit-Double-Wins",
+    "scSlug": "fruit-double-wins"
+  },
+  {
+    "name": "Fu Ren Wu",
+    "slug": "Fu-Ren-Wu",
+    "scSlug": "fu-ren-wu"
+  },
+  {
+    "name": "Full Force Link Ch Ing Wa Sheng",
+    "slug": "Full-Force-Link-Ch-Ing-Wa-Sheng",
+    "scSlug": "Full-Force-Link-Ch-ing-Wa-Sheng"
+  },
+  {
+    "name": "Galaxy Gold Cashstacks Gold",
+    "slug": "Galaxy-Gold-Cashstacks-Gold",
+    "scSlug": "Galaxy-Gold-CashStacks-Gold"
+  },
+  {
+    "name": "Game Of Gladiators Uprising",
+    "slug": "Game-Of-Gladiators-Uprising",
+    "scSlug": "Game-of-Gladiators-Uprising"
+  },
+  {
+    "name": "Gate Of The Pharaohs",
+    "slug": "Gate-Of-The-Pharaohs",
+    "scSlug": "Gate-of-The-Pharaohs"
+  },
+  {
+    "name": "Georges Gold",
+    "slug": "Georges-Gold",
+    "scSlug": "George-s-Gold"
+  },
+  {
+    "name": "Gerards Gambit",
+    "slug": "Gerards-Gambit",
+    "scSlug": "Gerard-s-Gambit"
+  },
+  {
+    "name": "Get The Gold Infinireels",
+    "slug": "Get-The-Gold-Infinireels",
+    "scSlug": "Get-The-Gold-Infinireels"
+  },
+  {
+    "name": "Gifts Of Fortune Megaways",
+    "slug": "Gifts-Of-Fortune-Megaways",
+    "scSlug": "Gifts-of-Fortune-Megaways"
+  },
+  {
+    "name": "Giga Blast",
+    "slug": "Giga-Blast",
+    "scSlug": "Giga-Blast"
+  },
+  {
+    "name": "Giga Match Egypt",
+    "slug": "Giga-Match-Egypt",
+    "scSlug": "giga-match-egypt"
+  },
+  {
+    "name": "Giga Match Mahjong",
+    "slug": "Giga-Match-Mahjong",
+    "scSlug": "giga-match-mahjong"
+  },
+  {
+    "name": "Giga Match North Pole",
+    "slug": "Giga-Match-North-Pole",
+    "scSlug": "giga-match-north-pole"
+  },
+  {
+    "name": "Gimme The Honey Megaways",
+    "slug": "Gimme-The-Honey-Megaways",
+    "scSlug": "Gimme-the-Honey-Megaways"
+  },
+  {
+    "name": "Gladiator Clash",
+    "slug": "Gladiator-Clash",
+    "scSlug": "gladiator-clash"
+  },
+  {
+    "name": "Go High Joker",
+    "slug": "Go-High-Joker",
+    "scSlug": "go-high-joker"
+  },
+  {
+    "name": "Gods Of Troy",
+    "slug": "Gods-Of-Troy",
+    "scSlug": "Gods-of-Troy"
+  },
+  {
+    "name": "Going Wild In Hawaii",
+    "slug": "Going-Wild-In-Hawaii",
+    "scSlug": "going-wild-in-hawaii"
+  },
+  {
+    "name": "Gold Cash Free Spins Super Wheel",
+    "slug": "Gold-Cash-Free-Spins-Super-Wheel",
+    "scSlug": "gold-cash-free-spins-super-wheel"
+  },
+  {
+    "name": "Gold Cash Freespins Megaways",
+    "slug": "Gold-Cash-Freespins-Megaways",
+    "scSlug": "Gold-Cash-Free-Spins-Megaways"
+  },
+  {
+    "name": "Gold Cash Freespins Superwheel",
+    "slug": "Gold-Cash-Freespins-Superwheel",
+    "scSlug": "gold-cash-free-spins-super-wheel"
+  },
+  {
+    "name": "Gold Fishy Freespins",
+    "slug": "Gold-Fishy-Freespins",
+    "scSlug": "Gold-Fishy-Free-Spins"
+  },
+  {
+    "name": "Gold Inferno Wild Stacks",
+    "slug": "Gold-Inferno-Wild-Stacks",
+    "scSlug": "gold-inferno-wild-stacks"
+  },
+  {
+    "name": "Gold Mine Mistress",
+    "slug": "Gold-Mine-Mistress",
+    "scSlug": "Gold-Mine-Mistress"
+  },
+  {
+    "name": "Gold Nudge",
+    "slug": "Gold-Nudge",
+    "scSlug": "gold-nudge"
+  },
+  {
+    "name": "Gold Trio Santa Surprise",
+    "slug": "Gold-Trio-Santa-Surprise",
+    "scSlug": "gold-trio-santa-surprise"
+  },
+  {
+    "name": "Golden Catch Megaways",
+    "slug": "Golden-Catch-Megaways",
+    "scSlug": "Golden-Catch"
+  },
+  {
+    "name": "Golden Eagle",
+    "slug": "Golden-Eagle",
+    "scSlug": "golden-eagle"
+  },
+  {
+    "name": "Golden Gals 3 Reels",
+    "slug": "Golden-Gals-3-Reels",
+    "scSlug": "golden-gal-s-3-reels"
+  },
+  {
+    "name": "Golden Phoenix Rings Of Fortune",
+    "slug": "Golden-Phoenix-Rings-Of-Fortune",
+    "scSlug": "golden-phoenix-rings-of-fortune"
+  },
+  {
+    "name": "Golden Realms",
+    "slug": "Golden-Realms",
+    "scSlug": "Golden-Realms"
+  },
+  {
+    "name": "Goldline Cash Hold And Win",
+    "slug": "Goldline-Cash-Hold-And-Win",
+    "scSlug": "goldline-cash"
+  },
+  {
+    "name": "Golds Guardian",
+    "slug": "Golds-Guardian",
+    "scSlug": "Gold-s-Guardian"
+  },
+  {
+    "name": "Golfing Glory",
+    "slug": "Golfing-Glory",
+    "scSlug": "Golfing-Glory"
+  },
+  {
+    "name": "Gonzitas Quest",
+    "slug": "Gonzitas-Quest",
+    "scSlug": "Gonzita-s-Quest"
+  },
+  {
+    "name": "Gonzos Gold",
+    "slug": "Gonzos-Gold",
+    "scSlug": "Gonzo-s-Gold"
+  },
+  {
+    "name": "Good Old 7s",
+    "slug": "Good-Old-7s",
+    "scSlug": "Good-Old-7-s"
+  },
+  {
+    "name": "Goood Heavens",
+    "slug": "Goood-Heavens",
+    "scSlug": "goood-heavens"
+  },
+  {
+    "name": "Grand Diamond",
+    "slug": "Grand-Diamond",
+    "scSlug": "grand-diamond"
+  },
+  {
+    "name": "Granny Vs Zombies",
+    "slug": "Granny-Vs-Zombies",
+    "scSlug": "Granny-vs-Zombies"
+  },
+  {
+    "name": "Great Aztec",
+    "slug": "Great-Aztec",
+    "scSlug": "Great-Aztec"
+  },
+  {
+    "name": "Great Aztec Megaways",
+    "slug": "Great-Aztec-Megaways",
+    "scSlug": "Great-Aztec"
+  },
+  {
+    "name": "Gridiron Legends X Up",
+    "slug": "Gridiron-Legends-X-Up",
+    "scSlug": "gridiron-legends-x-up"
+  },
+  {
+    "name": "Gritty Kitty Of Nitropolis",
+    "slug": "Gritty-Kitty-Of-Nitropolis",
+    "scSlug": "Gritty-Kitty-of-Nitropolis"
+  },
+  {
+    "name": "Guardians Of Luxor 4",
+    "slug": "Guardians-Of-Luxor-4",
+    "scSlug": "guardians-of-luxor-4"
+  },
+  {
+    "name": "Guss Gold Megaways",
+    "slug": "Guss-Gold-Megaways",
+    "scSlug": "Gus-s-Gold-Megaways"
+  },
+  {
+    "name": "Guss Gold Minecart Mayhem",
+    "slug": "Guss-Gold-Minecart-Mayhem",
+    "scSlug": "Gus-s-Gold-Minecart-Mayhem"
+  },
+  {
+    "name": "Hand Of Anubis",
+    "slug": "Hand-Of-Anubis",
+    "scSlug": "Hand-of-Anubis"
+  },
+  {
+    "name": "Hao Yun Ingots",
+    "slug": "Hao-Yun-Ingots",
+    "scSlug": "Hao-Yun-Ingots"
+  },
+  {
+    "name": "Happy Money Hens",
+    "slug": "Happy-Money-Hens",
+    "scSlug": "happy-money-hens"
+  },
+  {
+    "name": "Heist Guys",
+    "slug": "Heist-Guys",
+    "scSlug": "heist-guys"
+  },
+  {
+    "name": "Hercules 10k Ways",
+    "slug": "Hercules-10k-Ways",
+    "scSlug": "Hercules-10K-WAYS"
+  },
+  {
+    "name": "Himalayas Roof Of The World",
+    "slug": "Himalayas-Roof-Of-The-World",
+    "scSlug": "Himalayas-Roof-of-The-World"
+  },
+  {
+    "name": "Ho Ho Tree",
+    "slug": "Ho-Ho-Tree",
+    "scSlug": "ho-ho-tree"
+  },
+  {
+    "name": "Hong Kong Double Deluxe",
+    "slug": "Hong-Kong-Double-Deluxe",
+    "scSlug": "hong-kong-double-deluxe"
+  },
+  {
+    "name": "Hooties Fortune",
+    "slug": "Hooties-Fortune",
+    "scSlug": "Hootie-s-Fortune"
+  },
+  {
+    "name": "Hot Off The 7s Deluxe",
+    "slug": "Hot-Off-The-7s-Deluxe",
+    "scSlug": "hot-off-the-7-s-deluxe"
+  },
+  {
+    "name": "Hot Slot 777 Gold Crown",
+    "slug": "Hot-Slot-777-Gold-Crown",
+    "scSlug": "hot-slot-777-gold-crown"
+  },
+  {
+    "name": "Hot Slot 777 Hold The Jackpot",
+    "slug": "Hot-Slot-777-Hold-The-Jackpot",
+    "scSlug": "hot-slot-777-hold-the-jackpot"
+  },
+  {
+    "name": "Hotcakes Flip N Staxx",
+    "slug": "Hotcakes-Flip-N-Staxx",
+    "scSlug": "hotcakes-flip-n-staxx"
+  },
+  {
+    "name": "Huff N Puff High Rise",
+    "slug": "Huff-N-Puff-High-Rise",
+    "scSlug": "huff-n-puff-highrise"
+  },
+  {
+    "name": "Huff N Puff Money Mansion",
+    "slug": "Huff-N-Puff-Money-Mansion",
+    "scSlug": "huff-n-puff-money-mansion"
+  },
+  {
+    "name": "Hula Moolah",
+    "slug": "Hula-Moolah",
+    "scSlug": "hula-moolah"
+  },
+  {
+    "name": "Hundred Or Nothing",
+    "slug": "Hundred-Or-Nothing",
+    "scSlug": "hundred-or-nothing"
+  },
+  {
+    "name": "Hundred Or Nothing High Stakes",
+    "slug": "Hundred-Or-Nothing-High-Stakes",
+    "scSlug": "hundred-or-nothing-high-stakes"
+  },
+  {
+    "name": "Hyper Star Multichase",
+    "slug": "Hyper-Star-Multichase",
+    "scSlug": "hyper-star-multichase"
+  },
+  {
+    "name": "Hyper Strike Hyper Spins",
+    "slug": "Hyper-Strike-Hyper-Spins",
+    "scSlug": "Hyper-Strike-HyperSpins"
+  },
+  {
+    "name": "Ice Heist 2 The Museum Snatch A Roo",
+    "slug": "Ice-Heist-2-The-Museum-Snatch-A-Roo",
+    "scSlug": "ice-heist-2-the-museum-snatch-a-roo"
+  },
+  {
+    "name": "Immortal Ways Heart To Heart",
+    "slug": "Immortal-Ways-Heart-To-Heart",
+    "scSlug": "immortal-ways-heart-to-heart"
+  },
+  {
+    "name": "Immortal Ways Lady Moon",
+    "slug": "Immortal-Ways-Lady-Moon",
+    "scSlug": "immortal-ways-lady-moon"
+  },
+  {
+    "name": "Immortal Ways Magic Gems",
+    "slug": "Immortal-Ways-Magic-Gems",
+    "scSlug": "immortal-ways-magic-gems"
+  },
+  {
+    "name": "Into The Storm",
+    "slug": "Into-The-Storm",
+    "scSlug": "Into-the-Storm"
+  },
+  {
+    "name": "Ithacas Gold",
+    "slug": "Ithacas-Gold",
+    "scSlug": "ithaca-s-gold"
+  },
+  {
+    "name": "J Mania Triple Jam",
+    "slug": "J-Mania-Triple-Jam",
+    "scSlug": "j-mania-triple-jam"
+  },
+  {
+    "name": "Jelly Belly Megaways",
+    "slug": "Jelly-Belly-Megaways",
+    "scSlug": "Jelly-Belly-Megaways"
+  },
+  {
+    "name": "Jewel Boom Super Drop",
+    "slug": "Jewel-Boom-Super-Drop",
+    "scSlug": "jewel-boom-super-drop"
+  },
+  {
+    "name": "Jewel Of Alexandria",
+    "slug": "Jewel-Of-Alexandria",
+    "scSlug": "jewel-of-alexandria"
+  },
+  {
+    "name": "Jewels And Gems",
+    "slug": "Jewels-And-Gems",
+    "scSlug": "Jewels-and-Gems"
+  },
+  {
+    "name": "Jin Tu",
+    "slug": "Jin-Tu",
+    "scSlug": "jintu"
+  },
+  {
+    "name": "Jingle Bells Bonanza 2",
+    "slug": "Jingle-Bells-Bonanza-2",
+    "scSlug": "jingle-bells-bonanza-2"
+  },
+  {
+    "name": "Joker Bombs",
+    "slug": "Joker-Bombs",
+    "scSlug": "Joker-Bombs"
+  },
+  {
+    "name": "Joker Fiesta",
+    "slug": "Joker-Fiesta",
+    "scSlug": "joker-fiesta"
+  },
+  {
+    "name": "Joker Lokos Multiplier Trail",
+    "slug": "Joker-Lokos-Multiplier-Trail",
+    "scSlug": "Joker-Loko-s-Multiplier-Trail"
+  },
+  {
+    "name": "Jokers Bar",
+    "slug": "Jokers-Bar",
+    "scSlug": "joker-s-bar"
+  },
+  {
+    "name": "Jokers Bonanza",
+    "slug": "Jokers-Bonanza",
+    "scSlug": "joker-s-bonanza"
+  },
+  {
+    "name": "Jokers Edge",
+    "slug": "Jokers-Edge",
+    "scSlug": "joker-s-edge"
+  },
+  {
+    "name": "Jokers Wacky Wilds Pays Both Ways",
+    "slug": "Jokers-Wacky-Wilds-Pays-Both-Ways",
+    "scSlug": "Joker-s-Wacky-Wilds-Pays-Both-Ways"
+  },
+  {
+    "name": "Jokers Wild Ride Xmas",
+    "slug": "Jokers-Wild-Ride-Xmas",
+    "scSlug": "joker-s-wild-ride-xmas"
+  },
+  {
+    "name": "Jolly Bonus Wins",
+    "slug": "Jolly-Bonus-Wins",
+    "scSlug": "jolly-bonus-wins"
+  },
+  {
+    "name": "Jolly Cash",
+    "slug": "Jolly-Cash",
+    "scSlug": "jolly-cash"
+  },
+  {
+    "name": "Jungle Spirit Megaways",
+    "slug": "Jungle-Spirit-Megaways",
+    "scSlug": "Jungle-Spirit-Megaways"
+  },
+  {
+    "name": "Karens Merry Meltdown",
+    "slug": "Karens-Merry-Meltdown",
+    "scSlug": "karen-s-merry-meltdown"
+  },
+  {
+    "name": "King Maker",
+    "slug": "King-Maker",
+    "scSlug": "Kingmaker"
+  },
+  {
+    "name": "King Maker Megaways",
+    "slug": "King-Maker-Megaways",
+    "scSlug": "Kingmaker"
+  },
+  {
+    "name": "King Of The Pharaohs",
+    "slug": "King-Of-The-Pharaohs",
+    "scSlug": "King-of-the-Pharaohs"
+  },
+  {
+    "name": "Kingdom Of Horus",
+    "slug": "Kingdom-Of-Horus",
+    "scSlug": "kingdom-of-horus"
+  },
+  {
+    "name": "Kingfisher Of The Caribbean",
+    "slug": "Kingfisher-Of-The-Caribbean",
+    "scSlug": "kingfisher-of-the-caribbean"
+  },
+  {
+    "name": "Kingmaker Fully Loaded Megaways",
+    "slug": "Kingmaker-Fully-Loaded-Megaways",
+    "scSlug": "Kingmaker-Fully-Loaded-Megaways"
+  },
+  {
+    "name": "Kings Mask",
+    "slug": "Kings-Mask",
+    "scSlug": "King-s-Mask"
+  },
+  {
+    "name": "Kings Mask Eclipse Of Gods",
+    "slug": "Kings-Mask-Eclipse-Of-Gods",
+    "scSlug": "king-s-mask-eclipse-of-gods"
+  },
+  {
+    "name": "Kings Relics",
+    "slug": "Kings-Relics",
+    "scSlug": "king-s-relics"
+  },
+  {
+    "name": "Knights Of Avalon",
+    "slug": "Knights-Of-Avalon",
+    "scSlug": "Knights-of-Avalon"
+  },
+  {
+    "name": "Kokeshi Pop",
+    "slug": "Kokeshi-Pop",
+    "scSlug": "KokeshiPop"
+  },
+  {
+    "name": "Krakens Cove",
+    "slug": "Krakens-Cove",
+    "scSlug": "kraken-s-cove"
+  },
+  {
+    "name": "Lab Of Madness Its A Wild",
+    "slug": "Lab-Of-Madness-Its-A-Wild",
+    "scSlug": "lab-of-madness-it-s-a-wild"
+  },
+  {
+    "name": "Land Of Riches",
+    "slug": "Land-Of-Riches",
+    "scSlug": "land-of-riches"
+  },
+  {
+    "name": "Lantern Luck",
+    "slug": "Lantern-Luck",
+    "scSlug": "Lantern-Luck"
+  },
+  {
+    "name": "Lawn N Disorder",
+    "slug": "Lawn-N-Disorder",
+    "scSlug": "lawn-n-disorder"
+  },
+  {
+    "name": "Legacy Of Oz",
+    "slug": "Legacy-Of-Oz",
+    "scSlug": "Legacy-of-Oz"
+  },
+  {
+    "name": "Leprechauns Diamond Dig",
+    "slug": "Leprechauns-Diamond-Dig",
+    "scSlug": "leprechaun-s-diamond-dig"
+  },
+  {
+    "name": "Leprechauns Vault",
+    "slug": "Leprechauns-Vault",
+    "scSlug": "Leprechaun-s-Vault"
+  },
+  {
+    "name": "Liberty Cashspins",
+    "slug": "Liberty-Cashspins",
+    "scSlug": "Liberty-Cash-Spins"
+  },
+  {
+    "name": "Light The Lamp",
+    "slug": "Light-The-Lamp",
+    "scSlug": "Light-The-Lamp"
+  },
+  {
+    "name": "Lil Sphinx",
+    "slug": "Lil-Sphinx",
+    "scSlug": "lil-sphinx"
+  },
+  {
+    "name": "Links Of Glory",
+    "slug": "Links-Of-Glory",
+    "scSlug": "links-of-glory"
+  },
+  {
+    "name": "Lion Link Horse",
+    "slug": "Lion-Link-Horse",
+    "scSlug": "lion-link-horse"
+  },
+  {
+    "name": "Lion Link Prosperous Rooster",
+    "slug": "Lion-Link-Prosperous-Rooster",
+    "scSlug": "lion-link-prosperous-rooster"
+  },
+  {
+    "name": "Lobster Splash",
+    "slug": "Lobster-Splash",
+    "scSlug": "lobster-splash"
+  },
+  {
+    "name": "Lock And Pop",
+    "slug": "Lock-And-Pop",
+    "scSlug": "lock-and-pop"
+  },
+  {
+    "name": "Lock Breakers Golden Nuts",
+    "slug": "Lock-Breakers-Golden-Nuts",
+    "scSlug": "lock-breakers-golden-nuts"
+  },
+  {
+    "name": "Loki Power Combo",
+    "slug": "Loki-Power-Combo",
+    "scSlug": "loki-power-combo"
+  },
+  {
+    "name": "Lone Star Link Sizzling Wins",
+    "slug": "Lone-Star-Link-Sizzling-Wins",
+    "scSlug": "lone-star-link-sizzling-wins"
+  },
+  {
+    "name": "Loota Palooza",
+    "slug": "Loota-Palooza",
+    "scSlug": "lootapalooza"
+  },
+  {
+    "name": "Lots Of Likes",
+    "slug": "Lots-Of-Likes",
+    "scSlug": "Lots-of-Likes"
+  },
+  {
+    "name": "Luck Of The Dead",
+    "slug": "Luck-Of-The-Dead",
+    "scSlug": "Luck-of-the-Dead"
+  },
+  {
+    "name": "Luck Of The Devil Power Combo",
+    "slug": "Luck-Of-The-Devil-Power-Combo",
+    "scSlug": "Luck-of-the-Devil-POWER-COMBO"
+  },
+  {
+    "name": "Luck Of The Lamp Cash Link",
+    "slug": "Luck-Of-The-Lamp-Cash-Link",
+    "scSlug": "luck-of-the-lamp-cashlink"
+  },
+  {
+    "name": "Lucky Bass Mega Collect Em",
+    "slug": "Lucky-Bass-Mega-Collect-Em",
+    "scSlug": "lucky-bass-mega-collect-em"
+  },
+  {
+    "name": "Lucky Fire Blitz Hotstepper Megaways",
+    "slug": "Lucky-Fire-Blitz-Hotstepper-Megaways",
+    "scSlug": "lucky-fire-blitz-hotstepper"
+  },
+  {
+    "name": "Lucky Larrys Lobstermania High Stakes",
+    "slug": "Lucky-Larrys-Lobstermania-High-Stakes",
+    "scSlug": "lucky-larry-s-lobstermania-high-stakes"
+  },
+  {
+    "name": "Lucky Larrys Lobstermania Tap",
+    "slug": "Lucky-Larrys-Lobstermania-Tap",
+    "scSlug": "lucky-larry-s-lobstermania-tap"
+  },
+  {
+    "name": "Lucky Lightning",
+    "slug": "Lucky-Lightning",
+    "scSlug": "Lucky-Lightning"
+  },
+  {
+    "name": "Lucky Lil Leprechaun",
+    "slug": "Lucky-Lil-Leprechaun",
+    "scSlug": "lucky-lil-leprechaun"
+  },
+  {
+    "name": "Mad Cabs Hold And Win",
+    "slug": "Mad-Cabs-Hold-And-Win",
+    "scSlug": "Mad-Cabs"
+  },
+  {
+    "name": "Mad Hit Easter Eggsplosion",
+    "slug": "Mad-Hit-Easter-Eggsplosion",
+    "scSlug": "mad-hit-easter-eggsplosion"
+  },
+  {
+    "name": "Mad Hit Full Steam",
+    "slug": "Mad-Hit-Full-Steam",
+    "scSlug": "mad-hit-full-steam"
+  },
+  {
+    "name": "Mad Hit Gold",
+    "slug": "Mad-Hit-Gold",
+    "scSlug": "mad-hit-gold"
+  },
+  {
+    "name": "Mad Hit Ho Ho Hot Pudding",
+    "slug": "Mad-Hit-Ho-Ho-Hot-Pudding",
+    "scSlug": "mad-hit-ho-ho-hot-pudding"
+  },
+  {
+    "name": "Magic Lab",
+    "slug": "Magic-Lab",
+    "scSlug": "Magic-Lab"
+  },
+  {
+    "name": "Magic Of The Nile",
+    "slug": "Magic-Of-The-Nile",
+    "scSlug": "Magic-of-the-Nile"
+  },
+  {
+    "name": "Magic Piggy",
+    "slug": "Magic-Piggy",
+    "scSlug": "Magic-Piggy"
+  },
+  {
+    "name": "Magnet Storm Dragon Charm",
+    "slug": "Magnet-Storm-Dragon-Charm",
+    "scSlug": "magnet-storm-dragon-charm"
+  },
+  {
+    "name": "Magnificent Power Spartan",
+    "slug": "Magnificent-Power-Spartan",
+    "scSlug": "magnificent-power-spartan"
+  },
+  {
+    "name": "Majestic Cats Deluxe Ways",
+    "slug": "Majestic-Cats-Deluxe-Ways",
+    "scSlug": "majestic-cats-deluxeways"
+  },
+  {
+    "name": "Majestic Fury Megaways Jackpot Royale Express",
+    "slug": "Majestic-Fury-Megaways-Jackpot-Royale-Express",
+    "scSlug": "majestic-fury-megaways"
+  },
+  {
+    "name": "Majestic Fury Megaways Unleashed",
+    "slug": "Majestic-Fury-Megaways-Unleashed",
+    "scSlug": "majestic-fury-megaways-unleashed"
+  },
+  {
+    "name": "Marias Marigolds",
+    "slug": "Marias-Marigolds",
+    "scSlug": "Maria-s-Marigolds"
+  },
+  {
+    "name": "Mask Of Amun",
+    "slug": "Mask-Of-Amun",
+    "scSlug": "Mask-of-Amun"
+  },
+  {
+    "name": "Massive Gold Maxxed",
+    "slug": "Massive-Gold-Maxxed",
+    "scSlug": "massive-gold-maxxed"
+  },
+  {
+    "name": "Max Megaways 3",
+    "slug": "Max-Megaways-3",
+    "scSlug": "max-megaways-3"
+  },
+  {
+    "name": "Medusa Hot 1",
+    "slug": "Medusa-Hot-1",
+    "scSlug": "Medusa-Hot-1"
+  },
+  {
+    "name": "Mega Cash Stack Hold And Win",
+    "slug": "Mega-Cash-Stack-Hold-And-Win",
+    "scSlug": "Mega-Cash-Stack"
+  },
+  {
+    "name": "Mega Diamond Wild Stacks",
+    "slug": "Mega-Diamond-Wild-Stacks",
+    "scSlug": "mega-diamond-wild-stacks"
+  },
+  {
+    "name": "Mega Fire Blaze Dwarves And Goblins",
+    "slug": "Mega-Fire-Blaze-Dwarves-And-Goblins",
+    "scSlug": "Mega-Fire-Blaze-Dwarves-And-Goblins"
+  },
+  {
+    "name": "Mega Tusk",
+    "slug": "Mega-Tusk",
+    "scSlug": "mega-tusk"
+  },
+  {
+    "name": "Mental",
+    "slug": "Mental",
+    "scSlug": "Mental"
+  },
+  {
+    "name": "Merlin Journey Of Flame",
+    "slug": "Merlin-Journey-Of-Flame",
+    "scSlug": "Merlin-Journey-of-Flame"
+  },
+  {
+    "name": "Merlins 10k Ways",
+    "slug": "Merlins-10k-Ways",
+    "scSlug": "merlin-s-10k-ways"
+  },
+  {
+    "name": "Merlins Mixtures",
+    "slug": "Merlins-Mixtures",
+    "scSlug": "merlin-s-mixtures"
+  },
+  {
+    "name": "Miami Reels Power Combo",
+    "slug": "Miami-Reels-Power-Combo",
+    "scSlug": "miami-reels-power-combo"
+  },
+  {
+    "name": "Miami Rise",
+    "slug": "Miami-Rise",
+    "scSlug": "miami-rise"
+  },
+  {
+    "name": "Miao Mi Warriors",
+    "slug": "Miao-Mi-Warriors",
+    "scSlug": "miao-mi-warriors"
+  },
+  {
+    "name": "Midnight In Tokyo",
+    "slug": "Midnight-In-Tokyo",
+    "scSlug": "Midnight-in-Tokyo"
+  },
+  {
+    "name": "Mighty Marlin Super Reel",
+    "slug": "Mighty-Marlin-Super-Reel",
+    "scSlug": "Mighty-Marlin-Super-Reel"
+  },
+  {
+    "name": "Mighty Mountain",
+    "slug": "Mighty-Mountain",
+    "scSlug": "mighty-mountain"
+  },
+  {
+    "name": "Mighty Titan Link And Win",
+    "slug": "Mighty-Titan-Link-And-Win",
+    "scSlug": "Mighty-Titan-Link-and-Win"
+  },
+  {
+    "name": "Milkshake Xxxtreme",
+    "slug": "Milkshake-Xxxtreme",
+    "scSlug": "Milkshake-XXXtreme"
+  },
+  {
+    "name": "Million Christmas 3",
+    "slug": "Million-Christmas-3",
+    "scSlug": "million-christmas-3"
+  },
+  {
+    "name": "Millionaire Megaways",
+    "slug": "Millionaire-Megaways",
+    "scSlug": "millionaire"
+  },
+  {
+    "name": "Mine Blown",
+    "slug": "Mine-Blown",
+    "scSlug": "mine-blown"
+  },
+  {
+    "name": "Mine Defender",
+    "slug": "Mine-Defender",
+    "scSlug": "mine-defender"
+  },
+  {
+    "name": "Ms Robin Hood",
+    "slug": "Ms-Robin-Hood",
+    "scSlug": "ms-robin-hood"
+  },
+  {
+    "name": "Muertos Fortune",
+    "slug": "Muertos-Fortune",
+    "scSlug": "muertos-fortune"
+  },
+  {
+    "name": "Multi Coins Pro",
+    "slug": "Multi-Coins-Pro",
+    "scSlug": "multi-coins-pro"
+  },
+  {
+    "name": "Mummy It Up",
+    "slug": "Mummy-It-Up",
+    "scSlug": "mummy-it-up"
+  },
+  {
+    "name": "Murphys Pots",
+    "slug": "Murphys-Pots",
+    "scSlug": "Murphy-s-Pots"
+  },
+  {
+    "name": "Mysteries Of Egypt",
+    "slug": "Mysteries-Of-Egypt",
+    "scSlug": "Mysteries-of-Egypt"
+  },
+  {
+    "name": "Myth Of Ra",
+    "slug": "Myth-Of-Ra",
+    "scSlug": "myth-of-ra"
+  },
+  {
+    "name": "Naughty Nicks Book",
+    "slug": "Naughty-Nicks-Book",
+    "scSlug": "Naughty-Nick-s-Book"
+  },
+  {
+    "name": "Neptunes Champions",
+    "slug": "Neptunes-Champions",
+    "scSlug": "Neptune-s-Champions"
+  },
+  {
+    "name": "Nft Megaways",
+    "slug": "Nft-Megaways",
+    "scSlug": "NFT-Megaways"
+  },
+  {
+    "name": "Nightmaker",
+    "slug": "Nightmaker",
+    "scSlug": "night-maker"
+  },
+  {
+    "name": "No Stress Multiplier",
+    "slug": "No-Stress-Multiplier",
+    "scSlug": "no-stress-multiplier"
+  },
+  {
+    "name": "Nsync Pop",
+    "slug": "Nsync-Pop",
+    "scSlug": "NSYNC-Pop"
+  },
+  {
+    "name": "Nudge Royale",
+    "slug": "Nudge-Royale",
+    "scSlug": "nudge-royale"
+  },
+  {
+    "name": "Ocean Spin Kingdoms Treasures",
+    "slug": "Ocean-Spin-Kingdoms-Treasures",
+    "scSlug": "Ocean-Spin-Kingdom-s-Treasures"
+  },
+  {
+    "name": "Olympus Lightning",
+    "slug": "Olympus-Lightning",
+    "scSlug": "olympus-lightning"
+  },
+  {
+    "name": "Outlaws Inc",
+    "slug": "Outlaws-Inc",
+    "scSlug": "Outlaws-Inc"
+  },
+  {
+    "name": "Outlaws Redemption",
+    "slug": "Outlaws-Redemption",
+    "scSlug": "outlaw-s-redemption"
+  },
+  {
+    "name": "Over The Moon",
+    "slug": "Over-The-Moon",
+    "scSlug": "Over-the-Moon"
+  },
+  {
+    "name": "Oxygen 2",
+    "slug": "Oxygen-2",
+    "scSlug": "oxygen-2"
+  },
+  {
+    "name": "Pack And Cash",
+    "slug": "Pack-And-Cash",
+    "scSlug": "Pack-and-Cash"
+  },
+  {
+    "name": "Paddys Golden Fortune",
+    "slug": "Paddys-Golden-Fortune",
+    "scSlug": "paddy-s-golden-fortune"
+  },
+  {
+    "name": "Panda Money Megaways",
+    "slug": "Panda-Money-Megaways",
+    "scSlug": "Panda-Money-Megaways"
+  },
+  {
+    "name": "Panda Punch",
+    "slug": "Panda-Punch",
+    "scSlug": "panda-punch"
+  },
+  {
+    "name": "Pandoras Box Of Evil",
+    "slug": "Pandoras-Box-Of-Evil",
+    "scSlug": "Pandora-s-Box-of-Evil"
+  },
+  {
+    "name": "Pandoras Treasure",
+    "slug": "Pandoras-Treasure",
+    "scSlug": "pandora-s-treasure"
+  },
+  {
+    "name": "Pharaohs Bigger Big Money",
+    "slug": "Pharaohs-Bigger-Big-Money",
+    "scSlug": "pharaoh-s-bigger-big-money"
+  },
+  {
+    "name": "Phoenix Duel Reels",
+    "slug": "Phoenix-Duel-Reels",
+    "scSlug": "phoenix-duelreels"
+  },
+  {
+    "name": "Phoenix Graveyard",
+    "slug": "Phoenix-Graveyard",
+    "scSlug": "Phoenix-Graveyard"
+  },
+  {
+    "name": "Phoenix Kingdom Extra Burst",
+    "slug": "Phoenix-Kingdom-Extra-Burst",
+    "scSlug": "phoenix-kingdom-extra-burst"
+  },
+  {
+    "name": "Piggy Prizes Jingle Jackpots",
+    "slug": "Piggy-Prizes-Jingle-Jackpots",
+    "scSlug": "piggy-prizes-jingle-jackpots"
+  },
+  {
+    "name": "Piggy Prizes Wand Of Riches",
+    "slug": "Piggy-Prizes-Wand-Of-Riches",
+    "scSlug": "Piggy-Prizes-Wand-of-Riches"
+  },
+  {
+    "name": "Pin Rush X",
+    "slug": "Pin-Rush-X",
+    "scSlug": "pin-rush-x"
+  },
+  {
+    "name": "Pinata Go Go",
+    "slug": "Pinata-Go-Go",
+    "scSlug": "pinata-go-go"
+  },
+  {
+    "name": "Pinatas And Ponies",
+    "slug": "Pinatas-And-Ponies",
+    "scSlug": "Pinatas-and-Ponies"
+  },
+  {
+    "name": "Pirates Plenty Treasures Of The Seas",
+    "slug": "Pirates-Plenty-Treasures-Of-The-Seas",
+    "scSlug": "pirates-plenty-treasures-of-the-seas"
+  },
+  {
+    "name": "Pirots 2",
+    "slug": "Pirots-2",
+    "scSlug": "Pirots-2"
+  },
+  {
+    "name": "Pixies Treasure",
+    "slug": "Pixies-Treasure",
+    "scSlug": "pixie-s-treasure"
+  },
+  {
+    "name": "Play With The Devil",
+    "slug": "Play-With-The-Devil",
+    "scSlug": "Play-With-the-Devil"
+  },
+  {
+    "name": "Plenty O Fish Jackpot Royale",
+    "slug": "Plenty-O-Fish-Jackpot-Royale",
+    "scSlug": "plenty-o-fish"
+  },
+  {
+    "name": "Plenty Of Presents",
+    "slug": "Plenty-Of-Presents",
+    "scSlug": "Plenty-of-Presents"
+  },
+  {
+    "name": "Pots Of Treasure Win Ways",
+    "slug": "Pots-Of-Treasure-Win-Ways",
+    "scSlug": "Pots-of-Treasure-Win-Ways"
+  },
+  {
+    "name": "Pride Of Egypt",
+    "slug": "Pride-Of-Egypt",
+    "scSlug": "Pride-of-Egypt"
+  },
+  {
+    "name": "Princess Celina And The Frog",
+    "slug": "Princess-Celina-And-The-Frog",
+    "scSlug": "Princess-Celina-and-the-Frog"
+  },
+  {
+    "name": "Professor Bigwin",
+    "slug": "Professor-Bigwin",
+    "scSlug": "Professor-BigWin"
+  },
+  {
+    "name": "Professor Clanks 10k Ways",
+    "slug": "Professor-Clanks-10k-Ways",
+    "scSlug": "professor-clank-s-10k-ways"
+  },
+  {
+    "name": "Prometheus Titan Of Fire",
+    "slug": "Prometheus-Titan-Of-Fire",
+    "scSlug": "Prometheus-Titan-of-Fire"
+  },
+  {
+    "name": "Prospector Wilds Hold And Win",
+    "slug": "Prospector-Wilds-Hold-And-Win",
+    "scSlug": "Prospector-Wilds-Hold-and-Win"
+  },
+  {
+    "name": "Prospector Wilds Wild Carts",
+    "slug": "Prospector-Wilds-Wild-Carts",
+    "scSlug": "prospector-wilds-wild-carts"
+  },
+  {
+    "name": "Prosperity Deluxe Ways",
+    "slug": "Prosperity-Deluxe-Ways",
+    "scSlug": "prosperity-deluxeways"
+  },
+  {
+    "name": "Prosperity Pearl",
+    "slug": "Prosperity-Pearl",
+    "scSlug": "prosperity-pearl"
+  },
+  {
+    "name": "Prosperity Pop And Win",
+    "slug": "Prosperity-Pop-And-Win",
+    "scSlug": "prosperity-pop-and-win"
+  },
+  {
+    "name": "Queen Of Water",
+    "slug": "Queen-Of-Water",
+    "scSlug": "Queen-of-Water"
+  },
+  {
+    "name": "Rabid Randy Gone Fishing",
+    "slug": "Rabid-Randy-Gone-Fishing",
+    "scSlug": "rabid-randy-gone-fishing"
+  },
+  {
+    "name": "Rage",
+    "slug": "Rage",
+    "scSlug": "Rage"
+  },
+  {
+    "name": "Raging Super 2 Ways",
+    "slug": "Raging-Super-2-Ways",
+    "scSlug": "Raging-Super2Ways"
+  },
+  {
+    "name": "Rainforest Gold",
+    "slug": "Rainforest-Gold",
+    "scSlug": "Rainforest-Gold"
+  },
+  {
+    "name": "Raise The Sails",
+    "slug": "Raise-The-Sails",
+    "scSlug": "raise-the-sails"
+  },
+  {
+    "name": "Rakin Bacon Jackpots Bonus Wheel",
+    "slug": "Rakin-Bacon-Jackpots-Bonus-Wheel",
+    "scSlug": "rakin-bacon-jackpots-bonus-wheel"
+  },
+  {
+    "name": "Raouls Jewels",
+    "slug": "Raouls-Jewels",
+    "scSlug": "raoul-s-jewels"
+  },
+  {
+    "name": "Ras Reckoning",
+    "slug": "Ras-Reckoning",
+    "scSlug": "ra-s-reckoning"
+  },
+  {
+    "name": "Ravens Reveal",
+    "slug": "Ravens-Reveal",
+    "scSlug": "Raven-s-Reveal"
+  },
+  {
+    "name": "Reaction Link",
+    "slug": "Reaction-Link",
+    "scSlug": "reaction-link"
+  },
+  {
+    "name": "Realm Of Hades",
+    "slug": "Realm-Of-Hades",
+    "scSlug": "Realm-of-Hades"
+  },
+  {
+    "name": "Red Hot Bbq",
+    "slug": "Red-Hot-Bbq",
+    "scSlug": "Red-Hot-BBQ"
+  },
+  {
+    "name": "Reef Pop",
+    "slug": "Reef-Pop",
+    "scSlug": "ReefPop"
+  },
+  {
+    "name": "Reefpop",
+    "slug": "Reefpop",
+    "scSlug": "ReefPop"
+  },
+  {
+    "name": "Reel Rush Xxxtreme",
+    "slug": "Reel-Rush-Xxxtreme",
+    "scSlug": "reel-rush-xxxtreme"
+  },
+  {
+    "name": "Reign Of Anubis",
+    "slug": "Reign-Of-Anubis",
+    "scSlug": "reign-of-anubis"
+  },
+  {
+    "name": "Reindeer Party",
+    "slug": "Reindeer-Party",
+    "scSlug": "reindeer-party"
+  },
+  {
+    "name": "Rev It Up Redline",
+    "slug": "Rev-It-Up-Redline",
+    "scSlug": "Rev-it-Up-Redline"
+  },
+  {
+    "name": "Rich Cluckin Eggs",
+    "slug": "Rich-Cluckin-Eggs",
+    "scSlug": "rich-cluckin-eggs"
+  },
+  {
+    "name": "Rings Of Prosperity",
+    "slug": "Rings-Of-Prosperity",
+    "scSlug": "rings-of-prosperity"
+  },
+  {
+    "name": "Rise Of Gods Reckoning",
+    "slug": "Rise-Of-Gods-Reckoning",
+    "scSlug": "Rise-of-Gods-Reckoning"
+  },
+  {
+    "name": "Rise Of Shinobi",
+    "slug": "Rise-Of-Shinobi",
+    "scSlug": "Rise-of-Shinobi"
+  },
+  {
+    "name": "Rise Of The Sabertooth",
+    "slug": "Rise-Of-The-Sabertooth",
+    "scSlug": "Rise-of-the-Sabertooth"
+  },
+  {
+    "name": "Rise Of Tut Magic",
+    "slug": "Rise-Of-Tut-Magic",
+    "scSlug": "Rise-of-Tut-Magic"
+  },
+  {
+    "name": "Rise To Power",
+    "slug": "Rise-To-Power",
+    "scSlug": "Rise-to-Power"
+  },
+  {
+    "name": "Road To Riches Race Day",
+    "slug": "Road-To-Riches-Race-Day",
+    "scSlug": "Road-to-Riches-Race-Day"
+  },
+  {
+    "name": "Robin Hoods Heroes",
+    "slug": "Robin-Hoods-Heroes",
+    "scSlug": "Robin-Hood-s-Heroes"
+  },
+  {
+    "name": "Rock Paper Scissors Draw",
+    "slug": "Rock-Paper-Scissors-Draw",
+    "scSlug": "rock-paper-scissors-draw"
+  },
+  {
+    "name": "Rocket Frenzy Diner",
+    "slug": "Rocket-Frenzy-Diner",
+    "scSlug": "rocket-frenzy-diner"
+  },
+  {
+    "name": "Roman Emperors",
+    "slug": "Roman-Emperors",
+    "scSlug": "roman-emperors"
+  },
+  {
+    "name": "Ronins Honour",
+    "slug": "Ronins-Honour",
+    "scSlug": "Ronin-s-Honour"
+  },
+  {
+    "name": "Rotten",
+    "slug": "Rotten",
+    "scSlug": "Rotten"
+  },
+  {
+    "name": "Royal Crown 2 Respins Of Spearhead",
+    "slug": "Royal-Crown-2-Respins-Of-Spearhead",
+    "scSlug": "Royal-Crown-2-Respins-of-Spearhead"
+  },
+  {
+    "name": "Royal Gorilla",
+    "slug": "Royal-Gorilla",
+    "scSlug": "royal-gorilla"
+  },
+  {
+    "name": "Royal Nuts",
+    "slug": "Royal-Nuts",
+    "scSlug": "royal-nuts"
+  },
+  {
+    "name": "Rubies Of Egypt",
+    "slug": "Rubies-Of-Egypt",
+    "scSlug": "Rubies-of-Egypt"
+  },
+  {
+    "name": "Rumble Roo Ko",
+    "slug": "Rumble-Roo-Ko",
+    "scSlug": "rumble-roo-k-o"
+  },
+  {
+    "name": "Rumble Rumble Energized",
+    "slug": "Rumble-Rumble-Energized",
+    "scSlug": "rumble-rumble-energized"
+  },
+  {
+    "name": "Rumble Rumble Triple Shot",
+    "slug": "Rumble-Rumble-Triple-Shot",
+    "scSlug": "rumble-rumble-triple-shot"
+  },
+  {
+    "name": "Saint Nicked Jackpot Royale",
+    "slug": "Saint-Nicked-Jackpot-Royale",
+    "scSlug": "Saint-Nicked"
+  },
+  {
+    "name": "Salty Sams Rage Bait",
+    "slug": "Salty-Sams-Rage-Bait",
+    "scSlug": "salty-sam-s-rage-bait"
+  },
+  {
+    "name": "San Fa Rabbits",
+    "slug": "San-Fa-Rabbits",
+    "scSlug": "san-fa-rabbits"
+  },
+  {
+    "name": "Sands Of Mystery",
+    "slug": "Sands-Of-Mystery",
+    "scSlug": "Sands-of-Mystery"
+  },
+  {
+    "name": "Santa Pays LuckyTap \u2122",
+    "slug": "Santa-Pays-LuckyTap-\u2122",
+    "scSlug": "Santa-Pays-LuckyTap"
+  },
+  {
+    "name": "Santas Snowball Roller",
+    "slug": "Santas-Snowball-Roller",
+    "scSlug": "santas-snowball-roller"
+  },
+  {
+    "name": "Santas Winter Wilds",
+    "slug": "Santas-Winter-Wilds",
+    "scSlug": "Santa-s-Winter-Wilds"
+  },
+  {
+    "name": "Santas Workshop Mines",
+    "slug": "Santas-Workshop-Mines",
+    "scSlug": "santa-s-workshop-mines"
+  },
+  {
+    "name": "Santas World",
+    "slug": "Santas-World",
+    "scSlug": "Santa-s-World"
+  },
+  {
+    "name": "Savage Sunday Bowl",
+    "slug": "Savage-Sunday-Bowl",
+    "scSlug": "savage-sunday-bowl"
+  },
+  {
+    "name": "Scorchin Peppers",
+    "slug": "Scorchin-Peppers",
+    "scSlug": "scorchin-peppers"
+  },
+  {
+    "name": "Scrolls Of Aphrodite",
+    "slug": "Scrolls-Of-Aphrodite",
+    "scSlug": "Scrolls-of-Aphrodite"
+  },
+  {
+    "name": "Secrets Of The Festival",
+    "slug": "Secrets-Of-The-Festival",
+    "scSlug": "Secrets-of-the-Festival"
+  },
+  {
+    "name": "Sharkys Choices Win Ways",
+    "slug": "Sharkys-Choices-Win-Ways",
+    "scSlug": "Sharky-s-Choices-Win-Ways"
+  },
+  {
+    "name": "Shes A Rich Girl",
+    "slug": "Shes-A-Rich-Girl",
+    "scSlug": "Shes-a-Rich-Girl"
+  },
+  {
+    "name": "Silver Lux Sevens Hold Em Respin",
+    "slug": "Silver-Lux-Sevens-Hold-Em-Respin",
+    "scSlug": "silver-lux-sevens-hold-em-respin"
+  },
+  {
+    "name": "Sirens Riches",
+    "slug": "Sirens-Riches",
+    "scSlug": "Siren-s-Riches"
+  },
+  {
+    "name": "Sizzling Eggs Grand Gold Edition",
+    "slug": "Sizzling-Eggs-Grand-Gold-Edition",
+    "scSlug": "sizzling-eggs-grand-gold-edition"
+  },
+  {
+    "name": "Skadis Hunt",
+    "slug": "Skadis-Hunt",
+    "scSlug": "Skadi-s-Hunt"
+  },
+  {
+    "name": "Slingo Fire And Ice",
+    "slug": "Slingo-Fire-And-Ice",
+    "scSlug": "Slingo-Fire-and-Ice"
+  },
+  {
+    "name": "Slingo Thunder Of The Gods",
+    "slug": "Slingo-Thunder-Of-The-Gods",
+    "scSlug": "slingo-thunder-of-the-gods"
+  },
+  {
+    "name": "Slingos Cosmic Clusters",
+    "slug": "Slingos-Cosmic-Clusters",
+    "scSlug": "Slingo-s-Cosmic-Clusters"
+  },
+  {
+    "name": "Slinguini Slingo",
+    "slug": "Slinguini-Slingo",
+    "scSlug": "slinguini-slingo"
+  },
+  {
+    "name": "Slots O Gold Triple Fire",
+    "slug": "Slots-O-Gold-Triple-Fire",
+    "scSlug": "slots-o-gold-triple-fire"
+  },
+  {
+    "name": "Smoking Hot 7s",
+    "slug": "Smoking-Hot-7s",
+    "scSlug": "Smoking-Hot-7-s"
+  },
+  {
+    "name": "Snake Spirit Gold",
+    "slug": "Snake-Spirit-Gold",
+    "scSlug": "snake-spirit-gold"
+  },
+  {
+    "name": "Snowing Gifts 3",
+    "slug": "Snowing-Gifts-3",
+    "scSlug": "snowing-gifts-3"
+  },
+  {
+    "name": "Space Invaders Win And Spin",
+    "slug": "Space-Invaders-Win-And-Spin",
+    "scSlug": "Space-Invaders-Win-and-Spin"
+  },
+  {
+    "name": "Sparky And Shortz Hidden Joules",
+    "slug": "Sparky-And-Shortz-Hidden-Joules",
+    "scSlug": "Sparky-and-Shortz-Hidden-Joules"
+  },
+  {
+    "name": "Speed Crash",
+    "slug": "Speed-Crash",
+    "scSlug": "speed-crash"
+  },
+  {
+    "name": "Spicy Meatballs Megaways",
+    "slug": "Spicy-Meatballs-Megaways",
+    "scSlug": "Spicy-Meatballs"
+  },
+  {
+    "name": "Spirit Of Mustang",
+    "slug": "Spirit-Of-Mustang",
+    "scSlug": "Spirit-of-Mustang"
+  },
+  {
+    "name": "Spirit Of Mustang West Express",
+    "slug": "Spirit-Of-Mustang-West-Express",
+    "scSlug": "spirit-of-mustang-west-express"
+  },
+  {
+    "name": "Stack Em",
+    "slug": "Stack-Em",
+    "scSlug": "Stack-Em"
+  },
+  {
+    "name": "Stampede Rush Speedy Santa",
+    "slug": "Stampede-Rush-Speedy-Santa",
+    "scSlug": "Stampede-Rush-Speedy-Santa"
+  },
+  {
+    "name": "Starburst Xxxtreme",
+    "slug": "Starburst-Xxxtreme",
+    "scSlug": "Starburst-XXXtreme"
+  },
+  {
+    "name": "Starlight Jackpots Athena Goddess Of War",
+    "slug": "Starlight-Jackpots-Athena-Goddess-Of-War",
+    "scSlug": "Starlight-Jackpots-Athena-Goddess-of-War"
+  },
+  {
+    "name": "Starlight Jackpots Captains Catch",
+    "slug": "Starlight-Jackpots-Captains-Catch",
+    "scSlug": "starlight-jackpots-captain-s-catch"
+  },
+  {
+    "name": "Stars Bonanza",
+    "slug": "Stars-Bonanza",
+    "scSlug": "stars-bonanza"
+  },
+  {
+    "name": "Stickman Cash",
+    "slug": "Stickman-Cash",
+    "scSlug": "stickman-cash"
+  },
+  {
+    "name": "Sticky Stacked Fire 7s",
+    "slug": "Sticky-Stacked-Fire-7s",
+    "scSlug": "sticky-stacked-fire-7-s"
+  },
+  {
+    "name": "Story Of Loki Master Of Illusions",
+    "slug": "Story-Of-Loki-Master-Of-Illusions",
+    "scSlug": "Story-of-Loki-Master-of-Illusions"
+  },
+  {
+    "name": "Straight Cash Triple Double Spin",
+    "slug": "Straight-Cash-Triple-Double-Spin",
+    "scSlug": "straight-cash-triple-double-spin"
+  },
+  {
+    "name": "Strike It Gold Win Ways",
+    "slug": "Strike-It-Gold-Win-Ways",
+    "scSlug": "Strike-it-Gold-Win-Ways"
+  },
+  {
+    "name": "Stumpy Mcdoodles 2",
+    "slug": "Stumpy-Mcdoodles-2",
+    "scSlug": "Stumpy-McDoodles-2"
+  },
+  {
+    "name": "Sultans Palace Fortune",
+    "slug": "Sultans-Palace-Fortune",
+    "scSlug": "Sultan-s-Palace-Fortune"
+  },
+  {
+    "name": "Sun And Moon",
+    "slug": "Sun-And-Moon",
+    "scSlug": "Sun-and-Moon"
+  },
+  {
+    "name": "Sun Of Fortune",
+    "slug": "Sun-Of-Fortune",
+    "scSlug": "Sun-of-Fortune"
+  },
+  {
+    "name": "Super 88 Fortunes",
+    "slug": "Super-88-Fortunes",
+    "scSlug": "super-88-fortunes"
+  },
+  {
+    "name": "Super Coins",
+    "slug": "Super-Coins",
+    "scSlug": "super-coins"
+  },
+  {
+    "name": "Super Hot Flaming Buffalos",
+    "slug": "Super-Hot-Flaming-Buffalos",
+    "scSlug": "super-hot-flaming-buffalos"
+  },
+  {
+    "name": "Super Jokrz Wild Ultranudge",
+    "slug": "Super-Jokrz-Wild-Ultranudge",
+    "scSlug": "Super-Jokrz-Wild-Ultra-Nudge"
+  },
+  {
+    "name": "Super Scatter X",
+    "slug": "Super-Scatter-X",
+    "scSlug": "super-scatter-x"
+  },
+  {
+    "name": "Super Stepper",
+    "slug": "Super-Stepper",
+    "scSlug": "super-stepper"
+  },
+  {
+    "name": "Surtrs Fury",
+    "slug": "Surtrs-Fury",
+    "scSlug": "Surtr-s-Fury"
+  },
+  {
+    "name": "Sushi Delight Rapid Feature",
+    "slug": "Sushi-Delight-Rapid-Feature",
+    "scSlug": "sushi-delight-rapid-feature"
+  },
+  {
+    "name": "Sweet Candy Blitz",
+    "slug": "Sweet-Candy-Blitz",
+    "scSlug": "sweet-candy-blitz"
+  },
+  {
+    "name": "Symbols Of Success",
+    "slug": "Symbols-Of-Success",
+    "scSlug": "symbols-of-success"
+  },
+  {
+    "name": "Taco Fury Xxxtreme",
+    "slug": "Taco-Fury-Xxxtreme",
+    "scSlug": "Taco-Fury-XXXtreme"
+  },
+  {
+    "name": "Take Off",
+    "slug": "Take-Off",
+    "scSlug": "take-off"
+  },
+  {
+    "name": "Temple Of Medusa",
+    "slug": "Temple-Of-Medusa",
+    "scSlug": "Temple-of-Medusa"
+  },
+  {
+    "name": "Ten Ton Ways Odins Gifts",
+    "slug": "Ten-Ton-Ways-Odins-Gifts",
+    "scSlug": "ten-ton-ways-odin-s-gifts"
+  },
+  {
+    "name": "Ten Ton Ways Stampede",
+    "slug": "Ten-Ton-Ways-Stampede",
+    "scSlug": "ten-ton-ways-stampede"
+  },
+  {
+    "name": "The Bowery Boys",
+    "slug": "The-Bowery-Boys",
+    "scSlug": "The-Bowery-Boys"
+  },
+  {
+    "name": "The Goonies Return Jackpot Royale",
+    "slug": "The-Goonies-Return-Jackpot-Royale",
+    "scSlug": "The-Goonies-Return"
+  },
+  {
+    "name": "The Great Jackpot Expedition",
+    "slug": "The-Great-Jackpot-Expedition",
+    "scSlug": "the-great-jackpot-expedition"
+  },
+  {
+    "name": "The Jetsons Jackpot Royale",
+    "slug": "The-Jetsons-Jackpot-Royale",
+    "scSlug": "the-jetsons"
+  },
+  {
+    "name": "The Legend Of Ching Shih",
+    "slug": "The-Legend-Of-Ching-Shih",
+    "scSlug": "The-Legend-of-Ching-Shih"
+  },
+  {
+    "name": "The Race Megaways",
+    "slug": "The-Race-Megaways",
+    "scSlug": "The-Race"
+  },
+  {
+    "name": "The Rave",
+    "slug": "The-Rave",
+    "scSlug": "The-Rave"
+  },
+  {
+    "name": "The Widows Ways",
+    "slug": "The-Widows-Ways",
+    "scSlug": "The-Widow-s-Ways"
+  },
+  {
+    "name": "Thor 10k Ways",
+    "slug": "Thor-10k-Ways",
+    "scSlug": "Thor-10K-Ways"
+  },
+  {
+    "name": "Thors Hammer Time",
+    "slug": "Thors-Hammer-Time",
+    "scSlug": "thor-s-hammer-time"
+  },
+  {
+    "name": "Thrill To Grill",
+    "slug": "Thrill-To-Grill",
+    "scSlug": "Thrill-to-Grill"
+  },
+  {
+    "name": "Thunder Cash Dolphins Pearl",
+    "slug": "Thunder-Cash-Dolphins-Pearl",
+    "scSlug": "thunder-cash-dolphin-s-pearl"
+  },
+  {
+    "name": "Thunder Drums Mayan Mask",
+    "slug": "Thunder-Drums-Mayan-Mask",
+    "scSlug": "thunder-drums-mayan-mask"
+  },
+  {
+    "name": "Thundertusk",
+    "slug": "Thundertusk",
+    "scSlug": "thundertusk"
+  },
+  {
+    "name": "Ticket To Riches",
+    "slug": "Ticket-To-Riches",
+    "scSlug": "Ticket-to-Riches"
+  },
+  {
+    "name": "Ticket To Wild",
+    "slug": "Ticket-To-Wild",
+    "scSlug": "ticket-to-wild"
+  },
+  {
+    "name": "Tiger And Dragon Multiplier",
+    "slug": "Tiger-And-Dragon-Multiplier",
+    "scSlug": "tiger-and-dragon-multiplier"
+  },
+  {
+    "name": "Tiki Tiki Trio Da Max",
+    "slug": "Tiki-Tiki-Trio-Da-Max",
+    "scSlug": "tiki-tiki-trio-da-max"
+  },
+  {
+    "name": "Transylvania Night Of Blood",
+    "slug": "Transylvania-Night-Of-Blood",
+    "scSlug": "Transylvania-Night-of-Blood"
+  },
+  {
+    "name": "Treasures Of Kilauea",
+    "slug": "Treasures-Of-Kilauea",
+    "scSlug": "Treasures-of-Kilauea"
+  },
+  {
+    "name": "Tree Wishes",
+    "slug": "Tree-Wishes",
+    "scSlug": "tree-wishes"
+  },
+  {
+    "name": "Tricks And Treats",
+    "slug": "Tricks-And-Treats",
+    "scSlug": "Tricks-and-Treats"
+  },
+  {
+    "name": "Trinity Pots Rising Wilds",
+    "slug": "Trinity-Pots-Rising-Wilds",
+    "scSlug": "trinity-pots-rising-wilds"
+  },
+  {
+    "name": "Triple Cash Eruption",
+    "slug": "Triple-Cash-Eruption",
+    "scSlug": "triple-cash-eruption"
+  },
+  {
+    "name": "Triple Gem Treasure",
+    "slug": "Triple-Gem-Treasure",
+    "scSlug": "triple-gem-treasure"
+  },
+  {
+    "name": "Triple Troves Dragons Delight",
+    "slug": "Triple-Troves-Dragons-Delight",
+    "scSlug": "triple-troves-dragon-s-delight"
+  },
+  {
+    "name": "Triple Troves Rhino",
+    "slug": "Triple-Troves-Rhino",
+    "scSlug": "triple-troves-rhino"
+  },
+  {
+    "name": "Triple Valentine",
+    "slug": "Triple-Valentine",
+    "scSlug": "triple-valentine"
+  },
+  {
+    "name": "Trophy Fish",
+    "slug": "Trophy-Fish",
+    "scSlug": "trophy-fish"
+  },
+  {
+    "name": "True Grit Redemption",
+    "slug": "True-Grit-Redemption",
+    "scSlug": "True-Grit-Redemption"
+  },
+  {
+    "name": "Twin Spin Xxxtreme",
+    "slug": "Twin-Spin-Xxxtreme",
+    "scSlug": "Twin-Spin-XXXTreme"
+  },
+  {
+    "name": "Twisted Toy Tales",
+    "slug": "Twisted-Toy-Tales",
+    "scSlug": "Twisted-Toy-Tales"
+  },
+  {
+    "name": "Tyrants Fall",
+    "slug": "Tyrants-Fall",
+    "scSlug": "tyrant-s-fall"
+  },
+  {
+    "name": "Ufc Gold Blitz Ultimate",
+    "slug": "Ufc-Gold-Blitz-Ultimate",
+    "scSlug": "ufc-gold-blitz-ultimate"
+  },
+  {
+    "name": "Ultimate Fire Link Cash Falls Glacier Gold",
+    "slug": "Ultimate-Fire-Link-Cash-Falls-Glacier-Gold",
+    "scSlug": "ultimate-fire-link-cash-falls-glacier-gold"
+  },
+  {
+    "name": "Upshot Prosperity Rising",
+    "slug": "Upshot-Prosperity-Rising",
+    "scSlug": "Upshot-prosperity-Rising"
+  },
+  {
+    "name": "Vegas Hold And Win",
+    "slug": "Vegas-Hold-And-Win",
+    "scSlug": "Vegas-Hold-and-Win"
+  },
+  {
+    "name": "Versailles Glamour Affair",
+    "slug": "Versailles-Glamour-Affair",
+    "scSlug": "versailles-glamour-affair"
+  },
+  {
+    "name": "Vikings Legacy Everyway",
+    "slug": "Vikings-Legacy-Everyway",
+    "scSlug": "viking-s-legacy-everyway"
+  },
+  {
+    "name": "Warlocks",
+    "slug": "Warlocks",
+    "scSlug": "warlocks"
+  },
+  {
+    "name": "Wealth And Happy Life",
+    "slug": "Wealth-And-Happy-Life",
+    "scSlug": "wealth-and-happy-life"
+  },
+  {
+    "name": "Wealthy Coins",
+    "slug": "Wealthy-Coins",
+    "scSlug": "wealthy-coins"
+  },
+  {
+    "name": "Well Of Wilds Megaways",
+    "slug": "Well-Of-Wilds-Megaways",
+    "scSlug": "Well-of-Wilds-Megaways"
+  },
+  {
+    "name": "Werewolf Darkest Flame",
+    "slug": "Werewolf-Darkest-Flame",
+    "scSlug": "Werewolf-Darkest-Flame"
+  },
+  {
+    "name": "Whack The Bell Tap N Cash",
+    "slug": "Whack-The-Bell-Tap-N-Cash",
+    "scSlug": "whack-the-bell-tap-n-cash"
+  },
+  {
+    "name": "Wheel Of Fortune Elegant Emeralds",
+    "slug": "Wheel-Of-Fortune-Elegant-Emeralds",
+    "scSlug": "Wheel-of-Fortune-Elegant-Emeralds"
+  },
+  {
+    "name": "Wheel Of Fortune Power Wedges",
+    "slug": "Wheel-Of-Fortune-Power-Wedges",
+    "scSlug": "Wheel-of-Fortune-Power-Wedges"
+  },
+  {
+    "name": "Wheel Of Fortune Triple Gold Gold Spin",
+    "slug": "Wheel-Of-Fortune-Triple-Gold-Gold-Spin",
+    "scSlug": "Wheel-of-Fortune-Triple-Gold-Gold-Spin"
+  },
+  {
+    "name": "Wheels Go Round Sun Dynasty",
+    "slug": "Wheels-Go-Round-Sun-Dynasty",
+    "scSlug": "Wheels-Go-Round-Sun-Dynasty"
+  },
+  {
+    "name": "White Rabbit 2",
+    "slug": "White-Rabbit-2",
+    "scSlug": "white-rabbit-2"
+  },
+  {
+    "name": "Wicked Whiskers",
+    "slug": "Wicked-Whiskers",
+    "scSlug": "wicked-whiskers"
+  },
+  {
+    "name": "Wicked Winnings Ii",
+    "slug": "Wicked-Winnings-Ii",
+    "scSlug": "Wicked-Winnings-II"
+  },
+  {
+    "name": "Wild Drop Multiplier",
+    "slug": "Wild-Drop-Multiplier",
+    "scSlug": "wild-drop-multiplier"
+  },
+  {
+    "name": "Wild Expedition",
+    "slug": "Wild-Expedition",
+    "scSlug": "Wild-Expedition"
+  },
+  {
+    "name": "Wild Hot Chilli Reels 2",
+    "slug": "Wild-Hot-Chilli-Reels-2",
+    "scSlug": "wild-hot-chilli-reels-2"
+  },
+  {
+    "name": "Wild Party Jokers",
+    "slug": "Wild-Party-Jokers",
+    "scSlug": "Wild-Party-Jokers"
+  },
+  {
+    "name": "Wild Portals Megaways",
+    "slug": "Wild-Portals-Megaways",
+    "scSlug": "Wild-Portals-Megaways"
+  },
+  {
+    "name": "Wild Scoops Tap N Cash",
+    "slug": "Wild-Scoops-Tap-N-Cash",
+    "scSlug": "wild-scoops-tap-n-cash"
+  },
+  {
+    "name": "Wild Willys Gold Rush",
+    "slug": "Wild-Willys-Gold-Rush",
+    "scSlug": "Wild-Willy-s-Gold-Rush"
+  },
+  {
+    "name": "William Tell And The Wild Arrows Hold And Win",
+    "slug": "William-Tell-And-The-Wild-Arrows-Hold-And-Win",
+    "scSlug": "William-Tell-and-The-Wild-Arrows-Hold-and-Win"
+  },
+  {
+    "name": "Wings Of Fortune",
+    "slug": "Wings-Of-Fortune",
+    "scSlug": "Wings-of-Fortune"
+  },
+  {
+    "name": "Wings Of The Phoenix",
+    "slug": "Wings-Of-The-Phoenix",
+    "scSlug": "Wings-of-the-Phoenix"
+  },
+  {
+    "name": "Winifreds Chronicles",
+    "slug": "Winifreds-Chronicles",
+    "scSlug": "Winifred-s-Chronicles"
+  },
+  {
+    "name": "Winner Of The West Deluxe",
+    "slug": "Winner-Of-The-West-Deluxe",
+    "scSlug": "Winner-of-the-West-Deluxe"
+  },
+  {
+    "name": "Winning Kick LuckyTap\u2122",
+    "slug": "Winning-Kick-LuckyTap\u2122",
+    "scSlug": "Winning-Kick-LuckyTap"
+  },
+  {
+    "name": "Winter Footprints",
+    "slug": "Winter-Footprints",
+    "scSlug": "winter-footprints"
+  },
+  {
+    "name": "Wish Upon A Fairytale",
+    "slug": "Wish-Upon-A-Fairytale",
+    "scSlug": "Wish-Upon-A-Fairy-Tale"
+  },
+  {
+    "name": "Wizards Critters",
+    "slug": "Wizards-Critters",
+    "scSlug": "Wizard-s-Critters"
+  },
+  {
+    "name": "Wolf Canyon Hold And Win",
+    "slug": "Wolf-Canyon-Hold-And-Win",
+    "scSlug": "Wolf-Canyon-Hold-and-Win"
+  },
+  {
+    "name": "Wolf Fang Nights Of Magic",
+    "slug": "Wolf-Fang-Nights-Of-Magic",
+    "scSlug": "wolf-fang-nights-of-magic"
+  },
+  {
+    "name": "Wolf Fang Supermoon",
+    "slug": "Wolf-Fang-Supermoon",
+    "scSlug": "Wolf-Fang-Supermoon"
+  },
+  {
+    "name": "Wolf Fang Underworld",
+    "slug": "Wolf-Fang-Underworld",
+    "scSlug": "Wolf-Fang-Underworld"
+  },
+  {
+    "name": "Wonders Of Africa",
+    "slug": "Wonders-Of-Africa",
+    "scSlug": "Wonders-of-Africa"
+  },
+  {
+    "name": "Xiao Fu Bao",
+    "slug": "Xiao-Fu-Bao",
+    "scSlug": "xiao-fu-bao"
+  },
+  {
+    "name": "Xipe Con Hambre",
+    "slug": "Xipe-Con-Hambre",
+    "scSlug": "Xipe-con-Hambre"
+  },
+  {
+    "name": "Yahtzee Instant Tap",
+    "slug": "Yahtzee-Instant-Tap",
+    "scSlug": "Yahtzee-Instant-Tap"
+  },
+  {
+    "name": "Zaidas Fortune",
+    "slug": "Zaidas-Fortune",
+    "scSlug": "Zaida-s-Fortune"
+  },
+  {
+    "name": "Zeus Lightning Megaways",
+    "slug": "Zeus-Lightning-Megaways",
+    "scSlug": "zeus-lightning-megaways"
+  },
+  {
+    "name": "Zeus Power Surge",
+    "slug": "Zeus-Power-Surge",
+    "scSlug": "zeus-power-surge"
+  },
+  {
+    "name": "Zeus X 1000",
+    "slug": "Zeus-X-1000",
+    "scSlug": "zeus-x-1000"
+  },
+  {
+    "name": "Zodiac Spins",
+    "slug": "Zodiac-Spins",
+    "scSlug": "zodiac-spins"
+  }
+]

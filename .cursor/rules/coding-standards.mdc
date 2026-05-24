@@ -38,7 +38,7 @@ DuckDB WASM is self-hosted in `public/duckdb/` (not CDN). Never add CDN `<script
 
 ## Data Pipeline
 
-After changing any data source (`game_data_master.json`, `theme_consolidation_map.json`, `franchise_mapping.json`, `confidence_map.json`, `staged_art_characterization.json`), run:
+After changing any data source (`data/master/game_data_master.json`, `data/mappings/theme_consolidation_map.json`, `data/mappings/franchise_mapping.json`, `data/mappings/confidence_map.json`, `data/staging/staged_art_characterization.json`), run:
 ```
 npm run build:data
 ```

@@ -1,0 +1,1092 @@
+[
+  {
+    "name": "12 Loaded Pots Drums",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "14",
+      "Game Name": "12 Loaded Pots Drums",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "August, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.15",
+      "Median Avg Bet": "$1.21",
+      "Avg. Games Played Index": "35.20",
+      "Avg. Coin In Index": "13.0",
+      "Theo Win Index": "17.46",
+      "Avg. Theo Win Index Game Category": "19.36",
+      "% of Total GGR": "1.13%"
+    },
+    "master_values": {
+      "id": "game-0346-12_loaded_pots_drums",
+      "name": "12 Loaded Pots Drums",
+      "provider": "Games Global",
+      "theo_win": 1.9,
+      "market_share_pct": 0.000727,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Live Dealer Blackjack Vip",
+    "provider": "Evolution",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "38",
+      "Game Name": "Live Dealer Blackjack Vip",
+      "Parent Supplier": "Evolution",
+      "Game Category": "Live Casino",
+      "Month, Year of OGPD Release Date": "February, 2023",
+      "Casinos (Sites)": "5",
+      "Avg. Average Bet": "$961.92",
+      "Median Avg Bet": "$934.36",
+      "Avg. Games Played Index": "0.19",
+      "Avg. Coin In Index": "30.8",
+      "Theo Win Index": "10.41",
+      "Avg. Theo Win Index Game Category": "2.55",
+      "% of Total GGR": "0.06%"
+    },
+    "master_values": {
+      "id": "game-0400-live_dealer_blackjack_vip",
+      "name": "Live Dealer Blackjack Vip",
+      "provider": "Evolution",
+      "theo_win": 1.63,
+      "market_share_pct": 0.000007,
+      "game_category": "Live Casino"
+    }
+  },
+  {
+    "name": "Blackjack Side Bets",
+    "provider": "AGS",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "58",
+      "Game Name": "Blackjack Side Bets",
+      "Parent Supplier": "Ags",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "January, 2025",
+      "Casinos (Sites)": "9",
+      "Avg. Average Bet": "$25.75",
+      "Median Avg Bet": "$22.62",
+      "Avg. Games Played Index": "0.80",
+      "Avg. Coin In Index": "13.4",
+      "Theo Win Index": "8.42",
+      "Avg. Theo Win Index Game Category": "2.98",
+      "% of Total GGR": "0.09%"
+    },
+    "master_values": {
+      "id": "game-1711-blackjack_side_bets",
+      "name": "Blackjack Side Bets",
+      "provider": "AGS",
+      "theo_win": 0.26,
+      "market_share_pct": 0.00005,
+      "game_category": "Table Game"
+    }
+  },
+  {
+    "name": "Sweet 16 Blackjack",
+    "provider": "Light & Wonder",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "91",
+      "Game Name": "Sweet 16 Blackjack",
+      "Parent Supplier": "Light & Wonder",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "November, 2023",
+      "Casinos (Sites)": "9",
+      "Avg. Average Bet": "$59.16",
+      "Median Avg Bet": "$18.08",
+      "Avg. Games Played Index": "0.15",
+      "Avg. Coin In Index": "8.0",
+      "Theo Win Index": "7.05",
+      "Avg. Theo Win Index Game Category": "2.50",
+      "% of Total GGR": "0.09%"
+    },
+    "master_values": {
+      "id": "game-1348-sweet_16_blackjack",
+      "name": "Sweet 16 Blackjack",
+      "provider": "Light & Wonder",
+      "theo_win": 0.39,
+      "market_share_pct": 0.00006,
+      "game_category": "Table Game"
+    }
+  },
+  {
+    "name": "Blackjack Single Deck",
+    "provider": "AGS",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "99",
+      "Game Name": "Blackjack Single Deck",
+      "Parent Supplier": "Ags",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "April, 2025",
+      "Casinos (Sites)": "9",
+      "Avg. Average Bet": "$120.45",
+      "Median Avg Bet": "$76.12",
+      "Avg. Games Played Index": "1.15",
+      "Avg. Coin In Index": "32.7",
+      "Theo Win Index": "6.52",
+      "Avg. Theo Win Index Game Category": "2.31",
+      "% of Total GGR": "0.07%"
+    },
+    "master_values": {
+      "id": "game-0529-blackjack_single_deck",
+      "name": "Blackjack Single Deck",
+      "provider": "AGS",
+      "theo_win": 1.22,
+      "market_share_pct": 0.000068,
+      "game_category": "Table Game"
+    }
+  },
+  {
+    "name": "Secrets Of The Forest",
+    "provider": "High 5 Games",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "147",
+      "Game Name": "Secrets Of The Forest",
+      "Parent Supplier": "High 5 Games",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "March, 2021",
+      "Casinos (Sites)": "7",
+      "Avg. Average Bet": "$48.05",
+      "Median Avg Bet": "$1.52",
+      "Avg. Games Played Index": "0.08",
+      "Avg. Coin In Index": "3.6",
+      "Theo Win Index": "4.63",
+      "Avg. Theo Win Index Game Category": "5.14",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-2659-secrets_of_the_forest",
+      "name": "Secrets Of The Forest",
+      "provider": "High 5 Games",
+      "theo_win": 0.1,
+      "market_share_pct": 0.000013,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Gold Blitz Fortunes",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "267",
+      "Game Name": "Gold Blitz Fortunes",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.55",
+      "Median Avg Bet": "$1.48",
+      "Avg. Games Played Index": "3.02",
+      "Avg. Coin In Index": "2.0",
+      "Theo Win Index": "2.75",
+      "Avg. Theo Win Index Game Category": "3.05",
+      "% of Total GGR": "0.09%"
+    },
+    "master_values": {
+      "id": "game-0007-gold_blitz_fortunes",
+      "name": "Gold Blitz Fortunes",
+      "provider": "Games Global",
+      "theo_win": 28,
+      "market_share_pct": 0.013456,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Three Card Poker",
+    "provider": "IGT",
+    "reason": "fuzzy_match_never_auto_apply",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "284",
+      "Game Name": "Three Card Poker",
+      "Parent Supplier": "Igt",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "March, 2021",
+      "Casinos (Sites)": "2",
+      "Avg. Average Bet": "$52.81",
+      "Median Avg Bet": "$52.81",
+      "Avg. Games Played Index": "0.56",
+      "Avg. Coin In Index": "3.8",
+      "Theo Win Index": "2.60",
+      "Avg. Theo Win Index Game Category": "0.92",
+      "% of Total GGR": "0.00%"
+    },
+    "master_values": {
+      "id": "game-0206-three_card_poker",
+      "name": "Three Card Poker",
+      "provider": "Light & Wonder",
+      "theo_win": 3.01
+    }
+  },
+  {
+    "name": "12 Fortune Dragons",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "286",
+      "Game Name": "12 Fortune Dragons",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$2.04",
+      "Median Avg Bet": "$1.74",
+      "Avg. Games Played Index": "2.16",
+      "Avg. Coin In Index": "1.9",
+      "Theo Win Index": "2.60",
+      "Avg. Theo Win Index Game Category": "2.89",
+      "% of Total GGR": "0.09%"
+    },
+    "master_values": {
+      "id": "game-0011-12_fortune_dragons",
+      "name": "12 Fortune Dragons",
+      "provider": "Games Global",
+      "theo_win": 21.79,
+      "market_share_pct": 0.009599,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Bubbly Wild Fizz",
+    "provider": "Aristocrat",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "324",
+      "Game Name": "Bubbly Wild Fizz",
+      "Parent Supplier": "Aristocrat",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "April, 2024",
+      "Casinos (Sites)": "5",
+      "Avg. Average Bet": "$3.39",
+      "Median Avg Bet": "$2.74",
+      "Avg. Games Played Index": "0.32",
+      "Avg. Coin In Index": "1.7",
+      "Theo Win Index": "2.33",
+      "Avg. Theo Win Index Game Category": "2.59",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-1765-bubbly_wild_fizz",
+      "name": "Bubbly Wild Fizz",
+      "provider": "Aristocrat",
+      "theo_win": 0.24,
+      "market_share_pct": 0.000016,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Multihand Blackjack",
+    "provider": "Internal",
+    "reason": "fuzzy_match_never_auto_apply",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "326",
+      "Game Name": "Multihand Blackjack",
+      "Parent Supplier": "Internal",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "July, 2022",
+      "Casinos (Sites)": "8",
+      "Avg. Average Bet": "$38.09",
+      "Median Avg Bet": "$27.11",
+      "Avg. Games Played Index": "2.41",
+      "Avg. Coin In Index": "19.3",
+      "Theo Win Index": "2.32",
+      "Avg. Theo Win Index Game Category": "0.82",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0296-multihand_blackjack",
+      "name": "Multihand Blackjack",
+      "provider": "IGT",
+      "theo_win": 2.14
+    }
+  },
+  {
+    "name": "Azteca Gold Collect",
+    "provider": "Red Rake Gaming",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "332",
+      "Game Name": "Azteca Gold Collect",
+      "Parent Supplier": "Red Rake Gaming",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "September, 2025",
+      "Casinos (Sites)": "8",
+      "Avg. Average Bet": "$2.21",
+      "Median Avg Bet": "$1.09",
+      "Avg. Games Played Index": "0.54",
+      "Avg. Coin In Index": "2.0",
+      "Theo Win Index": "2.31",
+      "Avg. Theo Win Index Game Category": "2.56",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-2295-azteca_gold_collect",
+      "name": "Azteca Gold Collect",
+      "provider": "Red Rake Gaming",
+      "theo_win": 0.14,
+      "market_share_pct": 0.000007,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Juicy Rolls Feature Frenzy",
+    "provider": "Octoplay",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "375",
+      "Game Name": "Juicy Rolls Feature Frenzy",
+      "Parent Supplier": "Octoplay",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "August, 2025",
+      "Casinos (Sites)": "10",
+      "Avg. Average Bet": "$0.85",
+      "Median Avg Bet": "$0.89",
+      "Avg. Games Played Index": "3.28",
+      "Avg. Coin In Index": "1.5",
+      "Theo Win Index": "2.07",
+      "Avg. Theo Win Index Game Category": "2.30",
+      "% of Total GGR": "0.04%"
+    },
+    "master_values": {
+      "id": "game-2218-juicy_rolls_feature_frenzy",
+      "name": "Juicy Rolls Feature Frenzy",
+      "provider": "Octoplay",
+      "theo_win": 0.15,
+      "market_share_pct": 0.000011,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Zen Panda Loot Link",
+    "provider": "High 5 Games",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "395",
+      "Game Name": "Zen Panda Loot Link",
+      "Parent Supplier": "High 5 Games",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "August, 2025",
+      "Casinos (Sites)": "15",
+      "Avg. Average Bet": "$4.22",
+      "Median Avg Bet": "$2.33",
+      "Avg. Games Played Index": "0.26",
+      "Avg. Coin In Index": "1.6",
+      "Theo Win Index": "1.97",
+      "Avg. Theo Win Index Game Category": "2.19",
+      "% of Total GGR": "0.05%"
+    },
+    "master_values": {
+      "id": "game-2245-zen_panda_loot_link",
+      "name": "Zen Panda Loot Link",
+      "provider": "High 5 Games",
+      "theo_win": 0.15,
+      "market_share_pct": 0.000039,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Megajackpots Majestic Buffalo",
+    "provider": "IGT",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "421",
+      "Game Name": "Megajackpots Majestic Buffalo",
+      "Parent Supplier": "Igt",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "September, 2023",
+      "Casinos (Sites)": "16",
+      "Avg. Average Bet": "$2.17",
+      "Median Avg Bet": "$1.82",
+      "Avg. Games Played Index": "1.22",
+      "Avg. Coin In Index": "0.9",
+      "Theo Win Index": "1.89",
+      "Avg. Theo Win Index Game Category": "2.10",
+      "% of Total GGR": "0.06%"
+    },
+    "master_values": {
+      "id": "game-1179-megajackpots_majestic_buffalo",
+      "name": "Megajackpots Majestic Buffalo",
+      "provider": "IGT",
+      "theo_win": 0.47,
+      "market_share_pct": 0.000017,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Thunder Cash Candelas Senor Muerte",
+    "provider": "Greentube",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "483",
+      "Game Name": "Thunder Cash Candelas Senor Muerte",
+      "Parent Supplier": "Greentube",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "February, 2024",
+      "Casinos (Sites)": "3",
+      "Avg. Average Bet": "$1.82",
+      "Median Avg Bet": "$2.03",
+      "Avg. Games Played Index": "1.48",
+      "Avg. Coin In Index": "1.4",
+      "Theo Win Index": "1.63",
+      "Avg. Theo Win Index Game Category": "1.81",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-1682-thunder_cash_candelas_senor_muerte",
+      "name": "Thunder Cash Candelas Senor Muerte",
+      "provider": "Greentube",
+      "theo_win": 0.27,
+      "market_share_pct": 0.000006,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "3 Lucky Hippos",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "485",
+      "Game Name": "3 Lucky Hippos",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "September, 2024",
+      "Casinos (Sites)": "22",
+      "Avg. Average Bet": "$1.58",
+      "Median Avg Bet": "$1.26",
+      "Avg. Games Played Index": "1.87",
+      "Avg. Coin In Index": "1.1",
+      "Theo Win Index": "1.63",
+      "Avg. Theo Win Index Game Category": "1.80",
+      "% of Total GGR": "0.05%"
+    },
+    "master_values": {
+      "id": "game-0776-3_lucky_hippos",
+      "name": "3 Lucky Hippos",
+      "provider": "Games Global",
+      "theo_win": 0.81,
+      "market_share_pct": 0.00004,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Sizzling 777 Deluxe",
+    "provider": "Wazdan",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "533",
+      "Game Name": "Sizzling 777 Deluxe",
+      "Parent Supplier": "Wazdan",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "February, 2023",
+      "Casinos (Sites)": "9",
+      "Avg. Average Bet": "$2.69",
+      "Median Avg Bet": "$0.81",
+      "Avg. Games Played Index": "0.76",
+      "Avg. Coin In Index": "1.3",
+      "Theo Win Index": "1.43",
+      "Avg. Theo Win Index Game Category": "1.58",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-3197-sizzling_777_deluxe",
+      "name": "Sizzling 777 Deluxe",
+      "provider": "Wazdan",
+      "theo_win": 0.05,
+      "market_share_pct": 0.000006,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Whirl Win",
+    "provider": "Bragg Gaming Group",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "793",
+      "Game Name": "Whirl Win",
+      "Parent Supplier": "Bragg Gaming Group",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "21",
+      "Avg. Average Bet": "$1.13",
+      "Median Avg Bet": "$1.09",
+      "Avg. Games Played Index": "1.37",
+      "Avg. Coin In Index": "0.6",
+      "Theo Win Index": "0.91",
+      "Avg. Theo Win Index Game Category": "1.00",
+      "% of Total GGR": "0.03%"
+    },
+    "master_values": {
+      "id": "game-0019-whirl_win",
+      "name": "Whirl Win",
+      "provider": "Bragg Gaming Group",
+      "theo_win": 16.77,
+      "market_share_pct": 0.00335,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Chicks In Vegas",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "830",
+      "Game Name": "Chicks In Vegas",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "September, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.36",
+      "Median Avg Bet": "$1.31",
+      "Avg. Games Played Index": "1.14",
+      "Avg. Coin In Index": "0.5",
+      "Theo Win Index": "0.86",
+      "Avg. Theo Win Index Game Category": "0.96",
+      "% of Total GGR": "0.03%"
+    },
+    "master_values": {
+      "id": "game-0030-chicks_in_vegas",
+      "name": "Chicks In Vegas",
+      "provider": "Games Global",
+      "theo_win": 13.04,
+      "market_share_pct": 0.004288,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Mighty Symbols Joker",
+    "provider": "Wazdan",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "856",
+      "Game Name": "Mighty Symbols Joker",
+      "Parent Supplier": "Wazdan",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "February, 2025",
+      "Casinos (Sites)": "13",
+      "Avg. Average Bet": "$1.16",
+      "Median Avg Bet": "$1.31",
+      "Avg. Games Played Index": "1.31",
+      "Avg. Coin In Index": "0.9",
+      "Theo Win Index": "0.84",
+      "Avg. Theo Win Index Game Category": "0.93",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-1965-mighty_symbols_joker",
+      "name": "Mighty Symbols Joker",
+      "provider": "Wazdan",
+      "theo_win": 0.19,
+      "market_share_pct": 0.000014,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Casino Hold Em",
+    "provider": "Playtech",
+    "reason": "fuzzy_match_never_auto_apply",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "871",
+      "Game Name": "Casino Hold Em",
+      "Parent Supplier": "Playtech",
+      "Game Category": "Table Game",
+      "Month, Year of OGPD Release Date": "January, 2024",
+      "Casinos (Sites)": "3",
+      "Avg. Average Bet": "$7.72",
+      "Median Avg Bet": "$7.19",
+      "Avg. Games Played Index": "0.59",
+      "Avg. Coin In Index": "1.1",
+      "Theo Win Index": "0.82",
+      "Avg. Theo Win Index Game Category": "0.29",
+      "% of Total GGR": "0.00%"
+    },
+    "master_values": {
+      "id": "game-0729-casino_hold_em",
+      "name": "Casino Hold Em",
+      "provider": "Evolution",
+      "theo_win": 0.87
+    }
+  },
+  {
+    "name": "Blue Wizard Collect Em And Link",
+    "provider": "Playtech",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "902",
+      "Game Name": "Blue Wizard Collect Em And Link",
+      "Parent Supplier": "Playtech",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "23",
+      "Avg. Average Bet": "$1.56",
+      "Median Avg Bet": "$1.21",
+      "Avg. Games Played Index": "1.01",
+      "Avg. Coin In Index": "0.6",
+      "Theo Win Index": "0.79",
+      "Avg. Theo Win Index Game Category": "0.87",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-0120-blue_wizard_collect_em_and_link",
+      "name": "Blue Wizard Collect Em And Link",
+      "provider": "Playtech",
+      "theo_win": 4.78,
+      "market_share_pct": 0.002308,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Avalon Gold",
+    "provider": "Light & Wonder",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "975",
+      "Game Name": "Avalon Gold",
+      "Parent Supplier": "Light & Wonder",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "August, 2024",
+      "Casinos (Sites)": "15",
+      "Avg. Average Bet": "$2.09",
+      "Median Avg Bet": "$1.38",
+      "Avg. Games Played Index": "0.88",
+      "Avg. Coin In Index": "0.5",
+      "Theo Win Index": "0.71",
+      "Avg. Theo Win Index Game Category": "0.78",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-2047-avalon_gold",
+      "name": "Avalon Gold",
+      "provider": "Light & Wonder",
+      "theo_win": 0.18,
+      "market_share_pct": 0.000016,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Arcade Bomb",
+    "provider": "Evolution",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,063",
+      "Game Name": "Arcade Bomb",
+      "Parent Supplier": "Evolution",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "May, 2024",
+      "Casinos (Sites)": "31",
+      "Avg. Average Bet": "$1.93",
+      "Median Avg Bet": "$0.81",
+      "Avg. Games Played Index": "0.13",
+      "Avg. Coin In Index": "0.4",
+      "Theo Win Index": "0.62",
+      "Avg. Theo Win Index Game Category": "0.69",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-3151-arcade_bomb",
+      "name": "Arcade Bomb",
+      "provider": "Evolution",
+      "theo_win": 0.05,
+      "market_share_pct": 0.000014,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Fire And Roses Joker 2 All In",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,075",
+      "Game Name": "Fire And Roses Joker 2 All In",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.18",
+      "Median Avg Bet": "$1.16",
+      "Avg. Games Played Index": "0.80",
+      "Avg. Coin In Index": "0.4",
+      "Theo Win Index": "0.61",
+      "Avg. Theo Win Index Game Category": "0.68",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-0075-fire_and_roses_joker_2_all_in",
+      "name": "Fire And Roses Joker 2 All In",
+      "provider": "Games Global",
+      "theo_win": 6.55,
+      "market_share_pct": 0.002754,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Diamond Mystery 100 Wild Fire",
+    "provider": "Greentube",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,253",
+      "Game Name": "Diamond Mystery 100 Wild Fire",
+      "Parent Supplier": "Greentube",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "January, 2025",
+      "Casinos (Sites)": "19",
+      "Avg. Average Bet": "$2.45",
+      "Median Avg Bet": "$1.12",
+      "Avg. Games Played Index": "0.70",
+      "Avg. Coin In Index": "0.5",
+      "Theo Win Index": "0.49",
+      "Avg. Theo Win Index Game Category": "0.55",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-2862-diamond_mystery_100_wild_fire",
+      "name": "Diamond Mystery 100 Wild Fire",
+      "provider": "Greentube",
+      "theo_win": 0.08,
+      "market_share_pct": 0.000017,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Grand Bison",
+    "provider": "Red Rake Gaming",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,293",
+      "Game Name": "Grand Bison",
+      "Parent Supplier": "Red Rake Gaming",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "June, 2025",
+      "Casinos (Sites)": "17",
+      "Avg. Average Bet": "$1.25",
+      "Median Avg Bet": "$1.25",
+      "Avg. Games Played Index": "0.81",
+      "Avg. Coin In Index": "0.4",
+      "Theo Win Index": "0.47",
+      "Avg. Theo Win Index Game Category": "0.52",
+      "% of Total GGR": "0.02%"
+    },
+    "master_values": {
+      "id": "game-2910-grand_bison",
+      "name": "Grand Bison",
+      "provider": "Red Rake Gaming",
+      "theo_win": 0.07,
+      "market_share_pct": 0.000009,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Ducky Bucks",
+    "provider": "Gamecode",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,388",
+      "Game Name": "Ducky Bucks",
+      "Parent Supplier": "Gamecode",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "17",
+      "Avg. Average Bet": "$1.58",
+      "Median Avg Bet": "$1.51",
+      "Avg. Games Played Index": "0.57",
+      "Avg. Coin In Index": "0.4",
+      "Theo Win Index": "0.42",
+      "Avg. Theo Win Index Game Category": "0.47",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0112-ducky_bucks",
+      "name": "Ducky Bucks",
+      "provider": "Gamecode",
+      "theo_win": 4.96,
+      "market_share_pct": 0.001448,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Mayan Fusion",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,411",
+      "Game Name": "Mayan Fusion",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$2.65",
+      "Median Avg Bet": "$1.22",
+      "Avg. Games Played Index": "0.38",
+      "Avg. Coin In Index": "0.3",
+      "Theo Win Index": "0.41",
+      "Avg. Theo Win Index Game Category": "0.46",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0074-mayan_fusion",
+      "name": "Mayan Fusion",
+      "provider": "Games Global",
+      "theo_win": 6.58,
+      "market_share_pct": 0.001902,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Gobble Gobble Gobble",
+    "provider": "Evolution",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,445",
+      "Game Name": "Gobble Gobble Gobble",
+      "Parent Supplier": "Evolution",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "October, 2025",
+      "Casinos (Sites)": "13",
+      "Avg. Average Bet": "$0.96",
+      "Median Avg Bet": "$0.80",
+      "Avg. Games Played Index": "0.50",
+      "Avg. Coin In Index": "0.3",
+      "Theo Win Index": "0.40",
+      "Avg. Theo Win Index Game Category": "0.44",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0067-gobble_gobble_gobble",
+      "name": "Gobble Gobble Gobble",
+      "provider": "Evolution",
+      "theo_win": 7.12,
+      "market_share_pct": 0.001249,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Wolf Prime Deluxe",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,562",
+      "Game Name": "Wolf Prime Deluxe",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.40",
+      "Median Avg Bet": "$1.14",
+      "Avg. Games Played Index": "0.40",
+      "Avg. Coin In Index": "0.2",
+      "Theo Win Index": "0.35",
+      "Avg. Theo Win Index Game Category": "0.38",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0145-wolf_prime_deluxe",
+      "name": "Wolf Prime Deluxe",
+      "provider": "Games Global",
+      "theo_win": 4.22,
+      "market_share_pct": 0.001418,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Riddle Of Riches Mystery Cruise",
+    "provider": "High 5 Games",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,644",
+      "Game Name": "Riddle Of Riches Mystery Cruise",
+      "Parent Supplier": "High 5 Games",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "July, 2024",
+      "Casinos (Sites)": "18",
+      "Avg. Average Bet": "$1.71",
+      "Median Avg Bet": "$1.21",
+      "Avg. Games Played Index": "0.03",
+      "Avg. Coin In Index": "0.2",
+      "Theo Win Index": "0.31",
+      "Avg. Theo Win Index Game Category": "0.35",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-3866-riddle_of_riches_mystery_cruise",
+      "name": "Riddle Of Riches Mystery Cruise",
+      "provider": "High 5 Games",
+      "theo_win": 0.02,
+      "market_share_pct": 0.000005,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Lightning Gorilla 2 Maximum Boltage Xmas",
+    "provider": "Light & Wonder",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,758",
+      "Game Name": "Lightning Gorilla 2 Maximum Boltage Xmas",
+      "Parent Supplier": "Light & Wonder",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "23",
+      "Avg. Average Bet": "$1.85",
+      "Median Avg Bet": "$1.76",
+      "Avg. Games Played Index": "0.22",
+      "Avg. Coin In Index": "0.2",
+      "Theo Win Index": "0.28",
+      "Avg. Theo Win Index Game Category": "0.31",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0243-lightning_gorilla_2_maximum_boltage_xmas",
+      "name": "Lightning Gorilla 2 Maximum Boltage Xmas",
+      "provider": "Light & Wonder",
+      "theo_win": 2.55,
+      "market_share_pct": 0.001015,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Double Beef Up The Bonus",
+    "provider": "Games Global",
+    "reason": "market_share_ratio",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "2,158",
+      "Game Name": "Double Beef Up The Bonus",
+      "Parent Supplier": "Games Global",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "24",
+      "Avg. Average Bet": "$1.19",
+      "Median Avg Bet": "$1.13",
+      "Avg. Games Played Index": "0.23",
+      "Avg. Coin In Index": "0.1",
+      "Theo Win Index": "0.19",
+      "Avg. Theo Win Index Game Category": "0.21",
+      "% of Total GGR": "0.01%"
+    },
+    "master_values": {
+      "id": "game-0193-double_beef_up_the_bonus",
+      "name": "Double Beef Up The Bonus",
+      "provider": "Games Global",
+      "theo_win": 3.13,
+      "market_share_pct": 0.001014,
+      "game_category": "Slot"
+    }
+  },
+  {
+    "name": "Break The Piggy Bank (Octoplay)",
+    "provider": "Octoplay",
+    "reason": "same_name_diff_provider",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "23",
+      "Game Name": "Break The Piggy Bank",
+      "Parent Supplier": "Octoplay",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "February, 2026",
+      "Casinos (Sites)": "3",
+      "Avg. Average Bet": "$0.99",
+      "Median Avg Bet": "$1.01",
+      "Avg. Games Played Index": "15.35",
+      "Avg. Coin In Index": "8.5",
+      "Theo Win Index": "14.47",
+      "Avg. Theo Win Index Game Category": "16.04",
+      "% of Total GGR": "0.06%"
+    },
+    "master_values": null
+  },
+  {
+    "name": "Break The Piggy Bank (Spinomenal)",
+    "provider": "Spinomenal",
+    "reason": "same_name_diff_provider",
+    "csv_values": {
+      "Month of Data Date": "Mar '26",
+      "State On/Off": "",
+      "Index": "1,091",
+      "Game Name": "Break The Piggy Bank",
+      "Parent Supplier": "Spinomenal",
+      "Game Category": "Slot",
+      "Month, Year of OGPD Release Date": "November, 2025",
+      "Casinos (Sites)": "3",
+      "Avg. Average Bet": "$1.40",
+      "Median Avg Bet": "$1.42",
+      "Avg. Games Played Index": "0.88",
+      "Avg. Coin In Index": "0.3",
+      "Theo Win Index": "0.60",
+      "Avg. Theo Win Index Game Category": "0.66",
+      "% of Total GGR": "0.00%"
+    },
+    "master_values": null
+  }
+]

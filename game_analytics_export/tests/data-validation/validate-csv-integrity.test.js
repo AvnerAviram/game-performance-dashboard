@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { MASTER_JSON } from '../helpers/paths.js';
 
 /**
  * CSV/XLSX Data Integrity Validation
@@ -11,8 +11,6 @@ import { resolve } from 'path';
  * This is the definitive test: if this fails, XLSX data has been damaged.
  * Run after every extraction batch.
  */
-
-const DATA_DIR = resolve(import.meta.dirname, '../../data');
 
 const XLSX_FIELDS = [
     'id',
@@ -45,7 +43,7 @@ const NUMERIC_XLSX_FIELDS = [
 let master;
 
 beforeAll(() => {
-    const raw = readFileSync(resolve(DATA_DIR, 'game_data_master.json'), 'utf-8');
+    const raw = readFileSync(MASTER_JSON, 'utf-8');
     master = JSON.parse(raw);
     if (!Array.isArray(master)) {
         master = master.games || [];

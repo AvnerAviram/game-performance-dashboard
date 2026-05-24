@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Screenshot Review: Play'n GO Batch 5/6</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 20px; }
+h1 { color: #00d2ff; text-align: center; }
+.summary { text-align: center; color: #aaa; margin: 10px 0; }
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 1600px; margin: 0 auto; }
+.game { border: 1px solid #333; border-radius: 12px; padding: 15px; background: #16213e; }
+.game-title { font-size: 1.1em; font-weight: bold; color: #00d2ff; margin-bottom: 8px; }
+.game-meta { font-size: 0.85em; color: #888; margin-bottom: 8px; }
+.screenshot { width: 100%; border-radius: 8px; }
+.btns { margin-top: 8px; }
+.btn { padding: 6px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; margin-right: 6px; }
+.btn-ok { background: #2ecc71; color: #000; }
+.btn-wrong { background: #e74c3c; color: #fff; }
+.btn-notgp { background: #f39c12; color: #000; }
+.btn.selected { box-shadow: 0 0 0 3px #fff; }
+.export-btn { display: block; margin: 30px auto; padding: 12px 40px; background: #00d2ff; color: #000; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; }
+#results { width: 90%; margin: 20px auto; display: none; background: #0f3460; color: #fff; border: 1px solid #555; padding: 10px; min-height: 100px; }
+</style></head><body>
+<h1>Play'n GO Screenshots - Batch 5/6 (20 games)</h1>
+<p class="summary">Auto-filtered: only images >150KB shown. Source: playngo.com official game pages.</p>
+<div class="grid">
+<div class="game" id="g0">
+  <div class="game-title">#1: Piggy Blitz Casino Gold</div>
+  <div class="game-meta">Size: 2136KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Piggy-Blitz-Casino-Gold.jpg" alt="Piggy Blitz Casino Gold">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(0,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(0,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(0,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g1">
+  <div class="game-title">#2: Bullion Xpress</div>
+  <div class="game-meta">Size: 1860KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bullion-Xpress.jpg" alt="Bullion Xpress">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(1,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(1,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(1,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g2">
+  <div class="game-title">#3: Fate Of Dead Blitzways</div>
+  <div class="game-meta">Size: 1979KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fate-Of-Dead-Blitzways.jpg" alt="Fate Of Dead Blitzways">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(2,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(2,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(2,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g3">
+  <div class="game-title">#4: Bao Shi</div>
+  <div class="game-meta">Size: 2008KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bao-Shi.jpg" alt="Bao Shi">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(3,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(3,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(3,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g4">
+  <div class="game-title">#5: Wizard Of Gems</div>
+  <div class="game-meta">Size: 245KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Wizard-Of-Gems.jpg" alt="Wizard Of Gems">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(4,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(4,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(4,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g5">
+  <div class="game-title">#6: Cash Vandal</div>
+  <div class="game-meta">Size: 200KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Cash-Vandal.jpg" alt="Cash Vandal">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(5,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(5,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(5,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g6">
+  <div class="game-title">#7: Animal Madness</div>
+  <div class="game-meta">Size: 207KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Animal-Madness.jpg" alt="Animal Madness">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(6,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(6,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(6,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g7">
+  <div class="game-title">#8: Phoenix Reborn</div>
+  <div class="game-meta">Size: 208KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Phoenix-Reborn.jpg" alt="Phoenix Reborn">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(7,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(7,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(7,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g8">
+  <div class="game-title">#9: Crazy Cows</div>
+  <div class="game-meta">Size: 232KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Crazy-Cows.jpg" alt="Crazy Cows">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(8,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(8,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(8,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g9">
+  <div class="game-title">#10: Fat Frankies</div>
+  <div class="game-meta">Size: 187KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fat-Frankies.jpg" alt="Fat Frankies">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(9,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(9,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(9,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g10">
+  <div class="game-title">#11: Troll Hunters</div>
+  <div class="game-meta">Size: 247KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Troll-Hunters.jpg" alt="Troll Hunters">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(10,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(10,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(10,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g11">
+  <div class="game-title">#12: Golden Caravan</div>
+  <div class="game-meta">Size: 210KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Golden-Caravan.jpg" alt="Golden Caravan">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(11,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(11,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(11,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g12">
+  <div class="game-title">#13: Fire Toad</div>
+  <div class="game-meta">Size: 187KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Fire-Toad.jpg" alt="Fire Toad">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(12,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(12,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(12,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g13">
+  <div class="game-title">#14: Inferno Star</div>
+  <div class="game-meta">Size: 173KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Inferno-Star.jpg" alt="Inferno Star">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(13,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(13,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(13,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g14">
+  <div class="game-title">#15: Troll Hunters 2</div>
+  <div class="game-meta">Size: 236KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Troll-Hunters-2.jpg" alt="Troll Hunters 2">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(14,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(14,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(14,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g15">
+  <div class="game-title">#16: Gold King</div>
+  <div class="game-meta">Size: 188KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Gold-King.jpg" alt="Gold King">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(15,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(15,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(15,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g16">
+  <div class="game-title">#17: Banana Rock</div>
+  <div class="game-meta">Size: 249KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Banana-Rock.jpg" alt="Banana Rock">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(16,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(16,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(16,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g17">
+  <div class="game-title">#18: Bull In A China Shop</div>
+  <div class="game-meta">Size: 220KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Bull-In-A-China-Shop.jpg" alt="Bull In A China Shop">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(17,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(17,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(17,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g18">
+  <div class="game-title">#19: Star Joker</div>
+  <div class="game-meta">Size: 203KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Star-Joker.jpg" alt="Star Joker">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(18,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(18,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(18,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div>
+<div class="game" id="g19">
+  <div class="game-title">#20: Jolly Roger 2</div>
+  <div class="game-meta">Size: 221KB | Source: playngo.com</div>
+  <img class="screenshot" src="../../../game_analytics_export/data/screenshots/Jolly-Roger-2.jpg" alt="Jolly Roger 2">
+  <div class="btns">
+    <button class="btn btn-ok" onclick="mark(19,'ok',this)">OK</button>
+    <button class="btn btn-wrong" onclick="mark(19,'wrong_game',this)">Wrong Game</button>
+    <button class="btn btn-notgp" onclick="mark(19,'not_gameplay',this)">Not Gameplay</button>
+  </div>
+</div></div>
+<button class="export-btn" onclick="exportResults()">Export Review Results</button>
+<textarea id="results" readonly></textarea>
+<script>
+const decisions = {};
+function mark(i, decision, btn) {
+  decisions[i] = { game: document.querySelector('#g'+i+' .game-title').textContent.replace(/^#\d+: /, ''), decision };
+  btn.parentElement.querySelectorAll('.btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+function exportResults() {
+  const el = document.getElementById('results');
+  el.style.display = 'block';
+  el.value = JSON.stringify(Object.values(decisions), null, 2);
+}
+</script></body></html>

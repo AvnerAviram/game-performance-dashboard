@@ -1,8 +1,9 @@
 import { describe, test, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
+import { DATA_DIR } from '../helpers/paths.js';
 
-const SOURCES_DIR = resolve(import.meta.dirname, '../../data/sources');
+const SOURCES_DIR = resolve(DATA_DIR, 'sources');
 const OLD_CSV = resolve(SOURCES_DIR, 'eilers_nov25.csv');
 const NEW_TSV = resolve(SOURCES_DIR, 'eilers_mar26.tsv');
 

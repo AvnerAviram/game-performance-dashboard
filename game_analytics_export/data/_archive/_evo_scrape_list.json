@@ -1,0 +1,3465 @@
+[
+  {
+    "name": "First Person Blackjack",
+    "slug": "first-person-blackjack",
+    "sc_specs": {
+      "rtp": 99.21,
+      "max_win": "3.00x",
+      "paylines": "N/A",
+      "min_bet": 1.0,
+      "max_bet": 1000.0
+    }
+  },
+  {
+    "name": "Baccarat",
+    "slug": "baccarat",
+    "sc_specs": {
+      "rtp": 92.29,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Bonanza",
+    "slug": "bonanza",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "26000.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Lightning Roulette",
+    "slug": "lightning-roulette",
+    "sc_specs": {
+      "rtp": 97.3,
+      "max_win": "500.00x",
+      "paylines": "N/A",
+      "min_bet": 0.2,
+      "max_bet": 5000.0
+    }
+  },
+  {
+    "name": "Cash Volt",
+    "slug": "cash-volt",
+    "sc_specs": {
+      "rtp": 94.78,
+      "volatility": "Medium",
+      "max_win": "2500.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Crazy Coin Flip",
+    "slug": "crazy-coin-flip",
+    "sc_specs": {
+      "rtp": 96.05,
+      "max_win": "2000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.1,
+      "max_bet": 3000.0
+    }
+  },
+  {
+    "name": "Big Rich Turkeys",
+    "slug": "big-rich-turkeys",
+    "sc_specs": {
+      "rtp": 96.07,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "First Person Lightning Roulette",
+    "slug": "first-person-lightning-roulette",
+    "sc_specs": {
+      "rtp": 97.3,
+      "paylines": "N/A",
+      "min_bet": 0.0,
+      "max_bet": 0.0
+    }
+  },
+  {
+    "name": "Cash Lamps",
+    "slug": "cash-lamps",
+    "sc_specs": {
+      "rtp": 96.05,
+      "volatility": "High",
+      "max_win": "30253.00x",
+      "paylines": "50",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Divine Fortune",
+    "slug": "divine-fortune",
+    "sc_specs": {
+      "rtp": 96.59,
+      "volatility": "High",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Starburst",
+    "slug": "starburst",
+    "sc_specs": {
+      "rtp": 96.09,
+      "volatility": "Low",
+      "max_win": "500.00x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.01,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Gold Megaways",
+    "slug": "gold-megaways",
+    "sc_specs": {
+      "rtp": 96.42,
+      "volatility": "High",
+      "max_win": "20200.00x",
+      "paylines": "117649[ i ]",
+      "min_bet": 0.05,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Divine Fortune Black",
+    "slug": "divine-fortune-black",
+    "sc_specs": {
+      "rtp": 94.14,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 24.0
+    }
+  },
+  {
+    "name": "Piggy Riches 3 Hog Heaven",
+    "slug": "piggy-riches-3-hog-heaven",
+    "sc_specs": {
+      "rtp": 96.06,
+      "volatility": "High",
+      "max_win": "10387.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "First Person Roulette",
+    "slug": "first-person-roulette",
+    "sc_specs": {
+      "rtp": 97.3,
+      "max_win": "35.00x",
+      "paylines": "N/A",
+      "min_bet": 1.0,
+      "max_bet": 5000.0
+    }
+  },
+  {
+    "name": "Blood Suckers",
+    "slug": "blood-suckers",
+    "sc_specs": {
+      "rtp": 98.0,
+      "volatility": "Low",
+      "max_win": "1014.00x",
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Starburst Galaxy",
+    "slug": "starburst-galaxy",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Medium-High",
+      "max_win": "25000.00x",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.2,
+      "max_bet": 28.0
+    }
+  },
+  {
+    "name": "Bloody Murder",
+    "slug": "bloody-murder",
+    "sc_specs": {
+      "rtp": 95.76,
+      "volatility": "High",
+      "max_win": "16400.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 6.0
+    }
+  },
+  {
+    "name": "European Roulette",
+    "slug": "european-roulette",
+    "sc_specs": {
+      "rtp": 97.3,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Jumanji",
+    "slug": "jumanji",
+    "sc_specs": {
+      "rtp": 96.33,
+      "volatility": "Low",
+      "paylines": "36",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Fruit Shop",
+    "slug": "fruit-shop",
+    "sc_specs": {
+      "rtp": 94.05,
+      "volatility": "Low-Medium",
+      "paylines": "15",
+      "min_bet": 0.01,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "Piggy Riches Begins",
+    "slug": "piggy-riches-begins",
+    "sc_specs": {
+      "rtp": 96.17,
+      "volatility": "High",
+      "max_win": "21285.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "First Person Craps",
+    "slug": "first-person-craps",
+    "sc_specs": {
+      "rtp": 99.17,
+      "max_win": "30.00x",
+      "paylines": "N/A",
+      "min_bet": 0.5,
+      "max_bet": 5000.0
+    }
+  },
+  {
+    "name": "Big Bucks Deluxe",
+    "slug": "big-bucks-deluxe",
+    "sc_specs": {
+      "rtp": 96.28,
+      "volatility": "High",
+      "max_win": "88888.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Piggy Riches 2 Megaways",
+    "slug": "piggy-riches-2-megaways",
+    "sc_specs": {
+      "rtp": 95.71,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Infinite Fun Fun 21 Blackjack",
+    "slug": "infinite-fun-fun-21-blackjack",
+    "sc_specs": {
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Golden Catch",
+    "slug": "golden-catch",
+    "sc_specs": {
+      "rtp": 96.53,
+      "volatility": "High",
+      "max_win": "31430.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 15.0
+    }
+  },
+  {
+    "name": "Dragon Duo",
+    "slug": "dragon-duo",
+    "sc_specs": {
+      "rtp": 96.16,
+      "max_win": "12876.00x",
+      "paylines": "576",
+      "min_bet": 0.1,
+      "max_bet": 6.0
+    }
+  },
+  {
+    "name": "777 Strike",
+    "slug": "777-strike",
+    "sc_specs": {
+      "rtp": 95.8,
+      "volatility": "Medium-High",
+      "max_win": "2830.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "777 Super Strike",
+    "slug": "777-super-strike",
+    "sc_specs": {
+      "rtp": 95.72,
+      "volatility": "Medium-High",
+      "max_win": "2649.00x",
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Wild West",
+    "slug": "wild-west",
+    "sc_specs": {
+      "rtp": 95.0,
+      "volatility": "Medium",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Race Track",
+    "slug": "race-track",
+    "sc_specs": {
+      "rtp": 96.0,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Fruit Shop Megaways",
+    "slug": "fruit-shop-megaways",
+    "sc_specs": {
+      "rtp": 96.06,
+      "volatility": "High",
+      "max_win": "10000.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Finns Golden Tavern",
+    "slug": "finns-golden-tavern",
+    "sc_specs": {
+      "rtp": 96.1,
+      "volatility": "Low-Medium",
+      "max_win": "1000.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Jimi Hendrix",
+    "slug": "jimi-hendrix",
+    "sc_specs": {
+      "rtp": 96.9,
+      "volatility": "Low",
+      "max_win": "400.00x",
+      "paylines": "20",
+      "min_bet": 0.01
+    }
+  },
+  {
+    "name": "Piggy Riches Megaways",
+    "slug": "piggy-riches-megaways",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "High",
+      "max_win": "10474.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Wild Worlds",
+    "slug": "wild-worlds",
+    "sc_specs": {
+      "rtp": 96.47,
+      "volatility": "Medium",
+      "max_win": "2500.00x",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Twin Spin Megaways",
+    "slug": "twin-spin-megaways",
+    "sc_specs": {
+      "rtp": 96.04,
+      "volatility": "Medium-High",
+      "max_win": "38000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Dragons Luck",
+    "slug": "dragons-luck",
+    "sc_specs": {
+      "rtp": 96.24,
+      "volatility": "Low",
+      "max_win": "1380.00x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Power Blackjack",
+    "slug": "power-blackjack",
+    "sc_specs": {
+      "rtp": 98.8,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Gorilla Kingdom",
+    "slug": "gorilla-kingdom",
+    "sc_specs": {
+      "rtp": 96.3,
+      "volatility": "Medium",
+      "max_win": "5000.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 350.0
+    }
+  },
+  {
+    "name": "Big Gains",
+    "slug": "big-gains",
+    "sc_specs": {
+      "rtp": 95.67,
+      "volatility": "Medium-High",
+      "max_win": "39375.00x",
+      "paylines": "4096",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Double Stacks",
+    "slug": "double-stacks",
+    "sc_specs": {
+      "rtp": 96.1,
+      "volatility": "High",
+      "max_win": "1000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Casino Hold Em",
+    "slug": "casino-hold-em",
+    "sc_specs": {
+      "rtp": 99.18,
+      "max_win": "100.00x",
+      "paylines": "N/A",
+      "min_bet": 0.25,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Win Escalator",
+    "slug": "win-escalator",
+    "sc_specs": {
+      "rtp": 95.09,
+      "volatility": "Low-Medium",
+      "max_win": "850.00x",
+      "paylines": "3[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 100.0,
+      "reels": 4,
+      "rows": 3,
+      "grid_config": "4x3"
+    }
+  },
+  {
+    "name": "Wolf Stacks Megaways",
+    "slug": "wolf-stacks-megaways",
+    "sc_specs": {
+      "rtp": 92.15,
+      "max_win": "30538.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 8.0
+    }
+  },
+  {
+    "name": "Hotline",
+    "slug": "hotline",
+    "sc_specs": {
+      "rtp": 97.04,
+      "volatility": "Medium",
+      "paylines": "30",
+      "min_bet": 0.15,
+      "max_bet": 450.0
+    }
+  },
+  {
+    "name": "Dazzle Me",
+    "slug": "dazzle-me",
+    "sc_specs": {
+      "rtp": 96.9,
+      "volatility": "Low",
+      "paylines": "76",
+      "min_bet": 0.01,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "777 Diamond Strike",
+    "slug": "777-diamond-strike",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "High",
+      "max_win": "4168.00x",
+      "paylines": "10",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "French Roulette",
+    "slug": "french-roulette",
+    "sc_specs": {
+      "rtp": 97.3,
+      "paylines": "N/A",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Bonanza Falls",
+    "slug": "bonanza-falls",
+    "sc_specs": {
+      "rtp": 96.51,
+      "volatility": "High",
+      "max_win": "93540.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Vault Cracker",
+    "slug": "vault-cracker",
+    "sc_specs": {
+      "rtp": 95.66,
+      "volatility": "High",
+      "max_win": "1410.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Gladiator Ways",
+    "slug": "gladiator-ways",
+    "sc_specs": {
+      "rtp": 95.72,
+      "volatility": "High",
+      "max_win": "2176.00x",
+      "paylines": "4096",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Gonzos Quest",
+    "slug": "gonzos-quest",
+    "sc_specs": {
+      "rtp": 95.97,
+      "volatility": "Medium-High",
+      "max_win": "3750.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Turn Your Fortune",
+    "slug": "turn-your-fortune",
+    "sc_specs": {
+      "rtp": 96.24,
+      "volatility": "Medium-High",
+      "max_win": "2000.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Buffalo Mania Megaways",
+    "slug": "buffalo-mania-megaways",
+    "sc_specs": {
+      "rtp": 95.69,
+      "volatility": "High",
+      "max_win": "19995.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Vault Cracker Megaways",
+    "slug": "vault-cracker-megaways",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "2484.00x",
+      "paylines": "117649[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Stock Market",
+    "slug": "stock-market",
+    "sc_specs": {
+      "rtp": 99.0,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Cash Goddess",
+    "slug": "cash-goddess",
+    "sc_specs": {
+      "rtp": 95.84,
+      "volatility": "High",
+      "max_win": "10621.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 8.0
+    }
+  },
+  {
+    "name": "Zillard King Megaways",
+    "slug": "zillard-king-megaways",
+    "sc_specs": {
+      "rtp": 95.72,
+      "volatility": "High",
+      "max_win": "24393.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Magic Maid Cafe",
+    "slug": "magic-maid-cafe",
+    "sc_specs": {
+      "rtp": 95.97,
+      "volatility": "Medium-High",
+      "max_win": "1875.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Rabid Randy Dark Trails",
+    "slug": "rabid-randy-dark-trails",
+    "sc_specs": {
+      "rtp": 96.13,
+      "volatility": "Medium",
+      "max_win": "1200.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 300.0
+    }
+  },
+  {
+    "name": "Fruit Shop Christmas Edition",
+    "slug": "fruit-shop-christmas-edition",
+    "sc_specs": {
+      "rtp": 96.71,
+      "volatility": "Low-Medium",
+      "paylines": "15",
+      "min_bet": 0.01,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "Emperor Of India",
+    "slug": "emperor-of-india",
+    "sc_specs": {
+      "rtp": 95.72,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Butterfly Staxx",
+    "slug": "butterfly-staxx",
+    "sc_specs": {
+      "rtp": 94.05,
+      "volatility": "Low",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Halloween Jack",
+    "slug": "halloween-jack",
+    "sc_specs": {
+      "rtp": 96.28,
+      "volatility": "High",
+      "max_win": "3000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Asgardian Stones",
+    "slug": "asgardian-stones",
+    "sc_specs": {
+      "rtp": 96.31,
+      "volatility": "Low-Medium",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Narcos",
+    "slug": "narcos",
+    "sc_specs": {
+      "rtp": 96.23,
+      "volatility": "Medium-High",
+      "max_win": "1506.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Play With The Devil Megaways",
+    "slug": "play-with-the-devil-megaways",
+    "sc_specs": {
+      "rtp": 94.09,
+      "volatility": "High",
+      "max_win": "14444.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Finn And The Dragon Tales",
+    "slug": "finn-and-the-dragon-tales",
+    "sc_specs": {
+      "rtp": 94.03,
+      "volatility": "High",
+      "max_win": "3828.00x",
+      "paylines": "3 or more of the same symbol",
+      "min_bet": 0.2,
+      "max_bet": 120.0
+    }
+  },
+  {
+    "name": "Steam Tower",
+    "slug": "steam-tower",
+    "sc_specs": {
+      "rtp": 97.04,
+      "volatility": "Medium",
+      "max_win": "2000.00x",
+      "paylines": "15",
+      "min_bet": 0.15,
+      "max_bet": 150.0
+    }
+  },
+  {
+    "name": "Fortune House",
+    "slug": "fortune-house",
+    "sc_specs": {
+      "rtp": 95.25,
+      "volatility": "Medium-High",
+      "max_win": "697.00x",
+      "paylines": "20  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Silverback Gold",
+    "slug": "silverback-gold",
+    "sc_specs": {
+      "rtp": 92.11,
+      "volatility": "High",
+      "max_win": "45000.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Pork Knox",
+    "slug": "pork-knox",
+    "sc_specs": {
+      "rtp": 96.02,
+      "volatility": "Medium",
+      "max_win": "1000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Jack Hammer 4 Chasing The Dragon",
+    "slug": "jack-hammer-4-chasing-the-dragon",
+    "sc_specs": {
+      "rtp": 96.01,
+      "volatility": "High",
+      "max_win": "10000.00x",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Bass Boss Megaways",
+    "slug": "bass-boss-megaways",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "25539.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Buffalo Collector",
+    "slug": "buffalo-collector",
+    "sc_specs": {
+      "rtp": 95.75,
+      "volatility": "High",
+      "max_win": "10000.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Gems Inferno Megaways",
+    "slug": "gems-inferno-megaways",
+    "sc_specs": {
+      "rtp": 95.67,
+      "volatility": "Medium-High",
+      "max_win": "2553.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Cash Explorer",
+    "slug": "cash-explorer",
+    "sc_specs": {
+      "rtp": 95.74,
+      "volatility": "Medium",
+      "max_win": "2000.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Beef Lightning",
+    "slug": "beef-lightning",
+    "sc_specs": {
+      "rtp": 96.43,
+      "volatility": "High",
+      "max_win": "56000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Gonzos Quest Megaways",
+    "slug": "gonzos-quest-megaways",
+    "sc_specs": {
+      "rtp": 94.66,
+      "volatility": "Medium-High",
+      "max_win": "21000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Touchdown Cash",
+    "slug": "touchdown-cash",
+    "sc_specs": {
+      "rtp": 96.14,
+      "volatility": "Medium",
+      "max_win": "9000.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Rise Of Cleopatra",
+    "slug": "rise-of-cleopatra",
+    "sc_specs": {
+      "rtp": 95.69,
+      "volatility": "High",
+      "max_win": "5363.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Fa Fa Babies 2",
+    "slug": "fa-fa-babies-2",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "Medium",
+      "max_win": "1223.00x",
+      "paylines": "243",
+      "min_bet": 0.2,
+      "max_bet": 80.0
+    }
+  },
+  {
+    "name": "Blood Suckers Megaways",
+    "slug": "blood-suckers-megaways",
+    "sc_specs": {
+      "rtp": 97.66,
+      "volatility": "High",
+      "max_win": "20521.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Aloha Christmas",
+    "slug": "aloha-christmas",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Medium",
+      "max_win": "1750.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Peggy Sweets",
+    "slug": "peggy-sweets",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "5173.00x",
+      "paylines": "Pay anywhere",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Bass Boss",
+    "slug": "bass-boss",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "4835.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Christmas Bonanza",
+    "slug": "christmas-bonanza",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "26000.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Dragon Born",
+    "slug": "dragon-born",
+    "sc_specs": {
+      "rtp": 95.0,
+      "volatility": "High",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Twin Spin",
+    "slug": "twin-spin",
+    "sc_specs": {
+      "rtp": 94.04,
+      "volatility": "Medium-High",
+      "max_win": "1080.00x",
+      "paylines": "243  \n                                                (Bothway)",
+      "min_bet": 0.25,
+      "max_bet": 125.0
+    }
+  },
+  {
+    "name": "Dragons Lock",
+    "slug": "dragons-lock",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Spooky Carnival",
+    "slug": "spooky-carnival",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "Medium",
+      "max_win": "1530.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Irish Pot Luck",
+    "slug": "irish-pot-luck",
+    "sc_specs": {
+      "rtp": 96.06,
+      "volatility": "Low-Medium",
+      "max_win": "5000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Jingle Spin",
+    "slug": "jingle-spin",
+    "sc_specs": {
+      "rtp": 96.48,
+      "volatility": "Medium",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Dynamite Riches Megaways",
+    "slug": "dynamite-riches-megaways",
+    "sc_specs": {
+      "rtp": 95.75,
+      "volatility": "High",
+      "max_win": "7000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Chinese Treasures",
+    "slug": "chinese-treasures",
+    "sc_specs": {
+      "rtp": 95.24,
+      "volatility": "Medium",
+      "max_win": "1544.60x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Moon Spell",
+    "slug": "moon-spell",
+    "sc_specs": {
+      "rtp": 95.76,
+      "volatility": "High",
+      "max_win": "5224.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Scruffy Duck",
+    "slug": "scruffy-duck",
+    "sc_specs": {
+      "rtp": 96.38,
+      "volatility": "Medium",
+      "paylines": "25"
+    }
+  },
+  {
+    "name": "What The Fox Megaways",
+    "slug": "what-the-fox-megaways",
+    "sc_specs": {
+      "rtp": 95.66,
+      "volatility": "High",
+      "max_win": "10474.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Zillard King",
+    "slug": "zillard-king",
+    "sc_specs": {
+      "rtp": 95.67,
+      "volatility": "Medium",
+      "max_win": "3500.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Dark King Forbidden Riches",
+    "slug": "dark-king-forbidden-riches",
+    "sc_specs": {
+      "rtp": 96.06,
+      "volatility": "Medium-High",
+      "max_win": "2000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Reel Rush",
+    "slug": "reel-rush",
+    "sc_specs": {
+      "rtp": 96.96,
+      "volatility": "Medium",
+      "max_win": "3840.00x",
+      "paylines": "3125",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Millionaire",
+    "slug": "millionaire",
+    "sc_specs": {
+      "rtp": 94.01,
+      "volatility": "Medium-High",
+      "max_win": "15000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.5,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Sugar Monster",
+    "slug": "sugar-monster",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "10806.00x",
+      "paylines": "Pay anywhere",
+      "min_bet": 0.1,
+      "max_bet": 80.0
+    }
+  },
+  {
+    "name": "Diamonds Up",
+    "slug": "diamonds-up",
+    "sc_specs": {
+      "rtp": 95.69,
+      "volatility": "High",
+      "max_win": "20000.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Lost Relics",
+    "slug": "lost-relics",
+    "sc_specs": {
+      "rtp": 96.3,
+      "volatility": "Medium-High",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Diamond Blitz",
+    "slug": "diamond-blitz",
+    "sc_specs": {
+      "rtp": 94.74,
+      "volatility": "Low",
+      "max_win": "560.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Oceans Treasure",
+    "slug": "oceans-treasure",
+    "sc_specs": {
+      "rtp": 95.99,
+      "volatility": "High",
+      "max_win": "1500.00x",
+      "paylines": "15",
+      "min_bet": 0.15,
+      "max_bet": 300.0
+    }
+  },
+  {
+    "name": "Flowers",
+    "slug": "flowers",
+    "sc_specs": {
+      "rtp": 96.32,
+      "volatility": "Medium-High",
+      "max_win": "15000.00x",
+      "paylines": "30",
+      "min_bet": 0.3,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Wild Mining Xxxtreme",
+    "slug": "wild-mining-xxxtreme",
+    "sc_specs": {
+      "rtp": 96.02,
+      "volatility": "High",
+      "max_win": "25000.00x",
+      "paylines": "10000",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Jackrabbit Jackpots",
+    "slug": "jackrabbit-jackpots",
+    "sc_specs": {
+      "rtp": 95.78,
+      "volatility": "Medium-High",
+      "max_win": "3005.00x",
+      "paylines": "25",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Piggy Riches",
+    "slug": "piggy-riches",
+    "sc_specs": {
+      "rtp": 96.38,
+      "volatility": "Medium",
+      "paylines": "15",
+      "min_bet": 0.01,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Ancient Disco",
+    "slug": "ancient-disco",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "High",
+      "max_win": "22500.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 250.0
+    }
+  },
+  {
+    "name": "Funk Master",
+    "slug": "funk-master",
+    "sc_specs": {
+      "rtp": 92.06,
+      "volatility": "High",
+      "max_win": "3337.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Berryburst",
+    "slug": "berryburst",
+    "sc_specs": {
+      "rtp": 96.56,
+      "volatility": "Low-Medium",
+      "max_win": "5000.00x",
+      "paylines": "Cluster Pays",
+      "min_bet": 0.01,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Rainbow Jackpots",
+    "slug": "rainbow-jackpots",
+    "sc_specs": {
+      "rtp": 96.15,
+      "volatility": "Medium-High",
+      "max_win": "1054.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Dazzle Me Megaways",
+    "slug": "dazzle-me-megaways",
+    "sc_specs": {
+      "rtp": 95.08,
+      "volatility": "Medium",
+      "max_win": "20000.00x",
+      "paylines": "99225",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Butterfly Staxx 2",
+    "slug": "butterfly-staxx-2",
+    "sc_specs": {
+      "rtp": 96.35,
+      "volatility": "Low",
+      "paylines": "40",
+      "min_bet": 0.25,
+      "max_bet": 1250.0
+    }
+  },
+  {
+    "name": "Wild Bazaar",
+    "slug": "wild-bazaar",
+    "sc_specs": {
+      "rtp": 96.15,
+      "volatility": "Medium-High",
+      "paylines": "26",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Drive Multiplier Mayhem",
+    "slug": "drive-multiplier-mayhem",
+    "sc_specs": {
+      "rtp": 96.7,
+      "volatility": "Medium",
+      "max_win": "10000.00x",
+      "paylines": "15",
+      "min_bet": 0.1,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Shah Mat",
+    "slug": "shah-mat",
+    "sc_specs": {
+      "rtp": 95.79,
+      "volatility": "High",
+      "max_win": "4323.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Grand Spinn Superpot",
+    "slug": "grand-spinn-superpot",
+    "sc_specs": {
+      "rtp": 96.21,
+      "volatility": "High",
+      "paylines": "1",
+      "min_bet": 0.02,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Fa Fa Babies",
+    "slug": "fa-fa-babies",
+    "sc_specs": {
+      "rtp": 94.74,
+      "volatility": "Medium-High",
+      "max_win": "1888.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Hot Hot Chilli Pot",
+    "slug": "hot-hot-chilli-pot",
+    "sc_specs": {
+      "rtp": 94.8,
+      "volatility": "Low",
+      "max_win": "1000.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Max Megaways 2",
+    "slug": "max-megaways-2",
+    "sc_specs": {
+      "rtp": 96.64,
+      "volatility": "High",
+      "max_win": "147620.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Motorhead",
+    "slug": "motorhead",
+    "sc_specs": {
+      "rtp": 96.98,
+      "volatility": "Low",
+      "paylines": "76",
+      "min_bet": 0.01,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "Fairytale Legends Red Riding Hood",
+    "slug": "fairytale-legends-red-riding-hood",
+    "sc_specs": {
+      "rtp": 96.33,
+      "volatility": "Low-Medium",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Jingle Bells Power Reels",
+    "slug": "jingle-bells-power-reels",
+    "sc_specs": {
+      "rtp": 94.68,
+      "volatility": "High",
+      "max_win": "6000.00x",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Elements The Awakening",
+    "slug": "elements-the-awakening",
+    "sc_specs": {
+      "rtp": 96.02,
+      "volatility": "Low-Medium",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Mummy Megaways",
+    "slug": "mummy-megaways",
+    "sc_specs": {
+      "rtp": 96.2,
+      "volatility": "High",
+      "max_win": "16300.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Bonanza Tapcards",
+    "slug": "bonanza-tapcards",
+    "sc_specs": {
+      "rtp": 96.45,
+      "max_win": "25000.00x",
+      "paylines": "N/A",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Outlaw Waysfecta",
+    "slug": "outlaw-waysfecta",
+    "sc_specs": {
+      "rtp": 96.1,
+      "volatility": "High",
+      "max_win": "16010.00x",
+      "paylines": "15552[ i ]",
+      "min_bet": 0.3,
+      "max_bet": 15.0
+    }
+  },
+  {
+    "name": "Gordon Ramsay Hells Kitchen",
+    "slug": "gordon-ramsay-hells-kitchen",
+    "sc_specs": {
+      "rtp": 96.07,
+      "volatility": "Low",
+      "max_win": "1000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Primate King Megaways",
+    "slug": "primate-king-megaways",
+    "sc_specs": {
+      "rtp": 95.67,
+      "volatility": "High",
+      "max_win": "30000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 2.0
+    }
+  },
+  {
+    "name": "Trillionaire Megaways",
+    "slug": "trillionaire-megaways",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "35841.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 2.0
+    }
+  },
+  {
+    "name": "Primate King",
+    "slug": "primate-king",
+    "sc_specs": {
+      "rtp": 94.68,
+      "volatility": "High",
+      "max_win": "3800.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Wild Hot Chilli Reels",
+    "slug": "wild-hot-chilli-reels",
+    "sc_specs": {
+      "rtp": 94.75,
+      "volatility": "Low-Medium",
+      "max_win": "500.00x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Reel Steal",
+    "slug": "reel-steal",
+    "sc_specs": {
+      "rtp": 95.87,
+      "volatility": "High",
+      "paylines": "9",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Wild Water",
+    "slug": "wild-water",
+    "sc_specs": {
+      "rtp": 96.36,
+      "volatility": "High",
+      "max_win": "2000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Superstars",
+    "slug": "superstars",
+    "sc_specs": {
+      "rtp": 94.06,
+      "volatility": "Medium-High",
+      "max_win": "4596.00x",
+      "paylines": "45",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Reef Raider",
+    "slug": "reef-raider",
+    "sc_specs": {
+      "rtp": 96.1,
+      "volatility": "Medium",
+      "max_win": "8500.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Grand Spinn",
+    "slug": "grand-spinn",
+    "sc_specs": {
+      "rtp": 96.19,
+      "volatility": "High",
+      "max_win": "7040.00x",
+      "paylines": "1",
+      "min_bet": 0.02,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Vegas Megaways",
+    "slug": "vegas-megaways",
+    "sc_specs": {
+      "rtp": 96.27,
+      "volatility": "High",
+      "max_win": "72310.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Treasure Mine",
+    "slug": "treasure-mine",
+    "sc_specs": {
+      "rtp": 95.2,
+      "volatility": "Low-Medium",
+      "max_win": "1320.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Diamond Blitz 2",
+    "slug": "diamond-blitz-2",
+    "sc_specs": {
+      "volatility": "High",
+      "max_win": "4055.00x",
+      "paylines": "1024",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Clash Of The Beasts",
+    "slug": "clash-of-the-beasts",
+    "sc_specs": {
+      "rtp": 94.74,
+      "volatility": "Medium",
+      "max_win": "1286.00x",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Athens Megaways",
+    "slug": "athens-megaways",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "Medium-High",
+      "max_win": "19992.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Tiki Fruits Totem Frenzy",
+    "slug": "tiki-fruits-totem-frenzy",
+    "sc_specs": {
+      "rtp": 94.74,
+      "volatility": "High",
+      "max_win": "3319.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Doggy Riches Megaways",
+    "slug": "doggy-riches-megaways",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "3494.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Mega Joker",
+    "slug": "mega-joker",
+    "sc_specs": {
+      "rtp": 99.0,
+      "volatility": "High",
+      "max_win": "2000.00x",
+      "paylines": "5",
+      "min_bet": 1.0,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Road Rage",
+    "slug": "road-rage",
+    "sc_specs": {
+      "rtp": 94.16,
+      "volatility": "High",
+      "max_win": "36000.00x",
+      "paylines": "99[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Crystal Mirror",
+    "slug": "crystal-mirror",
+    "sc_specs": {
+      "rtp": 94.76,
+      "volatility": "High",
+      "max_win": "5240.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Hoard Of Poseidon",
+    "slug": "hoard-of-poseidon",
+    "sc_specs": {
+      "rtp": 94.77,
+      "volatility": "Low-Medium",
+      "max_win": "3423.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Red Diamond",
+    "slug": "red-diamond",
+    "sc_specs": {
+      "rtp": 95.01,
+      "volatility": "High",
+      "max_win": "2940.00x",
+      "paylines": "1",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Cash O Matic",
+    "slug": "cash-o-matic",
+    "sc_specs": {
+      "rtp": 96.33,
+      "volatility": "High",
+      "max_win": "50000.00x",
+      "paylines": "1024",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Cash Noire",
+    "slug": "cash-noire",
+    "sc_specs": {
+      "rtp": 96.06,
+      "volatility": "Low-Medium",
+      "max_win": "1033.00x",
+      "paylines": "1024",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "First Person Golden Wealth Baccarat",
+    "slug": "first-person-golden-wealth-baccarat",
+    "sc_specs": {
+      "rtp": 98.85,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Emerald Diamond",
+    "slug": "emerald-diamond",
+    "sc_specs": {
+      "rtp": 95.17,
+      "volatility": "High",
+      "max_win": "1500.00x",
+      "paylines": "1  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Let It Burn",
+    "slug": "let-it-burn",
+    "sc_specs": {
+      "rtp": 94.01,
+      "volatility": "High",
+      "max_win": "2700.00x",
+      "paylines": "1024[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Vegas Night Life",
+    "slug": "vegas-night-life",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Medium",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Fishtastic",
+    "slug": "fishtastic",
+    "sc_specs": {
+      "rtp": 95.65,
+      "volatility": "Medium-High",
+      "max_win": "6125.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "White Rabbit",
+    "slug": "white-rabbit",
+    "sc_specs": {
+      "rtp": 97.72,
+      "volatility": "High",
+      "max_win": "10000.00x",
+      "paylines": "248832[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Dynamite Riches",
+    "slug": "dynamite-riches",
+    "sc_specs": {
+      "rtp": 94.76,
+      "volatility": "High",
+      "max_win": "5341.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Viral Spiral",
+    "slug": "viral-spiral",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "Low",
+      "max_win": "5000.00x",
+      "paylines": "1",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Devils Number",
+    "slug": "devils-number",
+    "sc_specs": {
+      "rtp": 95.05,
+      "volatility": "High",
+      "max_win": "2520.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Cornelius",
+    "slug": "cornelius",
+    "sc_specs": {
+      "rtp": 92.1,
+      "volatility": "Low",
+      "max_win": "1051.00x",
+      "paylines": "1024",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Danger High Voltage",
+    "slug": "danger-high-voltage",
+    "sc_specs": {
+      "rtp": 95.67,
+      "volatility": "High",
+      "paylines": "4096",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Twister",
+    "slug": "twister",
+    "sc_specs": {
+      "rtp": 95.88,
+      "paylines": "15",
+      "min_bet": 0.01,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Mystic Staxx",
+    "slug": "mystic-staxx",
+    "sc_specs": {
+      "rtp": 94.68,
+      "volatility": "High",
+      "max_win": "2000.00x",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Vikings",
+    "slug": "vikings",
+    "sc_specs": {
+      "rtp": 95.2,
+      "paylines": "50",
+      "min_bet": 0.5,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Blue Diamond",
+    "slug": "blue-diamond",
+    "sc_specs": {
+      "rtp": 95.12,
+      "volatility": "Medium-High",
+      "max_win": "1064.00x",
+      "paylines": "1",
+      "min_bet": 0.2,
+      "max_bet": 80.0
+    }
+  },
+  {
+    "name": "Mystery Reels",
+    "slug": "mystery-reels",
+    "sc_specs": {
+      "rtp": 96.24,
+      "volatility": "Medium-High",
+      "max_win": "5000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Genie Nights",
+    "slug": "genie-nights",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "Medium-High",
+      "max_win": "975.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Mystery Reels Deluxe",
+    "slug": "mystery-reels-deluxe",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "High",
+      "max_win": "23084.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Bounty Raid",
+    "slug": "bounty-raid",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "Medium",
+      "max_win": "1000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Stolen Treasures",
+    "slug": "stolen-treasures",
+    "sc_specs": {
+      "rtp": 94.7,
+      "volatility": "Medium",
+      "max_win": "10400.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Golden Cryptex",
+    "slug": "golden-cryptex",
+    "sc_specs": {
+      "rtp": 94.66,
+      "volatility": "Medium-High",
+      "max_win": "1525.00x",
+      "paylines": "3",
+      "min_bet": 0.1,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Mayhem",
+    "slug": "mayhem",
+    "sc_specs": {
+      "rtp": 94.68,
+      "volatility": "Medium-High",
+      "max_win": "1200.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Reel Keeper",
+    "slug": "reel-keeper",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "High",
+      "max_win": "6073.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Flaming Fox",
+    "slug": "flaming-fox",
+    "sc_specs": {
+      "rtp": 95.06,
+      "volatility": "High",
+      "max_win": "3457.50x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Fruit Spin",
+    "slug": "fruit-spin",
+    "sc_specs": {
+      "rtp": 96.84,
+      "volatility": "Low-Medium",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Wild Turkey",
+    "slug": "wild-turkey",
+    "sc_specs": {
+      "rtp": 96.6,
+      "volatility": "High",
+      "max_win": "8000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Fortune Rangers",
+    "slug": "fortune-rangers",
+    "sc_specs": {
+      "rtp": 96.9,
+      "volatility": "Low",
+      "max_win": "800.00x",
+      "paylines": "76",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "1942 Sky Warrior",
+    "slug": "1942-sky-warrior",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "Medium-High",
+      "max_win": "999.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Wolf Cub",
+    "slug": "wolf-cub",
+    "sc_specs": {
+      "rtp": 96.34,
+      "volatility": "Medium",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Ozzy Osbourne",
+    "slug": "ozzy-osbourne",
+    "sc_specs": {
+      "rtp": 96.67,
+      "volatility": "Medium",
+      "max_win": "2500.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Reel Keeper Power Reels",
+    "slug": "reel-keeper-power-reels",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "High",
+      "max_win": "16060.00x",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 600.0
+    }
+  },
+  {
+    "name": "Crazy Genie",
+    "slug": "crazy-genie",
+    "sc_specs": {
+      "rtp": 95.22,
+      "volatility": "Medium-High",
+      "max_win": "1318.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 80.0
+    }
+  },
+  {
+    "name": "The Wolfs Bane",
+    "slug": "the-wolfs-bane",
+    "sc_specs": {
+      "rtp": 96.74,
+      "volatility": "Low-Medium",
+      "max_win": "5000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Here Kitty Kitty",
+    "slug": "here-kitty-kitty",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "Medium-High",
+      "max_win": "2135.00x",
+      "paylines": "Pay anywhere",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Conan",
+    "slug": "conan",
+    "sc_specs": {
+      "rtp": 96.01,
+      "volatility": "Medium-High",
+      "max_win": "1008.00x",
+      "paylines": "24  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "10001 Nights",
+    "slug": "10001-nights",
+    "sc_specs": {
+      "rtp": 94.73,
+      "volatility": "Medium-High",
+      "max_win": "10347.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 250.0
+    }
+  },
+  {
+    "name": "Jingle Ways Megaways",
+    "slug": "jingle-ways-megaways",
+    "sc_specs": {
+      "rtp": 95.69,
+      "volatility": "High",
+      "max_win": "10500.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Thors Lightning",
+    "slug": "thors-lightning",
+    "sc_specs": {
+      "rtp": 95.1,
+      "volatility": "Medium-High",
+      "max_win": "1848.00x",
+      "paylines": "(Five or more adjacent symbols make win)",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Burgers",
+    "slug": "burgers",
+    "sc_specs": {
+      "rtp": 94.19,
+      "volatility": "High",
+      "max_win": "102840.00x",
+      "paylines": "256",
+      "min_bet": 0.05,
+      "max_bet": 8.0
+    }
+  },
+  {
+    "name": "Trollpot 5000",
+    "slug": "trollpot-5000",
+    "sc_specs": {
+      "rtp": 96.19,
+      "volatility": "High",
+      "max_win": "5000.00x",
+      "paylines": "1",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Golden Goose Megaways",
+    "slug": "golden-goose-megaways",
+    "sc_specs": {
+      "rtp": 96.44,
+      "volatility": "High",
+      "max_win": "150335.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 30.0
+    }
+  },
+  {
+    "name": "Bulls Run Wild",
+    "slug": "bulls-run-wild",
+    "sc_specs": {
+      "rtp": 94.71,
+      "volatility": "High",
+      "max_win": "1888.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Donuts",
+    "slug": "donuts",
+    "sc_specs": {
+      "rtp": 96.54,
+      "volatility": "High",
+      "paylines": "2401",
+      "min_bet": 0.05,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Narcos Mexico",
+    "slug": "narcos-mexico",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "Medium-High",
+      "max_win": "10486.00x",
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Pop",
+    "slug": "pop",
+    "sc_specs": {
+      "rtp": 96.54,
+      "volatility": "High",
+      "max_win": "66960.00x",
+      "paylines": "256",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Savannah Pride",
+    "slug": "savannah-pride",
+    "sc_specs": {
+      "rtp": 95.75,
+      "volatility": "High",
+      "max_win": "3425.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Last Chance Saloon",
+    "slug": "last-chance-saloon",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "Medium",
+      "max_win": "4982.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Blobsters Clusterbuster",
+    "slug": "blobsters-clusterbuster",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "7517.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Christmas Morning",
+    "slug": "christmas-morning",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "10500.00x",
+      "paylines": "10[ i ](Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Case Closed",
+    "slug": "case-closed",
+    "sc_specs": {
+      "rtp": 96.02,
+      "volatility": "High",
+      "max_win": "2640.00x",
+      "paylines": "50",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Monsters Unchained",
+    "slug": "monsters-unchained",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "10500.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Beriched",
+    "slug": "beriched",
+    "sc_specs": {
+      "rtp": 94.68,
+      "volatility": "Medium",
+      "max_win": "2754.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Wings Of Ra",
+    "slug": "wings-of-ra",
+    "sc_specs": {
+      "rtp": 94.7,
+      "volatility": "High",
+      "max_win": "3166.00x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Serpent King",
+    "slug": "serpent-king",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "12825.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "In The Rabbit Hole",
+    "slug": "in-the-rabbit-hole",
+    "sc_specs": {
+      "rtp": 94.78,
+      "volatility": "High",
+      "max_win": "4200.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Santa Spins",
+    "slug": "santa-spins",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "Medium",
+      "max_win": "995.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Tiki Fruits",
+    "slug": "tiki-fruits",
+    "sc_specs": {
+      "rtp": 95.13,
+      "volatility": "High",
+      "max_win": "2361.00x",
+      "paylines": "Claster win - 5 symbols of the same type vertically or horizontally",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Mythic Maiden",
+    "slug": "mythic-maiden",
+    "sc_specs": {
+      "rtp": 96.58,
+      "volatility": "Low",
+      "paylines": "30",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Risque Megaways",
+    "slug": "risque-megaways",
+    "sc_specs": {
+      "rtp": 95.73,
+      "volatility": "High",
+      "max_win": "5250.00x",
+      "paylines": "321489",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "The Good The Bad And The Rich",
+    "slug": "the-good-the-bad-and-the-rich",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "8136.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Hotline 2",
+    "slug": "hotline-2",
+    "sc_specs": {
+      "rtp": 96.05,
+      "volatility": "Medium",
+      "max_win": "5184.00x",
+      "paylines": "243[ i ]",
+      "min_bet": 0.3,
+      "max_bet": 150.0
+    }
+  },
+  {
+    "name": "Opal Fruits",
+    "slug": "opal-fruits",
+    "sc_specs": {
+      "rtp": 96.75,
+      "volatility": "Medium-High",
+      "max_win": "36000.00x",
+      "paylines": "5625",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Buffalo Hunter",
+    "slug": "buffalo-hunter",
+    "sc_specs": {
+      "rtp": 94.24,
+      "volatility": "High",
+      "max_win": "12647.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Space Wars 2 Powerpoints",
+    "slug": "space-wars-2-powerpoints",
+    "sc_specs": {
+      "rtp": 92.0,
+      "volatility": "High",
+      "max_win": "10020.00x",
+      "paylines": "Cluster pays",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Golden Egg Invaders",
+    "slug": "golden-egg-invaders",
+    "sc_specs": {
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Jack Hammer 2",
+    "slug": "jack-hammer-2",
+    "sc_specs": {
+      "rtp": 97.07,
+      "volatility": "Low",
+      "paylines": "99",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Bee Hive Bonanza",
+    "slug": "bee-hive-bonanza",
+    "sc_specs": {
+      "rtp": 92.08,
+      "volatility": "High",
+      "max_win": "5000.00x",
+      "paylines": "Scatter Pays",
+      "min_bet": 0.1,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Fairytale Legends Mirror Mirror",
+    "slug": "fairytale-legends-mirror-mirror",
+    "sc_specs": {
+      "rtp": 96.48,
+      "volatility": "Low-Medium",
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Great Gold",
+    "slug": "great-gold",
+    "sc_specs": {
+      "rtp": 94.69,
+      "volatility": "High",
+      "max_win": "7608.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Willys Hot Chillies",
+    "slug": "willys-hot-chillies",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Medium",
+      "max_win": "2000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Arcade Bomb",
+    "slug": "arcade-bomb",
+    "sc_specs": {
+      "rtp": 96.15,
+      "volatility": "Low",
+      "max_win": "1000.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Magic Powers Megaways",
+    "slug": "magic-powers-megaways",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "25440.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "5 Families",
+    "slug": "5-families",
+    "sc_specs": {
+      "rtp": 94.72,
+      "volatility": "Low-Medium",
+      "max_win": "1000.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Turtle Paradise",
+    "slug": "turtle-paradise",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "Medium",
+      "max_win": "4602.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Path Of Destiny",
+    "slug": "path-of-destiny",
+    "sc_specs": {
+      "rtp": 94.79,
+      "volatility": "Medium-High",
+      "max_win": "1380.00x",
+      "paylines": "20  \n                                                (Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Spinsane",
+    "slug": "spinsane",
+    "sc_specs": {
+      "rtp": 96.25,
+      "volatility": "Medium-High",
+      "max_win": "5000.00x",
+      "paylines": "27",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Golden Grimoire",
+    "slug": "golden-grimoire",
+    "sc_specs": {
+      "rtp": 96.44,
+      "volatility": "Low-Medium",
+      "max_win": "200.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "London Tube",
+    "slug": "london-tube",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "Medium",
+      "max_win": "6000.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Ultra Rich",
+    "slug": "ultra-rich",
+    "sc_specs": {
+      "rtp": 95.75,
+      "volatility": "High",
+      "max_win": "20835.00x",
+      "paylines": "25",
+      "min_bet": 0.2,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Bonus Bunnies",
+    "slug": "bonus-bunnies",
+    "sc_specs": {
+      "rtp": 94.22,
+      "volatility": "Medium-High",
+      "max_win": "6950.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Archangels Salvation",
+    "slug": "archangels-salvation",
+    "sc_specs": {
+      "rtp": 96.08,
+      "volatility": "Medium",
+      "paylines": "100",
+      "min_bet": 0.4,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Sakura Masks",
+    "slug": "sakura-masks",
+    "sc_specs": {
+      "rtp": 95.74,
+      "volatility": "High",
+      "max_win": "15138.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 6.0
+    }
+  },
+  {
+    "name": "Rock N Lock",
+    "slug": "rock-n-lock",
+    "sc_specs": {
+      "rtp": 94.67,
+      "volatility": "Medium",
+      "max_win": "2340.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 500.0
+    }
+  },
+  {
+    "name": "Lil Devil",
+    "slug": "lil-devil",
+    "sc_specs": {
+      "rtp": 96.43,
+      "volatility": "High",
+      "max_win": "40960.00x",
+      "paylines": "4096",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Temple Quest Spinfinity",
+    "slug": "temple-quest-spinfinity",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Medium",
+      "paylines": "40",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "The Wild Kiss",
+    "slug": "the-wild-kiss",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "9884.00x",
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Yucatans Mystery",
+    "slug": "yucatans-mystery",
+    "sc_specs": {
+      "rtp": 94.74,
+      "volatility": "High",
+      "max_win": "4284.00x",
+      "paylines": "30",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Wolfkin",
+    "slug": "wolfkin",
+    "sc_specs": {
+      "rtp": 95.72,
+      "volatility": "Medium",
+      "max_win": "784.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Sheep Gone Wild",
+    "slug": "sheep-gone-wild",
+    "sc_specs": {
+      "rtp": 94.69,
+      "volatility": "High",
+      "max_win": "13400.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Harlequin Carnival",
+    "slug": "harlequin-carnival",
+    "sc_specs": {
+      "rtp": 94.29,
+      "volatility": "High",
+      "max_win": "5861.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Magic Tricks",
+    "slug": "magic-tricks",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "10500.00x",
+      "paylines": "25",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Victorious",
+    "slug": "victorious",
+    "sc_specs": {
+      "rtp": 96.88,
+      "volatility": "Medium-High",
+      "max_win": "1500.00x",
+      "paylines": "243",
+      "min_bet": 0.25,
+      "max_bet": 250.0
+    }
+  },
+  {
+    "name": "The Wild Hatter",
+    "slug": "the-wild-hatter",
+    "sc_specs": {
+      "rtp": 94.8,
+      "volatility": "High",
+      "max_win": "3600.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Clover Craze",
+    "slug": "clover-craze",
+    "sc_specs": {
+      "rtp": 96.25,
+      "volatility": "High",
+      "max_win": "21000.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 4.0
+    }
+  },
+  {
+    "name": "Redline Rush",
+    "slug": "redline-rush",
+    "sc_specs": {
+      "rtp": 95.8,
+      "volatility": "Medium-High",
+      "max_win": "2813.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Ghost Pirates",
+    "slug": "ghost-pirates",
+    "sc_specs": {
+      "rtp": 96.88,
+      "volatility": "Medium-High",
+      "paylines": "243",
+      "min_bet": 0.01
+    }
+  },
+  {
+    "name": "Wild Flower",
+    "slug": "wild-flower",
+    "sc_specs": {
+      "rtp": 96.52,
+      "volatility": "High",
+      "max_win": "114100.00x",
+      "paylines": "4096",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Disco Danny",
+    "slug": "disco-danny",
+    "sc_specs": {
+      "rtp": 96.04,
+      "volatility": "High",
+      "max_win": "3000.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 250.0
+    }
+  },
+  {
+    "name": "Dragons Playground",
+    "slug": "dragons-playground",
+    "sc_specs": {
+      "rtp": 96.18,
+      "volatility": "High",
+      "max_win": "10611.00x",
+      "paylines": "4096",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Excalibur",
+    "slug": "excalibur",
+    "sc_specs": {
+      "rtp": 95.08,
+      "volatility": "Low-Medium",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "Jingle Bells Bonanza",
+    "slug": "jingle-bells-bonanza",
+    "sc_specs": {
+      "rtp": 96.12,
+      "volatility": "Medium-High",
+      "max_win": "4186.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Aurum Codex",
+    "slug": "aurum-codex",
+    "sc_specs": {
+      "rtp": 94.7,
+      "volatility": "Medium-High",
+      "max_win": "4131.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Vegas Rush",
+    "slug": "vegas-rush",
+    "sc_specs": {
+      "rtp": 96.44,
+      "volatility": "High",
+      "max_win": "47200.00x",
+      "paylines": "Megaclusters",
+      "min_bet": 0.2,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Neon Links",
+    "slug": "neon-links",
+    "sc_specs": {
+      "rtp": 94.79,
+      "volatility": "Medium",
+      "max_win": "1000.00x",
+      "paylines": "10  \n                                                (Bothway)",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Reel Rush 2",
+    "slug": "reel-rush-2",
+    "sc_specs": {
+      "rtp": 95.53,
+      "volatility": "Medium-High",
+      "max_win": "5000.00x",
+      "paylines": "3125[ i ]",
+      "min_bet": 0.2,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Dracula Awakening",
+    "slug": "dracula-awakening",
+    "sc_specs": {
+      "rtp": 94.73,
+      "volatility": "High",
+      "max_win": "5000.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Hot Nudge",
+    "slug": "hot-nudge",
+    "sc_specs": {
+      "rtp": 96.29,
+      "volatility": "High",
+      "max_win": "2413.00x",
+      "paylines": "40",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Lights",
+    "slug": "lights",
+    "sc_specs": {
+      "rtp": 96.1,
+      "volatility": "Medium",
+      "max_win": "1000.00x",
+      "paylines": "9",
+      "min_bet": 0.09,
+      "max_bet": 90.0
+    }
+  },
+  {
+    "name": "Judgement Day Megaways",
+    "slug": "judgement-day-megaways",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "High",
+      "max_win": "100000.00x",
+      "paylines": "117649",
+      "min_bet": 0.1,
+      "max_bet": 1.0
+    }
+  },
+  {
+    "name": "Cai Shen 168",
+    "slug": "cai-shen-168",
+    "sc_specs": {
+      "rtp": 95.74,
+      "volatility": "High",
+      "max_win": "19946.00x",
+      "paylines": "1024",
+      "min_bet": 0.1,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "Serengeti Kings",
+    "slug": "serengeti-kings",
+    "sc_specs": {
+      "rtp": 96.2,
+      "volatility": "Medium-High",
+      "max_win": "1300.00x",
+      "paylines": "26",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Hammer Gods",
+    "slug": "hammer-gods",
+    "sc_specs": {
+      "rtp": 94.71,
+      "volatility": "High",
+      "max_win": "600.00x",
+      "paylines": "30",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Diamond Fruits",
+    "slug": "diamond-fruits",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Low-Medium",
+      "paylines": "5"
+    }
+  },
+  {
+    "name": "Tombstone",
+    "slug": "tombstone",
+    "sc_specs": {
+      "rtp": 96.18,
+      "volatility": "High",
+      "max_win": "11000.00x",
+      "paylines": "108",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Outlaw",
+    "slug": "outlaw",
+    "sc_specs": {
+      "max_win": "1000.00x",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 40.0
+    }
+  },
+  {
+    "name": "Druids Dream",
+    "slug": "druids-dream",
+    "sc_specs": {
+      "rtp": 96.0,
+      "volatility": "Low-Medium",
+      "max_win": "200.00x",
+      "paylines": "40  \n                                                (Bothway)",
+      "min_bet": 0.2,
+      "max_bet": 400.0
+    }
+  },
+  {
+    "name": "First Person Lightning Blackjack",
+    "slug": "first-person-lightning-blackjack",
+    "sc_specs": {
+      "rtp": 99.56,
+      "paylines": "N/A"
+    }
+  },
+  {
+    "name": "Fruit Case",
+    "slug": "fruit-case",
+    "sc_specs": {
+      "rtp": 96.42,
+      "volatility": "Medium-High",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Imperial Riches",
+    "slug": "imperial-riches",
+    "sc_specs": {
+      "rtp": 96.88,
+      "volatility": "Low",
+      "paylines": "15",
+      "min_bet": 0.15,
+      "max_bet": 30.0
+    }
+  },
+  {
+    "name": "The Wish Master",
+    "slug": "the-wish-master",
+    "sc_specs": {
+      "rtp": 96.65,
+      "volatility": "High",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Rome The Golden Age",
+    "slug": "rome-the-golden-age",
+    "sc_specs": {
+      "rtp": 95.05,
+      "volatility": "Medium-High",
+      "max_win": "100000.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 50.0
+    }
+  },
+  {
+    "name": "Happy Apples",
+    "slug": "happy-apples",
+    "sc_specs": {
+      "rtp": 95.7,
+      "volatility": "High",
+      "max_win": "6186.00x",
+      "paylines": "Pay anywhere",
+      "min_bet": 0.1,
+      "max_bet": 10.0
+    }
+  },
+  {
+    "name": "Fruit Flash",
+    "slug": "fruit-flash",
+    "sc_specs": {
+      "rtp": 95.71,
+      "volatility": "High",
+      "max_win": "10632.00x",
+      "paylines": "243",
+      "min_bet": 0.1,
+      "max_bet": 8.0
+    }
+  },
+  {
+    "name": "Tomb Of Nefertiti",
+    "slug": "tomb-of-nefertiti",
+    "sc_specs": {
+      "rtp": 96.19,
+      "volatility": "Medium-High",
+      "max_win": "3768.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Wilderland",
+    "slug": "wilderland",
+    "sc_specs": {
+      "rtp": 96.16,
+      "volatility": "Low-Medium",
+      "max_win": "240.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 1000.0
+    }
+  },
+  {
+    "name": "Robin Hoods Wild Forest",
+    "slug": "robin-hoods-wild-forest",
+    "sc_specs": {
+      "rtp": 94.66,
+      "volatility": "Low-Medium",
+      "max_win": "1003.00x",
+      "paylines": "10",
+      "min_bet": 0.1,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Midnight Romance",
+    "slug": "midnight-romance",
+    "sc_specs": {
+      "rtp": 95.68,
+      "volatility": "High",
+      "max_win": "19894.00x",
+      "paylines": "20",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Happy Riches",
+    "slug": "happy-riches",
+    "sc_specs": {
+      "rtp": 96.32,
+      "volatility": "High",
+      "max_win": "15000.00x",
+      "paylines": "30",
+      "min_bet": 0.3,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Neon Staxx",
+    "slug": "neon-staxx",
+    "sc_specs": {
+      "rtp": 96.9,
+      "volatility": "Low-Medium",
+      "paylines": "40",
+      "min_bet": 0.01,
+      "max_bet": 2.0
+    }
+  },
+  {
+    "name": "Robin Hood Shifting Riches",
+    "slug": "robin-hood-shifting-riches",
+    "sc_specs": {
+      "rtp": 96.75,
+      "volatility": "Low-Medium",
+      "paylines": "20",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Arcane Reel Chaos",
+    "slug": "arcane-reel-chaos",
+    "sc_specs": {
+      "rtp": 96.81,
+      "volatility": "Low-Medium",
+      "max_win": "1212.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 200.0
+    }
+  },
+  {
+    "name": "Long Pao",
+    "slug": "long-pao",
+    "sc_specs": {
+      "rtp": 96.96,
+      "volatility": "Low",
+      "max_win": "3000.00x",
+      "paylines": "25",
+      "min_bet": 0.25,
+      "max_bet": 250.0
+    }
+  },
+  {
+    "name": "Strolling Staxx Cubic Fruits",
+    "slug": "strolling-staxx-cubic-fruits",
+    "sc_specs": {
+      "rtp": 95.95,
+      "volatility": "Medium",
+      "paylines": "10",
+      "min_bet": 0.15,
+      "max_bet": 300.0
+    }
+  },
+  {
+    "name": "Space Wars",
+    "slug": "space-wars",
+    "sc_specs": {
+      "rtp": 96.75,
+      "volatility": "Medium",
+      "paylines": "40",
+      "min_bet": 0.01,
+      "max_bet": 0.5
+    }
+  },
+  {
+    "name": "Super Striker",
+    "slug": "super-striker",
+    "sc_specs": {
+      "rtp": 96.04,
+      "volatility": "Medium-High",
+      "max_win": "5000.00x",
+      "paylines": "5",
+      "min_bet": 0.1,
+      "max_bet": 75.0
+    }
+  },
+  {
+    "name": "Chocolates",
+    "slug": "chocolates",
+    "sc_specs": {
+      "rtp": 96.6,
+      "volatility": "High",
+      "max_win": "65536.00x",
+      "paylines": "65536[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  },
+  {
+    "name": "Football Champions Cup",
+    "slug": "football-champions-cup",
+    "sc_specs": {
+      "rtp": 96.82,
+      "volatility": "Medium-High",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "Poison Eve",
+    "slug": "poison-eve",
+    "sc_specs": {
+      "rtp": 94.35,
+      "volatility": "High",
+      "max_win": "6091.00x",
+      "paylines": "20",
+      "min_bet": 0.2,
+      "max_bet": 100.0
+    }
+  },
+  {
+    "name": "The Race",
+    "slug": "the-race",
+    "sc_specs": {
+      "rtp": 96.74,
+      "volatility": "High",
+      "max_win": "24070.00x",
+      "paylines": "117649",
+      "min_bet": 0.2,
+      "max_bet": 60.0
+    }
+  },
+  {
+    "name": "Holy Diver",
+    "slug": "holy-diver",
+    "sc_specs": {
+      "rtp": 96.39,
+      "volatility": "Low-Medium",
+      "max_win": "23306.00x",
+      "paylines": "586789[ i ]",
+      "min_bet": 0.1,
+      "max_bet": 20.0
+    }
+  }
+]

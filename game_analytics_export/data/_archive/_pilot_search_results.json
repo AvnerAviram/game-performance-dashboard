@@ -1,0 +1,192 @@
+[
+  {
+    "name": "Gobble Gobble Gobble",
+    "provider": "Evolution",
+    "slug": "Gobble-Gobble-Gobble",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Gobble Gobble Gobble\" Evolution slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:36.336Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Gobble Gobble Gobble\" Evolution slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:40.162Z"
+      }
+    ]
+  },
+  {
+    "name": "Banana Rush",
+    "provider": "Play'n GO",
+    "slug": "Banana-Rush",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Banana Rush\" Play'n GO slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:43.693Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Banana Rush\" Play'n GO slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:46.876Z"
+      }
+    ]
+  },
+  {
+    "name": "Toymaker Magic",
+    "provider": "Light & Wonder",
+    "slug": "Toymaker-Magic",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Toymaker Magic\" Light & Wonder slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:50.058Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Toymaker Magic\" Light & Wonder slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:53.241Z"
+      }
+    ]
+  },
+  {
+    "name": "Megajackpots Cash Eruption",
+    "provider": "IGT",
+    "slug": "Megajackpots-Cash-Eruption",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Megajackpots Cash Eruption\" IGT slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:56.419Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Megajackpots Cash Eruption\" IGT slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:03:59.592Z"
+      }
+    ]
+  },
+  {
+    "name": "Fire And Roses Joker 2 All In",
+    "provider": "Games Global",
+    "slug": "Fire-And-Roses-Joker-2-All-In",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Fire And Roses Joker 2 All In\" Games Global slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:02.770Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Fire And Roses Joker 2 All In\" Games Global slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:05.950Z"
+      }
+    ]
+  },
+  {
+    "name": "3 Lucky Maneki Hold And Spin",
+    "provider": "Aristocrat",
+    "slug": "3-Lucky-Maneki-Hold-And-Spin",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"3 Lucky Maneki Hold And Spin\" Aristocrat slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:09.128Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"3 Lucky Maneki Hold And Spin\" Aristocrat slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:12.299Z"
+      }
+    ]
+  },
+  {
+    "name": "Triple Double Da Vinci Diamonds",
+    "provider": "High 5 Games",
+    "slug": "Triple-Double-Da-Vinci-Diamonds",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Triple Double Da Vinci Diamonds\" High 5 Games slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:15.484Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Triple Double Da Vinci Diamonds\" High 5 Games slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:18.662Z"
+      }
+    ]
+  },
+  {
+    "name": "Heads Up Hold Em",
+    "provider": "Playtech",
+    "slug": "Heads-Up-Hold-Em",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Heads Up Hold Em\" Playtech slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:21.848Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Heads Up Hold Em\" Playtech slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:25.026Z"
+      }
+    ]
+  },
+  {
+    "name": "Snow Slingers",
+    "provider": "Hacksaw Gaming",
+    "slug": "Snow-Slingers",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"Snow Slingers\" Hacksaw Gaming slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:28.211Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"Snow Slingers\" Hacksaw Gaming slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:31.384Z"
+      }
+    ]
+  },
+  {
+    "name": "12 Coins Grand Platinum Edition Santas Jackpot",
+    "provider": "Wazdan",
+    "slug": "12-Coins-Grand-Platinum-Edition-Santas-Jackpot",
+    "attempts": [
+      {
+        "source": "vso",
+        "query": "\"12 Coins Grand Platinum Edition Santas Jackpot\" Wazdan slot site:vegasslotsonline.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:34.561Z"
+      },
+      {
+        "source": "bwb",
+        "query": "\"12 Coins Grand Platinum Edition Santas Jackpot\" Wazdan slot site:bigwinboard.com",
+        "status": "no_results",
+        "timestamp": "2026-05-06T12:04:37.736Z"
+      }
+    ]
+  }
+]

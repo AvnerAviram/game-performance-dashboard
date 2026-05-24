@@ -14,9 +14,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bcryptjs from 'bcryptjs';
+import { MASTER_JSON, MAPPINGS } from '../helpers/paths.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DATA_DIR = path.resolve(__dirname, '../../data');
 const USERS_FILE = path.resolve(__dirname, '../../server/users.json');
 const CREDS = { username: 'e2e_data_driven', password: 'dataD1rven!' };
 
@@ -41,13 +41,13 @@ async function login(page, baseURL) {
 }
 
 function loadGames() {
-    const raw = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'game_data_master.json'), 'utf-8'));
+    const raw = JSON.parse(fs.readFileSync(MASTER_JSON, 'utf-8'));
     return Array.isArray(raw) ? raw : raw.games || [];
 }
 
 function loadFranchiseMapping() {
     try {
-        return JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'franchise_mapping.json'), 'utf-8'));
+        return JSON.parse(fs.readFileSync(MAPPINGS.franchise, 'utf-8'));
     } catch {
         return {};
     }

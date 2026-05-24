@@ -14,7 +14,7 @@ import bcrypt from 'bcryptjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '../..');
-const USERS_FILE = join(ROOT, 'server', 'users.json');
+const USERS_FILE = join(ROOT, 'server', 'data', 'users.json');
 const TEST_PORT = 3848;
 
 let serverProcess = null;
