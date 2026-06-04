@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Analytics Tool - Case Study</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --content: 720px;
+  --accent: #6366f1;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #1e293b;
+  background: #fff;
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 56px 32px;
+}
+
+@media print {
+  body { padding: 16px 18px; max-width: 100%; font-size: 0.84rem; }
+  h2 { page-break-after: avoid; margin-top: 16px; margin-bottom: 8px; }
+  h3 { page-break-after: avoid; margin-top: 10px; margin-bottom: 5px; }
+  p { orphans: 3; widows: 3; margin-bottom: 8px; }
+  .dual-hero, .process-loop { page-break-inside: avoid; }
+  .dual-hero { margin: 8px 0; padding: 10px; }
+  .dual-hero__grid { gap: 6px; margin-bottom: 6px; }
+  .dual-hero__card { padding: 8px; }
+  .dual-hero__card .card-label { font-size: 0.6rem; }
+  .dual-hero__card .card-dims { font-size: 0.7rem; }
+  .dual-hero__merge { padding: 6px; font-size: 0.72rem; }
+  .step-cards { margin: 8px 0 12px; }
+  .step-card { padding: 8px 12px; page-break-inside: avoid; }
+  .step-desc { font-size: 0.76rem; }
+  .pipeline { page-break-inside: avoid; margin: 8px 0; }
+  .pipeline .pipeline-node { padding: 5px 10px; min-width: 100px; }
+  .pipeline .pipeline-node .label { font-size: 0.78rem; }
+  .pipeline .pipeline-node .sub { font-size: 0.62rem; }
+  .pipeline .pipe-arrow { height: 18px; margin: 4px auto; }
+  .pipeline .pipe-arrow--long, .pipeline .pipe-branch .pipe-arrow[style*="176"] { height: 120px !important; }
+  .pipeline .pipe-row { margin: 6px 0; gap: 14px; }
+  .footer-spine { page-break-inside: avoid; }
+  .screenshot { page-break-inside: avoid; margin-top: 6px; margin-bottom: 6px; }
+  .dashboard-grid { page-break-inside: avoid; }
+  img { max-width: 100%; }
+  .screenshot img {
+    max-height: 260px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  .qc-section .screenshot img {
+    max-height: 230px;
+  }
+  .blueprint-section .screenshot img {
+    max-height: 200px;
+  }
+  .namegen-section .screenshot img {
+    max-height: 180px;
+  }
+  .dashboard-grid img {
+    max-height: 140px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+h1 { font-size: clamp(1.5rem, 3vw + 0.5rem, 2rem); font-weight: 600; letter-spacing: -0.02em; margin-bottom: 8px; }
+.subtitle { font-size: 0.88rem; color: var(--muted); margin-bottom: 36px; }
+h2 { font-size: clamp(1.1rem, 2vw + 0.4rem, 1.3rem); font-weight: 600; letter-spacing: -0.01em; margin-top: 48px; margin-bottom: 12px; }
+h3 { font-size: 1rem; font-weight: 600; margin-top: 28px; margin-bottom: 8px; }
+p { margin-bottom: 12px; }
+.muted { color: var(--muted); font-size: 0.85rem; }
+.tag { font-family: var(--mono); font-size: 0.68rem; background: #fef3c7; padding: 2px 6px; border-radius: 3px; color: #92400e; font-weight: 500; }
+ul { margin: 6px 0 14px 18px; }
+li { margin-bottom: 3px; font-size: 0.9rem; }
+
+/* Pipeline */
+.pipeline { margin: 20px auto 28px; display: flex; flex-direction: column; align-items: center; }
+.pipeline-node { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; text-align: center; min-width: 130px; }
+.pipeline-node .label { font-size: 0.85rem; font-weight: 500; }
+.pipeline-node .sub { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+.pipeline-node--gold { background: #fffbeb; border-color: #d97706; }
+.pipeline-node--blue { background: #eef2ff; border-color: #6366f1; }
+.pipe-arrow { width: 12px; height: 20px; position: relative; margin: 10px auto; display: flex; justify-content: center; }
+.pipe-arrow::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: #cbd5e1; transform: translateX(-50%); }
+.pipe-arrow::after { content: ''; position: absolute; bottom: 0; left: 50%; width: 7px; height: 7px; border-right: 1.5px solid #94a3b8; border-bottom: 1.5px solid #94a3b8; transform: translateX(-50%) rotate(45deg); }
+.pipe-arrow--long { height: 168px; }
+.pipe-row { display: flex; gap: 20px; justify-content: center; align-items: flex-start; margin: 10px 0; }
+.pipe-branch { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+/* Dual-image hero */
+.dual-hero { margin: 24px 0; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+.dual-hero__title { font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; text-align: center; }
+.dual-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.dual-hero__card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+.dual-hero__card img { width: 100%; border-radius: 4px; margin-bottom: 8px; border: 1px solid #e2e8f0; }
+.dual-hero__card .card-label { font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+.dual-hero__card .card-dims { font-size: 0.78rem; color: var(--muted); }
+.dual-hero__merge { text-align: center; font-size: 0.82rem; color: #475569; padding: 10px; background: #fff; border: 1px solid var(--border); border-radius: 6px; }
+.dual-hero__merge strong { color: #0f172a; }
+
+/* Rule cards */
+.rule-card { border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 16px 0 20px; }
+.rule-card__eyebrow { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 14px; }
+.is-not { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.is-col { border-left: 3px solid #16a34a; padding-left: 14px; }
+.not-col { border-left: 3px solid #dc2626; padding-left: 14px; }
+.is-col h4, .not-col h4 { font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+.is-col h4 { color: #16a34a; }
+.not-col h4 { color: #dc2626; }
+.is-col p, .not-col p { font-size: 0.84rem; color: #475569; line-height: 1.5; margin: 0; }
+.rule-card__examples { margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9; font-size: 0.84rem; color: #475569; }
+.rule-card__examples code { font-family: var(--mono); font-size: 0.76rem; background: var(--bg); padding: 2px 6px; border-radius: 3px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 0.85rem; }
+th { text-align: left; font-weight: 500; padding: 8px 12px; border-bottom: 2px solid var(--border); color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+
+/* Process loop */
+.process-loop { display: flex; flex-wrap: wrap; gap: 8px 6px; align-items: center; justify-content: center; margin: 14px 0 18px; padding: 18px 24px; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); border: 1px solid #e2e8f0; border-radius: 10px; }
+.process-step { font-family: var(--mono); font-size: 0.72rem; background: #fff; border: 1px solid #c7d2fe; border-radius: 5px; padding: 8px 14px; color: #3730a3; font-weight: 500; box-shadow: 0 1px 2px rgba(99,102,241,0.06); }
+.process-arrow { color: #a5b4fc; font-size: 0.85rem; font-weight: 600; }
+
+/* Screenshots */
+.screenshot { margin: 14px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.screenshot img { width: 100%; display: block; }
+.screenshot-caption { font-size: 0.75rem; color: var(--muted); padding: 8px 14px; background: var(--bg); border-top: 1px solid var(--border); }
+
+/* Footer spine */
+.footer-spine { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; }
+.footer-pill { font-family: var(--mono); font-size: 0.7rem; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; color: #475569; }
+.footer-pill strong { color: #0f172a; font-weight: 500; }
+/* Step cards */
+.step-cards { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 20px; }
+.step-card { display: flex; gap: 14px; align-items: flex-start; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; }
+.step-num { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--accent); background: #eef2ff; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 2px; }
+.step-desc { font-size: 0.8rem; color: #475569; line-height: 1.4; }
+
+/* Dimension pills */
+.dims-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+.dim-pill { font-size: 0.76rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 3px 9px; color: #475569; font-weight: 400; }
+
+.footer { margin-top: 12px; font-size: 0.72rem; color: #94a3b8; }
+</style>
+</head>
+<body>
+
+<h1>Game Analytics Tool</h1>
+<p class="subtitle">Using Claude Vision to connect game performance data with structured visual and mechanics data - across 5,124 games.</p>
+
+<div style="background: var(--bg); padding: 12px 14px; margin: 16px 0 20px; border-radius: 6px; border: 1px solid var(--border);">
+  <p style="margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.86rem; line-height: 1.5;"><strong>Problem:</strong> 5,124 games have performance data but no structured picture of how they look or play. Design decisions rely on gut feeling.</p>
+  <p style="margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.86rem; line-height: 1.5;"><strong>Approach:</strong> Claude Vision classifies screenshots across 6 art dimensions. Mechanics extracted from game rules pages. Everything linked to performance data.</p>
+  <p style="margin: 0; font-size: 0.86rem; line-height: 1.5;"><strong>Impact:</strong> Game designers make data-driven art and mechanics decisions based on what actually performs - replacing gut feeling and cutting research time significantly.</p>
+</div>
+
+<h2 class="print-together">Pipeline Overview</h2>
+
+<div class="pipeline" style="page-break-inside: avoid;">
+  <div class="pipeline-node">
+    <div class="label">Data Sources</div>
+    <div class="sub">Eilers CSV · SlotCatalog · Provider sites</div>
+  </div>
+  <div class="pipe-row" style="margin-top: 6px;">
+    <div class="pipe-branch">
+      <div class="pipe-arrow"></div>
+      <div class="pipeline-node">
+        <div class="label">Feature Extraction</div>
+        <div class="sub">Sonnet reads HTML rules</div>
+      </div>
+      <div class="pipe-arrow" style="height: 176px;"></div>
+    </div>
+    <div class="pipe-branch">
+      <div class="pipe-arrow"></div>
+      <div class="pipeline-node">
+        <div class="label">Screenshot Scraping</div>
+        <div class="sub">Playwright · ~4,050 images</div>
+      </div>
+      <div class="pipe-arrow"></div>
+      <div class="pipeline-node">
+        <div class="label">Prescreen</div>
+        <div class="sub">Sonnet Vision · gameplay vs promo</div>
+      </div>
+      <div class="pipe-arrow"></div>
+      <div class="pipeline-node">
+        <div class="label">Art Classification</div>
+        <div class="sub">Sonnet Vision · 6 dimensions</div>
+      </div>
+      <div class="pipe-arrow"></div>
+    </div>
+  </div>
+  <div class="pipeline-node pipeline-node--gold">
+    <div class="label">Unified Dataset</div>
+    <div class="sub">5,124 games · performance + design</div>
+  </div>
+  <div class="pipe-arrow"></div>
+  <div class="pipeline-node pipeline-node--blue">
+    <div class="label">Dashboard</div>
+    <div class="sub">DuckDB WASM · in-browser analytics</div>
+  </div>
+</div>
+
+<h2>The Game Analytics Tool</h2>
+
+<h3>How we use it</h3>
+
+<p>Every art and mechanics decision is backed by performance data. A designer picks any dimension - theme, element, color, mechanic - and instantly sees which choices correlate with top-performing games across the full dataset.</p>
+
+<p style="margin-top: 14px;">The Elements landscape shows all game elements (Dragons, Gold Coins, Fire, etc.) as bubbles - size is how many games use it, position is performance vs. popularity:</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/30-elements-money-bubble.png" alt="Elements bubble chart with Money/Cash/Bills highlighted">
+<div class="screenshot-caption">Elements bubble chart - "Money/Cash/Bills" highlighted: 272 games, average performance index 0.81.</div>
+</div>
+
+<div style="page-break-inside: avoid;">
+<p>Clicking it opens the full list - every game with that element, ranked by theo index. Each row shows the game name, provider, and performance score. From here you can drill into any game for its full classification, mechanics, and art data:</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/31-elements-money-drilldown.png" alt="Money/Cash/Bills drill-down - top games ranked">
+<div class="screenshot-caption">272 games ranked by theo index. 7s Fire Blitz Hot Stepper leads at 14.3, with provider and mechanic detail per game.</div>
+</div>
+</div>
+
+<p>Every dimension has its own landscape chart - themes, characters, elements, colors, mechanics, narratives - performance vs. popularity at a glance:</p>
+
+<div class="dashboard-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0;">
+  <div>
+    <p class="muted" style="font-size: 0.7rem; margin-bottom: 4px;">Themes</p>
+    <img src="screenshots/dashboard/33-bubble-themes.png" alt="Themes landscape" style="width:100%; border-radius: 6px; border: 1px solid var(--border);">
+  </div>
+  <div>
+    <p class="muted" style="font-size: 0.7rem; margin-bottom: 4px;">Colors</p>
+    <img src="screenshots/dashboard/32-bubble-colors.png" alt="Color tone landscape" style="width:100%; border-radius: 6px; border: 1px solid var(--border);">
+  </div>
+  <div>
+    <p class="muted" style="font-size: 0.7rem; margin-bottom: 4px;">Characters</p>
+    <img src="screenshots/dashboard/34-bubble-characters.png" alt="Characters landscape" style="width:100%; border-radius: 6px; border: 1px solid var(--border);">
+  </div>
+  <div>
+    <p class="muted" style="font-size: 0.7rem; margin-bottom: 4px;">Narratives</p>
+    <img src="screenshots/dashboard/36-bubble-narratives.png" alt="Narratives landscape" style="width:100%; border-radius: 6px; border: 1px solid var(--border);">
+  </div>
+</div>
+<div class="screenshot-caption" style="margin-top: 4px;">All six dimensions have their own landscape chart - performance vs. popularity at a glance.</div>
+
+<h3>Overview and Landscapes</h3>
+
+<p>Landing page with KPIs, top themes/mechanics/games by market share, and landscape bubble charts for quick orientation.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/17-overview-top.png" alt="Dashboard overview">
+<div class="screenshot-caption">3,708 games with verified data. Top themes, mechanics, and games ranked by performance.</div>
+</div>
+
+
+<div style="page-break-before: always;">
+<h3>Game Detail</h3>
+
+<p>Click any game to see its full profile - classified art dimensions, mechanics, performance index vs. theme average, and how it compares to competitors. Every data point is queryable.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/29-game-panel-with-screenshot.png" alt="Game panel with screenshot">
+<div class="screenshot-caption">Game detail panel - scraped screenshot alongside classified theme, mechanics, and performance data.</div>
+</div>
+</div>
+
+
+<div style="page-break-inside: avoid;">
+<h3>Art Recipes</h3>
+
+<p>Full art direction breakdowns - theme, characters, elements, narrative - for top-performing games. Low game count with high performance means untapped potential.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/11-art-recipes.png" alt="Art direction recipes">
+<div class="screenshot-caption">Art recipes: full visual breakdown per theme - characters, elements, narrative, performance index, and how it compares to average.</div>
+</div>
+</div>
+
+
+<div style="page-break-before: always;">
+<h3>Market Intelligence</h3>
+
+<p>Provider cards showing each studio's top games, mechanics, and trend. Below: "Build Next" (high-opportunity combos), "Avoid" (saturated), and "Watch" (rising trends) - all derived from actual performance data across the full dataset.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/16-market-insights-providers.png" alt="Market insights - providers and recommendations">
+<div class="screenshot-caption">Provider Intelligence + Build Next / Avoid / Watch strategic recommendations.</div>
+</div>
+</div>
+
+
+<div class="blueprint-section">
+<h3>Game Blueprint</h3>
+
+<p>Pick a theme and mechanics to design a new concept. The tool scores it against real performance data from 5,124 games, predicts performance, and suggests data-backed improvements. The tabs below show art direction, recommended symbols, and competitive analysis - all for your selected configuration.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/22-blueprint-egyptian-insights.png" alt="Game Blueprint for Egyptian theme">
+<div class="screenshot-caption">Egyptian + Nudges + 3 Pot + Expanding Reels → score 66, predicted performance, top improvements.</div>
+</div>
+</div>
+
+<div class="namegen-section">
+<h3>Game Name Generator</h3>
+
+<p>Analyzes naming patterns across 5,124 games - word count, keywords, structure - mapped to actual performance data. Suggests names based on what statistically correlates with higher-performing games in a given theme or mechanic.</p>
+
+<div class="screenshot">
+<img src="screenshots/dashboard/10-name-generator.png" alt="Game Name Generator">
+<div class="screenshot-caption">Name generator: theme + mechanic input, pattern analysis, scored suggestions based on market data.</div>
+</div>
+</div>
+
+
+<h2>How We Built It</h2>
+
+<div style="margin: 12px 0 20px; padding: 10px 14px; background: #fff; border: 1px solid var(--border); border-radius: 6px; page-break-inside: avoid; font-size: 0.72rem;">
+  <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
+    <span style="font-family: var(--mono); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); min-width: 42px;">Vision</span>
+    <span style="padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap;">Scrape images</span>
+    <span style="color: #94a3b8;">→</span>
+    <span style="padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap;">Filter gameplay</span>
+    <span style="color: #94a3b8;">→</span>
+    <span style="padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap;">Art classify (6 dimensions)</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+    <span style="font-family: var(--mono); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); min-width: 42px;">Rules</span>
+    <span style="padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap;">Extract features</span>
+    <span style="color: var(--muted); font-size: 0.68rem;">mechanics + symbols</span>
+  </div>
+  <div style="display: flex; align-items: center; gap: 6px; padding-top: 7px; border-top: 1px solid #e2e8f0;">
+    <span style="font-family: var(--mono); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); min-width: 42px;">Both</span>
+    <span style="color: #94a3b8;">→</span>
+    <span style="padding: 3px 8px; border: 1px solid var(--border); border-radius: 4px; white-space: nowrap;">QC + human review</span>
+    <span style="color: #94a3b8;">→</span>
+    <span style="padding: 4px 10px; border: 1.5px solid var(--accent); border-radius: 4px; background: #eef2ff; color: #312e81; font-weight: 600; white-space: nowrap;">Unified dataset</span>
+  </div>
+</div>
+
+<div style="margin: 14px 0; padding: 10px 14px; background: #f8fafc; border: 1px solid var(--border); border-radius: 6px; font-size: 0.82rem; page-break-inside: avoid;">
+<strong style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted);">Data collected via Playwright automation</strong>
+<table style="width: 100%; margin-top: 6px; border-collapse: collapse; font-size: 0.8rem;">
+<tr style="border-bottom: 1px solid #e2e8f0;">
+  <td style="padding: 4px 8px 4px 0; font-weight: 500;">Gameplay screenshots</td>
+  <td style="padding: 4px 0; color: var(--muted);">SlotCatalog, BigWinBoard, provider sites</td>
+  <td style="padding: 4px 0 4px 8px; text-align: right; white-space: nowrap;">~4,050 images</td>
+</tr>
+<tr style="border-bottom: 1px solid #e2e8f0;">
+  <td style="padding: 4px 8px 4px 0; font-weight: 500;">Game rules pages</td>
+  <td style="padding: 4px 0; color: var(--muted);">BetMGM, Borgata, Play'n GO, Evolution, High 5</td>
+  <td style="padding: 4px 0 4px 8px; text-align: right; white-space: nowrap;">~8,800 pages</td>
+</tr>
+<tr>
+  <td style="padding: 4px 8px 4px 0; font-weight: 500;">Performance data</td>
+  <td style="padding: 4px 0; color: var(--muted);">Eilers CSV exports</td>
+  <td style="padding: 4px 0 4px 8px; text-align: right; white-space: nowrap;">5,124 games</td>
+</tr>
+</table>
+<p style="margin: 6px 0 0; font-size: 0.74rem; color: var(--muted);">Standard rate-limiting; most sites don't actively block. Same framework extends to lobby/placement scraping for competitive intelligence.</p>
+</div>
+
+<h3>Screenshot Scraping</h3>
+
+<p>The art classification pipeline needs in-game screenshots as input - actual gameplay with the reel grid visible. These don't exist in any structured dataset, so we scrape them. ~4,050 gameplay screenshots collected from multiple sources via Playwright automation:</p>
+
+<div class="step-cards">
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Scrape</div>
+      <div class="step-desc">Playwright visits SlotCatalog, BigWinBoard, provider sites. Downloads all candidate images.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Filter</div>
+      <div class="step-desc">Haiku Vision picks the gameplay image from banners, logos, and thumbnails on the page.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Prescreen</div>
+      <div class="step-desc">Sonnet Vision classifies each saved image: gameplay, promotional banner, or rules page. Only gameplay passes to art classification.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="art-section">
+<h3>Art Classification with Claude Vision</h3>
+
+<div style="page-break-inside: avoid;">
+<h3>Dual-Image Classification</h3>
+
+<p>We send Claude Vision two versions of each screenshot in one API call - full gameplay and a masked version with the reel grid blacked out:</p>
+
+<div class="dual-hero">
+  <div class="dual-hero__grid">
+    <div class="dual-hero__card">
+      <div class="card-label">Image 1 - Full gameplay</div>
+      <div class="card-dims">Feeds: <strong>Theme · Colors · Characters · Mood</strong><br>The model sees the full game screen.</div>
+    </div>
+    <div class="dual-hero__card">
+      <div class="card-label">Image 2 - Reel grid blacked out</div>
+      <div class="card-dims">Feeds: <strong>Background Elements only</strong><br>Reel area (18%-82% of frame) removed. Only actual scenery remains.</div>
+    </div>
+  </div>
+  <div class="dual-hero__merge">
+    <strong>Why:</strong> Without masking, the model confuses reel symbols with background scenery. A Viking ship on the reels is a <em>symbol</em>, not a scene element - but it looks identical to a real ship in the background.
+  </div>
+</div>
+</div>
+
+<h3>IS / IS NOT Classification Rules</h3>
+
+<p>Each dimension has explicit boundary rules. The model classifies into a constrained vocabulary - 53 themes, 26 colors, 134 character terms, 125+ elements - queryable across all games. Six dimensions total (theme, colors, characters, elements, mood, narrative); the first four undergo human review.</p>
+
+<article class="rule-card">
+  <p class="rule-card__eyebrow">Example · Theme Classification</p>
+  <div class="is-not">
+    <div class="is-col">
+      <h4>Is "Casino Floor"</h4>
+      <p>Games visually set ON a casino floor - you see card tables, roulette wheels, casino interior, chips, dealers. The setting is inside a casino.</p>
+    </div>
+    <div class="not-col">
+      <h4>Is not</h4>
+      <p>Games about money/cash/gold that have no actual casino interior. Games with multiplier symbols. "Cash" in the name does not mean Casino Floor.</p>
+    </div>
+  </div>
+  <div class="rule-card__examples">
+    <code>Roulette table visible, dealer character, casino chips → "Casino Floor"</code><br>
+    <code>Gold coins, treasure chest, "Cash Blast" title → NOT Casino Floor (likely Luxury or Classic Slots)</code>
+  </div>
+</article>
+
+<p>Every dimension has multiple rule cards like this - themes have one per category, characters have 6 distinct rule blocks. All grew iteratively from real classification errors.</p>
+</div>
+
+<div class="qc-section">
+<h3>Quality Control</h3>
+
+<p>Every batch goes through human review - 50+ rounds across the project. Recurring errors become new IS/IS NOT rules. A code-enforced gate blocks production until regression passes.</p>
+
+<div class="process-loop">
+  <span class="process-step">Classify batch</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Generate review HTML</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Human OK / Fix</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Analyze error patterns</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Update IS/IS NOT rules</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Re-classify errors</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Regression test</span>
+  <span class="process-arrow">→</span>
+  <span class="process-step">Gate opens</span>
+</div>
+
+
+
+<h3>Multi-Dimension Review</h3>
+
+<p>Each dimension (theme, colors, characters, elements) marked independently. Fix notes feed directly into prompt improvements.</p>
+
+<div class="screenshot">
+<img src="screenshots/04-batch24-4dim.png" alt="4-dimension review">
+<div class="screenshot-caption">Per-game review: screenshot + 4 dimensions, each independently marked OK/Fix with notes.</div>
+</div>
+
+<h3>Color Calibration</h3>
+
+<p>The reviewer compares the model's percentage estimates against what they see on screen. Three rounds on 40 stratified games drove color accuracy from 77% to 82.5%.</p>
+
+<div class="screenshot">
+<img src="screenshots/02-color-calibration-r3.png" alt="Color calibration">
+<div class="screenshot-caption">Round 3 at 25% threshold. Color bars = raw model output. Gold borders = passed threshold. Orange cards = previously incorrect.</div>
+</div>
+
+</div>
+
+<h3>Feature Extraction + Symbols</h3>
+
+<p class="muted">In parallel with the screenshot pipeline above, we extracted mechanics and symbols from game rules pages.</p>
+
+<div class="step-cards">
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="step-title">Scrape rules pages</div>
+      <div class="step-desc">Indexes BetMGM / Borgata help pages, downloads full HTML (~8,800 pages). Strict title-matching links each to a game. Separate scrapers for Play'n GO, Evolution, High 5 Games. ~4,000 pages matched.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="step-title">Game mechanics</div>
+      <div class="step-desc">Claude reads each page (text-only, no vision) and classifies into a 30-feature vocabulary (Hold and Spin, Free Spins, Megaways, etc.) with IS/IS NOT rules per mechanic.</div>
+    </div>
+  </div>
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="step-title">Symbol names</div>
+      <div class="step-desc">Full paytable extraction from the same pages - wilds, scatters, bonus triggers, themed and card symbols. Each typed with function descriptions.</div>
+    </div>
+  </div>
+</div>
+
+<p>Same IS/IS NOT approach as art classification - each mechanic has boundary rules so Claude knows exactly what counts. 30 mechanics, each with its own rule card.</p>
+
+<article class="rule-card">
+  <p class="rule-card__eyebrow">Example · Hold and Spin</p>
+  <div class="is-not">
+    <div class="is-col">
+      <h4>Is</h4>
+      <p>Special symbols LOCK on the grid, remaining positions RESPIN with a counter that resets on new locks.</p>
+    </div>
+    <div class="not-col">
+      <h4>Is not</h4>
+      <p>Regular respins. Free spins with sticky wilds. Vague "hold-style" without lock-grid-respin-counter.</p>
+    </div>
+  </div>
+</article>
+
+<p>3,674 games extracted at <strong>97% accuracy</strong> against 228 ground-truth games. Symbol names are also used as hints in the art pipeline - preventing Claude Vision from confusing reel symbols with actual characters.</p>
+
+<h3>Model Cascade</h3>
+
+<p>Different Claude models for different stages, based on task complexity vs. cost:</p>
+
+<table>
+<tr><th>Stage</th><th>Model</th><th>Cost</th><th>What it does</th></tr>
+<tr><td>Download filter</td><td>Haiku (vision)</td><td>$0.0001/img</td><td>During Playwright scraping, pages have multiple images. Haiku picks the gameplay screenshot vs. promo banners or logos.</td></tr>
+<tr><td>Screenshot prescreen</td><td>Sonnet (vision)</td><td>$0.003/img</td><td>Classifies each saved screenshot: is this actual gameplay, a promotional banner, or a rules page? Only gameplay passes to art classification.</td></tr>
+<tr><td>Art classification</td><td>Sonnet (vision, cached)</td><td>$0.008/game</td><td>Full 6-dimension visual classification from the gameplay screenshot (dual-image, IS/IS NOT cards, constrained vocabulary).</td></tr>
+<tr><td>Feature extraction</td><td>Sonnet (text-only)</td><td>$0.005/game</td><td>Reads HTML game rules pages and extracts mechanics (Hold and Spin, Megaways, Free Spins, etc.) to a 30-feature vocabulary.</td></tr>
+</table>
+
+<p class="muted">Prompt caching saves ~90% on system prompts. Batch API gives 50% off bulk runs. Checkpointed after every game.</p>
+
+<h3 class="print-together">Current Status</h3>
+
+<table>
+<tr><th>Dimension</th><th>Accuracy</th><th>Status</th></tr>
+<tr><td>Feature extraction</td><td>97%</td><td>Production</td></tr>
+<tr><td>Screenshot prescreen</td><td>97.4%</td><td>Production</td></tr>
+<tr><td>Art theme</td><td>92%</td><td>Production</td></tr>
+<tr><td>Art colors</td><td>82.5%</td><td>Calibrated</td></tr>
+<tr><td>Art characters</td><td>90%</td><td>Production</td></tr>
+<tr><td>Art elements</td><td>~65%</td><td>Known vision limitation</td></tr>
+</table>
+
+<p class="muted">Elements remain hardest - spatial reasoning for background vs. reel content is a known vision model limitation.</p>
+
+<h2>What's Next</h2>
+
+<div style="margin: 18px 0;">
+  <div style="margin-bottom: 16px;">
+    <p style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 8px;">Now - in progress</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <div style="border-left: 3px solid #10b981; border-radius: 6px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <strong style="font-size: 0.82rem; color: #1e293b;">Full coverage reclassification</strong>
+        <p style="margin: 4px 0 0; font-size: 0.74rem; color: var(--muted); line-height: 1.4;">Latest prompt across all 5,124 games for unified art data.</p>
+      </div>
+      <div style="border-left: 3px solid #10b981; border-radius: 6px; padding: 12px 14px; background: linear-gradient(135deg, #f8fafc 0%, #ecfdf5 100%); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <strong style="font-size: 0.82rem; color: #1e293b;">Feature combination analysis</strong>
+        <p style="margin: 4px 0 0; font-size: 0.74rem; color: var(--muted); line-height: 1.4;">Which mechanic + art combinations drive performance together.</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p style="font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 8px;">Next - planned</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+      <div style="border-left: 3px solid var(--border); border-radius: 6px; padding: 12px 14px; background: var(--bg); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <strong style="font-size: 0.82rem; color: #1e293b;">Game naming</strong>
+        <p style="margin: 4px 0 0; font-size: 0.74rem; color: var(--muted); line-height: 1.4;">Naming pattern analysis - word count, keywords, structure mapped to performance.</p>
+      </div>
+      <div style="border-left: 3px solid var(--border); border-radius: 6px; padding: 12px 14px; background: var(--bg); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <strong style="font-size: 0.82rem; color: #1e293b;">Poster art</strong>
+        <p style="margin: 4px 0 0; font-size: 0.74rem; color: var(--muted); line-height: 1.4;">Layout, typography, color analysis for promotional materials.</p>
+      </div>
+      <div style="border-left: 3px solid var(--border); border-radius: 6px; padding: 12px 14px; background: var(--bg); box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+        <strong style="font-size: 0.82rem; color: #1e293b;">Game types</strong>
+        <p style="margin: 4px 0 0; font-size: 0.74rem; color: var(--muted); line-height: 1.4;">Structural classification (concatenation, stepper, cluster).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-spine">
+  <div class="footer-pill"><strong>5,124</strong> games</div>
+  <div class="footer-pill"><strong>97%</strong> feature accuracy</div>
+  <div class="footer-pill"><strong>92%</strong> art theme</div>
+  <div class="footer-pill"><strong>$0.008</strong>/game</div>
+  <div class="footer-pill"><strong>1,698</strong> tests</div>
+  <div class="footer-pill"><strong>50+</strong> review rounds</div>
+</div>
+<div class="footer">Claude Vision (Anthropic) · DuckDB WASM · Playwright · Custom pipeline orchestration</div>
+
+</body>
+</html>
